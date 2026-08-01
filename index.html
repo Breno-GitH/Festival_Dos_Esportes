@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festival Galáctico - 16 Bits</title>
+    <!-- Fonte 16-Bits inspirada em jogos clássicos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Interface Superior -->
+        <div id="header-ui">
+            <h1 id="game-title">ILHA DOS CAMPEOES</h1>
+            <div id="score-tag">PONTOS: <span id="score-val">0</span></div>
+        </div>
+        
+        <!-- Tela de Jogo -->
+        <div id="canvas-wrapper">
+            <!-- Resolução interna menor (450x300) para criar efeito Pixel Art natural -->
+            <canvas id="gameCanvas" width="450" height="300"></canvas>
+            
+            <!-- Caixa de Diálogo (Estilo RPG) -->
+            <div id="dialog-box">
+                <p id="dialog-text"></p>
+            </div>
+        </div>
+
+        <div id="controls-hint">
+            <p id="hint-text">Use [W A S D] PARA MOVER | [E] PARA INTERAGIR</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
