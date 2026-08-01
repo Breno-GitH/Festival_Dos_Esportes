@@ -76,6 +76,9 @@ const pingPong = {
 // -------------------------------------------------------------
 // ASSETS E MAPEAMENTO: ESQUI
 // -------------------------------------------------------------
+// -------------------------------------------------------------
+// ASSETS E MAPEAMENTO: ESQUI (ATUALIZADO PARA BOSS FIGHT)
+// -------------------------------------------------------------
 const esquiAssets = {
     zorp: new Image(),
     mestre: new Image(),
@@ -85,124 +88,379 @@ esquiAssets.zorp.src = "zorp_esqui.png";
 esquiAssets.mestre.src = "mestre_esqui.png";
 esquiAssets.elementos.src = "elementos_esqui.png";
 
+// Mapeamento baseado na nova spritesheet
 const ESQUI_SPRITES = {
     zorp: {
-        descidaFrente:  [ {x: 0, y: 50, w: 50, h: 50}, {x: 50, y: 50, w: 50, h: 50}, {x: 100, y: 50, w: 50, h: 50} ],
+        descidaFrente:  [ {x: 0, y: 50, w: 50, h: 50}, {x: 50, y: 50, w: 50, h: 50} ],
         virarEsquerda:  [ {x: 150, y: 0, w: 50, h: 50} ],
         virarDireita:   [ {x: 300, y: 0, w: 50, h: 50} ],
+        salto:          [ {x: 200, y: 50, w: 50, h: 50} ], // Novo sprite de rampa
         colisao:        [ {x: 300, y: 50, w: 50, h: 50} ]
     },
-    elementos: {
-        arvore:         { x: 150, y: 0, w: 40, h: 50 },
-        rocha:          { x: 195, y: 0, w: 40, h: 35 },
-        bonecoNeve:     { x: 240, y: 0, w: 35, h: 45 },
-        bandeiraAzul:   { x: 0, y: 0, w: 30, h: 40 }
+    mestre: {
+        descidaCostas:  [ {x: 0, y: 0, w: 50, h: 50}, {x: 50, y: 0, w: 50, h: 50} ],
+        ataque:         [ {x: 0, y: 100, w: 50, h: 50} ]
     }
 };
 
-const esquiGame = {
-    playerX: 200, 
-    playerY: 200, 
-    speedX: 4, 
-    baseSpeedY: 4,
+ const esquiGame = {
+    playerX: 0, // Agora 0 é o centro da tela
+    speedX: 8, 
+    speedZ: 15, // Velocidade que avança na pista
     distance: 0, 
-    maxDistance: 1500, // Chegue a 1500 para ganhar a insígnia
+    maxDistance: 4000, 
     obstacles: [],
-    animTimer: 0,
-    animIndex: 0,
-    action: "descidaFrente", // Estado atual da animação do Zorp
+    
+    // Animação e Estados
+    isJumping: false,
+    jumpTimer: 0,
     isHit: false,
-    hitTimer: 0
+    hitTimer: 0,
+    
+    // Boss 
+    bossX: 0,
+    bossZ: 500, // Fica longe no horizonte e vai se aproximando/afastando
+    bossAttackTimer: 50
 };
 
 // -------------------------------------------------------------
 // MINIGAME ESQUI
 // -------------------------------------------------------------
+// -------------------------------------------------------------
+// MINIGAME ESQUI - LÓGICA E RENDERIZAÇÃO ATUALIZADAS
+// -------------------------------------------------------------
 function resetEsqui() {
-    esquiGame.playerX = 200;
+    esquiGame.playerX = 0;
     esquiGame.distance = 0;
     esquiGame.obstacles = [];
     esquiGame.isHit = false;
     esquiGame.hitTimer = 0;
-    esquiGame.action = "descidaFrente";
+    esquiGame.isJumping = false;
+    esquiGame.bossZ = esquiGame.distance + 800; // Boss nasce longe
 }
 
 function updateEsqui() {
-    hintText.innerText = "[A D] DESVIAR | SOBREVIVA A DESCIDA!";
+    hintText.innerText = "[A D] DESVIAR | [ESPAÇO] PULAR RAMPAS";
 
-    // Controle de Animação
-    esquiGame.animTimer++;
-    if (esquiGame.animTimer > 10) {
-        esquiGame.animIndex = (esquiGame.animIndex + 1) % 3;
-        esquiGame.animTimer = 0;
+    // Pulo e Colisão
+    if (esquiGame.isJumping) {
+        esquiGame.jumpTimer--;
+        if (esquiGame.jumpTimer <= 0) esquiGame.isJumping = false;
     }
 
     if (esquiGame.hitTimer > 0) {
         esquiGame.hitTimer--;
-        esquiGame.action = "colisao";
         if (esquiGame.hitTimer === 0) esquiGame.isHit = false;
-    } else {
-        // Movimento
-        let moveX = 0;
-        if (keys.a) moveX -= esquiGame.speedX;
-        if (keys.d) moveX += esquiGame.speedX;
+    } else if (!esquiGame.isJumping) {
+        // Movimento lateral (limites da pista - X vai de -300 a 300)
+        if (keys.a) esquiGame.playerX -= esquiGame.speedX;
+        if (keys.d) esquiGame.playerX += esquiGame.speedX;
+        esquiGame.playerX = Math.max(-300, Math.min(300, esquiGame.playerX));
+    }
 
-        esquiGame.playerX = Math.max(20, Math.min(canvas.width - 60, esquiGame.playerX + moveX));
+    // Avançar na pista
+    if (!esquiGame.isHit) {
+        esquiGame.distance += esquiGame.speedZ;
+        
+        // Comportamento do Boss
+        esquiGame.bossZ = esquiGame.distance + 600 + Math.sin(Date.now() / 500) * 100;
+        if (esquiGame.bossX < esquiGame.playerX) esquiGame.bossX += 2;
+        else if (esquiGame.bossX > esquiGame.playerX) esquiGame.bossX -= 2;
 
-        if (keys.a) esquiGame.action = "virarEsquerda";
-        else if (keys.d) esquiGame.action = "virarDireita";
-        else esquiGame.action = "descidaFrente";
-
-        // Avanço da pista
-        esquiGame.distance += esquiGame.baseSpeedY;
-
-        // Gerar Obstáculos aleatórios
-        if (Math.random() < 0.04) { // 4% de chance por frame
-            const obsTypes = ["arvore", "rocha", "bonecoNeve", "bandeiraAzul"];
-            const type = obsTypes[Math.floor(Math.random() * obsTypes.length)];
-            const obsSprite = ESQUI_SPRITES.elementos[type];
+        esquiGame.bossAttackTimer--;
+        if (esquiGame.bossAttackTimer <= 0) {
+            let type = Math.random() > 0.5 ? "bolaDeNeve" : "estalactite";
             esquiGame.obstacles.push({
-                x: Math.random() * (canvas.width - obsSprite.w - 20) + 10,
-                y: -50,
+                x: esquiGame.bossX,
+                z: esquiGame.bossZ - 20, // Sai da frente do boss
                 type: type,
-                w: obsSprite.w,
-                h: obsSprite.h
+                w: 60, h: 60,
+                isAttack: true
             });
+            esquiGame.bossAttackTimer = 60 + Math.random() * 40;
         }
     }
 
-    // Atualizar Obstáculos e Colisão
-    let playerBox = { x: esquiGame.playerX + 10, y: esquiGame.playerY + 10, w: 30, h: 30 };
+    // Gerar Cenário Aleatório no horizonte (Z alto)
+    if (Math.random() < 0.08 && !esquiGame.isHit) {
+        const types = ["arvore", "arvore", "rocha", "rampa"];
+        const type = types[Math.floor(Math.random() * types.length)];
+        // Nasce nas bordas (árvores) ou no meio (rochas/rampas)
+        let obsX = type === "arvore" ? (Math.random() > 0.5 ? 350 : -350) : (Math.random() * 600 - 300);
+        
+        esquiGame.obstacles.push({
+            x: obsX,
+            z: esquiGame.distance + 1500, // Nasce no horizonte
+            type: type,
+            w: 80, h: 80,
+            isAttack: false
+        });
+    }
+
+    // Atualizar Obstáculos e Colisão em Profundidade
+    let playerZ = esquiGame.distance; // O jogador está sempre no Z atual
     
     for (let i = esquiGame.obstacles.length - 1; i >= 0; i--) {
         let obs = esquiGame.obstacles[i];
         
-        // Só move se o jogador não estiver batido (congela a tela no hit)
-        if (!esquiGame.isHit) obs.y += esquiGame.baseSpeedY;
+        if (obs.isAttack && !esquiGame.isHit) {
+            obs.z -= esquiGame.speedZ * 0.5; // Ataques vêm mais rápido na direção do jogador
+        }
 
-        // Verifica Colisão
-        if (playerBox.x < obs.x + obs.w && playerBox.x + playerBox.w > obs.x &&
-            playerBox.y < obs.y + obs.h && playerBox.y + playerBox.h > obs.y) {
-            
-            esquiGame.isHit = true;
-            esquiGame.hitTimer = 60; // Fica travado por 1 segundo
-            esquiGame.obstacles.splice(i, 1); // Remove o obstáculo após bater
-            esquiGame.distance = Math.max(0, esquiGame.distance - 100); // Penalidade
+        // Se passou do jogador (ficou para trás da câmera)
+        if (obs.z < playerZ - 100) {
+            esquiGame.obstacles.splice(i, 1);
             continue;
         }
 
-        // Remove obstáculos que saíram da tela
-        if (obs.y > canvas.height) {
-            esquiGame.obstacles.splice(i, 1);
+        // Checagem de Colisão (Se o Z do obstáculo está perto do Z do jogador)
+        if (obs.z > playerZ && obs.z < playerZ + 50) {
+            if (Math.abs(esquiGame.playerX - obs.x) < 40) { // Colisão lateral X
+                if (obs.type === "rampa" && keys.space && !esquiGame.isJumping) {
+                    esquiGame.isJumping = true;
+                    esquiGame.jumpTimer = 35;
+                } else if (!esquiGame.isJumping && obs.type !== "rampa") {
+                    esquiGame.isHit = true;
+                    esquiGame.hitTimer = 60;
+                    esquiGame.obstacles.splice(i, 1);
+                    esquiGame.speedX -= 100; // Penalidade de recuo
+                }
+            }
         }
+    }
+
+    // Vitória
+    if (esquiGame.distance >= esquiGame.maxDistance) {
+        insignias.esqui = true;
+        currentScene = "ILHA_ESQUI";
+        dialogText.innerHTML = "> MESTRE DO GELO: Incrível! Você venceu a perspectiva 3D!";
+        dialogBox.classList.add("show");
+    }
+}
+
+// Projeção Matemática 3D para o Canvas
+function project3D(x, z) {
+    const horizonY = 120; // Linha do horizonte
+    const cameraHeight = 150; // Altura da câmera
+    const FOV = 250; // Campo de visão (Field of View)
+
+    let relativeZ = z - esquiGame.distance; 
+    if (relativeZ < 1) relativeZ = 1; // Previne bugar ao passar da câmera
+
+    let scale = FOV / (FOV + relativeZ);
+    let screenX = (canvas.width / 2) + (x * scale);
+    let screenY = horizonY + (cameraHeight * scale);
+    
+    return { sx: screenX, sy: screenY, scale: scale };
+}
+
+function drawEsquiGame() {
+    const horizonY = 120;
+
+    // Fundo (Céu e Montanhas estáticas)
+    ctx.fillStyle = "#87CEEB"; ctx.fillRect(0, 0, canvas.width, horizonY);
+    ctx.fillStyle = "#ecf0f1";
+    ctx.beginPath(); ctx.moveTo(0, horizonY); ctx.lineTo(100, 40); ctx.lineTo(250, horizonY); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(200, horizonY); ctx.lineTo(350, 20); ctx.lineTo(canvas.width, horizonY); ctx.fill();
+
+    // Desenhar o Chão Pseudo-3D (Efeito de velocidade)
+    for (let i = 0; i < canvas.height - horizonY; i += 3) {
+        let screenY = horizonY + i;
+        // Reverte a projeção para saber o Z real daquela linha na tela
+        let z = (150 * 250) / Math.max(1, i);
+        let realZ = z + esquiGame.distance;
+        
+        // Pista zebrada para dar sensação de profundidade e velocidade
+        ctx.fillStyle = (Math.floor(realZ / 120) % 2 === 0) ? "#ffffff" : "#f5f6fa";
+        ctx.fillRect(0, screenY, canvas.width, 3);
+        
+        // Bordas da pista (Estilo corrida)
+        let edgeScale = 250 / (250 + z);
+        let edgeX = (canvas.width / 2) + (350 * edgeScale);
+        ctx.fillStyle = (Math.floor(realZ / 80) % 2 === 0) ? "#e74c3c" : "#ffffff";
+        ctx.fillRect((canvas.width / 2) - (350 * edgeScale), screenY, 15 * edgeScale, 3); // Esquerda
+        ctx.fillRect(edgeX, screenY, 15 * edgeScale, 3); // Direita
+    }
+
+    // Organizar objetos para desenhar de trás pra frente (Painter's Algorithm)
+    let renderList = [...esquiGame.obstacles, { isBoss: true, x: esquiGame.bossX, z: esquiGame.bossZ }];
+    renderList.sort((a, b) => b.z - a.z); // Maior Z (mais longe) desenha primeiro
+
+    // Renderizar Elementos em 3D
+    renderList.forEach(obj => {
+        let p = project3D(obj.x, obj.z);
+        if (p.sy > canvas.height + 50 || p.scale < 0.05) return; // Não desenha se saiu da tela
+
+        let scaledW = (obj.w || 70) * p.scale;
+        let scaledH = (obj.h || 70) * p.scale;
+        let drawX = p.sx - scaledW / 2;
+        let drawY = p.sy - scaledH; // Ancorar pela base
+
+        if (obj.isBoss) {
+            // FALLBACK IMAGEM: Desenha o boss. Se a imagem falhar, desenha um bloco vermelho.
+            if (esquiAssets.mestre.complete && esquiAssets.mestre.naturalWidth > 0) {
+                ctx.drawImage(esquiAssets.mestre, drawX, drawY, scaledW, scaledH);
+            } else {
+                ctx.fillStyle = "#e74c3c"; ctx.fillRect(drawX, drawY, scaledW, scaledH);
+            }
+        } else {
+            // Formas geométricas escaladas pela projeção
+            if (obj.type === "arvore") {
+                ctx.fillStyle = '#27ae60'; ctx.beginPath(); ctx.moveTo(p.sx, drawY); ctx.lineTo(drawX, p.sy); ctx.lineTo(drawX + scaledW, p.sy); ctx.fill();
+            } else if (obj.type === "rocha") {
+                ctx.fillStyle = '#7f8c8d'; ctx.fillRect(drawX, drawY + scaledH/2, scaledW, scaledH/2);
+            } else if (obj.type === "rampa") {
+                ctx.fillStyle = '#bdc3c7'; ctx.beginPath(); ctx.moveTo(drawX, p.sy); ctx.lineTo(drawX + scaledW, p.sy); ctx.lineTo(drawX + scaledW, p.sy - scaledH/3); ctx.fill();
+            } else if (obj.type === "bolaDeNeve") {
+                ctx.fillStyle = '#ecf0f1'; ctx.beginPath(); ctx.arc(p.sx, p.sy - scaledH/2, scaledW/2, 0, Math.PI * 2); ctx.fill();
+                ctx.strokeStyle = '#bdc3c7'; ctx.stroke();
+            } else if (obj.type === "estalactite") {
+                ctx.fillStyle = '#81d4fa'; ctx.beginPath(); ctx.moveTo(p.sx, p.sy); ctx.lineTo(drawX, drawY); ctx.lineTo(drawX + scaledW, drawY); ctx.fill();
+            }
+        }
+    });
+
+    // Renderizar Jogador (Zorp) - Sempre na frente
+    let playerP = project3D(esquiGame.playerX, esquiGame.distance + 50); 
+    let playerW = 60 * playerP.scale;
+    let playerH = 60 * playerP.scale;
+    
+    let py = playerP.sy - playerH;
+    if (esquiGame.isJumping) py -= 30; // Pulo visual
+    if (esquiGame.isHit && esquiGame.hitTimer % 10 < 5) ctx.globalAlpha = 0.5;
+
+    // FALLBACK IMAGEM ZORP
+    if (esquiAssets.zorp.complete && esquiAssets.zorp.naturalWidth > 0) {
+        ctx.drawImage(esquiAssets.zorp, playerP.sx - playerW/2, py, playerW, playerH);
+    } else {
+        ctx.fillStyle = "#3498db"; ctx.fillRect(playerP.sx - playerW/2, py, playerW, playerH); // Bloco azul caso a imagem não carregue
+    }
+    ctx.globalAlpha = 1.0;
+
+    // HUD (Painel Superior)
+    ctx.fillStyle = "rgba(0,0,0,0.8)"; ctx.fillRect(0, 0, canvas.width, 40);
+    ctx.fillStyle = "#fff"; ctx.font = "bold 16px monospace";
+    ctx.fillText("CORRIDA NO GELO", 15, 25);
+    ctx.fillStyle = "#f1c40f";
+    ctx.fillText(`PROG: ${Math.floor(esquiGame.distance)} / ${esquiGame.maxDistance}`, canvas.width - 250, 25);
+}
+
+    // Atualizar Posição dos Obstáculos e Colisões
+    let playerBox = { x: esquiGame.playerX + 15, y: esquiGame.playerY + 15, w: 20, h: 30 };
+    
+    for (let i = esquiGame.obstacles.length - 1; i >= 0; i--) {
+        let obs = esquiGame.obstacles[i];
+        
+        if (!esquiGame.isHit) {
+            // Ataques do Boss descem mais rápido
+            obs.y += obs.isAttack ? esquiGame.baseSpeedY + 3 : esquiGame.baseSpeedY;
+        }
+
+        // Interação com Rampa
+        if (obs.type === "rampa" && keys.space && !esquiGame.isJumping) {
+            if (playerBox.x < obs.x + obs.w && playerBox.x + playerBox.w > obs.x &&
+                playerBox.y < obs.y + obs.h && playerBox.y + playerBox.h > obs.y) {
+                esquiGame.isJumping = true;
+                esquiGame.jumpTimer = 35; // Duração do pulo
+            }
+        }
+
+        // Colisão com Obstáculos (Ignora se o jogador estiver pulando)
+        if (!esquiGame.isJumping && obs.type !== "rampa") {
+            if (playerBox.x < obs.x + obs.w && playerBox.x + playerBox.w > obs.x &&
+                playerBox.y < obs.y + obs.h && playerBox.y + playerBox.h > obs.y) {
+                
+                esquiGame.isHit = true;
+                esquiGame.hitTimer = 60; 
+                esquiGame.obstacles.splice(i, 1); 
+                esquiGame.distance = Math.max(0, esquiGame.distance - 150); 
+                continue;
+            }
+        }
+
+        if (obs.y > canvas.height) esquiGame.obstacles.splice(i, 1);
     }
 
     // Condição de Vitória
     if (esquiGame.distance >= esquiGame.maxDistance) {
         insignias.esqui = true;
         currentScene = "ILHA_ESQUI";
-        dialogText.innerHTML = "> MESTRE DO GELO: Seus reflexos sao frios como o gelo! Voce ganhou a Insignia do Esqui!";
+        dialogText.innerHTML = "> MESTRE DO GELO: Você sobreviveu à minha avalanche! Insígnia do Esqui conquistada!";
         dialogBox.classList.add("show");
+    }
+
+
+function drawEsquiGame() {
+    // Fundo da Neve
+    ctx.fillStyle = "#e3f2fd"; 
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Efeito de descida
+    ctx.fillStyle = "#bbdefb";
+    for(let i = 0; i < 20; i++) {
+        let ly = (esquiGame.distance + i * 25) % canvas.height;
+        let lx = (i * 37) % canvas.width;
+        ctx.fillRect(lx, ly, 3, 15);
+    }
+
+    // Renderizar Obstáculos e Ataques
+    esquiGame.obstacles.forEach(obs => {
+        if (obs.type === "arvore") {
+            ctx.fillStyle = '#1b5e20'; ctx.beginPath(); ctx.moveTo(obs.x + obs.w/2, obs.y); ctx.lineTo(obs.x, obs.y + obs.h); ctx.lineTo(obs.x + obs.w, obs.y + obs.h); ctx.fill();
+        } else if (obs.type === "rocha") {
+            ctx.fillStyle = '#7f8c8d'; ctx.beginPath(); ctx.arc(obs.x + obs.w/2, obs.y + obs.h/2, obs.w/2, 0, Math.PI * 2); ctx.fill();
+        } else if (obs.type === "rampa") {
+            ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.moveTo(obs.x, obs.y + obs.h); ctx.lineTo(obs.x + obs.w, obs.y + obs.h); ctx.lineTo(obs.x + obs.w, obs.y); ctx.fill();
+            ctx.strokeStyle = '#bdc3c7'; ctx.lineWidth = 2; ctx.stroke();
+        } else if (obs.type === "bolaDeNeve") {
+            ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(obs.x + obs.w/2, obs.y + obs.h/2, obs.w/2, 0, Math.PI * 2); ctx.fill();
+            ctx.shadowBlur = 10; ctx.shadowColor = "#90caf9"; ctx.fill(); ctx.shadowBlur = 0;
+        } else if (obs.type === "estalactite") {
+            ctx.fillStyle = '#81d4fa'; ctx.beginPath(); ctx.moveTo(obs.x + obs.w/2, obs.y + obs.h); ctx.lineTo(obs.x, obs.y); ctx.lineTo(obs.x + obs.w, obs.y); ctx.fill();
+        } else {
+            ctx.fillStyle = "#bdc3c7"; ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
+        }
+    });
+
+    // Renderizar Boss (Mestre do Gelo)
+    let bossAnim = ESQUI_SPRITES.mestre[esquiGame.bossAction];
+    let bossSprite = Array.isArray(bossAnim) ? bossAnim[esquiGame.animIndex % bossAnim.length] : bossAnim;
+    drawSprite(esquiAssets.mestre, bossSprite, esquiGame.bossX, esquiGame.bossY, 50, 50);
+
+    // Renderizar Zorp (Jogador)
+    let zorpAnim = ESQUI_SPRITES.zorp[esquiGame.action];
+    let zorpSprite = Array.isArray(zorpAnim) ? zorpAnim[esquiGame.animIndex % zorpAnim.length] : zorpAnim;
+    
+    // Feedback visual (pulo ou dano)
+    if (esquiGame.isHit && esquiGame.hitTimer % 10 < 5) ctx.globalAlpha = 0.5;
+    
+    let drawY = esquiGame.playerY;
+    let drawScale = 50;
+    if (esquiGame.isJumping) {
+        drawY -= 20; // Eleva o sprite durante o pulo
+        drawScale = 60; // Dá ilusão de aproximação da câmera
+        // Sombra do pulo
+        ctx.fillStyle = "rgba(0,0,0,0.2)";
+        ctx.beginPath(); ctx.ellipse(esquiGame.playerX + 25, esquiGame.playerY + 45, 20, 8, 0, 0, Math.PI*2); ctx.fill();
+    }
+
+    drawSprite(esquiAssets.zorp, zorpSprite, esquiGame.playerX, drawY, drawScale, drawScale);
+    ctx.globalAlpha = 1.0;
+
+    // Nova HUD Lateral Estilo Imagem
+    const hudX = canvas.width - 150;
+    ctx.fillStyle = "rgba(20, 20, 40, 0.85)"; ctx.fillRect(hudX, 20, 130, 200);
+    ctx.fillStyle = "#fff"; ctx.font = "bold 12px monospace";
+    
+    ctx.fillText("PROGRESSO", hudX + 10, 40);
+    ctx.fillStyle = "#f1c40f"; 
+    ctx.fillText(`${Math.floor(esquiGame.distance)} / ${esquiGame.maxDistance}m`, hudX + 10, 60);
+
+    // Barra de Velocidade (Estética)
+    ctx.fillStyle = "#fff"; ctx.fillText("VELOCIDADE", hudX + 10, 100);
+    for(let i=0; i<5; i++) {
+        ctx.fillStyle = (i < 3) ? "#3498db" : "#34495e";
+        ctx.fillRect(hudX + 10 + (i*20), 110, 15, 10);
     }
 }
 
@@ -882,39 +1140,64 @@ function drawEsquiGame() {
         ctx.fillRect(lx, ly, 2, 15);
     }
 
-    // Desenhar Obstáculos
+    // Renderizar Obstáculos e Ataques usando formas do Canvas
     esquiGame.obstacles.forEach(obs => {
-        let spriteInfo = ESQUI_SPRITES.elementos[obs.type];
-        drawSprite(esquiAssets.elementos, spriteInfo, obs.x, obs.y);
+        if (obs.type === "arvore") {
+            ctx.fillStyle = '#1b5e20'; ctx.beginPath(); ctx.moveTo(obs.x + obs.w/2, obs.y); ctx.lineTo(obs.x, obs.y + obs.h); ctx.lineTo(obs.x + obs.w, obs.y + obs.h); ctx.fill();
+        } else if (obs.type === "rocha") {
+            ctx.fillStyle = '#7f8c8d'; ctx.beginPath(); ctx.arc(obs.x + obs.w/2, obs.y + obs.h/2, obs.w/2, 0, Math.PI * 2); ctx.fill();
+        } else if (obs.type === "rampa") {
+            ctx.fillStyle = '#bdc3c7'; ctx.beginPath(); ctx.moveTo(obs.x, obs.y + obs.h); ctx.lineTo(obs.x + obs.w, obs.y + obs.h); ctx.lineTo(obs.x + obs.w, obs.y); ctx.fill();
+        } else if (obs.type === "bolaDeNeve") {
+            ctx.fillStyle = '#ecf0f1'; ctx.beginPath(); ctx.arc(obs.x + obs.w/2, obs.y + obs.h/2, obs.w/2, 0, Math.PI * 2); ctx.fill();
+            ctx.strokeStyle = '#bdc3c7'; ctx.lineWidth = 2; ctx.stroke();
+        } else if (obs.type === "estalactite") {
+            ctx.fillStyle = '#81d4fa'; ctx.beginPath(); ctx.moveTo(obs.x + obs.w/2, obs.y + obs.h); ctx.lineTo(obs.x, obs.y); ctx.lineTo(obs.x + obs.w, obs.y); ctx.fill();
+        } else {
+            ctx.fillStyle = "#bdc3c7"; ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
+        }
     });
 
-    // Desenhar Zorp
-    let zorpSpriteInfo;
-    let animArray = ESQUI_SPRITES.zorp[esquiGame.action];
-    
-    // Se for array (animação), pega o frame atual, se não, pega o objeto direto
-    if (Array.isArray(animArray)) {
-        let frame = esquiGame.animIndex % animArray.length;
-        zorpSpriteInfo = animArray[frame];
-    } else {
-        zorpSpriteInfo = animArray; 
+    // Renderizar Boss (Mestre do Gelo) - Usando a imagem inteira
+    if (esquiAssets.mestre.complete && esquiAssets.mestre.naturalWidth !== 0) {
+        ctx.drawImage(esquiAssets.mestre, esquiGame.bossX, esquiGame.bossY, 50, 50);
     }
 
-    // Feedback visual de dano (piscar vermelho)
-    if (esquiGame.isHit && esquiGame.hitTimer % 10 < 5) {
-        ctx.globalAlpha = 0.5;
+    // Renderizar Zorp (Jogador)
+    // Feedback visual se tomar dano (piscar)
+    if (esquiGame.isHit && esquiGame.hitTimer % 10 < 5) ctx.globalAlpha = 0.5;
+    
+    let drawY = esquiGame.playerY;
+    let drawScale = 50;
+    
+    // Efeito visual do pulo (aumenta de tamanho e desenha sombra)
+    if (esquiGame.isJumping) {
+        drawY -= 20; 
+        drawScale = 60; 
+        ctx.fillStyle = "rgba(0,0,0,0.15)";
+        ctx.beginPath(); ctx.ellipse(esquiGame.playerX + 25, esquiGame.playerY + 45, 20, 8, 0, 0, Math.PI*2); ctx.fill();
     }
-    drawSprite(esquiAssets.zorp, zorpSpriteInfo, esquiGame.playerX, esquiGame.playerY, 50, 50);
+
+    if (esquiAssets.zorp.complete && esquiAssets.zorp.naturalWidth !== 0) {
+        ctx.drawImage(esquiAssets.zorp, esquiGame.playerX, drawY, drawScale, drawScale);
+    }
+    
     ctx.globalAlpha = 1.0;
 
-    // HUD (Progresso)
-    ctx.fillStyle = "#333"; ctx.fillRect(80, 20, 290, 15);
-    let progresso = (esquiGame.distance / esquiGame.maxDistance) * 290;
-    ctx.fillStyle = "#3498db"; ctx.fillRect(80, 20, progresso, 15);
-    ctx.strokeStyle = "#fff"; ctx.strokeRect(80, 20, 290, 15);
+    // HUD Superior (Inspirada na sua imagem de referência)
+    ctx.fillStyle = "#111"; ctx.fillRect(0, 0, canvas.width, 35);
+    ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.strokeRect(5, 5, canvas.width - 10, 25);
     
-    ctx.fillStyle = "#2c3e50"; ctx.font = "bold 14px monospace";
-    ctx.fillText("DISTÂNCIA", 185, 15);
+    ctx.fillStyle = "#f1c40f"; ctx.font = "bold 14px monospace";
+    ctx.fillText("ILHA DOS CAMPEDES", 15, 23);
+    
+    ctx.fillStyle = "#fff";
+    ctx.fillText(`PONTOS: ${Math.floor(esquiGame.distance)}`, canvas.width - 130, 23);
+
+    // Barra de Progresso colada na borda inferior do HUD
+    ctx.fillStyle = "#333"; ctx.fillRect(0, 35, canvas.width, 4);
+    let progresso = (esquiGame.distance / esquiGame.maxDistance) * canvas.width;
+    ctx.fillStyle = "#f1c40f"; ctx.fillRect(0, 35, progresso, 4);
 }
 
 // Extraído para o nível correto (fora do loop draw)
