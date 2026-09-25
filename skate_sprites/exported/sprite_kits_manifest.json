@@ -1,0 +1,3136 @@
+{
+  "sources": [
+    "sprite_kits1.png",
+    "sprite_kits2.png",
+    "sprite_kits3.png"
+  ],
+  "detectionMethod": "alpha-connected visible regions, followed by visual review; 6px transparent safety margin",
+  "items": [
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 157,
+        "width": 719,
+        "x": 26,
+        "y": 17
+      },
+      "category": "ramps",
+      "subcategory": "sequence",
+      "exportedName": "ramps/sequence/ramp_sequence_cyan_kit1_01.png",
+      "size": {
+        "height": 169,
+        "width": 731
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "814612eb85349f36cc1955f260141a4e63134b948374c918263215efb017d4c8",
+      "classificationConfidence": "ambiguous",
+      "observations": "Sequência de cinco rampas conectada na arte-fonte, sem gutters transparentes suficientes para cortes individuais seguros; mantida inteira."
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 156,
+        "width": 149,
+        "x": 770,
+        "y": 17
+      },
+      "category": "ramps",
+      "subcategory": "quarter",
+      "exportedName": "ramps/quarter/ramp_cyan_kit1_01.png",
+      "size": {
+        "height": 168,
+        "width": 161
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "daa65b088d38641890dcb16e80c93ea06d0c35de0f1ce7c2aab7677c995ff333",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 120,
+        "width": 148,
+        "x": 935,
+        "y": 49
+      },
+      "category": "ramps",
+      "subcategory": "medium",
+      "exportedName": "ramps/medium/ramp_cyan_kit1_01.png",
+      "size": {
+        "height": 132,
+        "width": 160
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "14de955ca14c9eb3432fee5f84e197f9cf62540dd37da56c526b5f057475d103",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 119,
+        "width": 145,
+        "x": 1092,
+        "y": 49
+      },
+      "category": "ramps",
+      "subcategory": "medium",
+      "exportedName": "ramps/medium/ramp_magenta_kit1_02.png",
+      "size": {
+        "height": 131,
+        "width": 157
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "42088d5107bb045dd8340377d9bae14c42bb21cb55f8ce71b6132d9c86751028",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 115,
+        "width": 261,
+        "x": 24,
+        "y": 188
+      },
+      "category": "ramps",
+      "subcategory": "medium",
+      "exportedName": "ramps/medium/ramp_cyan_kit1_03.png",
+      "size": {
+        "height": 127,
+        "width": 273
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "3cd82199472cf9cabd45855bbf9a3ce957684ad05366f5329538970484ae9ee3",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 104,
+        "width": 235,
+        "x": 1001,
+        "y": 199
+      },
+      "category": "ramps",
+      "subcategory": "medium",
+      "exportedName": "ramps/medium/ramp_magenta_kit1_04.png",
+      "size": {
+        "height": 116,
+        "width": 247
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "23f51bdd74d7432e2c1c5dc0a160d2082f98753e1db1649c70666b8c46c790b2",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 90,
+        "width": 236,
+        "x": 501,
+        "y": 214
+      },
+      "category": "ramps",
+      "subcategory": "medium",
+      "exportedName": "ramps/medium/ramp_cyan_kit1_05.png",
+      "size": {
+        "height": 102,
+        "width": 248
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "46b0e43e564a34d04514373475f42700de321f116e5398872e15e6ae1fdaeaee",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 90,
+        "width": 209,
+        "x": 771,
+        "y": 215
+      },
+      "category": "ramps",
+      "subcategory": "medium",
+      "exportedName": "ramps/medium/ramp_cyan_kit1_06.png",
+      "size": {
+        "height": 102,
+        "width": 221
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "568c40d44b78ffbc695ad51f6fa53ab318e59f2112b3d4ae201764e5c8cc36d5",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 80,
+        "width": 191,
+        "x": 303,
+        "y": 224
+      },
+      "category": "ramps",
+      "subcategory": "medium",
+      "exportedName": "ramps/medium/ramp_magenta_kit1_07.png",
+      "size": {
+        "height": 92,
+        "width": 203
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "237b9a28d3de778c02ae0ef06e7107268190d2afb63f48cd2453e486ceb47b04",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 3,
+        "width": 51,
+        "x": 610,
+        "y": 299
+      },
+      "category": "ramps",
+      "subcategory": "medium",
+      "exportedName": "ramps/medium/ramp_neutral_kit1_08.png",
+      "size": {
+        "height": 15,
+        "width": 63
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "a8806a4a052c14a20fdc22a3d469edc39136f91e9df9356bf9e688595a6fbba0",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 200,
+        "width": 393,
+        "x": 850,
+        "y": 332
+      },
+      "category": "platforms",
+      "subcategory": "industrial",
+      "exportedName": "platforms/industrial/platform_cyan_kit1_01.png",
+      "size": {
+        "height": 212,
+        "width": 405
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "f615b871a2a74d404222a3e013c42335e78b6197aa57f07c9879a247cf57a7a6",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 107,
+        "width": 549,
+        "x": 16,
+        "y": 336
+      },
+      "category": "platforms",
+      "subcategory": "industrial",
+      "exportedName": "platforms/industrial/platform_cyan_kit1_02.png",
+      "size": {
+        "height": 119,
+        "width": 561
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "ed161cdb4e78dbbeaaad4e35d8860443a9e06f53ab6ffe98bab94f0eceaec3cc",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 79,
+        "width": 136,
+        "x": 572,
+        "y": 337
+      },
+      "category": "platforms",
+      "subcategory": "industrial",
+      "exportedName": "platforms/industrial/platform_cyan_kit1_03.png",
+      "size": {
+        "height": 91,
+        "width": 148
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "dca24c8f529d3f9b63709c64a97bde83500e9928f7de821a67433917a7818c95",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 64,
+        "width": 126,
+        "x": 717,
+        "y": 338
+      },
+      "category": "platforms",
+      "subcategory": "industrial",
+      "exportedName": "platforms/industrial/platform_cyan_kit1_04.png",
+      "size": {
+        "height": 76,
+        "width": 138
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "52d1df254ce69e239b9ab90e710afc22a3c72c2d802773802f91669c8116b458",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 148,
+        "width": 273,
+        "x": 16,
+        "y": 439
+      },
+      "category": "platforms",
+      "subcategory": "industrial",
+      "exportedName": "platforms/industrial/platform_cyan_kit1_05.png",
+      "size": {
+        "height": 160,
+        "width": 285
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "84eba7e3cf72c3968a2d1d6f12c1ce5b31b3c7123ae1a7c90b4e35efca38f1bf",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 149,
+        "width": 279,
+        "x": 647,
+        "y": 442
+      },
+      "category": "platforms",
+      "subcategory": "industrial",
+      "exportedName": "platforms/industrial/platform_cyan_kit1_06.png",
+      "size": {
+        "height": 161,
+        "width": 291
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "b357aa6a31a22d5dec35d8856d9055e1cd30c7a31c473cbe83de16877e09ef9b",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 132,
+        "width": 346,
+        "x": 297,
+        "y": 459
+      },
+      "category": "platforms",
+      "subcategory": "industrial",
+      "exportedName": "platforms/industrial/platform_cyan_kit1_07.png",
+      "size": {
+        "height": 144,
+        "width": 358
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "87781b33aa2775b885cf6c072c5ed808cf88b27595c275f30d6f50290ad3d0db",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 95,
+        "width": 75,
+        "x": 918,
+        "y": 549
+      },
+      "category": "platforms",
+      "subcategory": "industrial",
+      "exportedName": "platforms/industrial/platform_cyan_kit1_08.png",
+      "size": {
+        "height": 107,
+        "width": 87
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "f5a45e172c032197a123382319b5c422ccf0d1c0f42a5e523fcd2e32fd087066",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 77,
+        "width": 82,
+        "x": 1011,
+        "y": 557
+      },
+      "category": "platforms",
+      "subcategory": "industrial",
+      "exportedName": "platforms/industrial/platform_cyan_kit1_09.png",
+      "size": {
+        "height": 89,
+        "width": 94
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "a9b3a86dbc874d5b55507da1a9f13272fa9c08b3c4afb1c241c1baebb40537a5",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 66,
+        "width": 105,
+        "x": 1110,
+        "y": 564
+      },
+      "category": "platforms",
+      "subcategory": "industrial",
+      "exportedName": "platforms/industrial/platform_cyan_kit1_10.png",
+      "size": {
+        "height": 78,
+        "width": 117
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "f6867574736bfcad3fd642e7df85918b3fb76e996ef23e05c11e09022011676d",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 104,
+        "width": 116,
+        "x": 34,
+        "y": 606
+      },
+      "category": "supports",
+      "subcategory": "industrial",
+      "exportedName": "supports/industrial/support_cyan_kit1_01.png",
+      "size": {
+        "height": 116,
+        "width": 128
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "cf7a8141edbba5007a276a3ca825502cb81ac063ef302c8740813c49fe81a85d",
+      "classificationConfidence": "reviewed",
+      "observations": "Peça modular industrial; pode servir também como prop estrutural. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 100,
+        "width": 128,
+        "x": 298,
+        "y": 609
+      },
+      "category": "supports",
+      "subcategory": "industrial",
+      "exportedName": "supports/industrial/support_cyan_kit1_02.png",
+      "size": {
+        "height": 112,
+        "width": 140
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "594f955e93ff4e4f1e0e02a1db512d1d7711f21fc20339af9b6900496f5591eb",
+      "classificationConfidence": "reviewed",
+      "observations": "Peça modular industrial; pode servir também como prop estrutural. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 76,
+        "width": 60,
+        "x": 621,
+        "y": 629
+      },
+      "category": "supports",
+      "subcategory": "industrial",
+      "exportedName": "supports/industrial/support_yellow_kit1_03.png",
+      "size": {
+        "height": 88,
+        "width": 72
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "5d9f7e57a81ebdde48cbcbfdd0d20f7a6d755bcdb3980579e468a88b2f928e92",
+      "classificationConfidence": "reviewed",
+      "observations": "Peça modular industrial; pode servir também como prop estrutural. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 77,
+        "width": 94,
+        "x": 692,
+        "y": 630
+      },
+      "category": "supports",
+      "subcategory": "industrial",
+      "exportedName": "supports/industrial/support_cyan_kit1_04.png",
+      "size": {
+        "height": 89,
+        "width": 106
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "6d3885a922eb4e56ecbe56a5d3574e020b912b1db55a41cc02c7f8aacae75004",
+      "classificationConfidence": "reviewed",
+      "observations": "Peça modular industrial; pode servir também como prop estrutural. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 77,
+        "width": 94,
+        "x": 802,
+        "y": 630
+      },
+      "category": "supports",
+      "subcategory": "industrial",
+      "exportedName": "supports/industrial/support_cyan_kit1_05.png",
+      "size": {
+        "height": 89,
+        "width": 106
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "61a2cf95352d34241284de2aeb3a97dac60e782328bcc615bf210333d0c740e8",
+      "classificationConfidence": "reviewed",
+      "observations": "Peça modular industrial; pode servir também como prop estrutural. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 69,
+        "width": 99,
+        "x": 169,
+        "y": 641
+      },
+      "category": "supports",
+      "subcategory": "industrial",
+      "exportedName": "supports/industrial/support_cyan_kit1_06.png",
+      "size": {
+        "height": 81,
+        "width": 111
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "97ebdfddd40c4591ec8545f5f6b8928cb699ceb3bddb99980ecbb6f472c5484c",
+      "classificationConfidence": "reviewed",
+      "observations": "Peça modular industrial; pode servir também como prop estrutural. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 63,
+        "width": 165,
+        "x": 444,
+        "y": 643
+      },
+      "category": "supports",
+      "subcategory": "industrial",
+      "exportedName": "supports/industrial/support_magenta_kit1_07.png",
+      "size": {
+        "height": 75,
+        "width": 177
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "c39d1523f999234a655c21abd879eeac9480636953bc2e4ef0e59323398b7c3b",
+      "classificationConfidence": "reviewed",
+      "observations": "Peça modular industrial; pode servir também como prop estrutural. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 64,
+        "width": 328,
+        "x": 903,
+        "y": 644
+      },
+      "category": "supports",
+      "subcategory": "industrial",
+      "exportedName": "supports/industrial/support_cyan_kit1_08.png",
+      "size": {
+        "height": 76,
+        "width": 340
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "07599f2ccbe8e6db24d5a7db785564b3d3a177414352fe1f43023700eb1ae762",
+      "classificationConfidence": "reviewed",
+      "observations": "Peça modular industrial; pode servir também como prop estrutural. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 79,
+        "width": 261,
+        "x": 973,
+        "y": 739
+      },
+      "category": "rails",
+      "subcategory": "straight",
+      "exportedName": "rails/straight/rail_cyan_kit1_01.png",
+      "size": {
+        "height": 91,
+        "width": 273
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "fc951ae1f39f8a4545c61434de66ae4c6c09925e0f5524f255753291df67231a",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 48,
+        "width": 320,
+        "x": 38,
+        "y": 740
+      },
+      "category": "rails",
+      "subcategory": "straight",
+      "exportedName": "rails/straight/rail_cyan_kit1_02.png",
+      "size": {
+        "height": 60,
+        "width": 332
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "5bb1fb530f2764afbe45e78999e0da3217bc6250264d8bff9b597ee19d704170",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 47,
+        "width": 245,
+        "x": 378,
+        "y": 740
+      },
+      "category": "rails",
+      "subcategory": "curved",
+      "exportedName": "rails/curved/rail_magenta_kit1_01.png",
+      "size": {
+        "height": 59,
+        "width": 257
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "174645a6b451a7e33d7d98bc5ebe3a3b9ca1c50d48e742c8e0c3ac1bc7539e2f",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 59,
+        "width": 281,
+        "x": 669,
+        "y": 742
+      },
+      "category": "rails",
+      "subcategory": "straight",
+      "exportedName": "rails/straight/rail_magenta_kit1_03.png",
+      "size": {
+        "height": 71,
+        "width": 293
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "2212dca4174468d187b80deee59cb2994766ece4b181fe27a467d3704273cf24",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 48,
+        "width": 231,
+        "x": 418,
+        "y": 794
+      },
+      "category": "rails",
+      "subcategory": "curved",
+      "exportedName": "rails/curved/rail_yellow_kit1_02.png",
+      "size": {
+        "height": 60,
+        "width": 243
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "cf95751f3725d310be0c6271969c7136a45afbe0018ace7961169cd4268c7afe",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 49,
+        "width": 228,
+        "x": 669,
+        "y": 794
+      },
+      "category": "rails",
+      "subcategory": "curved",
+      "exportedName": "rails/curved/rail_cyan_kit1_03.png",
+      "size": {
+        "height": 61,
+        "width": 240
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "e5e0c71837416c229a96ca3c2042915afd3d79bb37d9f35448e222be8f66c209",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 90,
+        "width": 290,
+        "x": 26,
+        "y": 809
+      },
+      "category": "rails",
+      "subcategory": "straight",
+      "exportedName": "rails/straight/rail_magenta_kit1_04.png",
+      "size": {
+        "height": 102,
+        "width": 302
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "7f32037212bee7c4c69ba33e87aef9061e268c4244a3ab4d36b4f700b05c49fb",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 224,
+        "width": 276,
+        "x": 324,
+        "y": 812
+      },
+      "category": "rails",
+      "subcategory": "straight",
+      "exportedName": "rails/straight/rail_magenta_kit1_05.png",
+      "size": {
+        "height": 236,
+        "width": 288
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "f39d4c05f06864cebcc3509f2a43f08d93b6a62e619ae5aa1e24ae02c148f159",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 418,
+        "width": 367,
+        "x": 610,
+        "y": 815
+      },
+      "category": "rails",
+      "subcategory": "straight",
+      "exportedName": "rails/straight/rail_magenta_kit1_06.png",
+      "size": {
+        "height": 430,
+        "width": 379
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "3030acdc2fe77711bafaa8f7c1d9fefb57d6f11e321c7a565ec65b1c34210cb4",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 125,
+        "width": 249,
+        "x": 988,
+        "y": 829
+      },
+      "category": "rails",
+      "subcategory": "curved",
+      "exportedName": "rails/curved/rail_yellow_kit1_04.png",
+      "size": {
+        "height": 137,
+        "width": 261
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "45bd2e950235a31c0a80aa4fc8a23593fff0e1c5c9a4b550a39c786bda2ba1a8",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 231,
+        "width": 175,
+        "x": 24,
+        "y": 917
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_cyan_kit1_01.png",
+      "size": {
+        "height": 243,
+        "width": 187
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "187e00540ba5f45ad3a9c267567c0089ec87900a402a9fae26e400a0bbea9daa",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 215,
+        "width": 123,
+        "x": 300,
+        "y": 919
+      },
+      "category": "signs",
+      "subcategory": "neon",
+      "exportedName": "signs/neon/sign_cyan_kit1_01.png",
+      "size": {
+        "height": 227,
+        "width": 135
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "c2d2e64d2bc5144c6975e5c6e0bc479971671174e7ed64b77842b533a31106f6",
+      "classificationConfidence": "ambiguous",
+      "observations": "Classificado pela aparência de sinalização/iluminação; revisar se for usado como suporte. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 177,
+        "width": 97,
+        "x": 189,
+        "y": 954
+      },
+      "category": "signs",
+      "subcategory": "neon",
+      "exportedName": "signs/neon/sign_cyan_kit1_02.png",
+      "size": {
+        "height": 189,
+        "width": 109
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "1a83da5b1737e5cf6961ce59d1634996cf2fe97b8e484118882fb0e5d0657261",
+      "classificationConfidence": "ambiguous",
+      "observations": "Classificado pela aparência de sinalização/iluminação; revisar se for usado como suporte. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 145,
+        "width": 137,
+        "x": 1103,
+        "y": 957
+      },
+      "category": "signs",
+      "subcategory": "neon",
+      "exportedName": "signs/neon/sign_cyan_kit1_03.png",
+      "size": {
+        "height": 157,
+        "width": 149
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "985ccbdb189e45388032ecf509c543bbefaa48a1f55a9c0908a6883cbe302b42",
+      "classificationConfidence": "ambiguous",
+      "observations": "Classificado pela aparência de sinalização/iluminação; revisar se for usado como suporte. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 269,
+        "width": 92,
+        "x": 860,
+        "y": 965
+      },
+      "category": "signs",
+      "subcategory": "neon",
+      "exportedName": "signs/neon/sign_magenta_kit1_04.png",
+      "size": {
+        "height": 281,
+        "width": 104
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "bcab2555fc59cb977ae761e63f68ce27a5efaa2f7c833a0addfa42606b0911af",
+      "classificationConfidence": "ambiguous",
+      "observations": "Classificado pela aparência de sinalização/iluminação; revisar se for usado como suporte. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 144,
+        "width": 124,
+        "x": 960,
+        "y": 966
+      },
+      "category": "signs",
+      "subcategory": "neon",
+      "exportedName": "signs/neon/sign_magenta_kit1_05.png",
+      "size": {
+        "height": 156,
+        "width": 136
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "58878debe1d1389679eb85cf8f8623d41b1eb15e2a92c6ee4913b4883ab3d4aa",
+      "classificationConfidence": "ambiguous",
+      "observations": "Classificado pela aparência de sinalização/iluminação; revisar se for usado como suporte. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 235,
+        "width": 204,
+        "x": 396,
+        "y": 998
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_yellow_kit1_02.png",
+      "size": {
+        "height": 247,
+        "width": 216
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "9f7763027cd9ba217d55cacdd37ef5529ef77a29ac2382dbca1a87502e3b89b3",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 118,
+        "width": 159,
+        "x": 932,
+        "y": 1111
+      },
+      "category": "signs",
+      "subcategory": "neon",
+      "exportedName": "signs/neon/sign_magenta_kit1_06.png",
+      "size": {
+        "height": 130,
+        "width": 171
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "8f9c96d440634147281bd30dda273e7fa4ff5c741e8dd5fd0cad167ebd5d7b8e",
+      "classificationConfidence": "ambiguous",
+      "observations": "Classificado pela aparência de sinalização/iluminação; revisar se for usado como suporte. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 103,
+        "width": 123,
+        "x": 1113,
+        "y": 1121
+      },
+      "category": "signs",
+      "subcategory": "neon",
+      "exportedName": "signs/neon/sign_cyan_kit1_07.png",
+      "size": {
+        "height": 115,
+        "width": 135
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "9d097a75d3771c563eccb5a5ae4aa186c410722cbcf511b537fe9ddc3dd5a15d",
+      "classificationConfidence": "ambiguous",
+      "observations": "Classificado pela aparência de sinalização/iluminação; revisar se for usado como suporte. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 92,
+        "width": 182,
+        "x": 352,
+        "y": 1143
+      },
+      "category": "signs",
+      "subcategory": "neon",
+      "exportedName": "signs/neon/sign_yellow_kit1_08.png",
+      "size": {
+        "height": 104,
+        "width": 194
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "d1ca1e70b167c4de2c83b04a846a49fa1703268319f22d5509cea22b115b5862",
+      "classificationConfidence": "ambiguous",
+      "observations": "Classificado pela aparência de sinalização/iluminação; revisar se for usado como suporte. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 76,
+        "width": 311,
+        "x": 35,
+        "y": 1157
+      },
+      "category": "signs",
+      "subcategory": "neon",
+      "exportedName": "signs/neon/sign_cyan_kit1_09.png",
+      "size": {
+        "height": 88,
+        "width": 323
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "524a2458538d49a8f799ecef714035169dabe28236b99e773ebf5c14d8fa01be",
+      "classificationConfidence": "ambiguous",
+      "observations": "Classificado pela aparência de sinalização/iluminação; revisar se for usado como suporte. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits1.png",
+      "sourceBounds": {
+        "height": 66,
+        "width": 4,
+        "x": 981,
+        "y": 1158
+      },
+      "category": "signs",
+      "subcategory": "neon",
+      "exportedName": "signs/neon/sign_neutral_kit1_10.png",
+      "size": {
+        "height": 78,
+        "width": 16
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "7761f38fc949ae62059f34d3839ec85b29b32226218a8e3c07ae295a84c51df8",
+      "classificationConfidence": "ambiguous",
+      "observations": "Classificado pela aparência de sinalização/iluminação; revisar se for usado como suporte. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 116,
+        "width": 159,
+        "x": 873,
+        "y": 14
+      },
+      "category": "rails",
+      "subcategory": "sloped",
+      "exportedName": "rails/sloped/rail_cyan_kit2_01.png",
+      "size": {
+        "height": 128,
+        "width": 171
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "75b10503e25df5e7ec1f664ea10899796038d5bc49bec9ceff97e71ea185e442",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 128,
+        "width": 131,
+        "x": 711,
+        "y": 19
+      },
+      "category": "rails",
+      "subcategory": "sloped",
+      "exportedName": "rails/sloped/rail_cyan_kit2_02.png",
+      "size": {
+        "height": 140,
+        "width": 143
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "90ee6bd34343ae768d0b8aa1f2cd186d45ff16df4f011430e9c25c10d48c3c20",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 111,
+        "width": 188,
+        "x": 1050,
+        "y": 19
+      },
+      "category": "rails",
+      "subcategory": "sloped",
+      "exportedName": "rails/sloped/rail_magenta_kit2_03.png",
+      "size": {
+        "height": 123,
+        "width": 200
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "d624de91327e82cb623a8eecaa53276391959443a51461fcf44406c39d1fff6a",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 58,
+        "width": 61,
+        "x": 90,
+        "y": 54
+      },
+      "category": "rails",
+      "subcategory": "straight",
+      "exportedName": "rails/straight/rail_magenta_kit2_07.png",
+      "size": {
+        "height": 70,
+        "width": 73
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "288e687b7f390380e0242fdf09b66006a8054161393c0c12495ec1fb0bf745b9",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 58,
+        "width": 220,
+        "x": 163,
+        "y": 54
+      },
+      "category": "rails",
+      "subcategory": "straight",
+      "exportedName": "rails/straight/rail_cyan_kit2_08.png",
+      "size": {
+        "height": 70,
+        "width": 232
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "fdb41aa0e6d681b34348d0301cadfd6c5e962ecb0f4e8452ba2b54440163dfc6",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 58,
+        "width": 298,
+        "x": 395,
+        "y": 54
+      },
+      "category": "rails",
+      "subcategory": "straight",
+      "exportedName": "rails/straight/rail_magenta_kit2_09.png",
+      "size": {
+        "height": 70,
+        "width": 310
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "e96778a70bdc8a90494136668ab492127e211c431d9a1610c4680957e06b6791",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 57,
+        "width": 63,
+        "x": 14,
+        "y": 55
+      },
+      "category": "rails",
+      "subcategory": "straight",
+      "exportedName": "rails/straight/rail_cyan_kit2_10.png",
+      "size": {
+        "height": 69,
+        "width": 75
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "c10610139f8f86949baf1ffac23c43fd5f12fd6bde34dee2e863f10ce58fdc4c",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 126,
+        "width": 133,
+        "x": 558,
+        "y": 129
+      },
+      "category": "rails",
+      "subcategory": "sloped",
+      "exportedName": "rails/sloped/rail_magenta_kit2_04.png",
+      "size": {
+        "height": 138,
+        "width": 145
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "851926a9fa385d79e465a6b536b23b7f0ecb088ec705db5c8c0334398ea30f94",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 156,
+        "width": 190,
+        "x": 1046,
+        "y": 139
+      },
+      "category": "rails",
+      "subcategory": "sloped",
+      "exportedName": "rails/sloped/rail_cyan_kit2_05.png",
+      "size": {
+        "height": 168,
+        "width": 202
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "8a552c1a07b57183fc137b6f23a17de9b5c2c576a94cb92940566ef18ed58d82",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 111,
+        "width": 285,
+        "x": 717,
+        "y": 158
+      },
+      "category": "rails",
+      "subcategory": "sloped",
+      "exportedName": "rails/sloped/rail_cyan_kit2_06.png",
+      "size": {
+        "height": 123,
+        "width": 297
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "bb079d6bbc530ebe1fc04f1eac1200491c27fdaeeceba18f7ac8d5471840f50e",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 95,
+        "width": 222,
+        "x": 26,
+        "y": 159
+      },
+      "category": "rails",
+      "subcategory": "straight",
+      "exportedName": "rails/straight/rail_cyan_kit2_11.png",
+      "size": {
+        "height": 107,
+        "width": 234
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "2d3b189115663e27ecabe4d8c8e3384ed770dc3cc364d29c4f248768ddd37c38",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 79,
+        "width": 249,
+        "x": 279,
+        "y": 162
+      },
+      "category": "rails",
+      "subcategory": "straight",
+      "exportedName": "rails/straight/rail_magenta_kit2_12.png",
+      "size": {
+        "height": 91,
+        "width": 261
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "433170e4eb62eb4ade9f59346b69202acc5707ac105d1511ab126fc3386fb20e",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 152,
+        "width": 309,
+        "x": 15,
+        "y": 285
+      },
+      "category": "rails",
+      "subcategory": "sloped",
+      "exportedName": "rails/sloped/rail_cyan_kit2_07.png",
+      "size": {
+        "height": 164,
+        "width": 321
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "91c5ca39e3541bb6669c9772b6d097d0044ab8ba01f11dd24918e6da19211877",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 150,
+        "width": 336,
+        "x": 324,
+        "y": 287
+      },
+      "category": "rails",
+      "subcategory": "sloped",
+      "exportedName": "rails/sloped/rail_magenta_kit2_08.png",
+      "size": {
+        "height": 162,
+        "width": 348
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "ac8c5e038e29910beb0580b7136acf89554e5a65fdb8626989a33fec8a2e4bc6",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 60,
+        "width": 41,
+        "x": 810,
+        "y": 290
+      },
+      "category": "rails",
+      "subcategory": "connectors",
+      "exportedName": "rails/connectors/rail_cyan_kit2_01.png",
+      "size": {
+        "height": 72,
+        "width": 53
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "93613643c4d162abe919d723669df3eb235144d1db30b9fb8e7860fc3fd17524",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 60,
+        "width": 40,
+        "x": 680,
+        "y": 291
+      },
+      "category": "rails",
+      "subcategory": "connectors",
+      "exportedName": "rails/connectors/rail_cyan_kit2_02.png",
+      "size": {
+        "height": 72,
+        "width": 52
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "51f015fcc9d8772cf7793ed0232d0e15aedb140bee7ffefa3a645bed009b0164",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 57,
+        "width": 40,
+        "x": 751,
+        "y": 292
+      },
+      "category": "rails",
+      "subcategory": "connectors",
+      "exportedName": "rails/connectors/rail_magenta_kit2_03.png",
+      "size": {
+        "height": 69,
+        "width": 52
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "d9662dc8c9205c48e276d64a9d8c9d20955ac3ba3784ee51df018a559800e609",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 59,
+        "width": 41,
+        "x": 865,
+        "y": 292
+      },
+      "category": "rails",
+      "subcategory": "connectors",
+      "exportedName": "rails/connectors/rail_magenta_kit2_04.png",
+      "size": {
+        "height": 71,
+        "width": 53
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "3c9a6f140ea6bb9e998d3806e2a723b97b4a3e5aa2161eeba625cbfa9fc640b2",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 153,
+        "width": 190,
+        "x": 1046,
+        "y": 298
+      },
+      "category": "rails",
+      "subcategory": "sloped",
+      "exportedName": "rails/sloped/rail_magenta_kit2_09.png",
+      "size": {
+        "height": 165,
+        "width": 202
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "1487b775487179d912f64b2f9668e589c29368895a826e524e0aff5f305f1a14",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 59,
+        "width": 58,
+        "x": 866,
+        "y": 372
+      },
+      "category": "rails",
+      "subcategory": "connectors",
+      "exportedName": "rails/connectors/rail_cyan_kit2_05.png",
+      "size": {
+        "height": 71,
+        "width": 70
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "bf2c40df0d6070fe64684296746c76df0b185a065ac1b8dce580647e35fa1758",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 59,
+        "width": 53,
+        "x": 943,
+        "y": 372
+      },
+      "category": "rails",
+      "subcategory": "connectors",
+      "exportedName": "rails/connectors/rail_cyan_kit2_06.png",
+      "size": {
+        "height": 71,
+        "width": 65
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "61ce9187b102177be4e1e7a0157751c784d9dc24f5044050f2b75eb1ce33f136",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 57,
+        "width": 29,
+        "x": 693,
+        "y": 373
+      },
+      "category": "rails",
+      "subcategory": "connectors",
+      "exportedName": "rails/connectors/rail_cyan_kit2_07.png",
+      "size": {
+        "height": 69,
+        "width": 41
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "c9bdab2bfd14c76fe39a0d89cc904a07c01867a1f7d804927a1be09cebecb26c",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 57,
+        "width": 60,
+        "x": 789,
+        "y": 373
+      },
+      "category": "rails",
+      "subcategory": "connectors",
+      "exportedName": "rails/connectors/rail_cyan_kit2_08.png",
+      "size": {
+        "height": 69,
+        "width": 72
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "57d046e3be0e53a1fba4ccc3f54b162d5a81e16184611726afe99e6df029d5de",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 55,
+        "width": 34,
+        "x": 740,
+        "y": 374
+      },
+      "category": "rails",
+      "subcategory": "connectors",
+      "exportedName": "rails/connectors/rail_magenta_kit2_09.png",
+      "size": {
+        "height": 67,
+        "width": 46
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "705364fa15e35273d8b5ed123a7d2d9280fcf1458d14934c623cb9f5a8062699",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 111,
+        "width": 249,
+        "x": 625,
+        "y": 452
+      },
+      "category": "cables",
+      "subcategory": "sag",
+      "exportedName": "cables/sag/cable_cyan_kit2_01.png",
+      "size": {
+        "height": 123,
+        "width": 261
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "088bab0605b09c78a45cac484cf0983641bf03c6d820ba7d593894c257b29788",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 349,
+        "width": 351,
+        "x": 882,
+        "y": 464
+      },
+      "category": "cables",
+      "subcategory": "supports",
+      "exportedName": "cables/supports/cable_magenta_kit2_01.png",
+      "size": {
+        "height": 361,
+        "width": 363
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "5c6c3f4f144c5d08f10d6981ff14dba7c61686277939f48ae91873e63787bca9",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 38,
+        "width": 295,
+        "x": 15,
+        "y": 485
+      },
+      "category": "cables",
+      "subcategory": "sag",
+      "exportedName": "cables/sag/cable_magenta_kit2_02.png",
+      "size": {
+        "height": 50,
+        "width": 307
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "495c434f04e78db531d632e21af1962b8a13f7b22f85f2cb39f1496fc3a5770f",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 43,
+        "width": 313,
+        "x": 311,
+        "y": 487
+      },
+      "category": "cables",
+      "subcategory": "sag",
+      "exportedName": "cables/sag/cable_magenta_kit2_03.png",
+      "size": {
+        "height": 55,
+        "width": 325
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "8c2eb9d83e8faba68936021088e4b1a7f3b8163bb4ef97d33fd5e730642e8171",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 104,
+        "width": 292,
+        "x": 328,
+        "y": 555
+      },
+      "category": "cables",
+      "subcategory": "sag",
+      "exportedName": "cables/sag/cable_magenta_kit2_04.png",
+      "size": {
+        "height": 116,
+        "width": 304
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "b287b356c7055f100f192940305a2fd5a9516845ba763053e76190cdb12c8480",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 61,
+        "width": 304,
+        "x": 15,
+        "y": 566
+      },
+      "category": "cables",
+      "subcategory": "sag",
+      "exportedName": "cables/sag/cable_cyan_kit2_05.png",
+      "size": {
+        "height": 73,
+        "width": 316
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "31087f781ac4b9316ff0315d76d8fa3359502f2d074ee4acc028607bbdf04ece",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 106,
+        "width": 247,
+        "x": 627,
+        "y": 571
+      },
+      "category": "cables",
+      "subcategory": "sag",
+      "exportedName": "cables/sag/cable_cyan_kit2_06.png",
+      "size": {
+        "height": 118,
+        "width": 259
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "46993d506ce8d41247b35c8d1dd094ad5c3d2ed98de75b804da60529ab1c5277",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 73,
+        "width": 82,
+        "x": 123,
+        "y": 700
+      },
+      "category": "ramps",
+      "subcategory": "small",
+      "exportedName": "ramps/small/ramp_magenta_kit2_01.png",
+      "size": {
+        "height": 85,
+        "width": 94
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "f38852aee7f40399fab506d172e222c9bc6507fc249acbd41f28835634475b50",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 72,
+        "width": 131,
+        "x": 307,
+        "y": 700
+      },
+      "category": "ramps",
+      "subcategory": "small",
+      "exportedName": "ramps/small/ramp_cyan_kit2_02.png",
+      "size": {
+        "height": 84,
+        "width": 143
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "8a3c19cc3b52fd0e92a97eacee422fad7603821011e842165637c469ed9d6283",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 72,
+        "width": 86,
+        "x": 206,
+        "y": 701
+      },
+      "category": "ramps",
+      "subcategory": "small",
+      "exportedName": "ramps/small/ramp_cyan_kit2_03.png",
+      "size": {
+        "height": 84,
+        "width": 98
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "72dfe13379b7a30c2080267916474d375bb5afc1fd9c1dbdfb3b62c9f3556034",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 85,
+        "width": 49,
+        "x": 636,
+        "y": 701
+      },
+      "category": "ramps",
+      "subcategory": "small",
+      "exportedName": "ramps/small/ramp_magenta_kit2_04.png",
+      "size": {
+        "height": 97,
+        "width": 61
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "54328f9a6999635ec445f9ed2b350cc0346d0ac183ea4281e1b90b1ce3642ab5",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 101,
+        "width": 186,
+        "x": 688,
+        "y": 701
+      },
+      "category": "ramps",
+      "subcategory": "small",
+      "exportedName": "ramps/small/ramp_yellow_kit2_05.png",
+      "size": {
+        "height": 113,
+        "width": 198
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "bc959a209ad36be4c92218a9398b21a8318b97a246fcabc3bac84a7642e7d3dc",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 85,
+        "width": 163,
+        "x": 460,
+        "y": 702
+      },
+      "category": "ramps",
+      "subcategory": "small",
+      "exportedName": "ramps/small/ramp_cyan_kit2_06.png",
+      "size": {
+        "height": 97,
+        "width": 175
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "03bd7b403e9bfba40711dcc2166f7f6f806a49f661dda8cb6f409cb6bae81928",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 71,
+        "width": 97,
+        "x": 16,
+        "y": 703
+      },
+      "category": "ramps",
+      "subcategory": "small",
+      "exportedName": "ramps/small/ramp_cyan_kit2_07.png",
+      "size": {
+        "height": 83,
+        "width": 109
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "f14bb78cfb24e414718d39bcfd481721b2898be528075e3d81ce7f26bc8ef3ff",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 115,
+        "width": 535,
+        "x": 381,
+        "y": 816
+      },
+      "category": "ramps",
+      "subcategory": "large",
+      "exportedName": "ramps/large/ramp_cyan_kit2_01.png",
+      "size": {
+        "height": 127,
+        "width": 547
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "d0ce8f616ba3ce91455cadf60457627fbabc043b5751486e47167eb4bea65f40",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 115,
+        "width": 345,
+        "x": 25,
+        "y": 820
+      },
+      "category": "ramps",
+      "subcategory": "large",
+      "exportedName": "ramps/large/ramp_magenta_kit2_02.png",
+      "size": {
+        "height": 127,
+        "width": 357
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "e58ecd2dc40a070311f73a1725759719e70c6524902823d3cf7ab6fe58e02512",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 93,
+        "width": 310,
+        "x": 925,
+        "y": 840
+      },
+      "category": "ramps",
+      "subcategory": "large",
+      "exportedName": "ramps/large/ramp_cyan_kit2_03.png",
+      "size": {
+        "height": 105,
+        "width": 322
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "abbd42869c931bae7a1f7fbf1350b8df2c8a05af45f5b2a14da7d284850c29df",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 323,
+        "width": 289,
+        "x": 950,
+        "y": 920
+      },
+      "category": "ramps",
+      "subcategory": "large",
+      "exportedName": "ramps/large/ramp_cyan_kit2_04.png",
+      "size": {
+        "height": 335,
+        "width": 301
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "ebbbc92bab0f4e4084c6d35524d9d387ba616d8aef7fc3fe684221b35c5e6656",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 107,
+        "width": 211,
+        "x": 509,
+        "y": 949
+      },
+      "category": "ramps",
+      "subcategory": "large",
+      "exportedName": "ramps/large/ramp_cyan_kit2_05.png",
+      "size": {
+        "height": 119,
+        "width": 223
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "876e8f588013edd2c97fc266b3ad96bd331e017aa7b0a3169d1343109c95f70d",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 118,
+        "width": 109,
+        "x": 388,
+        "y": 950
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_cyan_kit2_03.png",
+      "size": {
+        "height": 130,
+        "width": 121
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "f1d9900f02661065da1cb97d8962812fc7c4c3b55fa8b74d7f1f60e3f0036d09",
+      "classificationConfidence": "ambiguous",
+      "observations": "Peça pequena de infraestrutura; a fronteira entre prop e suporte é contextual. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 98,
+        "width": 205,
+        "x": 729,
+        "y": 951
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_cyan_kit2_04.png",
+      "size": {
+        "height": 110,
+        "width": 217
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "cdc8e08a0cdffe5578534e9e7eba91451587b25d0533fd5df1bb896bd4a2aa66",
+      "classificationConfidence": "ambiguous",
+      "observations": "Peça pequena de infraestrutura; a fronteira entre prop e suporte é contextual. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 83,
+        "width": 105,
+        "x": 271,
+        "y": 960
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_cyan_kit2_05.png",
+      "size": {
+        "height": 95,
+        "width": 117
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "2b7f1f4ed7ff2065ed033e6abfedd5a36dd2e62faaefdf8b4f42006959fc5766",
+      "classificationConfidence": "ambiguous",
+      "observations": "Peça pequena de infraestrutura; a fronteira entre prop e suporte é contextual. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 80,
+        "width": 249,
+        "x": 15,
+        "y": 963
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_cyan_kit2_06.png",
+      "size": {
+        "height": 92,
+        "width": 261
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "5dbe871034df023e2c2a12530032ac12b9028738ac35bf621a5a14fdfa9bc6d9",
+      "classificationConfidence": "ambiguous",
+      "observations": "Peça pequena de infraestrutura; a fronteira entre prop e suporte é contextual. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 160,
+        "width": 202,
+        "x": 732,
+        "y": 1063
+      },
+      "category": "supports",
+      "subcategory": "industrial",
+      "exportedName": "supports/industrial/support_cyan_kit2_09.png",
+      "size": {
+        "height": 172,
+        "width": 214
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "0df504afe625182869f5aa310b0a84db6bd4642d44ebda297022ba1a99ac7794",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 155,
+        "width": 210,
+        "x": 520,
+        "y": 1077
+      },
+      "category": "supports",
+      "subcategory": "industrial",
+      "exportedName": "supports/industrial/support_cyan_kit2_10.png",
+      "size": {
+        "height": 167,
+        "width": 222
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "b6a0a5a5484b38cfc53ca0e2a817c03fee0ed5577f93b6e0375c2b4889aec89e",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 78,
+        "width": 98,
+        "x": 129,
+        "y": 1099
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_yellow_kit2_07.png",
+      "size": {
+        "height": 90,
+        "width": 110
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "deefc3718deb560f10495a802c08f79231268e340cda944c4a43fa976cc994ac",
+      "classificationConfidence": "ambiguous",
+      "observations": "Peça pequena de infraestrutura; a fronteira entre prop e suporte é contextual. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 72,
+        "width": 96,
+        "x": 18,
+        "y": 1105
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_yellow_kit2_08.png",
+      "size": {
+        "height": 84,
+        "width": 108
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "004f017c215d1793cb3589348729bbaf2458f14565797bf5b448208396779b88",
+      "classificationConfidence": "ambiguous",
+      "observations": "Peça pequena de infraestrutura; a fronteira entre prop e suporte é contextual. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 78,
+        "width": 76,
+        "x": 231,
+        "y": 1127
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_cyan_kit2_09.png",
+      "size": {
+        "height": 90,
+        "width": 88
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "4d86ff06f1f6bbae00889300ffa1b458ccd09e1c0a708719e924202bb0ba6fd8",
+      "classificationConfidence": "ambiguous",
+      "observations": "Peça pequena de infraestrutura; a fronteira entre prop e suporte é contextual. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 80,
+        "width": 156,
+        "x": 361,
+        "y": 1141
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_cyan_kit2_10.png",
+      "size": {
+        "height": 92,
+        "width": 168
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "7ebd6d76d4d17309d7d20c685aea7c5a1fa3ddc3e1ca5c8f05da7682be549b15",
+      "classificationConfidence": "ambiguous",
+      "observations": "Peça pequena de infraestrutura; a fronteira entre prop e suporte é contextual. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits2.png",
+      "sourceBounds": {
+        "height": 64,
+        "width": 41,
+        "x": 316,
+        "y": 1154
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_yellow_kit2_11.png",
+      "size": {
+        "height": 76,
+        "width": 53
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "6742c6018abca60c8cd4bc7bfd91f10b7eef80f47c506bdcb74b50a885ab5ad4",
+      "classificationConfidence": "ambiguous",
+      "observations": "Peça pequena de infraestrutura; a fronteira entre prop e suporte é contextual. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 203,
+        "width": 95,
+        "x": 618,
+        "y": 0
+      },
+      "category": "bridges",
+      "subcategory": "industrial",
+      "exportedName": "bridges/industrial/bridge_cyan_kit3_01.png",
+      "size": {
+        "height": 209,
+        "width": 107
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "f4aa382805690a151825ce1fe7f1d3d7577cab53eaeeac06cf8c3943ee732bf1",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 340,
+        "width": 188,
+        "x": 427,
+        "y": 18
+      },
+      "category": "bridges",
+      "subcategory": "industrial",
+      "exportedName": "bridges/industrial/bridge_cyan_kit3_02.png",
+      "size": {
+        "height": 352,
+        "width": 200
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "1a796071cf33593501eef655610fc7c25535b60e01ad4d0f8c0359fc6dd70c27",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 189,
+        "width": 245,
+        "x": 993,
+        "y": 27
+      },
+      "category": "bridges",
+      "subcategory": "industrial",
+      "exportedName": "bridges/industrial/bridge_magenta_kit3_03.png",
+      "size": {
+        "height": 201,
+        "width": 257
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "974cbc9735f50b266556253c6328ac80a4ecd9b0005ad0b11ed1a551efabb0be",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 168,
+        "width": 396,
+        "x": 9,
+        "y": 33
+      },
+      "category": "bridges",
+      "subcategory": "industrial",
+      "exportedName": "bridges/industrial/bridge_cyan_kit3_04.png",
+      "size": {
+        "height": 180,
+        "width": 408
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "e928bbc6b681457ba5c09109a5c473ee4aad0a2cc9f69d8964e03e9dc2c48be8",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 163,
+        "width": 262,
+        "x": 723,
+        "y": 38
+      },
+      "category": "bridges",
+      "subcategory": "industrial",
+      "exportedName": "bridges/industrial/bridge_cyan_kit3_05.png",
+      "size": {
+        "height": 175,
+        "width": 274
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "47f4dac3528775d024bfbfd7a870baa2bbe264d6c5f355ccde683107bd65d9fc",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 157,
+        "width": 95,
+        "x": 419,
+        "y": 45
+      },
+      "category": "bridges",
+      "subcategory": "industrial",
+      "exportedName": "bridges/industrial/bridge_cyan_kit3_06.png",
+      "size": {
+        "height": 169,
+        "width": 107
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "3bc78602907915645526c3d7bb63028bb76ade86334412b319b877510f5a297f",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 273,
+        "width": 404,
+        "x": 14,
+        "y": 208
+      },
+      "category": "tunnels",
+      "subcategory": "industrial",
+      "exportedName": "tunnels/industrial/tunnel_cyan_kit3_01.png",
+      "size": {
+        "height": 285,
+        "width": 416
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "223eaa174c0a489209c641adf450a6b3fa149e718ef0a6bd74bc738dcdb74ec2",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 119,
+        "width": 91,
+        "x": 995,
+        "y": 208
+      },
+      "category": "tunnels",
+      "subcategory": "industrial",
+      "exportedName": "tunnels/industrial/tunnel_cyan_kit3_02.png",
+      "size": {
+        "height": 131,
+        "width": 103
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "2fed07d2c4d9031ca85667472766f7c7fd2de888594023b9a3435a3b1dd91a84",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 152,
+        "width": 361,
+        "x": 627,
+        "y": 209
+      },
+      "category": "tunnels",
+      "subcategory": "industrial",
+      "exportedName": "tunnels/industrial/tunnel_cyan_kit3_03.png",
+      "size": {
+        "height": 164,
+        "width": 373
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "4cb6d7adc5ffa75e089d3e83999e8061b52eeaff3c954b1df3a348ffed7154f9",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 103,
+        "width": 146,
+        "x": 1094,
+        "y": 226
+      },
+      "category": "tunnels",
+      "subcategory": "industrial",
+      "exportedName": "tunnels/industrial/tunnel_cyan_kit3_04.png",
+      "size": {
+        "height": 115,
+        "width": 158
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "6e18708c55b9428860e21560ea34ec9a35c9fd9320f7dfd5c5a8b9248b9f6057",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 129,
+        "width": 73,
+        "x": 1165,
+        "y": 334
+      },
+      "category": "tunnels",
+      "subcategory": "industrial",
+      "exportedName": "tunnels/industrial/tunnel_cyan_kit3_05.png",
+      "size": {
+        "height": 141,
+        "width": 85
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "e12433d5496af22ef6362cc374d2ca04bd1dfbfb8a1db854c532f83d0bd183d5",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 378,
+        "width": 295,
+        "x": 949,
+        "y": 337
+      },
+      "category": "tunnels",
+      "subcategory": "industrial",
+      "exportedName": "tunnels/industrial/tunnel_magenta_kit3_06.png",
+      "size": {
+        "height": 390,
+        "width": 307
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "8269914bdc5e126719858eef9fe54106529b616694e5db3cb36a50242434a31b",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 3,
+        "width": 25,
+        "x": 457,
+        "y": 359
+      },
+      "category": "tunnels",
+      "subcategory": "industrial",
+      "exportedName": "tunnels/industrial/tunnel_cyan_kit3_07.png",
+      "size": {
+        "height": 15,
+        "width": 37
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "391e0d05d7dfc3e74072d219f7be1768b7151add02b6818d2b16928ecc9fecca",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 125,
+        "width": 197,
+        "x": 229,
+        "y": 363
+      },
+      "category": "tunnels",
+      "subcategory": "industrial",
+      "exportedName": "tunnels/industrial/tunnel_cyan_kit3_08.png",
+      "size": {
+        "height": 137,
+        "width": 209
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "f35ebe8e05533a6b95f633f11a1f0820aca28220cf026245fb4aca42943d1f57",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 260,
+        "width": 531,
+        "x": 433,
+        "y": 363
+      },
+      "category": "tunnels",
+      "subcategory": "industrial",
+      "exportedName": "tunnels/industrial/tunnel_cyan_kit3_09.png",
+      "size": {
+        "height": 272,
+        "width": 543
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "56cdfbe1c6361e288812f29f67074c9ec159c9579439af353c1f430538e5d425",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 349,
+        "width": 364,
+        "x": 321,
+        "y": 477
+      },
+      "category": "platforms",
+      "subcategory": "industrial",
+      "exportedName": "platforms/industrial/platform_cyan_kit3_11.png",
+      "size": {
+        "height": 361,
+        "width": 376
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "14c2e8f5c9bbfb2b1dd59bfd7b3477531149437caa2025784f408b968bf065a0",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 220,
+        "width": 432,
+        "x": 9,
+        "y": 485
+      },
+      "category": "platforms",
+      "subcategory": "industrial",
+      "exportedName": "platforms/industrial/platform_magenta_kit3_12.png",
+      "size": {
+        "height": 232,
+        "width": 444
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "38a9057fde7e1509e951c27caa817369edd281d609e85873eccfa0bf582763a1",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 237,
+        "width": 134,
+        "x": 451,
+        "y": 491
+      },
+      "category": "platforms",
+      "subcategory": "industrial",
+      "exportedName": "platforms/industrial/platform_cyan_kit3_13.png",
+      "size": {
+        "height": 249,
+        "width": 146
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "c3c8384ea7022171065740456b3f614d2f6ac1d5b1f743634be980c9c82a69b7",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 110,
+        "width": 97,
+        "x": 867,
+        "y": 498
+      },
+      "category": "platforms",
+      "subcategory": "industrial",
+      "exportedName": "platforms/industrial/platform_cyan_kit3_14.png",
+      "size": {
+        "height": 122,
+        "width": 109
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "9f7b1f724b0ea1dc32309a177ae2191cae406ed2215f28d2bbdf55bc373bddc9",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 253,
+        "width": 470,
+        "x": 770,
+        "y": 579
+      },
+      "category": "supports",
+      "subcategory": "industrial",
+      "exportedName": "supports/industrial/support_cyan_kit3_11.png",
+      "size": {
+        "height": 265,
+        "width": 482
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "11f9ef2b597e004b9324f6879f704ecf4c9a4b0c48cc555c6809051958d9b7d4",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 192,
+        "width": 167,
+        "x": 629,
+        "y": 628
+      },
+      "category": "supports",
+      "subcategory": "industrial",
+      "exportedName": "supports/industrial/support_magenta_kit3_12.png",
+      "size": {
+        "height": 204,
+        "width": 179
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "09aacf69228f9d8697c73a0319f0f3e3899883b73539f93d23733487e5f03fa9",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 96,
+        "width": 138,
+        "x": 359,
+        "y": 632
+      },
+      "category": "supports",
+      "subcategory": "industrial",
+      "exportedName": "supports/industrial/support_cyan_kit3_13.png",
+      "size": {
+        "height": 108,
+        "width": 150
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "1b03b906800d589745c41399022159d8a3bc0d1f6a2e817f55af9d59fc57291c",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 68,
+        "width": 112,
+        "x": 17,
+        "y": 640
+      },
+      "category": "signs",
+      "subcategory": "directional",
+      "exportedName": "signs/directional/sign_cyan_kit3_01.png",
+      "size": {
+        "height": 80,
+        "width": 124
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "5e8de027bd5cf71307c8af94e48be2c9c03092eb5d1191e1562aec24d2d46dc3",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 17,
+        "width": 3,
+        "x": 355,
+        "y": 646
+      },
+      "category": "signs",
+      "subcategory": "directional",
+      "exportedName": "signs/directional/sign_cyan_kit3_02.png",
+      "size": {
+        "height": 29,
+        "width": 15
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "8de874d3fd20762dc259a01d206a018e966d236558f9e477548692c8fcd785fe",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 87,
+        "width": 122,
+        "x": 105,
+        "y": 713
+      },
+      "category": "signs",
+      "subcategory": "directional",
+      "exportedName": "signs/directional/sign_cyan_kit3_03.png",
+      "size": {
+        "height": 99,
+        "width": 134
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "a790f83874f81cb4635f3c6601ee53dd6221a3930a7c575275a5ca8fa28bb07b",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 72,
+        "width": 79,
+        "x": 234,
+        "y": 723
+      },
+      "category": "signs",
+      "subcategory": "directional",
+      "exportedName": "signs/directional/sign_cyan_kit3_04.png",
+      "size": {
+        "height": 84,
+        "width": 91
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "819bcb6fd3e9e922148bab3e9c5b9e0ff9ca09eded4bcdb5e7f393906370e0bf",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 74,
+        "width": 79,
+        "x": 16,
+        "y": 726
+      },
+      "category": "signs",
+      "subcategory": "directional",
+      "exportedName": "signs/directional/sign_cyan_kit3_05.png",
+      "size": {
+        "height": 86,
+        "width": 91
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "261a9d9ae7c9c0b28661479bbf8ab4d644b5b86dfb7bd4f963a2951483c8e908",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 75,
+        "width": 161,
+        "x": 803,
+        "y": 740
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_cyan_kit3_12.png",
+      "size": {
+        "height": 87,
+        "width": 173
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "c8bc7d5ac3fe7e17a47b40b6aef542cfa6b96eb236dd8f9a4df198d252676ae8",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 242,
+        "width": 141,
+        "x": 11,
+        "y": 801
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_cyan_kit3_13.png",
+      "size": {
+        "height": 254,
+        "width": 153
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "fd14c9da11623f54517b0f7947b0361bd2850f4f046d54ace952470835d1349d",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 250,
+        "width": 330,
+        "x": 158,
+        "y": 810
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_cyan_kit3_14.png",
+      "size": {
+        "height": 262,
+        "width": 342
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "6e077512295329e73ee30dd517df796544c73cd4d20c88ada84c14b701745cba",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 198,
+        "width": 79,
+        "x": 861,
+        "y": 823
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_yellow_kit3_15.png",
+      "size": {
+        "height": 210,
+        "width": 91
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "df2775c769d82d731e0f2b54e4d2c241465b9d228812739986f793523d9027b3",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 148,
+        "width": 185,
+        "x": 675,
+        "y": 835
+      },
+      "category": "props",
+      "subcategory": "industrial",
+      "exportedName": "props/industrial/prop_yellow_kit3_16.png",
+      "size": {
+        "height": 160,
+        "width": 197
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "fe927c74a841cb5f103956b7c3e49ba39fb0454901016ce9a34a6930d29249f5",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 392,
+        "width": 855,
+        "x": 388,
+        "y": 836
+      },
+      "category": "finish",
+      "subcategory": "scene",
+      "exportedName": "finish/scene/finish_scene_cyan_kit3_01.png",
+      "size": {
+        "height": 404,
+        "width": 867
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "5b87c10959b4623a8b368f912821b050cc211010fcdd6d3f66519dee7edbd2fd",
+      "classificationConfidence": "ambiguous",
+      "observations": "Composição intencionalmente conectada por skyline, luzes e base: mantida inteira para não inventar cortes. Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 111,
+        "width": 74,
+        "x": 122,
+        "y": 941
+      },
+      "category": "decor",
+      "subcategory": "lighting",
+      "exportedName": "decor/lighting/decor_cyan_kit3_01.png",
+      "size": {
+        "height": 123,
+        "width": 86
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "9064f6ab2ddd4c9a90d3b487d8034d2d36671e9ae68cbcab4aa13c76b9ba6109",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 135,
+        "width": 86,
+        "x": 302,
+        "y": 1092
+      },
+      "category": "decor",
+      "subcategory": "lighting",
+      "exportedName": "decor/lighting/decor_magenta_kit3_02.png",
+      "size": {
+        "height": 147,
+        "width": 98
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "94474ced2ebc0b8f22ac7e436c8ee712c701c983328dfe648b83f2e9a6dcdcc4",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 133,
+        "width": 282,
+        "x": 10,
+        "y": 1094
+      },
+      "category": "decor",
+      "subcategory": "lighting",
+      "exportedName": "decor/lighting/decor_cyan_kit3_03.png",
+      "size": {
+        "height": 145,
+        "width": 294
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "cd56474e000bbc7b215b6c630ce70f50fc5d1357292b97e11acc5c344f6e75f3",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 77,
+        "width": 68,
+        "x": 650,
+        "y": 1150
+      },
+      "category": "decor",
+      "subcategory": "lighting",
+      "exportedName": "decor/lighting/decor_cyan_kit3_04.png",
+      "size": {
+        "height": 89,
+        "width": 80
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "49396972a46a5e947babf31ee34e5bc44801bae1e791a6ddeb228b7defc296b7",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    },
+    {
+      "sourceFile": "sprite_kits3.png",
+      "sourceBounds": {
+        "height": 75,
+        "width": 66,
+        "x": 539,
+        "y": 1151
+      },
+      "category": "decor",
+      "subcategory": "lighting",
+      "exportedName": "decor/lighting/decor_cyan_kit3_05.png",
+      "size": {
+        "height": 87,
+        "width": 78
+      },
+      "transparentBackground": true,
+      "anchor": "bottom-center",
+      "safetyMarginPx": 6,
+      "contentHashSha256": "e6568a1fd90e3ab045b34fd889cf9ea9661ce21ded330ca9b5047c7e63f6a8d1",
+      "classificationConfidence": "reviewed",
+      "observations": "Exact duplicate of ramps/sequence/ramp_sequence_cyan_kit1_01.png"
+    }
+  ],
+  "generatedAt": "2026-09-21T19:44:04.6354280-03:00",
+  "exclusions": "1-2px glow strokes with no enclosed sprite body were excluded as source-art residue."
+}

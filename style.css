@@ -1,103 +1,98 @@
-* {
-    box-sizing: border-box;
+/* Reseta as margens e impede barras de rolagem */
+html, body {
     margin: 0;
     padding: 0;
-}
-
-body {
-    background: #111111;
-    color: #ffffff;
-    /* Fonte estilo RPG 16-bits aplicada em tudo */
-    font-family: 'Press Start 2P', monospace; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    user-select: none;
+    background-color: #0a192f; /* Cor de fundo para as bordas que sobrarem */
 }
 
+/* Container principal para empilhar os itens */
 #game-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
 }
 
+/* Escala o Canvas para ocupar a tela toda */
+#gameCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain; /* Mantém a proporção do jogo sem achatar */
+    image-rendering: pixelated; /* Deixa os sprites de pixel art nítidos ao ampliar */
+    display: block;
+    z-index: 1;
+}
+
+/* Interface Superior: fixada no topo absoluto, por cima do Canvas */
 #header-ui {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    width: 900px;
-    padding: 15px;
-    background: #222;
-    border: 4px solid #fff;
-    border-radius: 0; /* Bordas quadradas, sem arredondamento para manter o estilo retro */
-    box-shadow: inset -4px -4px 0px rgba(0,0,0,0.5);
+    align-items: flex-start;
+    z-index: 10;
+    pointer-events: none; /* Clicar através, se o jogo precisar de clique */
 }
 
-#game-title {
-    font-size: 14px;
-    color: #fce803;
-    text-shadow: 2px 2px 0 #000;
+/* Estilo para os textos do jogo */
+#game-title, #score-tag {
+    font-family: 'Press Start 2P', cursive, sans-serif;
+    color: white;
+    margin: 0;
+    font-size: 16px;
+    text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
-#score-tag {
-    color: #fff;
-    font-size: 14px;
-    text-shadow: 2px 2px 0 #000;
-}
-
-#score-val {
-    color: #ff0044;
-}
-
-#canvas-wrapper {
-    position: relative;
-    width: 900px;
-    height: 600px;
-}
-
-canvas {
-    width: 900px; /* Estica a tela via CSS */
-    height: 600px;
-    background-color: #3bb3e5; /* Cor do mar vibrante */
-    border: 4px solid #fff;
-    
-    /* O SEGREDO DO PIXEL ART: Impede que o navegador embaçe a imagem ao esticar */
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
-    
-    display: block;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-}
-
-/* Caixa de Diálogo Clássica (Final Fantasy / Pokemon) */
-#dialog-box {
+/* Hint de controles fixado embaixo */
+#controls-hint {
     position: absolute;
     bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #0044aa; /* Azul RPG */
-    color: #ffffff;
-    border: 4px solid #ffffff;
-    padding: 20px;
-    width: 85%;
-    font-size: 10px; /* Fonte pixelada exige tamanho menor */
-    line-height: 1.8;
-    display: none;
+    right: 20px;
+    z-index: 10;
     pointer-events: none;
-    box-shadow: inset -4px -4px 0 rgba(0,0,0,0.4), 4px 4px 0 rgba(0,0,0,0.6);
 }
 
+#hint-text {
+    font-family: 'Press Start 2P', cursive, sans-serif;
+    color: white;
+    margin: 0;
+    font-size: 12px;
+    text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    text-align: right;
+}
+
+/* Ajuste as caixas de texto para acompanharem a responsividade */
+#dialog-box {
+    position: absolute;
+    bottom: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    max-width: 600px;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.8);
+    border: 4px solid white;
+    padding: 15px;
+    border-radius: 8px;
+    color: white;
+    font-family: 'Press Start 2P', cursive, sans-serif;
+    display: none; /* Inicia oculto */
+}
+
+/* Classe para mostrar o dialog-box */
 #dialog-box.show {
     display: block;
 }
 
-#controls-hint {
-    color: #aaaaaa;
-    font-size: 10px;
-    margin-top: 5px;
+#dialog-text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
 }

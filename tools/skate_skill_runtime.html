@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<base href="/">
+<title>Skate skill line — runtime QA</title>
+<style>
+body{margin:20px;background:#071326;color:#eaf8ff;font:14px system-ui}button{padding:9px 13px;margin:4px;font:inherit}canvas{display:block;width:min(900px,100%);height:auto;margin-top:12px;border:1px solid #55eaff;image-rendering:pixelated}pre{white-space:pre-wrap;background:#0c1b2d;padding:12px;max-width:900px}
+</style>
+<h1>Skate — validação da linha de habilidade</h1>
+<button id="skill">Executar corrida habilidosa</button>
+<button id="noTricks">Executar sem tricks</button>
+<button id="passive">Testar somente frente</button>
+<button id="restart">Validar restart rápido</button>
+<button id="checkpoint">Validar checkpoint</button>
+<button id="skips">Testar skips e gates</button>
+<p id="status">Carregando sprites…</p>
+<canvas id="gameCanvas" width="450" height="300"></canvas>
+<pre id="metrics"></pre>
+<div id="header-ui" hidden><span id="score-val">0</span><span id="game-title"></span></div>
+<div id="dialog-box" hidden><span id="dialog-text"></span></div><span id="hint-text" hidden></span>
+<script>
+const realRAF=window.requestAnimationFrame.bind(window);window.requestAnimationFrame=()=>0;
+window.qaErrors=[];window.qaInvalidDraws=0;
+window.addEventListener('error',event=>qaErrors.push(event.message||String(event.error)),true);
+const nativeDraw=CanvasRenderingContext2D.prototype.drawImage;
+CanvasRenderingContext2D.prototype.drawImage=function(source,...args){if(!source||(source instanceof HTMLImageElement&&(!source.complete||!source.naturalWidth))){qaInvalidDraws++;throw Error('drawImage inválido');}return nativeDraw.call(this,source,...args);};
+</script>
+<script src="/script.js"></script>
+<script src="/skate_endless.js"></script>
+<script src="/tools/skate_skill_runtime.js"></script>
+</html>
