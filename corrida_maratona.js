@@ -171,14 +171,18 @@
 
     class RaceTrack {
         constructor() {
-            this.straight = 760;
-            this.innerRadius = 150;
-            this.laneWidth = 18;
+            this.straight = 1900;
+            this.innerRadius = 350;
+            this.laneWidth = 30;
             this.lanes = 8;
             this.referenceRadius = this.innerRadius + this.laneWidth * 3.5;
+            this.trackWidth = this.laneWidth * this.lanes;
+            this.halfTrackWidth = this.trackWidth / 2;
+            this.outerRadius = this.innerRadius + this.trackWidth;
             this.curveLength = Math.PI * this.referenceRadius;
             this.length = this.straight * 2 + this.curveLength * 2;
             this.halfStraight = this.straight / 2;
+            this.gateCount = 8;
         }
 
         point(progress, lane = 0) {
@@ -214,6 +218,86 @@
             return { x, y, direction, segment, curveT, onCurve: segment.includes('CURVE') };
         }
 
+        tangent(progress) {
+            const before = this.point(progress - 2, 3.5);
+            const after = this.point(progress + 2, 3.5);
+            const dx = after.x - before.x;
+            const dy = after.y - before.y;
+            const length = Math.hypot(dx, dy) || 1;
+            return { x: dx / length, y: dy / length };
+        }
+
+        pointOffset(progress, lateral = 0) {
+            const center = this.point(progress, 3.5);
+            const tangent = this.tangent(progress);
+            return {
+                x: center.x - tangent.y * lateral,
+                y: center.y + tangent.x * lateral,
+                direction: center.direction,
+                segment: center.segment,
+                onCurve: center.onCurve,
+                tangent
+            };
+        }
+
+        project(x, y) {
+            // A pista é uma cápsula. A busca amostrada é estável em todas as
+            // junções reta/curva e barata o bastante para um corredor livre.
+            const samples = 320;
+            let bestProgress = 0;
+            let bestDistanceSq = Infinity;
+            for (let i = 0; i < samples; i++) {
+                const progress = this.length * i / samples;
+                const point = this.point(progress, 3.5);
+                const dx = x - point.x;
+                const dy = y - point.y;
+                const distanceSq = dx * dx + dy * dy;
+                if (distanceSq < bestDistanceSq) {
+                    bestDistanceSq = distanceSq;
+                    bestProgress = progress;
+                }
+            }
+            // Refina localmente sem introduzir snapping na posição real.
+            let stride = this.length / samples;
+            for (let pass = 0; pass < 5; pass++) {
+                let chosen = bestProgress;
+                for (const candidate of [bestProgress - stride, bestProgress, bestProgress + stride]) {
+                    const point = this.point(candidate, 3.5);
+                    const dx = x - point.x;
+                    const dy = y - point.y;
+                    const distanceSq = dx * dx + dy * dy;
+                    if (distanceSq < bestDistanceSq) {
+                        bestDistanceSq = distanceSq;
+                        chosen = wrap(candidate, this.length);
+                    }
+                }
+                bestProgress = chosen;
+                stride *= 0.5;
+            }
+            const center = this.point(bestProgress, 3.5);
+            const tangent = this.tangent(bestProgress);
+            const normal = { x: -tangent.y, y: tangent.x };
+            const offsetX = x - center.x;
+            const offsetY = y - center.y;
+            const lateral = offsetX * normal.x + offsetY * normal.y;
+            const distance = Math.sqrt(bestDistanceSq);
+            return {
+                progress: wrap(bestProgress, this.length),
+                distance,
+                lateral,
+                tangent,
+                onTrack: distance <= this.halfTrackWidth + 7,
+                onGrass: lateral < -this.halfTrackWidth,
+                outside: lateral > this.halfTrackWidth
+            };
+        }
+
+        circularDistance(a, b) {
+            let delta = wrap(a - b, this.length);
+            if (delta > this.length / 2) delta -= this.length;
+            return delta;
+        }
+
         drawPath(context, lane, color, width) {
             context.beginPath();
             const samples = 220;
@@ -230,12 +314,14 @@
 
         draw(context, pulse) {
             context.save();
+            const worldHalfWidth = this.halfStraight + this.outerRadius + 360;
+            const worldHalfHeight = this.outerRadius + 360;
             context.fillStyle = '#155c38';
-            context.fillRect(-760, -430, 1520, 860);
+            context.fillRect(-worldHalfWidth, -worldHalfHeight, worldHalfWidth * 2, worldHalfHeight * 2);
 
             context.fillStyle = '#1f7044';
-            for (let x = -730; x < 730; x += 55) {
-                for (let y = -400; y < 400; y += 55) {
+            for (let x = -worldHalfWidth; x < worldHalfWidth; x += 70) {
+                for (let y = -worldHalfHeight; y < worldHalfHeight; y += 70) {
                     if (((x + y) / 55) % 2 === 0) context.fillRect(x, y, 55, 55);
                 }
             }
@@ -269,7 +355,7 @@
 
             // Miolo e leitura de estádio sem competir com a pista.
             context.fillStyle = 'rgba(9,38,27,.35)';
-            context.fillRect(-250, -58, 500, 116);
+            context.fillRect(-650, -105, 1300, 210);
             context.fillStyle = '#d8f2dd';
             context.font = 'bold 24px monospace';
             context.textAlign = 'center';
@@ -279,12 +365,12 @@
 
             // Arquibancadas simples fora da pista.
             context.fillStyle = '#263449';
-            context.fillRect(-330, -355, 660, 55);
-            context.fillRect(-330, 300, 660, 55);
+            context.fillRect(-760, -this.outerRadius - 125, 1520, 70);
+            context.fillRect(-760, this.outerRadius + 55, 1520, 70);
             context.fillStyle = '#88a4bb';
-            for (let x = -315; x < 315; x += 24) {
-                context.fillRect(x, -340, 12, 5);
-                context.fillRect(x + 9, 322, 12, 5);
+            for (let x = -740; x < 740; x += 32) {
+                context.fillRect(x, -this.outerRadius - 105, 16, 6);
+                context.fillRect(x + 10, this.outerRadius + 82, 16, 6);
             }
             context.restore();
         }
@@ -293,10 +379,14 @@
     class Runner {
         constructor(options) {
             Object.assign(this, options);
-            this.laneVisual = this.lane;
-            this.targetLane = this.lane;
             this.progress = options.progress || 0;
             this.speed = 0;
+            this.x = options.x || 0;
+            this.y = options.y || 0;
+            this.vx = 0;
+            this.vy = 0;
+            this.inputX = 0;
+            this.inputY = 0;
             this.z = 0;
             this.vz = 0;
             this.state = 'READY';
@@ -304,14 +394,25 @@
             this.animTime = 0;
             this.finished = false;
             this.finishOrder = 0;
-            this.laneChangeCooldown = 0;
-            this.curvePenalty = 0;
             this.hitObstacles = new Set();
             this.lastDirection = 'RIGHT';
+            this.directionAxis = 'HORIZONTAL';
+            this.validatedLaps = 0;
+            this.nextGate = 1;
+            this.trackProjection = null;
+            this.offTrack = false;
+            this.turnPenalty = 0;
+            this.contactCooldown = 0;
+            this.preferredOffset = options.preferredOffset || 0;
+            this.targetOffset = this.preferredOffset;
+            this.avoidanceX = 0;
+            this.avoidanceY = 0;
+            this.aiDecisionTimer = 0;
+            this.overtakeIntent = 0;
         }
 
         get lap() {
-            return Math.min(2, Math.floor(Math.max(0, this.progress) / this.trackLength) + 1);
+            return Math.min(2, this.validatedLaps + 1);
         }
 
         jump() {
@@ -323,19 +424,27 @@
             return true;
         }
 
-        changeLane(delta, onCurve) {
-            if (this.finished || this.state === 'STUMBLE' || this.laneChangeCooldown > 0) return false;
-            const next = clamp(this.targetLane + delta, 0, this.totalLanes - 1);
-            if (next === this.targetLane) return false;
-            this.targetLane = next;
-            this.laneChangeCooldown = 9;
-            this.state = delta < 0 ? 'SIDESTEP_IN' : 'SIDESTEP_OUT';
-            this.stateTimer = 14;
-            if (onCurve) {
-                this.speed = Math.max(this.minSpeed, this.speed - 0.34);
-                this.curvePenalty = Math.min(1.25, this.curvePenalty + 0.28);
+        setInput(x, y) {
+            const magnitude = Math.hypot(x, y);
+            this.inputX = magnitude > 1 ? x / magnitude : x;
+            this.inputY = magnitude > 1 ? y / magnitude : y;
+        }
+
+        chooseDirection() {
+            const absX = Math.abs(this.vx);
+            const absY = Math.abs(this.vy);
+            const magnitude = Math.hypot(this.vx, this.vy);
+            if (magnitude < 12) return this.lastDirection;
+            const hysteresis = Math.max(12, magnitude * 0.14);
+            if (this.directionAxis === 'HORIZONTAL') {
+                if (absY > absX + hysteresis) this.directionAxis = 'VERTICAL';
+            } else if (absX > absY + hysteresis) {
+                this.directionAxis = 'HORIZONTAL';
             }
-            return true;
+            this.lastDirection = this.directionAxis === 'HORIZONTAL'
+                ? (this.vx >= 0 ? 'RIGHT' : 'LEFT')
+                : (this.vy >= 0 ? 'DOWN' : 'UP');
+            return this.lastDirection;
         }
 
         stumble(strength = 0.52) {
@@ -345,19 +454,28 @@
             this.stateTimer = 48;
             this.z = 0;
             this.vz = 0;
+            this.vx *= strength;
+            this.vy *= strength;
         }
 
-        updatePhysics(dt, point, raceRunning) {
-            const step = dt * 60;
-            this.animTime += step * (0.12 + this.speed * 0.035);
-            this.laneChangeCooldown = Math.max(0, this.laneChangeCooldown - step);
-            this.curvePenalty = Math.max(0, this.curvePenalty - dt * 0.22);
+        lightSlip(strength = 0.78) {
+            this.vx *= strength;
+            this.vy *= strength;
+            this.speed = Math.hypot(this.vx, this.vy);
+            this.state = 'STUMBLE';
+            this.stateTimer = 9;
+        }
 
-            if (this.stateTimer > 0) {
+        updateFreePhysics(dt, track, raceRunning) {
+            const step = dt * 60;
+            this.animTime += step * (0.12 + this.speed * 0.0018);
+            this.contactCooldown = Math.max(0, this.contactCooldown - dt);
+            this.turnPenalty = Math.max(0, this.turnPenalty - dt * 1.4);
+
+            if (this.stateTimer > 0 && Number.isFinite(this.stateTimer)) {
                 this.stateTimer = Math.max(0, this.stateTimer - step);
                 if (this.stateTimer === 0 && this.state !== 'JUMP') this.state = raceRunning ? 'RUN' : 'READY';
             }
-
             if (this.z > 0 || this.vz > 0) {
                 this.z += this.vz * step * 0.24;
                 this.vz -= 0.58 * step;
@@ -368,24 +486,73 @@
                 }
             }
 
-            this.laneVisual = lerp(this.laneVisual, this.targetLane, clamp(dt * 8.5, 0, 1));
             if (!raceRunning || this.finished) {
-                this.speed = Math.max(0, this.speed - dt * 3);
+                const restDrag = Math.exp(-dt * 5.5);
+                this.vx *= restDrag;
+                this.vy *= restDrag;
+                this.speed = Math.hypot(this.vx, this.vy);
+                this.chooseDirection();
                 return;
             }
 
-            let curveFactor = 1;
-            if (point.onCurve) {
-                const laneEfficiency = 1 - this.laneVisual * 0.006;
-                curveFactor = laneEfficiency - this.curvePenalty * 0.06;
+            const projection = track.project(this.x, this.y);
+            this.trackProjection = projection;
+            this.offTrack = !projection.onTrack;
+            const inputMagnitude = Math.hypot(this.inputX, this.inputY);
+            const previousSpeed = Math.hypot(this.vx, this.vy);
+            const previousDirectionX = previousSpeed > 0.01 ? this.vx / previousSpeed : 0;
+            const previousDirectionY = previousSpeed > 0.01 ? this.vy / previousSpeed : 0;
+            const terrainFactor = projection.onTrack ? 1 : projection.onGrass ? 0.42 : 0.55;
+            const curveFactor = projection.onTrack && this.curveEfficiency &&
+                track.point(projection.progress, 3.5).onCurve
+                ? this.curveEfficiency
+                : 1;
+            const targetMax = this.maxSpeed * terrainFactor * curveFactor;
+
+            if (inputMagnitude > 0.05 && this.state !== 'STUMBLE') {
+                const desiredX = this.inputX * targetMax;
+                const desiredY = this.inputY * targetMax;
+                const steering = projection.onTrack ? (this.steeringResponse || 7.2) : 5.0;
+                const blend = 1 - Math.exp(-steering * dt);
+                this.vx = lerp(this.vx, desiredX, blend);
+                this.vy = lerp(this.vy, desiredY, blend);
+
+                const nextSpeed = Math.hypot(this.vx, this.vy);
+                if (previousSpeed > 70 && nextSpeed > 1) {
+                    const nextDirectionX = this.vx / nextSpeed;
+                    const nextDirectionY = this.vy / nextSpeed;
+                    const dot = clamp(previousDirectionX * nextDirectionX + previousDirectionY * nextDirectionY, -1, 1);
+                    const turnAngle = Math.acos(dot);
+                    const aggressiveTurn = clamp((turnAngle - 0.025) / 0.42, 0, 1);
+                    if (aggressiveTurn > 0) {
+                        const loss = aggressiveTurn * clamp(previousSpeed / this.maxSpeed, 0, 1) * 0.075;
+                        this.vx *= 1 - loss;
+                        this.vy *= 1 - loss;
+                        this.turnPenalty = Math.max(this.turnPenalty, aggressiveTurn);
+                    }
+                }
+            } else {
+                // Soltar as teclas preserva um pouco de embalo, mas o corredor
+                // desacelera naturalmente em vez de deslizar indefinidamente.
+                const coastDrag = Math.exp(-dt * (projection.onTrack ? 1.8 : 3.6));
+                this.vx *= coastDrag;
+                this.vy *= coastDrag;
             }
-            const target = this.maxSpeed * curveFactor;
-            const acceleration = this.state === 'STUMBLE' ? this.acceleration * 0.25 : this.acceleration;
-            this.speed = lerp(this.speed, target, clamp(acceleration * dt, 0, 1));
-            this.speed = clamp(this.speed, 0, this.maxSpeed * 1.02);
-            this.progress += this.speed * step;
-            this.lastDirection = point.direction;
+
+            let speed = Math.hypot(this.vx, this.vy);
+            if (speed > targetMax) {
+                const reduction = Math.max(targetMax, speed - this.maxSpeed * dt * (projection.onTrack ? 0.9 : 3.2));
+                const ratio = reduction / speed;
+                this.vx *= ratio;
+                this.vy *= ratio;
+                speed = reduction;
+            }
+            this.x += this.vx * dt;
+            this.y += this.vy * dt;
+            this.speed = speed;
+            this.chooseDirection();
         }
+
     }
 
     class ObstacleDirector {
@@ -400,118 +567,153 @@
             this.buildCourse();
         }
 
-        add(type, lap, s, lane, options = {}) {
-            this.items.push({
-                id: `${type}-${lap}-${s}-${lane}-${this.items.length}`,
-                type, lap, baseS: s, lane, laneVisual: lane,
-                absProgress: (lap - 1) * this.track.length + s,
-                mobile: false, jumpable: false, strength: 0.65,
-                size: [40, 42], active: true, triggered: false,
+        add(type, lap, progress, lateral, options = {}) {
+            const item = {
+                id: `${type}-${lap}-${Math.round(progress)}-${Math.round(lateral)}-${this.items.length}`,
+                type, lap, progress: wrap(progress, this.track.length), lateral,
+                baseProgress: wrap(progress, this.track.length), baseLateral: lateral,
+                x: 0, y: 0, mobile: false, pathSpeed: 0,
+                crossing: false, zigzag: false, jumpable: false, lightHazard: false,
+                strength: 0.65, size: [40, 42], active: true,
+                flying: false, flightTimer: 0, playerScared: false,
+                phase: this.items.length * 0.73,
                 ...options
-            });
+            };
+            this.updateWorldPosition(item, 0);
+            this.items.push(item);
+        }
+
+        updateWorldPosition(item, clock) {
+            let lateral = item.baseLateral;
+            if (item.crossing) lateral += Math.sin(clock * 1.15 + item.phase) * 112;
+            if (item.zigzag) lateral += Math.sin(clock * 2.05 + item.phase) * 78;
+            item.lateral = clamp(lateral, -this.track.halfTrackWidth + 16, this.track.halfTrackWidth - 16);
+            const point = this.track.pointOffset(item.progress, item.lateral);
+            item.x = point.x;
+            item.y = point.y;
+            item.direction = point.direction;
         }
 
         buildCourse() {
             const L = this.track.length;
-            // Volta 1: leitura e apresentação gradual dos perigos.
-            this.add('startingBlock', 1, 250, 6, { strength: 0.8, size: [34, 26] });
-            this.add('cone', 1, 430, 3, { strength: 0.58, size: [32, 38] });
-            this.add('hurdle', 1, 610, 1, { jumpable: true, strength: 0.46, size: [54, 42] });
-            this.add('hurdle', 1, 610, 2, { jumpable: true, strength: 0.46, size: [54, 42] });
-            this.add('puddle', 1, 930, 5, { jumpable: true, strength: 0.48, size: [72, 36] });
-            this.add('bottle', 1, 1180, 2, { strength: 0.78, size: [28, 24] });
-            this.add('backmarker', 1, 1450, 4, { mobile: true, mobileSpeed: 2.35, strength: 0.72, size: [36, 48] });
-            this.add('barricade', 1, 1860, 6, { strength: 0.42, size: [58, 40] });
-            this.add('judge', 1, 2200, 1, { mobile: true, mobileSpeed: 2.15, strength: 0.58, size: [38, 50] });
-            this.add('pigeon', 1, L - 330, 4, { scenic: true, strength: 0.88, size: [32, 30] });
+            // Volta 1: hazards claros, espaçados e sempre contornáveis.
+            this.add('startingBlock', 1, L * 0.08, 76, { lightHazard: true, strength: 0.82, size: [34, 26] });
+            this.add('cone', 1, L * 0.15, -48, { strength: 0.62, size: [32, 38] });
+            this.add('hurdle', 1, L * 0.24, -58, { jumpable: true, strength: 0.5, size: [62, 43] });
+            this.add('puddle', 1, L * 0.34, 55, { jumpable: true, lightHazard: true, strength: 0.7, size: [78, 38] });
+            this.add('bottle', 1, L * 0.45, -22, { lightHazard: true, strength: 0.8, size: [28, 24] });
+            this.add('backmarker', 1, L * 0.57, 35, { mobile: true, pathSpeed: 165, strength: 0.78, size: [38, 50] });
+            this.add('barricade', 1, L * 0.70, 68, { strength: 0.5, size: [64, 43] });
+            this.add('judge', 1, L * 0.82, -62, { mobile: true, pathSpeed: 58, strength: 0.67, size: [40, 52] });
+            this.add('pigeon', 1, L * 0.91, 15, { scenic: true, size: [34, 31] });
 
-            // Volta 2: tráfego maior, combinações e mudanças de decisão.
-            this.add('cone', 2, 240, 1, { strength: 0.58, size: [32, 38] });
-            this.add('cone', 2, 240, 2, { strength: 0.58, size: [32, 38] });
-            this.add('hurdle', 2, 470, 4, { jumpable: true, strength: 0.44, size: [54, 42] });
-            this.add('hurdle', 2, 470, 5, { jumpable: true, strength: 0.44, size: [54, 42] });
-            this.add('cart', 2, 760, 3, { mobile: true, crossing: true, strength: 0.42, size: [52, 42] });
-            this.add('sponge', 2, 1030, 6, { strength: 0.72, size: [30, 23] });
-            this.add('zigzag', 2, 1280, 2, { mobile: true, mobileSpeed: 3.15, zigzag: true, strength: 0.6, size: [36, 48] });
-            this.add('rolling', 2, 1570, 5, { mobile: true, mobileSpeed: 1.65, strength: 0.38, size: [56, 42] });
-            this.add('tape', 2, 1810, 3, { scenic: true, strength: 0.9, size: [70, 36] });
-            this.add('puddle', 2, 2030, 0, { jumpable: true, strength: 0.45, size: [72, 36] });
-            this.add('puddle', 2, 2030, 1, { jumpable: true, strength: 0.45, size: [72, 36] });
-            this.add('robot', 2, 2320, 4, { mobile: true, mobileSpeed: 2.0, crossing: true, strength: 0.5, size: [42, 40] });
-            this.add('barricade', 2, 2540, 6, { strength: 0.4, size: [58, 40] });
-            this.add('barricade', 2, 2540, 7, { strength: 0.4, size: [58, 40] });
-            this.add('pigeon', 2, L - 250, 2, { scenic: true, strength: 0.88, size: [32, 30] });
+            // Volta 2: maior densidade e movimento. Os últimos 10% ficam livres
+            // de bloqueios pesados para a disputa direta da reta final.
+            this.add('cone', 2, L * 0.06, -72, { strength: 0.62, size: [32, 38] });
+            this.add('cone', 2, L * 0.06, 4, { strength: 0.62, size: [32, 38] });
+            this.add('hurdle', 2, L * 0.15, 50, { jumpable: true, strength: 0.48, size: [62, 43] });
+            this.add('cart', 2, L * 0.25, 0, { mobile: true, crossing: true, pathSpeed: 42, strength: 0.48, size: [56, 44] });
+            this.add('sponge', 2, L * 0.34, 72, { lightHazard: true, strength: 0.78, size: [30, 23] });
+            this.add('zigzag', 2, L * 0.44, -24, { mobile: true, zigzag: true, pathSpeed: 225, strength: 0.7, size: [38, 50] });
+            this.add('rolling', 2, L * 0.55, 58, { mobile: true, pathSpeed: 72, strength: 0.46, size: [60, 44] });
+            this.add('tape', 2, L * 0.64, -55, { scenic: true, lightHazard: true, strength: 0.86, size: [72, 36] });
+            this.add('puddle', 2, L * 0.72, 42, { jumpable: true, lightHazard: true, strength: 0.68, size: [78, 38] });
+            this.add('robot', 2, L * 0.80, -18, { mobile: true, crossing: true, pathSpeed: 68, strength: 0.58, size: [44, 42] });
+            this.add('pigeon', 2, L * 0.88, 38, { scenic: true, size: [34, 31] });
         }
 
         update(dt, game) {
-            const step = dt * 60;
+            const visibleLap = Math.min(game.totalLaps, game.player.validatedLaps + 1);
             for (const item of this.items) {
-                const playerDistance = Math.abs(item.absProgress - game.player.progress);
-                // Obstáculos móveis entram em ação quando o pelotão se aproxima;
-                // assim itens da volta 2 não atravessam a pista antes de serem vistos.
-                if (item.mobile && item.mobileSpeed && playerDistance < 720) item.absProgress += item.mobileSpeed * step;
-                if (item.zigzag) {
-                    item.laneVisual = clamp(item.lane + Math.sin(game.clock * 2.4 + item.baseS) * 1.35, 0, this.track.lanes - 1);
-                } else if (item.crossing) {
-                    item.laneVisual = clamp(item.lane + Math.sin(game.clock * 1.35 + item.baseS) * 2.2, 0, this.track.lanes - 1);
-                } else {
-                    item.laneVisual = item.lane;
+                if (item.mobile && item.pathSpeed) item.progress = wrap(item.progress + item.pathSpeed * dt, this.track.length);
+                this.updateWorldPosition(item, game.clock);
+                if (item.type === 'pigeon') {
+                    const nearest = game.runners.reduce((distance, runner) =>
+                        Math.min(distance, Math.hypot(item.x - runner.x, item.y - runner.y)), Infinity);
+                    if (!item.flying && item.lap === visibleLap && nearest < 125) {
+                        item.flying = true;
+                        item.flightTimer = 1.55;
+                    }
+                    if (item.flying) item.flightTimer = Math.max(0, item.flightTimer - dt);
                 }
-                if (Math.abs(item.absProgress - game.player.progress) < 360) {
+                if (item.lap === visibleLap && Math.hypot(item.x - game.player.x, item.y - game.player.y) < 470) {
                     this.typesSeen.add(item.type);
                     if (item.mobile) this.mobileSeen = true;
                 }
             }
         }
 
-        nearestThreat(runner, distance = 115) {
-            let result = null;
-            let nearest = distance;
+        nearbyThreats(runner, forwardRange = 210) {
+            const projection = runner.trackProjection || this.track.project(runner.x, runner.y);
+            const currentLap = Math.min(2, runner.validatedLaps + 1);
+            const forward = runner.speed > 30
+                ? { x: runner.vx / runner.speed, y: runner.vy / runner.speed }
+                : projection.tangent;
+            const side = { x: -forward.y, y: forward.x };
+            const threats = [];
             for (const item of this.items) {
-                const ahead = item.absProgress - runner.progress;
-                if (ahead > 0 && ahead < nearest && Math.abs(item.laneVisual - runner.targetLane) < 0.6) {
-                    nearest = ahead;
-                    result = item;
+                if (item.lap !== currentLap || item.type === 'pigeon') continue;
+                const dx = item.x - runner.x;
+                const dy = item.y - runner.y;
+                const ahead = dx * forward.x + dy * forward.y;
+                const lateral = dx * side.x + dy * side.y;
+                if (ahead > 0 && ahead < forwardRange && Math.abs(lateral) < item.size[0] * 0.7 + 34) {
+                    threats.push({ item, ahead, lateral, distance: Math.hypot(dx, dy) });
                 }
             }
-            return result;
+            return threats.sort((a, b) => a.ahead - b.ahead);
+        }
+
+        nearestThreat(runner, distance = 150) {
+            return this.nearbyThreats(runner, distance)[0]?.item || null;
         }
 
         collideRunner(runner, game) {
+            const runnerLap = Math.min(game.totalLaps, runner.validatedLaps + 1);
             for (const item of this.items) {
-                if (runner.hitObstacles.has(item.id)) continue;
-                const along = Math.abs(item.absProgress - runner.progress);
-                if (along > 19 || Math.abs(item.laneVisual - runner.laneVisual) > 0.48) continue;
+                if (item.lap !== runnerLap || runner.hitObstacles.has(item.id)) continue;
+                const distance = Math.hypot(item.x - runner.x, item.y - runner.y);
+                if (item.type === 'pigeon') {
+                    if (distance < 115 && runner.isPlayer && !item.playerScared) {
+                        item.playerScared = true;
+                        game.distractionTimer = 32;
+                    }
+                    continue;
+                }
+                const collisionRadius = Math.max(18, item.size[0] * 0.4);
+                if (distance > collisionRadius) continue;
                 runner.hitObstacles.add(item.id);
                 if (item.jumpable && runner.z > 19) {
                     if (runner.isPlayer) game.score += 120;
                     continue;
                 }
-                if (item.type === 'pigeon') {
-                    if (runner.isPlayer) game.distractionTimer = 54;
-                    continue;
-                }
-                if (item.type === 'tape') {
-                    if (runner.isPlayer) game.distractionTimer = 36;
-                    continue;
-                }
-                runner.stumble(item.strength);
+                if (item.type === 'tape' && runner.isPlayer) game.distractionTimer = 24;
+                if (item.lightHazard) runner.lightSlip(item.strength);
+                else runner.stumble(item.strength);
                 this.hitCount++;
                 if (runner.isPlayer) {
                     this.playerHitCount++;
-                    game.score = Math.max(0, game.score - 80);
-                    game.impactFlash = 12;
+                    game.score = Math.max(0, game.score - (item.lightHazard ? 35 : 80));
+                    game.impactFlash = item.lightHazard ? 5 : 12;
                 }
             }
         }
 
         draw(context, game) {
+            const visibleLap = Math.min(game.totalLaps, game.player.validatedLaps + 1);
             for (const item of this.items) {
-                if (Math.abs(item.absProgress - game.player.progress) > 540) continue;
-                const localProgress = wrap(item.absProgress, this.track.length);
-                const point = this.track.point(localProgress, item.laneVisual);
+                if (item.lap !== visibleLap || Math.hypot(item.x - game.camera.x, item.y - game.camera.y) > 820) continue;
                 const [width, height] = item.size;
-                this.atlas.drawObstacle(context, item.type, point.x, point.y + 4, width, height);
+                let drawX = item.x;
+                let drawY = item.y + 4;
+                let alpha = 1;
+                if (item.type === 'pigeon' && item.flying) {
+                    const flightProgress = 1 - item.flightTimer / 1.55;
+                    drawX += flightProgress * 70;
+                    drawY -= Math.sin(clamp(flightProgress, 0, 1) * Math.PI) * 58 + flightProgress * 25;
+                    alpha = clamp(item.flightTimer / 0.35, 0, 1);
+                }
+                this.atlas.drawObstacle(context, item.type, drawX, drawY, width, height, alpha);
             }
         }
     }
@@ -538,7 +740,9 @@
             this.finishers = [];
             this.finalRanking = [];
             this.directionHistory = new Set();
-            this.laneChanges = 0;
+            this.inputKeys = new Set();
+            this.gatesPassed = 0;
+            this.runnerContacts = 0;
             this.jumps = 0;
             this.restartCount = 0;
             this.assetsReported = false;
@@ -550,11 +754,11 @@
             window.addEventListener('keydown', (event) => {
                 if (typeof currentScene === 'undefined' || currentScene !== 'JOGO_CORRIDA') return;
                 const key = event.key.toLowerCase();
-                if ([' ', 'arrowleft', 'arrowright', 'a', 'd', 'escape', 'r'].includes(key)) event.preventDefault();
-                if (event.repeat && key !== ' ') return;
+                if ([' ', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', 'w', 'a', 's', 'd', 'escape', 'r'].includes(key)) event.preventDefault();
                 if (key === 'escape') {
                     currentScene = 'ILHA_CORRIDA';
                     this.phase = 'PAUSED';
+                    this.inputKeys.clear();
                     this.setPresentation(false);
                     return;
                 }
@@ -569,37 +773,65 @@
                     return;
                 }
                 if (this.phase !== 'RACING') return;
-                const point = this.track.point(this.player.progress, this.player.laneVisual);
-                if (key === 'a' || key === 'arrowleft') {
-                    if (this.player.changeLane(-1, point.onCurve)) this.laneChanges++;
-                } else if (key === 'd' || key === 'arrowright') {
-                    if (this.player.changeLane(1, point.onCurve)) this.laneChanges++;
-                } else if (key === ' ') {
+                if (['w', 'a', 's', 'd', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown'].includes(key)) {
+                    this.inputKeys.add(key);
+                } else if (key === ' ' && !event.repeat) {
                     if (this.player.jump()) this.jumps++;
                 }
             }, { passive: false });
+            window.addEventListener('keyup', (event) => {
+                const key = event.key.toLowerCase();
+                this.inputKeys.delete(key);
+            });
+            window.addEventListener('blur', () => this.inputKeys.clear());
+        }
+
+        readMovementInput() {
+            const left = this.inputKeys.has('a') || this.inputKeys.has('arrowleft');
+            const right = this.inputKeys.has('d') || this.inputKeys.has('arrowright');
+            const up = this.inputKeys.has('w') || this.inputKeys.has('arrowup');
+            const down = this.inputKeys.has('s') || this.inputKeys.has('arrowdown');
+            const x = (right ? 1 : 0) - (left ? 1 : 0);
+            const y = (down ? 1 : 0) - (up ? 1 : 0);
+            const magnitude = Math.hypot(x, y);
+            return magnitude > 1 ? { x: x / magnitude, y: y / magnitude } : { x, y };
         }
 
         makeRunners() {
-            const shared = { trackLength: this.track.length, totalLanes: this.track.lanes, acceleration: 1.25, minSpeed: 1.4 };
+            const shared = {
+                trackLength: this.track.length,
+                acceleration: 1.25,
+                minSpeed: 70,
+                steeringResponse: 7.2,
+                curveEfficiency: 0.95,
+                avoidanceSkill: 0.8
+            };
             this.player = new Runner({
                 ...shared, id: 'zorp', name: 'ZORP', kind: 'zorp', isPlayer: true,
-                lane: 3, progress: 0, maxSpeed: 5.65, color: '#7cff55'
+                progress: 38, preferredOffset: 0, maxSpeed: 340,
+                curveEfficiency: 1, color: '#7cff55', profile: 'PLAYER'
             });
             const rivals = [
-                { id: 'mestre', name: 'MESTRE', kind: 'mestre', lane: 2, maxSpeed: 5.5, skill: 0.94, color: '#ff8b32' },
-                { id: 'cobalto', name: 'COBALTO', kind: 'competitor', group: { band: 'robot', column: 0 }, lane: 0, maxSpeed: 5.12, skill: 0.82 },
-                { id: 'ferrugem', name: 'FERRUGEM', kind: 'competitor', group: { band: 'robot', column: 1 }, lane: 5, maxSpeed: 5.25, skill: 0.76 },
-                { id: 'lina', name: 'LINA', kind: 'competitor', group: { band: 'human', column: 1 }, lane: 1, maxSpeed: 5.05, skill: 0.86 },
-                { id: 'kai', name: 'KAI', kind: 'competitor', group: { band: 'human', column: 2 }, lane: 6, maxSpeed: 5.32, skill: 0.79 },
-                { id: 'axol', name: 'AXOL', kind: 'competitor', group: { band: 'monster', column: 1 }, lane: 4, maxSpeed: 4.96, skill: 0.72 },
-                { id: 'nox', name: 'NOX', kind: 'competitor', group: { band: 'monster', column: 2 }, lane: 7, maxSpeed: 5.18, skill: 0.75 }
+                { id: 'mestre', name: 'MESTRE', kind: 'mestre', profile: 'MASTER', preferredOffset: -18, maxSpeed: 334, skill: 0.94, steeringResponse: 8.15, curveEfficiency: 0.985, avoidanceSkill: 0.94, color: '#ff8b32' },
+                { id: 'cobalto', name: 'COBALTO', kind: 'competitor', group: { band: 'robot', column: 0 }, profile: 'SPRINTER', preferredOffset: -82, maxSpeed: 348, skill: 0.81, steeringResponse: 6.15, curveEfficiency: 0.865, avoidanceSkill: 0.72 },
+                { id: 'ferrugem', name: 'FERRUGEM', kind: 'competitor', group: { band: 'robot', column: 1 }, profile: 'AGGRESSIVE', preferredOffset: 74, maxSpeed: 331, skill: 0.78, steeringResponse: 7.25, curveEfficiency: 0.92, avoidanceSkill: 0.76 },
+                { id: 'lina', name: 'LINA', kind: 'competitor', group: { band: 'human', column: 1 }, profile: 'TECHNICAL', preferredOffset: -48, maxSpeed: 319, skill: 0.87, steeringResponse: 8.35, curveEfficiency: 0.995, avoidanceSkill: 0.9 },
+                { id: 'kai', name: 'KAI', kind: 'competitor', group: { band: 'human', column: 2 }, profile: 'SPRINTER', preferredOffset: 48, maxSpeed: 343, skill: 0.79, steeringResponse: 6.25, curveEfficiency: 0.87, avoidanceSkill: 0.7 },
+                { id: 'axol', name: 'AXOL', kind: 'competitor', group: { band: 'monster', column: 1 }, profile: 'CAUTIOUS', preferredOffset: 12, maxSpeed: 311, skill: 0.84, steeringResponse: 7.8, curveEfficiency: 0.975, avoidanceSkill: 0.98 },
+                { id: 'nox', name: 'NOX', kind: 'competitor', group: { band: 'monster', column: 2 }, profile: 'AGGRESSIVE', preferredOffset: 88, maxSpeed: 327, skill: 0.75, steeringResponse: 7.05, curveEfficiency: 0.91, avoidanceSkill: 0.74 }
             ].map((data, index) => new Runner({
-                ...shared, ...data, progress: -index * 2.5, isPlayer: false,
-                acceleration: 0.9 + data.skill * 0.35, minSpeed: 1.35,
-                aiThink: 0.2 + index * 0.07, aiBias: index % 2 ? 1 : -1
+                ...shared, ...data, progress: 34 - index * 4, isPlayer: false,
+                acceleration: 0.9 + data.skill * 0.35,
+                aiDecisionTimer: 0.08 + index * 0.035,
+                phaseSeed: index * 1.37 + 0.4
             }));
             this.runners = [this.player, ...rivals];
+            for (const runner of this.runners) {
+                const start = this.track.pointOffset(runner.progress, runner.preferredOffset);
+                runner.x = start.x;
+                runner.y = start.y;
+                runner.trackProjection = this.track.project(start.x, start.y);
+            }
         }
 
         reset() {
@@ -616,9 +848,13 @@
             this.finishers = [];
             this.finalRanking = [];
             this.directionHistory = new Set();
-            this.laneChanges = 0;
+            this.inputKeys.clear();
+            this.gatesPassed = 0;
+            this.runnerContacts = 0;
             this.jumps = 0;
-            const start = this.track.point(30, this.player.lane);
+            this.overtakes = 0;
+            this.lastPlayerPlace = this.currentRanking().indexOf(this.player) + 1;
+            const start = { x: this.player.x, y: this.player.y };
             this.camera.x = start.x;
             this.camera.y = start.y;
             if (typeof dialogBox !== 'undefined') dialogBox.classList.remove('show');
@@ -638,39 +874,159 @@
         }
 
         updateAI(runner, dt) {
-            runner.aiThink -= dt;
-            if (runner.aiThink > 0 || runner.finished) return;
-            runner.aiThink = 0.18 + Math.random() * 0.18;
-            const point = this.track.point(runner.progress, runner.laneVisual);
-            const threat = this.obstacles.nearestThreat(runner, 105 + runner.skill * 35);
+            if (runner.finished) {
+                runner.setInput(0, 0);
+                return;
+            }
+            const projection = runner.trackProjection || this.track.project(runner.x, runner.y);
+            runner.aiDecisionTimer -= dt;
+            if (runner.aiDecisionTimer <= 0) {
+                const decisionRate = runner.profile === 'AGGRESSIVE' ? 0.17 : runner.profile === 'CAUTIOUS' ? 0.32 : 0.24;
+                runner.aiDecisionTimer = decisionRate + (1 - runner.skill) * 0.16;
+                const drift = Math.sin(this.clock * (0.48 + runner.skill * 0.1) + runner.phaseSeed) *
+                    (runner.profile === 'AGGRESSIVE' ? 34 : runner.profile === 'CAUTIOUS' ? 9 : 18);
+                runner.targetOffset = clamp(runner.preferredOffset + drift, -98, 98);
+                runner.overtakeIntent = 0;
+
+                const nearby = this.runners.filter((other) => other !== runner && !other.finished).map((other) => {
+                    const otherProjection = other.trackProjection || this.track.project(other.x, other.y);
+                    return {
+                        other,
+                        ahead: wrap(otherProjection.progress - projection.progress, this.track.length),
+                        lateralGap: otherProjection.lateral - projection.lateral,
+                        distance: Math.hypot(other.x - runner.x, other.y - runner.y)
+                    };
+                }).filter((candidate) => candidate.ahead > 5 && candidate.ahead < 125 && candidate.distance < 145)
+                    .sort((a, b) => a.ahead - b.ahead)[0];
+                if (nearby) {
+                    const passSide = nearby.lateralGap >= 0 ? -1 : 1;
+                    const aggression = runner.profile === 'AGGRESSIVE' ? 78 : runner.profile === 'CAUTIOUS' ? 48 : 62;
+                    runner.targetOffset = clamp(projection.lateral + passSide * aggression, -100, 100);
+                    runner.overtakeIntent = passSide;
+                }
+            }
+
+            const vision = runner.profile === 'CAUTIOUS' ? 255 : 175 + runner.avoidanceSkill * 65;
+            const threat = this.obstacles.nearbyThreats(runner, vision)[0];
+            let avoidance = 0;
             if (threat) {
-                const reacts = Math.random() < runner.skill;
-                if (reacts && threat.jumpable && threat.absProgress - runner.progress < 65) {
+                const reacts = Math.sin(this.clock * 2.7 + runner.phaseSeed) < runner.avoidanceSkill * 1.55 - 0.45;
+                if (reacts && threat.item.jumpable && threat.ahead < 72 && runner.z <= 0.5) {
                     runner.jump();
                 } else if (reacts) {
-                    const inwardFree = runner.targetLane > 0 && !this.laneThreatened(runner, runner.targetLane - 1, 80);
-                    const outwardFree = runner.targetLane < this.track.lanes - 1 && !this.laneThreatened(runner, runner.targetLane + 1, 80);
-                    if (inwardFree) runner.changeLane(-1, point.onCurve);
-                    else if (outwardFree) runner.changeLane(1, point.onCurve);
+                    const side = threat.lateral >= 0 ? -1 : 1;
+                    const urgency = 1 - clamp(threat.ahead / vision, 0, 1);
+                    avoidance = side * (0.42 + urgency * 0.82);
+                    runner.targetOffset = clamp(projection.lateral + side * (52 + urgency * 38), -101, 101);
                 }
-            } else if (!point.onCurve && Math.random() < 0.08) {
-                runner.changeLane(runner.aiBias, false);
-                runner.aiBias *= -1;
-            } else if (point.onCurve && runner.targetLane > 1 && Math.random() < 0.22) {
-                runner.changeLane(-1, true);
             }
+
+            const lookAhead = clamp(86 + runner.speed * 0.28, 92, 168);
+            const target = this.track.pointOffset(projection.progress + lookAhead, runner.targetOffset);
+            let desiredX = target.x - runner.x;
+            let desiredY = target.y - runner.y;
+            const desiredLength = Math.hypot(desiredX, desiredY) || 1;
+            desiredX /= desiredLength;
+            desiredY /= desiredLength;
+            const normal = { x: -projection.tangent.y, y: projection.tangent.x };
+            desiredX += normal.x * avoidance;
+            desiredY += normal.y * avoidance;
+
+            // Separação suave: impede aglomeração sem transformar corredores em paredes.
+            for (const other of this.runners) {
+                if (other === runner || other.finished) continue;
+                const dx = runner.x - other.x;
+                const dy = runner.y - other.y;
+                const distance = Math.hypot(dx, dy);
+                if (distance > 0.01 && distance < 54) {
+                    const strength = (54 - distance) / 54 * (runner.profile === 'AGGRESSIVE' ? 0.28 : 0.48);
+                    desiredX += dx / distance * strength;
+                    desiredY += dy / distance * strength;
+                }
+            }
+            // O Mestre é eficiente, porém um pequeno erro periódico mantém a disputa justa.
+            if (runner.profile === 'MASTER') {
+                const imperfection = Math.sin(this.clock * 0.73 + runner.phaseSeed) * 0.045;
+                desiredX += normal.x * imperfection;
+                desiredY += normal.y * imperfection;
+            }
+            runner.setInput(desiredX, desiredY);
         }
 
-        laneThreatened(runner, lane, range) {
-            return this.obstacles.items.some((item) => {
-                const ahead = item.absProgress - runner.progress;
-                return ahead > 0 && ahead < range && Math.abs(item.laneVisual - lane) < 0.55;
-            });
+        runnerWorldPoint(runner) {
+            return { x: runner.x, y: runner.y };
+        }
+
+        updateRunnerProgress(runner) {
+            if (runner.finished) return;
+            const projection = this.track.project(runner.x, runner.y);
+            runner.trackProjection = projection;
+            const gateSpan = this.track.length / this.track.gateCount;
+            const gateProgress = runner.nextGate === this.track.gateCount ? 0 : runner.nextGate * gateSpan;
+            const forwardSpeed = runner.vx * projection.tangent.x + runner.vy * projection.tangent.y;
+            const atExpectedGate = Math.abs(this.track.circularDistance(projection.progress, gateProgress)) < 105;
+            if (projection.onTrack && forwardSpeed > 35 && atExpectedGate) {
+                if (runner.isPlayer) this.gatesPassed++;
+                if (runner.nextGate === this.track.gateCount) {
+                    runner.validatedLaps++;
+                    runner.nextGate = 1;
+                    if (runner.validatedLaps >= this.totalLaps) {
+                        runner.progress = this.totalLaps * this.track.length;
+                        runner.finished = true;
+                        runner.finishOrder = this.finishers.length + 1;
+                        runner.setInput(0, 0);
+                        this.finishers.push(runner);
+                        if (runner.isPlayer) this.finishRace();
+                        return;
+                    }
+                } else {
+                    runner.nextGate++;
+                }
+            }
+            const allowedLocal = runner.nextGate === this.track.gateCount
+                ? this.track.length
+                : runner.nextGate * gateSpan;
+            // O ranking de todos usa a mesma sequência; cortar o gramado não
+            // concede progresso nem volta a jogador ou adversários.
+            runner.progress = runner.validatedLaps * this.track.length + Math.min(projection.progress, allowedLocal);
+        }
+
+        resolveRunnerContacts() {
+            for (let i = 0; i < this.runners.length; i++) {
+                for (let j = i + 1; j < this.runners.length; j++) {
+                    const a = this.runners[i];
+                    const b = this.runners[j];
+                    if (a.z > 18 || b.z > 18) continue;
+                    const pa = this.runnerWorldPoint(a);
+                    const pb = this.runnerWorldPoint(b);
+                    const dx = pa.x - pb.x;
+                    const dy = pa.y - pb.y;
+                    const distance = Math.hypot(dx, dy);
+                    const minimum = 27;
+                    if (distance <= 0.01 || distance >= minimum) continue;
+                    const nx = dx / distance;
+                    const ny = dy / distance;
+                    const overlap = minimum - distance;
+                    a.x += nx * overlap * 0.52;
+                    a.y += ny * overlap * 0.52;
+                    b.x -= nx * overlap * 0.52;
+                    b.y -= ny * overlap * 0.52;
+                    a.vx *= 0.975;
+                    a.vy *= 0.975;
+                    b.vx *= 0.975;
+                    b.vy *= 0.975;
+                    if ((a.isPlayer && a.contactCooldown <= 0) || (b.isPlayer && b.contactCooldown <= 0)) {
+                        this.runnerContacts++;
+                        this.player.contactCooldown = 0.18;
+                    }
+                }
+            }
         }
 
         update() {
             const now = performance.now();
-            const dt = clamp((now - this.lastTime) / 1000, 0, 1 / 20);
+            let dt = clamp((now - this.lastTime) / 1000, 0, 1 / 20);
+            if (this.qaMode === 'autoplay') dt = Math.min(dt * 3, 1 / 12);
             this.lastTime = now;
             this.clock += dt;
             this.setPresentation(true);
@@ -681,7 +1037,7 @@
 
             if (typeof hintText !== 'undefined') {
                 hintText.innerText = this.phase === 'RACING'
-                    ? '[A/D ou ←/→] TROCAR RAIA  |  [ESPAÇO] PULAR  |  [ESC] SAIR'
+                    ? '[WASD / SETAS] CORRER LIVREMENTE  |  [ESPAÇO] PULAR  |  [ESC] SAIR'
                     : '[ESPAÇO] COMEÇAR / REINICIAR  |  [ESC] SAIR';
             }
 
@@ -693,48 +1049,77 @@
                     for (const runner of this.runners) runner.state = 'RUN';
                 }
             }
+            if (this.qaMode === 'autoplay' && this.phase !== 'RACING') this.qaAutopilotStep();
 
             const raceRunning = this.phase === 'RACING';
             if (raceRunning) {
                 this.countdownGoTimer = Math.max(0, this.countdownGoTimer - dt * 60);
+                let input = this.readMovementInput();
+                if (this.qaMode === 'autoplay' || this.qaMode === 'contact') {
+                    const projection = this.track.project(this.player.x, this.player.y);
+                    const center = this.track.point(projection.progress, 3.5);
+                    const correctionStrength = clamp(projection.distance / 85, 0, 1.35);
+                    let autoX = projection.tangent.x + (center.x - this.player.x) / Math.max(1, projection.distance) * correctionStrength;
+                    let autoY = projection.tangent.y + (center.y - this.player.y) / Math.max(1, projection.distance) * correctionStrength;
+                    const autoLength = Math.hypot(autoX, autoY) || 1;
+                    input = { x: autoX / autoLength, y: autoY / autoLength };
+                } else if (this.qaMode === 'shortcut') {
+                    input = { x: 0, y: -1 };
+                }
+                this.player.setInput(input.x, input.y);
+                if (this.qaMode === 'autoplay') this.qaAutopilotStep();
                 this.obstacles.update(dt, this);
                 for (const runner of this.runners) {
-                    const pointBefore = this.track.point(runner.progress, runner.laneVisual);
                     if (!runner.isPlayer) this.updateAI(runner, dt);
-                    runner.updatePhysics(dt, pointBefore, true);
+                    runner.updateFreePhysics(dt, this.track, true);
                     this.obstacles.collideRunner(runner, this);
-                    if (!runner.finished && runner.progress >= this.totalLaps * this.track.length) {
-                        runner.finished = true;
-                        runner.finishOrder = this.finishers.length + 1;
-                        runner.state = runner.isPlayer ? 'RUN' : 'RUN';
-                        this.finishers.push(runner);
-                        if (runner.isPlayer) this.finishRace();
-                    }
                 }
+                this.resolveRunnerContacts();
+                for (const runner of this.runners) this.updateRunnerProgress(runner);
+                const playerPlace = this.currentRanking().indexOf(this.player) + 1;
+                if (playerPlace < this.lastPlayerPlace) this.overtakes += this.lastPlayerPlace - playerPlace;
+                this.lastPlayerPlace = playerPlace;
                 this.score += dt * 4;
             } else {
-                for (const runner of this.runners) {
-                    const point = this.track.point(runner.progress, runner.laneVisual);
-                    runner.updatePhysics(dt, point, false);
-                }
+                for (const runner of this.runners) runner.updateFreePhysics(dt, this.track, false);
             }
 
-            const playerPoint = this.track.point(this.player.progress, this.player.laneVisual);
-            this.directionHistory.add(playerPoint.direction);
-            const aheadPoint = this.track.point(this.player.progress + 115, this.player.laneVisual);
-            const targetX = lerp(playerPoint.x, aheadPoint.x, 0.38);
-            const targetY = lerp(playerPoint.y, aheadPoint.y, 0.38);
-            this.camera.x = lerp(this.camera.x, targetX, clamp(dt * 4.5, 0, 1));
-            this.camera.y = lerp(this.camera.y, targetY, clamp(dt * 4.5, 0, 1));
+            this.directionHistory.add(this.player.lastDirection);
+            const playerSpeed = Math.hypot(this.player.vx, this.player.vy);
+            const lookAhead = clamp(playerSpeed * 0.42, 45, 150);
+            const directionX = playerSpeed > 1 ? this.player.vx / playerSpeed : 1;
+            const directionY = playerSpeed > 1 ? this.player.vy / playerSpeed : 0;
+            const targetX = this.player.x + directionX * lookAhead;
+            const targetY = this.player.y + directionY * lookAhead;
+            this.camera.x = lerp(this.camera.x, targetX, clamp(dt * 3.8, 0, 1));
+            this.camera.y = lerp(this.camera.y, targetY, clamp(dt * 3.8, 0, 1));
             this.distractionTimer = Math.max(0, this.distractionTimer - dt * 60);
             this.impactFlash = Math.max(0, this.impactFlash - dt * 60);
 
             const scoreElement = document.getElementById('score-val');
             if (scoreElement) scoreElement.textContent = String(Math.floor(this.score));
 
-            if (this.qaMode === 'autoplay') this.qaAutopilotStep();
+            if (this.qaMode === 'shortcut') {
+                if (this.phase === 'READY') this.startCountdown();
+                if (this.phase === 'COUNTDOWN') this.countdown = 0;
+            }
+            if (this.qaMode === 'contact' && !this.qaPrepared && this.phase === 'READY') {
+                this.qaPrepared = true;
+                this.phase = 'RACING';
+                const rival = this.runners.find((runner) => !runner.isPlayer);
+                rival.progress = 30;
+                rival.preferredOffset = 0;
+                rival.targetOffset = 0;
+                rival.state = 'RUN';
+                const contactPoint = this.track.pointOffset(30, 0);
+                rival.x = contactPoint.x;
+                rival.y = contactPoint.y;
+                this.player.x = contactPoint.x + 4;
+                this.player.y = contactPoint.y;
+                this.player.state = 'RUN';
+            }
             if (this.qaMode === 'defeat') {
-                this.player.maxSpeed = 4.35;
+                this.player.maxSpeed = 245;
                 if (this.phase === 'READY') this.startCountdown();
                 if (this.phase === 'COUNTDOWN') this.countdown = 0;
             }
@@ -743,9 +1128,20 @@
                 this.phase = 'RACING';
                 this.player.progress = this.track.straight + this.track.curveLength * 0.42;
                 this.player.speed = this.player.maxSpeed;
+                const curveStart = this.track.point(this.player.progress, 3);
+                const curveTangent = this.track.tangent(this.player.progress);
+                this.player.x = curveStart.x;
+                this.player.y = curveStart.y;
+                this.player.vx = curveTangent.x * this.player.maxSpeed;
+                this.player.vy = curveTangent.y * this.player.maxSpeed;
                 this.runners.forEach((runner, index) => {
                     runner.state = 'RUN';
-                    if (!runner.isPlayer) runner.progress = this.player.progress - 35 - index * 12;
+                    if (!runner.isPlayer) {
+                        runner.progress = this.player.progress - 35 - index * 12;
+                        const point = this.track.pointOffset(runner.progress, runner.preferredOffset);
+                        runner.x = point.x;
+                        runner.y = point.y;
+                    }
                 });
             }
             canvas.dataset.raceDiagnostics = JSON.stringify(this.diagnostics());
@@ -775,7 +1171,7 @@
         }
 
         drawRunner(context, runner) {
-            const point = this.track.point(runner.progress, runner.laneVisual);
+            const point = { x: runner.x, y: runner.y };
             const shadowScale = 1 - clamp(runner.z / 75, 0, 0.45);
             context.save();
             context.fillStyle = 'rgba(0,0,0,.28)';
@@ -784,7 +1180,7 @@
             context.fill();
 
             const action = runner.state;
-            const direction = point.direction;
+            const direction = runner.chooseDirection();
             const size = runner.kind === 'mestre' ? [48, 57] : runner.kind === 'zorp' ? [45, 54] : [39, 49];
             const drawY = point.y - runner.z;
             let drawn = false;
@@ -816,11 +1212,7 @@
             ctx.translate(canvas.width / 2 - this.camera.x, canvas.height / 2 - this.camera.y);
             this.track.draw(ctx, this.clock * 60);
             this.obstacles.draw(ctx, this);
-            const sorted = [...this.runners].sort((a, b) => {
-                const pa = this.track.point(a.progress, a.laneVisual);
-                const pb = this.track.point(b.progress, b.laneVisual);
-                return pa.y - pb.y;
-            });
+            const sorted = [...this.runners].sort((a, b) => a.y - b.y);
             for (const runner of sorted) this.drawRunner(ctx, runner);
             ctx.restore();
         }
@@ -829,7 +1221,7 @@
             const ranking = this.currentRanking();
             const place = ranking.indexOf(this.player) + 1;
             const progress = clamp(this.player.progress / (this.totalLaps * this.track.length), 0, 1);
-            const lap = Math.min(this.totalLaps, Math.floor(Math.max(0, this.player.progress) / this.track.length) + 1);
+            const lap = Math.min(this.totalLaps, this.player.validatedLaps + 1);
 
             ctx.save();
             ctx.fillStyle = 'rgba(5,12,24,.82)';
@@ -863,7 +1255,7 @@
             ctx.fillRect(333, 42, 109, 20);
             ctx.fillStyle = '#9eeaff';
             ctx.textAlign = 'right';
-            ctx.fillText(`RITMO ${Math.round(this.player.speed / this.player.maxSpeed * 100)}%`, 433, 56);
+            ctx.fillText(`RITMO ${Math.round(clamp(this.player.speed / this.player.maxSpeed, 0, 1) * 100)}%`, 433, 56);
             ctx.restore();
         }
 
@@ -894,7 +1286,7 @@
                 ctx.fillStyle = '#fff';
                 ctx.font = 'bold 11px monospace';
                 ctx.fillText('2 VOLTAS • 8 CORREDORES • 1 CAMPEÃO', canvas.width / 2, 133);
-                ctx.fillText('[A/D ou ←/→] TROCAR RAIA', canvas.width / 2, 160);
+                ctx.fillText('[WASD / SETAS] MOVIMENTO LIVRE', canvas.width / 2, 160);
                 ctx.fillText('[ESPAÇO] PULAR BARREIRAS', canvas.width / 2, 179);
                 ctx.fillStyle = '#7cff8a';
                 ctx.fillText('PRESSIONE [ESPAÇO] PARA LARGAR', canvas.width / 2, 207);
@@ -961,7 +1353,7 @@
         }
 
         diagnostics() {
-            const playerPoint = this.track.point(this.player.progress, this.player.laneVisual);
+            const projection = this.player.trackProjection || this.track.project(this.player.x, this.player.y);
             return {
                 phase: this.phase,
                 assetsLoaded: this.atlas.loaded,
@@ -976,19 +1368,49 @@
                 playerHits: this.obstacles.playerHitCount,
                 totalObstacleCollisions: this.obstacles.hitCount,
                 directionsSeen: [...this.directionHistory],
-                laneChanges: this.laneChanges,
+                freeMovement: true,
+                aiFreeMovement: true,
+                aiProfiles: this.runners.filter((runner) => !runner.isPlayer).map((runner) => `${runner.name}:${runner.profile}`),
+                aiStatus: this.runners.filter((runner) => !runner.isPlayer).map((runner) => {
+                    const runnerProjection = runner.trackProjection || this.track.project(runner.x, runner.y);
+                    return {
+                        name: runner.name,
+                        profile: runner.profile,
+                        x: Number(runner.x.toFixed(1)),
+                        y: Number(runner.y.toFixed(1)),
+                        lateral: Number(runnerProjection.lateral.toFixed(1)),
+                        speed: Number(runner.speed.toFixed(1)),
+                        validatedLaps: runner.validatedLaps,
+                        nextGate: runner.nextGate,
+                        finished: runner.finished
+                    };
+                }),
+                playerX: Number(this.player.x.toFixed(2)),
+                playerY: Number(this.player.y.toFixed(2)),
+                playerVelocityX: Number(this.player.vx.toFixed(2)),
+                playerVelocityY: Number(this.player.vy.toFixed(2)),
                 jumps: this.jumps,
+                gatesPassed: this.gatesPassed,
+                nextGate: this.player.nextGate,
+                validatedLaps: this.player.validatedLaps,
+                runnerContacts: this.runnerContacts,
+                overtakes: this.overtakes,
                 restartCount: this.restartCount,
                 currentLap: this.player.lap,
                 place: this.currentRanking().indexOf(this.player) + 1,
                 finishOrder: this.player.finishOrder,
                 playerSpeed: Number(this.player.speed.toFixed(3)),
                 playerMaxSpeed: this.player.maxSpeed,
-                playerLane: Number(this.player.laneVisual.toFixed(2)),
-                trackSegment: playerPoint.segment,
-                curvePenalty: Number(this.player.curvePenalty.toFixed(3)),
+                onTrack: projection.onTrack,
+                onGrass: projection.onGrass,
+                offTrack: this.player.offTrack,
+                turnPenalty: Number(this.player.turnPenalty.toFixed(3)),
                 trackDirection: 'COUNTER_CLOCKWISE',
-                curveModel: 'inner-lane efficiency + lane-change rhythm penalty'
+                curveModel: 'continuous 2D steering with angular speed loss',
+                cameraLookAhead: true,
+                rankingModel: 'ordered lap gates plus between-gate oval progress',
+                trackLength: Number(this.track.length.toFixed(1)),
+                trackWidth: this.track.trackWidth
             };
         }
 
@@ -997,22 +1419,23 @@
             if (this.phase === 'READY') this.startCountdown();
             if (this.phase === 'COUNTDOWN') this.countdown = 0;
             if (this.phase !== 'RACING') return;
-            const point = this.track.point(this.player.progress, this.player.laneVisual);
-            const threat = this.obstacles.nearestThreat(this.player, 125);
+            const projection = this.track.project(this.player.x, this.player.y);
+            const center = this.track.pointOffset(projection.progress, 0);
+            const correction = clamp(projection.distance / 72, 0, 1.45);
+            let desiredX = projection.tangent.x + (center.x - this.player.x) / Math.max(1, projection.distance) * correction;
+            let desiredY = projection.tangent.y + (center.y - this.player.y) / Math.max(1, projection.distance) * correction;
+            const threat = this.obstacles.nearbyThreats(this.player, 180)[0];
             if (threat) {
-                if (threat.jumpable && threat.absProgress - this.player.progress < 68) {
+                if (threat.item.jumpable && threat.ahead < 72) {
                     if (this.player.jump()) this.jumps++;
-                }
-                else {
-                    const inward = this.player.targetLane > 0 && !this.laneThreatened(this.player, this.player.targetLane - 1, 90);
-                    const outward = this.player.targetLane < this.track.lanes - 1 && !this.laneThreatened(this.player, this.player.targetLane + 1, 90);
-                    if (inward) {
-                        if (this.player.changeLane(-1, point.onCurve)) this.laneChanges++;
-                    } else if (outward) {
-                        if (this.player.changeLane(1, point.onCurve)) this.laneChanges++;
-                    } else if (threat.jumpable && this.player.jump()) this.jumps++;
+                } else {
+                    const normal = { x: -projection.tangent.y, y: projection.tangent.x };
+                    const side = threat.lateral >= 0 ? -1 : 1;
+                    desiredX += normal.x * side * 0.48;
+                    desiredY += normal.y * side * 0.48;
                 }
             }
+            this.player.setInput(desiredX, desiredY);
         }
     }
 

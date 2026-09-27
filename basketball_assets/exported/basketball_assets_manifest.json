@@ -1,0 +1,1664 @@
+﻿{
+    "schemaVersion":  1,
+    "sourceFiles":  [
+                        "ZorpBasquete.png",
+                        "MestreBasquete.png",
+                        "skate_sprites/Arena_Basquete.png",
+                        "skate_sprites/Aros_Basquete.png",
+                        "skate_sprites/Bola_Basquete.png"
+                    ],
+    "notes":  [
+                  "Source files remain unchanged.",
+                  "Ball is an independent entity and was never composed into character PNGs.",
+                  "Opposite directions should use renderer-controlled horizontal flip when necessary."
+              ],
+    "assets":  [
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "idle",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "zorp_basket/idle/zorp_basket_idle_01.png",
+                       "width":  146,
+                       "height":  210,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  202,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "idle",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "zorp_basket/idle/zorp_basket_idle_02.png",
+                       "width":  146,
+                       "height":  210,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  202,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "run",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "zorp_basket/run/zorp_basket_run_01.png",
+                       "width":  136,
+                       "height":  209,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  201,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "run",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "zorp_basket/run/zorp_basket_run_02.png",
+                       "width":  136,
+                       "height":  209,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  201,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "run",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "zorp_basket/run/zorp_basket_run_03.png",
+                       "width":  136,
+                       "height":  209,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  201,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "run",
+                       "direction":  "original_lateral",
+                       "frame":  4,
+                       "file":  "zorp_basket/run/zorp_basket_run_04.png",
+                       "width":  136,
+                       "height":  209,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  201,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "run",
+                       "direction":  "original_lateral",
+                       "frame":  5,
+                       "file":  "zorp_basket/run/zorp_basket_run_05.png",
+                       "width":  136,
+                       "height":  209,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  201,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "run",
+                       "direction":  "original_lateral",
+                       "frame":  6,
+                       "file":  "zorp_basket/run/zorp_basket_run_06.png",
+                       "width":  136,
+                       "height":  209,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  201,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "defense_shuffle",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "zorp_basket/defense_shuffle/zorp_basket_defense_shuffle_01.png",
+                       "width":  126,
+                       "height":  188,
+                       "anchor":  {
+                                      "x":  63,
+                                      "y":  180,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "defense_shuffle",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "zorp_basket/defense_shuffle/zorp_basket_defense_shuffle_02.png",
+                       "width":  126,
+                       "height":  188,
+                       "anchor":  {
+                                      "x":  63,
+                                      "y":  180,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "defense_shuffle",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "zorp_basket/defense_shuffle/zorp_basket_defense_shuffle_03.png",
+                       "width":  126,
+                       "height":  188,
+                       "anchor":  {
+                                      "x":  63,
+                                      "y":  180,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "defense_shuffle",
+                       "direction":  "original_lateral",
+                       "frame":  4,
+                       "file":  "zorp_basket/defense_shuffle/zorp_basket_defense_shuffle_04.png",
+                       "width":  126,
+                       "height":  188,
+                       "anchor":  {
+                                      "x":  63,
+                                      "y":  180,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "jump",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "zorp_basket/jump/zorp_basket_jump_01.png",
+                       "width":  124,
+                       "height":  194,
+                       "anchor":  {
+                                      "x":  62,
+                                      "y":  186,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "jump",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "zorp_basket/jump/zorp_basket_jump_02.png",
+                       "width":  124,
+                       "height":  194,
+                       "anchor":  {
+                                      "x":  62,
+                                      "y":  186,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "jump",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "zorp_basket/jump/zorp_basket_jump_03.png",
+                       "width":  124,
+                       "height":  194,
+                       "anchor":  {
+                                      "x":  62,
+                                      "y":  186,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "shoot",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "zorp_basket/shoot/zorp_basket_shoot_01.png",
+                       "width":  122,
+                       "height":  194,
+                       "anchor":  {
+                                      "x":  61,
+                                      "y":  186,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  88,
+                                          "y":  80,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "shoot",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "zorp_basket/shoot/zorp_basket_shoot_02.png",
+                       "width":  122,
+                       "height":  194,
+                       "anchor":  {
+                                      "x":  61,
+                                      "y":  186,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  82,
+                                          "y":  72,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "shoot",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "zorp_basket/shoot/zorp_basket_shoot_03.png",
+                       "width":  122,
+                       "height":  194,
+                       "anchor":  {
+                                      "x":  61,
+                                      "y":  186,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  95,
+                                          "y":  28,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "shoot",
+                       "direction":  "original_lateral",
+                       "frame":  4,
+                       "file":  "zorp_basket/shoot/zorp_basket_shoot_04.png",
+                       "width":  122,
+                       "height":  194,
+                       "anchor":  {
+                                      "x":  61,
+                                      "y":  186,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  88,
+                                          "y":  30,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "pump_fake",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "zorp_basket/pump_fake/zorp_basket_pump_fake_01.png",
+                       "width":  151,
+                       "height":  208,
+                       "anchor":  {
+                                      "x":  76,
+                                      "y":  200,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  98,
+                                          "y":  70,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "pump_fake",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "zorp_basket/pump_fake/zorp_basket_pump_fake_02.png",
+                       "width":  151,
+                       "height":  208,
+                       "anchor":  {
+                                      "x":  76,
+                                      "y":  200,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  85,
+                                          "y":  36,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "layup_dunk",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "zorp_basket/layup_dunk/zorp_basket_layup_dunk_01.png",
+                       "width":  148,
+                       "height":  208,
+                       "anchor":  {
+                                      "x":  74,
+                                      "y":  200,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  98,
+                                          "y":  100,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "layup_dunk",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "zorp_basket/layup_dunk/zorp_basket_layup_dunk_02.png",
+                       "width":  148,
+                       "height":  208,
+                       "anchor":  {
+                                      "x":  74,
+                                      "y":  200,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  98,
+                                          "y":  43,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "layup_dunk",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "zorp_basket/layup_dunk/zorp_basket_layup_dunk_03.png",
+                       "width":  148,
+                       "height":  208,
+                       "anchor":  {
+                                      "x":  74,
+                                      "y":  200,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  98,
+                                          "y":  31,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "layup_dunk",
+                       "direction":  "original_lateral",
+                       "frame":  4,
+                       "file":  "zorp_basket/layup_dunk/zorp_basket_layup_dunk_04.png",
+                       "width":  148,
+                       "height":  208,
+                       "anchor":  {
+                                      "x":  74,
+                                      "y":  200,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  105,
+                                          "y":  18,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "steal",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "zorp_basket/steal/zorp_basket_steal_01.png",
+                       "width":  136,
+                       "height":  193,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  185,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "steal",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "zorp_basket/steal/zorp_basket_steal_02.png",
+                       "width":  136,
+                       "height":  193,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  185,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "steal",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "zorp_basket/steal/zorp_basket_steal_03.png",
+                       "width":  136,
+                       "height":  193,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  185,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "block",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "zorp_basket/block/zorp_basket_block_01.png",
+                       "width":  146,
+                       "height":  211,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  203,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "block",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "zorp_basket/block/zorp_basket_block_02.png",
+                       "width":  146,
+                       "height":  211,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  203,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "block",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "zorp_basket/block/zorp_basket_block_03.png",
+                       "width":  146,
+                       "height":  211,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  203,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "hit",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "zorp_basket/hit/zorp_basket_hit_01.png",
+                       "width":  144,
+                       "height":  199,
+                       "anchor":  {
+                                      "x":  72,
+                                      "y":  191,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "hit",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "zorp_basket/hit/zorp_basket_hit_02.png",
+                       "width":  144,
+                       "height":  199,
+                       "anchor":  {
+                                      "x":  72,
+                                      "y":  191,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "hit",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "zorp_basket/hit/zorp_basket_hit_03.png",
+                       "width":  144,
+                       "height":  199,
+                       "anchor":  {
+                                      "x":  72,
+                                      "y":  191,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "victory",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "zorp_basket/victory/zorp_basket_victory_01.png",
+                       "width":  146,
+                       "height":  211,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  203,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "victory",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "zorp_basket/victory/zorp_basket_victory_02.png",
+                       "width":  146,
+                       "height":  211,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  203,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "victory",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "zorp_basket/victory/zorp_basket_victory_03.png",
+                       "width":  146,
+                       "height":  211,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  203,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "defeated",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "zorp_basket/defeated/zorp_basket_defeated_01.png",
+                       "width":  156,
+                       "height":  92,
+                       "anchor":  {
+                                      "x":  78,
+                                      "y":  84,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "defeated",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "zorp_basket/defeated/zorp_basket_defeated_02.png",
+                       "width":  156,
+                       "height":  92,
+                       "anchor":  {
+                                      "x":  78,
+                                      "y":  84,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "zorp_basket",
+                       "animation":  "defeated",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "zorp_basket/defeated/zorp_basket_defeated_03.png",
+                       "width":  156,
+                       "height":  92,
+                       "anchor":  {
+                                      "x":  78,
+                                      "y":  84,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "idle",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "master_basket/idle/master_basket_idle_01.png",
+                       "width":  146,
+                       "height":  210,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  202,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "idle",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "master_basket/idle/master_basket_idle_02.png",
+                       "width":  146,
+                       "height":  210,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  202,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "run",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "master_basket/run/master_basket_run_01.png",
+                       "width":  136,
+                       "height":  209,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  201,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "run",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "master_basket/run/master_basket_run_02.png",
+                       "width":  136,
+                       "height":  209,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  201,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "run",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "master_basket/run/master_basket_run_03.png",
+                       "width":  136,
+                       "height":  209,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  201,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "run",
+                       "direction":  "original_lateral",
+                       "frame":  4,
+                       "file":  "master_basket/run/master_basket_run_04.png",
+                       "width":  136,
+                       "height":  209,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  201,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "run",
+                       "direction":  "original_lateral",
+                       "frame":  5,
+                       "file":  "master_basket/run/master_basket_run_05.png",
+                       "width":  136,
+                       "height":  209,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  201,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "run",
+                       "direction":  "original_lateral",
+                       "frame":  6,
+                       "file":  "master_basket/run/master_basket_run_06.png",
+                       "width":  136,
+                       "height":  209,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  201,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "defense_shuffle",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "master_basket/defense_shuffle/master_basket_defense_shuffle_01.png",
+                       "width":  126,
+                       "height":  188,
+                       "anchor":  {
+                                      "x":  63,
+                                      "y":  180,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "defense_shuffle",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "master_basket/defense_shuffle/master_basket_defense_shuffle_02.png",
+                       "width":  126,
+                       "height":  188,
+                       "anchor":  {
+                                      "x":  63,
+                                      "y":  180,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "defense_shuffle",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "master_basket/defense_shuffle/master_basket_defense_shuffle_03.png",
+                       "width":  126,
+                       "height":  188,
+                       "anchor":  {
+                                      "x":  63,
+                                      "y":  180,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "defense_shuffle",
+                       "direction":  "original_lateral",
+                       "frame":  4,
+                       "file":  "master_basket/defense_shuffle/master_basket_defense_shuffle_04.png",
+                       "width":  126,
+                       "height":  188,
+                       "anchor":  {
+                                      "x":  63,
+                                      "y":  180,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "jump",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "master_basket/jump/master_basket_jump_01.png",
+                       "width":  124,
+                       "height":  194,
+                       "anchor":  {
+                                      "x":  62,
+                                      "y":  186,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "jump",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "master_basket/jump/master_basket_jump_02.png",
+                       "width":  124,
+                       "height":  194,
+                       "anchor":  {
+                                      "x":  62,
+                                      "y":  186,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "jump",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "master_basket/jump/master_basket_jump_03.png",
+                       "width":  124,
+                       "height":  194,
+                       "anchor":  {
+                                      "x":  62,
+                                      "y":  186,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "shoot",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "master_basket/shoot/master_basket_shoot_01.png",
+                       "width":  122,
+                       "height":  194,
+                       "anchor":  {
+                                      "x":  61,
+                                      "y":  186,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  88,
+                                          "y":  80,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "shoot",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "master_basket/shoot/master_basket_shoot_02.png",
+                       "width":  122,
+                       "height":  194,
+                       "anchor":  {
+                                      "x":  61,
+                                      "y":  186,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  82,
+                                          "y":  72,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "shoot",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "master_basket/shoot/master_basket_shoot_03.png",
+                       "width":  122,
+                       "height":  194,
+                       "anchor":  {
+                                      "x":  61,
+                                      "y":  186,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  95,
+                                          "y":  28,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "shoot",
+                       "direction":  "original_lateral",
+                       "frame":  4,
+                       "file":  "master_basket/shoot/master_basket_shoot_04.png",
+                       "width":  122,
+                       "height":  194,
+                       "anchor":  {
+                                      "x":  61,
+                                      "y":  186,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  88,
+                                          "y":  30,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "pump_fake",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "master_basket/pump_fake/master_basket_pump_fake_01.png",
+                       "width":  151,
+                       "height":  208,
+                       "anchor":  {
+                                      "x":  76,
+                                      "y":  200,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  98,
+                                          "y":  70,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "pump_fake",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "master_basket/pump_fake/master_basket_pump_fake_02.png",
+                       "width":  151,
+                       "height":  208,
+                       "anchor":  {
+                                      "x":  76,
+                                      "y":  200,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  85,
+                                          "y":  36,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "layup_dunk",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "master_basket/layup_dunk/master_basket_layup_dunk_01.png",
+                       "width":  148,
+                       "height":  208,
+                       "anchor":  {
+                                      "x":  74,
+                                      "y":  200,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  98,
+                                          "y":  100,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "layup_dunk",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "master_basket/layup_dunk/master_basket_layup_dunk_02.png",
+                       "width":  148,
+                       "height":  208,
+                       "anchor":  {
+                                      "x":  74,
+                                      "y":  200,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  98,
+                                          "y":  43,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "layup_dunk",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "master_basket/layup_dunk/master_basket_layup_dunk_03.png",
+                       "width":  148,
+                       "height":  208,
+                       "anchor":  {
+                                      "x":  74,
+                                      "y":  200,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  98,
+                                          "y":  31,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "layup_dunk",
+                       "direction":  "original_lateral",
+                       "frame":  4,
+                       "file":  "master_basket/layup_dunk/master_basket_layup_dunk_04.png",
+                       "width":  148,
+                       "height":  208,
+                       "anchor":  {
+                                      "x":  74,
+                                      "y":  200,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  {
+                                          "x":  105,
+                                          "y":  18,
+                                          "confidence":  "approximate",
+                                          "note":  "Estimated hand point for the future BALL entity; no ball pixel was combined with the character."
+                                      },
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "steal",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "master_basket/steal/master_basket_steal_01.png",
+                       "width":  136,
+                       "height":  193,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  185,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "steal",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "master_basket/steal/master_basket_steal_02.png",
+                       "width":  136,
+                       "height":  193,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  185,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "steal",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "master_basket/steal/master_basket_steal_03.png",
+                       "width":  136,
+                       "height":  193,
+                       "anchor":  {
+                                      "x":  68,
+                                      "y":  185,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "block",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "master_basket/block/master_basket_block_01.png",
+                       "width":  146,
+                       "height":  211,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  203,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "block",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "master_basket/block/master_basket_block_02.png",
+                       "width":  146,
+                       "height":  211,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  203,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "block",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "master_basket/block/master_basket_block_03.png",
+                       "width":  146,
+                       "height":  211,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  203,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "hit",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "master_basket/hit/master_basket_hit_01.png",
+                       "width":  144,
+                       "height":  199,
+                       "anchor":  {
+                                      "x":  72,
+                                      "y":  191,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "hit",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "master_basket/hit/master_basket_hit_02.png",
+                       "width":  144,
+                       "height":  199,
+                       "anchor":  {
+                                      "x":  72,
+                                      "y":  191,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "hit",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "master_basket/hit/master_basket_hit_03.png",
+                       "width":  144,
+                       "height":  199,
+                       "anchor":  {
+                                      "x":  72,
+                                      "y":  191,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "victory",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "master_basket/victory/master_basket_victory_01.png",
+                       "width":  146,
+                       "height":  211,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  203,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "victory",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "master_basket/victory/master_basket_victory_02.png",
+                       "width":  146,
+                       "height":  211,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  203,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "victory",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "master_basket/victory/master_basket_victory_03.png",
+                       "width":  146,
+                       "height":  211,
+                       "anchor":  {
+                                      "x":  73,
+                                      "y":  203,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "defeated",
+                       "direction":  "original_lateral",
+                       "frame":  1,
+                       "file":  "master_basket/defeated/master_basket_defeated_01.png",
+                       "width":  156,
+                       "height":  92,
+                       "anchor":  {
+                                      "x":  78,
+                                      "y":  84,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "defeated",
+                       "direction":  "original_lateral",
+                       "frame":  2,
+                       "file":  "master_basket/defeated/master_basket_defeated_02.png",
+                       "width":  156,
+                       "height":  92,
+                       "anchor":  {
+                                      "x":  78,
+                                      "y":  84,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "character",
+                       "character":  "master_basket",
+                       "animation":  "defeated",
+                       "direction":  "original_lateral",
+                       "frame":  3,
+                       "file":  "master_basket/defeated/master_basket_defeated_03.png",
+                       "width":  156,
+                       "height":  92,
+                       "anchor":  {
+                                      "x":  78,
+                                      "y":  84,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Manual figure crop; ball remains an independent entity."
+                   },
+                   {
+                       "category":  "basketball",
+                       "character":  null,
+                       "animation":  "spin",
+                       "direction":  null,
+                       "frame":  1,
+                       "file":  "basketball/ball/ball_spin_01.png",
+                       "width":  416,
+                       "height":  416,
+                       "anchor":  {
+                                      "x":  208,
+                                      "y":  208,
+                                      "reference":  "center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Visual rotation for the independent BALL entity."
+                   },
+                   {
+                       "category":  "basketball",
+                       "character":  null,
+                       "animation":  "spin",
+                       "direction":  null,
+                       "frame":  2,
+                       "file":  "basketball/ball/ball_spin_02.png",
+                       "width":  416,
+                       "height":  416,
+                       "anchor":  {
+                                      "x":  208,
+                                      "y":  208,
+                                      "reference":  "center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Visual rotation for the independent BALL entity."
+                   },
+                   {
+                       "category":  "basketball",
+                       "character":  null,
+                       "animation":  "spin",
+                       "direction":  null,
+                       "frame":  3,
+                       "file":  "basketball/ball/ball_spin_03.png",
+                       "width":  416,
+                       "height":  416,
+                       "anchor":  {
+                                      "x":  208,
+                                      "y":  208,
+                                      "reference":  "center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Visual rotation for the independent BALL entity."
+                   },
+                   {
+                       "category":  "basketball",
+                       "character":  null,
+                       "animation":  "spin",
+                       "direction":  null,
+                       "frame":  4,
+                       "file":  "basketball/ball/ball_spin_04.png",
+                       "width":  416,
+                       "height":  416,
+                       "anchor":  {
+                                      "x":  208,
+                                      "y":  208,
+                                      "reference":  "center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Visual rotation for the independent BALL entity."
+                   },
+                   {
+                       "category":  "basketball",
+                       "character":  null,
+                       "animation":  "spin",
+                       "direction":  null,
+                       "frame":  5,
+                       "file":  "basketball/ball/ball_spin_05.png",
+                       "width":  416,
+                       "height":  416,
+                       "anchor":  {
+                                      "x":  208,
+                                      "y":  208,
+                                      "reference":  "center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Visual rotation for the independent BALL entity."
+                   },
+                   {
+                       "category":  "basketball",
+                       "character":  null,
+                       "animation":  "spin",
+                       "direction":  null,
+                       "frame":  6,
+                       "file":  "basketball/ball/ball_spin_06.png",
+                       "width":  416,
+                       "height":  416,
+                       "anchor":  {
+                                      "x":  208,
+                                      "y":  208,
+                                      "reference":  "center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Visual rotation for the independent BALL entity."
+                   },
+                   {
+                       "category":  "hoop",
+                       "character":  null,
+                       "animation":  "idle",
+                       "direction":  "left",
+                       "frame":  1,
+                       "file":  "basketball/hoops/hoop_left_idle.png",
+                       "width":  601,
+                       "height":  621,
+                       "anchor":  {
+                                      "x":  300,
+                                      "y":  613,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Visual hoop kept separate for future backboard, rim and scoring-zone physics."
+                   },
+                   {
+                       "category":  "hoop",
+                       "character":  null,
+                       "animation":  "idle",
+                       "direction":  "right",
+                       "frame":  1,
+                       "file":  "basketball/hoops/hoop_right_idle.png",
+                       "width":  601,
+                       "height":  621,
+                       "anchor":  {
+                                      "x":  300,
+                                      "y":  613,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Visual hoop kept separate for future backboard, rim and scoring-zone physics."
+                   },
+                   {
+                       "category":  "hoop",
+                       "character":  null,
+                       "animation":  "net_motion",
+                       "direction":  "left",
+                       "frame":  1,
+                       "file":  "basketball/hoops/hoop_left_net_motion.png",
+                       "width":  601,
+                       "height":  621,
+                       "anchor":  {
+                                      "x":  300,
+                                      "y":  613,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Visual hoop kept separate for future backboard, rim and scoring-zone physics."
+                   },
+                   {
+                       "category":  "hoop",
+                       "character":  null,
+                       "animation":  "net_motion",
+                       "direction":  "right",
+                       "frame":  1,
+                       "file":  "basketball/hoops/hoop_right_net_motion.png",
+                       "width":  601,
+                       "height":  621,
+                       "anchor":  {
+                                      "x":  300,
+                                      "y":  613,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Visual hoop kept separate for future backboard, rim and scoring-zone physics."
+                   },
+                   {
+                       "category":  "arena",
+                       "character":  null,
+                       "animation":  "background",
+                       "direction":  null,
+                       "frame":  1,
+                       "file":  "basketball/arena/arena_basketball_background.png",
+                       "width":  1672,
+                       "height":  941,
+                       "anchor":  {
+                                      "x":  836,
+                                      "y":  941,
+                                      "reference":  "bottom-center"
+                                  },
+                       "ballAnchor":  null,
+                       "observation":  "Single background preserved; playable hoops will render as separate entities."
+                   }
+               ]
+}
