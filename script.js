@@ -50,6 +50,21 @@ const imgTurista = new Image(); imgTurista.src = "npc_turista.png";
 const imgGuia = new Image(); imgGuia.src = "npc_guia.png";
 const imgMestreBasqueteNpc = new Image();
 imgMestreBasqueteNpc.src = "basketball_assets/exported/master_basket/idle/master_basket_idle_01.png?v=1.0.1_visual_fix";
+// Mestre do Surf: recorte RGBA do sprite oficial mestre_surfing.
+const imgMestreSurfing = new Image();
+imgMestreSurfing.src = "surf_assets/mestre_surfing_overworld.png?v=1.0";
+const surfIslandDecor = {};
+for (const [name, file] of Object.entries({
+    palm: "beach_palm_01.png",
+    umbrella: "beach_umbrella_red_01.png",
+    sign: "beach_sign_01.png",
+    towel: "beach_towel_01.png",
+    cooler: "beach_cooler_01.png"
+})) {
+    const image = new Image();
+    image.src = `surf_sprites/beach/decor/${file}`;
+    surfIslandDecor[name] = image;
+}
 const imgAlpinista = new Image(); imgAlpinista.src = "npc_alpinista.png";
 const imgMestreGelo = new Image(); imgMestreGelo.src = "npc_mestre_gelo.png";
 const imgAprendiz = new Image(); imgAprendiz.src = "npc_aprendiz.png";
@@ -3170,6 +3185,7 @@ function drawArcoGame() {
 // BASQUETE 1v1 — implementação independente em basketball_1v1.js
 // -------------------------------------------------------------
 const BASKETBALL_SCENE = "JOGO_BASQUETE";
+const SURF_SCENE = "JOGO_SURF";
 
 
 // -------------------------------------------------------------
@@ -3189,11 +3205,11 @@ const sceneObstacles = {
         { x: 80, y: 40, w: 40, h: 20, type: 'water_station', solid: true }
     ],
     ILHA_SURF: [
-        { x: 35, y: 35, w: 30, h: 30, type: 'palm_tree', solid: true },
-        { x: 385, y: 35, w: 30, h: 30, type: 'palm_tree', solid: true },
-        { x: 310, y: 180, w: 45, h: 20, type: 'surf_rack', solid: true },
-        { x: 90, y: 190, w: 40, h: 40, type: 'umbrella', solid: true },
-        { x: 220, y: 220, w: 20, h: 20, type: 'sandcastle', solid: false }
+        // Colisores pequenos nos pontos de apoio; a arte fica na camada da ilha.
+        { x: 52, y: 99, w: 14, h: 10, type: 'surf_island_decor', solid: true },
+        { x: 384, y: 99, w: 14, h: 10, type: 'surf_island_decor', solid: true },
+        { x: 84, y: 219, w: 24, h: 10, type: 'surf_island_decor', solid: true },
+        { x: 345, y: 198, w: 17, h: 10, type: 'surf_island_decor', solid: true }
     ],
     ILHA_SKATE: [
         { x: 80, y: 150, w: 50, h: 30, type: 'ramp', solid: false },
@@ -3280,7 +3296,7 @@ const npcs = [
     { scene: "ILHA_ESCALADA", x: 370, y: 140, img: imgGeologa, tamanho: 48, msg: "> GEÓLOGA: As pedras azuis deslizam pela montanha, e as vermelhas estão prestes a desmoronar!" },
     { scene: "ILHA_ESCALADA", x: 95, y: 220, img: imgChef, tamanho: 48, msg: "> CHEF DE ACAMPAMENTO: Uma sopa bem quente para dar energia antes de enfrentar a montanha!" },
     
-    { scene: "ILHA_SURF", x: 225, y: 80, img: imgTurista, tamanho: 48, msg: "> MESTRE DO SURF: Pegue as maiores ondas sem cair!", isMaster: "JOGO_SURF" }
+    { id: "entrada_surf", scene: "ILHA_SURF", x: 225, y: 140, img: imgMestreSurfing, tamanho: 84, interactionWidth: 46, interactionHeight: 70, interactionOffsetY: 8, msg: "> MESTRE DO SURF: Mantenha o flow, enfrente os tubos e sobreviva ao grande evento final!", isMaster: SURF_SCENE }
 ];
 
 // -------------------------------------------------------------
@@ -3430,7 +3446,7 @@ function update() {
             const interactionBox = npc.interactionWidth || npc.interactionHeight
                 ? {
                     x: npc.x - interactionWidth / 2,
-                    y: npc.y - interactionHeight,
+                    y: npc.y - interactionHeight + (npc.interactionOffsetY || 0),
                     width: interactionWidth,
                     height: interactionHeight
                 }
@@ -3482,6 +3498,14 @@ function update() {
                         console.error("[Corrida] O módulo corrida_maratona.js não foi carregado.");
                         dialogText.innerHTML = "> A pista ainda não está pronta. Recarregue a página e tente novamente.";
                     }
+                } else if (jogo === SURF_SCENE) {
+                    if (typeof window.resetSurfMinigame === "function") {
+                        currentScene = SURF_SCENE;
+                        window.resetSurfMinigame(true);
+                    } else {
+                        console.error("[Surf] O módulo surf_endless.js não foi carregado.");
+                        dialogText.innerHTML = "> O oceano ainda não carregou. Recarregue a página e tente novamente.";
+                    }
                 }
 
                 dialogBox.classList.remove("show");
@@ -3513,6 +3537,8 @@ function update() {
         window.updateBasketball1v1();
     } else if (currentScene === "JOGO_CORRIDA") {
         window.updateCorridaMaratona();
+    } else if (currentScene === SURF_SCENE) {
+        window.updateSurfMinigame();
     }
 }
 
@@ -4081,6 +4107,7 @@ function drawNPC(npc) {
 function drawSceneObstacles() {
     const obstacles = sceneObstacles[currentScene] || [];
     obstacles.forEach(obs => {
+        if (obs.type === 'surf_island_decor') return;
         switch (obs.type) {
             case 'hurdle':
                 ctx.fillStyle = '#ffffff'; ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
@@ -4698,10 +4725,86 @@ function drawIlhaEscalada() {
     drawPath(205, 270, 40, 30);
 }
 
+function drawSurfIslandShape(points, color) {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(points[0], points[1]);
+    for (let i = 2; i < points.length; i += 2) ctx.lineTo(points[i], points[i + 1]);
+    ctx.closePath();
+    ctx.fill();
+}
+
+function drawSurfIslandAsset(image, centerX, bottomY, height) {
+    if (!image.complete || !image.naturalWidth) return;
+    const width = Math.round(height * image.naturalWidth / image.naturalHeight);
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(image, Math.round(centerX - width / 2), Math.round(bottomY - height), width, height);
+}
+
 function drawIlhaSurf() {
     drawWater();
-    ctx.fillStyle = "#fff59d"; ctx.fillRect(15, 15, 420, 270); 
-    drawPath(205, 270, 40, 30);
+
+    // Água rasa e contorno quebrado: a ilha deixa de parecer uma placa retangular.
+    drawSurfIslandShape([10, 33, 26, 18, 95, 13, 123, 20, 185, 12, 272, 12,
+        330, 20, 363, 14, 424, 22, 440, 37, 440, 84, 435, 106, 441, 176,
+        436, 244, 421, 275, 264, 281, 246, 300, 204, 300, 185, 281,
+        28, 277, 12, 250, 8, 187, 13, 123], "#7ddbd8");
+    drawSurfIslandShape([15, 38, 29, 25, 97, 21, 125, 27, 185, 20, 273, 20,
+        329, 27, 362, 22, 420, 29, 433, 43, 432, 90, 427, 110, 434, 177,
+        429, 241, 417, 268, 259, 274, 243, 300, 207, 300, 190, 274,
+        32, 270, 19, 246, 16, 185, 21, 124], "#fff8d7");
+    drawSurfIslandShape([21, 41, 34, 30, 99, 27, 126, 33, 188, 26, 269, 26,
+        328, 33, 359, 28, 416, 35, 426, 47, 425, 91, 420, 111, 427, 176,
+        422, 237, 411, 261, 255, 267, 239, 300, 211, 300, 195, 267,
+        38, 263, 26, 241, 23, 183, 28, 124], "#f7e3a0");
+
+    // Manchas de areia e um corredor claro até o mestre, sem bloquear a navegação.
+    drawSurfIslandShape([187, 149, 263, 149, 259, 174, 271, 209, 258, 253,
+        253, 279, 197, 279, 192, 252, 179, 209, 191, 174], "#ffefb7");
+    ctx.fillStyle = "#e7c982";
+    for (let i = 0; i < 44; i++) {
+        const x = 34 + (i * 97) % 383;
+        const y = 41 + (i * 53) % 210;
+        if (x > 176 && x < 274 && y > 142) continue;
+        ctx.fillRect(x, y, i % 3 === 0 ? 3 : 2, 1);
+    }
+    ctx.fillStyle = "#fffdf0";
+    for (let x = 31; x < 417; x += 36) {
+        ctx.fillRect(x, 30 + (x % 4), 12, 2);
+        ctx.fillRect(x + 8, 260 - (x % 5), 9, 2);
+    }
+
+    // Pequeno deck de treino: o mestre tem uma silhueta própria e espaço ao redor.
+    drawSurfIslandShape([177, 132, 185, 118, 265, 118, 273, 132,
+        267, 150, 183, 150], "#297e94");
+    drawSurfIslandShape([184, 130, 190, 123, 260, 123, 266, 130,
+        261, 142, 189, 142], "#72c8c3");
+    ctx.fillStyle = "#e7ffff";
+    ctx.fillRect(183, 145, 84, 3);
+    ctx.fillRect(193, 150, 64, 2);
+    ctx.fillStyle = "#8a5635";
+    ctx.fillRect(179, 42, 92, 14);
+    ctx.fillStyle = "#bd8350";
+    ctx.fillRect(182, 44, 86, 9);
+    ctx.fillStyle = "#fff6d5";
+    ctx.font = "bold 8px monospace";
+    ctx.textAlign = "center";
+    ctx.fillText("MESTRE DO SURF", 225, 52);
+    ctx.textAlign = "left";
+
+    // Decoração de praia com os recortes oficiais, mantendo o centro livre.
+    drawSurfIslandAsset(surfIslandDecor.palm, 58, 109, 112);
+    drawSurfIslandAsset(surfIslandDecor.palm, 392, 109, 112);
+    drawSurfIslandAsset(surfIslandDecor.umbrella, 96, 229, 94);
+    drawSurfIslandAsset(surfIslandDecor.towel, 117, 249, 55);
+    drawSurfIslandAsset(surfIslandDecor.cooler, 151, 239, 54);
+    drawSurfIslandAsset(surfIslandDecor.sign, 353, 208, 74);
+
+    // Entrada conectada à ilha ao sul, sem o antigo retângulo cinza.
+    ctx.fillStyle = "#a77348";
+    ctx.fillRect(205, 273, 40, 27);
+    ctx.fillStyle = "#d7a16b";
+    for (let y = 277; y < 300; y += 8) ctx.fillRect(208, y, 34, 5);
 }
 
 // -------------------------------------------------------------
@@ -6110,6 +6213,7 @@ function draw() {
     else if (currentScene === "JOGO_BOXE") drawBoxeGame();
     else if (currentScene === "JOGO_SKATE") drawSkateGame();
     else if (currentScene === "JOGO_CORRIDA") window.drawCorridaMaratona();
+    else if (currentScene === SURF_SCENE) window.drawSurfMinigame();
     
     if (!currentScene.startsWith("JOGO_")) {
         drawSceneObstacles();
@@ -6139,6 +6243,12 @@ if (new URLSearchParams(window.location.search).has("basketballNpcQa")) {
     currentScene = "ILHA_BASQUETE";
     player.x = 225;
     player.y = 90;
+}
+
+if (new URLSearchParams(window.location.search).has("surfNpcQa")) {
+    currentScene = "ILHA_SURF";
+    player.x = 225;
+    player.y = 163;
 }
 
 gameLoop();
