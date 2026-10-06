@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "generatedFor": "Boxing arcade arena - definitive gameplay replacement",
+  "officialRuntime": {
+    "arena": "boxe_arena.png",
+    "zorpManifest": "boxe_assets/boxe_zorp_manifest.json",
+    "masterManifest": "boxe_assets/boxe_master_manifest.json",
+    "zorpFrames": "boxe_assets/zorp/**",
+    "masterFrames": "boxe_assets/master/**",
+    "renderer": "drawBoxeGame",
+    "runtimeFile": "boxing_arena.js",
+    "cacheVersion": "3.0_boxing_arena"
+  },
+  "OLD_PUNCHOUT_EXCLUSIVE": {
+    "status": "removed from runtime; no legacy state machine, renderer, AI, rounds or asset aliases remain",
+    "assetGroups": [
+      "Arena_Boxe.png",
+      "boxe_tela_vs.png",
+      "boxe_tela_vitoria.png",
+      "zorp_boxe_back_*.png",
+      "mestre_boxe_front_*.png",
+      "mestre_boxe_special_*.png",
+      "boxe_fx_*.png",
+      "emoji_zorp_*.png",
+      "emoji_mestre_*.png",
+      "zorp_finisher_*.png",
+      "mestre_finisher_*.png"
+    ],
+    "code": [
+      {
+        "symbol": "drawBoxeGameLegacyPunchOut",
+        "status": "deleted",
+        "reason": "replaced by the arena renderer in boxing_arena.js"
+      },
+      {
+        "symbol": "legacy updateBoxeGame state machine",
+        "status": "deleted",
+        "reason": "replaced by continuous spatial combat with direct knockout"
+      },
+      {
+        "symbol": "boxeGame legacy AI/states/finisher fields",
+        "status": "deleted",
+        "reason": "the official state now uses READY, FIGHTING, KO and RESULT"
+      },
+      {
+        "symbol": "legacy image identifiers",
+        "status": "deleted",
+        "reason": "the official runtime addresses BOXING_SPRITES directly"
+      }
+    ]
+  },
+  "SHARED": [
+    "gameCanvas and 2D context",
+    "keyboard input state",
+    "main update/draw loop",
+    "dialog overlay",
+    "insignia progression",
+    "ILHA_ESQUI scene and island collision/navigation",
+    "npc_mestre_novo.png",
+    "npc_treinador_novo.png",
+    "npc_arbitro_novo.png",
+    "npc_pugilista_novo.png",
+    "boxe_saco_pancada.png"
+  ],
+  "NEEDED_FOR_NEW_BOXING": [
+    "boxe_arena.png",
+    "boxe_assets/boxe_zorp_manifest.json",
+    "boxe_assets/boxe_master_manifest.json",
+    "boxe_assets/zorp/**",
+    "boxe_assets/master/**",
+    "BOXING_RING_BOUNDS",
+    "BOXING_SPRITES",
+    "drawBoxeGame",
+    "resetBoxe entry point",
+    "JOGO_BOXE scene routing",
+    "KO/RESULT return to ILHA_ESQUI"
+  ],
+  "deletion": {
+    "deletedNow": [],
+    "reason": "The old files are removed only after browser QA confirms the replacement runtime. Raw official source sheets remain untouched."
+  }
+}

@@ -1,0 +1,856 @@
+﻿{
+    "schemaVersion":  1,
+    "generatedFrom":  "mestre_boxer.png",
+    "character":  "master",
+    "extractionMethod":  "safe-black-background-removal: colored pixels remain opaque; black pixels are retained only within two pixels of visible art to preserve contours and interior details",
+    "canvas":  {
+                   "width":  256,
+                   "height":  192
+               },
+    "defaultAnchor":  {
+                          "type":  "bottom_center",
+                          "x":  128,
+                          "y":  184
+                      },
+    "frameTotal":  38,
+    "animations":  [
+                       {
+                           "name":  "idle",
+                           "frameCount":  4,
+                           "suggestedDurationMs":  160,
+                           "canvas":  {
+                                          "width":  256,
+                                          "height":  192
+                                      },
+                           "anchor":  {
+                                          "type":  "bottom_center",
+                                          "x":  128,
+                                          "y":  184
+                                      },
+                           "frames":  [
+                                          {
+                                              "index":  1,
+                                              "file":  "master/idle/master_idle_01.png",
+                                              "durationMs":  160,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  208,
+                                                                        "y":  7,
+                                                                        "width":  85,
+                                                                        "height":  107
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  80,
+                                                                  "y":  76,
+                                                                  "width":  93,
+                                                                  "height":  115
+                                                              }
+                                          },
+                                          {
+                                              "index":  2,
+                                              "file":  "master/idle/master_idle_02.png",
+                                              "durationMs":  160,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  322,
+                                                                        "y":  7,
+                                                                        "width":  88,
+                                                                        "height":  107
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  82,
+                                                                  "y":  76,
+                                                                  "width":  96,
+                                                                  "height":  115
+                                                              }
+                                          },
+                                          {
+                                              "index":  3,
+                                              "file":  "master/idle/master_idle_03.png",
+                                              "durationMs":  160,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  447,
+                                                                        "y":  8,
+                                                                        "width":  88,
+                                                                        "height":  106
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  83,
+                                                                  "y":  77,
+                                                                  "width":  96,
+                                                                  "height":  114
+                                                              }
+                                          },
+                                          {
+                                              "index":  4,
+                                              "file":  "master/idle/master_idle_04.png",
+                                              "durationMs":  160,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  575,
+                                                                        "y":  8,
+                                                                        "width":  89,
+                                                                        "height":  106
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  82,
+                                                                  "y":  77,
+                                                                  "width":  97,
+                                                                  "height":  114
+                                                              }
+                                          }
+                                      ]
+                       },
+                       {
+                           "name":  "walk",
+                           "frameCount":  4,
+                           "suggestedDurationMs":  110,
+                           "canvas":  {
+                                          "width":  256,
+                                          "height":  192
+                                      },
+                           "anchor":  {
+                                          "type":  "bottom_center",
+                                          "x":  128,
+                                          "y":  184
+                                      },
+                           "frames":  [
+                                          {
+                                              "index":  1,
+                                              "file":  "master/walk/master_walk_01.png",
+                                              "durationMs":  110,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  217,
+                                                                        "y":  115,
+                                                                        "width":  87,
+                                                                        "height":  109
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  79,
+                                                                  "y":  70,
+                                                                  "width":  95,
+                                                                  "height":  121
+                                                              }
+                                          },
+                                          {
+                                              "index":  2,
+                                              "file":  "master/walk/master_walk_02.png",
+                                              "durationMs":  110,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  338,
+                                                                        "y":  115,
+                                                                        "width":  89,
+                                                                        "height":  109
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  78,
+                                                                  "y":  70,
+                                                                  "width":  97,
+                                                                  "height":  121
+                                                              }
+                                          },
+                                          {
+                                              "index":  3,
+                                              "file":  "master/walk/master_walk_03.png",
+                                              "durationMs":  110,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  459,
+                                                                        "y":  115,
+                                                                        "width":  97,
+                                                                        "height":  110
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  75,
+                                                                  "y":  69,
+                                                                  "width":  108,
+                                                                  "height":  118
+                                                              }
+                                          },
+                                          {
+                                              "index":  4,
+                                              "file":  "master/walk/master_walk_04.png",
+                                              "durationMs":  110,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  556,
+                                                                        "y":  115,
+                                                                        "width":  128,
+                                                                        "height":  110
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  58,
+                                                                  "y":  69,
+                                                                  "width":  136,
+                                                                  "height":  122
+                                                              }
+                                          }
+                                      ]
+                       },
+                       {
+                           "name":  "step_back",
+                           "frameCount":  4,
+                           "suggestedDurationMs":  110,
+                           "canvas":  {
+                                          "width":  256,
+                                          "height":  192
+                                      },
+                           "anchor":  {
+                                          "type":  "bottom_center",
+                                          "x":  128,
+                                          "y":  184
+                                      },
+                           "frames":  [
+                                          {
+                                              "index":  1,
+                                              "file":  "master/step_back/master_step_back_01.png",
+                                              "durationMs":  110,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  197,
+                                                                        "y":  229,
+                                                                        "width":  93,
+                                                                        "height":  109
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  80,
+                                                                  "y":  70,
+                                                                  "width":  99,
+                                                                  "height":  121
+                                                              }
+                                          },
+                                          {
+                                              "index":  2,
+                                              "file":  "master/step_back/master_step_back_02.png",
+                                              "durationMs":  110,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  330,
+                                                                        "y":  231,
+                                                                        "width":  90,
+                                                                        "height":  106
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  82,
+                                                                  "y":  73,
+                                                                  "width":  94,
+                                                                  "height":  118
+                                                              }
+                                          },
+                                          {
+                                              "index":  3,
+                                              "file":  "master/step_back/master_step_back_03.png",
+                                              "durationMs":  110,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  455,
+                                                                        "y":  234,
+                                                                        "width":  91,
+                                                                        "height":  103
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  81,
+                                                                  "y":  80,
+                                                                  "width":  99,
+                                                                  "height":  111
+                                                              }
+                                          },
+                                          {
+                                              "index":  4,
+                                              "file":  "master/step_back/master_step_back_04.png",
+                                              "durationMs":  110,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  583,
+                                                                        "y":  228,
+                                                                        "width":  86,
+                                                                        "height":  112
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  79,
+                                                                  "y":  67,
+                                                                  "width":  94,
+                                                                  "height":  124
+                                                              }
+                                          }
+                                      ]
+                       },
+                       {
+                           "name":  "jab",
+                           "frameCount":  3,
+                           "suggestedDurationMs":  80,
+                           "canvas":  {
+                                          "width":  256,
+                                          "height":  192
+                                      },
+                           "anchor":  {
+                                          "type":  "bottom_center",
+                                          "x":  128,
+                                          "y":  184
+                                      },
+                           "frames":  [
+                                          {
+                                              "index":  1,
+                                              "file":  "master/jab/master_jab_01.png",
+                                              "durationMs":  80,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  207,
+                                                                        "y":  341,
+                                                                        "width":  93,
+                                                                        "height":  105
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  80,
+                                                                  "y":  74,
+                                                                  "width":  97,
+                                                                  "height":  117
+                                                              }
+                                          },
+                                          {
+                                              "index":  2,
+                                              "file":  "master/jab/master_jab_02.png",
+                                              "durationMs":  80,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  340,
+                                                                        "y":  342,
+                                                                        "width":  121,
+                                                                        "height":  100
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  66,
+                                                                  "y":  79,
+                                                                  "width":  125,
+                                                                  "height":  112
+                                                              }
+                                          },
+                                          {
+                                              "index":  3,
+                                              "file":  "master/jab/master_jab_03.png",
+                                              "durationMs":  80,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  496,
+                                                                        "y":  343,
+                                                                        "width":  93,
+                                                                        "height":  100
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  76,
+                                                                  "y":  79,
+                                                                  "width":  105,
+                                                                  "height":  112
+                                                              }
+                                          }
+                                      ]
+                       },
+                       {
+                           "name":  "cross",
+                           "frameCount":  3,
+                           "suggestedDurationMs":  90,
+                           "canvas":  {
+                                          "width":  256,
+                                          "height":  192
+                                      },
+                           "anchor":  {
+                                          "type":  "bottom_center",
+                                          "x":  128,
+                                          "y":  184
+                                      },
+                           "frames":  [
+                                          {
+                                              "index":  1,
+                                              "file":  "master/cross/master_cross_01.png",
+                                              "durationMs":  90,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  208,
+                                                                        "y":  446,
+                                                                        "width":  100,
+                                                                        "height":  103
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  76,
+                                                                  "y":  76,
+                                                                  "width":  104,
+                                                                  "height":  115
+                                                              }
+                                          },
+                                          {
+                                              "index":  2,
+                                              "file":  "master/cross/master_cross_02.png",
+                                              "durationMs":  90,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  345,
+                                                                        "y":  448,
+                                                                        "width":  137,
+                                                                        "height":  102
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  56,
+                                                                  "y":  77,
+                                                                  "width":  143,
+                                                                  "height":  114
+                                                              }
+                                          },
+                                          {
+                                              "index":  3,
+                                              "file":  "master/cross/master_cross_03.png",
+                                              "durationMs":  90,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  503,
+                                                                        "y":  446,
+                                                                        "width":  96,
+                                                                        "height":  106
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  79,
+                                                                  "y":  73,
+                                                                  "width":  100,
+                                                                  "height":  118
+                                                              }
+                                          }
+                                      ]
+                       },
+                       {
+                           "name":  "hook",
+                           "frameCount":  3,
+                           "suggestedDurationMs":  95,
+                           "canvas":  {
+                                          "width":  256,
+                                          "height":  192
+                                      },
+                           "anchor":  {
+                                          "type":  "bottom_center",
+                                          "x":  128,
+                                          "y":  184
+                                      },
+                           "frames":  [
+                                          {
+                                              "index":  1,
+                                              "file":  "master/hook/master_hook_01.png",
+                                              "durationMs":  95,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  207,
+                                                                        "y":  556,
+                                                                        "width":  92,
+                                                                        "height":  105
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  81,
+                                                                  "y":  74,
+                                                                  "width":  96,
+                                                                  "height":  117
+                                                              }
+                                          },
+                                          {
+                                              "index":  2,
+                                              "file":  "master/hook/master_hook_02.png",
+                                              "durationMs":  95,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  339,
+                                                                        "y":  557,
+                                                                        "width":  124,
+                                                                        "height":  109
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  65,
+                                                                  "y":  70,
+                                                                  "width":  128,
+                                                                  "height":  121
+                                                              }
+                                          },
+                                          {
+                                              "index":  3,
+                                              "file":  "master/hook/master_hook_03.png",
+                                              "durationMs":  95,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  502,
+                                                                        "y":  553,
+                                                                        "width":  92,
+                                                                        "height":  113
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  80,
+                                                                  "y":  66,
+                                                                  "width":  96,
+                                                                  "height":  125
+                                                              }
+                                          }
+                                      ]
+                       },
+                       {
+                           "name":  "uppercut",
+                           "frameCount":  3,
+                           "suggestedDurationMs":  100,
+                           "canvas":  {
+                                          "width":  256,
+                                          "height":  192
+                                      },
+                           "anchor":  {
+                                          "type":  "bottom_center",
+                                          "x":  128,
+                                          "y":  184
+                                      },
+                           "frames":  [
+                                          {
+                                              "index":  1,
+                                              "file":  "master/uppercut/master_uppercut_01.png",
+                                              "durationMs":  100,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  208,
+                                                                        "y":  667,
+                                                                        "width":  93,
+                                                                        "height":  96
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  80,
+                                                                  "y":  83,
+                                                                  "width":  97,
+                                                                  "height":  108
+                                                              }
+                                          },
+                                          {
+                                              "index":  2,
+                                              "file":  "master/uppercut/master_uppercut_02.png",
+                                              "durationMs":  100,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  346,
+                                                                        "y":  666,
+                                                                        "width":  118,
+                                                                        "height":  98
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  68,
+                                                                  "y":  81,
+                                                                  "width":  122,
+                                                                  "height":  110
+                                                              }
+                                          },
+                                          {
+                                              "index":  3,
+                                              "file":  "master/uppercut/master_uppercut_03.png",
+                                              "durationMs":  100,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  503,
+                                                                        "y":  666,
+                                                                        "width":  93,
+                                                                        "height":  99
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  80,
+                                                                  "y":  80,
+                                                                  "width":  97,
+                                                                  "height":  107
+                                                              }
+                                          }
+                                      ]
+                       },
+                       {
+                           "name":  "block",
+                           "frameCount":  2,
+                           "suggestedDurationMs":  130,
+                           "canvas":  {
+                                          "width":  256,
+                                          "height":  192
+                                      },
+                           "anchor":  {
+                                          "type":  "bottom_center",
+                                          "x":  128,
+                                          "y":  184
+                                      },
+                           "frames":  [
+                                          {
+                                              "index":  1,
+                                              "file":  "master/block/master_block_01.png",
+                                              "durationMs":  130,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  207,
+                                                                        "y":  765,
+                                                                        "width":  110,
+                                                                        "height":  99
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  71,
+                                                                  "y":  80,
+                                                                  "width":  114,
+                                                                  "height":  111
+                                                              }
+                                          },
+                                          {
+                                              "index":  2,
+                                              "file":  "master/block/master_block_02.png",
+                                              "durationMs":  130,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  343,
+                                                                        "y":  767,
+                                                                        "width":  86,
+                                                                        "height":  96
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  83,
+                                                                  "y":  83,
+                                                                  "width":  94,
+                                                                  "height":  108
+                                                              }
+                                          }
+                                      ]
+                       },
+                       {
+                           "name":  "dodge",
+                           "frameCount":  2,
+                           "suggestedDurationMs":  105,
+                           "canvas":  {
+                                          "width":  256,
+                                          "height":  192
+                                      },
+                           "anchor":  {
+                                          "type":  "bottom_center",
+                                          "x":  128,
+                                          "y":  184
+                                      },
+                           "frames":  [
+                                          {
+                                              "index":  1,
+                                              "file":  "master/dodge/master_dodge_01.png",
+                                              "durationMs":  105,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  212,
+                                                                        "y":  864,
+                                                                        "width":  123,
+                                                                        "height":  80
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  65,
+                                                                  "y":  99,
+                                                                  "width":  127,
+                                                                  "height":  92
+                                                              }
+                                          },
+                                          {
+                                              "index":  2,
+                                              "file":  "master/dodge/master_dodge_02.png",
+                                              "durationMs":  105,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  373,
+                                                                        "y":  865,
+                                                                        "width":  116,
+                                                                        "height":  80
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  65,
+                                                                  "y":  99,
+                                                                  "width":  124,
+                                                                  "height":  88
+                                                              }
+                                          }
+                                      ]
+                       },
+                       {
+                           "name":  "hurt",
+                           "frameCount":  3,
+                           "suggestedDurationMs":  115,
+                           "canvas":  {
+                                          "width":  256,
+                                          "height":  192
+                                      },
+                           "anchor":  {
+                                          "type":  "bottom_center",
+                                          "x":  128,
+                                          "y":  184
+                                      },
+                           "frames":  [
+                                          {
+                                              "index":  1,
+                                              "file":  "master/hurt/master_hurt_01.png",
+                                              "durationMs":  115,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  201,
+                                                                        "y":  949,
+                                                                        "width":  109,
+                                                                        "height":  91
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  72,
+                                                                  "y":  88,
+                                                                  "width":  113,
+                                                                  "height":  103
+                                                              }
+                                          },
+                                          {
+                                              "index":  2,
+                                              "file":  "master/hurt/master_hurt_02.png",
+                                              "durationMs":  115,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  340,
+                                                                        "y":  953,
+                                                                        "width":  153,
+                                                                        "height":  88
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  50,
+                                                                  "y":  95,
+                                                                  "width":  161,
+                                                                  "height":  94
+                                                              }
+                                          },
+                                          {
+                                              "index":  3,
+                                              "file":  "master/hurt/master_hurt_03.png",
+                                              "durationMs":  115,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  493,
+                                                                        "y":  948,
+                                                                        "width":  94,
+                                                                        "height":  93
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  75,
+                                                                  "y":  86,
+                                                                  "width":  102,
+                                                                  "height":  102
+                                                              }
+                                          }
+                                      ]
+                       },
+                       {
+                           "name":  "knockdown",
+                           "frameCount":  4,
+                           "suggestedDurationMs":  145,
+                           "canvas":  {
+                                          "width":  256,
+                                          "height":  192
+                                      },
+                           "anchor":  {
+                                          "type":  "floor_center",
+                                          "x":  128,
+                                          "y":  184
+                                      },
+                           "frames":  [
+                                          {
+                                              "index":  1,
+                                              "file":  "master/knockdown/master_knockdown_01.png",
+                                              "durationMs":  145,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  202,
+                                                                        "y":  1044,
+                                                                        "width":  156,
+                                                                        "height":  77
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  48,
+                                                                  "y":  102,
+                                                                  "width":  160,
+                                                                  "height":  89
+                                                              }
+                                          },
+                                          {
+                                              "index":  2,
+                                              "file":  "master/knockdown/master_knockdown_02.png",
+                                              "durationMs":  145,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  378,
+                                                                        "y":  1041,
+                                                                        "width":  178,
+                                                                        "height":  80
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  38,
+                                                                  "y":  99,
+                                                                  "width":  186,
+                                                                  "height":  92
+                                                              }
+                                          },
+                                          {
+                                              "index":  3,
+                                              "file":  "master/knockdown/master_knockdown_03.png",
+                                              "durationMs":  145,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  556,
+                                                                        "y":  1041,
+                                                                        "width":  210,
+                                                                        "height":  81
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  18,
+                                                                  "y":  98,
+                                                                  "width":  218,
+                                                                  "height":  93
+                                                              }
+                                          },
+                                          {
+                                              "index":  4,
+                                              "file":  "master/knockdown/master_knockdown_04.png",
+                                              "durationMs":  145,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  805,
+                                                                        "y":  1044,
+                                                                        "width":  186,
+                                                                        "height":  79
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  33,
+                                                                  "y":  104,
+                                                                  "width":  190,
+                                                                  "height":  83
+                                                              }
+                                          }
+                                      ]
+                       },
+                       {
+                           "name":  "victory",
+                           "frameCount":  3,
+                           "suggestedDurationMs":  160,
+                           "canvas":  {
+                                          "width":  256,
+                                          "height":  192
+                                      },
+                           "anchor":  {
+                                          "type":  "bottom_center",
+                                          "x":  128,
+                                          "y":  184
+                                      },
+                           "frames":  [
+                                          {
+                                              "index":  1,
+                                              "file":  "master/victory/master_victory_01.png",
+                                              "durationMs":  160,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  193,
+                                                                        "y":  1124,
+                                                                        "width":  104,
+                                                                        "height":  118
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  75,
+                                                                  "y":  61,
+                                                                  "width":  112,
+                                                                  "height":  126
+                                                              }
+                                          },
+                                          {
+                                              "index":  2,
+                                              "file":  "master/victory/master_victory_02.png",
+                                              "durationMs":  160,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  344,
+                                                                        "y":  1128,
+                                                                        "width":  149,
+                                                                        "height":  112
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  50,
+                                                                  "y":  67,
+                                                                  "width":  159,
+                                                                  "height":  120
+                                                              }
+                                          },
+                                          {
+                                              "index":  3,
+                                              "file":  "master/victory/master_victory_03.png",
+                                              "durationMs":  160,
+                                              "sourceBoundingBox":  {
+                                                                        "x":  494,
+                                                                        "y":  1128,
+                                                                        "width":  117,
+                                                                        "height":  112
+                                                                    },
+                                              "boundingBox":  {
+                                                                  "x":  65,
+                                                                  "y":  71,
+                                                                  "width":  124,
+                                                                  "height":  116
+                                                              }
+                                          }
+                                      ]
+                       }
+                   ]
+}
