@@ -42,8 +42,6 @@ const SPRITES_CONFIG = {
 // -------------------------------------------------------------
 const zorpImg = new Image(); zorpImg.src = "zorp.png";
 const bgPingPong = new Image(); bgPingPong.src = "bg_pingpong.png?v=2";
-const imgArcoSprites = new Image(); imgArcoSprites.src = "Sprites_MG_AF.png"; 
-const imgArenaArco = new Image(); imgArenaArco.src = "Arena_Arco.png"; 
 
 // NPCs Globais
 const imgTurista = new Image(); imgTurista.src = "npc_turista.png";
@@ -69,6 +67,9 @@ const imgAlpinista = new Image(); imgAlpinista.src = "npc_alpinista.png";
 const imgMestreGelo = new Image(); imgMestreGelo.src = "npc_mestre_gelo.png";
 const imgAprendiz = new Image(); imgAprendiz.src = "npc_aprendiz.png";
 const imgMestrePingPong = new Image(); imgMestrePingPong.src = "npc_mestre_ping_pong.png";
+// Mestre oficial da Ilha do Arco: PNG frontal com crop de conteúdo no registro do NPC.
+const imgMestreArcoOverworld = new Image();
+imgMestreArcoOverworld.src = "arqueiro_overworld.png?v=1.0_archery_island";
 
 // Mestre da Corrida: a arte fonte possui fundo preto e bastante margem.
 // O arquivo original é preservado; uma cópia com chroma-key é criada em memória.
@@ -323,6 +324,7 @@ const keys = {
     arrowleft: false, arrowright: false, arrowup: false, arrowdown: false,
     escape: false
 };
+let archeryShootPressed = false;
 
 const zorpSprite = {
     cols: 3, rows: 4, row: 0, 
@@ -3609,313 +3611,1109 @@ function drawBoxeGame() {
 // -------------------------------------------------------------
 // MINIGAME ARCO E FLECHA
 // -------------------------------------------------------------
+const ARCHERY_CONFIG = Object.freeze({
+    shooterArea: Object.freeze({ left: 48, right: 402, front: 216, back: 270 }),
+    roundFrames: 55 * 60,
+    playerSpeedX: 4.3,
+    playerSpeedY: 3.2,
+    arrowSpeed: 11.8,
+    playerFireCooldown: 10,
+    phaseBreaks: Object.freeze([0.34, 0.70]),
+    maxTargets: Object.freeze([3, 4, 4]),
+    patternIntervals: Object.freeze([168, 142, 118]),
+    targetField: Object.freeze({ top: 44, bottom: 184 }),
+    teleportThreshold: 8
+});
+
+const ARCHERY_SPEEDS = Object.freeze({
+    SLOW: 0.92,
+    MEDIUM: 1.38,
+    FAST: 1.92,
+    GOLD_FAST: 2.34
+});
+
+const ARCHERY_TARGET_TYPES = Object.freeze({
+    NORMAL_LARGE: Object.freeze({ subtype: 'large', state: 'IDLE', radius: 22, basePoints: 10, renderSize: 72, sizeTier: 'LARGE', golden: false }),
+    NORMAL_MEDIUM: Object.freeze({ subtype: 'medium', state: 'IDLE', radius: 17, basePoints: 16, renderSize: 62, sizeTier: 'MEDIUM', golden: false }),
+    NORMAL_SMALL: Object.freeze({ subtype: 'small', state: 'IDLE', radius: 12, basePoints: 26, renderSize: 52, sizeTier: 'SMALL', golden: false }),
+    GOLD_SMALL: Object.freeze({ subtype: 'golden', state: 'BONUS', radius: 9, basePoints: 75, renderSize: 45, sizeTier: 'SMALL', golden: true }),
+    GOLD_FAST: Object.freeze({ subtype: 'golden', state: 'BONUS', radius: 14, basePoints: 68, renderSize: 58, sizeTier: 'MEDIUM', golden: true }),
+    GOLD_ZIGZAG: Object.freeze({ subtype: 'golden', state: 'BONUS', radius: 12, basePoints: 82, renderSize: 52, sizeTier: 'SMALL', golden: true }),
+    GOLD_S_CURVE: Object.freeze({ subtype: 'golden', state: 'BONUS', radius: 12, basePoints: 86, renderSize: 52, sizeTier: 'SMALL', golden: true }),
+    GOLD_CIRCLE: Object.freeze({ subtype: 'golden', state: 'BONUS', radius: 13, basePoints: 90, renderSize: 55, sizeTier: 'MEDIUM', golden: true }),
+    GOLD_ARC: Object.freeze({ subtype: 'golden', state: 'BONUS', radius: 12, basePoints: 84, renderSize: 52, sizeTier: 'SMALL', golden: true }),
+    GOLD_FIGURE8: Object.freeze({ subtype: 'golden', state: 'BONUS', radius: 11, basePoints: 105, renderSize: 49, sizeTier: 'SMALL', golden: true })
+});
+
+const ARCHERY_PATH_TYPES = Object.freeze([
+    'HORIZONTAL', 'DIAGONAL', 'ZIGZAG', 'S_CURVE', 'CIRCLE',
+    'ELLIPSE', 'ARC', 'WAVE', 'FIGURE_EIGHT'
+]);
+
+const ARCHERY_PATTERNS = Object.freeze([
+    Object.freeze({ id: 'OPENING_HORIZONTAL', phases: [0], targets: [
+        { delay: 0, kind: 'NORMAL_LARGE', path: 'HORIZONTAL', speed: 'SLOW', entry: 'LEFT', lane: 'LOW' },
+        { delay: 54, kind: 'NORMAL_LARGE', path: 'HORIZONTAL', speed: 'SLOW', entry: 'RIGHT', lane: 'HIGH' }
+    ] }),
+    Object.freeze({ id: 'EASY_ARC', phases: [0], targets: [
+        { delay: 0, kind: 'NORMAL_MEDIUM', path: 'ARC', speed: 'SLOW', entry: 'LEFT', lane: 'LOW', amplitude: 54 },
+        { delay: 62, kind: 'NORMAL_LARGE', path: 'HORIZONTAL', speed: 'MEDIUM', entry: 'RIGHT', lane: 'MID' }
+    ] }),
+    Object.freeze({ id: 'DIAGONAL_CROSS', phases: [1], targets: [
+        { delay: 0, kind: 'NORMAL_MEDIUM', path: 'DIAGONAL', speed: 'MEDIUM', entry: 'LEFT', lane: 'LOW', exitLane: 'HIGH' },
+        { delay: 48, kind: 'NORMAL_SMALL', path: 'DIAGONAL', speed: 'MEDIUM', entry: 'RIGHT', lane: 'HIGH', exitLane: 'LOW' }
+    ] }),
+    Object.freeze({ id: 'ZIGZAG_PAIR', phases: [1], targets: [
+        { delay: 0, kind: 'NORMAL_MEDIUM', path: 'ZIGZAG', speed: 'MEDIUM', entry: 'LEFT', lane: 'MID', amplitude: 35 },
+        { delay: 70, kind: 'NORMAL_SMALL', path: 'ZIGZAG', speed: 'MEDIUM', entry: 'RIGHT', lane: 'MID', amplitude: 42, phaseOffset: Math.PI }
+    ] }),
+    Object.freeze({ id: 'S_AND_GOLD_SMALL', phases: [1], goldEvent: true, targets: [
+        { delay: 0, kind: 'NORMAL_MEDIUM', path: 'S_CURVE', speed: 'MEDIUM', entry: 'LEFT', lane: 'MID', amplitude: 44 },
+        { delay: 66, kind: 'GOLD_SMALL', path: 'HORIZONTAL', speed: 'FAST', entry: 'RIGHT', lane: 'HIGH' }
+    ] }),
+    Object.freeze({ id: 'WAVE_AND_DIAGONAL', phases: [1, 2], targets: [
+        { delay: 0, kind: 'NORMAL_SMALL', path: 'WAVE', speed: 'MEDIUM', entry: 'LEFT', lane: 'MID', amplitude: 32 },
+        { delay: 58, kind: 'NORMAL_MEDIUM', path: 'DIAGONAL', speed: 'FAST', entry: 'RIGHT', lane: 'LOW', exitLane: 'HIGH' }
+    ] }),
+    Object.freeze({ id: 'CIRCLE_AND_ARC', phases: [2], targets: [
+        { delay: 0, kind: 'NORMAL_SMALL', path: 'CIRCLE', speed: 'FAST', entry: 'LEFT', lane: 'MID' },
+        { delay: 78, kind: 'NORMAL_MEDIUM', path: 'ARC', speed: 'FAST', entry: 'RIGHT', lane: 'LOW', amplitude: 70 }
+    ] }),
+    Object.freeze({ id: 'ADVANCED_ELLIPSE_WAVE', phases: [2], targets: [
+        { delay: 0, kind: 'NORMAL_MEDIUM', path: 'ELLIPSE', speed: 'FAST', entry: 'RIGHT', lane: 'MID' },
+        { delay: 76, kind: 'NORMAL_SMALL', path: 'WAVE', speed: 'FAST', entry: 'LEFT', lane: 'MID', amplitude: 34 }
+    ] }),
+    Object.freeze({ id: 'ELLIPSE_GOLD_FAST', phases: [2], goldEvent: true, targets: [
+        { delay: 0, kind: 'NORMAL_MEDIUM', path: 'ELLIPSE', speed: 'FAST', entry: 'RIGHT', lane: 'MID' },
+        { delay: 82, kind: 'GOLD_FAST', path: 'HORIZONTAL', speed: 'GOLD_FAST', entry: 'LEFT', lane: 'HIGH' }
+    ] }),
+    Object.freeze({ id: 'GOLD_CURVES', phases: [2], goldEvent: true, targets: [
+        { delay: 0, kind: 'NORMAL_LARGE', path: 'HORIZONTAL', speed: 'FAST', entry: 'RIGHT', lane: 'LOW' },
+        { delay: 52, kind: 'GOLD_ZIGZAG', path: 'ZIGZAG', speed: 'GOLD_FAST', entry: 'LEFT', lane: 'MID', amplitude: 39 },
+        { delay: 120, kind: 'NORMAL_SMALL', path: 'S_CURVE', speed: 'FAST', entry: 'RIGHT', lane: 'MID', amplitude: 47 }
+    ] }),
+    Object.freeze({ id: 'RARE_GOLD_FIGURE8', phases: [2], rare: true, goldEvent: true, targets: [
+        { delay: 0, kind: 'NORMAL_SMALL', path: 'WAVE', speed: 'FAST', entry: 'LEFT', lane: 'LOW', amplitude: 29 },
+        { delay: 74, kind: 'GOLD_FIGURE8', path: 'FIGURE_EIGHT', speed: 'FAST', entry: 'RIGHT', lane: 'MID' }
+    ] }),
+    Object.freeze({ id: 'GOLD_CIRCLE_EVENT', phases: [2], rare: true, goldEvent: true, targets: [
+        { delay: 0, kind: 'GOLD_CIRCLE', path: 'CIRCLE', speed: 'FAST', entry: 'LEFT', lane: 'MID' },
+        { delay: 104, kind: 'NORMAL_MEDIUM', path: 'ARC', speed: 'FAST', entry: 'RIGHT', lane: 'LOW', amplitude: 58 }
+    ] })
+]);
+
+function clampArco(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+}
+
 const arcoGame = {
     playerScore: 0,
     mestreScore: 0,
-    targetScore: 200,
-    
-    playerX: 120,
-    playerY: 420,
-    playerSpeed: 4.5,
+    playerX: 135,
+    playerY: 252,
     playerState: 'IDLE',
-    playerFrame: 0,
-    playerFrameTimer: 0,
+    playerShootTimer: 0,
     playerShootCooldown: 0,
+    playerReactionTimer: 0,
 
-    mestreX: 330,
-    mestreY: 420,
-    mestreSpeed: 3.5,
+    mestreX: 315,
+    mestreY: 252,
     mestreState: 'IDLE',
-    mestreFrame: 0,
-    mestreFrameTimer: 0,
+    mestreShootTimer: 0,
     mestreShootCooldown: 0,
+    mestreReactionTimer: 0,
+    mestreAimTargetId: null,
+    mestreDecisionTimer: 0,
+    mestreAimError: 0,
 
     arrows: [],
     targets: [],
+    effects: [],
+    pendingTargetSpawns: [],
+    targetPool: [],
+    arrowPool: [],
+    effectPool: [],
     spawnTimer: 0,
-    
+    lastPatternId: null,
+    nextTargetId: 1,
+    midGoldMomentQueued: false,
+    finalGoldMomentQueued: false,
+    roundFrame: 0,
+    roundFrames: ARCHERY_CONFIG.roundFrames,
+    phase: 0,
     gameState: 'TUTORIAL',
-    win: false
+    win: false,
+    tie: false,
+    stats: null
 };
 
 function resetArco() {
     arcoGame.playerScore = 0;
     arcoGame.mestreScore = 0;
-    arcoGame.playerX = 150;
-    arcoGame.mestreX = canvas.width - 150;
-    arcoGame.playerY = canvas.height - 40; 
-    arcoGame.mestreY = canvas.height - 40;
+    arcoGame.playerX = 135;
+    arcoGame.mestreX = 315;
+    arcoGame.playerY = 252;
+    arcoGame.mestreY = 252;
     arcoGame.playerState = 'IDLE';
     arcoGame.mestreState = 'IDLE';
+    arcoGame.playerShootTimer = 0;
+    arcoGame.mestreShootTimer = 0;
     arcoGame.playerShootCooldown = 0;
     arcoGame.mestreShootCooldown = 0;
-    arcoGame.arrows = [];
-    arcoGame.targets = [];
+    arcoGame.playerReactionTimer = 0;
+    arcoGame.mestreReactionTimer = 0;
+    arcoGame.mestreAimTargetId = null;
+    arcoGame.mestreDecisionTimer = 0;
+    arcoGame.mestreAimError = 0;
+    while (arcoGame.arrows.length) arcoGame.arrowPool.push(arcoGame.arrows.pop());
+    while (arcoGame.targets.length) arcoGame.targetPool.push(arcoGame.targets.pop());
+    while (arcoGame.effects.length) arcoGame.effectPool.push(arcoGame.effects.pop());
+    arcoGame.pendingTargetSpawns.length = 0;
     arcoGame.spawnTimer = 0;
+    arcoGame.lastPatternId = null;
+    arcoGame.nextTargetId = 1;
+    arcoGame.midGoldMomentQueued = false;
+    arcoGame.finalGoldMomentQueued = false;
+    arcoGame.roundFrame = 0;
+    arcoGame.roundFrames = ARCHERY_CONFIG.roundFrames;
+    arcoGame.phase = 0;
     arcoGame.gameState = 'TUTORIAL';
     arcoGame.win = false;
+    arcoGame.tie = false;
+    arcoGame.stats = {
+        playerShots: 0,
+        mestreShots: 0,
+        playerHits: 0,
+        mestreHits: 0,
+        playerBullseyes: 0,
+        mestreBullseyes: 0,
+        playerMisses: 0,
+        mestreMisses: 0,
+        maxTargets: 0,
+        spawnedTypes: {},
+        pathTypes: {},
+        speedTiers: {},
+        patternCounts: {},
+        normalTargetsSpawned: 0,
+        goldenTargetsSpawned: 0,
+        targetExits: 0,
+        teleportEvents: 0,
+        maxTargetStep: 0,
+        lastImpacts: [],
+        boundaryClampEvents: 0,
+        boundsViolations: 0,
+        playerRange: { minX: arcoGame.playerX, maxX: arcoGame.playerX, minY: arcoGame.playerY, maxY: arcoGame.playerY },
+        mestreRange: { minX: arcoGame.mestreX, maxX: arcoGame.mestreX, minY: arcoGame.mestreY, maxY: arcoGame.mestreY },
+        fps: { samples: 0, average: 0, minimum: 999, lastTime: 0 }
+    };
+    archeryShootPressed = false;
 }
 
-function spawnArcoTarget() {
-    const speeds = [1.5, 2.5, 3.5];
-    const selectedSpeed = speeds[Math.floor(Math.random() * speeds.length)];
-    const side = Math.random() > 0.5 ? 1 : -1;
-    const startX = side === 1 ? -20 : canvas.width + 20;
-    
-    arcoGame.targets.push({
-        x: startX,
-        y: 60 + Math.random() * 80,
-        radius: 18 - selectedSpeed * 2, 
-        speedX: selectedSpeed * side,
-        points: Math.round(selectedSpeed * 10)
+function getArcoPhase() {
+    const progress = arcoGame.roundFrame / Math.max(1, arcoGame.roundFrames);
+    return progress < ARCHERY_CONFIG.phaseBreaks[0] ? 0 : (progress < ARCHERY_CONFIG.phaseBreaks[1] ? 1 : 2);
+}
+
+function getArcoLaneY(lane) {
+    if (lane === 'HIGH') return 66;
+    if (lane === 'LOW') return 158;
+    return 112;
+}
+
+function acquireArcoObject(pool, fields) {
+    return Object.assign(pool.pop() || {}, fields);
+}
+
+function evaluateArcoTargetPath(target, progress) {
+    const p = clampArco(progress, 0, 1);
+    const direction = target.entry === 'LEFT' ? 1 : -1;
+    const startX = direction === 1 ? -target.margin : canvas.width + target.margin;
+    const endX = direction === 1 ? canvas.width + target.margin : -target.margin;
+    const linearX = startX + (endX - startX) * p;
+    const laneY = target.laneY;
+    const amplitude = target.amplitude;
+    let x = linearX;
+    let y = laneY;
+
+    if (target.pathType === 'DIAGONAL') {
+        y = laneY + (target.exitY - laneY) * p;
+    } else if (target.pathType === 'ZIGZAG') {
+        y = laneY + Math.sin(p * Math.PI * 4 + target.phaseOffset) * amplitude;
+    } else if (target.pathType === 'S_CURVE') {
+        y = laneY + Math.sin((p - 0.5) * Math.PI) * amplitude;
+    } else if (target.pathType === 'ARC') {
+        y = laneY - Math.sin(p * Math.PI) * amplitude;
+    } else if (target.pathType === 'WAVE') {
+        y = laneY + Math.sin(p * Math.PI * 6 + target.phaseOffset) * amplitude;
+    } else if (target.pathType === 'CIRCLE' || target.pathType === 'ELLIPSE') {
+        const enterEnd = 0.18;
+        const orbitEnd = 0.80;
+        const radiusX = target.pathType === 'ELLIPSE' ? 96 : 63;
+        const radiusY = target.pathType === 'ELLIPSE' ? 39 : 58;
+        const centerX = canvas.width / 2;
+        const centerY = laneY;
+        const anchorX = centerX - direction * radiusX;
+        if (p < enterEnd) {
+            const q = p / enterEnd;
+            x = startX + (anchorX - startX) * q;
+            y = laneY;
+        } else if (p <= orbitEnd) {
+            const q = (p - enterEnd) / (orbitEnd - enterEnd);
+            const startAngle = direction === 1 ? Math.PI : 0;
+            const angle = startAngle + direction * q * Math.PI * 2;
+            x = centerX + Math.cos(angle) * radiusX;
+            y = centerY + Math.sin(angle) * radiusY;
+        } else {
+            const q = (p - orbitEnd) / (1 - orbitEnd);
+            x = anchorX + (startX - anchorX) * q;
+            y = laneY;
+        }
+    } else if (target.pathType === 'FIGURE_EIGHT') {
+        const enterEnd = 0.18;
+        const loopEnd = 0.82;
+        const centerX = canvas.width / 2;
+        const centerY = laneY;
+        if (p < enterEnd) {
+            const q = p / enterEnd;
+            x = startX + (centerX - startX) * q;
+            y = laneY;
+        } else if (p <= loopEnd) {
+            const q = (p - enterEnd) / (loopEnd - enterEnd);
+            const angle = q * Math.PI * 2;
+            x = centerX + Math.sin(angle) * 92 * direction;
+            y = centerY + Math.sin(angle * 2) * 43;
+        } else {
+            const q = (p - loopEnd) / (1 - loopEnd);
+            x = centerX + (endX - centerX) * q;
+            y = laneY;
+        }
+    }
+
+    return {
+        x,
+        y: clampArco(y, ARCHERY_CONFIG.targetField.top, ARCHERY_CONFIG.targetField.bottom)
+    };
+}
+
+function spawnArcoTarget(descriptor) {
+    const kind = descriptor.kind || 'NORMAL_MEDIUM';
+    const spec = ARCHERY_TARGET_TYPES[kind] || ARCHERY_TARGET_TYPES.NORMAL_MEDIUM;
+    const pathType = ARCHERY_PATH_TYPES.includes(descriptor.path) ? descriptor.path : 'HORIZONTAL';
+    const speedTier = ARCHERY_SPEEDS[descriptor.speed] ? descriptor.speed : 'MEDIUM';
+    const entry = descriptor.entry || (Math.random() < 0.5 ? 'LEFT' : 'RIGHT');
+    const speedVariation = descriptor.exactSpeed ? 1 : 0.94 + Math.random() * 0.12;
+    const target = acquireArcoObject(arcoGame.targetPool, {
+        id: arcoGame.nextTargetId++,
+        x: 0,
+        y: 0,
+        previousX: 0,
+        previousY: 0,
+        speedX: 0,
+        speedY: 0,
+        type: kind,
+        assetSubtype: spec.subtype,
+        assetState: spec.state,
+        pathType,
+        speedTier,
+        speed: ARCHERY_SPEEDS[speedTier] * speedVariation,
+        sizeTier: spec.sizeTier,
+        radius: spec.radius,
+        basePoints: spec.basePoints,
+        renderSize: spec.renderSize,
+        isGolden: spec.golden,
+        entry,
+        entryPoint: entry,
+        exitPoint: (pathType === 'CIRCLE' || pathType === 'ELLIPSE') ? entry : (entry === 'LEFT' ? 'RIGHT' : 'LEFT'),
+        laneY: getArcoLaneY(descriptor.lane),
+        exitY: getArcoLaneY(descriptor.exitLane || descriptor.lane),
+        amplitude: descriptor.amplitude || (pathType === 'WAVE' ? 31 : 38),
+        phaseOffset: descriptor.phaseOffset || 0,
+        margin: spec.renderSize * 0.58 + 12,
+        pathLength: (pathType === 'CIRCLE' || pathType === 'ELLIPSE' || pathType === 'FIGURE_EIGHT') ? 610 : 540,
+        progress: 0,
+        age: 0,
+        active: true,
+        visible: false,
+        qaStatic: !!descriptor.qaStatic,
+        hit: false,
+        animationOffset: Math.floor(Math.random() * 5)
     });
+    const start = descriptor.qaStatic
+        ? { x: descriptor.x || 225, y: descriptor.y || 105 }
+        : evaluateArcoTargetPath(target, 0);
+    target.x = target.previousX = start.x;
+    target.y = target.previousY = start.y;
+    target.visible = descriptor.qaStatic;
+    arcoGame.targets.push(target);
+    arcoGame.stats.maxTargets = Math.max(arcoGame.stats.maxTargets, arcoGame.targets.length);
+    arcoGame.stats.spawnedTypes[kind] = (arcoGame.stats.spawnedTypes[kind] || 0) + 1;
+    arcoGame.stats.pathTypes[pathType] = (arcoGame.stats.pathTypes[pathType] || 0) + 1;
+    arcoGame.stats.speedTiers[speedTier] = (arcoGame.stats.speedTiers[speedTier] || 0) + 1;
+    if (spec.golden) arcoGame.stats.goldenTargetsSpawned++;
+    else arcoGame.stats.normalTargetsSpawned++;
+    return target;
+}
+
+function chooseArcoPattern() {
+    let candidates = ARCHERY_PATTERNS.filter((pattern) => pattern.phases.includes(arcoGame.phase));
+    const roll = Math.random();
+    if (arcoGame.phase === 2 && roll < 0.05) {
+        candidates = candidates.filter((pattern) => pattern.rare);
+    } else {
+        const chooseGold = (arcoGame.phase === 1 && roll < 0.10)
+            || (arcoGame.phase === 2 && roll < 0.22);
+        candidates = candidates.filter((pattern) => !pattern.rare && !!pattern.goldEvent === chooseGold);
+    }
+    const alternatives = candidates.filter((pattern) => pattern.id !== arcoGame.lastPatternId);
+    if (alternatives.length) candidates = alternatives;
+    return candidates[Math.floor(Math.random() * candidates.length)] || ARCHERY_PATTERNS[0];
+}
+
+function queueArcoPattern(pattern) {
+    arcoGame.lastPatternId = pattern.id;
+    arcoGame.stats.patternCounts[pattern.id] = (arcoGame.stats.patternCounts[pattern.id] || 0) + 1;
+    for (const descriptor of pattern.targets) {
+        arcoGame.pendingTargetSpawns.push({ delay: descriptor.delay || 0, descriptor: { ...descriptor } });
+    }
+}
+
+function queueArcoQaShowcase(descriptors) {
+    arcoGame.lastPatternId = 'QA_SHOWCASE';
+    descriptors.forEach((descriptor, index) => {
+        arcoGame.pendingTargetSpawns.push({ delay: index * 74, descriptor });
+    });
+}
+
+function beginArcoRound() {
+    arcoGame.gameState = 'PLAYING';
+    arcoGame.roundFrame = 0;
+    arcoGame.spawnTimer = 0;
+    arcoGame.targets.length = 0;
+    arcoGame.pendingTargetSpawns.length = 0;
+    if (archeryQaParams.get('archeryQaBullseye') === '1') {
+        spawnArcoTarget({ kind: 'NORMAL_LARGE', path: 'HORIZONTAL', speed: 'SLOW', entry: 'LEFT', lane: 'MID', qaStatic: true, x: 225, y: 105 });
+        arcoGame.playerX = 225;
+    } else if (archeryQaParams.get('archeryQaAllPaths') === '1') {
+        queueArcoQaShowcase(ARCHERY_PATH_TYPES.map((path, index) => ({
+            kind: index % 3 === 0 ? 'NORMAL_LARGE' : (index % 3 === 1 ? 'NORMAL_MEDIUM' : 'NORMAL_SMALL'),
+            path,
+            speed: index < 3 ? 'SLOW' : (index < 6 ? 'MEDIUM' : 'FAST'),
+            entry: index % 2 ? 'RIGHT' : 'LEFT',
+            lane: index % 3 === 0 ? 'HIGH' : (index % 3 === 1 ? 'MID' : 'LOW'),
+            exitLane: index % 2 ? 'LOW' : 'HIGH',
+            amplitude: 38,
+            exactSpeed: true
+        })));
+    } else if (archeryQaParams.get('archeryQaAllGold') === '1') {
+        queueArcoQaShowcase([
+            { kind: 'GOLD_SMALL', path: 'HORIZONTAL', speed: 'FAST', entry: 'LEFT', lane: 'HIGH' },
+            { kind: 'GOLD_FAST', path: 'DIAGONAL', speed: 'GOLD_FAST', entry: 'RIGHT', lane: 'LOW', exitLane: 'HIGH' },
+            { kind: 'GOLD_ZIGZAG', path: 'ZIGZAG', speed: 'FAST', entry: 'LEFT', lane: 'MID', amplitude: 39 },
+            { kind: 'GOLD_S_CURVE', path: 'S_CURVE', speed: 'FAST', entry: 'RIGHT', lane: 'MID', amplitude: 46 },
+            { kind: 'GOLD_CIRCLE', path: 'CIRCLE', speed: 'FAST', entry: 'LEFT', lane: 'MID' },
+            { kind: 'GOLD_ARC', path: 'ARC', speed: 'FAST', entry: 'RIGHT', lane: 'LOW', amplitude: 68 },
+            { kind: 'GOLD_FIGURE8', path: 'FIGURE_EIGHT', speed: 'FAST', entry: 'LEFT', lane: 'MID' }
+        ]);
+    } else {
+        queueArcoPattern(ARCHERY_PATTERNS[0]);
+    }
+    keys.space = false;
+    archeryShootPressed = false;
+}
+
+function consumeArcoShootEdges() {
+    archeryShootPressed = false;
+}
+
+function applyArcoQaAutomation() {
+    if (arcoGame.gameState !== 'PLAYING') return;
+    if (archeryQaParams.get('archeryQaBounds') === '1') {
+        const segment = Math.floor((arcoGame.roundFrame % 480) / 120);
+        keys.a = segment === 0 || segment === 3;
+        keys.d = segment === 1 || segment === 2;
+        keys.w = segment === 0 || segment === 1;
+        keys.s = segment === 2 || segment === 3;
+        return;
+    }
+    if (archeryQaParams.get('archeryQaHoldSpace') === '1') {
+        keys.a = keys.d = keys.w = keys.s = false;
+        keys.space = true;
+        if (arcoGame.stats.playerShots === 0 && arcoGame.playerShootCooldown <= 0) archeryShootPressed = true;
+        return;
+    }
+    if (archeryQaParams.get('archeryQaAuto') !== '1') return;
+    const target = arcoGame.targets
+        .filter((candidate) => candidate.active && candidate.visible)
+        .sort((a, b) => Math.abs(a.x - arcoGame.playerX) - Math.abs(b.x - arcoGame.playerX))[0];
+    if (target) {
+        keys.a = target.x < arcoGame.playerX - 4;
+        keys.d = target.x > arcoGame.playerX + 4;
+        if (archeryQaParams.get('archeryQaPrecision') === '1' && Math.abs(target.x - arcoGame.playerX) <= 4.5) {
+            arcoGame.playerX = target.x;
+            keys.a = false;
+            keys.d = false;
+        }
+    } else {
+        keys.a = false;
+        keys.d = false;
+    }
+    const desiredY = ARCHERY_CONFIG.shooterArea.front + 18 + (Math.sin(arcoGame.roundFrame / 72) + 1) * 15;
+    keys.w = arcoGame.playerY > desiredY + 2;
+    keys.s = arcoGame.playerY < desiredY - 2;
+    const precisionAligned = target && Math.abs(target.x - arcoGame.playerX) <= (archeryQaParams.get('archeryQaPrecision') === '1' ? 4.5 : 9);
+    if (arcoGame.playerShootCooldown <= 0 && precisionAligned) {
+        archeryShootPressed = true;
+    }
+}
+
+function updateArcoRange(range, x, y) {
+    range.minX = Math.min(range.minX, x);
+    range.maxX = Math.max(range.maxX, x);
+    range.minY = Math.min(range.minY, y);
+    range.maxY = Math.max(range.maxY, y);
+}
+
+function fireArcoArrow(owner, target = null) {
+    const isPlayer = owner === 'PLAYER';
+    const x = isPlayer ? arcoGame.playerX : arcoGame.mestreX;
+    const y = (isPlayer ? arcoGame.playerY : arcoGame.mestreY) - 49;
+    const speed = isPlayer ? ARCHERY_CONFIG.arrowSpeed : ARCHERY_CONFIG.arrowSpeed + 0.35;
+    let speedX = 0;
+    if (!isPlayer && target) {
+        const travelFrames = Math.max(1, (y - target.y) / speed);
+        const predictedX = target.x + target.speedX * travelFrames;
+        speedX = clampArco((predictedX + arcoGame.mestreAimError - x) / travelFrames, -2.7, 2.7);
+    }
+    arcoGame.arrows.push(acquireArcoObject(arcoGame.arrowPool, {
+        x,
+        y,
+        previousX: x,
+        previousY: y,
+        speedX,
+        speedY: -speed,
+        owner
+    }));
+    if (isPlayer) arcoGame.stats.playerShots++;
+    else arcoGame.stats.mestreShots++;
+}
+
+function updateArcoPlayer() {
+    const area = ARCHERY_CONFIG.shooterArea;
+    let moveX = (keys.d ? 1 : 0) - (keys.a ? 1 : 0);
+    let moveY = (keys.s ? 1 : 0) - (keys.w ? 1 : 0);
+    if (moveX && moveY) {
+        moveX *= 0.7071;
+        moveY *= 0.7071;
+    }
+    const rawX = arcoGame.playerX + moveX * ARCHERY_CONFIG.playerSpeedX;
+    const rawY = arcoGame.playerY + moveY * ARCHERY_CONFIG.playerSpeedY;
+    if (rawX < area.left || rawX > area.right || rawY < area.front || rawY > area.back) {
+        arcoGame.stats.boundaryClampEvents++;
+    }
+    arcoGame.playerX = clampArco(rawX, area.left, area.right);
+    arcoGame.playerY = clampArco(rawY, area.front, area.back);
+    if (arcoGame.playerX < area.left || arcoGame.playerX > area.right || arcoGame.playerY < area.front || arcoGame.playerY > area.back) {
+        arcoGame.stats.boundsViolations++;
+    }
+    updateArcoRange(arcoGame.stats.playerRange, arcoGame.playerX, arcoGame.playerY);
+
+    if (arcoGame.playerShootCooldown > 0) arcoGame.playerShootCooldown--;
+    if (arcoGame.playerReactionTimer > 0) arcoGame.playerReactionTimer--;
+
+    if (archeryShootPressed && arcoGame.playerShootCooldown <= 0) {
+        fireArcoArrow('PLAYER');
+        arcoGame.playerShootCooldown = ARCHERY_CONFIG.playerFireCooldown;
+        arcoGame.playerShootTimer = 14;
+        archeryShootPressed = false;
+    }
+
+    if (arcoGame.playerReactionTimer > 0) {
+        arcoGame.playerState = 'MISS';
+    } else if (arcoGame.playerShootTimer > 0) {
+        arcoGame.playerShootTimer--;
+        arcoGame.playerState = 'SHOOT';
+    } else {
+        arcoGame.playerState = moveX || moveY ? 'MOVE' : 'IDLE';
+    }
+}
+
+function selectArcoMasterTarget() {
+    return arcoGame.targets
+        .filter((target) => target.active && target.visible && target.progress < 0.90)
+        .sort((a, b) => {
+            const valueDifference = b.basePoints - a.basePoints;
+            if (valueDifference !== 0) return valueDifference;
+            return Math.abs(a.x - arcoGame.mestreX) - Math.abs(b.x - arcoGame.mestreX);
+        })[0] || null;
+}
+
+function updateArcoMaster() {
+    const area = ARCHERY_CONFIG.shooterArea;
+    if (archeryQaParams.get('archeryQaBullseye') === '1') {
+        arcoGame.mestreState = 'IDLE';
+        updateArcoRange(arcoGame.stats.mestreRange, arcoGame.mestreX, arcoGame.mestreY);
+        return;
+    }
+    if (arcoGame.mestreShootCooldown > 0) arcoGame.mestreShootCooldown--;
+    if (arcoGame.mestreReactionTimer > 0) arcoGame.mestreReactionTimer--;
+
+    let target = arcoGame.targets.find((candidate) => candidate.id === arcoGame.mestreAimTargetId && candidate.active && candidate.visible) || null;
+    if (!target) {
+        target = selectArcoMasterTarget();
+        arcoGame.mestreAimTargetId = target ? target.id : null;
+        arcoGame.mestreDecisionTimer = target ? [42, 31, 23][arcoGame.phase] + Math.floor(Math.random() * 12) : 0;
+        if (target) {
+            const baseError = [25, 17, 11][arcoGame.phase];
+            const deliberateMiss = Math.random() < [0.30, 0.22, 0.16][arcoGame.phase];
+            arcoGame.mestreAimError = deliberateMiss
+                ? (Math.random() < 0.5 ? -1 : 1) * (target.radius + 18 + Math.random() * 13)
+                : (Math.random() * 2 - 1) * baseError;
+        }
+    }
+    if (arcoGame.mestreDecisionTimer > 0) arcoGame.mestreDecisionTimer--;
+    let moving = false;
+    if (target && arcoGame.mestreShootTimer <= 0 && arcoGame.mestreDecisionTimer <= 0) {
+        const speed = ARCHERY_CONFIG.arrowSpeed + 0.35;
+        const travelFrames = Math.max(1, (arcoGame.mestreY - 49 - target.y) / speed);
+        const aimX = clampArco(target.x + target.speedX * travelFrames + arcoGame.mestreAimError, area.left, area.right);
+        const difference = aimX - arcoGame.mestreX;
+        if (Math.abs(difference) > 8) {
+            arcoGame.mestreX += Math.sign(difference) * (2.8 + arcoGame.phase * 0.25);
+            moving = true;
+        } else if (arcoGame.mestreShootCooldown <= 0) {
+            fireArcoArrow('MESTRE', target);
+            arcoGame.mestreShootCooldown = [78, 62, 50][arcoGame.phase];
+            arcoGame.mestreShootTimer = 14;
+            arcoGame.mestreAimTargetId = null;
+        }
+    }
+
+    const desiredY = 226 + Math.sin(arcoGame.roundFrame / 100) * 6;
+    if (Math.abs(desiredY - arcoGame.mestreY) > 1.5) {
+        arcoGame.mestreY += Math.sign(desiredY - arcoGame.mestreY) * 1.35;
+        moving = true;
+    }
+    arcoGame.mestreX = clampArco(arcoGame.mestreX, area.left, area.right);
+    arcoGame.mestreY = clampArco(arcoGame.mestreY, area.front, area.back);
+    updateArcoRange(arcoGame.stats.mestreRange, arcoGame.mestreX, arcoGame.mestreY);
+
+    if (arcoGame.mestreReactionTimer > 0) {
+        arcoGame.mestreState = 'MISS';
+    } else if (arcoGame.mestreShootTimer > 0) {
+        arcoGame.mestreShootTimer--;
+        arcoGame.mestreState = 'SHOOT';
+    } else {
+        arcoGame.mestreState = moving ? 'MOVE' : 'IDLE';
+    }
+}
+
+function updateArcoTargets() {
+    for (let index = arcoGame.targets.length - 1; index >= 0; index--) {
+        const target = arcoGame.targets[index];
+        target.age++;
+        if (!target.qaStatic) {
+            target.previousX = target.x;
+            target.previousY = target.y;
+            target.progress = Math.min(1, target.progress + target.speed / target.pathLength);
+            const position = evaluateArcoTargetPath(target, target.progress);
+            target.x = position.x;
+            target.y = position.y;
+            target.speedX = target.x - target.previousX;
+            target.speedY = target.y - target.previousY;
+            const step = Math.hypot(target.speedX, target.speedY);
+            arcoGame.stats.maxTargetStep = Math.max(arcoGame.stats.maxTargetStep, step);
+            if (step > ARCHERY_CONFIG.teleportThreshold) arcoGame.stats.teleportEvents++;
+        }
+        target.visible = target.x >= -target.radius && target.x <= canvas.width + target.radius
+            && target.y >= ARCHERY_CONFIG.targetField.top - target.radius
+            && target.y <= ARCHERY_CONFIG.targetField.bottom + target.radius;
+        if (target.progress >= 1 && !target.qaStatic) {
+            arcoGame.stats.targetExits++;
+            arcoGame.targetPool.push(arcoGame.targets.splice(index, 1)[0]);
+        }
+    }
+}
+
+function updateArcoTargetSpawns() {
+    for (let index = arcoGame.pendingTargetSpawns.length - 1; index >= 0; index--) {
+        const pending = arcoGame.pendingTargetSpawns[index];
+        pending.delay--;
+        if (pending.delay <= 0 && arcoGame.targets.length < ARCHERY_CONFIG.maxTargets[arcoGame.phase]) {
+            spawnArcoTarget(pending.descriptor);
+            arcoGame.pendingTargetSpawns.splice(index, 1);
+        }
+    }
+
+    if (archeryQaParams.get('archeryQaBullseye') === '1'
+        || archeryQaParams.get('archeryQaAllPaths') === '1'
+        || archeryQaParams.get('archeryQaAllGold') === '1') return;
+
+    const progress = arcoGame.roundFrame / Math.max(1, arcoGame.roundFrames);
+    if (!arcoGame.midGoldMomentQueued && progress >= 0.47 && arcoGame.pendingTargetSpawns.length === 0) {
+        arcoGame.midGoldMomentQueued = true;
+        queueArcoPattern(ARCHERY_PATTERNS.find((pattern) => pattern.id === 'S_AND_GOLD_SMALL'));
+        arcoGame.spawnTimer = 0;
+        return;
+    }
+    if (!arcoGame.finalGoldMomentQueued && progress >= 0.82 && arcoGame.pendingTargetSpawns.length === 0) {
+        arcoGame.finalGoldMomentQueued = true;
+        const finalEventId = Math.random() < 0.5 ? 'RARE_GOLD_FIGURE8' : 'GOLD_CIRCLE_EVENT';
+        queueArcoPattern(ARCHERY_PATTERNS.find((pattern) => pattern.id === finalEventId));
+        arcoGame.spawnTimer = 0;
+        return;
+    }
+
+    arcoGame.spawnTimer++;
+    if (arcoGame.spawnTimer >= ARCHERY_CONFIG.patternIntervals[arcoGame.phase] && arcoGame.pendingTargetSpawns.length === 0) {
+        queueArcoPattern(chooseArcoPattern());
+        arcoGame.spawnTimer = 0;
+    }
+}
+
+function awardArcoHit(arrow, target, impactDistance) {
+    const normalized = impactDistance / Math.max(1, target.radius);
+    const bullseye = normalized <= 0.35;
+    const innerRing = normalized <= 0.70;
+    let points = target.basePoints + (bullseye ? 30 : (innerRing ? 15 : 0));
+    arcoGame.stats.lastImpacts.push({
+        owner: arrow.owner,
+        distance: +impactDistance.toFixed(2),
+        radius: target.radius,
+        normalized: +normalized.toFixed(3),
+        arrowX: +arrow.x.toFixed(1),
+        targetX: +target.x.toFixed(1),
+        targetType: target.type
+    });
+    if (arcoGame.stats.lastImpacts.length > 8) arcoGame.stats.lastImpacts.shift();
+
+    if (arrow.owner === 'PLAYER') {
+        arcoGame.playerScore += points;
+        arcoGame.stats.playerHits++;
+        if (bullseye) arcoGame.stats.playerBullseyes++;
+    } else {
+        arcoGame.mestreScore += points;
+        arcoGame.stats.mestreHits++;
+        if (bullseye) arcoGame.stats.mestreBullseyes++;
+    }
+
+    const subtype = target.isGolden ? 'bullseye' : (bullseye ? 'bullseye' : 'arrow_impact');
+    const state = target.isGolden || bullseye ? 'BULLSEYE' : 'IMPACT';
+    arcoGame.effects.push(acquireArcoObject(arcoGame.effectPool, {
+        x: target.x,
+        y: target.y,
+        subtype,
+        state,
+        timer: target.isGolden ? 46 : 34,
+        duration: target.isGolden ? 46 : 34,
+        label: (target.isGolden ? 'GOLD +' : (bullseye ? 'BULLSEYE +' : '+')) + points,
+        color: target.isGolden || bullseye ? '#ffe066' : '#ffffff'
+    }));
+}
+
+function updateArcoArrows() {
+    for (let arrowIndex = arcoGame.arrows.length - 1; arrowIndex >= 0; arrowIndex--) {
+        const arrow = arcoGame.arrows[arrowIndex];
+        arrow.previousX = arrow.x;
+        arrow.previousY = arrow.y;
+        arrow.x += arrow.speedX;
+        arrow.y += arrow.speedY;
+        let hitTargetIndex = -1;
+        let impactDistance = Infinity;
+        let impactX = arrow.x;
+
+        for (let targetIndex = arcoGame.targets.length - 1; targetIndex >= 0; targetIndex--) {
+            const target = arcoGame.targets[targetIndex];
+            if (!target.active) continue;
+            const crossedTargetCenter = arrow.previousY >= target.y && arrow.y <= target.y;
+            if (!crossedTargetCenter) continue;
+            const verticalTravel = Math.max(0.0001, arrow.previousY - arrow.y);
+            const crossingRatio = clampArco((arrow.previousY - target.y) / verticalTravel, 0, 1);
+            const crossingX = arrow.previousX + (arrow.x - arrow.previousX) * crossingRatio;
+            const distance = Math.abs(crossingX - target.x);
+            if (distance <= target.radius && distance < impactDistance) {
+                impactDistance = distance;
+                impactX = crossingX;
+                hitTargetIndex = targetIndex;
+            }
+        }
+
+        if (hitTargetIndex >= 0) {
+            const target = arcoGame.targets[hitTargetIndex];
+            arrow.x = impactX;
+            arrow.y = target.y;
+            awardArcoHit(arrow, target, impactDistance);
+            arcoGame.targetPool.push(arcoGame.targets.splice(hitTargetIndex, 1)[0]);
+            arcoGame.arrowPool.push(arcoGame.arrows.splice(arrowIndex, 1)[0]);
+            continue;
+        }
+
+        if (arrow.y < -30 || arrow.x < -30 || arrow.x > canvas.width + 30) {
+            if (arrow.owner === 'PLAYER') {
+                arcoGame.stats.playerMisses++;
+                arcoGame.playerReactionTimer = 18;
+            } else {
+                arcoGame.stats.mestreMisses++;
+                arcoGame.mestreReactionTimer = 14;
+            }
+            arcoGame.arrowPool.push(arcoGame.arrows.splice(arrowIndex, 1)[0]);
+        }
+    }
+}
+
+function updateArcoEffects() {
+    for (let index = arcoGame.effects.length - 1; index >= 0; index--) {
+        arcoGame.effects[index].timer--;
+        if (arcoGame.effects[index].timer <= 0) arcoGame.effectPool.push(arcoGame.effects.splice(index, 1)[0]);
+    }
+}
+
+function finishArcoRound() {
+    arcoGame.tie = arcoGame.playerScore === arcoGame.mestreScore;
+    arcoGame.win = arcoGame.playerScore > arcoGame.mestreScore;
+    if (arcoGame.win) insignias.arco = true;
+    arcoGame.gameState = 'GAMEOVER';
+    keys.a = keys.d = keys.w = keys.s = keys.space = false;
+    consumeArcoShootEdges();
+}
+
+function simulateArcoFrame() {
+    arcoGame.roundFrame++;
+    arcoGame.phase = getArcoPhase();
+    applyArcoQaAutomation();
+    updateArcoTargetSpawns();
+    updateArcoPlayer();
+    updateArcoMaster();
+    updateArcoTargets();
+    updateArcoArrows();
+    updateArcoEffects();
+    if (arcoGame.roundFrame >= arcoGame.roundFrames) finishArcoRound();
 }
 
 function updateArco() {
     if (arcoGame.gameState === 'TUTORIAL') {
-        if (keys.space) { arcoGame.gameState = 'PLAYING'; keys.space = false; }
+        if (archeryShootPressed || keys.space) beginArcoRound();
+        consumeArcoShootEdges();
         return;
     }
-    
+
     if (arcoGame.gameState === 'GAMEOVER') {
-        if (keys.space) { 
-            currentScene = "ILHA_ARCO"; 
-            keys.space = false; 
-            dialogText.innerHTML = arcoGame.win 
-                ? `> MESTRE ARQUEIRO: Fantástico! Você venceu a disputa com ${arcoGame.playerScore} pontos!` 
-                : `> MESTRE ARQUEIRO: Ganhei desta vez! Mova-se rápido para alinhar seus tiros.`;
-            dialogBox.classList.add("show");
+        if (archeryShootPressed || keys.space) {
+            currentScene = 'ILHA_ARCO';
+            keys.space = false;
+            archeryShootPressed = false;
+            hintText.innerText = 'USE [W A S D] PARA MOVER | [E] PARA FALAR';
+            dialogText.innerHTML = arcoGame.tie
+                ? '> MESTRE ARQUEIRO: Empate! Foi uma disputa digna de campeoes.'
+                : (arcoGame.win
+                    ? '> MESTRE ARQUEIRO: Mira excelente! Voce venceu por ' + arcoGame.playerScore + ' a ' + arcoGame.mestreScore + '.'
+                    : '> MESTRE ARQUEIRO: Venci por ' + arcoGame.mestreScore + ' a ' + arcoGame.playerScore + '. Tente antecipar os alvos moveis.');
+            dialogBox.classList.add('show');
         }
+        consumeArcoShootEdges();
         return;
     }
 
-    hintText.innerText = "[A D] MOVER | [ESPAÇO] ATIRAR FLECHA";
-
-    arcoGame.spawnTimer++;
-    if (arcoGame.spawnTimer > 45 && arcoGame.targets.length < 6) {
-        spawnArcoTarget();
-        arcoGame.spawnTimer = 0;
+    hintText.innerText = '[W A S D] AREA DE TIRO | [ESPACO] ATIRAR';
+    const qaFrameStepValue = Number(archeryQaParams.get('archeryQaSpeed'));
+    const frameStep = archeryQaParams.get('archeryQa') === '1' && Number.isFinite(qaFrameStepValue)
+        ? clampArco(Math.round(qaFrameStepValue), 1, 60)
+        : 1;
+    for (let step = 0; step < frameStep && arcoGame.gameState === 'PLAYING'; step++) simulateArcoFrame();
+    consumeArcoShootEdges();
+}
+function getArcoCharacterVisual(actor) {
+    const isPlayer = actor === 'PLAYER';
+    const state = isPlayer ? arcoGame.playerState : arcoGame.mestreState;
+    const shootTimer = isPlayer ? arcoGame.playerShootTimer : arcoGame.mestreShootTimer;
+    if (arcoGame.gameState === 'GAMEOVER') {
+        const actorWon = !arcoGame.tie && (isPlayer ? arcoGame.win : !arcoGame.win);
+        return actorWon ? 'VICTORY_BACK' : (arcoGame.tie ? 'IDLE_BACK' : 'MISS_REACTION_BACK');
     }
+    if (state === 'MISS') return 'MISS_REACTION_BACK';
+    if (state === 'MOVE') return 'WALK_DOWN_BACK';
+    if (state === 'SHOOT') return shootTimer > 8 ? 'RELEASE_SHOT_BACK' : 'RECOVERY_BACK';
+    return 'IDLE_BACK';
+}
 
-    let isMoving = false;
-    if (arcoGame.playerState !== 'SHOOT') {
-        if (keys.a) {
-            arcoGame.playerX = Math.max(30, arcoGame.playerX - arcoGame.playerSpeed);
-            isMoving = true;
+function getArcoTargetFrame(target, timeFrame) {
+    return timeFrame + target.animationOffset;
+}
+
+function drawArcoShooterArea() {
+    const area = ARCHERY_CONFIG.shooterArea;
+    ctx.fillStyle = 'rgba(255, 238, 171, 0.10)';
+    ctx.fillRect(area.left, area.front, area.right - area.left, area.back - area.front + 18);
+    ctx.strokeStyle = 'rgba(255, 245, 200, 0.82)';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([7, 5]);
+    ctx.beginPath();
+    ctx.moveTo(area.left, area.front);
+    ctx.lineTo(area.right, area.front);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(35, 46, 29, 0.86)';
+    ctx.fillRect(canvas.width / 2 - 42, area.front - 10, 84, 10);
+    ctx.fillStyle = '#fff4c2';
+    ctx.font = 'bold 6px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('LINHA DE TIRO', canvas.width / 2, area.front - 3);
+    ctx.textAlign = 'left';
+}
+
+function drawArcoTargets(assets, timeFrame) {
+    for (const target of arcoGame.targets) {
+        if (!target.visible) continue;
+        const pulse = target.isGolden ? 1 + Math.sin(performance.now() / 120) * 0.06 : 1;
+        const size = target.renderSize * pulse;
+        const bottomY = target.y + size * 0.43;
+        if (assets) {
+            assets.draw(
+                ctx,
+                'target',
+                target.assetSubtype,
+                target.assetState,
+                getArcoTargetFrame(target, timeFrame),
+                target.x,
+                bottomY,
+                size,
+                size,
+                'manifest'
+            );
         }
-        if (keys.d) {
-            arcoGame.playerX = Math.min(canvas.width / 2 - 20, arcoGame.playerX + arcoGame.playerSpeed);
-            isMoving = true;
+        if (target.isGolden && target.active) {
+            ctx.fillStyle = 'rgba(48, 34, 8, 0.82)';
+            ctx.fillRect(Math.floor(target.x - 22), Math.floor(target.y - target.radius - 13), 44, 10);
+            ctx.fillStyle = '#ffe066';
+            ctx.font = 'bold 7px monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText('BONUS', Math.floor(target.x), Math.floor(target.y - target.radius - 5));
+            ctx.textAlign = 'left';
         }
-        arcoGame.playerState = isMoving ? 'MOVE' : 'IDLE';
-    }
-
-    if (arcoGame.playerShootCooldown > 0) arcoGame.playerShootCooldown--;
-    if (keys.space && arcoGame.playerShootCooldown === 0) {
-        arcoGame.playerState = 'SHOOT';
-        arcoGame.playerShootTimer = 15;
-        
-        arcoGame.arrows.push({
-            x: arcoGame.playerX, 
-            y: arcoGame.playerY - 40,
-            speedY: -8,
-            owner: 'PLAYER'
-        });
-        arcoGame.playerShootCooldown = 25;
-    }
-
-    if (arcoGame.playerState === 'SHOOT') {
-        arcoGame.playerShootTimer--;
-        if (arcoGame.playerShootTimer <= 0) arcoGame.playerState = 'IDLE';
-    } else {
-        arcoGame.playerFrameTimer++;
-        if (arcoGame.playerFrameTimer > 6) {
-            arcoGame.playerFrameTimer = 0;
-            arcoGame.playerFrame = isMoving ? (arcoGame.playerFrame + 1) % 3 : 0;
-        }
-    }
-
-    if (arcoGame.mestreShootCooldown > 0) arcoGame.mestreShootCooldown--;
-    let target = arcoGame.targets.find(t => t.x > canvas.width / 2);
-    if (!target && arcoGame.targets.length > 0) target = arcoGame.targets[0];
-
-    let mestreMoving = false;
-    if (target && arcoGame.mestreState !== 'SHOOT') {
-        let diffX = (target.x + target.speedX * 5) - arcoGame.mestreX; 
-        
-        if (Math.abs(diffX) > 10) {
-            arcoGame.mestreX += Math.sign(diffX) * arcoGame.mestreSpeed;
-            mestreMoving = true;
-        } else if (arcoGame.mestreShootCooldown === 0) {
-            arcoGame.mestreState = 'SHOOT';
-            arcoGame.mestreShootTimer = 15;
-            
-            arcoGame.arrows.push({
-                x: arcoGame.mestreX,
-                y: arcoGame.mestreY - 40,
-                speedY: -8,
-                owner: 'MESTRE'
-            });
-            arcoGame.mestreShootCooldown = 30;
-        }
-    }
-    
-    arcoGame.mestreX = Math.max(canvas.width / 2 + 20, Math.min(canvas.width - 30, arcoGame.mestreX));
-    if (arcoGame.mestreState !== 'SHOOT') arcoGame.mestreState = mestreMoving ? 'MOVE' : 'IDLE';
-
-    if (arcoGame.mestreState === 'SHOOT') {
-        arcoGame.mestreShootTimer--;
-        if (arcoGame.mestreShootTimer <= 0) arcoGame.mestreState = 'IDLE';
-    } else {
-        arcoGame.mestreFrameTimer++;
-        if (arcoGame.mestreFrameTimer > 6) {
-            arcoGame.mestreFrameTimer = 0;
-            arcoGame.mestreFrame = mestreMoving ? (arcoGame.mestreFrame + 1) % 3 : 0;
-        }
-    }
-
-    for (let i = arcoGame.targets.length - 1; i >= 0; i--) {
-        let t = arcoGame.targets[i];
-        t.x += t.speedX;
-        if (t.x < -30 || t.x > canvas.width + 30) arcoGame.targets.splice(i, 1);
-    }
-
-    for (let i = arcoGame.arrows.length - 1; i >= 0; i--) {
-        let arr = arcoGame.arrows[i];
-        arr.y += arr.speedY; 
-
-        let hit = false;
-        for (let j = arcoGame.targets.length - 1; j >= 0; j--) {
-            let t = arcoGame.targets[j];
-            let dist = Math.hypot(arr.x - t.x, arr.y - t.y);
-            
-            if (dist <= t.radius + 8) {
-                if (arr.owner === 'PLAYER') arcoGame.playerScore += t.points;
-                else arcoGame.mestreScore += t.points;
-
-                arcoGame.targets.splice(j, 1);
-                hit = true;
-                break;
-            }
-        }
-        
-        if (hit || arr.y < -10) arcoGame.arrows.splice(i, 1);
-    }
-
-    if (arcoGame.playerScore >= arcoGame.targetScore) {
-        insignias.arco = true;
-        arcoGame.gameState = 'GAMEOVER';
-        arcoGame.win = true;
-    } else if (arcoGame.mestreScore >= arcoGame.targetScore) {
-        arcoGame.gameState = 'GAMEOVER';
-        arcoGame.win = false;
     }
 }
 
-function drawArcoGame() {
-    if (imgArenaArco.complete && imgArenaArco.naturalWidth > 0) {
-        ctx.drawImage(imgArenaArco, 0, 0, canvas.width, canvas.height);
-    } else {
-        ctx.fillStyle = "#66bb6a"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+function getArcoArrowVisual(arrow) {
+    const fast = arrow.owner === 'MESTRE';
+    if (arrow.speedX < -0.35) return fast
+        ? { subtype: 'arrow_fast_up_left', state: 'FAST_UP_LEFT' }
+        : { subtype: 'arrow_up_left', state: 'UP_LEFT' };
+    if (arrow.speedX > 0.35) return fast
+        ? { subtype: 'arrow_fast_up_right', state: 'FAST_UP_RIGHT' }
+        : { subtype: 'arrow_up_right', state: 'UP_RIGHT' };
+    return fast
+        ? { subtype: 'arrow_fast_up', state: 'FAST_UP' }
+        : { subtype: 'arrow_up', state: 'UP' };
+}
+
+function drawArcoEffects(assets) {
+    for (const effect of arcoGame.effects) {
+        const progress = 1 - effect.timer / effect.duration;
+        const frame = Math.min(3, Math.floor(progress * 4));
+        const size = 38 + progress * 18;
+        ctx.globalAlpha = clampArco(effect.timer / 9, 0, 1);
+        if (assets) assets.draw(ctx, 'effect', effect.subtype, effect.state, frame, effect.x, effect.y, size, size, 'center');
+        ctx.fillStyle = effect.color;
+        ctx.font = 'bold 8px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(effect.label, effect.x, effect.y - 25 - progress * 13);
+        ctx.textAlign = 'left';
+        ctx.globalAlpha = 1;
+    }
+}
+
+function drawArcoCharacters(assets, timeFrame) {
+    if (!assets) return;
+    const actors = [
+        { type: 'PLAYER', subtype: 'zorp', x: arcoGame.playerX, y: arcoGame.playerY, offset: 0 },
+        { type: 'MESTRE', subtype: 'master', x: arcoGame.mestreX, y: arcoGame.mestreY, offset: 1 }
+    ].sort((a, b) => a.y - b.y);
+    for (const actor of actors) {
+        assets.draw(
+            ctx,
+            'character',
+            actor.subtype,
+            getArcoCharacterVisual(actor.type),
+            timeFrame + actor.offset,
+            actor.x,
+            actor.y + 15,
+            94,
+            94,
+            'manifest'
+        );
     }
 
-    arcoGame.targets.forEach(t => {
-        ctx.fillStyle = "#5d4037"; ctx.fillRect(Math.floor(t.x - 2), Math.floor(t.y), 4, 20);
-        ctx.fillStyle = "#e74c3c"; ctx.beginPath(); ctx.arc(t.x, t.y, t.radius, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = "#ffffff"; ctx.beginPath(); ctx.arc(t.x, t.y, t.radius * 0.6, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = "#f1c40f"; ctx.beginPath(); ctx.arc(t.x, t.y, t.radius * 0.3, 0, Math.PI * 2); ctx.fill();
+}
 
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "bold 10px monospace";
-        ctx.fillText(`${t.points}p`, Math.floor(t.x - 10), Math.floor(t.y - t.radius - 6));
-    });
+function getArcoDiagnostics() {
+    const area = ARCHERY_CONFIG.shooterArea;
+    const values = [
+        arcoGame.playerX,
+        arcoGame.playerY,
+        arcoGame.mestreX,
+        arcoGame.mestreY,
+        arcoGame.playerScore,
+        arcoGame.mestreScore,
+        arcoGame.roundFrame
+    ];
+    return {
+        scene: currentScene,
+        state: arcoGame.gameState,
+        phase: arcoGame.phase,
+        phaseName: ['AQUECIMENTO', 'MOVIMENTO', 'PRECISAO'][arcoGame.phase],
+        secondsRemaining: Math.max(0, Math.ceil((arcoGame.roundFrames - arcoGame.roundFrame) / 60)),
+        scores: { player: arcoGame.playerScore, master: arcoGame.mestreScore },
+        player: { x: +arcoGame.playerX.toFixed(1), y: +arcoGame.playerY.toFixed(1), state: arcoGame.playerState },
+        master: { x: +arcoGame.mestreX.toFixed(1), y: +arcoGame.mestreY.toFixed(1), state: arcoGame.mestreState },
+        shooterArea: area,
+        playerInBounds: arcoGame.playerX >= area.left && arcoGame.playerX <= area.right && arcoGame.playerY >= area.front && arcoGame.playerY <= area.back,
+        masterInBounds: arcoGame.mestreX >= area.left && arcoGame.mestreX <= area.right && arcoGame.mestreY >= area.front && arcoGame.mestreY <= area.back,
+        overlapAllowed: true,
+        targets: arcoGame.targets.length,
+        targetTypes: arcoGame.targets.map((target) => target.type),
+        targetPaths: arcoGame.targets.map((target) => ({
+            id: target.id,
+            path: target.pathType,
+            entry: target.entryPoint,
+            exit: target.exitPoint,
+            speed: target.speedTier,
+            size: target.sizeTier,
+            golden: target.isGolden,
+            progress: +target.progress.toFixed(3),
+            visible: target.visible
+        })),
+        pendingTargets: arcoGame.pendingTargetSpawns.length,
+        arrows: arcoGame.arrows.length,
+        effects: arcoGame.effects.length,
+        stats: arcoGame.stats,
+        assets: window.archeryAssets ? window.archeryAssets.diagnostics() : null,
+        hasNaN: values.some((value) => !Number.isFinite(value))
+    };
+}
 
-    if (imgArcoSprites.complete && imgArcoSprites.naturalWidth > 0) {
-        ctx.imageSmoothingEnabled = false;
-
-        let frameW = imgArcoSprites.width / 8;
-        let frameH = imgArcoSprites.height / 2;
-        let renderHeight = 110; 
-        let renderWidth = renderHeight * (frameW / frameH);
-
-        let arrowSrcX = Math.floor(7 * frameW + (frameW * 0.3));
-        let arrowSrcY = Math.floor(frameH * 0.2);                
-        let arrowSrcW = Math.floor(frameW * 0.5);                
-        let arrowSrcH = Math.floor(frameH * 0.8);                
-
-        let arrowRenderWidth = 22;  
-        let arrowRenderHeight = 36; 
-
-        arcoGame.arrows.forEach(arr => {
-            ctx.drawImage(
-                imgArcoSprites, 
-                arrowSrcX, arrowSrcY, arrowSrcW, arrowSrcH, 
-                Math.floor(arr.x - arrowRenderWidth / 2), Math.floor(arr.y - arrowRenderHeight / 2), 
-                arrowRenderWidth, arrowRenderHeight
-            );
-        });
-
-        let pRow = 0; 
-        let pCol = arcoGame.playerState === 'SHOOT' ? 2 : Math.floor(arcoGame.playerFrame);
-        
-        let pSx = Math.floor(pCol * frameW);
-        let pSy = Math.floor(pRow * frameH);
-        let pSw = Math.floor(frameW);
-        let pSh = Math.floor(frameH);
-
-        let pDx = Math.floor(arcoGame.playerX - (renderWidth / 2));
-        let pDy = Math.floor(arcoGame.playerY - renderHeight + 15);
-        let pDw = Math.floor(renderWidth);
-        let pDh = Math.floor(renderHeight);
-
-        ctx.drawImage(imgArcoSprites, pSx, pSy, pSw, pSh, pDx, pDy, pDw, pDh);
-
-        let mRow = 0; 
-        let mCol = arcoGame.mestreState === 'SHOOT' ? 6 : 4 + Math.floor(arcoGame.mestreFrame); 
-        
-        let mSx = Math.floor(mCol * frameW);
-        let mSy = Math.floor(mRow * frameH);
-        let mSw = Math.floor(frameW);
-        let mSh = Math.floor(frameH);
-
-        let mDx = Math.floor(arcoGame.mestreX - (renderWidth / 2));
-        let mDy = Math.floor(arcoGame.mestreY - renderHeight + 15);
-        let mDw = Math.floor(renderWidth);
-        let mDh = Math.floor(renderHeight);
-
-        ctx.drawImage(imgArcoSprites, mSx, mSy, mSw, mSh, mDx, mDy, mDw, mDh);
-        
-    } else {
-        arcoGame.arrows.forEach(arr => {
-            ctx.fillStyle = "#ecf0f1"; ctx.fillRect(Math.floor(arr.x - 1), Math.floor(arr.y), 2, 14);
-        });
-        ctx.fillStyle = "#2ecc71"; ctx.fillRect(Math.floor(arcoGame.playerX - 15), Math.floor(arcoGame.playerY - 40), 30, 40);
-        ctx.fillStyle = "#e74c3c"; ctx.fillRect(Math.floor(arcoGame.mestreX - 15), Math.floor(arcoGame.mestreY - 40), 30, 40);
-    }
-
-    ctx.fillStyle = "rgba(0,0,0,0.8)"; ctx.fillRect(0, 0, canvas.width, 30);
-    ctx.fillStyle = "#f1c40f"; ctx.font = "bold 14px monospace";
-    ctx.fillText(`ZORP: ${arcoGame.playerScore}/${arcoGame.targetScore}`, 20, 20);
-    
-    ctx.fillStyle = "#e74c3c";
-    let mestreText = `MESTRE: ${arcoGame.mestreScore}/${arcoGame.targetScore}`;
-    ctx.fillText(mestreText, canvas.width - ctx.measureText(mestreText).width - 20, 20);
-
-    // OVERLAYS (Telas)
-    if (arcoGame.gameState === 'TUTORIAL') {
-        drawOverlayScreen("ARCO E FLECHA", [
-            "Seja o primeiro a fazer " + arcoGame.targetScore + " pontos.",
-            "Use A e D para mirar a direção.",
-            "Aperte ESPAÇO para atirar.",
-            "Acerte os alvos antes do Mestre!"
-        ], "#e67e22");
-    } else if (arcoGame.gameState === 'GAMEOVER') {
-        if (arcoGame.win) {
-            drawOverlayScreen("VITÓRIA!", ["Sua mira é impecável!", "Insígnia do Arco conquistada!"], "#2ecc71");
-        } else {
-            drawOverlayScreen("DERROTA...", ["O Mestre Arqueiro foi mais rápido.", "Tente não perder os alvos velozes."], "#e74c3c");
+function recordArcoFps() {
+    if (!arcoGame.stats || archeryQaParams.get('archeryQa') !== '1') return;
+    const now = performance.now();
+    const fps = arcoGame.stats.fps;
+    if (fps.lastTime > 0) {
+        const delta = now - fps.lastTime;
+        if (delta > 0 && delta < 120) {
+            const instant = 1000 / delta;
+            fps.samples++;
+            fps.average += (instant - fps.average) / fps.samples;
+            fps.minimum = Math.min(fps.minimum, instant);
         }
     }
+    fps.lastTime = now;
+}
+
+function drawArcoGame() {
+    const assets = window.archeryAssets;
+    const timeFrame = Math.floor(performance.now() / 105);
+    recordArcoFps();
+    const diagnostics = getArcoDiagnostics();
+    if (assets && archeryQaParams.get('archeryQa') === '1') {
+        canvas.dataset.archeryDiagnostics = JSON.stringify(diagnostics);
+        canvas.dataset.archeryAssets = JSON.stringify(diagnostics.assets);
+    }
+
+    ctx.save();
+    ctx.imageSmoothingEnabled = false;
+    const arenaReady = assets && assets.drawCover(ctx, 0, 0, canvas.width, canvas.height);
+    if (!arenaReady) {
+        ctx.fillStyle = '#183d2c';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('CARREGANDO ARQUEARIA...', canvas.width / 2, canvas.height / 2);
+        ctx.textAlign = 'left';
+    }
+
+    drawArcoShooterArea();
+    if (assets) {
+        assets.draw(ctx, 'prop', 'wind_flag', 'IDLE', timeFrame, 28, 136, 46, 46, 'manifest');
+        assets.draw(ctx, 'prop', 'wind_flag', 'IDLE', timeFrame + 1, canvas.width - 28, 136, 46, 46, 'manifest');
+        [92, 225, 358].forEach((x, index) => assets.draw(ctx, 'prop', 'lane_marker', 'IDLE', index, x, 190, 32, 32, 'manifest'));
+    }
+
+    drawArcoTargets(assets, timeFrame);
+    for (let index = 0; index < arcoGame.arrows.length; index++) {
+        const arrow = arcoGame.arrows[index];
+        const visual = getArcoArrowVisual(arrow);
+        if (assets) assets.draw(ctx, 'arrow', visual.subtype, visual.state, timeFrame + index, arrow.x, arrow.y, 38, 38, 'center');
+    }
+    drawArcoEffects(assets);
+    drawArcoCharacters(assets, timeFrame);
+    ctx.restore();
+
+    ctx.fillStyle = 'rgba(7, 14, 12, 0.88)';
+    ctx.fillRect(0, 0, canvas.width, 35);
+    ctx.font = 'bold 10px monospace';
+    ctx.fillStyle = '#ffe066';
+    ctx.textAlign = 'left';
+    ctx.fillText('ZORP ' + arcoGame.playerScore, 12, 15);
+    ctx.fillStyle = '#ff806f';
+    ctx.textAlign = 'right';
+    ctx.fillText('MESTRE ' + arcoGame.mestreScore, canvas.width - 12, 15);
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    const seconds = Math.max(0, Math.ceil((arcoGame.roundFrames - arcoGame.roundFrame) / 60));
+    ctx.fillText(seconds + 's', canvas.width / 2, 14);
+    ctx.fillStyle = ['#9ff3b0', '#74e6ff', '#ffcf70'][arcoGame.phase];
+    ctx.font = 'bold 7px monospace';
+    ctx.fillText(['AQUECIMENTO', 'ALVOS MOVEIS', 'PRECISAO FINAL'][arcoGame.phase], canvas.width / 2, 27);
+    ctx.textAlign = 'left';
+
+    if (arcoGame.gameState === 'TUTORIAL') {
+        drawOverlayScreen('ARCO E FLECHA', [
+            'Disputa de 55 segundos contra o Mestre.',
+            '[W A S D]: mova-se dentro da area de tiro.',
+            '[ESPACO]: dispara imediatamente. Sem barra de forca.',
+            'Anel externo: base | interno: +15 | centro: +30.',
+            'Leia a trajetoria dos dourados raros. [ESPACO] inicia.'
+        ], '#e67e22');
+    } else if (arcoGame.gameState === 'GAMEOVER') {
+        const scoreLine = 'ZORP ' + arcoGame.playerScore + '  x  ' + arcoGame.mestreScore + ' MESTRE';
+        if (arcoGame.tie) {
+            drawOverlayScreen('EMPATE!', [
+                scoreLine,
+                'Bullseyes: ' + arcoGame.stats.playerBullseyes + ' x ' + arcoGame.stats.mestreBullseyes
+            ], '#f1c40f');
+        } else if (arcoGame.win) {
+            drawOverlayScreen('VITORIA NA ARENA!', [
+                scoreLine,
+                'Bullseyes: ' + arcoGame.stats.playerBullseyes,
+                'Insignia do Arco conquistada!'
+            ], '#2ecc71');
+        } else {
+            drawOverlayScreen('O MESTRE VENCEU', [
+                scoreLine,
+                'Mova-se, antecipe a trajetoria e acerte o timing.'
+            ], '#e74c3c');
+        }
+    }
+}
+
+window.__archeryQA = {
+    enter() {
+        currentScene = 'JOGO_ARCO';
+        resetArco();
+    },
+    play() {
+        currentScene = 'JOGO_ARCO';
+        if (arcoGame.gameState === 'TUTORIAL') beginArcoRound();
+    },
+    diagnostics() {
+        return getArcoDiagnostics();
+    }
+};
+
+const archeryQaParams = new URLSearchParams(window.location.search);
+if (archeryQaParams.get('archeryQa') === '1') {
+    window.__archeryQA.enter();
+    const qaSeconds = Number(archeryQaParams.get('archeryQaSeconds'));
+    if (Number.isFinite(qaSeconds) && qaSeconds > 0) arcoGame.roundFrames = Math.max(60, Math.round(qaSeconds * 60));
+    if (archeryQaParams.get('archeryQaPlay') === '1') window.__archeryQA.play();
 }
 
 // -------------------------------------------------------------
@@ -3955,11 +4753,13 @@ const sceneObstacles = {
         { x: 150, y: 230, w: 15, h: 15, type: 'cone', solid: true }
     ],
     ILHA_ARCO: [
-        { x: 100, y: 45, w: 25, h: 25, type: 'target', solid: true },
-        { x: 225, y: 45, w: 25, h: 25, type: 'target', solid: true },
-        { x: 350, y: 45, w: 25, h: 25, type: 'target', solid: true },
-        { x: 50, y: 100, w: 10, h: 30, type: 'wind_flag', solid: false },
-        { x: 380, y: 100, w: 10, h: 30, type: 'wind_flag', solid: false }
+        // Colisores acompanham apenas os volumes externos; centro, entrada direita e saída norte ficam livres.
+        { x: 68, y: 68, w: 54, h: 55, type: 'archery_island_decor', solid: true },
+        { x: 330, y: 79, w: 50, h: 52, type: 'archery_island_decor', solid: true },
+        { x: 35, y: 202, w: 55, h: 38, type: 'archery_island_decor', solid: true },
+        { x: 365, y: 201, w: 54, h: 39, type: 'archery_island_decor', solid: true },
+        { x: 35, y: 48, w: 20, h: 45, type: 'archery_island_decor', solid: false },
+        { x: 397, y: 51, w: 20, h: 45, type: 'archery_island_decor', solid: false }
     ],
     ILHA_ESCALADA: [
         { x: 45, y: 190, w: 40, h: 35, type: 'tent', solid: true },
@@ -4009,7 +4809,23 @@ const npcs = [
 
     { scene: "ILHA_SKATE", x: 225, y: 80, img: imgMestreSkate, tamanho: 48, msg: "> mestre_skate: A pista é uma linha contínua. Ganhe velocidade nas descidas, conecte rampas, rails e fios — e chegue à minha arena com 12.000 pontos!", isMaster: "JOGO_SKATE" },
     { id: "entrada_basquete", scene: "ILHA_BASQUETE", x: 225, y: 82, img: imgMestreBasqueteNpc, tamanho: 54, interactionWidth: 62, interactionHeight: 62, msg: "> MESTRE DO BASQUETE: Sessenta segundos. Vença no placar e conquiste a arena!", isMaster: BASKETBALL_SCENE },
-    { scene: "ILHA_ARCO", x: 225, y: 80, img: imgAprendiz, tamanho: 48, msg: "> MESTRE ARQUEIRO: Acerte os alvos mais rápidos que eu!", isMaster: "JOGO_ARCO" },
+    {
+        id: "mestre_arco_overworld",
+        scene: "ILHA_ARCO",
+        x: 225,
+        y: 118,
+        img: imgMestreArcoOverworld,
+        tamanho: 72,
+        sx: 335,
+        sy: 96,
+        sw: 656,
+        sh: 1114,
+        interactionWidth: 58,
+        interactionHeight: 76,
+        interactionOffsetY: 12,
+        msg: "> MESTRE DO ARCO: Observe a trajetória, alinhe o disparo e prove sua precisão!",
+        isMaster: "JOGO_ARCO"
+    },
     {
         id: "mestre_corrida",
         scene: "ILHA_CORRIDA",
@@ -4049,6 +4865,9 @@ window.addEventListener("keydown", (e) => {
         interactionPressed = true;
     }
     if (k === " ") keys.space = true;
+    if (currentScene === "JOGO_ARCO" && k === " " && !e.repeat) {
+        archeryShootPressed = true;
+    }
     if (currentScene === "JOGO_ESCALADA" && !e.repeat) {
         if (k === "w" || k === " ") climbUpPressed = true;
     }
@@ -4061,7 +4880,9 @@ window.addEventListener("keydown", (e) => {
 
 window.addEventListener("keyup", (e) => {
     const k = e.key.toLowerCase();
-    if (k === " ") keys.space = false;
+    if (k === " ") {
+        keys.space = false;
+    }
     if (keys.hasOwnProperty(k)) keys[k] = false;
 });
 
@@ -4848,7 +5669,7 @@ function drawNPC(npc) {
 function drawSceneObstacles() {
     const obstacles = sceneObstacles[currentScene] || [];
     obstacles.forEach(obs => {
-        if (obs.type === 'surf_island_decor') return;
+        if (obs.type === 'surf_island_decor' || obs.type === 'archery_island_decor') return;
         switch (obs.type) {
             case 'hurdle':
                 ctx.fillStyle = '#ffffff'; ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
@@ -5340,9 +6161,109 @@ function drawIlhaBasquete() {
 
 function drawIlhaArco() {
     drawWater();
-    ctx.fillStyle = "#4caf50"; ctx.fillRect(15, 15, 420, 270); 
-    drawPath(420, 130, 30, 40);
-    drawPath(205, 0, 40, 30);
+    ctx.save();
+    ctx.imageSmoothingEnabled = false;
+
+    // Costa pixelada e gramado: mantém a linguagem das outras ilhas sem reutilizar a arena do minigame.
+    ctx.fillStyle = "#24663f"; ctx.fillRect(11, 11, 428, 278);
+    ctx.fillStyle = "#54b85f"; ctx.fillRect(16, 16, 418, 268);
+    ctx.fillStyle = "#72d36c"; ctx.fillRect(22, 22, 406, 256);
+    ctx.fillStyle = "#9de477";
+    [[35, 37, 30, 4], [139, 29, 28, 3], [293, 38, 35, 4], [378, 111, 34, 3],
+     [45, 169, 27, 3], [157, 201, 38, 4], [273, 242, 31, 3], [340, 264, 42, 3]]
+        .forEach(([x, y, w, h]) => ctx.fillRect(x, y, w, h));
+    ctx.fillStyle = "#3c9851";
+    [[74, 150], [132, 253], [305, 181], [398, 250], [320, 60], [51, 118]]
+        .forEach(([x, y]) => { ctx.fillRect(x, y, 8, 3); ctx.fillRect(x + 3, y - 3, 3, 6); });
+
+    // Caminhos de terra ligam a entrada direita ao Mestre e preservam a saída norte para a Escalada.
+    ctx.fillStyle = "#9a7444";
+    ctx.fillRect(420, 127, 30, 46);
+    ctx.fillRect(205, 0, 40, 58);
+    ctx.fillRect(160, 52, 130, 101);
+    ctx.fillRect(250, 130, 185, 40);
+    ctx.fillStyle = "#d9bd72";
+    ctx.fillRect(424, 132, 26, 36);
+    ctx.fillRect(210, 0, 30, 62);
+    ctx.fillRect(166, 57, 118, 90);
+    ctx.fillRect(248, 136, 187, 28);
+    ctx.fillStyle = "#efd98d";
+    ctx.fillRect(177, 66, 96, 4);
+    ctx.fillRect(260, 142, 145, 3);
+
+    // Pontes curtas nas duas conexões do mapa.
+    ctx.fillStyle = "#654225";
+    for (let x = 422; x < 450; x += 7) ctx.fillRect(x, 129, 4, 42);
+    for (let y = 0; y < 24; y += 7) ctx.fillRect(207, y, 36, 4);
+
+    const assets = window.archeryAssets;
+    const frame = Math.floor(performance.now() / 240);
+    const drawAsset = (category, subtype, state, index, x, y, size) => assets
+        ? assets.draw(ctx, category, subtype, state, index, x, y, size, size, "manifest")
+        : false;
+
+    // Estandartes deixam a modalidade reconhecível ainda na borda da ilha.
+    drawAsset("prop", "wind_flag", "IDLE", frame, 45, 96, 58);
+    drawAsset("prop", "wind_flag", "IDLE", frame + 1, 407, 99, 58);
+
+    // Pequena área de treino: alvos diferentes e fardos nas laterais, sem fechar o corredor central.
+    if (!drawAsset("target", "large", "IDLE", frame, 95, 124, 64)) {
+        ctx.fillStyle = "#f5f0dc"; ctx.beginPath(); ctx.arc(95, 94, 25, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "#e74c3c"; ctx.beginPath(); ctx.arc(95, 94, 17, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "#f1c40f"; ctx.beginPath(); ctx.arc(95, 94, 7, 0, Math.PI * 2); ctx.fill();
+    }
+    drawAsset("target", "medium", "IDLE", frame + 2, 355, 132, 56);
+    drawAsset("prop", "hay_bale", "IDLE", frame, 62, 239, 64);
+    drawAsset("prop", "hay_bale", "IDLE", frame + 1, 392, 239, 60);
+    drawAsset("prop", "target_stand", "IDLE", frame, 321, 226, 48);
+
+    // Caixa de flechas decorativa.
+    ctx.fillStyle = "#5a351f"; ctx.fillRect(103, 212, 29, 17);
+    ctx.fillStyle = "#9b632f"; ctx.fillRect(106, 215, 23, 11);
+    ctx.fillStyle = "#e0aa45"; ctx.fillRect(106, 217, 23, 3);
+    [[111, 194], [119, 190], [127, 196]].forEach(([x, y], index) => {
+        ctx.strokeStyle = "#f0f3e8"; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, 216); ctx.stroke();
+        ctx.fillStyle = index === 1 ? "#e74c3c" : "#f1c40f";
+        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x - 3, y + 5); ctx.lineTo(x + 3, y + 5); ctx.closePath(); ctx.fill();
+    });
+
+    // Arco apoiado no cavalete direito.
+    ctx.strokeStyle = "#8a4b24"; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(333, 204, 12, -Math.PI / 2, Math.PI / 2); ctx.stroke();
+    ctx.strokeStyle = "#f4ead1"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(333, 192); ctx.lineTo(333, 216); ctx.stroke();
+    ctx.fillStyle = "#d9a441"; ctx.fillRect(328, 202, 9, 4);
+
+    // Placa de entrada aponta o caminho para a área do Mestre.
+    ctx.fillStyle = "#5a351f"; ctx.fillRect(372, 177, 4, 25);
+    ctx.fillStyle = "#8e572a"; ctx.fillRect(350, 174, 45, 17);
+    ctx.fillStyle = "#f5d66d";
+    ctx.beginPath(); ctx.moveTo(358, 182); ctx.lineTo(384, 182); ctx.lineTo(378, 177); ctx.moveTo(384, 182); ctx.lineTo(378, 187); ctx.strokeStyle = "#f5d66d"; ctx.lineWidth = 2; ctx.stroke();
+
+    // Label em forma de placa; o sprite do Mestre é desenhado depois pela camada global de NPCs.
+    ctx.fillStyle = "#5b3522"; ctx.fillRect(161, 24, 128, 17);
+    ctx.fillStyle = "#8d5530"; ctx.fillRect(164, 27, 122, 11);
+    ctx.fillStyle = "#fff0b7";
+    ctx.font = "bold 8px monospace";
+    ctx.textAlign = "center";
+    ctx.fillText("MESTRE DO ARCO", 225, 36);
+    ctx.textAlign = "left";
+    if (archeryQaParams.has("archeryIslandQa")) {
+        canvas.dataset.archeryIslandDiagnostics = JSON.stringify({
+            scene: currentScene,
+            masterAsset: imgMestreArcoOverworld.src,
+            masterLoaded: imgMestreArcoOverworld.complete && imgMestreArcoOverworld.naturalWidth > 0,
+            masterNaturalSize: [imgMestreArcoOverworld.naturalWidth, imgMestreArcoOverworld.naturalHeight],
+            masterPosition: [225, 118],
+            masterScaleHeight: 72,
+            masterCrop: [335, 96, 656, 1114],
+            interaction: [58, 76, 12],
+            player: [Math.round(player.x), Math.round(player.y)],
+            decorAssets: assets ? assets.diagnostics() : null
+        });
+    }
+    ctx.restore();
 }
 
 function drawIlhaCorrida() {
@@ -6990,6 +7911,18 @@ if (new URLSearchParams(window.location.search).has("surfNpcQa")) {
     currentScene = "ILHA_SURF";
     player.x = 225;
     player.y = 163;
+}
+
+if (archeryQaParams.has("archeryIslandQa")) {
+    currentScene = "ILHA_ARCO";
+    if (archeryQaParams.get("archeryIslandQa") === "master") {
+        player.x = 225;
+        player.y = 145;
+    } else {
+        player.x = 410;
+        player.y = 150;
+    }
+    dialogBox.classList.remove("show");
 }
 
 if (CLIMB_QA_MODE) {
