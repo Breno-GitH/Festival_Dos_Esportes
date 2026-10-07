@@ -396,6 +396,14 @@ function triggerBoxingKO(attacker, target, attackType) {
     boxeGame.koFrames = 0;
     boxeGame.winner = attacker;
     boxeGame.loser = target;
+    if (attacker === boxeGame.player || (attacker && attacker.role === "player")) {
+        if (typeof window !== "undefined" && typeof window.desbloquearMedalha === "function") {
+            window.desbloquearMedalha("boxe");
+        } else if (typeof insignias !== "undefined") {
+            insignias.esqui = true;
+            insignias.boxe = true;
+        }
+    }
     boxeGame.announcement = "K.O.!";
     boxeGame.announcementTimer = BOXING_CONFIG.ko.resultDelay;
     boxeGame.cameraShake = 15;

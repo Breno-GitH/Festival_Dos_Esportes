@@ -879,7 +879,10 @@ function drawSkateGame() {
         ], '#ff6b8f');
         // Usa o sprite fornecido do recordista sem criar ou substituir a arte do Mestre.
         if (imgMestreSkate && imgMestreSkate.complete && imgMestreSkate.naturalWidth > 0) {
-            ctx.drawImage(imgMestreSkate, 354, 177, 48, 48);
+            const aspect = imgMestreSkate.naturalWidth / imgMestreSkate.naturalHeight;
+            const h = 54;
+            const w = Math.round(h * aspect);
+            ctx.drawImage(imgMestreSkate, 354 + Math.round((48 - w) / 2), 174, w, h);
         }
     } else if (skateGame.state === 'FINISH') {
         drawSkateModule('arena', 105, 156, 240, 136, 1);
@@ -1824,7 +1827,10 @@ function fixedDrawFeatures() {
         const arenaImage=fixedKitCatalog.images.get(fixedKit.arena);
         if (!arenaImage || !arenaImage.complete || arenaImage.naturalWidth<=0) { ctx.fillStyle='#593d74'; ctx.fillRect(arenaX-180,fixedSY(105),420,145); }
         if (imgMestreSkate && imgMestreSkate.complete && imgMestreSkate.naturalWidth>0) {
-            ctx.drawImage(imgMestreSkate,arenaX+35,fixedSY(178),48,66);
+            const aspect = imgMestreSkate.naturalWidth / imgMestreSkate.naturalHeight;
+            const h = 66;
+            const w = Math.round(h * aspect);
+            ctx.drawImage(imgMestreSkate, arenaX+35 + Math.round((48 - w) / 2), fixedSY(178), w, h);
         }
         ctx.fillStyle='#ffe66d'; ctx.font='bold 10px monospace'; ctx.textAlign='center'; ctx.fillText('ARENA DO MESTRE',arenaX,fixedSY(-18));
     }

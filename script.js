@@ -6,8 +6,8 @@ const hintText = document.getElementById("hint-text");
 
 let currentScene = "HUB"; 
 
-// Registro de Insígnias dos Esportes
-const insignias = { 
+// Registro de Insígnias dos Esportes e Sistema Central de Medalhas
+const rawInsignias = { 
     esqui: false, 
     pingpong: false,
     skate: false,
@@ -15,8 +15,34 @@ const insignias = {
     arco: false,
     corrida: false,
     escalada: false,
-    surf: false
+    surf: false,
+    boxe: false
 };
+
+const insignias = new Proxy(rawInsignias, {
+    get(target, prop) {
+        if (prop === "esqui" || prop === "boxe") {
+            return Boolean(target.esqui || target.boxe);
+        }
+        return target[prop];
+    },
+    set(target, prop, value) {
+        const boolVal = Boolean(value);
+        target[prop] = boolVal;
+        if (prop === "esqui") target.boxe = boolVal;
+        if (prop === "boxe") target.esqui = boolVal;
+        if (boolVal && typeof window !== 'undefined' && typeof window.desbloquearMedalha === 'function') {
+            window.desbloquearMedalha(prop);
+        }
+        return true;
+    }
+});
+if (typeof window !== 'undefined') {
+    window.insignias = insignias;
+    if (typeof window.carregarMedalhas === 'function') {
+        window.carregarMedalhas(rawInsignias);
+    }
+}
 
 // -------------------------------------------------------------
 // CONFIGURAÇÃO DE SPRITES
@@ -273,7 +299,7 @@ const imgZorpSkateSpecial = [0, 1, 2, 3, 4, 5, 6, 7].map(i => {
     return skateExportImage(3,'row05',i%4+1);
 });
 
-const imgMestreSkate = new Image(); imgMestreSkate.src = "mestre_skate.png?v=2";
+const imgMestreSkate = new Image(); imgMestreSkate.src = "mestre_skate.png?v=5_cropped_pixel_perfect";
 // Só existe um sprite do Mestre do Skate neste projeto. As quatro referências
 // reutilizam a imagem válida em vez de solicitar variantes inexistentes (404).
 const imgMestreSkateCruise = imgMestreSkate;
@@ -3298,7 +3324,7 @@ const npcs = [
     { scene: "ILHA_PINGPONG", x: 150, y: 220, img: imgAprendiz, tamanho: 48, msg: "> APRENDIZ: Treine seu tempo de reação para rebatidas." },
     { scene: "ILHA_PINGPONG", x: 225, y: 80, img: imgMestrePingPong, tamanho: 48, msg: "> MESTRE DO PING-PONG: Mostre seus reflexos!", isMaster: "JOGO_PINGPONG" },
 
-    { scene: "ILHA_SKATE", x: 225, y: 80, img: imgMestreSkate, tamanho: 48, msg: "> mestre_skate: A pista é uma linha contínua. Ganhe velocidade nas descidas, conecte rampas, rails e fios — e chegue à minha arena com 12.000 pontos!", isMaster: "JOGO_SKATE" },
+    { scene: "ILHA_SKATE", x: 225, y: 80, img: imgMestreSkate, tamanho: 54, interactionWidth: 62, interactionHeight: 62, msg: "> mestre_skate: A pista é uma linha contínua. Ganhe velocidade nas descidas, conecte rampas, rails e fios — e chegue à minha arena com 12.000 pontos!", isMaster: "JOGO_SKATE" },
     { id: "entrada_basquete", scene: "ILHA_BASQUETE", x: 225, y: 82, img: imgMestreBasqueteNpc, tamanho: 54, interactionWidth: 62, interactionHeight: 62, msg: "> MESTRE DO BASQUETE: Sessenta segundos. Vença no placar e conquiste a arena!", isMaster: BASKETBALL_SCENE },
     {
         id: "mestre_arco_overworld",
@@ -6810,24 +6836,8 @@ function drawSkateGame() {
 
 
 function drawHUD() {
-    const size = 15;
-    const spacing = 22;
-    const startX = 20;
-    const startY = canvas.height - 30; 
-    let i = 0;
-
-    ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-    ctx.fillRect(5, canvas.height - 40, 200, 35);
-
-    for (let esporte in insignias) {
-        ctx.fillStyle = insignias[esporte] ? "#f1c40f" : "#7f8c8d";
-        ctx.beginPath();
-        ctx.arc(startX + (i * spacing), startY, size / 2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.strokeStyle = "#fff";
-        ctx.lineWidth = 1;
-        ctx.stroke();
-        i++;
+    if (typeof drawMedalhasHUD === "function") {
+        drawMedalhasHUD(ctx, canvas, insignias);
     }
 }
 
