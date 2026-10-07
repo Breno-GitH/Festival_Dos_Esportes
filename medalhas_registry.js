@@ -231,24 +231,32 @@
 
     // 7. Função mestra de desbloqueio
     function desbloquearMedalha(esporteId) {
+        if (global.__desbloqueandoMedalha) return true;
         const norm = normalizarId(esporteId);
         if (!norm) return false;
 
         const target = global.insignias;
-        const jaTinha = target ? Boolean(target[norm]) : false;
+        const jaTinha = Boolean(target && (target[norm] || (global.rawInsignias && global.rawInsignias[norm])));
 
-        if (target) {
-            target[norm] = true;
-            const meta = MEDALHAS_REGISTRY.find(m => m.id === norm);
-            if (meta) {
-                meta.aliases.forEach(a => target[a] = true);
+        global.__desbloqueandoMedalha = true;
+        try {
+            if (target) {
+                target[norm] = true;
+                const meta = MEDALHAS_REGISTRY.find(m => m.id === norm);
+                if (meta) {
+                    meta.aliases.forEach(a => {
+                        target[a] = true;
+                    });
+                }
             }
-        }
 
-        if (!jaTinha) {
-            dispararAnimacaoDesbloqueio(norm);
-            salvarMedalhas(target);
-            console.log(`[Medalha Conquistada]: ${norm.toUpperCase()}`);
+            if (!jaTinha) {
+                dispararAnimacaoDesbloqueio(norm);
+                salvarMedalhas(target);
+                console.log(`[Medalha Conquistada]: ${norm.toUpperCase()}`);
+            }
+        } finally {
+            global.__desbloqueandoMedalha = false;
         }
 
         return true;

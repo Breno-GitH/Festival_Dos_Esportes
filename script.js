@@ -28,16 +28,32 @@ const insignias = new Proxy(rawInsignias, {
     },
     set(target, prop, value) {
         const boolVal = Boolean(value);
+        if (target[prop] === boolVal) {
+            return true;
+        }
+
+        // Se a chamada está vindo de dentro do fluxo de desbloquearMedalha, apenas atualiza target sem re-disparar
+        if (typeof window !== 'undefined' && window.__desbloqueandoMedalha) {
+            target[prop] = boolVal;
+            if (prop === "esqui") target.boxe = boolVal;
+            if (prop === "boxe") target.esqui = boolVal;
+            return true;
+        }
+
+        // Se uma atribuição externa definiu insignias[prop] = true, delega ao sistema central de medalhas
+        if (boolVal && typeof window !== 'undefined' && typeof window.desbloquearMedalha === 'function') {
+            window.desbloquearMedalha(prop);
+            return true;
+        }
+
         target[prop] = boolVal;
         if (prop === "esqui") target.boxe = boolVal;
         if (prop === "boxe") target.esqui = boolVal;
-        if (boolVal && typeof window !== 'undefined' && typeof window.desbloquearMedalha === 'function') {
-            window.desbloquearMedalha(prop);
-        }
         return true;
     }
 });
 if (typeof window !== 'undefined') {
+    window.rawInsignias = rawInsignias;
     window.insignias = insignias;
     if (typeof window.carregarMedalhas === 'function') {
         window.carregarMedalhas(rawInsignias);
@@ -367,7 +383,7 @@ const pingPong = {
 // -------------------------------------------------------------
 // TELAS DE INTERFACE (UI OVERLAYS)
 // -------------------------------------------------------------
-function drawOverlayScreen(title, lines, titleColor = "#f1c40f") {
+function drawOverlayScreen(title, lines, titleColor = "#f1c40f", promptText = "[Pressione ESPAÇO para continuar]") {
     // Fundo escuro translúcido
     ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -388,8 +404,8 @@ function drawOverlayScreen(title, lines, titleColor = "#f1c40f") {
     
     // Instrução para continuar piscando
     ctx.fillStyle = (Date.now() % 1000 < 500) ? "#ffffff" : "#f1c40f"; 
-    ctx.font = "bold 14px monospace";
-    ctx.fillText("[Pressione ESPAÇO para continuar]", canvas.width / 2, canvas.height - 40);
+    ctx.font = "bold 13px monospace";
+    ctx.fillText(promptText, canvas.width / 2, canvas.height - 35);
     
     ctx.textAlign = "left"; // Reset
 }
