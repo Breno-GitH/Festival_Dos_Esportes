@@ -1,0 +1,255 @@
+[
+  {
+    "options": {
+      "profile": "full"
+    },
+    "profile": "full",
+    "phase": "COMPLETED",
+    "timeSeconds": 104.4,
+    "physicsSeconds": 104.04,
+    "failureReason": "",
+    "hit": "",
+    "x": 25849,
+    "y": 250,
+    "score": 22511,
+    "maximumCombo": 7120,
+    "maxMultiplier": 5,
+    "enteredRails": [
+      "first-rail",
+      "first-link",
+      "transfer-b",
+      "three-a",
+      "three-c",
+      "street-ledge",
+      "stair-handrail",
+      "danger-a",
+      "danger-b",
+      "danger-c",
+      "huge-exit-rail",
+      "void-a",
+      "void-b",
+      "void-c",
+      "void-d",
+      "void-e",
+      "grand-stair-handrail",
+      "advanced-bench-top",
+      "advanced-ledge-edge",
+      "high-rail",
+      "advanced-handrail",
+      "final-descending",
+      "final-transfer",
+      "final-high",
+      "final-curved",
+      "final-bench-edge",
+      "finish-rail"
+    ],
+    "jumps": 46,
+    "landings": 35
+  },
+  {
+    "options": {
+      "profile": "survival"
+    },
+    "profile": "survival",
+    "phase": "COMPLETED",
+    "timeSeconds": 104.18,
+    "physicsSeconds": 103.83,
+    "failureReason": "",
+    "hit": "",
+    "x": 25849,
+    "y": 250,
+    "score": 19913,
+    "maximumCombo": 7110,
+    "maxMultiplier": 5,
+    "enteredRails": [
+      "transfer-b",
+      "three-a",
+      "three-c",
+      "stair-handrail",
+      "danger-a",
+      "danger-b",
+      "danger-c",
+      "huge-exit-rail",
+      "void-a",
+      "void-b",
+      "void-c",
+      "void-d",
+      "void-e",
+      "grand-stair-handrail",
+      "advanced-bench-top",
+      "advanced-ledge-edge",
+      "high-rail",
+      "advanced-handrail",
+      "final-descending",
+      "final-transfer",
+      "final-high",
+      "final-curved"
+    ],
+    "jumps": 44,
+    "landings": 42
+  },
+  {
+    "options": {
+      "profile": "zero"
+    },
+    "profile": "zero",
+    "phase": "FAILED",
+    "timeSeconds": 1.8,
+    "physicsSeconds": 1.79,
+    "failureReason": "FELL_IN_GAP",
+    "hit": "",
+    "x": 562.1,
+    "y": 526.7,
+    "score": 0,
+    "maximumCombo": 0,
+    "maxMultiplier": 1,
+    "enteredRails": [],
+    "jumps": 0,
+    "landings": 0
+  },
+  {
+    "options": {
+      "profile": "hold"
+    },
+    "profile": "hold",
+    "phase": "FAILED",
+    "timeSeconds": 1.8,
+    "physicsSeconds": 1.79,
+    "failureReason": "FELL_IN_GAP",
+    "hit": "",
+    "x": 562.1,
+    "y": 526.7,
+    "score": 0,
+    "maximumCombo": 0,
+    "maxMultiplier": 1,
+    "enteredRails": [],
+    "jumps": 1,
+    "landings": 1
+  },
+  {
+    "options": {
+      "profile": "mash"
+    },
+    "profile": "mash",
+    "phase": "FAILED",
+    "timeSeconds": 10.63,
+    "physicsSeconds": 10.62,
+    "failureReason": "FELL_IN_GAP",
+    "hit": "",
+    "x": 2587.6,
+    "y": 521.1,
+    "score": 0,
+    "maximumCombo": 16120,
+    "maxMultiplier": 5,
+    "enteredRails": [
+      "first-rail",
+      "transfer-b"
+    ],
+    "jumps": 17,
+    "landings": 14
+  },
+  {
+    "options": {
+      "endX": 4000,
+      "exitOffsetPx": -20
+    },
+    "profile": "full",
+    "phase": "PLAYING",
+    "timeSeconds": 17.1,
+    "physicsSeconds": 17.09,
+    "failureReason": "",
+    "hit": "",
+    "x": 4000,
+    "y": 87.3,
+    "score": 2250,
+    "maximumCombo": 2250,
+    "maxMultiplier": 3.7,
+    "enteredRails": [
+      "first-rail",
+      "first-link",
+      "transfer-b",
+      "three-a",
+      "three-c"
+    ],
+    "jumps": 8,
+    "landings": 4
+  },
+  {
+    "options": {
+      "endX": 4000,
+      "exitOffsetPx": -10
+    },
+    "profile": "full",
+    "phase": "PLAYING",
+    "timeSeconds": 17.12,
+    "physicsSeconds": 17.11,
+    "failureReason": "",
+    "hit": "",
+    "x": 4002.6,
+    "y": 86.1,
+    "score": 2330,
+    "maximumCombo": 2330,
+    "maxMultiplier": 3.7,
+    "enteredRails": [
+      "first-rail",
+      "first-link",
+      "transfer-b",
+      "three-a",
+      "three-c"
+    ],
+    "jumps": 8,
+    "landings": 4
+  },
+  {
+    "options": {
+      "endX": 4000,
+      "exitOffsetPx": 0
+    },
+    "profile": "full",
+    "phase": "PLAYING",
+    "timeSeconds": 17.12,
+    "physicsSeconds": 17.11,
+    "failureReason": "",
+    "hit": "",
+    "x": 4002,
+    "y": 86.4,
+    "score": 2410,
+    "maximumCombo": 2410,
+    "maxMultiplier": 3.7,
+    "enteredRails": [
+      "first-rail",
+      "first-link",
+      "transfer-b",
+      "three-a",
+      "three-c"
+    ],
+    "jumps": 8,
+    "landings": 4
+  },
+  {
+    "options": {
+      "endX": 4000,
+      "exitOffsetPx": 8
+    },
+    "profile": "full",
+    "phase": "PLAYING",
+    "timeSeconds": 17.12,
+    "physicsSeconds": 17.11,
+    "failureReason": "",
+    "hit": "",
+    "x": 4001.3,
+    "y": 90.3,
+    "score": 2451,
+    "maximumCombo": 2451,
+    "maxMultiplier": 3.7,
+    "enteredRails": [
+      "first-rail",
+      "first-link",
+      "transfer-b",
+      "three-a",
+      "three-c"
+    ],
+    "jumps": 8,
+    "landings": 4
+  }
+]

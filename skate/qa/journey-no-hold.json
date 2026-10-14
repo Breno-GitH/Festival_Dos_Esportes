@@ -1,0 +1,76 @@
+{
+  "summary": {
+    "drawMeanMs": 0.75,
+    "presentation": {
+      "stage": "failed",
+      "stageAge": 43.811066666763196,
+      "megaStarted": false,
+      "landedMega": false,
+      "finished": false,
+      "clock": 43.811066666763196,
+      "landingAge": 44.81106666676327,
+      "lastLanding": null,
+      "particles": 0,
+      "particleLimit": 384,
+      "averageParticles": 0,
+      "averageFireworks": 0,
+      "activePeak": 0,
+      "launched": 0,
+      "bursts": 0
+    },
+    "daylight": "night",
+    "neon": 1,
+    "megaState": "",
+    "controlledMs": 0,
+    "phase": "FAILED",
+    "paused": false,
+    "acceleratedReplay": false,
+    "x": 24288,
+    "y": 524.3,
+    "mode": "CRASH",
+    "jumpTier": "mega-air",
+    "held": false,
+    "forwardSpeed": 280,
+    "verticalVelocity": 1651.5,
+    "captureBlend": 0,
+    "rail": "",
+    "beat": "FINAL GAUNTLET",
+    "time": 2.4,
+    "score": 0,
+    "peakCombo": 0,
+    "fps": 60,
+    "zoom": 0.319,
+    "timeScale": 0.8,
+    "checkpoints": [
+      "checkpoint-1",
+      "checkpoint-2"
+    ],
+    "failure": "FELL_IN_GAP",
+    "hit": "",
+    "enteredRails": []
+  },
+  "transitions": [
+    {
+      "x": 23622,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 0.01
+    },
+    {
+      "x": 24057,
+      "y": 135,
+      "mode": "AIR",
+      "rail": "",
+      "time": 1.57
+    },
+    {
+      "x": 24288,
+      "y": 524,
+      "mode": "CRASH",
+      "rail": "",
+      "time": 2.4
+    }
+  ],
+  "inputs": []
+}

@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "scope": "Skate rebuild; complete fixed linear route through the finish",
+  "activeRuntime": {
+    "scene": "JOGO_SKATE",
+    "runtimeFile": "skate/skate_ollie_runtime.js",
+    "physicsFile": "skate/ollie_physics.js",
+    "loadedBy": "index.html",
+    "entryPoints": [
+      "resetSkateGame",
+      "updateSkateGame",
+      "drawSkateGame"
+    ],
+    "overworldScene": "ILHA_SKATE",
+    "status": "kept active during migration"
+  },
+  "generationsFound": [
+    {
+      "name": "park arcade legacy",
+      "location": "tracked history of script.js",
+      "characteristics": [
+        "free horizontal movement in both directions",
+        "75 second timer",
+        "A/D/W/S plus J/K/U/I/L controls",
+        "special meter and wormhole move",
+        "collectible batteries, tapes, multipliers and time crystals",
+        "Master skater simulation and score race"
+      ],
+      "runtimeStatus": "removed from the current working copy; retained in Git history"
+    },
+    {
+      "name": "endless style runner legacy",
+      "location": "tracked HEAD version of skate_endless.js",
+      "characteristics": [
+        "fixed side-scrolling course",
+        "Space/ArrowUp jump",
+        "ArrowDown slide",
+        "A/D/W/S tricks and rail balance",
+        "low, medium and high routes",
+        "trick gates and required actions"
+      ],
+      "runtimeStatus": "removed from the working tree after the new runtime passed QA"
+    },
+    {
+      "name": "fixed Space flow prototype",
+      "location": "current working copy of skate_endless.js",
+      "characteristics": [
+        "automatic forward movement",
+        "Space press, hold, release and tap sequences",
+        "lateral follow camera",
+        "fixed authored course with repeated extension and final flow",
+        "checkpoints and ordered progression gates",
+        "distance plus style score"
+      ],
+      "runtimeStatus": "removed from the working tree after its useful systems were migrated"
+    }
+  ],
+  "timingAudit": {
+    "qteSymbolsFound": false,
+    "earlyPerfectLateJudgementFound": false,
+    "note": "No active or tracked Skate symbol with QTE or EARLY/PERFECT/LATE judgement was found. Legacy trick gates, mandatory inputs and rail balance are the timing/action systems that must not return."
+  },
+  "KEEP": [
+    {
+      "item": "JOGO_SKATE and ILHA_SKATE scene identifiers",
+      "reason": "stable OverWorld routing"
+    },
+    {
+      "item": "resetSkateGame/updateSkateGame/drawSkateGame entry-point names",
+      "reason": "the shared main loop and Mestre do Skate already call them"
+    },
+    {
+      "item": "Mestre do Skate NPC and island interaction",
+      "reason": "entry point and narrative framing requested for preservation"
+    },
+    {
+      "item": "ESC return to ILHA_SKATE",
+      "reason": "existing navigation behavior"
+    },
+    {
+      "item": "central skate medal id",
+      "reason": "persistent progression already recognizes skate"
+    },
+    {
+      "item": "original source sheets and exported manifests",
+      "reason": "lossless source and asset provenance"
+    }
+  ],
+  "REUSE": [
+    {
+      "item": "101 exported Zorp Skate frames",
+      "location": "skate_sprites/zorp_skate_*.png",
+      "note": "Pro4 has confirmed animation names; Pro1-Pro3 row meanings need animation review before final binding."
+    },
+    {
+      "item": "142 exported environment sprites",
+      "location": "skate_sprites/exported/**",
+      "groups": [
+        "ramps",
+        "rails",
+        "platforms",
+        "bridges",
+        "cables",
+        "supports",
+        "tunnels",
+        "signs",
+        "props",
+        "decor",
+        "finish"
+      ]
+    },
+    {
+      "item": "background_skate.png",
+      "note": "usable as skyline/parallax, independent from collision geometry"
+    },
+    {
+      "item": "mestre_skate.png and mestre_skate_original.png",
+      "note": "NPC and finish presentation"
+    },
+    {
+      "item": "distance plus style score, combo bank and combo break concepts",
+      "source": "current fixedStyle/fixedBank/fixedBreak flow",
+      "note": "move into an isolated score system and recalibrate after the new course exists"
+    },
+    {
+      "item": "sprite cache and manifest-driven loading concepts",
+      "source": "fixedSpriteCache and fixedKitCatalog"
+    },
+    {
+      "item": "side camera look-ahead and smoothing concepts",
+      "source": "current fixedUpdateCamera flow"
+    }
+  ],
+  "REPLACE": [
+    {
+      "item": "monolithic skate_endless.js runtime",
+      "reason": "input, course data, physics, score, camera, rendering and integration share one global file"
+    },
+    {
+      "item": "fixedBuildLevel/fixedExtendCourse/fixedAddFinalFlow",
+      "reason": "current course is not the approved new level design"
+    },
+    {
+      "item": "direct window keyboard listeners inside gameplay",
+      "reason": "new input adapter must expose Space actions without owning simulation rules"
+    },
+    {
+      "item": "direct access to currentScene, player, keys and insignias from the gameplay runtime",
+      "reason": "these dependencies belong in the OverWorld adapter"
+    },
+    {
+      "item": "ordered progression gates and mandatory action gates",
+      "reason": "they encode course-specific timing requirements and can recreate QTE-like play"
+    },
+    {
+      "item": "hard-coded target score of 110000",
+      "reason": "victory tuning depends on the future course and score economy"
+    },
+    {
+      "item": "A/D/W/S, arrow and auxiliary trick-key control schemes from legacy generations",
+      "reason": "Space is the primary gameplay control"
+    }
+  ],
+  "DELETE_LATER": [],
+  "SHARED": [
+    {
+      "item": "gameCanvas and 2D context",
+      "location": "script.js"
+    },
+    {
+      "item": "main update/draw loop and scene routing",
+      "location": "script.js"
+    },
+    {
+      "item": "OverWorld player, island navigation, dialog and NPC interaction",
+      "location": "script.js"
+    },
+    {
+      "item": "central medal registry, persistence and HUD",
+      "location": "medalhas_registry.js"
+    },
+    {
+      "item": "skate_locked.png and skate_unlocked.png",
+      "location": "medalhas/"
+    },
+    {
+      "item": "Arena_Basquete.png, Aros_Basquete.png and Bola_Basquete.png",
+      "location": "skate_sprites/",
+      "note": "owned by Basketball despite their current directory"
+    },
+    {
+      "item": "mestre_corrida_npc.png",
+      "location": "skate_sprites/",
+      "note": "owned by the Race island despite its current directory"
+    }
+  ],
+  "deletion": {
+    "deletedNow": [
+      "skate_endless.js",
+      "skate_physics_test.js",
+      "tools/skate_skill_runtime.js",
+      "tools/skate_skill_runtime.html",
+      "tools/skate_runtime_server.js"
+    ],
+    "reason": "Removed after the SPACE-only runtime passed automated gameplay and completion integration QA; shared sprite assets were preserved."
+  },
+  "architecture": {
+    "contractFile": "skate/contracts.js",
+    "designFile": "skate/ARCHITECTURE.md",
+    "courseCreated": true,
+    "temporaryTestLaneCreated": false,
+    "runtimeConnected": true,
+    "gameplayImplemented": [
+      "automatic forward movement",
+      "smoothed side camera",
+      "ground and slope collision",
+      "variable-height SPACE Ollie",
+      "100ms input buffer",
+      "fixed collision obstacles across the authored course",
+      "20 authored ramps apply SPACE- and speed-scaled lift",
+      "continuous ground following avoids repeated false landings on downhill slopes",
+      "air tricks with airtime limits",
+      "polyline Grind with distance score",
+      "time-limited Manual and Manual Ollie out",
+      "active/banked combo score with crash loss",
+      "complete authored course with one linear route and seven sections",
+      "20 fixed ramps, 36 rails, 10 gaps and 36 obstacles",
+      "second-half density: 13 ramps, 22 rails, 9 gaps and 21 obstacles",
+      "Checkpoint 1 at 32% and Checkpoint 2 at 68% of course length",
+      "gradual downhill speed increase from 230 to 310",
+      "checkpoint respawn, banked score preservation and finish state"
+    ],
+    "gameplayDeferred": ["score economy balance across novice/normal/expert runs"]
+  }
+}

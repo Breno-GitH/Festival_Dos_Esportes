@@ -1,0 +1,120 @@
+{
+  "summary": {
+    "phase": "PLAYING",
+    "paused": true,
+    "acceleratedReplay": true,
+    "x": 1502,
+    "y": 112.8,
+    "mode": "AIR",
+    "jumpTier": "super",
+    "held": false,
+    "forwardSpeed": 224.1,
+    "verticalVelocity": -306.3,
+    "captureBlend": 0,
+    "rail": "",
+    "beat": "FAST START",
+    "time": 5.94,
+    "score": 0,
+    "peakCombo": 364,
+    "fps": 30,
+    "zoom": 0.654,
+    "timeScale": 1,
+    "checkpoints": [],
+    "failure": "",
+    "hit": "",
+    "enteredRails": [
+      "first-rail"
+    ]
+  },
+  "transitions": [
+    {
+      "x": 152,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 0.01
+    },
+    {
+      "x": 401,
+      "y": 245,
+      "mode": "AIR",
+      "rail": "",
+      "time": 1.09
+    },
+    {
+      "x": 493,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 1.49
+    },
+    {
+      "x": 779,
+      "y": 216,
+      "mode": "AIR",
+      "rail": "",
+      "time": 2.74
+    },
+    {
+      "x": 848,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 3.04
+    },
+    {
+      "x": 868,
+      "y": 245,
+      "mode": "AIR",
+      "rail": "",
+      "time": 3.12
+    },
+    {
+      "x": 948,
+      "y": 234,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 3.47
+    },
+    {
+      "x": 1046,
+      "y": 198,
+      "mode": "AIR",
+      "rail": "",
+      "time": 3.91
+    },
+    {
+      "x": 1077,
+      "y": 194,
+      "mode": "GRIND",
+      "rail": "first-rail",
+      "time": 4.04
+    },
+    {
+      "x": 1457,
+      "y": 206,
+      "mode": "AIR",
+      "rail": "",
+      "time": 5.74
+    }
+  ],
+  "inputs": [
+    {
+      "x": 397.25000000000085,
+      "action": "normal",
+      "at": 39625.700000047524
+    },
+    {
+      "x": 863.7151562499984,
+      "action": "normal",
+      "at": 41659.03333338056
+    },
+    {
+      "x": 1053.6035429166618,
+      "action": "capture",
+      "rail": "first-rail",
+      "distance": 21.842984962464456,
+      "at": 42492.36666671377
+    }
+  ]
+}

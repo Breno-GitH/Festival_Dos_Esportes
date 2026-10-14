@@ -1,0 +1,5105 @@
+{
+  "schemaVersion": 1,
+  "status": "rider-active; scene assets prepared-only",
+  "sources": {
+    "zorp_skate2.0.png": {
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "7e7359b61dd45d203a5fd362a3dcdcd5826a439ee2d9aa94149765844ad4629c"
+    },
+    "skate_assets2.0.png": {
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "5a8571d84ec1a6cbe0836246d64bed5c1f16347ed9c5d6821eddd095565a849d"
+    }
+  },
+  "extraction": {
+    "alphaKeep": 5,
+    "alphaBounds": 14,
+    "padding": 4,
+    "rgbColorKey": false,
+    "sectionTitlesExcluded": true
+  },
+  "zorp": {
+    "anchorPolicy": "bottom-center at the board underside for attached poses",
+    "animations": {
+      "ride_idle": [
+        {
+          "id": "ride_idle_01",
+          "file": "skate_v2/zorp/ride_idle/ride_idle_01.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            0,
+            48,
+            137,
+            232
+          ],
+          "sourceBounds": [
+            7,
+            49,
+            126,
+            223
+          ],
+          "size": [
+            119,
+            174
+          ],
+          "frame": 1,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            58.0,
+            166
+          ],
+          "drawOffsetPx": [
+            -58.0,
+            -166
+          ],
+          "boardContactPx": [
+            58.0,
+            166
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "ride_idle_02",
+          "file": "skate_v2/zorp/ride_idle/ride_idle_02.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            138,
+            48,
+            274,
+            232
+          ],
+          "sourceBounds": [
+            143,
+            53,
+            269,
+            223
+          ],
+          "size": [
+            126,
+            170
+          ],
+          "frame": 2,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            62.0,
+            162
+          ],
+          "drawOffsetPx": [
+            -62.0,
+            -162
+          ],
+          "boardContactPx": [
+            62.0,
+            162
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "ride_idle_03",
+          "file": "skate_v2/zorp/ride_idle/ride_idle_03.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            274,
+            48,
+            423,
+            232
+          ],
+          "sourceBounds": [
+            279,
+            53,
+            412,
+            223
+          ],
+          "size": [
+            133,
+            170
+          ],
+          "frame": 3,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            64.5,
+            162
+          ],
+          "drawOffsetPx": [
+            -64.5,
+            -162
+          ],
+          "boardContactPx": [
+            64.5,
+            162
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        }
+      ],
+      "push_accelerate": [
+        {
+          "id": "push_accelerate_01",
+          "file": "skate_v2/zorp/push_accelerate/push_accelerate_01.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            445,
+            48,
+            602,
+            232
+          ],
+          "sourceBounds": [
+            451,
+            52,
+            592,
+            221
+          ],
+          "size": [
+            141,
+            169
+          ],
+          "frame": 1,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            68.5,
+            162
+          ],
+          "drawOffsetPx": [
+            -68.5,
+            -162
+          ],
+          "boardContactPx": [
+            68.5,
+            162
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "push_accelerate_02",
+          "file": "skate_v2/zorp/push_accelerate/push_accelerate_02.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            602,
+            48,
+            828,
+            232
+          ],
+          "sourceBounds": [
+            609,
+            59,
+            806,
+            224
+          ],
+          "size": [
+            197,
+            165
+          ],
+          "frame": 2,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            124.5,
+            157
+          ],
+          "drawOffsetPx": [
+            -124.5,
+            -157
+          ],
+          "boardContactPx": [
+            124.5,
+            157
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "push_accelerate_03",
+          "file": "skate_v2/zorp/push_accelerate/push_accelerate_03.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            846,
+            48,
+            1027,
+            232
+          ],
+          "sourceBounds": [
+            859,
+            48,
+            1016,
+            223
+          ],
+          "size": [
+            157,
+            175
+          ],
+          "frame": 3,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            92.0,
+            168
+          ],
+          "drawOffsetPx": [
+            -92.0,
+            -168
+          ],
+          "boardContactPx": [
+            92.0,
+            168
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "push_accelerate_04",
+          "file": "skate_v2/zorp/push_accelerate/push_accelerate_04.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            1027,
+            48,
+            1200,
+            232
+          ],
+          "sourceBounds": [
+            1040,
+            49,
+            1177,
+            223
+          ],
+          "size": [
+            137,
+            174
+          ],
+          "frame": 4,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            66.0,
+            167
+          ],
+          "drawOffsetPx": [
+            -66.0,
+            -167
+          ],
+          "boardContactPx": [
+            66.0,
+            167
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        }
+      ],
+      "normal_jump": [
+        {
+          "id": "normal_jump_01",
+          "file": "skate_v2/zorp/normal_jump/normal_jump_01.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            0,
+            284,
+            138,
+            492
+          ],
+          "sourceBounds": [
+            7,
+            318,
+            128,
+            486
+          ],
+          "size": [
+            121,
+            168
+          ],
+          "frame": 1,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            61.0,
+            160
+          ],
+          "drawOffsetPx": [
+            -61.0,
+            -160
+          ],
+          "boardContactPx": [
+            61.0,
+            160
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "normal_jump_02",
+          "file": "skate_v2/zorp/normal_jump/normal_jump_02.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            138,
+            284,
+            272,
+            492
+          ],
+          "sourceBounds": [
+            143,
+            284,
+            266,
+            468
+          ],
+          "size": [
+            123,
+            184
+          ],
+          "frame": 2,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            65.5,
+            176
+          ],
+          "drawOffsetPx": [
+            -65.5,
+            -176
+          ],
+          "boardContactPx": [
+            65.5,
+            176
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "normal_jump_03",
+          "file": "skate_v2/zorp/normal_jump/normal_jump_03.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            272,
+            284,
+            417,
+            492
+          ],
+          "sourceBounds": [
+            276,
+            294,
+            403,
+            479
+          ],
+          "size": [
+            127,
+            185
+          ],
+          "frame": 3,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            69.0,
+            177
+          ],
+          "drawOffsetPx": [
+            -69.0,
+            -177
+          ],
+          "boardContactPx": [
+            69.0,
+            177
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        }
+      ],
+      "ollie_board_flip": [
+        {
+          "id": "ollie_board_flip_01",
+          "file": "skate_v2/zorp/ollie_board_flip/ollie_board_flip_01.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            428,
+            284,
+            556,
+            492
+          ],
+          "sourceBounds": [
+            432,
+            332,
+            553,
+            487
+          ],
+          "size": [
+            121,
+            155
+          ],
+          "frame": 1,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            60.0,
+            148
+          ],
+          "drawOffsetPx": [
+            -60.0,
+            -148
+          ],
+          "boardContactPx": [
+            60.0,
+            148
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "ollie_board_flip_02",
+          "file": "skate_v2/zorp/ollie_board_flip/ollie_board_flip_02.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            556,
+            284,
+            682,
+            492
+          ],
+          "sourceBounds": [
+            556,
+            294,
+            678,
+            475
+          ],
+          "size": [
+            122,
+            181
+          ],
+          "frame": 2,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            62.0,
+            173
+          ],
+          "drawOffsetPx": [
+            -62.0,
+            -173
+          ],
+          "boardContactPx": [
+            62.0,
+            173
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "ollie_board_flip_03",
+          "file": "skate_v2/zorp/ollie_board_flip/ollie_board_flip_03.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            682,
+            284,
+            814,
+            492
+          ],
+          "sourceBounds": [
+            682,
+            284,
+            809,
+            473
+          ],
+          "size": [
+            127,
+            189
+          ],
+          "frame": 3,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            60.0,
+            174
+          ],
+          "drawOffsetPx": [
+            -60.0,
+            -174
+          ],
+          "boardContactPx": [
+            60.0,
+            174
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "ollie_board_flip_04",
+          "file": "skate_v2/zorp/ollie_board_flip/ollie_board_flip_04.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            814,
+            284,
+            952,
+            492
+          ],
+          "sourceBounds": [
+            817,
+            284,
+            950,
+            477
+          ],
+          "size": [
+            133,
+            193
+          ],
+          "frame": 4,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            63.0,
+            180
+          ],
+          "drawOffsetPx": [
+            -63.0,
+            -180
+          ],
+          "boardContactPx": [
+            63.0,
+            180
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "ollie_board_flip_05",
+          "file": "skate_v2/zorp/ollie_board_flip/ollie_board_flip_05.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            952,
+            284,
+            1094,
+            492
+          ],
+          "sourceBounds": [
+            952,
+            290,
+            1090,
+            482
+          ],
+          "size": [
+            138,
+            192
+          ],
+          "frame": 5,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            74.5,
+            184
+          ],
+          "drawOffsetPx": [
+            -74.5,
+            -184
+          ],
+          "boardContactPx": [
+            74.5,
+            184
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "ollie_board_flip_06",
+          "file": "skate_v2/zorp/ollie_board_flip/ollie_board_flip_06.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            1094,
+            284,
+            1254,
+            492
+          ],
+          "sourceBounds": [
+            1098,
+            299,
+            1237,
+            486
+          ],
+          "size": [
+            139,
+            187
+          ],
+          "frame": 6,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            68.0,
+            180
+          ],
+          "drawOffsetPx": [
+            -68.0,
+            -180
+          ],
+          "boardContactPx": [
+            68.0,
+            180
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        }
+      ],
+      "super_jump": [
+        {
+          "id": "super_jump_01",
+          "file": "skate_v2/zorp/super_jump/super_jump_01.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            0,
+            545,
+            137,
+            760
+          ],
+          "sourceBounds": [
+            8,
+            619,
+            137,
+            758
+          ],
+          "size": [
+            129,
+            139
+          ],
+          "frame": 1,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            64.5,
+            131
+          ],
+          "drawOffsetPx": [
+            -64.5,
+            -131
+          ],
+          "boardContactPx": [
+            64.5,
+            131
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "super_jump_02",
+          "file": "skate_v2/zorp/super_jump/super_jump_02.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            137,
+            545,
+            250,
+            760
+          ],
+          "sourceBounds": [
+            137,
+            579,
+            250,
+            757
+          ],
+          "size": [
+            113,
+            178
+          ],
+          "frame": 2,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            59.0,
+            170
+          ],
+          "drawOffsetPx": [
+            -59.0,
+            -170
+          ],
+          "boardContactPx": [
+            59.0,
+            170
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "super_jump_03",
+          "file": "skate_v2/zorp/super_jump/super_jump_03.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            250,
+            545,
+            383,
+            760
+          ],
+          "sourceBounds": [
+            250,
+            545,
+            383,
+            741
+          ],
+          "size": [
+            133,
+            196
+          ],
+          "frame": 3,
+          "boardAttached": null,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": false,
+          "anchorPx": [
+            66.5,
+            191
+          ],
+          "drawOffsetPx": [
+            -66.5,
+            -191
+          ],
+          "boardContactPx": null,
+          "anchorDetection": "estimated-no-visible-rim",
+          "boardVisibility": "not clearly visible in source pose",
+          "confidence": "review before using as a continuous board pose"
+        },
+        {
+          "id": "super_jump_04",
+          "file": "skate_v2/zorp/super_jump/super_jump_04.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            383,
+            506,
+            508,
+            760
+          ],
+          "sourceBounds": [
+            383,
+            506,
+            508,
+            740
+          ],
+          "size": [
+            125,
+            234
+          ],
+          "frame": 4,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            67.0,
+            136
+          ],
+          "drawOffsetPx": [
+            -67.0,
+            -136
+          ],
+          "boardContactPx": [
+            67.0,
+            136
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "super_jump_05",
+          "file": "skate_v2/zorp/super_jump/super_jump_05.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            500,
+            545,
+            607,
+            760
+          ],
+          "sourceBounds": [
+            500,
+            550,
+            607,
+            741
+          ],
+          "size": [
+            107,
+            191
+          ],
+          "frame": 5,
+          "boardAttached": null,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": false,
+          "anchorPx": [
+            53.5,
+            186
+          ],
+          "drawOffsetPx": [
+            -53.5,
+            -186
+          ],
+          "boardContactPx": null,
+          "anchorDetection": "estimated-no-visible-rim",
+          "boardVisibility": "not clearly visible in source pose",
+          "confidence": "review before using as a continuous board pose"
+        },
+        {
+          "id": "super_jump_06",
+          "file": "skate_v2/zorp/super_jump/super_jump_06.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            607,
+            545,
+            748,
+            760
+          ],
+          "sourceBounds": [
+            607,
+            584,
+            740,
+            760
+          ],
+          "size": [
+            133,
+            176
+          ],
+          "frame": 6,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            73.5,
+            168
+          ],
+          "drawOffsetPx": [
+            -73.5,
+            -168
+          ],
+          "boardContactPx": [
+            73.5,
+            168
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        }
+      ],
+      "grind_stance": [
+        {
+          "id": "grind_stance_01",
+          "file": "skate_v2/zorp/grind_stance/grind_stance_01.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            760,
+            545,
+            893,
+            760
+          ],
+          "sourceBounds": [
+            760,
+            579,
+            893,
+            755
+          ],
+          "size": [
+            133,
+            176
+          ],
+          "frame": 1,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            68.5,
+            167
+          ],
+          "drawOffsetPx": [
+            -68.5,
+            -167
+          ],
+          "boardContactPx": [
+            68.5,
+            167
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "grind_stance_02",
+          "file": "skate_v2/zorp/grind_stance/grind_stance_02.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            893,
+            545,
+            1005,
+            760
+          ],
+          "sourceBounds": [
+            893,
+            574,
+            1005,
+            751
+          ],
+          "size": [
+            112,
+            177
+          ],
+          "frame": 2,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            63.0,
+            169
+          ],
+          "drawOffsetPx": [
+            -63.0,
+            -169
+          ],
+          "boardContactPx": [
+            63.0,
+            169
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "grind_stance_03",
+          "file": "skate_v2/zorp/grind_stance/grind_stance_03.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            1005,
+            545,
+            1127,
+            760
+          ],
+          "sourceBounds": [
+            1005,
+            568,
+            1127,
+            753
+          ],
+          "size": [
+            122,
+            185
+          ],
+          "frame": 3,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            70.5,
+            178
+          ],
+          "drawOffsetPx": [
+            -70.5,
+            -178
+          ],
+          "boardContactPx": [
+            70.5,
+            178
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "grind_stance_04",
+          "file": "skate_v2/zorp/grind_stance/grind_stance_04.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            1127,
+            545,
+            1254,
+            760
+          ],
+          "sourceBounds": [
+            1127,
+            574,
+            1246,
+            752
+          ],
+          "size": [
+            119,
+            178
+          ],
+          "frame": 4,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            57.5,
+            172
+          ],
+          "drawOffsetPx": [
+            -57.5,
+            -172
+          ],
+          "boardContactPx": [
+            57.5,
+            172
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        }
+      ],
+      "grind_jump_out": [
+        {
+          "id": "grind_jump_out_01",
+          "file": "skate_v2/zorp/grind_jump_out/grind_jump_out_01.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            0,
+            814,
+            142,
+            1038
+          ],
+          "sourceBounds": [
+            8,
+            844,
+            139,
+            1000
+          ],
+          "size": [
+            131,
+            156
+          ],
+          "frame": 1,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            68.5,
+            146
+          ],
+          "drawOffsetPx": [
+            -68.5,
+            -146
+          ],
+          "boardContactPx": [
+            68.5,
+            146
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "grind_jump_out_02",
+          "file": "skate_v2/zorp/grind_jump_out/grind_jump_out_02.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            142,
+            814,
+            276,
+            1038
+          ],
+          "sourceBounds": [
+            142,
+            814,
+            273,
+            984
+          ],
+          "size": [
+            131,
+            170
+          ],
+          "frame": 2,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            59.0,
+            161
+          ],
+          "drawOffsetPx": [
+            -59.0,
+            -161
+          ],
+          "boardContactPx": [
+            59.0,
+            161
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "grind_jump_out_03",
+          "file": "skate_v2/zorp/grind_jump_out/grind_jump_out_03.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            276,
+            814,
+            423,
+            1038
+          ],
+          "sourceBounds": [
+            280,
+            849,
+            414,
+            1016
+          ],
+          "size": [
+            134,
+            167
+          ],
+          "frame": 3,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            65.0,
+            159
+          ],
+          "drawOffsetPx": [
+            -65.0,
+            -159
+          ],
+          "boardContactPx": [
+            65.0,
+            159
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        }
+      ],
+      "air_catch_landing": [
+        {
+          "id": "air_catch_landing_01",
+          "file": "skate_v2/zorp/air_catch_landing/air_catch_landing_01.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            434,
+            814,
+            601,
+            1038
+          ],
+          "sourceBounds": [
+            444,
+            814,
+            595,
+            978
+          ],
+          "size": [
+            151,
+            164
+          ],
+          "frame": 1,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            53.0,
+            156
+          ],
+          "drawOffsetPx": [
+            -53.0,
+            -156
+          ],
+          "boardContactPx": [
+            53.0,
+            156
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "air_catch_landing_02",
+          "file": "skate_v2/zorp/air_catch_landing/air_catch_landing_02.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            563,
+            896,
+            687,
+            1038
+          ],
+          "sourceBounds": [
+            563,
+            896,
+            684,
+            1034
+          ],
+          "size": [
+            121,
+            138
+          ],
+          "frame": 2,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            62.0,
+            131
+          ],
+          "drawOffsetPx": [
+            -62.0,
+            -131
+          ],
+          "boardContactPx": [
+            62.0,
+            131
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "air_catch_landing_03",
+          "file": "skate_v2/zorp/air_catch_landing/air_catch_landing_03.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            687,
+            814,
+            824,
+            1038
+          ],
+          "sourceBounds": [
+            688,
+            864,
+            817,
+            1031
+          ],
+          "size": [
+            129,
+            167
+          ],
+          "frame": 3,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            62.0,
+            158
+          ],
+          "drawOffsetPx": [
+            -62.0,
+            -158
+          ],
+          "boardContactPx": [
+            62.0,
+            158
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        }
+      ],
+      "bench_trick_slide": [
+        {
+          "id": "bench_trick_slide_01",
+          "file": "skate_v2/zorp/bench_trick_slide/bench_trick_slide_01.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            832,
+            814,
+            979,
+            1038
+          ],
+          "sourceBounds": [
+            838,
+            860,
+            977,
+            1034
+          ],
+          "size": [
+            139,
+            174
+          ],
+          "frame": 1,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            68.5,
+            167
+          ],
+          "drawOffsetPx": [
+            -68.5,
+            -167
+          ],
+          "boardContactPx": [
+            68.5,
+            167
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "bench_trick_slide_02",
+          "file": "skate_v2/zorp/bench_trick_slide/bench_trick_slide_02.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            979,
+            814,
+            1116,
+            1038
+          ],
+          "sourceBounds": [
+            979,
+            828,
+            1116,
+            1020
+          ],
+          "size": [
+            137,
+            192
+          ],
+          "frame": 2,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            68.0,
+            180
+          ],
+          "drawOffsetPx": [
+            -68.0,
+            -180
+          ],
+          "boardContactPx": [
+            68.0,
+            180
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "bench_trick_slide_03",
+          "file": "skate_v2/zorp/bench_trick_slide/bench_trick_slide_03.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            1116,
+            814,
+            1254,
+            1038
+          ],
+          "sourceBounds": [
+            1116,
+            832,
+            1247,
+            1020
+          ],
+          "size": [
+            131,
+            188
+          ],
+          "frame": 3,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            65.5,
+            178
+          ],
+          "drawOffsetPx": [
+            -65.5,
+            -178
+          ],
+          "boardContactPx": [
+            65.5,
+            178
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        }
+      ],
+      "stumble_near_fail": [
+        {
+          "id": "stumble_near_fail_01",
+          "file": "skate_v2/zorp/stumble_near_fail/stumble_near_fail_01.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            0,
+            1085,
+            149,
+            1254
+          ],
+          "sourceBounds": [
+            19,
+            1085,
+            149,
+            1248
+          ],
+          "size": [
+            130,
+            163
+          ],
+          "frame": 1,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            69.0,
+            157
+          ],
+          "drawOffsetPx": [
+            -69.0,
+            -157
+          ],
+          "boardContactPx": [
+            69.0,
+            157
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "stumble_near_fail_02",
+          "file": "skate_v2/zorp/stumble_near_fail/stumble_near_fail_02.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            149,
+            1085,
+            277,
+            1254
+          ],
+          "sourceBounds": [
+            149,
+            1085,
+            277,
+            1246
+          ],
+          "size": [
+            128,
+            161
+          ],
+          "frame": 2,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            82.0,
+            154
+          ],
+          "drawOffsetPx": [
+            -82.0,
+            -154
+          ],
+          "boardContactPx": [
+            82.0,
+            154
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        },
+        {
+          "id": "stumble_near_fail_03",
+          "file": "skate_v2/zorp/stumble_near_fail/stumble_near_fail_03.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            278,
+            1085,
+            445,
+            1254
+          ],
+          "sourceBounds": [
+            278,
+            1085,
+            441,
+            1246
+          ],
+          "size": [
+            163,
+            161
+          ],
+          "frame": 3,
+          "boardAttached": true,
+          "anchor": "board-bottom-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            96.5,
+            154
+          ],
+          "drawOffsetPx": [
+            -96.5,
+            -154
+          ],
+          "boardContactPx": [
+            96.5,
+            154
+          ],
+          "anchorDetection": "wheel-rim",
+          "boardVisibility": "visible",
+          "confidence": "identified"
+        }
+      ],
+      "crash_fall_off_board": [
+        {
+          "id": "crash_fall_off_board_01",
+          "file": "skate_v2/zorp/crash_fall_off_board/crash_fall_off_board_01.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            450,
+            1085,
+            634,
+            1254
+          ],
+          "sourceBounds": [
+            458,
+            1085,
+            634,
+            1246
+          ],
+          "size": [
+            176,
+            161
+          ],
+          "frame": 1,
+          "boardAttached": false,
+          "anchor": "body-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            88.0,
+            80.5
+          ],
+          "drawOffsetPx": [
+            -88.0,
+            -80.5
+          ],
+          "boardContactPx": null,
+          "anchorDetection": null,
+          "boardVisibility": "off-board animation",
+          "confidence": "identified"
+        },
+        {
+          "id": "crash_fall_off_board_02",
+          "file": "skate_v2/zorp/crash_fall_off_board/crash_fall_off_board_02.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            621,
+            1085,
+            745,
+            1254
+          ],
+          "sourceBounds": [
+            621,
+            1085,
+            745,
+            1231
+          ],
+          "size": [
+            124,
+            146
+          ],
+          "frame": 2,
+          "boardAttached": false,
+          "anchor": "body-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            62.0,
+            73.0
+          ],
+          "drawOffsetPx": [
+            -62.0,
+            -73.0
+          ],
+          "boardContactPx": null,
+          "anchorDetection": null,
+          "boardVisibility": "off-board animation",
+          "confidence": "identified"
+        },
+        {
+          "id": "crash_fall_off_board_03",
+          "file": "skate_v2/zorp/crash_fall_off_board/crash_fall_off_board_03.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            742,
+            1085,
+            935,
+            1254
+          ],
+          "sourceBounds": [
+            742,
+            1094,
+            933,
+            1232
+          ],
+          "size": [
+            191,
+            138
+          ],
+          "frame": 3,
+          "boardAttached": false,
+          "anchor": "body-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            95.5,
+            69.0
+          ],
+          "drawOffsetPx": [
+            -95.5,
+            -69.0
+          ],
+          "boardContactPx": null,
+          "anchorDetection": null,
+          "boardVisibility": "off-board animation",
+          "confidence": "identified"
+        },
+        {
+          "id": "crash_fall_off_board_04",
+          "file": "skate_v2/zorp/crash_fall_off_board/crash_fall_off_board_04.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            935,
+            1085,
+            1117,
+            1254
+          ],
+          "sourceBounds": [
+            945,
+            1140,
+            1108,
+            1236
+          ],
+          "size": [
+            163,
+            96
+          ],
+          "frame": 4,
+          "boardAttached": false,
+          "anchor": "body-center",
+          "characterVisible": true,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            81.5,
+            48.0
+          ],
+          "drawOffsetPx": [
+            -81.5,
+            -48.0
+          ],
+          "boardContactPx": null,
+          "anchorDetection": null,
+          "boardVisibility": "off-board animation",
+          "confidence": "identified"
+        },
+        {
+          "id": "crash_fall_off_board_05",
+          "file": "skate_v2/zorp/crash_fall_off_board/crash_fall_off_board_05.png",
+          "source": "zorp_skate2.0.png",
+          "sourceRegion": [
+            1117,
+            1085,
+            1254,
+            1254
+          ],
+          "sourceBounds": [
+            1121,
+            1163,
+            1241,
+            1233
+          ],
+          "size": [
+            120,
+            70
+          ],
+          "frame": 5,
+          "boardAttached": false,
+          "anchor": "detached-board-bottom-center",
+          "characterVisible": false,
+          "gameplayRecommended": true,
+          "anchorPx": [
+            60.0,
+            66
+          ],
+          "drawOffsetPx": [
+            -60.0,
+            -66
+          ],
+          "boardContactPx": null,
+          "anchorDetection": "detached-board",
+          "boardVisibility": "off-board animation",
+          "confidence": "identified"
+        }
+      ]
+    },
+    "recommendedAnimationFrames": {
+      "ride_idle": [
+        "ride_idle_01",
+        "ride_idle_02",
+        "ride_idle_03"
+      ],
+      "push_accelerate": [
+        "push_accelerate_01",
+        "push_accelerate_02",
+        "push_accelerate_03",
+        "push_accelerate_04"
+      ],
+      "normal_jump": [
+        "normal_jump_01",
+        "normal_jump_02",
+        "normal_jump_03"
+      ],
+      "ollie_board_flip": [
+        "ollie_board_flip_01",
+        "ollie_board_flip_02",
+        "ollie_board_flip_03",
+        "ollie_board_flip_04",
+        "ollie_board_flip_05",
+        "ollie_board_flip_06"
+      ],
+      "super_jump": [
+        "super_jump_01",
+        "super_jump_02",
+        "super_jump_04",
+        "super_jump_06"
+      ],
+      "grind_stance": [
+        "grind_stance_01",
+        "grind_stance_02",
+        "grind_stance_03",
+        "grind_stance_04"
+      ],
+      "grind_jump_out": [
+        "grind_jump_out_01",
+        "grind_jump_out_02",
+        "grind_jump_out_03"
+      ],
+      "air_catch_landing": [
+        "air_catch_landing_01",
+        "air_catch_landing_02",
+        "air_catch_landing_03"
+      ],
+      "bench_trick_slide": [
+        "bench_trick_slide_01",
+        "bench_trick_slide_02",
+        "bench_trick_slide_03"
+      ],
+      "stumble_near_fail": [
+        "stumble_near_fail_01",
+        "stumble_near_fail_02",
+        "stumble_near_fail_03"
+      ],
+      "crash_fall_off_board": [
+        "crash_fall_off_board_01",
+        "crash_fall_off_board_02",
+        "crash_fall_off_board_03",
+        "crash_fall_off_board_04",
+        "crash_fall_off_board_05"
+      ]
+    }
+  },
+  "scene": {
+    "ground": [
+      {
+        "id": "floor-low-01",
+        "file": "skate_v2/scene/ground/floor-low-01.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          0,
+          45,
+          127,
+          181
+        ],
+        "sourceBounds": [
+          8,
+          114,
+          127,
+          172
+        ],
+        "size": [
+          119,
+          58
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "ground",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.53
+            ],
+            [
+              0.97,
+              0.53
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "floor-low-02",
+        "file": "skate_v2/scene/ground/floor-low-02.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          127,
+          45,
+          201,
+          181
+        ],
+        "sourceBounds": [
+          127,
+          110,
+          201,
+          172
+        ],
+        "size": [
+          74,
+          62
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "ground",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.53
+            ],
+            [
+              0.97,
+              0.53
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "floor-neon-03",
+        "file": "skate_v2/scene/ground/floor-neon-03.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          201,
+          45,
+          270,
+          181
+        ],
+        "sourceBounds": [
+          201,
+          101,
+          270,
+          172
+        ],
+        "size": [
+          69,
+          71
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "ground",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.54
+            ],
+            [
+              0.97,
+              0.54
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "floor-raised-04",
+        "file": "skate_v2/scene/ground/floor-raised-04.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          270,
+          45,
+          370,
+          181
+        ],
+        "sourceBounds": [
+          270,
+          97,
+          370,
+          173
+        ],
+        "size": [
+          100,
+          76
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "ground",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.4
+            ],
+            [
+              0.97,
+              0.4
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "floor-planter-05",
+        "file": "skate_v2/scene/ground/floor-planter-05.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          370,
+          45,
+          470,
+          181
+        ],
+        "sourceBounds": [
+          370,
+          80,
+          470,
+          174
+        ],
+        "size": [
+          100,
+          94
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "ground",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.49
+            ],
+            [
+              0.97,
+              0.49
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "floor-utility-06",
+        "file": "skate_v2/scene/ground/floor-utility-06.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          470,
+          45,
+          558,
+          181
+        ],
+        "sourceBounds": [
+          470,
+          97,
+          558,
+          174
+        ],
+        "size": [
+          88,
+          77
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "ground",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.52
+            ],
+            [
+              0.97,
+              0.52
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "floor-wide-07",
+        "file": "skate_v2/scene/ground/floor-wide-07.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          558,
+          45,
+          669,
+          181
+        ],
+        "sourceBounds": [
+          558,
+          92,
+          669,
+          173
+        ],
+        "size": [
+          111,
+          81
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "ground",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.38
+            ],
+            [
+              0.97,
+              0.38
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "floor-garden-08",
+        "file": "skate_v2/scene/ground/floor-garden-08.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          669,
+          45,
+          855,
+          181
+        ],
+        "sourceBounds": [
+          669,
+          73,
+          855,
+          175
+        ],
+        "size": [
+          186,
+          102
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "ground",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.29
+            ],
+            [
+              0.97,
+              0.29
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "floor-bench-platform-09",
+        "file": "skate_v2/scene/ground/floor-bench-platform-09.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          855,
+          45,
+          1047,
+          181
+        ],
+        "sourceBounds": [
+          855,
+          69,
+          1047,
+          176
+        ],
+        "size": [
+          192,
+          107
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "platform",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": true,
+          "fatalBelow": false,
+          "solid": true,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.37
+            ],
+            [
+              0.97,
+              0.37
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "floor-fenced-platform-10",
+        "file": "skate_v2/scene/ground/floor-fenced-platform-10.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          1047,
+          45,
+          1254,
+          181
+        ],
+        "sourceBounds": [
+          1047,
+          45,
+          1245,
+          175
+        ],
+        "size": [
+          198,
+          130
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "platform",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": true,
+          "fatalBelow": false,
+          "solid": true,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.39
+            ],
+            [
+              0.97,
+              0.39
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      }
+    ],
+    "rails": [
+      {
+        "id": "rail-cyan-short",
+        "file": "skate_v2/scene/rails/rail-cyan-short.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          0,
+          225,
+          133,
+          315
+        ],
+        "sourceBounds": [
+          8,
+          267,
+          130,
+          315
+        ],
+        "size": [
+          122,
+          48
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "rail",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [
+            [
+              0.05,
+              0.48
+            ],
+            [
+              0.95,
+              0.48
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "rail-magenta-short",
+        "file": "skate_v2/scene/rails/rail-magenta-short.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          133,
+          225,
+          273,
+          315
+        ],
+        "sourceBounds": [
+          133,
+          258,
+          269,
+          315
+        ],
+        "size": [
+          136,
+          57
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "rail",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [
+            [
+              0.05,
+              0.42
+            ],
+            [
+              0.95,
+              0.42
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "rail-gold-medium",
+        "file": "skate_v2/scene/rails/rail-gold-medium.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          273,
+          225,
+          423,
+          315
+        ],
+        "sourceBounds": [
+          275,
+          238,
+          422,
+          310
+        ],
+        "size": [
+          147,
+          72
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "rail",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [
+            [
+              0.05,
+              0.19
+            ],
+            [
+              0.95,
+              0.19
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "handrail-cyan-descend",
+        "file": "skate_v2/scene/rails/handrail-cyan-descend.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          423,
+          200,
+          567,
+          316
+        ],
+        "sourceBounds": [
+          423,
+          203,
+          563,
+          310
+        ],
+        "size": [
+          140,
+          107
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "handrail",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [
+            [
+              0.04,
+              0.12
+            ],
+            [
+              0.97,
+              0.67
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "handrail-magenta-ascend",
+        "file": "skate_v2/scene/rails/handrail-magenta-ascend.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          567,
+          210,
+          743,
+          316
+        ],
+        "sourceBounds": [
+          567,
+          230,
+          741,
+          316
+        ],
+        "size": [
+          174,
+          86
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "handrail",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [
+            [
+              0.03,
+              0.54
+            ],
+            [
+              0.97,
+              0.23
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "handrail-magenta-curve-up",
+        "file": "skate_v2/scene/rails/handrail-magenta-curve-up.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          743,
+          207,
+          848,
+          315
+        ],
+        "sourceBounds": [
+          743,
+          218,
+          848,
+          303
+        ],
+        "size": [
+          105,
+          85
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "curved-rail",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [
+            [
+              0.04,
+              0.49
+            ],
+            [
+              0.35,
+              0.42
+            ],
+            [
+              0.65,
+              0.31
+            ],
+            [
+              0.97,
+              0.16
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "rail-cyan-sag",
+        "file": "skate_v2/scene/rails/rail-cyan-sag.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          848,
+          203,
+          1014,
+          316
+        ],
+        "sourceBounds": [
+          854,
+          212,
+          1011,
+          305
+        ],
+        "size": [
+          157,
+          93
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "curved-rail",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [
+            [
+              0.03,
+              0.08
+            ],
+            [
+              0.3,
+              0.34
+            ],
+            [
+              0.61,
+              0.52
+            ],
+            [
+              0.96,
+              0.52
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "rail-cyan-arch",
+        "file": "skate_v2/scene/rails/rail-cyan-arch.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          1014,
+          218,
+          1254,
+          318
+        ],
+        "sourceBounds": [
+          1020,
+          221,
+          1235,
+          297
+        ],
+        "size": [
+          215,
+          76
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "curved-rail",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [
+            [
+              0.03,
+              0.33
+            ],
+            [
+              0.3,
+              0.12
+            ],
+            [
+              0.55,
+              0.06
+            ],
+            [
+              0.77,
+              0.13
+            ],
+            [
+              0.98,
+              0.39
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "rail-cyan-long",
+        "file": "skate_v2/scene/rails/rail-cyan-long.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          0,
+          314,
+          367,
+          380
+        ],
+        "sourceBounds": [
+          15,
+          316,
+          362,
+          372
+        ],
+        "size": [
+          347,
+          56
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "rail",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [
+            [
+              0.04,
+              0.15
+            ],
+            [
+              0.96,
+              0.15
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "rail-magenta-long-ascend",
+        "file": "skate_v2/scene/rails/rail-magenta-long-ascend.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          368,
+          306,
+          648,
+          380
+        ],
+        "sourceBounds": [
+          375,
+          309,
+          643,
+          376
+        ],
+        "size": [
+          268,
+          67
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "handrail",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [
+            [
+              0.04,
+              0.62
+            ],
+            [
+              0.96,
+              0.19
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "cable-wave-linked",
+        "file": "skate_v2/scene/rails/cable-wave-linked.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          662,
+          307,
+          1254,
+          380
+        ],
+        "sourceBounds": [
+          662,
+          314,
+          1241,
+          379
+        ],
+        "size": [
+          579,
+          65
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "cable-rail",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [
+            [
+              0.02,
+              0.55
+            ],
+            [
+              0.19,
+              0.43
+            ],
+            [
+              0.28,
+              0.82
+            ],
+            [
+              0.38,
+              0.76
+            ],
+            [
+              0.46,
+              0.39
+            ],
+            [
+              0.57,
+              0.39
+            ],
+            [
+              0.68,
+              0.76
+            ],
+            [
+              0.77,
+              0.78
+            ],
+            [
+              0.84,
+              0.4
+            ],
+            [
+              0.98,
+              0.4
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      }
+    ],
+    "stairs": [
+      {
+        "id": "steps-short",
+        "file": "skate_v2/scene/stairs/steps-short.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          0,
+          425,
+          110,
+          610
+        ],
+        "sourceBounds": [
+          6,
+          529,
+          110,
+          600
+        ],
+        "size": [
+          104,
+          71
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "stairs",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": true,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.74
+            ],
+            [
+              0.23,
+              0.74
+            ],
+            [
+              0.23,
+              0.62
+            ],
+            [
+              0.48,
+              0.62
+            ],
+            [
+              0.48,
+              0.51
+            ],
+            [
+              0.72,
+              0.51
+            ],
+            [
+              0.72,
+              0.4
+            ],
+            [
+              0.97,
+              0.4
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "steps-magenta-low",
+        "file": "skate_v2/scene/stairs/steps-magenta-low.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          110,
+          425,
+          201,
+          610
+        ],
+        "sourceBounds": [
+          110,
+          511,
+          201,
+          601
+        ],
+        "size": [
+          91,
+          90
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "source sheet overlaps a neighboring illustrated module",
+        "type": "stairs",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": true,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.02,
+              0.6
+            ],
+            [
+              0.28,
+              0.6
+            ],
+            [
+              0.28,
+              0.5
+            ],
+            [
+              0.57,
+              0.5
+            ],
+            [
+              0.57,
+              0.39
+            ],
+            [
+              0.98,
+              0.39
+            ]
+          ],
+          "grindPath": [
+            [
+              0.08,
+              0.42
+            ],
+            [
+              0.91,
+              0.68
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "steps-cyan-handrail",
+        "file": "skate_v2/scene/stairs/steps-cyan-handrail.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          180,
+          425,
+          323,
+          610
+        ],
+        "sourceBounds": [
+          180,
+          475,
+          323,
+          602
+        ],
+        "size": [
+          143,
+          127
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "source sheet overlaps a neighboring illustrated module",
+        "type": "stairs",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": true,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.47
+            ],
+            [
+              0.26,
+              0.47
+            ],
+            [
+              0.26,
+              0.57
+            ],
+            [
+              0.53,
+              0.57
+            ],
+            [
+              0.53,
+              0.67
+            ],
+            [
+              0.77,
+              0.67
+            ],
+            [
+              0.77,
+              0.77
+            ],
+            [
+              0.97,
+              0.77
+            ]
+          ],
+          "grindPath": [
+            [
+              0.08,
+              0.18
+            ],
+            [
+              0.94,
+              0.74
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "steps-gold-handrail",
+        "file": "skate_v2/scene/stairs/steps-gold-handrail.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          312,
+          425,
+          537,
+          610
+        ],
+        "sourceBounds": [
+          312,
+          459,
+          537,
+          605
+        ],
+        "size": [
+          225,
+          146
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "source sheet overlaps a neighboring illustrated module",
+        "type": "stairs",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": true,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.43
+            ],
+            [
+              0.23,
+              0.43
+            ],
+            [
+              0.23,
+              0.52
+            ],
+            [
+              0.45,
+              0.52
+            ],
+            [
+              0.45,
+              0.63
+            ],
+            [
+              0.68,
+              0.63
+            ],
+            [
+              0.68,
+              0.74
+            ],
+            [
+              0.96,
+              0.74
+            ]
+          ],
+          "grindPath": [
+            [
+              0.37,
+              0.11
+            ],
+            [
+              0.95,
+              0.69
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "steps-double-handrail",
+        "file": "skate_v2/scene/stairs/steps-double-handrail.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          478,
+          425,
+          831,
+          610
+        ],
+        "sourceBounds": [
+          478,
+          432,
+          831,
+          605
+        ],
+        "size": [
+          353,
+          173
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "source sheet overlaps a neighboring illustrated module",
+        "type": "stairs",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": true,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.02,
+              0.49
+            ],
+            [
+              0.2,
+              0.49
+            ],
+            [
+              0.2,
+              0.59
+            ],
+            [
+              0.37,
+              0.59
+            ],
+            [
+              0.37,
+              0.7
+            ],
+            [
+              0.55,
+              0.7
+            ],
+            [
+              0.55,
+              0.8
+            ],
+            [
+              0.98,
+              0.8
+            ]
+          ],
+          "grindPath": [
+            [
+              0.43,
+              0.05
+            ],
+            [
+              0.73,
+              0.59
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "stair-roof-platform",
+        "file": "skate_v2/scene/stairs/stair-roof-platform.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          753,
+          425,
+          927,
+          610
+        ],
+        "sourceBounds": [
+          753,
+          432,
+          927,
+          605
+        ],
+        "size": [
+          174,
+          173
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "source sheet overlaps a neighboring illustrated module",
+        "type": "platform",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": true,
+          "fatalBelow": false,
+          "solid": true,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.04,
+              0.21
+            ],
+            [
+              0.96,
+              0.21
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "stair-plaza-large",
+        "file": "skate_v2/scene/stairs/stair-plaza-large.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          927,
+          390,
+          1254,
+          610
+        ],
+        "sourceBounds": [
+          927,
+          391,
+          1249,
+          604
+        ],
+        "size": [
+          322,
+          213
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "stairs",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": true,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": true,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.02,
+              0.71
+            ],
+            [
+              0.25,
+              0.71
+            ],
+            [
+              0.25,
+              0.59
+            ],
+            [
+              0.48,
+              0.59
+            ],
+            [
+              0.48,
+              0.44
+            ],
+            [
+              0.7,
+              0.44
+            ],
+            [
+              0.7,
+              0.28
+            ],
+            [
+              0.96,
+              0.28
+            ]
+          ],
+          "grindPath": [
+            [
+              0.34,
+              0.69
+            ],
+            [
+              0.94,
+              0.06
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      }
+    ],
+    "ramps": [
+      {
+        "id": "kicker-small",
+        "file": "skate_v2/scene/ramps/kicker-small.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          0,
+          658,
+          127,
+          832
+        ],
+        "sourceBounds": [
+          6,
+          757,
+          127,
+          823
+        ],
+        "size": [
+          121,
+          66
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "kicker",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.04,
+              0.79
+            ],
+            [
+              0.96,
+              0.58
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": "kicker",
+        "launchStrength": 48,
+        "launchStrengthStatus": "suggested metadata only; current mechanics unchanged"
+      },
+      {
+        "id": "kicker-medium",
+        "file": "skate_v2/scene/ramps/kicker-medium.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          127,
+          658,
+          239,
+          832
+        ],
+        "sourceBounds": [
+          127,
+          743,
+          239,
+          823
+        ],
+        "size": [
+          112,
+          80
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "kicker",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.81
+            ],
+            [
+              0.95,
+              0.57
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": "kicker",
+        "launchStrength": 82,
+        "launchStrengthStatus": "suggested metadata only; current mechanics unchanged"
+      },
+      {
+        "id": "launch-steep",
+        "file": "skate_v2/scene/ramps/launch-steep.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          239,
+          658,
+          407,
+          832
+        ],
+        "sourceBounds": [
+          239,
+          681,
+          407,
+          825
+        ],
+        "size": [
+          168,
+          144
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "launch",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.82
+            ],
+            [
+              0.33,
+              0.72
+            ],
+            [
+              0.62,
+              0.48
+            ],
+            [
+              0.88,
+              0.17
+            ],
+            [
+              0.96,
+              0.15
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": "launch",
+        "launchStrength": 145,
+        "launchStrengthStatus": "suggested metadata only; current mechanics unchanged"
+      },
+      {
+        "id": "bank-planter",
+        "file": "skate_v2/scene/ramps/bank-planter.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          407,
+          658,
+          626,
+          832
+        ],
+        "sourceBounds": [
+          407,
+          688,
+          625,
+          824
+        ],
+        "size": [
+          218,
+          136
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "bank",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.36
+            ],
+            [
+              0.21,
+              0.49
+            ],
+            [
+              0.52,
+              0.66
+            ],
+            [
+              0.82,
+              0.83
+            ],
+            [
+              0.97,
+              0.91
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": "bank",
+        "launchStrength": 42,
+        "launchStrengthStatus": "suggested metadata only; current mechanics unchanged"
+      },
+      {
+        "id": "quarter-cyan",
+        "file": "skate_v2/scene/ramps/quarter-cyan.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          626,
+          658,
+          805,
+          832
+        ],
+        "sourceBounds": [
+          626,
+          707,
+          804,
+          825
+        ],
+        "size": [
+          178,
+          118
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "quarter",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.84
+            ],
+            [
+              0.31,
+              0.81
+            ],
+            [
+              0.55,
+              0.67
+            ],
+            [
+              0.77,
+              0.45
+            ],
+            [
+              0.89,
+              0.28
+            ],
+            [
+              0.96,
+              0.27
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": "quarter",
+        "launchStrength": 95,
+        "launchStrengthStatus": "suggested metadata only; current mechanics unchanged"
+      },
+      {
+        "id": "transition-magenta",
+        "file": "skate_v2/scene/ramps/transition-magenta.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          805,
+          658,
+          1003,
+          832
+        ],
+        "sourceBounds": [
+          806,
+          699,
+          1003,
+          825
+        ],
+        "size": [
+          197,
+          126
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "source sheet overlaps a neighboring illustrated module",
+        "type": "transition",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.04,
+              0.23
+            ],
+            [
+              0.17,
+              0.45
+            ],
+            [
+              0.31,
+              0.66
+            ],
+            [
+              0.54,
+              0.88
+            ],
+            [
+              0.73,
+              0.95
+            ],
+            [
+              0.96,
+              0.95
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": "transition",
+        "launchStrength": 78,
+        "launchStrengthStatus": "suggested metadata only; current mechanics unchanged"
+      },
+      {
+        "id": "special-launch-large",
+        "file": "skate_v2/scene/ramps/special-launch-large.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          950,
+          607,
+          1254,
+          832
+        ],
+        "sourceBounds": [
+          950,
+          607,
+          1248,
+          822
+        ],
+        "size": [
+          298,
+          215
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "source sheet overlaps a neighboring illustrated module",
+        "type": "special-launch",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.02,
+              0.75
+            ],
+            [
+              0.32,
+              0.78
+            ],
+            [
+              0.54,
+              0.64
+            ],
+            [
+              0.74,
+              0.42
+            ],
+            [
+              0.92,
+              0.16
+            ],
+            [
+              0.98,
+              0.05
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": "special-launch",
+        "launchStrength": 170,
+        "launchStrengthStatus": "suggested metadata only; current mechanics unchanged"
+      }
+    ],
+    "gap": [
+      {
+        "id": "chasm-takeoff-platform",
+        "file": "skate_v2/scene/gap/chasm-takeoff-platform.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          0,
+          876,
+          355,
+          1093
+        ],
+        "sourceBounds": [
+          3,
+          876,
+          355,
+          1092
+        ],
+        "size": [
+          352,
+          216
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "gap-platform",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": true,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.53
+            ],
+            [
+              0.58,
+              0.27
+            ],
+            [
+              0.71,
+              0.27
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "chasm-pillar-01",
+        "file": "skate_v2/scene/gap/chasm-pillar-01.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          355,
+          876,
+          475,
+          1093
+        ],
+        "sourceBounds": [
+          355,
+          941,
+          475,
+          1089
+        ],
+        "size": [
+          120,
+          148
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "source sheet overlaps a neighboring illustrated module",
+        "type": "gap-pillar",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": true,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.15,
+              0.38
+            ],
+            [
+              0.86,
+              0.38
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "chasm-pillar-02",
+        "file": "skate_v2/scene/gap/chasm-pillar-02.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          475,
+          876,
+          558,
+          1093
+        ],
+        "sourceBounds": [
+          475,
+          952,
+          556,
+          1089
+        ],
+        "size": [
+          81,
+          137
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "source sheet overlaps a neighboring illustrated module",
+        "type": "gap-pillar",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": true,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.1,
+              0.35
+            ],
+            [
+              0.89,
+              0.35
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "chasm-pillar-03",
+        "file": "skate_v2/scene/gap/chasm-pillar-03.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          558,
+          876,
+          668,
+          1093
+        ],
+        "sourceBounds": [
+          565,
+          959,
+          668,
+          1089
+        ],
+        "size": [
+          103,
+          130
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "source sheet overlaps a neighboring illustrated module",
+        "type": "gap-pillar",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": true,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.11,
+              0.42
+            ],
+            [
+              0.88,
+              0.42
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "chasm-pillar-04",
+        "file": "skate_v2/scene/gap/chasm-pillar-04.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          668,
+          876,
+          769,
+          1093
+        ],
+        "sourceBounds": [
+          668,
+          946,
+          749,
+          1089
+        ],
+        "size": [
+          81,
+          143
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "source sheet overlaps a neighboring illustrated module",
+        "type": "gap-pillar",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": true,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.1,
+              0.38
+            ],
+            [
+              0.87,
+              0.38
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "chasm-pillar-05",
+        "file": "skate_v2/scene/gap/chasm-pillar-05.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          769,
+          876,
+          893,
+          1093
+        ],
+        "sourceBounds": [
+          769,
+          940,
+          893,
+          1088
+        ],
+        "size": [
+          124,
+          148
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "source sheet overlaps a neighboring illustrated module",
+        "type": "gap-pillar",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": true,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.12,
+              0.36
+            ],
+            [
+              0.83,
+              0.36
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "chasm-landing-platform",
+        "file": "skate_v2/scene/gap/chasm-landing-platform.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          893,
+          876,
+          1254,
+          1093
+        ],
+        "sourceBounds": [
+          893,
+          876,
+          1254,
+          1093
+        ],
+        "size": [
+          361,
+          217
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "gap-platform",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": true,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.03,
+              0.44
+            ],
+            [
+              0.97,
+              0.44
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      }
+    ],
+    "extras": [
+      {
+        "id": "bench-cyan",
+        "file": "skate_v2/scene/extras/bench-cyan.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          0,
+          1140,
+          138,
+          1254
+        ],
+        "sourceBounds": [
+          4,
+          1153,
+          138,
+          1238
+        ],
+        "size": [
+          134,
+          85
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "bench",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": true,
+          "fatalBelow": false,
+          "solid": true,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.08,
+              0.39
+            ],
+            [
+              0.91,
+              0.39
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "ledge-magenta",
+        "file": "skate_v2/scene/extras/ledge-magenta.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          138,
+          1140,
+          267,
+          1254
+        ],
+        "sourceBounds": [
+          138,
+          1163,
+          265,
+          1236
+        ],
+        "size": [
+          127,
+          73
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "ledge",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": true,
+          "dangerousSide": true,
+          "fatalBelow": false,
+          "solid": true,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.05,
+              0.53
+            ],
+            [
+              0.96,
+              0.53
+            ]
+          ],
+          "grindPath": [
+            [
+              0.05,
+              0.53
+            ],
+            [
+              0.96,
+              0.53
+            ]
+          ],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "planter-crown",
+        "file": "skate_v2/scene/extras/planter-crown.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          267,
+          1132,
+          409,
+          1254
+        ],
+        "sourceBounds": [
+          267,
+          1132,
+          409,
+          1239
+        ],
+        "size": [
+          142,
+          107
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "planter",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": true,
+          "fatalBelow": false,
+          "solid": true,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.05,
+              0.58
+            ],
+            [
+              0.96,
+              0.58
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "bank-small-grey",
+        "file": "skate_v2/scene/extras/bank-small-grey.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          409,
+          1140,
+          528,
+          1254
+        ],
+        "sourceBounds": [
+          409,
+          1155,
+          528,
+          1237
+        ],
+        "size": [
+          119,
+          82
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "bank",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.04,
+              0.88
+            ],
+            [
+              0.96,
+              0.31
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": "bank",
+        "launchStrength": 35,
+        "launchStrengthStatus": "suggested metadata only; current mechanics unchanged"
+      },
+      {
+        "id": "block-slope-cyan",
+        "file": "skate_v2/scene/extras/block-slope-cyan.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          528,
+          1140,
+          632,
+          1254
+        ],
+        "sourceBounds": [
+          528,
+          1145,
+          629,
+          1239
+        ],
+        "size": [
+          101,
+          94
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "block",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": true,
+          "fatalBelow": false,
+          "solid": true,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.04,
+              0.39
+            ],
+            [
+              0.8,
+              0.15
+            ],
+            [
+              0.97,
+              0.29
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "crate-planter",
+        "file": "skate_v2/scene/extras/crate-planter.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          632,
+          1126,
+          752,
+          1254
+        ],
+        "sourceBounds": [
+          632,
+          1126,
+          752,
+          1239
+        ],
+        "size": [
+          120,
+          113
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "block",
+        "collision": {
+          "safeTop": true,
+          "grindableTop": false,
+          "dangerousSide": true,
+          "fatalBelow": false,
+          "solid": true,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [
+            [
+              0.04,
+              0.42
+            ],
+            [
+              0.97,
+              0.42
+            ]
+          ],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      }
+    ],
+    "hazards": [
+      {
+        "id": "barrier-striped",
+        "file": "skate_v2/scene/hazards/barrier-striped.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          752,
+          1140,
+          842,
+          1254
+        ],
+        "sourceBounds": [
+          752,
+          1156,
+          842,
+          1245
+        ],
+        "size": [
+          90,
+          89
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "blocker",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": false,
+          "dangerousSide": true,
+          "fatalBelow": false,
+          "solid": true,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "cone-orange",
+        "file": "skate_v2/scene/hazards/cone-orange.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          842,
+          1140,
+          891,
+          1254
+        ],
+        "sourceBounds": [
+          842,
+          1170,
+          891,
+          1246
+        ],
+        "size": [
+          49,
+          76
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "blocker",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": false,
+          "dangerousSide": true,
+          "fatalBelow": false,
+          "solid": true,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "barrier-fence",
+        "file": "skate_v2/scene/hazards/barrier-fence.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          891,
+          1140,
+          987,
+          1254
+        ],
+        "sourceBounds": [
+          891,
+          1148,
+          987,
+          1248
+        ],
+        "size": [
+          96,
+          100
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "blocker",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": false,
+          "dangerousSide": true,
+          "fatalBelow": false,
+          "solid": true,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "warning-skull",
+        "file": "skate_v2/scene/hazards/warning-skull.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          987,
+          1140,
+          1049,
+          1254
+        ],
+        "sourceBounds": [
+          993,
+          1140,
+          1049,
+          1247
+        ],
+        "size": [
+          56,
+          107
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "decoration",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": true
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "sign-no-entry",
+        "file": "skate_v2/scene/hazards/sign-no-entry.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          1049,
+          1140,
+          1105,
+          1254
+        ],
+        "sourceBounds": [
+          1049,
+          1142,
+          1101,
+          1247
+        ],
+        "size": [
+          52,
+          105
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "decoration",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": true
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "sign-chevron",
+        "file": "skate_v2/scene/hazards/sign-chevron.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          1105,
+          1140,
+          1152,
+          1254
+        ],
+        "sourceBounds": [
+          1105,
+          1141,
+          1152,
+          1247
+        ],
+        "size": [
+          47,
+          106
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "decoration",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": true
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "bollard-neon-01",
+        "file": "skate_v2/scene/hazards/bollard-neon-01.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          1152,
+          1140,
+          1180,
+          1254
+        ],
+        "sourceBounds": [
+          1152,
+          1177,
+          1175,
+          1247
+        ],
+        "size": [
+          23,
+          70
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "blocker",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": false,
+          "dangerousSide": true,
+          "fatalBelow": false,
+          "solid": true,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "bollard-neon-02",
+        "file": "skate_v2/scene/hazards/bollard-neon-02.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          1180,
+          1140,
+          1211,
+          1254
+        ],
+        "sourceBounds": [
+          1181,
+          1162,
+          1211,
+          1247
+        ],
+        "size": [
+          30,
+          85
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "blocker",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": false,
+          "dangerousSide": true,
+          "fatalBelow": false,
+          "solid": true,
+          "stairSteps": false,
+          "decoration": false
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      },
+      {
+        "id": "streetlight-magenta",
+        "file": "skate_v2/scene/hazards/streetlight-magenta.png",
+        "source": "skate_assets2.0.png",
+        "sourceRegion": [
+          1211,
+          1082,
+          1254,
+          1254
+        ],
+        "sourceBounds": [
+          1211,
+          1082,
+          1251,
+          1248
+        ],
+        "size": [
+          40,
+          166
+        ],
+        "visualAnchor": "bottom-center",
+        "confidence": "identified",
+        "type": "decoration",
+        "collision": {
+          "safeTop": false,
+          "grindableTop": false,
+          "dangerousSide": false,
+          "fatalBelow": false,
+          "solid": false,
+          "stairSteps": false,
+          "decoration": true
+        },
+        "geometryHints": {
+          "coordinateSpace": "normalized sourceRegion",
+          "surfacePoints": [],
+          "grindPath": [],
+          "status": "visual guide; calibrate to placed sprite before enabling collision"
+        },
+        "rampType": null,
+        "launchStrength": null,
+        "launchStrengthStatus": null
+      }
+    ]
+  },
+  "unidentified": [],
+  "reviewFlags": [
+    {
+      "id": "super_jump_03",
+      "reason": "review before using as a continuous board pose"
+    },
+    {
+      "id": "super_jump_05",
+      "reason": "review before using as a continuous board pose"
+    },
+    {
+      "id": "steps-magenta-low",
+      "reason": "source sheet overlaps a neighboring illustrated module"
+    },
+    {
+      "id": "steps-cyan-handrail",
+      "reason": "source sheet overlaps a neighboring illustrated module"
+    },
+    {
+      "id": "steps-gold-handrail",
+      "reason": "source sheet overlaps a neighboring illustrated module"
+    },
+    {
+      "id": "steps-double-handrail",
+      "reason": "source sheet overlaps a neighboring illustrated module"
+    },
+    {
+      "id": "stair-roof-platform",
+      "reason": "source sheet overlaps a neighboring illustrated module"
+    },
+    {
+      "id": "transition-magenta",
+      "reason": "source sheet overlaps a neighboring illustrated module"
+    },
+    {
+      "id": "special-launch-large",
+      "reason": "source sheet overlaps a neighboring illustrated module"
+    },
+    {
+      "id": "chasm-pillar-01",
+      "reason": "source sheet overlaps a neighboring illustrated module"
+    },
+    {
+      "id": "chasm-pillar-02",
+      "reason": "source sheet overlaps a neighboring illustrated module"
+    },
+    {
+      "id": "chasm-pillar-03",
+      "reason": "source sheet overlaps a neighboring illustrated module"
+    },
+    {
+      "id": "chasm-pillar-04",
+      "reason": "source sheet overlaps a neighboring illustrated module"
+    },
+    {
+      "id": "chasm-pillar-05",
+      "reason": "source sheet overlaps a neighboring illustrated module"
+    }
+  ],
+  "counts": {
+    "zorpFrames": 43,
+    "zorpAnimations": 11,
+    "scene": {
+      "ground": 10,
+      "rails": 11,
+      "stairs": 7,
+      "ramps": 7,
+      "gap": 7,
+      "extras": 6,
+      "hazards": 9
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "summary": {
+    "phase": "COMPLETED",
+    "paused": false,
+    "acceleratedReplay": false,
+    "x": 25849,
+    "y": 250,
+    "mode": "GROUND",
+    "jumpTier": "",
+    "held": false,
+    "forwardSpeed": 280.2,
+    "verticalVelocity": 0,
+    "captureBlend": 0,
+    "rail": "",
+    "time": 7.96,
+    "score": 385,
+    "peakCombo": 385,
+    "fps": 60,
+    "zoom": 0.719,
+    "timeScale": 1,
+    "checkpoints": [
+      "checkpoint-1",
+      "checkpoint-2"
+    ],
+    "failure": "",
+    "hit": "",
+    "enteredRails": [
+      "finish-rail"
+    ]
+  },
+  "transitions": [
+    {
+      "x": 23622,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 0.01
+    },
+    {
+      "x": 24057,
+      "y": 135,
+      "mode": "AIR",
+      "rail": "",
+      "time": 1.57
+    },
+    {
+      "x": 25217,
+      "y": 250,
+      "mode": "MANUAL",
+      "rail": "",
+      "time": 5.72
+    },
+    {
+      "x": 25245,
+      "y": 247,
+      "mode": "AIR",
+      "rail": "",
+      "time": 5.82
+    },
+    {
+      "x": 25277,
+      "y": 220,
+      "mode": "GRIND",
+      "rail": "finish-rail",
+      "time": 5.93
+    },
+    {
+      "x": 25340,
+      "y": 197,
+      "mode": "AIR",
+      "rail": "",
+      "time": 6.15
+    },
+    {
+      "x": 25585,
+      "y": 250,
+      "mode": "MANUAL",
+      "rail": "",
+      "time": 7.02
+    },
+    {
+      "x": 25656,
+      "y": 247,
+      "mode": "AIR",
+      "rail": "",
+      "time": 7.27
+    },
+    {
+      "x": 25773,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 7.68
+    }
+  ],
+  "inputs": []
+}

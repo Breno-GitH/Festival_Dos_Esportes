@@ -7,6 +7,9 @@
     'use strict';
 
     const TAU = Math.PI * 2;
+    // Contact remains tied to the runner's feet, never to transparent pixels
+    // or to the source animation's dimensions. Two radii equal the old 27 px.
+    const RUNNER_BODY_RADIUS = 13.5;
     const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
     const lerp = (a, b, t) => a + (b - a) * t;
     const wrap = (value, length) => ((value % length) + length) % length;
@@ -22,9 +25,7 @@
             this.failed = 0;
             this.invalidDrawCalls = 0;
             this.sources = {
-                zorp: 'Zorp_Corrida.png',
-                mestre: 'Mestre_Corrida.png',
-                competitors: 'Competidores_Corrida.png',
+                runners: 'corrida_sprites/runtime/corrida_runners_atlas.png?v=3',
                 obstacles: 'Obstaculos_Corrida.png'
             };
             Object.entries(this.sources).forEach(([key, src]) => {
@@ -34,10 +35,7 @@
                 image.src = src;
                 this.images[key] = image;
             });
-            this.characters = {
-                zorp: this.makeHeroFrames(),
-                mestre: this.makeHeroFrames()
-            };
+            this.characters = window.CorridaSpriteManifest;
             this.obstacles = this.makeObstacleFrames();
         }
 
@@ -45,34 +43,20 @@
             return this.loaded + this.failed === Object.keys(this.sources).length;
         }
 
-        makeHeroFrames() {
-            const xs = [548, 660, 772, 884, 996, 1108];
-            const row = (y) => xs.map((x) => rect(x, y, 110, 150));
-            return {
-                idle: {
-                    RIGHT: [rect(43, 60, 95, 155), rect(137, 60, 95, 155)],
-                    LEFT: [rect(265, 60, 95, 155), rect(354, 60, 95, 155)],
-                    UP: [rect(45, 245, 100, 165), rect(140, 245, 100, 165)],
-                    DOWN: [rect(267, 245, 100, 165), rect(357, 245, 100, 165)]
-                },
-                run: {
-                    RIGHT: row(57),
-                    LEFT: row(207),
-                    UP: row(350),
-                    DOWN: row(498)
-                },
-                sidestepIn: [rect(15, 770, 95, 160), rect(100, 770, 95, 160), rect(190, 770, 95, 160)],
-                sidestepOut: [rect(295, 770, 95, 160), rect(385, 770, 95, 160), rect(475, 770, 95, 160)],
-                jump: {
-                    RIGHT: [rect(545, 742, 105, 135), rect(642, 742, 105, 135), rect(739, 742, 105, 135), rect(836, 742, 105, 135)],
-                    LEFT: [rect(907, 742, 82, 135), rect(985, 742, 82, 135), rect(1063, 742, 82, 135), rect(1141, 742, 82, 135)],
-                    UP: [rect(550, 888, 105, 150), rect(655, 888, 105, 150), rect(760, 888, 105, 150)],
-                    DOWN: [rect(920, 888, 98, 150), rect(1018, 888, 98, 150), rect(1116, 888, 98, 150)]
-                },
-                stumble: [rect(18, 1080, 112, 164), rect(128, 1080, 112, 164), rect(238, 1080, 112, 164), rect(348, 1080, 112, 164)],
-                victory: [rect(470, 1080, 100, 164), rect(570, 1080, 100, 164), rect(670, 1080, 100, 164), rect(770, 1080, 100, 164)],
-                defeated: [rect(920, 1080, 100, 164), rect(1020, 1080, 100, 164), rect(1120, 1080, 100, 164)]
-            };
+        runnerSequence(id, action, direction) {
+            const atlas = this.characters;
+            if (!atlas) return null;
+            const key = `${id}/${action}/${direction}`;
+            const alias = atlas.aliases[key];
+            const sequence = atlas.frames[alias ? alias.key : key] || atlas.frames[`${id}/RUN/RIGHT`];
+            return sequence ? { sequence, flipX: !!alias?.flipX } : null;
+        }
+
+        runnerFrame(id, action, direction, frameIndex) {
+            const resolved = this.runnerSequence(id, action, direction);
+            if (!resolved) return null;
+            const source = resolved.sequence[Math.floor(frameIndex) % resolved.sequence.length];
+            return { ...source, flipX: resolved.flipX };
         }
 
         makeObstacleFrames() {
@@ -120,50 +104,38 @@
         }
 
         drawHero(context, kind, action, direction, frameIndex, x, y, width, height) {
-            const frames = this.characters[kind];
-            let sequence;
-            if (action === 'JUMP') sequence = frames.jump[direction] || frames.jump.RIGHT;
-            else if (action === 'STUMBLE') sequence = frames.stumble;
-            else if (action === 'VICTORY') sequence = frames.victory;
-            else if (action === 'DEFEATED') sequence = frames.defeated;
-            else if (action === 'SIDESTEP_IN') sequence = frames.sidestepIn;
-            else if (action === 'SIDESTEP_OUT') sequence = frames.sidestepOut;
-            else if (action === 'READY') sequence = frames.idle[direction] || frames.idle.RIGHT;
-            else sequence = frames.run[direction] || frames.run.RIGHT;
-            const source = sequence[Math.floor(frameIndex) % sequence.length];
-            return this.safeDraw(context, kind, source, x - width / 2, y - height, width, height);
+            const directional = action === 'RUN' || action === 'READY' || action === 'JUMP';
+            const source = this.runnerFrame(kind, action, directional ? direction : '', frameIndex);
+            return this.safeDraw(context, 'runners', source, x - width / 2, y - height, width, height);
         }
 
-        competitorFrame(group, direction, frameIndex) {
-            const columnOrigins = [8, 318, 628, 938];
-            const bands = {
-                robot: { top: 28, run: 169, up: 265 },
-                human: { top: 474, run: 597, up: 700 },
-                monster: { top: 892, run: 1011, up: 1100 }
+        competitorId(group) {
+            const ids = {
+                robot: ['robot_blue', 'robot_orange', 'robot_pink', 'robot_green'],
+                human: ['human_01', 'human_02', 'human_03', 'human_04'],
+                monster: ['monster_red', 'monster_blue', 'monster_purple', 'monster_ram']
             };
-            const band = bands[group.band];
-            const origin = columnOrigins[group.column];
-            if (direction === 'UP') {
-                return rect(origin + (Math.floor(frameIndex) % 4) * 75, band.up, 74, 105);
-            }
-            if (direction === 'DOWN') {
-                return rect(origin, band.top, 77, 138);
-            }
-            const source = rect(origin + (Math.floor(frameIndex) % 6) * 50, band.run, 55, 98, direction === 'LEFT');
-            return source;
+            return ids[group.band]?.[group.column];
         }
 
         drawCompetitor(context, group, direction, frameIndex, x, y, width, height, state) {
-            let source = this.competitorFrame(group, direction, frameIndex);
-            if (state === 'STUMBLE') {
-                const fallY = group.band === 'robot' ? 354 : group.band === 'human' ? 793 : 1175;
-                const origin = [8, 318, 628, 938][group.column];
-                source = rect(origin + 150, fallY, 145, Math.min(78, 1254 - fallY));
-            }
-            return this.safeDraw(context, 'competitors', source, x - width / 2, y - height, width, height);
+            const id = this.competitorId(group);
+            const action = state === 'STUMBLE' ? 'STUMBLE' : state === 'READY' ? 'READY' : 'RUN';
+            const source = this.runnerFrame(id, action, action === 'STUMBLE' ? '' : direction, frameIndex);
+            return this.safeDraw(context, 'runners', source, x - width / 2, y - height, width, height);
         }
 
         drawObstacle(context, type, x, y, width, height, alpha = 1) {
+            const mobileRunner = {
+                backmarker: 'mobile_backmarker',
+                zigzag: 'mobile_zigzag',
+                judge: 'mobile_judge',
+                robot: 'mobile_maintenance_robot'
+            }[type];
+            if (mobileRunner) {
+                const source = this.runnerFrame(mobileRunner, 'RUN', 'RIGHT', 0);
+                return this.safeDraw(context, 'runners', source, x - width / 2, y - height, width, height, alpha);
+            }
             const source = this.obstacles[type];
             return this.safeDraw(context, 'obstacles', source, x - width / 2, y - height, width, height, alpha);
         }
@@ -409,6 +381,7 @@
             this.avoidanceY = 0;
             this.aiDecisionTimer = 0;
             this.overtakeIntent = 0;
+            this.collider = { anchor: 'feet', radius: RUNNER_BODY_RADIUS };
         }
 
         get lap() {
@@ -1002,7 +975,7 @@
                     const dx = pa.x - pb.x;
                     const dy = pa.y - pb.y;
                     const distance = Math.hypot(dx, dy);
-                    const minimum = 27;
+                    const minimum = a.collider.radius + b.collider.radius;
                     if (distance <= 0.01 || distance >= minimum) continue;
                     const nx = dx / distance;
                     const ny = dy / distance;

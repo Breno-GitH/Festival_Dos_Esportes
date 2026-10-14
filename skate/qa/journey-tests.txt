@@ -1,0 +1,655 @@
+TAP version 13
+# Subtest: assets novos classificam topo, lateral, escadas e borda grindável por região
+ok 1 - assets novos classificam topo, lateral, escadas e borda grindável por região
+  ---
+  duration_ms: 5.7837
+  ...
+# Subtest: runtime executa Normal Jump no primeiro keydown e double Space eleva o mesmo salto
+ok 2 - runtime executa Normal Jump no primeiro keydown e double Space eleva o mesmo salto
+  ---
+  duration_ms: 46.9436
+  ...
+# Subtest: runtime prioriza Grind Capture sobre Double Space perto de um rail válido
+ok 3 - runtime prioriza Grind Capture sobre Double Space perto de um rail válido
+  ---
+  duration_ms: 13.0824
+  ...
+# Subtest: runtime mantém o primeiro Space pendente até a física consumir o input
+ok 4 - runtime mantém o primeiro Space pendente até a física consumir o input
+  ---
+  duration_ms: 7.5981
+  ...
+# Subtest: soltar Space depois de aterrissar em Manual não fica preso como soltura aérea
+ok 5 - soltar Space depois de aterrissar em Manual não fica preso como soltura aérea
+  ---
+  duration_ms: 5.6265
+  ...
+# Subtest: finish conclui a linha, banca combo e concede a medalha skate uma vez
+ok 6 - finish conclui a linha, banca combo e concede a medalha skate uma vez
+  ---
+  duration_ms: 10.6954
+  ...
+# Subtest: primeira metade: pista contínua e checkpoints em 35% e 70%
+ok 7 - primeira metade: pista contínua e checkpoints em 35% e 70%
+  ---
+  duration_ms: 8.7889
+  ...
+# Subtest: pista oficial usa somente geometria procedural e nenhum objeto de rua arbitrário
+ok 8 - pista oficial usa somente geometria procedural e nenhum objeto de rua arbitrário
+  ---
+  duration_ms: 4.9228
+  ...
+# Subtest: sobrevivência e Grind atravessam a primeira metade e entram na continuação
+ok 9 - sobrevivência e Grind atravessam a primeira metade e entram na continuação
+  ---
+  duration_ms: 3807.1354
+  ...
+# Subtest: salto da rua tolera doze pixels de antecipação ou atraso
+ok 10 - salto da rua tolera doze pixels de antecipação ou atraso
+  ---
+  duration_ms: 3672.5186
+  ...
+# Subtest: banco: topo seguro; impacto de frente causa Fail
+ok 11 - banco: topo seguro; impacto de frente causa Fail
+  ---
+  duration_ms: 93.8223
+  ...
+# Subtest: dez capturas do Stair Rail funcionam; dez erros atingem a escada
+ok 12 - dez capturas do Stair Rail funcionam; dez erros atingem a escada
+  ---
+  duration_ms: 1443.0907
+  ...
+# Subtest: primeira transferência permite erro; o chain fatal exige a captura
+ok 13 - primeira transferência permite erro; o chain fatal exige a captura
+  ---
+  duration_ms: 262.4229
+  ...
+# Subtest: três Grinds cruzam o vazio sem chão; perder B ou C causa queda
+ok 14 - três Grinds cruzam o vazio sem chão; perder B ou C causa queda
+  ---
+  duration_ms: 283.8469
+  ...
+# Subtest: energia da rampa permite Normal e Ollie cruzarem o rooftop gap
+ok 15 - energia da rampa permite Normal e Ollie cruzarem o rooftop gap
+  ---
+  duration_ms: 224.7779
+  ...
+# Subtest: Huge Gap aceita uma faixa de timing, com pouso antes do rail de saída
+ok 16 - Huge Gap aceita uma faixa de timing, com pouso antes do rail de saída
+  ---
+  duration_ms: 520.3667
+  ...
+# Subtest: zero input, hold permanente e mash não vencem a primeira metade
+ok 17 - zero input, hold permanente e mash não vencem a primeira metade
+  ---
+  duration_ms: 370.7343
+  ...
+# Subtest: ZERO INPUT falha no primeiro gap da rota
+ok 18 - ZERO INPUT falha no primeiro gap da rota
+  ---
+  duration_ms: 32.8241
+  ...
+# Subtest: HOLD SPACE vira um único Super Jump e não completa automaticamente
+ok 19 - HOLD SPACE vira um único Super Jump e não completa automaticamente
+  ---
+  duration_ms: 24.7819
+  ...
+# Subtest: MASH SPACE em ciclos de 100 ms não limpa a pista
+ok 20 - MASH SPACE em ciclos de 100 ms não limpa a pista
+  ---
+  duration_ms: 12.4216
+  ...
+# Subtest: dedicated mechanics course authors a four-rail no-ground chain and one special ramp
+ok 21 - dedicated mechanics course authors a four-rail no-ground chain and one special ramp
+  ---
+  duration_ms: 4.7066
+  ...
+# Subtest: Rail → Jump → Rail → Jump → Rail chain reaches all four rails before any landing
+ok 22 - Rail → Jump → Rail → Jump → Rail chain reaches all four rails before any landing
+  ---
+  duration_ms: 95.8546
+  ...
+# Subtest: real SPACE key events clear the short course and capture four rails without ground contact
+ok 23 - real SPACE key events clear the short course and capture four rails without ground contact
+  ---
+  duration_ms: 597.2415
+  ...
+# Subtest: errar o segundo rail sem manter SPACE causa queda, sem captura automática
+ok 24 - errar o segundo rail sem manter SPACE causa queda, sem captura automática
+  ---
+  duration_ms: 139.4981
+  ...
+# Subtest: soltar o Grind lança imediatamente; novo hold captura o próximo rail
+ok 25 - soltar o Grind lança imediatamente; novo hold captura o próximo rail
+  ---
+  duration_ms: 1.8641
+  ...
+# Subtest: test bench accepts a normal jump on top and crashes on a direct side impact
+ok 26 - test bench accepts a normal jump on top and crashes on a direct side impact
+  ---
+  duration_ms: 2.0752
+  ...
+# Subtest: Mega Air launches from ramp and SPACE alone carries Zorp to landing
+ok 27 - Mega Air launches from ramp and SPACE alone carries Zorp to landing
+  ---
+  duration_ms: 11.5386
+  ...
+# Subtest: soltar SPACE cedo remove sustentação e causa queda
+ok 28 - soltar SPACE cedo remove sustentação e causa queda
+  ---
+  duration_ms: 4.7128
+  ...
+# Subtest: daylight interpolates through four periods and Mega Ramp is fully night
+ok 29 - daylight interpolates through four periods and Mega Ramp is fully night
+  ---
+  duration_ms: 8.0011
+  ...
+# Subtest: rider follows slope with bounded rotation and compresses around contact at landing
+ok 30 - rider follows slope with bounded rotation and compresses around contact at landing
+  ---
+  duration_ms: 1.8908
+  ...
+# Subtest: celebration follows air, landing and finish within a fixed particle pool
+ok 31 - celebration follows air, landing and finish within a fixed particle pool
+  ---
+  duration_ms: 70.0109
+  ...
+# Subtest: release and crash stop launching fireworks; remaining particles expire
+ok 32 - release and crash stop launching fireworks; remaining particles expire
+  ---
+  duration_ms: 59.0712
+  ...
+# Subtest: full course clears with SPACE only and Mega fail cancels celebration
+ok 33 - full course clears with SPACE only and Mega fail cancels celebration
+  ---
+  duration_ms: 3393.5761
+  ...
+# Subtest: SPACE pula imediatamente, diferencia double-tap e hold sem upgrade
+ok 34 - SPACE pula imediatamente, diferencia double-tap e hold sem upgrade
+  ---
+  duration_ms: 4.7712
+  ...
+# Subtest: rampas de teste dão impulsos naturais proporcionais e Ollie reforça o launch
+ok 35 - rampas de teste dão impulsos naturais proporcionais e Ollie reforça o launch
+  ---
+  duration_ms: 24.7406
+  ...
+# Subtest: Grind usa release imediato para Super Out e hold captura o segundo rail
+ok 36 - Grind usa release imediato para Super Out e hold captura o segundo rail
+  ---
+  duration_ms: 3.5716
+  ...
+# Subtest: Ollie out preserva o avanço e aterrissa na rampa grande seguinte
+ok 37 - Ollie out preserva o avanço e aterrissa na rampa grande seguinte
+  ---
+  duration_ms: 2.813
+  ...
+# Subtest: rails horizontais, inclinados e curvos são seguidos até a saída natural
+ok 38 - rails horizontais, inclinados e curvos são seguidos até a saída natural
+  ---
+  duration_ms: 2.5997
+  ...
+# Subtest: snap não captura quem está próximo mas se afasta do grindPath
+ok 39 - snap não captura quem está próximo mas se afasta do grindPath
+  ---
+  duration_ms: 1.3436
+  ...
+# Subtest: pista curta contém small → landing → medium → rails → big e mantém velocidade lateral
+ok 40 - pista curta contém small → landing → medium → rails → big e mantém velocidade lateral
+  ---
+  duration_ms: 0.5571
+  ...
+# Subtest: soft capture flat: no teleport, no frozen velocity, contact in 100ms
+ok 41 - soft capture flat: no teleport, no frozen velocity, contact in 100ms
+  ---
+  duration_ms: 31.5198
+  ...
+# Subtest: soft capture ascending: no teleport, no frozen velocity, contact in 100ms
+ok 42 - soft capture ascending: no teleport, no frozen velocity, contact in 100ms
+  ---
+  duration_ms: 1.9474
+  ...
+# Subtest: soft capture descending: no teleport, no frozen velocity, contact in 100ms
+ok 43 - soft capture descending: no teleport, no frozen velocity, contact in 100ms
+  ---
+  duration_ms: 1.1631
+  ...
+# Subtest: soft capture curved: no teleport, no frozen velocity, contact in 100ms
+ok 44 - soft capture curved: no teleport, no frozen velocity, contact in 100ms
+  ---
+  duration_ms: 1.9018
+  ...
+# Subtest: capture before first post leaves x unchanged; no hold never captures
+ok 45 - capture before first post leaves x unchanged; no hold never captures
+  ---
+  duration_ms: 2.234
+  ...
+# Subtest: holding on flat ground gives exactly the same height and one takeoff as a tap
+ok 46 - holding on flat ground gives exactly the same height and one takeoff as a tap
+  ---
+  duration_ms: 40.6148
+  ...
+# Subtest: intro has five distinct rails, safe first transfer and two real gaps
+ok 47 - intro has five distinct rails, safe first transfer and two real gaps
+  ---
+  duration_ms: 833.63
+  ...
+# Subtest: official Skate is backed only by procedural course geometry
+ok 48 - official Skate is backed only by procedural course geometry
+  ---
+  duration_ms: 46.6311
+  ...
+# Subtest: official rails, ramps and structures share visual and gameplay geometry
+ok 49 - official rails, ramps and structures share visual and gameplay geometry
+  ---
+  duration_ms: 2.0228
+  ...
+# Subtest: official browser flow loads procedural track without scene sprite catalogs
+ok 50 - official browser flow loads procedural track without scene sprite catalogs
+  ---
+  duration_ms: 1.9146
+  ...
+# Subtest: official run completes with procedural collisions, Grind capture and Jump Out
+ok 51 - official run completes with procedural collisions, Grind capture and Jump Out
+  ---
+  duration_ms: 3352.4666
+  ...
+# Subtest: five supported rails form a fatal no-floor line with a required Super transfer
+ok 52 - five supported rails form a fatal no-floor line with a required Super transfer
+  ---
+  duration_ms: 1863.5584
+  ...
+# Subtest: grand stair rail starts before twenty-four fatal steps and needs a timed exit
+ok 53 - grand stair rail starts before twenty-four fatal steps and needs a timed exit
+  ---
+  duration_ms: 828.9441
+  ...
+# Subtest: last third connects ramp, bench, ledge and three launch surfaces without scenery sprites
+ok 54 - last third connects ramp, bench, ledge and three launch surfaces without scenery sprites
+  ---
+  duration_ms: 2028.9271
+  ...
+# Subtest: final gauntlet has four required fast transfers, fatal stair miss and clean finish
+ok 55 - final gauntlet has four required fast transfers, fatal stair miss and clean finish
+  ---
+  duration_ms: 2277.3113
+  ...
+# Subtest: zero, permanent hold and mash cannot clear the procedural official course
+ok 56 - zero, permanent hold and mash cannot clear the procedural official course
+  ---
+  duration_ms: 387.074
+  ...
+# Subtest: SPACE keeps immediate Normal, double Ollie and hold Grind intent distinct
+ok 57 - SPACE keeps immediate Normal, double Ollie and hold Grind intent distinct
+  ---
+  duration_ms: 10.7951
+  ...
+# Subtest: procedural validation course contains only code geometry and explicit collision roles
+ok 58 - procedural validation course contains only code geometry and explicit collision roles
+  ---
+  duration_ms: 0.7698
+  ...
+# Subtest: without held SPACE the first rail does not capture automatically
+ok 59 - without held SPACE the first rail does not capture automatically
+  ---
+  duration_ms: 209.2441
+  ...
+# Subtest: held SPACE keeps a captured Grind until release or rail end
+ok 60 - held SPACE keeps a captured Grind until release or rail end
+  ---
+  duration_ms: 3.0163
+  ...
+# Subtest: four-rail chain completes without touching ground and uses Super for the high rail
+ok 61 - four-rail chain completes without touching ground and uses Super for the high rail
+  ---
+  duration_ms: 227.5134
+  ...
+# Subtest: complete gameplay line reaches the stair handrail and finishes
+ok 62 - complete gameplay line reaches the stair handrail and finishes
+  ---
+  duration_ms: 380.9331
+  ...
+# Subtest: hold forever and mash do not clear the validation course
+ok 63 - hold forever and mash do not clear the validation course
+  ---
+  duration_ms: 171.082
+  ...
+# Subtest: sandbox uses the same procedural geometry vocabulary as the official course
+ok 64 - sandbox uses the same procedural geometry vocabulary as the official course
+  ---
+  duration_ms: 42.9686
+  ...
+# Subtest: ramp drawing, collision and physics all share the same sampled surface
+ok 65 - ramp drawing, collision and physics all share the same sampled surface
+  ---
+  duration_ms: 4.919
+  ...
+# Subtest: every rail uses its visual path for Grind and has grounded supports
+ok 66 - every rail uses its visual path for Grind and has grounded supports
+  ---
+  duration_ms: 1.9263
+  ...
+# Subtest: bench and ledge separate safe top, grind edge and dangerous side
+ok 67 - bench and ledge separate safe top, grind edge and dangerous side
+  ---
+  duration_ms: 1.7823
+  ...
+# Subtest: stairs are generated step by step and their handrail follows the structure
+ok 68 - stairs are generated step by step and their handrail follows the structure
+  ---
+  duration_ms: 0.7125
+  ...
+# Subtest: gaps are real breaks in ground with visible shores
+ok 69 - gaps are real breaks in ground with visible shores
+  ---
+  duration_ms: 1.1162
+  ...
+# Subtest: builder exposes the complete reusable authoring vocabulary
+ok 70 - builder exposes the complete reusable authoring vocabulary
+  ---
+  duration_ms: 0.696
+  ...
+# Subtest: the short sandbox can be played from spawn to finish with the current physics
+ok 71 - the short sandbox can be played from spawn to finish with the current physics
+  ---
+  duration_ms: 720.056
+  ...
+# Subtest: release launches once immediately with strong impulse, tangent and preserved momentum
+ok 72 - release launches once immediately with strong impulse, tangent and preserved momentum
+  ---
+  duration_ms: 7.5588
+  ...
+# Subtest: huge stair exit repeats ten times; early release and no release fail
+ok 73 - huge stair exit repeats ten times; early release and no release fail
+  ---
+  duration_ms: 2406.9843
+  ...
+# Subtest: Mega Air needs only SPACE and finite sustained execution
+ok 74 - Mega Air needs only SPACE and finite sustained execution
+  ---
+  duration_ms: 691.6088
+  ...
+# Subtest: full line survives frame scheduling at 30, 60, 90 and 120 Hz
+ok 75 - full line survives frame scheduling at 30, 60, 90 and 120 Hz
+  ---
+  duration_ms: 8450.8186
+  ...
+# Subtest: every gameplay pose uses an existing Skate 2.0 frame with its board attached
+ok 76 - every gameplay pose uses an existing Skate 2.0 frame with its board attached
+  ---
+  duration_ms: 47.8136
+  ...
+# Subtest: ride, normal jump, Ollie, Super Jump, air catch and landing follow physical state
+ok 77 - ride, normal jump, Ollie, Super Jump, air catch and landing follow physical state
+  ---
+  duration_ms: 1.8172
+  ...
+# Subtest: grind, jump out, bench top, crash and respawn use their own poses
+ok 78 - grind, jump out, bench top, crash and respawn use their own poses
+  ---
+  duration_ms: 0.8738
+  ...
+# Subtest: push, board flip trick and near-fail keep the board attached
+ok 79 - push, board flip trick and near-fail keep the board attached
+  ---
+  duration_ms: 0.5882
+  ...
+# Subtest: frame anchor keeps board contact fixed through every gameplay animation
+ok 80 - frame anchor keeps board contact fixed through every gameplay animation
+  ---
+  duration_ms: 1.1744
+  ...
+# Subtest: SPACE inicia Normal Jump imediatamente, sem esperar o double tap
+ok 81 - SPACE inicia Normal Jump imediatamente, sem esperar o double tap
+  ---
+  duration_ms: 8.7088
+  ...
+# Subtest: Ollie atualiza o salto; a antiga ação de Super Jump é ignorada
+ok 82 - Ollie atualiza o salto; a antiga ação de Super Jump é ignorada
+  ---
+  duration_ms: 4.8492
+  ...
+# Subtest: Normal < Ollie < lançamento de Grind com momentum
+ok 83 - Normal < Ollie < lançamento de Grind com momentum
+  ---
+  duration_ms: 3.6755
+  ...
+# Subtest: sem input avança até o obstáculo de teste e causa crash previsível
+ok 84 - sem input avança até o obstáculo de teste e causa crash previsível
+  ---
+  duration_ms: 9.03
+  ...
+# Subtest: hold longo faz somente um salto, depois deixa Zorp aterrissar
+ok 85 - hold longo faz somente um salto, depois deixa Zorp aterrissar
+  ---
+  duration_ms: 8.8986
+  ...
+# Subtest: câmera mantém Zorp perto de 32% e acompanha mudanças verticais com smoothing
+ok 86 - câmera mantém Zorp perto de 32% e acompanha mudanças verticais com smoothing
+  ---
+  duration_ms: 4.4574
+  ...
+# Subtest: descidas contínuas mantêm Zorp na superfície sem pousos repetidos
+ok 87 - descidas contínuas mantêm Zorp na superfície sem pousos repetidos
+  ---
+  duration_ms: 3.6209
+  ...
+# Subtest: topo do banco é SAFE_TOP; impacto na lateral causa crash
+ok 88 - topo do banco é SAFE_TOP; impacto na lateral causa crash
+  ---
+  duration_ms: 1.2331
+  ...
+# Subtest: passar acima do banco é seguro e o topo permite um novo salto
+ok 89 - passar acima do banco é seguro e o topo permite um novo salto
+  ---
+  duration_ms: 1.5809
+  ...
+# Subtest: escada não cria chão plano; colisão é classificada como stair fall
+ok 90 - escada não cria chão plano; colisão é classificada como stair fall
+  ---
+  duration_ms: 1.3953
+  ...
+# Subtest: impulso de rampa mantém avanço e superfície inclinada é amostrada
+ok 91 - impulso de rampa mantém avanço e superfície inclinada é amostrada
+  ---
+  duration_ms: 1.5281
+  ...
+# Subtest: Mega Hold sustenta sem interpretar Ollie ou sequência aérea
+ok 92 - Mega Hold sustenta sem interpretar Ollie ou sequência aérea
+  ---
+  duration_ms: 6.9997
+  ...
+# Subtest: um Space inicia Normal Jump imediatamente e o segundo Space no ar faz upgrade Ollie
+ok 93 - um Space inicia Normal Jump imediatamente e o segundo Space no ar faz upgrade Ollie
+  ---
+  duration_ms: 0.9722
+  ...
+# Subtest: hold permanece intenção de Grind sem produzir Super Jump
+ok 94 - hold permanece intenção de Grind sem produzir Super Jump
+  ---
+  duration_ms: 1.6217
+  ...
+# Subtest: hold não gera impulso; release do Grind é resolvido pela travessia
+ok 95 - hold não gera impulso; release do Grind é resolvido pela travessia
+  ---
+  duration_ms: 2.7914
+  ...
+# Subtest: rail capturável prioriza Grind sobre Ollie e Super Jump no mesmo pressionamento
+ok 96 - rail capturável prioriza Grind sobre Ollie e Super Jump no mesmo pressionamento
+  ---
+  duration_ms: 0.814
+  ...
+# Subtest: novo hold aéreo após captura e Jump Out não adiciona energia
+ok 97 - novo hold aéreo após captura e Jump Out não adiciona energia
+  ---
+  duration_ms: 0.481
+  ...
+# Subtest: trick → grind inicia blend sem snap e soma pontos por distância
+ok 98 - trick → grind inicia blend sem snap e soma pontos por distância
+  ---
+  duration_ms: 9.2362
+  ...
+# Subtest: snap não captura Zorp que esteja longe do rail
+ok 99 - snap não captura Zorp que esteja longe do rail
+  ---
+  duration_ms: 0.6218
+  ...
+# Subtest: Grind exige SPACE segurado; aproximação sem hold não captura
+ok 100 - Grind exige SPACE segurado; aproximação sem hold não captura
+  ---
+  duration_ms: 1.0086
+  ...
+# Subtest: buffer de 130 ms captura um rail logo após um Space antecipado
+ok 101 - buffer de 130 ms captura um rail logo após um Space antecipado
+  ---
+  duration_ms: 10.2284
+  ...
+# Subtest: SPACE segurado cedo continua válido ao entrar na zona depois do buffer
+ok 102 - SPACE segurado cedo continua válido ao entrar na zona depois do buffer
+  ---
+  duration_ms: 2.179
+  ...
+# Subtest: release lança no primeiro frame, sem repressão
+ok 103 - release lança no primeiro frame, sem repressão
+  ---
+  duration_ms: 1.5439
+  ...
+# Subtest: Space depois do fim do grindPath não captura rail tarde demais
+ok 104 - Space depois do fim do grindPath não captura rail tarde demais
+  ---
+  duration_ms: 0.5357
+  ...
+# Subtest: trick → manual preserva o combo ao tocar o chão segurando SPACE
+ok 105 - trick → manual preserva o combo ao tocar o chão segurando SPACE
+  ---
+  duration_ms: 0.7164
+  ...
+# Subtest: grind → manual conecta no pouso seguinte
+ok 106 - grind → manual conecta no pouso seguinte
+  ---
+  duration_ms: 4.5289
+  ...
+# Subtest: manual → Ollie usa a soltura para lançar sem input ambíguo
+ok 107 - manual → Ollie usa a soltura para lançar sem input ambíguo
+  ---
+  duration_ms: 2.3782
+  ...
+# Subtest: trick → grind → manual → Ollie → trick mantém a linha ativa
+ok 108 - trick → grind → manual → Ollie → trick mantém a linha ativa
+  ---
+  duration_ms: 1.2515
+  ...
+# Subtest: pouso normal abre janela e faz bank quando nada conecta
+ok 109 - pouso normal abre janela e faz bank quando nada conecta
+  ---
+  duration_ms: 0.7553
+  ...
+# Subtest: crash descarta combo ativo e conserva score já banked
+ok 110 - crash descarta combo ativo e conserva score já banked
+  ---
+  duration_ms: 2.0632
+  ...
+# Subtest: bônus de execução são centralizados para high rail, bench trick e Special Air
+ok 111 - bônus de execução são centralizados para high rail, bench trick e Special Air
+  ---
+  duration_ms: 1.2108
+  ...
+# Subtest: manual tem duração máxima e rail aceita geometria inclinada
+ok 112 - manual tem duração máxima e rail aceita geometria inclinada
+  ---
+  duration_ms: 0.788
+  ...
+# Subtest: a pista provisória permite alcançar o rail com Ollie e manter Grind até a saída
+ok 113 - a pista provisória permite alcançar o rail com Ollie e manter Grind até a saída
+  ---
+  duration_ms: 19.4823
+  ...
+# Subtest: TAP reconhece Kickflip com os frames Pro3 row04
+ok 114 - TAP reconhece Kickflip com os frames Pro3 row04
+  ---
+  duration_ms: 4.5699
+  ...
+# Subtest: DOUBLE TAP reconhece Heelflip com a sequência existente invertida
+ok 115 - DOUBLE TAP reconhece Heelflip com a sequência existente invertida
+  ---
+  duration_ms: 0.6163
+  ...
+# Subtest: HOLD curto reconhece Spin com os frames Pro3 row03
+ok 116 - HOLD curto reconhece Spin com os frames Pro3 row03
+  ---
+  duration_ms: 0.5055
+  ...
+# Subtest: TAP + HOLD reconhece Grab
+ok 117 - TAP + HOLD reconhece Grab
+  ---
+  duration_ms: 0.6829
+  ...
+# Subtest: DOUBLE TAP + HOLD reconhece Varial com frames de flip existentes
+ok 118 - DOUBLE TAP + HOLD reconhece Varial com frames de flip existentes
+  ---
+  duration_ms: 0.5478
+  ...
+# Subtest: TRIPLE TAP é jogável e vira Hard Flip com o flip invertido existente
+ok 119 - TRIPLE TAP é jogável e vira Hard Flip com o flip invertido existente
+  ---
+  duration_ms: 0.5976
+  ...
+# Subtest: spam não cria cinco tricks e mantém limite de dois por salto
+ok 120 - spam não cria cinco tricks e mantém limite de dois por salto
+  ---
+  duration_ms: 0.9907
+  ...
+# Subtest: trick perto do chão é recusado se a animação não cabe no airtime
+ok 121 - trick perto do chão é recusado se a animação não cabe no airtime
+  ---
+  duration_ms: 0.7878
+  ...
+# Subtest: dois tricks conectam somente no salto alto com tempo restante
+ok 122 - dois tricks conectam somente no salto alto com tempo restante
+  ---
+  duration_ms: 6.3754
+  ...
+# Subtest: repetição reduz score e a variedade premia um trick novo
+ok 123 - repetição reduz score e a variedade premia um trick novo
+  ---
+  duration_ms: 4.3669
+  ...
+# Subtest: as durações reais e a checagem de airtime ficam centralizadas
+ok 124 - as durações reais e a checagem de airtime ficam centralizadas
+  ---
+  duration_ms: 0.5779
+  ...
+# Subtest: os três sheets viram recortes individuais com trilha de origem e sem asset faltando
+ok 125 - os três sheets viram recortes individuais com trilha de origem e sem asset faltando
+  ---
+  duration_ms: 18.2356
+  ...
+# Subtest: Zorp usa anchor bottom-center e collider próprio do corpo/board
+ok 126 - Zorp usa anchor bottom-center e collider próprio do corpo/board
+  ---
+  duration_ms: 2.55
+  ...
+# Subtest: rampa pequena e grande acompanham superfície inclinada e voltam ao chão
+ok 127 - rampa pequena e grande acompanham superfície inclinada e voltam ao chão
+  ---
+  duration_ms: 21.5606
+  ...
+# Subtest: rails usam grindPath e ledges separam standing top de grind edge
+ok 128 - rails usam grindPath e ledges separam standing top de grind edge
+  ---
+  duration_ms: 2.0028
+  ...
+# Subtest: test lane de assets é isolada da pista e contém rampas, rails e plataforma
+ok 129 - test lane de assets é isolada da pista e contém rampas, rails e plataforma
+  ---
+  duration_ms: 0.5489
+  ...
+1..129
+# tests 129
+# suites 0
+# pass 129
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 12123.6

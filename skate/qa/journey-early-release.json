@@ -1,0 +1,187 @@
+{
+  "summary": {
+    "drawMeanMs": 1.04,
+    "presentation": {
+      "stage": "failed",
+      "stageAge": 92.73076666668995,
+      "megaStarted": true,
+      "landedMega": false,
+      "finished": false,
+      "clock": 94.30576666668982,
+      "landingAge": 95.30576666668973,
+      "lastLanding": null,
+      "particles": 0,
+      "particleLimit": 384,
+      "averageParticles": 1.0761904761904761,
+      "averageFireworks": 1.0761904761904761,
+      "activePeak": 64,
+      "launched": 2,
+      "bursts": 2
+    },
+    "daylight": "night",
+    "neon": 1,
+    "megaState": "",
+    "controlledMs": 875,
+    "phase": "FAILED",
+    "paused": false,
+    "acceleratedReplay": true,
+    "x": 24505,
+    "y": 525.5,
+    "mode": "CRASH",
+    "jumpTier": "mega-air",
+    "held": false,
+    "forwardSpeed": 280,
+    "verticalVelocity": 1981.4,
+    "captureBlend": 0,
+    "rail": "",
+    "beat": "FINAL GAUNTLET",
+    "time": 3.17,
+    "score": 0,
+    "peakCombo": 0,
+    "fps": 60.2,
+    "zoom": 0.32,
+    "timeScale": 1,
+    "checkpoints": [
+      "checkpoint-1",
+      "checkpoint-2"
+    ],
+    "failure": "FELL_IN_GAP",
+    "hit": "",
+    "enteredRails": []
+  },
+  "transitions": [
+    {
+      "x": 23622,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 0.01
+    },
+    {
+      "x": 24057,
+      "y": 135,
+      "mode": "AIR",
+      "rail": "",
+      "time": 1.57
+    },
+    {
+      "x": 24505,
+      "y": 525,
+      "mode": "CRASH",
+      "rail": "",
+      "time": 3.17
+    }
+  ],
+  "inputs": [
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 395
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 860
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 2245
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 3260
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 4690
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 5150
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 5500
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 5650
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 6040
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 6610
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 7940
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 8760
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 12860
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 13280
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 14105
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 16570
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 18320
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 18900
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 21040
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 22955
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 23410
+    },
+    {
+      "x": 24057.10294444444,
+      "action": "special-sustain",
+      "at": 179255.79999995138
+    }
+  ]
+}

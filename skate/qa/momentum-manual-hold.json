@@ -1,0 +1,51 @@
+{
+  "summary": {
+    "phase": "PLAYING",
+    "paused": true,
+    "acceleratedReplay": false,
+    "x": 290,
+    "y": 250,
+    "mode": "MANUAL",
+    "jumpTier": "",
+    "held": true,
+    "forwardSpeed": 230,
+    "verticalVelocity": 0,
+    "captureBlend": 0,
+    "rail": "",
+    "beat": "FAST START",
+    "time": 0.61,
+    "score": 0,
+    "peakCombo": 0,
+    "fps": 1.5,
+    "zoom": 0.72,
+    "timeScale": 1,
+    "checkpoints": [],
+    "failure": "",
+    "hit": "",
+    "enteredRails": []
+  },
+  "transitions": [
+    {
+      "x": 161,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 0.05
+    },
+    {
+      "x": 173,
+      "y": 235,
+      "mode": "AIR",
+      "rail": "",
+      "time": 0.1
+    },
+    {
+      "x": 267,
+      "y": 250,
+      "mode": "MANUAL",
+      "rail": "",
+      "time": 0.51
+    }
+  ],
+  "inputs": []
+}

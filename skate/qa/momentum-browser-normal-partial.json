@@ -1,0 +1,1067 @@
+{
+  "summary": {
+    "phase": "PLAYING",
+    "paused": false,
+    "acceleratedReplay": false,
+    "x": 20138,
+    "y": -6.7,
+    "mode": "AIR",
+    "rail": "",
+    "beat": "DOWNHILL RAMP COMBO",
+    "time": 83.52,
+    "score": 16331,
+    "peakCombo": 7121,
+    "fps": 24.9,
+    "zoom": 0.504,
+    "timeScale": 1,
+    "checkpoints": [
+      "checkpoint-1",
+      "checkpoint-2"
+    ],
+    "failure": "",
+    "hit": "",
+    "enteredRails": [
+      "first-rail",
+      "first-link",
+      "transfer-b",
+      "three-a",
+      "three-c",
+      "street-ledge",
+      "stair-handrail",
+      "danger-a",
+      "danger-b",
+      "danger-c",
+      "huge-exit-rail",
+      "void-a",
+      "void-b",
+      "void-c",
+      "void-d",
+      "void-e",
+      "grand-stair-handrail",
+      "advanced-bench-top",
+      "advanced-ledge-edge",
+      "high-rail",
+      "advanced-handrail"
+    ]
+  },
+  "transitions": [
+    {
+      "x": 152,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 0.01
+    },
+    {
+      "x": 401,
+      "y": 245,
+      "mode": "AIR",
+      "rail": "",
+      "time": 1.09
+    },
+    {
+      "x": 493,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 1.49
+    },
+    {
+      "x": 779,
+      "y": 216,
+      "mode": "AIR",
+      "rail": "",
+      "time": 2.74
+    },
+    {
+      "x": 848,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 3.04
+    },
+    {
+      "x": 868,
+      "y": 245,
+      "mode": "AIR",
+      "rail": "",
+      "time": 3.12
+    },
+    {
+      "x": 948,
+      "y": 234,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 3.47
+    },
+    {
+      "x": 1046,
+      "y": 198,
+      "mode": "AIR",
+      "rail": "",
+      "time": 3.91
+    },
+    {
+      "x": 1077,
+      "y": 194,
+      "mode": "GRIND",
+      "rail": "first-rail",
+      "time": 4.04
+    },
+    {
+      "x": 1461,
+      "y": 206,
+      "mode": "AIR",
+      "rail": "",
+      "time": 5.76
+    },
+    {
+      "x": 1592,
+      "y": 119,
+      "mode": "GRIND",
+      "rail": "first-link",
+      "time": 6.34
+    },
+    {
+      "x": 1761,
+      "y": 120,
+      "mode": "AIR",
+      "rail": "",
+      "time": 7.11
+    },
+    {
+      "x": 1914,
+      "y": 70,
+      "mode": "GRIND",
+      "rail": "transfer-b",
+      "time": 7.79
+    },
+    {
+      "x": 2350,
+      "y": 182,
+      "mode": "AIR",
+      "rail": "",
+      "time": 9.73
+    },
+    {
+      "x": 2493,
+      "y": 125,
+      "mode": "GRIND",
+      "rail": "three-a",
+      "time": 10.36
+    },
+    {
+      "x": 2812,
+      "y": 186,
+      "mode": "AIR",
+      "rail": "",
+      "time": 11.81
+    },
+    {
+      "x": 3005,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 12.66
+    },
+    {
+      "x": 3264,
+      "y": 214,
+      "mode": "AIR",
+      "rail": "",
+      "time": 13.79
+    },
+    {
+      "x": 3371,
+      "y": 174,
+      "mode": "GRIND",
+      "rail": "three-c",
+      "time": 14.26
+    },
+    {
+      "x": 3923,
+      "y": 204,
+      "mode": "AIR",
+      "rail": "",
+      "time": 16.76
+    },
+    {
+      "x": 4112,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 17.59
+    },
+    {
+      "x": 4697,
+      "y": 245,
+      "mode": "AIR",
+      "rail": "",
+      "time": 20.14
+    },
+    {
+      "x": 4789,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 20.54
+    },
+    {
+      "x": 4949,
+      "y": 216,
+      "mode": "AIR",
+      "rail": "",
+      "time": 21.24
+    },
+    {
+      "x": 5018,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 21.54
+    },
+    {
+      "x": 5156,
+      "y": 245,
+      "mode": "AIR",
+      "rail": "",
+      "time": 22.14
+    },
+    {
+      "x": 5290,
+      "y": 191,
+      "mode": "GRIND",
+      "rail": "street-ledge",
+      "time": 22.72
+    },
+    {
+      "x": 5475,
+      "y": 206,
+      "mode": "AIR",
+      "rail": "",
+      "time": 23.54
+    },
+    {
+      "x": 5664,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 24.37
+    },
+    {
+      "x": 5668,
+      "y": 245,
+      "mode": "AIR",
+      "rail": "",
+      "time": 24.39
+    },
+    {
+      "x": 5805,
+      "y": 193,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 24.99
+    },
+    {
+      "x": 5909,
+      "y": 194,
+      "mode": "AIR",
+      "rail": "",
+      "time": 25.44
+    },
+    {
+      "x": 5966,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 25.69
+    },
+    {
+      "x": 6047,
+      "y": 245,
+      "mode": "AIR",
+      "rail": "",
+      "time": 26.04
+    },
+    {
+      "x": 6192,
+      "y": 205,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 26.67
+    },
+    {
+      "x": 6254,
+      "y": 205,
+      "mode": "AIR",
+      "rail": "",
+      "time": 26.94
+    },
+    {
+      "x": 6303,
+      "y": 247,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 27.16
+    },
+    {
+      "x": 6451,
+      "y": 196,
+      "mode": "AIR",
+      "rail": "",
+      "time": 27.81
+    },
+    {
+      "x": 6532,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 28.16
+    },
+    {
+      "x": 6616,
+      "y": 245,
+      "mode": "AIR",
+      "rail": "",
+      "time": 28.52
+    },
+    {
+      "x": 6750,
+      "y": 191,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 29.11
+    },
+    {
+      "x": 6923,
+      "y": 191,
+      "mode": "AIR",
+      "rail": "",
+      "time": 29.86
+    },
+    {
+      "x": 6980,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 30.11
+    },
+    {
+      "x": 7239,
+      "y": 216,
+      "mode": "AIR",
+      "rail": "",
+      "time": 31.24
+    },
+    {
+      "x": 7308,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 31.54
+    },
+    {
+      "x": 7947,
+      "y": 194,
+      "mode": "AIR",
+      "rail": "",
+      "time": 34.32
+    },
+    {
+      "x": 8050,
+      "y": 92,
+      "mode": "GRIND",
+      "rail": "stair-handrail",
+      "time": 34.77
+    },
+    {
+      "x": 8602,
+      "y": 188,
+      "mode": "AIR",
+      "rail": "",
+      "time": 37.22
+    },
+    {
+      "x": 8794,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 38.07
+    },
+    {
+      "x": 8798,
+      "y": 245,
+      "mode": "AIR",
+      "rail": "",
+      "time": 38.09
+    },
+    {
+      "x": 8892,
+      "y": 157,
+      "mode": "GRIND",
+      "rail": "danger-a",
+      "time": 38.51
+    },
+    {
+      "x": 9260,
+      "y": 174,
+      "mode": "AIR",
+      "rail": "",
+      "time": 40.16
+    },
+    {
+      "x": 9402,
+      "y": 107,
+      "mode": "GRIND",
+      "rail": "danger-b",
+      "time": 40.79
+    },
+    {
+      "x": 9653,
+      "y": 124,
+      "mode": "AIR",
+      "rail": "",
+      "time": 41.91
+    },
+    {
+      "x": 9822,
+      "y": 116,
+      "mode": "GRIND",
+      "rail": "danger-c",
+      "time": 42.66
+    },
+    {
+      "x": 10173,
+      "y": 180,
+      "mode": "AIR",
+      "rail": "",
+      "time": 44.21
+    },
+    {
+      "x": 10369,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 45.07
+    },
+    {
+      "x": 10766,
+      "y": 215,
+      "mode": "AIR",
+      "rail": "",
+      "time": 46.81
+    },
+    {
+      "x": 10835,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 47.11
+    },
+    {
+      "x": 11394,
+      "y": 130,
+      "mode": "AIR",
+      "rail": "",
+      "time": 49.51
+    },
+    {
+      "x": 11422,
+      "y": 130,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 49.62
+    },
+    {
+      "x": 11747,
+      "y": 9,
+      "mode": "AIR",
+      "rail": "",
+      "time": 50.94
+    },
+    {
+      "x": 11782,
+      "y": 10,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 51.07
+    },
+    {
+      "x": 12098,
+      "y": -182,
+      "mode": "AIR",
+      "rail": "",
+      "time": 52.31
+    },
+    {
+      "x": 12165,
+      "y": -171,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 52.56
+    },
+    {
+      "x": 12865,
+      "y": -232,
+      "mode": "AIR",
+      "rail": "",
+      "time": 55.09
+    },
+    {
+      "x": 13195,
+      "y": -170,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 56.34
+    },
+    {
+      "x": 13287,
+      "y": -175,
+      "mode": "AIR",
+      "rail": "",
+      "time": 56.71
+    },
+    {
+      "x": 13317,
+      "y": -201,
+      "mode": "GRIND",
+      "rail": "huge-exit-rail",
+      "time": 56.82
+    },
+    {
+      "x": 13667,
+      "y": -219,
+      "mode": "AIR",
+      "rail": "",
+      "time": 58.29
+    },
+    {
+      "x": 13861,
+      "y": -170,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 59.14
+    },
+    {
+      "x": 14109,
+      "y": -214,
+      "mode": "AIR",
+      "rail": "",
+      "time": 60.22
+    },
+    {
+      "x": 14248,
+      "y": -269,
+      "mode": "GRIND",
+      "rail": "void-a",
+      "time": 60.82
+    },
+    {
+      "x": 14507,
+      "y": -256,
+      "mode": "AIR",
+      "rail": "",
+      "time": 61.96
+    },
+    {
+      "x": 14665,
+      "y": -301,
+      "mode": "GRIND",
+      "rail": "void-b",
+      "time": 62.64
+    },
+    {
+      "x": 14918,
+      "y": -293,
+      "mode": "AIR",
+      "rail": "",
+      "time": 63.75
+    },
+    {
+      "x": 15097,
+      "y": -297,
+      "mode": "GRIND",
+      "rail": "void-c",
+      "time": 64.51
+    },
+    {
+      "x": 15425,
+      "y": -213,
+      "mode": "AIR",
+      "rail": "",
+      "time": 65.86
+    },
+    {
+      "x": 15581,
+      "y": -269,
+      "mode": "GRIND",
+      "rail": "void-d",
+      "time": 66.49
+    },
+    {
+      "x": 15818,
+      "y": -237,
+      "mode": "AIR",
+      "rail": "",
+      "time": 67.47
+    },
+    {
+      "x": 15947,
+      "y": -329,
+      "mode": "GRIND",
+      "rail": "void-e",
+      "time": 67.98
+    },
+    {
+      "x": 16319,
+      "y": -335,
+      "mode": "AIR",
+      "rail": "",
+      "time": 69.44
+    },
+    {
+      "x": 16581,
+      "y": -170,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 70.43
+    },
+    {
+      "x": 16583,
+      "y": -173,
+      "mode": "AIR",
+      "rail": "",
+      "time": 70.44
+    },
+    {
+      "x": 16632,
+      "y": -206,
+      "mode": "GRIND",
+      "rail": "grand-stair-handrail",
+      "time": 70.63
+    },
+    {
+      "x": 17612,
+      "y": 176,
+      "mode": "AIR",
+      "rail": "",
+      "time": 74.33
+    },
+    {
+      "x": 17840,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 75.15
+    },
+    {
+      "x": 18327,
+      "y": 185,
+      "mode": "AIR",
+      "rail": "",
+      "time": 76.9
+    },
+    {
+      "x": 18337,
+      "y": 167,
+      "mode": "GRIND",
+      "rail": "advanced-bench-top",
+      "time": 76.93
+    },
+    {
+      "x": 18449,
+      "y": 160,
+      "mode": "AIR",
+      "rail": "",
+      "time": 77.34
+    },
+    {
+      "x": 18637,
+      "y": 115,
+      "mode": "GRIND",
+      "rail": "advanced-ledge-edge",
+      "time": 78.03
+    },
+    {
+      "x": 18922,
+      "y": 110,
+      "mode": "AIR",
+      "rail": "",
+      "time": 79.07
+    },
+    {
+      "x": 19073,
+      "y": 44,
+      "mode": "GRIND",
+      "rail": "high-rail",
+      "time": 79.62
+    },
+    {
+      "x": 19502,
+      "y": 10,
+      "mode": "AIR",
+      "rail": "",
+      "time": 81.22
+    },
+    {
+      "x": 19694,
+      "y": 12,
+      "mode": "GRIND",
+      "rail": "advanced-handrail",
+      "time": 81.92
+    },
+    {
+      "x": 20027,
+      "y": 84,
+      "mode": "AIR",
+      "rail": "",
+      "time": 83.12
+    }
+  ],
+  "inputs": [
+    {
+      "x": 397.25000000000085,
+      "action": "normal",
+      "at": 38799.1
+    },
+    {
+      "x": 863.7151562499984,
+      "action": "normal",
+      "at": 40832.6
+    },
+    {
+      "x": 1053.6035429166618,
+      "action": "capture",
+      "rail": "first-rail",
+      "distance": 21.842984962464456,
+      "at": 41665.9
+    },
+    {
+      "x": 1457.3329097011322,
+      "action": "release-super-out",
+      "rail": "first-rail",
+      "at": 43466
+    },
+    {
+      "x": 1569.4743410338215,
+      "action": "capture",
+      "rail": "first-link",
+      "distance": 23.735493344364304,
+      "at": 43966.1
+    },
+    {
+      "x": 1757.0176894744463,
+      "action": "release-super-out",
+      "rail": "first-link",
+      "at": 44816.1
+    },
+    {
+      "x": 1891.1367695734186,
+      "action": "capture",
+      "rail": "transfer-b",
+      "distance": 21.07862961597942,
+      "at": 45416.2
+    },
+    {
+      "x": 2346.009654598178,
+      "action": "release-super-out",
+      "rail": "transfer-b",
+      "at": 47432.9
+    },
+    {
+      "x": 2470.0896744004826,
+      "action": "capture",
+      "rail": "three-a",
+      "distance": 21.468456415364436,
+      "at": 47983
+    },
+    {
+      "x": 2808.7480467735254,
+      "action": "release-super-out",
+      "rail": "three-a",
+      "at": 49516.4
+    },
+    {
+      "x": 3004.8063324115924,
+      "action": "missed-setup",
+      "setup": 2245
+    },
+    {
+      "x": 3260.0166056076528,
+      "action": "normal",
+      "at": 51499.9
+    },
+    {
+      "x": 3347.9394441530644,
+      "action": "capture",
+      "rail": "three-c",
+      "distance": 21.381811399002874,
+      "at": 51883.3
+    },
+    {
+      "x": 3919.6409673956623,
+      "action": "release-super-out",
+      "rail": "three-c",
+      "at": 54466.7
+    },
+    {
+      "x": 4693.449821782465,
+      "action": "normal",
+      "at": 57850.3
+    },
+    {
+      "x": 5152.243384706615,
+      "action": "ollie",
+      "at": 59850.4
+    },
+    {
+      "x": 5267.243326603072,
+      "action": "capture",
+      "rail": "street-ledge",
+      "distance": 21.05850000000001,
+      "at": 60350.4
+    },
+    {
+      "x": 5471.297907861852,
+      "action": "release-super-out",
+      "rail": "street-ledge",
+      "at": 61250.5
+    },
+    {
+      "x": 5663.894664281563,
+      "action": "missed-setup",
+      "setup": 5500
+    },
+    {
+      "x": 5663.894664281563,
+      "action": "ollie",
+      "at": 62100.5
+    },
+    {
+      "x": 6042.769467455854,
+      "action": "ollie",
+      "at": 63750.6
+    },
+    {
+      "x": 6612.030272717623,
+      "action": "ollie",
+      "at": 66234.1
+    },
+    {
+      "x": 7943.184295512446,
+      "action": "ollie",
+      "at": 72034.4
+    },
+    {
+      "x": 8026.946691344984,
+      "action": "capture",
+      "rail": "stair-handrail",
+      "distance": 23.54403724912041,
+      "at": 72401.2
+    },
+    {
+      "x": 8597.909869142566,
+      "action": "release-super-out",
+      "rail": "stair-handrail",
+      "at": 74934.6
+    },
+    {
+      "x": 8794.023182295796,
+      "action": "ollie",
+      "at": 75801.4
+    },
+    {
+      "x": 8873.259031027148,
+      "action": "capture",
+      "rail": "danger-a",
+      "distance": 22.599250000000012,
+      "at": 76151.5
+    },
+    {
+      "x": 9256.227739241664,
+      "action": "release-super-out",
+      "rail": "danger-a",
+      "at": 77868.1
+    },
+    {
+      "x": 9379.6768653735,
+      "action": "capture",
+      "rail": "danger-b",
+      "distance": 23.10908333333333,
+      "at": 78418.2
+    },
+    {
+      "x": 9648.911881547865,
+      "action": "release-super-out",
+      "rail": "danger-b",
+      "at": 79618.2
+    },
+    {
+      "x": 9799.120517097372,
+      "action": "capture",
+      "rail": "danger-c",
+      "distance": 18.640982951112306,
+      "at": 80285
+    },
+    {
+      "x": 10169.596103564088,
+      "action": "release-super-out",
+      "rail": "danger-c",
+      "at": 81918.4
+    },
+    {
+      "x": 12860.904063551254,
+      "action": "ollie",
+      "at": 92802.4
+    },
+    {
+      "x": 13283.177517501274,
+      "action": "normal",
+      "at": 94419.2
+    },
+    {
+      "x": 13299.875892090276,
+      "action": "capture",
+      "rail": "huge-exit-rail",
+      "distance": 13.565612485620242,
+      "at": 94485.8
+    },
+    {
+      "x": 13662.765076369556,
+      "action": "release-super-out",
+      "rail": "huge-exit-rail",
+      "at": 96002.6
+    },
+    {
+      "x": 14105.666198915984,
+      "action": "normal",
+      "at": 97936.1
+    },
+    {
+      "x": 14224.843422442731,
+      "action": "capture",
+      "rail": "void-a",
+      "distance": 18.537950489018613,
+      "at": 98452.8
+    },
+    {
+      "x": 14503.05567505345,
+      "action": "release-super-out",
+      "rail": "void-a",
+      "at": 99669.5
+    },
+    {
+      "x": 14643.4095812475,
+      "action": "capture",
+      "rail": "void-b",
+      "distance": 15.785489997965085,
+      "at": 100269.5
+    },
+    {
+      "x": 14913.823660626314,
+      "action": "release-super-out",
+      "rail": "void-b",
+      "at": 101452.9
+    },
+    {
+      "x": 15073.18134869801,
+      "action": "capture",
+      "rail": "void-c",
+      "distance": 21.807564277857594,
+      "at": 102136.4
+    },
+    {
+      "x": 15421.017343025369,
+      "action": "release-super-out",
+      "rail": "void-c",
+      "at": 103569.7
+    },
+    {
+      "x": 15560.458088878562,
+      "action": "capture",
+      "rail": "void-d",
+      "distance": 16.046650748613423,
+      "at": 104136.4
+    },
+    {
+      "x": 15812.344672808847,
+      "action": "release-super-out",
+      "rail": "void-d",
+      "at": 105169.8
+    },
+    {
+      "x": 15923.202131845332,
+      "action": "capture",
+      "rail": "void-e",
+      "distance": 21.415581298697827,
+      "at": 105603.1
+    },
+    {
+      "x": 16314.871142687285,
+      "action": "release-super-out",
+      "rail": "void-e",
+      "at": 107153.4
+    },
+    {
+      "x": 16580.5224048964,
+      "action": "grind",
+      "at": 108153.3
+    },
+    {
+      "x": 17607.546622407157,
+      "action": "release-super-out",
+      "rail": "grand-stair-handrail",
+      "at": 112103.6
+    },
+    {
+      "x": 18320.51597149557,
+      "action": "grind",
+      "at": 114670.4
+    },
+    {
+      "x": 18444.178085499076,
+      "action": "release-super-out",
+      "rail": "advanced-bench-top",
+      "at": 115120.5
+    },
+    {
+      "x": 18618.855841426983,
+      "action": "capture",
+      "rail": "advanced-ledge-edge",
+      "distance": 4.112500000000011,
+      "at": 120037.3
+    },
+    {
+      "x": 18908.879275582945,
+      "action": "release-super-out",
+      "rail": "advanced-ledge-edge",
+      "at": 140155.3
+    },
+    {
+      "x": 19045.769577355768,
+      "action": "capture",
+      "rail": "high-rail",
+      "distance": 18.804749348755752,
+      "at": 150189.4
+    },
+    {
+      "x": 19488.8084060694,
+      "action": "release-super-out",
+      "rail": "high-rail",
+      "at": 183241.4
+    },
+    {
+      "x": 19666.57321191281,
+      "action": "capture",
+      "rail": "advanced-handrail",
+      "distance": 19.472045346384974,
+      "at": 196275.5
+    },
+    {
+      "x": 20013.62017521597,
+      "action": "release-super-out",
+      "rail": "advanced-handrail",
+      "at": 221310.3
+    }
+  ]
+}

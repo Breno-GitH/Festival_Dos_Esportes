@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><base href="../">
+<title>Skate — revisão da pista</title>
+<style>body{background:#101a2c;color:#e6f7fa;font:16px system-ui;margin:20px}main{max-width:1100px;margin:auto}canvas{width:900px;height:auto;aspect-ratio:3/2;max-width:100%;image-rendering:pixelated;border:1px solid #5cddea}button,select,input{font:inherit;margin:5px;padding:7px;background:#203754;color:#fff;border:1px solid #678b9f}pre{white-space:pre-wrap;font-size:13px}label{display:inline-block;margin:6px}h1{font-size:22px}.note{color:#a5bccd}</style></head>
+<body><main><h1>Skate — revisão da pista</h1>
+<p class="note">Área de QA separada. Mesma pista, física, sprites e parser do jogo. Replay envia pressionamentos reais ao runtime; SPACE também funciona no teclado.</p>
+<label>Início <select id="start"><option value="150">Run inteira</option><option value="1600">Primeira transferência</option><option value="3100">Três rails</option><option value="4700">Street</option><option value="6450">Banco</option><option value="7600">Stair Rail</option><option value="8750">Checkpoint 1 / Grind no vazio</option><option value="10500">Preparação do salto</option><option value="11100">Banks de subida</option><option value="12300">Grande rampa e gap</option><option value="12750">Borda do grande salto</option><option value="13250">Landing do grande salto</option><option value="13800">Cadeia de cinco rails</option><option value="16400">Escadaria e saída crítica</option><option value="17980">Checkpoint 2 / Street avançada</option><option value="20130">Ramp combo e downhill</option><option value="20730">Final Gauntlet</option><option value="23620">Mega Ramp / Mega Gap</option></select></label>
+<button id="begin">Iniciar manual</button><button id="replay">Iniciar replay da linha</button><button id="pause">Pausar / continuar</button>
+<label><input type="checkbox" id="debug">Colliders</label><label>Pausar em X <input id="pause-x" type="number" value="0" step="10"></label>
+<label><input type="checkbox" id="fast-replay">Replay acelerado de QA</label>
+<canvas id="gameCanvas" width="450" height="300" tabindex="0" aria-label="Pista de Skate"></canvas>
+<div><button id="space">Pressionar SPACE</button><button id="hold">Segurar SPACE</button><button id="release">Soltar SPACE</button></div>
+<button id="export-frame">Salvar imagem do teste</button><button id="export-run">Salvar registro da run</button>
+<pre id="status">Carregando</pre><details><summary>Registro da run</summary><pre id="record"></pre></details>
+</main>
+<script>const canvas=document.getElementById('gameCanvas'),ctx=canvas.getContext('2d');let currentScene='JOGO_SKATE';window.desbloquearMedalha=()=>{};</script>
+<script src="skate_new/collision_geometry.js"></script>
+<script src="skate/space_input_parser.js?v=5.6_journey"></script><script src="skate/ollie_physics.js?v=5.6_journey"></script>
+<script src="skate/trick_system.js"></script><script src="skate/combo_system.js"></script><script src="skate/traversal_system.js?v=5.6_journey"></script>
+<script src="skate_v2/catalog.js?v=2.0_rider"></script>
+<script src="skate/procedural_track.js?v=5.6_journey"></script><script src="skate/official_procedural_course.js?v=5.6_journey"></script><script src="skate/course.js?v=3.0_procedural_official"></script>
+<script src="skate/procedural_sandbox.js?v=5.6_journey"></script><script src="skate/procedural_gameplay_course.js?v=5.6_journey"></script>
+<script src="skate/rider_presentation.js?v=5.6_journey"></script><script src="skate/journey_presentation.js?v=5.6_journey"></script>
+<script src="skate/skate_ollie_runtime.js?v=5.6_journey"></script><script src="skate/level_pilot.js?v=5.6_journey"></script>
+<script>
+// QA only. No source-game input or physical state is overridden during a run.
+if (/(?:\?|&)skateMechanicsTest=1(?:&|$)/.test(location.search)) {
+ const starts=[[80,'Run inteira'],[430,'Cadeia de quatro rails'],[1570,'Escada e handrail']];
+ const select=document.getElementById('start');select.replaceChildren(...starts.map(([x,label])=>new Option(label,x)));
+ document.title='Skate — validação procedural da gameplay';
+ document.querySelector('h1').textContent=document.title;
+}
+if (/(?:\?|&)skateProceduralTest=1(?:&|$)/.test(location.search)) {
+ const starts=[[80,'Sandbox inteira'],[630,'Banco e ledge'],[1360,'Plataforma, curva e escada'],[1904,'Kickers e launch']];
+ const select=document.getElementById('start');select.replaceChildren(...starts.map(([x,label])=>new Option(label,x)));
+ document.title='Skate — sandbox procedural';
+ document.querySelector('h1').textContent=document.title;
+}
+if (/(?:\?|&)skateGameplayTest=1(?:&|$)/.test(location.search)) {
+ const starts=[[80,'Pulos e rampa'],[430,'Cadeia de quatro rails'],[1570,'Escada e handrail']];
+ const select=document.getElementById('start');select.replaceChildren(...starts.map(([x,label])=>new Option(label,x)));
+ document.title='Skate — validação da gameplay principal';
+ document.querySelector('h1').textContent=document.title;
+}
+let paused=true,pilot=null,runStarted=0,frames=0,frameMs=[],lastFrame=0,lastMode='',lastRail='',entries=[],transitions=[],peakCombo=0,qaFast=false,qaClock=0,drawSamples=[];
+const key=(code,down)=>window.dispatchEvent(new KeyboardEvent(down?'keydown':'keyup',{code,bubbles:true}));
+function begin(replay){
+ qaFast=replay&&document.getElementById('fast-replay').checked;qaClock=performance.now();
+ window.skatePlaytestTimeMs=qaFast?qaClock:undefined;
+ key('Space',false);resetSkateGame(false);
+ // Choosing an isolated practice beat only changes the initial spawn in this QA page.
+ skateOllieSimulation.config.startX=Number(document.getElementById('start').value);skateOllieSimulation.reset();
+ const p=skateOllieSimulation.state.player;
+ skateOllieCamera.x=p.x-skateOllieCamera.screenX;skateOllieCamera.y=p.y-skateOllieCamera.screenY;
+ pilot=replay?SkateLevelPilot.createPilot(skateCourse):null;paused=false;runStarted=performance.now();frames=0;frameMs=[];drawSamples=[];lastFrame=0;entries=[];transitions=[];lastMode='';lastRail='';peakCombo=0;canvas.focus();
+}
+document.getElementById('begin').onclick=()=>begin(false);document.getElementById('replay').onclick=()=>begin(true);
+document.getElementById('pause').onclick=()=>{paused=!paused;canvas.focus()};
+document.getElementById('debug').onchange=e=>window.skateDebug=e.target.checked;
+document.getElementById('space').onclick=()=>{key('Space',true);setTimeout(()=>key('Space',false),45)};
+document.getElementById('hold').onclick=()=>key('Space',true);document.getElementById('release').onclick=()=>key('Space',false);
+function saveQA(href,name){const a=document.createElement('a');a.href=href;a.download=name;a.click();}
+document.getElementById('export-frame').onclick=()=>saveQA(canvas.toDataURL('image/png'),'skate-camera-playtest.png');
+document.getElementById('export-run').onclick=()=>saveQA('data:application/json;charset=utf-8,'+encodeURIComponent(document.getElementById('record').textContent),'skate-browser-run.json');
+function loop(now){
+ const s=skateOllieSimulation.state,p=s.player;
+ if(!paused&&s.phase==='PLAYING'){
+  const ticks=qaFast?120:1;
+  for(let tick=0;tick<ticks&&s.phase==='PLAYING'&&!paused;tick++){
+  if(qaFast){qaClock+=1000/60;window.skatePlaytestTimeMs=qaClock;}
+  const view={player:p,phase:s.phase,mode:skateTraversal.mode,rail:skateTraversal.activeRail,held:skateOllieInput.held,excludedRail:skateTraversal.lastExitedRailId};
+  if(pilot)for(const e of pilot.tick(view,qaFast?qaClock:now))key(e.code,e.down);
+  updateSkateGame();frames++;
+  const rail=skateTraversal.activeRail?.id||'';
+  if(skateTraversal.mode!==lastMode||rail!==lastRail){transitions.push({x:Math.round(p.x),y:Math.round(p.y),mode:skateTraversal.mode,rail,time:+s.elapsed.toFixed(2)});if(rail)entries.push(rail)}
+  lastMode=skateTraversal.mode;lastRail=rail;peakCombo=Math.max(peakCombo,skateCombo.snapshot().activeScore);
+  const pauseX=Number(document.getElementById('pause-x').value);
+  // Finish a replayed hold/double press before pausing, preserving its real input timing.
+  if(pauseX>0&&p.x>=pauseX&&(!pilot||(!pilot.busy&&(qaFast||!skateOllieInput.held)))){paused=true;document.getElementById('pause-x').value='0'}
+  }
+  if(lastFrame)frameMs.push(now-lastFrame);lastFrame=now;
+ }else{skateOllieLastTime=qaFast?qaClock:now;lastFrame=0}
+ const drawAt=performance.now();drawSkateGame();drawSamples.push(performance.now()-drawAt);if(drawSamples.length>240)drawSamples.shift();
+ const combo=skateCombo.snapshot(),fps=frameMs.length?1000/(frameMs.reduce((a,b)=>a+b,0)/frameMs.length):0;
+ const presentation=skateJourney.snapshot(),lighting=SkateJourney.lighting((p.x-skateCourse.spawnX)/(skateCourse.finish.x-skateCourse.spawnX));
+ const drawMean=drawSamples.reduce((a,b)=>a+b,0)/Math.max(1,drawSamples.length);
+ const summary={drawMeanMs:+drawMean.toFixed(2),presentation,daylight:lighting.period,neon:+lighting.neon.toFixed(2),megaState:p.specialRampAir?.active?'MEGA_AIR':'',controlledMs:Math.round(p.specialRampAir?.controlledMs||0),phase:s.phase,paused,acceleratedReplay:qaFast,x:Math.round(p.x),y:+p.y.toFixed(1),mode:skateTraversal.mode,jumpTier:p.jumpTier,held:skateOllieInput.held,forwardSpeed:+p.forwardSpeed.toFixed(1),verticalVelocity:+p.verticalVelocity.toFixed(1),captureBlend:+(p.grindCaptureProgress||0).toFixed(3),rail:skateTraversal.activeRail?.id||'',beat:skateCourse.sectionAt(p.x)?.name,time:+s.elapsed.toFixed(2),score:combo.bankedScore,peakCombo:Math.round(peakCombo),fps:+fps.toFixed(1),zoom:+(skateOllieCamera.zoom||1).toFixed(3),timeScale:+skateTimeScale.toFixed(2),checkpoints:[...skateCheckpointsReached],failure:s.failureReason||'',hit:p.hitObstacleId||'',enteredRails:entries};
+ document.getElementById('status').textContent=JSON.stringify(summary,null,2);
+ document.getElementById('record').textContent=JSON.stringify({summary,transitions,inputs:pilot?.log||[]},null,2);
+ requestAnimationFrame(loop);
+}requestAnimationFrame(loop);
+</script></body></html>

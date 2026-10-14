@@ -1,0 +1,3519 @@
+{
+  "schemaVersion": 1,
+  "anchor": "bottom-center",
+  "sources": {
+    "rampas.png": {
+      "width": 1254,
+      "height": 1254,
+      "components": 10,
+      "alphaThreshold": 8,
+      "padding": 4
+    },
+    "grids.png": {
+      "width": 1254,
+      "height": 1254,
+      "components": 11,
+      "alphaThreshold": 8,
+      "padding": 4
+    },
+    "assets_skate.png": {
+      "width": 1254,
+      "height": 1254,
+      "components": 15,
+      "alphaThreshold": 8,
+      "padding": 4
+    }
+  },
+  "ramps": [
+    {
+      "id": "quarter-large-neon",
+      "type": "quarter",
+      "file": "skate_new/ramps/quarter-large-neon.png",
+      "source": "rampas.png",
+      "sourceBounds": [
+        729,
+        90,
+        1235,
+        405
+      ],
+      "cropBounds": [
+        725,
+        86,
+        1239,
+        409
+      ],
+      "size": [
+        514,
+        323
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.02,
+          0.98
+        ],
+        [
+          0.2,
+          0.95
+        ],
+        [
+          0.36,
+          0.84
+        ],
+        [
+          0.49,
+          0.61
+        ],
+        [
+          0.6,
+          0.34
+        ],
+        [
+          0.68,
+          0.08
+        ],
+        [
+          0.94,
+          0.05
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "launchStrength": 190
+    },
+    {
+      "id": "quarter-medium-neon",
+      "type": "quarter",
+      "file": "skate_new/ramps/quarter-medium-neon.png",
+      "source": "rampas.png",
+      "sourceBounds": [
+        333,
+        226,
+        688,
+        404
+      ],
+      "cropBounds": [
+        329,
+        222,
+        692,
+        408
+      ],
+      "size": [
+        363,
+        186
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.02,
+          0.98
+        ],
+        [
+          0.18,
+          0.94
+        ],
+        [
+          0.39,
+          0.82
+        ],
+        [
+          0.58,
+          0.61
+        ],
+        [
+          0.73,
+          0.28
+        ],
+        [
+          0.82,
+          0.06
+        ],
+        [
+          0.97,
+          0.05
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "launchStrength": 190
+    },
+    {
+      "id": "quarter-small-neon",
+      "type": "quarter",
+      "file": "skate_new/ramps/quarter-small-neon.png",
+      "source": "rampas.png",
+      "sourceBounds": [
+        31,
+        288,
+        289,
+        404
+      ],
+      "cropBounds": [
+        27,
+        284,
+        293,
+        408
+      ],
+      "size": [
+        266,
+        124
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.02,
+          0.98
+        ],
+        [
+          0.24,
+          0.92
+        ],
+        [
+          0.43,
+          0.76
+        ],
+        [
+          0.58,
+          0.48
+        ],
+        [
+          0.7,
+          0.1
+        ],
+        [
+          0.96,
+          0.06
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "launchStrength": 190
+    },
+    {
+      "id": "quarter-tall-neon",
+      "type": "quarter",
+      "file": "skate_new/ramps/quarter-tall-neon.png",
+      "source": "rampas.png",
+      "sourceBounds": [
+        823,
+        438,
+        1236,
+        698
+      ],
+      "cropBounds": [
+        819,
+        434,
+        1240,
+        702
+      ],
+      "size": [
+        421,
+        268
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.02,
+          0.98
+        ],
+        [
+          0.22,
+          0.94
+        ],
+        [
+          0.42,
+          0.82
+        ],
+        [
+          0.58,
+          0.6
+        ],
+        [
+          0.72,
+          0.3
+        ],
+        [
+          0.78,
+          0.06
+        ],
+        [
+          0.96,
+          0.05
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "launchStrength": 190
+    },
+    {
+      "id": "bank-long-descending",
+      "type": "bank",
+      "file": "skate_new/ramps/bank-long-descending.png",
+      "source": "rampas.png",
+      "sourceBounds": [
+        22,
+        506,
+        784,
+        700
+      ],
+      "cropBounds": [
+        18,
+        502,
+        788,
+        704
+      ],
+      "size": [
+        770,
+        202
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.03,
+          0.18
+        ],
+        [
+          0.24,
+          0.28
+        ],
+        [
+          0.48,
+          0.46
+        ],
+        [
+          0.74,
+          0.7
+        ],
+        [
+          0.98,
+          0.96
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "launchStrength": 145
+    },
+    {
+      "id": "quarter-wooden",
+      "type": "quarter",
+      "file": "skate_new/ramps/quarter-wooden.png",
+      "source": "rampas.png",
+      "sourceBounds": [
+        22,
+        736,
+        457,
+        948
+      ],
+      "cropBounds": [
+        18,
+        732,
+        461,
+        952
+      ],
+      "size": [
+        443,
+        220
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.26,
+          0.03
+        ],
+        [
+          0.32,
+          0.19
+        ],
+        [
+          0.43,
+          0.46
+        ],
+        [
+          0.58,
+          0.72
+        ],
+        [
+          0.78,
+          0.9
+        ],
+        [
+          0.98,
+          0.96
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "launchStrength": 190
+    },
+    {
+      "id": "kicker-medium-neon",
+      "type": "kicker",
+      "file": "skate_new/ramps/kicker-medium-neon.png",
+      "source": "rampas.png",
+      "sourceBounds": [
+        905,
+        778,
+        1231,
+        950
+      ],
+      "cropBounds": [
+        901,
+        774,
+        1235,
+        954
+      ],
+      "size": [
+        334,
+        180
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.03,
+          0.96
+        ],
+        [
+          0.25,
+          0.91
+        ],
+        [
+          0.47,
+          0.78
+        ],
+        [
+          0.68,
+          0.52
+        ],
+        [
+          0.83,
+          0.2
+        ],
+        [
+          0.96,
+          0.035
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "launchStrength": 120
+    },
+    {
+      "id": "bank-medium-ascending",
+      "type": "bank",
+      "file": "skate_new/ramps/bank-medium-ascending.png",
+      "source": "rampas.png",
+      "sourceBounds": [
+        484,
+        802,
+        872,
+        946
+      ],
+      "cropBounds": [
+        480,
+        798,
+        876,
+        950
+      ],
+      "size": [
+        396,
+        152
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.03,
+          0.96
+        ],
+        [
+          0.25,
+          0.86
+        ],
+        [
+          0.48,
+          0.65
+        ],
+        [
+          0.72,
+          0.38
+        ],
+        [
+          0.98,
+          0.06
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "launchStrength": 145
+    },
+    {
+      "id": "quarter-bowl",
+      "type": "bowl",
+      "file": "skate_new/ramps/quarter-bowl.png",
+      "source": "rampas.png",
+      "sourceBounds": [
+        769,
+        996,
+        1241,
+        1219
+      ],
+      "cropBounds": [
+        765,
+        992,
+        1245,
+        1223
+      ],
+      "size": [
+        480,
+        231
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.02,
+          0.08
+        ],
+        [
+          0.15,
+          0.4
+        ],
+        [
+          0.29,
+          0.7
+        ],
+        [
+          0.42,
+          0.91
+        ],
+        [
+          0.53,
+          0.98
+        ],
+        [
+          0.66,
+          0.91
+        ],
+        [
+          0.79,
+          0.68
+        ],
+        [
+          0.91,
+          0.37
+        ],
+        [
+          0.98,
+          0.06
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "launchStrength": 210
+    },
+    {
+      "id": "bank-long-ascending",
+      "type": "bank",
+      "file": "skate_new/ramps/bank-long-ascending.png",
+      "source": "rampas.png",
+      "sourceBounds": [
+        14,
+        1023,
+        732,
+        1219
+      ],
+      "cropBounds": [
+        10,
+        1019,
+        736,
+        1223
+      ],
+      "size": [
+        726,
+        204
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.02,
+          0.96
+        ],
+        [
+          0.23,
+          0.81
+        ],
+        [
+          0.45,
+          0.6
+        ],
+        [
+          0.67,
+          0.39
+        ],
+        [
+          0.84,
+          0.2
+        ],
+        [
+          0.98,
+          0.06
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "launchStrength": 145
+    }
+  ],
+  "grinds": [
+    {
+      "id": "rail-long-straight",
+      "type": "rail",
+      "file": "skate_new/grinds/rail-long-straight.png",
+      "source": "grids.png",
+      "sourceBounds": [
+        442,
+        141,
+        1213,
+        232
+      ],
+      "cropBounds": [
+        438,
+        137,
+        1217,
+        236
+      ],
+      "size": [
+        779,
+        99
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.02,
+          0.16
+        ],
+        [
+          0.98,
+          0.16
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "grindPathNormalized": [
+        [
+          0.02,
+          0.16
+        ],
+        [
+          0.98,
+          0.16
+        ]
+      ]
+    },
+    {
+      "id": "rail-short-straight",
+      "type": "rail",
+      "file": "skate_new/grinds/rail-short-straight.png",
+      "source": "grids.png",
+      "sourceBounds": [
+        68,
+        142,
+        325,
+        234
+      ],
+      "cropBounds": [
+        64,
+        138,
+        329,
+        238
+      ],
+      "size": [
+        265,
+        100
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.03,
+          0.17
+        ],
+        [
+          0.97,
+          0.17
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "grindPathNormalized": [
+        [
+          0.03,
+          0.17
+        ],
+        [
+          0.97,
+          0.17
+        ]
+      ]
+    },
+    {
+      "id": "handrail-descending-stairs",
+      "type": "stair-rail",
+      "file": "skate_new/grinds/handrail-descending-stairs.png",
+      "source": "grids.png",
+      "sourceBounds": [
+        34,
+        292,
+        561,
+        569
+      ],
+      "cropBounds": [
+        30,
+        288,
+        565,
+        573
+      ],
+      "size": [
+        535,
+        285
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.03,
+          0.07
+        ],
+        [
+          0.22,
+          0.18
+        ],
+        [
+          0.43,
+          0.34
+        ],
+        [
+          0.66,
+          0.5
+        ],
+        [
+          0.97,
+          0.66
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "grindPathNormalized": [
+        [
+          0.03,
+          0.07
+        ],
+        [
+          0.22,
+          0.18
+        ],
+        [
+          0.43,
+          0.34
+        ],
+        [
+          0.66,
+          0.5
+        ],
+        [
+          0.97,
+          0.66
+        ]
+      ]
+    },
+    {
+      "id": "handrail-ascending-stairs",
+      "type": "stair-rail",
+      "file": "skate_new/grinds/handrail-ascending-stairs.png",
+      "source": "grids.png",
+      "sourceBounds": [
+        708,
+        308,
+        1222,
+        568
+      ],
+      "cropBounds": [
+        704,
+        304,
+        1226,
+        572
+      ],
+      "size": [
+        522,
+        268
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.03,
+          0.67
+        ],
+        [
+          0.29,
+          0.54
+        ],
+        [
+          0.56,
+          0.33
+        ],
+        [
+          0.78,
+          0.17
+        ],
+        [
+          0.97,
+          0.05
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "grindPathNormalized": [
+        [
+          0.03,
+          0.67
+        ],
+        [
+          0.29,
+          0.54
+        ],
+        [
+          0.56,
+          0.33
+        ],
+        [
+          0.78,
+          0.17
+        ],
+        [
+          0.97,
+          0.05
+        ]
+      ]
+    },
+    {
+      "id": "rail-curved-sag",
+      "type": "curved-rail",
+      "file": "skate_new/grinds/rail-curved-sag.png",
+      "source": "grids.png",
+      "sourceBounds": [
+        657,
+        612,
+        1210,
+        792
+      ],
+      "cropBounds": [
+        653,
+        608,
+        1214,
+        796
+      ],
+      "size": [
+        561,
+        188
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.02,
+          0.3
+        ],
+        [
+          0.18,
+          0.44
+        ],
+        [
+          0.38,
+          0.66
+        ],
+        [
+          0.54,
+          0.76
+        ],
+        [
+          0.72,
+          0.66
+        ],
+        [
+          0.88,
+          0.4
+        ],
+        [
+          0.98,
+          0.08
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "grindPathNormalized": [
+        [
+          0.02,
+          0.3
+        ],
+        [
+          0.18,
+          0.44
+        ],
+        [
+          0.38,
+          0.66
+        ],
+        [
+          0.54,
+          0.76
+        ],
+        [
+          0.72,
+          0.66
+        ],
+        [
+          0.88,
+          0.4
+        ],
+        [
+          0.98,
+          0.08
+        ]
+      ]
+    },
+    {
+      "id": "rail-curved-rise",
+      "type": "curved-rail",
+      "file": "skate_new/grinds/rail-curved-rise.png",
+      "source": "grids.png",
+      "sourceBounds": [
+        66,
+        644,
+        590,
+        791
+      ],
+      "cropBounds": [
+        62,
+        640,
+        594,
+        795
+      ],
+      "size": [
+        532,
+        155
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.02,
+          0.14
+        ],
+        [
+          0.18,
+          0.4
+        ],
+        [
+          0.36,
+          0.6
+        ],
+        [
+          0.55,
+          0.66
+        ],
+        [
+          0.74,
+          0.56
+        ],
+        [
+          0.89,
+          0.3
+        ],
+        [
+          0.98,
+          0.04
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "grindPathNormalized": [
+        [
+          0.02,
+          0.14
+        ],
+        [
+          0.18,
+          0.4
+        ],
+        [
+          0.36,
+          0.6
+        ],
+        [
+          0.55,
+          0.66
+        ],
+        [
+          0.74,
+          0.56
+        ],
+        [
+          0.89,
+          0.3
+        ],
+        [
+          0.98,
+          0.04
+        ]
+      ]
+    },
+    {
+      "id": "pipe-horizontal-frame",
+      "type": "pipe",
+      "file": "skate_new/grinds/pipe-horizontal-frame.png",
+      "source": "grids.png",
+      "sourceBounds": [
+        632,
+        847,
+        1246,
+        989
+      ],
+      "cropBounds": [
+        628,
+        843,
+        1250,
+        993
+      ],
+      "size": [
+        622,
+        150
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.04,
+          0.18
+        ],
+        [
+          0.96,
+          0.18
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "grindPathNormalized": [
+        [
+          0.04,
+          0.18
+        ],
+        [
+          0.96,
+          0.18
+        ]
+      ]
+    },
+    {
+      "id": "cable-sag",
+      "type": "cable",
+      "file": "skate_new/grinds/cable-sag.png",
+      "source": "grids.png",
+      "sourceBounds": [
+        35,
+        887,
+        598,
+        983
+      ],
+      "cropBounds": [
+        31,
+        883,
+        602,
+        987
+      ],
+      "size": [
+        571,
+        104
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.02,
+          0.17
+        ],
+        [
+          0.25,
+          0.43
+        ],
+        [
+          0.5,
+          0.82
+        ],
+        [
+          0.75,
+          0.43
+        ],
+        [
+          0.98,
+          0.17
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "grindPathNormalized": [
+        [
+          0.02,
+          0.17
+        ],
+        [
+          0.25,
+          0.43
+        ],
+        [
+          0.5,
+          0.82
+        ],
+        [
+          0.75,
+          0.43
+        ],
+        [
+          0.98,
+          0.17
+        ]
+      ]
+    },
+    {
+      "id": "ledge-sloped",
+      "type": "ledge",
+      "file": "skate_new/grinds/ledge-sloped.png",
+      "source": "grids.png",
+      "sourceBounds": [
+        487,
+        1050,
+        803,
+        1204
+      ],
+      "cropBounds": [
+        483,
+        1046,
+        807,
+        1208
+      ],
+      "size": [
+        324,
+        162
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.02,
+          0.48
+        ],
+        [
+          0.98,
+          0.05
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "grindPathNormalized": [
+        [
+          0.02,
+          0.48
+        ],
+        [
+          0.98,
+          0.05
+        ]
+      ]
+    },
+    {
+      "id": "ledge-short",
+      "type": "ledge",
+      "file": "skate_new/grinds/ledge-short.png",
+      "source": "grids.png",
+      "sourceBounds": [
+        31,
+        1095,
+        459,
+        1200
+      ],
+      "cropBounds": [
+        27,
+        1091,
+        463,
+        1204
+      ],
+      "size": [
+        436,
+        113
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.02,
+          0.06
+        ],
+        [
+          0.98,
+          0.06
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "grindPathNormalized": [
+        [
+          0.02,
+          0.06
+        ],
+        [
+          0.98,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "ledge-long",
+      "type": "ledge",
+      "file": "skate_new/grinds/ledge-long.png",
+      "source": "grids.png",
+      "sourceBounds": [
+        831,
+        1110,
+        1230,
+        1205
+      ],
+      "cropBounds": [
+        827,
+        1106,
+        1234,
+        1209
+      ],
+      "size": [
+        407,
+        103
+      ],
+      "surfacePointsNormalized": [
+        [
+          0.02,
+          0.11
+        ],
+        [
+          0.98,
+          0.11
+        ]
+      ],
+      "collisionOffset": [
+        0,
+        0
+      ],
+      "grindPathNormalized": [
+        [
+          0.02,
+          0.11
+        ],
+        [
+          0.98,
+          0.11
+        ]
+      ]
+    }
+  ],
+  "props": {
+    "gameplay": [
+      {
+        "id": "stairset-large",
+        "type": "stairs",
+        "file": "skate_new/props/gameplay/stairset-large.png",
+        "source": "assets_skate.png",
+        "sourceBounds": [
+          434,
+          61,
+          1198,
+          304
+        ],
+        "cropBounds": [
+          430,
+          57,
+          1202,
+          308
+        ],
+        "size": [
+          772,
+          251
+        ],
+        "surfacePointsNormalized": [
+          [
+            0.02,
+            0.04
+          ],
+          [
+            0.18,
+            0.04
+          ],
+          [
+            0.18,
+            0.13
+          ],
+          [
+            0.34,
+            0.13
+          ],
+          [
+            0.34,
+            0.23
+          ],
+          [
+            0.5,
+            0.23
+          ],
+          [
+            0.5,
+            0.34
+          ],
+          [
+            0.66,
+            0.34
+          ],
+          [
+            0.66,
+            0.47
+          ],
+          [
+            0.82,
+            0.47
+          ],
+          [
+            0.82,
+            0.62
+          ],
+          [
+            0.98,
+            0.62
+          ]
+        ],
+        "collisionOffset": [
+          0,
+          0
+        ],
+        "category": "GAMEPLAY",
+        "standingSurfaceNormalized": [
+          [
+            0.02,
+            0.04
+          ],
+          [
+            0.18,
+            0.04
+          ],
+          [
+            0.18,
+            0.13
+          ],
+          [
+            0.34,
+            0.13
+          ],
+          [
+            0.34,
+            0.23
+          ],
+          [
+            0.5,
+            0.23
+          ],
+          [
+            0.5,
+            0.34
+          ],
+          [
+            0.66,
+            0.34
+          ],
+          [
+            0.66,
+            0.47
+          ],
+          [
+            0.82,
+            0.47
+          ],
+          [
+            0.82,
+            0.62
+          ],
+          [
+            0.98,
+            0.62
+          ]
+        ],
+        "solidColliderNormalized": [
+          0.04,
+          0.5,
+          0.96,
+          0.98
+        ]
+      },
+      {
+        "id": "stairset-small",
+        "type": "stairs",
+        "file": "skate_new/props/gameplay/stairset-small.png",
+        "source": "assets_skate.png",
+        "sourceBounds": [
+          53,
+          147,
+          415,
+          303
+        ],
+        "cropBounds": [
+          49,
+          143,
+          419,
+          307
+        ],
+        "size": [
+          370,
+          164
+        ],
+        "surfacePointsNormalized": [
+          [
+            0.02,
+            0.05
+          ],
+          [
+            0.24,
+            0.05
+          ],
+          [
+            0.24,
+            0.22
+          ],
+          [
+            0.45,
+            0.22
+          ],
+          [
+            0.45,
+            0.4
+          ],
+          [
+            0.68,
+            0.4
+          ],
+          [
+            0.68,
+            0.61
+          ],
+          [
+            0.98,
+            0.61
+          ]
+        ],
+        "collisionOffset": [
+          0,
+          0
+        ],
+        "category": "GAMEPLAY",
+        "standingSurfaceNormalized": [
+          [
+            0.02,
+            0.05
+          ],
+          [
+            0.24,
+            0.05
+          ],
+          [
+            0.24,
+            0.22
+          ],
+          [
+            0.45,
+            0.22
+          ],
+          [
+            0.45,
+            0.4
+          ],
+          [
+            0.68,
+            0.4
+          ],
+          [
+            0.68,
+            0.61
+          ],
+          [
+            0.98,
+            0.61
+          ]
+        ],
+        "solidColliderNormalized": [
+          0.04,
+          0.5,
+          0.96,
+          0.98
+        ]
+      },
+      {
+        "id": "platform-wide",
+        "type": "platform",
+        "file": "skate_new/props/gameplay/platform-wide.png",
+        "source": "assets_skate.png",
+        "sourceBounds": [
+          375,
+          384,
+          837,
+          507
+        ],
+        "cropBounds": [
+          371,
+          380,
+          841,
+          511
+        ],
+        "size": [
+          470,
+          131
+        ],
+        "surfacePointsNormalized": [
+          [
+            0.03,
+            0.12
+          ],
+          [
+            0.97,
+            0.12
+          ]
+        ],
+        "collisionOffset": [
+          0,
+          0
+        ],
+        "category": "GAMEPLAY",
+        "standingSurfaceNormalized": [
+          [
+            0.03,
+            0.12
+          ],
+          [
+            0.97,
+            0.12
+          ]
+        ],
+        "solidColliderNormalized": [
+          0.04,
+          0.5,
+          0.96,
+          0.98
+        ],
+        "grindPathNormalized": [
+          [
+            0.03,
+            0.12
+          ],
+          [
+            0.97,
+            0.12
+          ]
+        ]
+      },
+      {
+        "id": "block-low",
+        "type": "block",
+        "file": "skate_new/props/gameplay/block-low.png",
+        "source": "assets_skate.png",
+        "sourceBounds": [
+          33,
+          401,
+          352,
+          497
+        ],
+        "cropBounds": [
+          29,
+          397,
+          356,
+          501
+        ],
+        "size": [
+          327,
+          104
+        ],
+        "surfacePointsNormalized": [
+          [
+            0.03,
+            0.08
+          ],
+          [
+            0.97,
+            0.08
+          ]
+        ],
+        "collisionOffset": [
+          0,
+          0
+        ],
+        "category": "GAMEPLAY",
+        "standingSurfaceNormalized": [
+          [
+            0.03,
+            0.08
+          ],
+          [
+            0.97,
+            0.08
+          ]
+        ],
+        "solidColliderNormalized": [
+          0.04,
+          0.5,
+          0.96,
+          0.98
+        ]
+      },
+      {
+        "id": "ledge-long-low",
+        "type": "ledge",
+        "file": "skate_new/props/gameplay/ledge-long-low.png",
+        "source": "assets_skate.png",
+        "sourceBounds": [
+          859,
+          432,
+          1222,
+          499
+        ],
+        "cropBounds": [
+          855,
+          428,
+          1226,
+          503
+        ],
+        "size": [
+          371,
+          75
+        ],
+        "surfacePointsNormalized": [
+          [
+            0.02,
+            0.12
+          ],
+          [
+            0.98,
+            0.12
+          ]
+        ],
+        "collisionOffset": [
+          0,
+          0
+        ],
+        "category": "GAMEPLAY",
+        "standingSurfaceNormalized": [
+          [
+            0.02,
+            0.12
+          ],
+          [
+            0.98,
+            0.12
+          ]
+        ],
+        "solidColliderNormalized": [
+          0.04,
+          0.5,
+          0.96,
+          0.98
+        ],
+        "grindPathNormalized": [
+          [
+            0.02,
+            0.12
+          ],
+          [
+            0.98,
+            0.12
+          ]
+        ]
+      },
+      {
+        "id": "bench-neon",
+        "type": "bench",
+        "file": "skate_new/props/gameplay/bench-neon.png",
+        "source": "assets_skate.png",
+        "sourceBounds": [
+          350,
+          581,
+          802,
+          696
+        ],
+        "cropBounds": [
+          346,
+          577,
+          806,
+          700
+        ],
+        "size": [
+          460,
+          123
+        ],
+        "surfacePointsNormalized": [
+          [
+            0.03,
+            0.18
+          ],
+          [
+            0.97,
+            0.18
+          ]
+        ],
+        "collisionOffset": [
+          0,
+          0
+        ],
+        "category": "GAMEPLAY",
+        "standingSurfaceNormalized": [
+          [
+            0.03,
+            0.18
+          ],
+          [
+            0.97,
+            0.18
+          ]
+        ],
+        "solidColliderNormalized": [
+          0.04,
+          0.5,
+          0.96,
+          0.98
+        ]
+      },
+      {
+        "id": "block-small",
+        "type": "block",
+        "file": "skate_new/props/gameplay/block-small.png",
+        "source": "assets_skate.png",
+        "sourceBounds": [
+          98,
+          582,
+          243,
+          697
+        ],
+        "cropBounds": [
+          94,
+          578,
+          247,
+          701
+        ],
+        "size": [
+          153,
+          123
+        ],
+        "surfacePointsNormalized": [
+          [
+            0.03,
+            0.08
+          ],
+          [
+            0.97,
+            0.08
+          ]
+        ],
+        "collisionOffset": [
+          0,
+          0
+        ],
+        "category": "GAMEPLAY",
+        "standingSurfaceNormalized": [
+          [
+            0.03,
+            0.08
+          ],
+          [
+            0.97,
+            0.08
+          ]
+        ],
+        "solidColliderNormalized": [
+          0.04,
+          0.5,
+          0.96,
+          0.98
+        ]
+      },
+      {
+        "id": "rooftop-garden-platform",
+        "type": "platform",
+        "file": "skate_new/props/gameplay/rooftop-garden-platform.png",
+        "source": "assets_skate.png",
+        "sourceBounds": [
+          58,
+          727,
+          695,
+          1014
+        ],
+        "cropBounds": [
+          54,
+          723,
+          699,
+          1018
+        ],
+        "size": [
+          645,
+          295
+        ],
+        "surfacePointsNormalized": [
+          [
+            0.05,
+            0.77
+          ],
+          [
+            0.95,
+            0.77
+          ]
+        ],
+        "collisionOffset": [
+          0,
+          0
+        ],
+        "category": "GAMEPLAY",
+        "standingSurfaceNormalized": [
+          [
+            0.05,
+            0.77
+          ],
+          [
+            0.95,
+            0.77
+          ]
+        ],
+        "solidColliderNormalized": [
+          0.04,
+          0.5,
+          0.96,
+          0.98
+        ],
+        "grindPathNormalized": [
+          [
+            0.05,
+            0.77
+          ],
+          [
+            0.95,
+            0.77
+          ]
+        ]
+      },
+      {
+        "id": "stair-platform",
+        "type": "stairs",
+        "file": "skate_new/props/gameplay/stair-platform.png",
+        "source": "assets_skate.png",
+        "sourceBounds": [
+          747,
+          851,
+          1210,
+          963
+        ],
+        "cropBounds": [
+          743,
+          847,
+          1214,
+          967
+        ],
+        "size": [
+          471,
+          120
+        ],
+        "surfacePointsNormalized": [
+          [
+            0.02,
+            0.04
+          ],
+          [
+            0.24,
+            0.04
+          ],
+          [
+            0.24,
+            0.18
+          ],
+          [
+            0.46,
+            0.18
+          ],
+          [
+            0.46,
+            0.33
+          ],
+          [
+            0.68,
+            0.33
+          ],
+          [
+            0.68,
+            0.49
+          ],
+          [
+            0.98,
+            0.49
+          ]
+        ],
+        "collisionOffset": [
+          0,
+          0
+        ],
+        "category": "GAMEPLAY",
+        "standingSurfaceNormalized": [
+          [
+            0.02,
+            0.04
+          ],
+          [
+            0.24,
+            0.04
+          ],
+          [
+            0.24,
+            0.18
+          ],
+          [
+            0.46,
+            0.18
+          ],
+          [
+            0.46,
+            0.33
+          ],
+          [
+            0.68,
+            0.33
+          ],
+          [
+            0.68,
+            0.49
+          ],
+          [
+            0.98,
+            0.49
+          ]
+        ],
+        "solidColliderNormalized": [
+          0.04,
+          0.5,
+          0.96,
+          0.98
+        ]
+      },
+      {
+        "id": "rooftop-utility-platform",
+        "type": "platform",
+        "file": "skate_new/props/gameplay/rooftop-utility-platform.png",
+        "source": "assets_skate.png",
+        "sourceBounds": [
+          839,
+          994,
+          1219,
+          1199
+        ],
+        "cropBounds": [
+          835,
+          990,
+          1223,
+          1203
+        ],
+        "size": [
+          388,
+          213
+        ],
+        "surfacePointsNormalized": [
+          [
+            0.04,
+            0.18
+          ],
+          [
+            0.96,
+            0.18
+          ]
+        ],
+        "collisionOffset": [
+          0,
+          0
+        ],
+        "category": "GAMEPLAY",
+        "standingSurfaceNormalized": [
+          [
+            0.04,
+            0.18
+          ],
+          [
+            0.96,
+            0.18
+          ]
+        ],
+        "solidColliderNormalized": [
+          0.04,
+          0.5,
+          0.96,
+          0.98
+        ],
+        "grindPathNormalized": [
+          [
+            0.04,
+            0.18
+          ],
+          [
+            0.96,
+            0.18
+          ]
+        ]
+      },
+      {
+        "id": "barrier-striped",
+        "type": "barrier",
+        "file": "skate_new/props/gameplay/barrier-striped.png",
+        "source": "assets_skate.png",
+        "sourceBounds": [
+          413,
+          1024,
+          802,
+          1196
+        ],
+        "cropBounds": [
+          409,
+          1020,
+          806,
+          1200
+        ],
+        "size": [
+          397,
+          180
+        ],
+        "surfacePointsNormalized": [
+          [
+            0.03,
+            0.1
+          ],
+          [
+            0.97,
+            0.1
+          ]
+        ],
+        "collisionOffset": [
+          0,
+          0
+        ],
+        "category": "GAMEPLAY",
+        "standingSurfaceNormalized": [
+          [
+            0.03,
+            0.1
+          ],
+          [
+            0.97,
+            0.1
+          ]
+        ],
+        "solidColliderNormalized": [
+          0.04,
+          0.5,
+          0.96,
+          0.98
+        ]
+      },
+      {
+        "id": "planter-neon",
+        "type": "planter",
+        "file": "skate_new/props/gameplay/planter-neon.png",
+        "source": "assets_skate.png",
+        "sourceBounds": [
+          36,
+          1076,
+          361,
+          1189
+        ],
+        "cropBounds": [
+          32,
+          1072,
+          365,
+          1193
+        ],
+        "size": [
+          333,
+          121
+        ],
+        "surfacePointsNormalized": [
+          [
+            0.03,
+            0.2
+          ],
+          [
+            0.97,
+            0.2
+          ]
+        ],
+        "collisionOffset": [
+          0,
+          0
+        ],
+        "category": "GAMEPLAY",
+        "standingSurfaceNormalized": [
+          [
+            0.03,
+            0.2
+          ],
+          [
+            0.97,
+            0.2
+          ]
+        ],
+        "solidColliderNormalized": [
+          0.04,
+          0.5,
+          0.96,
+          0.98
+        ]
+      }
+    ],
+    "decoration": [
+      {
+        "id": "bollard-cyan",
+        "type": "decoration",
+        "file": "skate_new/props/decoration/bollard-cyan.png",
+        "source": "assets_skate.png",
+        "sourceBounds": [
+          878,
+          570,
+          958,
+          703
+        ],
+        "cropBounds": [
+          874,
+          566,
+          962,
+          707
+        ],
+        "size": [
+          88,
+          141
+        ],
+        "surfacePointsNormalized": [],
+        "collisionOffset": [
+          0,
+          0
+        ],
+        "category": "DECORATION",
+        "standingSurfaceNormalized": [],
+        "solidColliderNormalized": null
+      },
+      {
+        "id": "bollard-yellow",
+        "type": "decoration",
+        "file": "skate_new/props/decoration/bollard-yellow.png",
+        "source": "assets_skate.png",
+        "sourceBounds": [
+          1111,
+          570,
+          1189,
+          701
+        ],
+        "cropBounds": [
+          1107,
+          566,
+          1193,
+          705
+        ],
+        "size": [
+          86,
+          139
+        ],
+        "surfacePointsNormalized": [],
+        "collisionOffset": [
+          0,
+          0
+        ],
+        "category": "DECORATION",
+        "standingSurfaceNormalized": [],
+        "solidColliderNormalized": null
+      },
+      {
+        "id": "bollard-magenta",
+        "type": "decoration",
+        "file": "skate_new/props/decoration/bollard-magenta.png",
+        "source": "assets_skate.png",
+        "sourceBounds": [
+          996,
+          572,
+          1073,
+          703
+        ],
+        "cropBounds": [
+          992,
+          568,
+          1077,
+          707
+        ],
+        "size": [
+          85,
+          139
+        ],
+        "surfacePointsNormalized": [],
+        "collisionOffset": [
+          0,
+          0
+        ],
+        "category": "DECORATION",
+        "standingSurfaceNormalized": [],
+        "solidColliderNormalized": null
+      }
+    ]
+  },
+  "riderFrames": {
+    "zorp_skate_pro1_row01_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        68,
+        85,
+        187,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row01_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        61,
+        90,
+        194,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row01_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        64,
+        70,
+        191,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row01_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        65,
+        65,
+        190,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row02_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        38,
+        92,
+        218,
+        226
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row02_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        43,
+        75,
+        212,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row02_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        59,
+        91,
+        197,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row02_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        56,
+        93,
+        199,
+        236
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row03_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        68,
+        69,
+        188,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row03_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        59,
+        103,
+        197,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row03_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        53,
+        105,
+        202,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row03_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        73,
+        106,
+        183,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row04_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        32,
+        113,
+        223,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row04_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        22,
+        100,
+        233,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row04_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        20,
+        101,
+        236,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row04_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        46,
+        134,
+        210,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row04_05.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        56,
+        103,
+        199,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row05_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        49,
+        108,
+        207,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row05_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        46,
+        107,
+        210,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row05_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        46,
+        97,
+        210,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row05_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        75,
+        90,
+        181,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row06_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        71,
+        96,
+        185,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row06_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        69,
+        95,
+        186,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row06_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        69,
+        94,
+        187,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro1_row06_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        73,
+        93,
+        183,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row01_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        82,
+        85,
+        174,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row01_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        80,
+        86,
+        176,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row01_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        72,
+        91,
+        183,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row01_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        72,
+        98,
+        184,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row02_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        70,
+        100,
+        186,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row02_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        68,
+        93,
+        188,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row02_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        67,
+        90,
+        188,
+        239
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row02_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        67,
+        103,
+        188,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row02_05.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        69,
+        101,
+        187,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row02_06.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        71,
+        102,
+        184,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row03_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        68,
+        89,
+        188,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row03_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        73,
+        90,
+        183,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row03_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        68,
+        90,
+        187,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row03_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        72,
+        97,
+        184,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row04_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        68,
+        95,
+        188,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row04_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        65,
+        94,
+        191,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row04_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        67,
+        97,
+        189,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row04_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        70,
+        100,
+        186,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row04_05.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        65,
+        97,
+        190,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row05_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        79,
+        113,
+        177,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row05_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        73,
+        110,
+        183,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row05_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        80,
+        85,
+        175,
+        242
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row05_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        77,
+        95,
+        179,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row06_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        72,
+        108,
+        184,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row06_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        70,
+        112,
+        186,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row06_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        74,
+        121,
+        181,
+        248
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro2_row06_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        75,
+        121,
+        180,
+        248
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row01_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        72,
+        97,
+        183,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row01_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        77,
+        103,
+        178,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row01_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        79,
+        101,
+        176,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row01_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        78,
+        96,
+        177,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row02_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        60,
+        130,
+        195,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row02_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        79,
+        130,
+        177,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row02_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        77,
+        123,
+        178,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row02_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        69,
+        120,
+        186,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row03_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        75,
+        125,
+        181,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row03_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        77,
+        104,
+        178,
+        225
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row03_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        79,
+        117,
+        177,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row03_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        77,
+        116,
+        179,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row03_05.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        77,
+        112,
+        179,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row04_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        77,
+        129,
+        179,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row04_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        76,
+        91,
+        180,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row04_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        77,
+        93,
+        179,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row04_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        76,
+        75,
+        180,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row04_05.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        73,
+        111,
+        182,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row05_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        75,
+        87,
+        181,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row05_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        81,
+        118,
+        175,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row05_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        82,
+        100,
+        173,
+        220
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row05_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        74,
+        94,
+        182,
+        242
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row06_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        76,
+        124,
+        180,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row06_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        76,
+        117,
+        180,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row06_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        76,
+        118,
+        180,
+        242
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro3_row06_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        74,
+        123,
+        182,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_crouch_jump_prep_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        74,
+        93,
+        181,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_crouch_jump_prep_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        73,
+        111,
+        182,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_crouch_jump_prep_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        72,
+        95,
+        184,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_idle_on_board_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        78,
+        75,
+        177,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_idle_on_board_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        77,
+        79,
+        179,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_idle_on_board_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        77,
+        81,
+        179,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_idle_on_board_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        77,
+        77,
+        179,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_push_accelerate_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        77,
+        90,
+        178,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_push_accelerate_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        71,
+        92,
+        184,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_push_accelerate_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        62,
+        87,
+        193,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_push_accelerate_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        60,
+        90,
+        196,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_push_accelerate_05.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        77,
+        87,
+        179,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_push_accelerate_06.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        82,
+        85,
+        173,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_rolling_ride_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        74,
+        85,
+        181,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_rolling_ride_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        75,
+        87,
+        180,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_rolling_ride_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        77,
+        81,
+        179,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_rolling_ride_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        76,
+        84,
+        179,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_rolling_ride_05.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        76,
+        84,
+        180,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_rolling_ride_06.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        78,
+        83,
+        178,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_turn_balance_01.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        71,
+        92,
+        184,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_turn_balance_02.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        72,
+        91,
+        183,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_turn_balance_03.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        70,
+        95,
+        185,
+        243
+      ],
+      "anchor": "bottom-center"
+    },
+    "zorp_skate_pro4_turn_balance_04.png": {
+      "sourceSize": [
+        256,
+        256
+      ],
+      "alphaBounds": [
+        71,
+        97,
+        185,
+        243
+      ],
+      "anchor": "bottom-center"
+    }
+  },
+  "testArea": {
+    "enabledOnlyInDebug": true,
+    "ground": {
+      "startX": 0,
+      "endX": 1100,
+      "y": 0
+    },
+    "ramps": [
+      "quarter-small-neon",
+      "quarter-large-neon"
+    ],
+    "grinds": [
+      "rail-short-straight",
+      "handrail-descending-stairs",
+      "ledge-long"
+    ],
+    "platforms": [
+      "platform-wide"
+    ],
+    "note": "Isolated calibration fixture; not part of COURSE or the authored level."
+  }
+}

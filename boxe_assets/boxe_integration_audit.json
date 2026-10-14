@@ -9,7 +9,7 @@
     "masterFrames": "boxe_assets/master/**",
     "renderer": "drawBoxeGame",
     "runtimeFile": "boxing_arena.js",
-    "cacheVersion": "3.0_boxing_arena"
+    "cacheVersion": "5.0_dash_guard_break"
   },
   "OLD_PUNCHOUT_EXCLUSIVE": {
     "status": "removed from runtime; no legacy state machine, renderer, AI, rounds or asset aliases remain",
@@ -40,7 +40,7 @@
       {
         "symbol": "boxeGame legacy AI/states/finisher fields",
         "status": "deleted",
-        "reason": "the official state now uses READY, FIGHTING, KO and RESULT"
+        "reason": "the official state now uses READY, FIGHTING, FINISHER, KO and RESULT"
       },
       {
         "symbol": "legacy image identifiers",
@@ -73,7 +73,14 @@
     "drawBoxeGame",
     "resetBoxe entry point",
     "JOGO_BOXE scene routing",
-    "KO/RESULT return to ILHA_ESQUI"
+    "KO/RESULT return to ILHA_ESQUI",
+    "counter-punch and standing counter stun",
+    "Master combo breaker with cooldown",
+    "Zorp and Master special meters",
+    "Zorp Dash Punch with visible movement and recovery",
+    "universal block damage reduction and guard pressure",
+    "separate guard-break standing stun",
+    "automatic Zorp hook-airborne-super-punch finisher"
   ],
   "deletion": {
     "deletedNow": [],

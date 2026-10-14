@@ -1,0 +1,244 @@
+{
+  "summary": {
+    "drawMeanMs": 1.05,
+    "presentation": {
+      "stage": "finish",
+      "stageAge": 77.81323333331049,
+      "megaStarted": true,
+      "landedMega": true,
+      "finished": true,
+      "clock": 85.79656666664307,
+      "landingAge": 78.07989999997713,
+      "lastLanding": {
+        "x": 25776.02537924108,
+        "y": 250,
+        "impact": 704.9381326372667,
+        "strong": true
+      },
+      "particles": 0,
+      "particleLimit": 384,
+      "averageParticles": 112.86457204767063,
+      "averageFireworks": 6.023835319609968,
+      "activePeak": 328,
+      "launched": 25,
+      "bursts": 31
+    },
+    "daylight": "night",
+    "neon": 1,
+    "megaState": "",
+    "controlledMs": 3400,
+    "phase": "COMPLETED",
+    "paused": false,
+    "acceleratedReplay": false,
+    "x": 25849,
+    "y": 250,
+    "mode": "GROUND",
+    "jumpTier": "",
+    "held": false,
+    "forwardSpeed": 279.4,
+    "verticalVelocity": 0,
+    "captureBlend": 0,
+    "rail": "",
+    "time": 7.99,
+    "score": 642,
+    "peakCombo": 642,
+    "fps": 60,
+    "zoom": 0.696,
+    "timeScale": 1,
+    "checkpoints": [
+      "checkpoint-1",
+      "checkpoint-2"
+    ],
+    "failure": "",
+    "hit": "",
+    "enteredRails": [
+      "finish-rail"
+    ]
+  },
+  "transitions": [
+    {
+      "x": 23622,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 0.01
+    },
+    {
+      "x": 24057,
+      "y": 135,
+      "mode": "AIR",
+      "rail": "",
+      "time": 1.57
+    },
+    {
+      "x": 25217,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 5.72
+    },
+    {
+      "x": 25240,
+      "y": 245,
+      "mode": "AIR",
+      "rail": "",
+      "time": 5.8
+    },
+    {
+      "x": 25277,
+      "y": 217,
+      "mode": "GRIND",
+      "rail": "finish-rail",
+      "time": 5.93
+    },
+    {
+      "x": 25552,
+      "y": 203,
+      "mode": "AIR",
+      "rail": "",
+      "time": 6.92
+    },
+    {
+      "x": 25778,
+      "y": 250,
+      "mode": "GROUND",
+      "rail": "",
+      "time": 7.73
+    }
+  ],
+  "inputs": [
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 395
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 860
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 2245
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 3260
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 4690
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 5150
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 5500
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 5650
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 6040
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 6610
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 7940
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 8760
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 12860
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 13280
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 14105
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 16570
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 18320
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 18900
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 21040
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 22955
+    },
+    {
+      "x": 23620,
+      "action": "missed-setup",
+      "setup": 23410
+    },
+    {
+      "x": 24057.10294444444,
+      "action": "special-sustain",
+      "at": 28192.7
+    },
+    {
+      "x": 25011.436277777277,
+      "action": "special-release",
+      "at": 31959.7
+    },
+    {
+      "x": 25235.43627777716,
+      "action": "normal",
+      "at": 32759.7
+    },
+    {
+      "x": 25254.102944443817,
+      "action": "capture",
+      "rail": "finish-rail",
+      "distance": 17.63317581283939,
+      "at": 32826.3
+    },
+    {
+      "x": 25547.304754850677,
+      "action": "release-super-out",
+      "rail": "finish-rail",
+      "at": 33876.4
+    }
+  ]
+}
