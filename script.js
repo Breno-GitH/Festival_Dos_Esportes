@@ -4,7 +4,7 @@ const dialogBox = document.getElementById("dialog-box");
 const dialogText = document.getElementById("dialog-text");
 const hintText = document.getElementById("hint-text");
 
-let currentScene = "HUB"; 
+let currentScene = "TITLE_SCREEN"; 
 
 // Registro de Insígnias dos Esportes e Sistema Central de Medalhas
 const rawInsignias = { 
@@ -3287,6 +3287,12 @@ configureOverworldPresentation();
 let interactionPressed = false;
 let climbUpPressed = false;
 window.addEventListener("keydown", (e) => {
+    if (typeof TitleScreen !== "undefined" && TitleScreen.isActive()) {
+        if (TitleScreen.handleKeyDown(e)) {
+            e.preventDefault();
+            return;
+        }
+    }
     const k = e.key.toLowerCase();
     if (!e.repeat && (k === "e" || k === " ") && !currentScene.startsWith("JOGO_")) {
         interactionPressed = true;
@@ -3327,6 +3333,11 @@ window.addEventListener("keydown", (e) => {
 });
 
 window.addEventListener("keyup", (e) => {
+    if (typeof TitleScreen !== "undefined" && TitleScreen.isActive()) {
+        if (TitleScreen.handleKeyUp(e)) {
+            return;
+        }
+    }
     const k = e.key.toLowerCase();
     if (k === "shift") boxingInputPress.guard = false;
     if (k === " ") {
@@ -3377,6 +3388,10 @@ function checkObstacleCollision(nextX, nextY) {
 }
 
 function update() {
+    if (typeof TitleScreen !== "undefined" && TitleScreen.isActive()) {
+        TitleScreen.update();
+        return;
+    }
     const isOverworldScene = !currentScene.startsWith("JOGO_");
     // A result-screen Space must not reopen a minigame while the same key is held.
     // Preserve the basketball island's original interaction path verbatim.
@@ -5453,6 +5468,11 @@ function drawHUD() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    if (typeof TitleScreen !== "undefined" && TitleScreen.isActive()) {
+        TitleScreen.draw(ctx);
+        return;
+    }
+
     if (currentScene === "HUB") drawHUB();
     else if (currentScene === "ILHA_ESQUI") drawIlhaEsqui();
     else if (currentScene === "ILHA_PINGPONG") drawIlhaPingPong();
@@ -5624,6 +5644,43 @@ if (BOXING_QA_PARAMS.has("boxeQa")) {
         boxeGame.mestre.x = 172;
     }
 }
+const headerUi = document.getElementById("header-ui");
+const controlsHint = document.getElementById("controls-hint");
+
+function showOverworldUI() {
+    if (headerUi) headerUi.style.display = "flex";
+    if (controlsHint) controlsHint.style.display = "block";
+}
+
+function hideOverworldUI() {
+    if (headerUi) headerUi.style.display = "none";
+    if (controlsHint) controlsHint.style.display = "none";
+}
+
+if (typeof TitleScreen !== "undefined") {
+    TitleScreen.init({
+        canvas: canvas,
+        ctx: ctx,
+        onStartGame: () => {
+            currentScene = "HUB";
+            player.x = 225;
+            player.y = 150;
+            showOverworldUI();
+        },
+        onResetGame: () => {
+            window.location.reload();
+        }
+    });
+
+    if (currentScene !== "TITLE_SCREEN") {
+        TitleScreen.active = false;
+        showOverworldUI();
+    } else {
+        TitleScreen.active = true;
+        hideOverworldUI();
+    }
+}
+
 gameLoop();
 
 
