@@ -1,0 +1,2772 @@
+{
+  "mode": "final",
+  "islands": [
+    {
+      "scene": "HUB",
+      "npcs": [
+        {
+          "id": null,
+          "x": 180,
+          "y": 180,
+          "source": "http://localhost/2025/Festival_dos_Esportes/npc_turista.png",
+          "height": 44,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            44,
+            48,
+            14
+          ],
+          "master": null,
+          "prompt": "> TURISTA: O arquipélago tem diversas modalidades esportivas!",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 270,
+          "y": 130,
+          "source": "http://localhost/2025/Festival_dos_Esportes/npc_guia.png",
+          "height": 44,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            44,
+            48,
+            14
+          ],
+          "master": null,
+          "prompt": "> GUIA: Explore os caminhos ao Norte, Sul, Leste e Oeste.",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 68,
+          "y": 211,
+          "w": 46,
+          "h": 14,
+          "type": "bench",
+          "solid": true,
+          "renderByIsland": true
+        },
+        {
+          "x": 336,
+          "y": 211,
+          "w": 46,
+          "h": 14,
+          "type": "bench",
+          "solid": true,
+          "renderByIsland": true
+        },
+        {
+          "x": 46,
+          "y": 65,
+          "w": 38,
+          "h": 25,
+          "type": "flower_bed",
+          "solid": true,
+          "renderByIsland": true
+        },
+        {
+          "x": 366,
+          "y": 65,
+          "w": 38,
+          "h": 25,
+          "type": "flower_bed",
+          "solid": true,
+          "renderByIsland": true
+        }
+      ],
+      "navigation": {
+        "scene": "HUB",
+        "reference": "ILHA_BASQUETE",
+        "bounds": [
+          16,
+          18,
+          418,
+          264
+        ],
+        "bridgeWidth": 40,
+        "npcs": [
+          {
+            "id": "npc_turista.png",
+            "position": [
+              180,
+              180
+            ],
+            "height": 44,
+            "anchor": "bottom-center",
+            "source": "npc_turista.png",
+            "crop": [
+              6,
+              6,
+              92,
+              173
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 158,
+              "y": 146,
+              "width": 44,
+              "height": 48
+            },
+            "master": null,
+            "ready": true
+          },
+          {
+            "id": "npc_guia.png",
+            "position": [
+              270,
+              130
+            ],
+            "height": 44,
+            "anchor": "bottom-center",
+            "source": "npc_guia.png",
+            "crop": [
+              4,
+              11,
+              138,
+              179
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 248,
+              "y": 96,
+              "width": 44,
+              "height": 48
+            },
+            "master": null,
+            "ready": true
+          }
+        ],
+        "solidProps": 4
+      },
+      "hash": "3ba8aecf6993551aa3f7fd5836164151bcb80f17f3ae926584d48861f60f2847"
+    },
+    {
+      "scene": "ILHA_BASQUETE",
+      "npcs": [
+        {
+          "id": "entrada_basquete",
+          "x": 225,
+          "y": 82,
+          "source": "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/idle/master_basket_idle_01.png?v=1.0.1_visual_fix",
+          "height": 54,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            62,
+            62,
+            0
+          ],
+          "master": "JOGO_BASQUETE",
+          "prompt": "> MESTRE DO BASQUETE: Sessenta segundos. Vença no placar e conquiste a arena!",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [],
+      "navigation": {
+        "scene": "ILHA_BASQUETE",
+        "reference": "ILHA_BASQUETE",
+        "bounds": [
+          16,
+          18,
+          418,
+          264
+        ],
+        "bridgeWidth": 40,
+        "npcs": [
+          {
+            "id": "entrada_basquete",
+            "position": [
+              225,
+              82
+            ],
+            "height": 54,
+            "anchor": "bottom-center",
+            "source": "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/idle/master_basket_idle_01.png?v=1.0.1_visual_fix",
+            "crop": null,
+            "footprint": null,
+            "interaction": {
+              "x": 194,
+              "y": 20,
+              "width": 62,
+              "height": 62
+            },
+            "master": "JOGO_BASQUETE",
+            "ready": true
+          }
+        ],
+        "solidProps": 0
+      },
+      "hash": "3d8e8622b8b21ae95fff3ed3e1876b9c13c0adee6d2907e15645079ad614a2a0"
+    },
+    {
+      "scene": "ILHA_ESQUI",
+      "npcs": [
+        {
+          "id": null,
+          "x": 225,
+          "y": 110,
+          "source": "http://localhost/2025/Festival_dos_Esportes/npc_mestre_novo.png?v=4",
+          "height": 50,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            58,
+            62,
+            14
+          ],
+          "master": "JOGO_BOXE",
+          "prompt": "> MESTRE DO BOXE: Controle a distância, circule pelo ringue e lute até o nocaute!",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 130,
+          "y": 190,
+          "source": "http://localhost/2025/Festival_dos_Esportes/npc_treinador_novo.png?v=4",
+          "height": 44,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            44,
+            48,
+            14
+          ],
+          "master": null,
+          "prompt": "> TREINADOR: WASD movimenta no ringue. J é jab, K é golpe forte e L é hook. SHIFT defende; ESPAÇO esquiva.",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 345,
+          "y": 130,
+          "source": "http://localhost/2025/Festival_dos_Esportes/npc_arbitro_novo.png?v=4",
+          "height": 44,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            44,
+            48,
+            14
+          ],
+          "master": null,
+          "prompt": "> ÁRBITRO: Lute com distância e timing. Uma queda inicia a contagem; quem não levantar perde por KO.",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 98,
+          "y": 186,
+          "source": "http://localhost/2025/Festival_dos_Esportes/npc_pugilista_novo.png?v=4",
+          "height": 44,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            44,
+            48,
+            14
+          ],
+          "master": null,
+          "prompt": "> PUGILISTA: Use W/S para sair da linha do golpe. Um soco fora da profundidade erra.",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 130,
+          "y": 55,
+          "w": 190,
+          "h": 8,
+          "solid": true
+        },
+        {
+          "x": 130,
+          "y": 165,
+          "w": 75,
+          "h": 8,
+          "solid": true
+        },
+        {
+          "x": 245,
+          "y": 165,
+          "w": 75,
+          "h": 8,
+          "solid": true
+        },
+        {
+          "x": 130,
+          "y": 55,
+          "w": 8,
+          "h": 115,
+          "solid": true
+        },
+        {
+          "x": 312,
+          "y": 55,
+          "w": 8,
+          "h": 115,
+          "solid": true
+        },
+        {
+          "x": 45,
+          "y": 65,
+          "w": 28,
+          "h": 42,
+          "type": "punching_bag",
+          "solid": true
+        },
+        {
+          "x": 45,
+          "y": 135,
+          "w": 28,
+          "h": 42,
+          "type": "punching_bag",
+          "solid": true
+        },
+        {
+          "x": 50,
+          "y": 205,
+          "w": 35,
+          "h": 22,
+          "type": "bench_press",
+          "solid": true
+        },
+        {
+          "x": 350,
+          "y": 70,
+          "w": 45,
+          "h": 30,
+          "type": "judges_table",
+          "solid": true
+        },
+        {
+          "x": 360,
+          "y": 155,
+          "w": 30,
+          "h": 25,
+          "type": "corner_stool",
+          "solid": true
+        }
+      ],
+      "navigation": {
+        "scene": "ILHA_ESQUI",
+        "reference": "ILHA_BASQUETE",
+        "bounds": [
+          16,
+          18,
+          418,
+          264
+        ],
+        "bridgeWidth": 40,
+        "npcs": [
+          {
+            "id": "npc_mestre_novo.png?v=4",
+            "position": [
+              225,
+              110
+            ],
+            "height": 50,
+            "anchor": "bottom-center",
+            "source": "npc_mestre_novo.png",
+            "crop": [
+              0,
+              0,
+              246,
+              386
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 196,
+              "y": 62,
+              "width": 58,
+              "height": 62
+            },
+            "master": "JOGO_BOXE",
+            "ready": true
+          },
+          {
+            "id": "npc_treinador_novo.png?v=4",
+            "position": [
+              130,
+              190
+            ],
+            "height": 44,
+            "anchor": "bottom-center",
+            "source": "npc_treinador_novo.png",
+            "crop": [
+              0,
+              0,
+              201,
+              364
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 108,
+              "y": 156,
+              "width": 44,
+              "height": 48
+            },
+            "master": null,
+            "ready": true
+          },
+          {
+            "id": "npc_arbitro_novo.png?v=4",
+            "position": [
+              345,
+              130
+            ],
+            "height": 44,
+            "anchor": "bottom-center",
+            "source": "npc_arbitro_novo.png",
+            "crop": [
+              0,
+              0,
+              193,
+              369
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 323,
+              "y": 96,
+              "width": 44,
+              "height": 48
+            },
+            "master": null,
+            "ready": true
+          },
+          {
+            "id": "npc_pugilista_novo.png?v=4",
+            "position": [
+              98,
+              186
+            ],
+            "height": 44,
+            "anchor": "bottom-center",
+            "source": "npc_pugilista_novo.png",
+            "crop": [
+              0,
+              0,
+              230,
+              373
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 76,
+              "y": 152,
+              "width": 44,
+              "height": 48
+            },
+            "master": null,
+            "ready": true
+          }
+        ],
+        "solidProps": 10
+      },
+      "hash": "f314f13f5f6ace263e325eeefe13ebd765641cacb7c21e2e393dc970a6132e54"
+    },
+    {
+      "scene": "ILHA_PINGPONG",
+      "npcs": [
+        {
+          "id": null,
+          "x": 150,
+          "y": 220,
+          "source": "http://localhost/2025/Festival_dos_Esportes/npc_aprendiz.png",
+          "height": 44,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            44,
+            48,
+            14
+          ],
+          "master": null,
+          "prompt": "> APRENDIZ: Treine seu tempo de reação para rebatidas.",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 225,
+          "y": 105,
+          "source": "http://localhost/2025/Festival_dos_Esportes/npc_mestre_ping_pong.png",
+          "height": 50,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            58,
+            62,
+            14
+          ],
+          "master": "JOGO_PINGPONG",
+          "prompt": "> MESTRE DO PING-PONG: Mostre seus reflexos!",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 290,
+          "y": 145,
+          "w": 86,
+          "h": 36,
+          "type": "pingpong_table",
+          "solid": true
+        },
+        {
+          "x": 384,
+          "y": 152,
+          "w": 16,
+          "h": 16,
+          "type": "pingpong_bucket",
+          "solid": true
+        },
+        {
+          "x": 320,
+          "y": 45,
+          "w": 65,
+          "h": 38,
+          "type": "scoreboard",
+          "solid": true,
+          "renderByIsland": true
+        }
+      ],
+      "navigation": {
+        "scene": "ILHA_PINGPONG",
+        "reference": "ILHA_BASQUETE",
+        "bounds": [
+          16,
+          18,
+          418,
+          264
+        ],
+        "bridgeWidth": 40,
+        "npcs": [
+          {
+            "id": "npc_aprendiz.png",
+            "position": [
+              150,
+              220
+            ],
+            "height": 44,
+            "anchor": "bottom-center",
+            "source": "npc_aprendiz.png",
+            "crop": [
+              0,
+              4,
+              98,
+              178
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 128,
+              "y": 186,
+              "width": 44,
+              "height": 48
+            },
+            "master": null,
+            "ready": true
+          },
+          {
+            "id": "npc_mestre_ping_pong.png",
+            "position": [
+              225,
+              105
+            ],
+            "height": 50,
+            "anchor": "bottom-center",
+            "source": "npc_mestre_ping_pong.png",
+            "crop": [
+              0,
+              0,
+              112,
+              178
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 196,
+              "y": 57,
+              "width": 58,
+              "height": 62
+            },
+            "master": "JOGO_PINGPONG",
+            "ready": true
+          }
+        ],
+        "solidProps": 3
+      },
+      "hash": "eda6925dd56a91009e1475e7b1c8f3a88663dd71398ebb9a94472341403cc446"
+    },
+    {
+      "scene": "ILHA_SKATE",
+      "npcs": [
+        {
+          "id": null,
+          "x": 225,
+          "y": 105,
+          "source": "http://localhost/2025/Festival_dos_Esportes/mestre_skate.png?v=5_cropped_pixel_perfect",
+          "height": 50,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            58,
+            62,
+            14
+          ],
+          "master": "JOGO_SKATE",
+          "prompt": "> MESTRE DO SKATE: Conecte rampas e corrimãos e domine a linha até a chegada!",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 52,
+          "y": 46,
+          "w": 72,
+          "h": 46,
+          "type": "skate_quarter",
+          "solid": true,
+          "renderByIsland": true
+        },
+        {
+          "x": 295,
+          "y": 180,
+          "w": 72,
+          "h": 14,
+          "type": "rail",
+          "solid": true,
+          "renderByIsland": true
+        },
+        {
+          "x": 64,
+          "y": 190,
+          "w": 58,
+          "h": 20,
+          "type": "bench",
+          "solid": true,
+          "renderByIsland": true
+        },
+        {
+          "x": 135,
+          "y": 225,
+          "w": 14,
+          "h": 14,
+          "type": "cone",
+          "solid": true,
+          "renderByIsland": true
+        },
+        {
+          "x": 340,
+          "y": 70,
+          "w": 14,
+          "h": 14,
+          "type": "cone",
+          "solid": true,
+          "renderByIsland": true
+        }
+      ],
+      "navigation": {
+        "scene": "ILHA_SKATE",
+        "reference": "ILHA_BASQUETE",
+        "bounds": [
+          16,
+          18,
+          418,
+          264
+        ],
+        "bridgeWidth": 40,
+        "npcs": [
+          {
+            "id": "mestre_skate.png?v=5_cropped_pixel_perfect",
+            "position": [
+              225,
+              105
+            ],
+            "height": 50,
+            "anchor": "bottom-center",
+            "source": "mestre_skate.png",
+            "crop": [
+              2,
+              2,
+              750,
+              1364
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 196,
+              "y": 57,
+              "width": 58,
+              "height": 62
+            },
+            "master": "JOGO_SKATE",
+            "ready": true
+          }
+        ],
+        "solidProps": 5
+      },
+      "hash": "4af1f6b7fa950c1e2ccf4a94d17dbcbb7bc6336d0df141386e077f9bb792dd70"
+    },
+    {
+      "scene": "ILHA_ARCO",
+      "npcs": [
+        {
+          "id": "mestre_arco_overworld",
+          "x": 225,
+          "y": 118,
+          "source": "http://localhost/2025/Festival_dos_Esportes/arqueiro_overworld.png?v=1.0_archery_island",
+          "height": 50,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            58,
+            62,
+            14
+          ],
+          "master": "JOGO_ARCO",
+          "prompt": "> MESTRE DO ARCO: Observe a trajetória, alinhe o disparo e prove sua precisão!",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 68,
+          "y": 68,
+          "w": 54,
+          "h": 55,
+          "type": "archery_island_decor",
+          "solid": true
+        },
+        {
+          "x": 330,
+          "y": 79,
+          "w": 50,
+          "h": 52,
+          "type": "archery_island_decor",
+          "solid": true
+        },
+        {
+          "x": 35,
+          "y": 202,
+          "w": 55,
+          "h": 38,
+          "type": "archery_island_decor",
+          "solid": true
+        },
+        {
+          "x": 365,
+          "y": 201,
+          "w": 54,
+          "h": 39,
+          "type": "archery_island_decor",
+          "solid": true
+        },
+        {
+          "x": 35,
+          "y": 48,
+          "w": 20,
+          "h": 45,
+          "type": "archery_island_decor",
+          "solid": false
+        },
+        {
+          "x": 397,
+          "y": 51,
+          "w": 20,
+          "h": 45,
+          "type": "archery_island_decor",
+          "solid": false
+        }
+      ],
+      "navigation": {
+        "scene": "ILHA_ARCO",
+        "reference": "ILHA_BASQUETE",
+        "bounds": [
+          16,
+          18,
+          418,
+          264
+        ],
+        "bridgeWidth": 40,
+        "npcs": [
+          {
+            "id": "mestre_arco_overworld",
+            "position": [
+              225,
+              118
+            ],
+            "height": 50,
+            "anchor": "bottom-center",
+            "source": "arqueiro_overworld.png",
+            "crop": [
+              352,
+              113,
+              622,
+              1081
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 196,
+              "y": 70,
+              "width": 58,
+              "height": 62
+            },
+            "master": "JOGO_ARCO",
+            "ready": true
+          }
+        ],
+        "solidProps": 4
+      },
+      "hash": "5e13d77500f0b259da08c2af6d279ba46460b4519600db3dd88ca384c1614739"
+    },
+    {
+      "scene": "ILHA_CORRIDA",
+      "npcs": [
+        {
+          "id": "mestre_corrida",
+          "x": 225,
+          "y": 106,
+          "source": "http://localhost/2025/Festival_dos_Esportes/skate_sprites/mestre_corrida_npc.png",
+          "height": 50,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            58,
+            62,
+            14
+          ],
+          "master": "JOGO_CORRIDA",
+          "prompt": "> MESTRE DA CORRIDA: Duas voltas. Escolha bem a raia, salte as barreiras e me alcance na reta final!",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 105,
+          "y": 145,
+          "w": 32,
+          "h": 10,
+          "type": "hurdle",
+          "solid": true
+        },
+        {
+          "x": 335,
+          "y": 145,
+          "w": 32,
+          "h": 10,
+          "type": "hurdle",
+          "solid": true
+        },
+        {
+          "x": 94,
+          "y": 88,
+          "w": 36,
+          "h": 12,
+          "type": "water_station",
+          "solid": true,
+          "renderByIsland": true
+        },
+        {
+          "x": 94,
+          "y": 178,
+          "w": 42,
+          "h": 23,
+          "type": "podium",
+          "solid": true,
+          "renderByIsland": true
+        }
+      ],
+      "navigation": {
+        "scene": "ILHA_CORRIDA",
+        "reference": "ILHA_BASQUETE",
+        "bounds": [
+          16,
+          18,
+          418,
+          264
+        ],
+        "bridgeWidth": 40,
+        "npcs": [
+          {
+            "id": "mestre_corrida",
+            "position": [
+              225,
+              106
+            ],
+            "height": 50,
+            "anchor": "bottom-center",
+            "source": "skate_sprites/mestre_corrida_npc.png",
+            "crop": [
+              309,
+              96,
+              635,
+              1064
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 196,
+              "y": 58,
+              "width": 58,
+              "height": 62
+            },
+            "master": "JOGO_CORRIDA",
+            "ready": true
+          }
+        ],
+        "solidProps": 4
+      },
+      "hash": "517d0c67d2e52983d9a25d426138ea2412c09f946195018c0e5ce00bbac1feab"
+    },
+    {
+      "scene": "ILHA_ESCALADA",
+      "npcs": [
+        {
+          "id": null,
+          "x": 225,
+          "y": 108,
+          "source": "http://localhost/2025/Festival_dos_Esportes/npc_mestre_escalada.png",
+          "height": 50,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            58,
+            62,
+            14
+          ],
+          "master": "JOGO_ESCALADA",
+          "prompt": "> MESTRE DA ESCALADA: O Monte Zorp não perdoa os fracos! Desvie das pedras e alcance o cume!",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 80,
+          "y": 140,
+          "source": "http://localhost/2025/Festival_dos_Esportes/npc_guia_trilha.png",
+          "height": 44,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            44,
+            48,
+            14
+          ],
+          "master": null,
+          "prompt": "> GUIA DE TRILHA: Cuidado lá em cima! O vento sopra forte e algumas pedras rachadas quebram ao pisar!",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 370,
+          "y": 140,
+          "source": "http://localhost/2025/Festival_dos_Esportes/npc_geologa.png",
+          "height": 44,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            44,
+            48,
+            14
+          ],
+          "master": null,
+          "prompt": "> GEÓLOGA: As pedras azuis deslizam pela montanha, e as vermelhas estão prestes a desmoronar!",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 95,
+          "y": 220,
+          "source": "http://localhost/2025/Festival_dos_Esportes/npc_chef.png",
+          "height": 44,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            44,
+            48,
+            14
+          ],
+          "master": null,
+          "prompt": "> CHEF DE ACAMPAMENTO: Uma sopa bem quente para dar energia antes de enfrentar a montanha!",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 45,
+          "y": 190,
+          "w": 40,
+          "h": 35,
+          "type": "tent",
+          "solid": true
+        },
+        {
+          "x": 130,
+          "y": 220,
+          "w": 25,
+          "h": 25,
+          "type": "campfire",
+          "solid": true
+        },
+        {
+          "x": 110,
+          "y": 140,
+          "w": 20,
+          "h": 25,
+          "type": "trail_sign",
+          "solid": true
+        },
+        {
+          "x": 330,
+          "y": 140,
+          "w": 25,
+          "h": 20,
+          "type": "climbing_gear",
+          "solid": true
+        },
+        {
+          "x": 35,
+          "y": 65,
+          "w": 25,
+          "h": 35,
+          "type": "pine_tree",
+          "solid": true
+        },
+        {
+          "x": 385,
+          "y": 65,
+          "w": 25,
+          "h": 35,
+          "type": "pine_tree",
+          "solid": true
+        },
+        {
+          "x": 390,
+          "y": 200,
+          "w": 25,
+          "h": 35,
+          "type": "pine_tree",
+          "solid": true
+        },
+        {
+          "x": 80,
+          "y": 70,
+          "w": 30,
+          "h": 30,
+          "type": "boulder",
+          "solid": true
+        },
+        {
+          "x": 340,
+          "y": 70,
+          "w": 30,
+          "h": 30,
+          "type": "boulder",
+          "solid": true
+        }
+      ],
+      "navigation": {
+        "scene": "ILHA_ESCALADA",
+        "reference": "ILHA_BASQUETE",
+        "bounds": [
+          16,
+          18,
+          418,
+          264
+        ],
+        "bridgeWidth": 40,
+        "npcs": [
+          {
+            "id": "npc_mestre_escalada.png",
+            "position": [
+              225,
+              108
+            ],
+            "height": 50,
+            "anchor": "bottom-center",
+            "source": "npc_mestre_escalada.png",
+            "crop": [
+              0,
+              0,
+              126,
+              194
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 196,
+              "y": 60,
+              "width": 58,
+              "height": 62
+            },
+            "master": "JOGO_ESCALADA",
+            "ready": true
+          },
+          {
+            "id": "npc_guia_trilha.png",
+            "position": [
+              80,
+              140
+            ],
+            "height": 44,
+            "anchor": "bottom-center",
+            "source": "npc_guia_trilha.png",
+            "crop": [
+              0,
+              0,
+              107,
+              190
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 58,
+              "y": 106,
+              "width": 44,
+              "height": 48
+            },
+            "master": null,
+            "ready": true
+          },
+          {
+            "id": "npc_geologa.png",
+            "position": [
+              370,
+              140
+            ],
+            "height": 44,
+            "anchor": "bottom-center",
+            "source": "npc_geologa.png",
+            "crop": [
+              0,
+              0,
+              143,
+              197
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 348,
+              "y": 106,
+              "width": 44,
+              "height": 48
+            },
+            "master": null,
+            "ready": true
+          },
+          {
+            "id": "npc_chef.png",
+            "position": [
+              95,
+              220
+            ],
+            "height": 44,
+            "anchor": "bottom-center",
+            "source": "npc_chef.png",
+            "crop": [
+              0,
+              0,
+              118,
+              197
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 73,
+              "y": 186,
+              "width": 44,
+              "height": 48
+            },
+            "master": null,
+            "ready": true
+          }
+        ],
+        "solidProps": 9
+      },
+      "hash": "e578be7d4d316abdf96c4f4e9a4170b968640e4c7786889bd68d3ad772978469"
+    },
+    {
+      "scene": "ILHA_SURF",
+      "npcs": [
+        {
+          "id": "entrada_surf",
+          "x": 225,
+          "y": 112,
+          "source": "http://localhost/2025/Festival_dos_Esportes/surf_assets/mestre_surfing_overworld.png?v=1.0",
+          "height": 50,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            58,
+            62,
+            14
+          ],
+          "master": "JOGO_SURF",
+          "prompt": "> MESTRE DO SURF: Mantenha o flow, enfrente os tubos e sobreviva ao grande evento final!",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 52,
+          "y": 99,
+          "w": 14,
+          "h": 10,
+          "type": "surf_island_decor",
+          "solid": true
+        },
+        {
+          "x": 384,
+          "y": 99,
+          "w": 14,
+          "h": 10,
+          "type": "surf_island_decor",
+          "solid": true
+        },
+        {
+          "x": 84,
+          "y": 219,
+          "w": 24,
+          "h": 10,
+          "type": "surf_island_decor",
+          "solid": true
+        },
+        {
+          "x": 345,
+          "y": 198,
+          "w": 17,
+          "h": 10,
+          "type": "surf_island_decor",
+          "solid": true
+        }
+      ],
+      "navigation": {
+        "scene": "ILHA_SURF",
+        "reference": "ILHA_BASQUETE",
+        "bounds": [
+          16,
+          18,
+          418,
+          264
+        ],
+        "bridgeWidth": 40,
+        "npcs": [
+          {
+            "id": "entrada_surf",
+            "position": [
+              225,
+              112
+            ],
+            "height": 50,
+            "anchor": "bottom-center",
+            "source": "surf_assets/mestre_surfing_overworld.png",
+            "crop": [
+              12,
+              12,
+              541,
+              1180
+            ],
+            "footprint": {
+              "width": 18,
+              "height": 8
+            },
+            "interaction": {
+              "x": 196,
+              "y": 64,
+              "width": 58,
+              "height": 62
+            },
+            "master": "JOGO_SURF",
+            "ready": true
+          }
+        ],
+        "solidProps": 4
+      },
+      "hash": "161051a6cb0d196addba11add1d3d74ee6b45c518795ef48c301cde7deb40c9b"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "failures": [],
+  "basketFunction": "function drawIlhaBasquete() {\n    drawWater();\n    ctx.save();\n    ctx.imageSmoothingEnabled = false;\n\n    // Água noturna com reflexos: a ilha deixa de ser um bloco retangular isolado.\n    ctx.fillStyle = \"rgba(16, 42, 85, 0.42)\";\n    for (let y = 12; y < 300; y += 24) {\n        for (let x = (y / 24) % 2 ? 8 : 26; x < 450; x += 58) {\n            ctx.fillRect(x, y, 20, 2);\n        }\n    }\n    ctx.fillStyle = \"rgba(102, 220, 236, 0.5)\";\n    for (let i = 0; i < 10; i++) {\n        const shimmerX = (i * 47 + 19) % 438;\n        const shimmerY = 20 + ((i * 31) % 258);\n        ctx.fillRect(shimmerX, shimmerY, 9, 2);\n    }\n\n    // Plataforma da arena: cantos chanfrados e uma borda de proteção fazem a cena parecer uma ilha esportiva.\n    ctx.beginPath();\n    ctx.moveTo(36, 18); ctx.lineTo(414, 18); ctx.lineTo(434, 38); ctx.lineTo(434, 262);\n    ctx.lineTo(414, 282); ctx.lineTo(36, 282); ctx.lineTo(16, 262); ctx.lineTo(16, 38);\n    ctx.closePath();\n    ctx.fillStyle = \"#14314f\";\n    ctx.fill();\n    ctx.strokeStyle = \"#62d7df\";\n    ctx.lineWidth = 3;\n    ctx.stroke();\n\n    ctx.beginPath();\n    ctx.moveTo(42, 27); ctx.lineTo(408, 27); ctx.lineTo(424, 43); ctx.lineTo(424, 257);\n    ctx.lineTo(408, 273); ctx.lineTo(42, 273); ctx.lineTo(26, 257); ctx.lineTo(26, 43);\n    ctx.closePath();\n    ctx.fillStyle = \"#26445c\";\n    ctx.fill();\n\n    // Luzes discretas do perímetro da arena.\n    ctx.fillStyle = \"#f3ca63\";\n    [60, 130, 200, 270, 340, 390].forEach(x => {\n        ctx.fillRect(x, 29, 8, 3);\n        ctx.fillRect(x, 268, 8, 3);\n    });\n    [70, 230].forEach(y => {\n        ctx.fillRect(29, y, 3, 8);\n        ctx.fillRect(418, y, 3, 8);\n    });\n\n    // Piso da quadra. As tábuas variam de tom sem comprometer a leitura top-down.\n    const courtX = 42, courtY = 50, courtW = 366, courtH = 198;\n    ctx.fillStyle = \"#b75f38\";\n    ctx.fillRect(courtX - 4, courtY - 4, courtW + 8, courtH + 8);\n    ctx.fillStyle = \"#e19753\";\n    ctx.fillRect(courtX, courtY, courtW, courtH);\n    for (let y = courtY; y < courtY + courtH; y += 11) {\n        ctx.fillStyle = ((y - courtY) / 11) % 2 === 0 ? \"rgba(255, 231, 165, 0.16)\" : \"rgba(113, 54, 38, 0.10)\";\n        ctx.fillRect(courtX, y, courtW, 6);\n    }\n    ctx.fillStyle = \"rgba(123, 58, 41, 0.18)\";\n    for (let x = courtX + 18; x < courtX + courtW; x += 36) ctx.fillRect(x, courtY, 1, courtH);\n\n    // Marcação completa, com contraste suficiente para navegação e reconhecimento imediato da modalidade.\n    const line = \"#fff3c8\";\n    ctx.strokeStyle = line;\n    ctx.lineWidth = 2;\n    ctx.strokeRect(courtX, courtY, courtW, courtH);\n    ctx.beginPath();\n    ctx.moveTo(225, courtY); ctx.lineTo(225, courtY + courtH);\n    ctx.stroke();\n    ctx.beginPath();\n    ctx.arc(225, 149, 28, 0, Math.PI * 2);\n    ctx.stroke();\n    ctx.fillStyle = line;\n    ctx.beginPath(); ctx.arc(225, 149, 3, 0, Math.PI * 2); ctx.fill();\n\n    // Garrafões, lances livres e arcos de três pontos nos dois lados.\n    const drawKey = (side) => {\n        const isLeft = side === \"left\";\n        const keyX = isLeft ? courtX : courtX + courtW - 62;\n        const freeX = isLeft ? keyX + 62 : keyX;\n        ctx.fillStyle = \"rgba(84, 51, 93, 0.20)\";\n        ctx.fillRect(keyX, 103, 62, 92);\n        ctx.strokeStyle = line;\n        ctx.lineWidth = 2;\n        ctx.strokeRect(keyX, 103, 62, 92);\n        ctx.beginPath();\n        ctx.arc(freeX, 149, 22, isLeft ? -Math.PI / 2 : Math.PI / 2, isLeft ? Math.PI / 2 : Math.PI * 1.5);\n        ctx.stroke();\n        ctx.setLineDash([4, 3]);\n        ctx.beginPath();\n        ctx.arc(freeX, 149, 22, isLeft ? Math.PI / 2 : -Math.PI / 2, isLeft ? Math.PI * 1.5 : Math.PI / 2);\n        ctx.stroke();\n        ctx.setLineDash([]);\n        ctx.beginPath();\n        ctx.arc(isLeft ? courtX + 7 : courtX + courtW - 7, 149, 88, isLeft ? -1.06 : 2.08, isLeft ? 1.06 : 4.20);\n        ctx.stroke();\n    };\n    drawKey(\"left\");\n    drawKey(\"right\");\n\n    // Cestas no próprio overworld: tabela, aro e suporte são legíveis, sem se confundirem com os aros físicos do minigame.\n    const drawOverworldHoop = (side) => {\n        const isLeft = side === \"left\";\n        const boardX = isLeft ? 49 : 401;\n        const rimX = isLeft ? 58 : 392;\n        ctx.fillStyle = \"#d8edf2\";\n        ctx.fillRect(boardX - 2, 128, 4, 42);\n        ctx.fillStyle = \"#526a80\";\n        ctx.fillRect(isLeft ? 34 : 412, 145, 17, 5);\n        ctx.fillStyle = \"#87a6ba\";\n        ctx.fillRect(isLeft ? 39 : 394, 151, 5, 19);\n        ctx.strokeStyle = \"#ffcf42\";\n        ctx.lineWidth = 3;\n        ctx.beginPath();\n        ctx.arc(rimX, 149, 7, 0, Math.PI * 2);\n        ctx.stroke();\n        ctx.strokeStyle = \"rgba(245, 250, 255, 0.8)\";\n        ctx.lineWidth = 1;\n        ctx.beginPath();\n        ctx.moveTo(rimX - 5, 155); ctx.lineTo(rimX, 161); ctx.lineTo(rimX + 5, 155);\n        ctx.stroke();\n    };\n    drawOverworldHoop(\"left\");\n    drawOverworldHoop(\"right\");\n\n    // Banners e bolas decorativas dão identidade sem criar obstáculos visuais na linha de caminhada.\n    const drawBanner = (x, y, accent) => {\n        ctx.fillStyle = \"#122a46\"; ctx.fillRect(x, y, 22, 30);\n        ctx.fillStyle = accent; ctx.fillRect(x + 2, y + 2, 18, 5);\n        ctx.strokeStyle = \"#f6d36c\"; ctx.lineWidth = 1;\n        ctx.beginPath(); ctx.arc(x + 11, y + 18, 6, 0, Math.PI * 2); ctx.stroke();\n        ctx.beginPath(); ctx.moveTo(x + 5, y + 18); ctx.lineTo(x + 17, y + 18); ctx.moveTo(x + 11, y + 12); ctx.lineTo(x + 11, y + 24); ctx.stroke();\n    };\n    drawBanner(58, 61, \"#e75c48\");\n    drawBanner(370, 61, \"#51cad3\");\n    [[72, 228], [378, 228]].forEach(([x, y]) => {\n        ctx.fillStyle = \"#f28d38\";\n        ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fill();\n        ctx.strokeStyle = \"#713a2a\"; ctx.lineWidth = 1;\n        ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.moveTo(x - 6, y); ctx.lineTo(x + 6, y); ctx.moveTo(x, y - 6); ctx.lineTo(x, y + 6); ctx.stroke();\n    });\n\n    // Marca de anfitrião: destaca o Mestre sem bloquear a circulação pelo centro da quadra.\n    ctx.fillStyle = \"rgba(64, 205, 215, 0.24)\";\n    ctx.beginPath(); ctx.ellipse(225, 84, 30, 10, 0, 0, Math.PI * 2); ctx.fill();\n    ctx.fillStyle = \"#f8e8aa\";\n    ctx.font = \"bold 9px monospace\";\n    ctx.textAlign = \"center\";\n    ctx.fillText(\"ARENA 1v1\", 225, 42);\n    ctx.textAlign = \"left\";\n\n    // Conexão visual para a ilha do skate; a transição continua usando a borda esquerda do mapa.\n    ctx.fillStyle = \"#7895a6\";\n    ctx.fillRect(0, 130, 26, 40);\n    ctx.fillStyle = \"#a9c6ce\";\n    ctx.fillRect(4, 134, 22, 32);\n    ctx.fillStyle = \"#f3ca63\";\n    ctx.fillRect(11, 145, 12, 8);\n    ctx.restore();\n}",
+  "navigation": [
+    {
+      "scene": "HUB",
+      "npc": "npc_turista.png",
+      "start": [
+        225,
+        20
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 210,
+        "y": 145,
+        "length": 140
+      }
+    },
+    {
+      "scene": "HUB",
+      "npc": "npc_turista.png",
+      "start": [
+        225,
+        270
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 210,
+        "y": 205,
+        "length": 80
+      }
+    },
+    {
+      "scene": "HUB",
+      "npc": "npc_turista.png",
+      "start": [
+        20,
+        150
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 150,
+        "y": 150,
+        "length": 130
+      }
+    },
+    {
+      "scene": "HUB",
+      "npc": "npc_turista.png",
+      "start": [
+        420,
+        150
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 210,
+        "y": 150,
+        "length": 210
+      }
+    },
+    {
+      "scene": "HUB",
+      "npc": "npc_guia.png",
+      "start": [
+        225,
+        20
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 240,
+        "y": 95,
+        "length": 90
+      }
+    },
+    {
+      "scene": "HUB",
+      "npc": "npc_guia.png",
+      "start": [
+        225,
+        270
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 240,
+        "y": 155,
+        "length": 130
+      }
+    },
+    {
+      "scene": "HUB",
+      "npc": "npc_guia.png",
+      "start": [
+        20,
+        150
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 240,
+        "y": 150,
+        "length": 220
+      }
+    },
+    {
+      "scene": "HUB",
+      "npc": "npc_guia.png",
+      "start": [
+        420,
+        150
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 300,
+        "y": 150,
+        "length": 120
+      }
+    },
+    {
+      "scene": "ILHA_BASQUETE",
+      "npc": "JOGO_BASQUETE",
+      "start": [
+        20,
+        150
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 185,
+        "y": 95,
+        "length": 220
+      }
+    },
+    {
+      "scene": "ILHA_ESQUI",
+      "npc": "JOGO_BOXE",
+      "start": [
+        225,
+        270
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 225,
+        "y": 135,
+        "length": 135
+      }
+    },
+    {
+      "scene": "ILHA_ESQUI",
+      "npc": "npc_treinador_novo.png?v=4",
+      "start": [
+        225,
+        270
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 160,
+        "y": 215,
+        "length": 120
+      }
+    },
+    {
+      "scene": "ILHA_ESQUI",
+      "npc": "npc_arbitro_novo.png?v=4",
+      "start": [
+        225,
+        270
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 330,
+        "y": 155,
+        "length": 220
+      }
+    },
+    {
+      "scene": "ILHA_ESQUI",
+      "npc": "npc_pugilista_novo.png?v=4",
+      "start": [
+        225,
+        270
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 130,
+        "y": 215,
+        "length": 150
+      }
+    },
+    {
+      "scene": "ILHA_PINGPONG",
+      "npc": "npc_aprendiz.png",
+      "start": [
+        20,
+        150
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 120,
+        "y": 185,
+        "length": 135
+      }
+    },
+    {
+      "scene": "ILHA_PINGPONG",
+      "npc": "npc_aprendiz.png",
+      "start": [
+        225,
+        20
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 180,
+        "y": 185,
+        "length": 210
+      }
+    },
+    {
+      "scene": "ILHA_PINGPONG",
+      "npc": "JOGO_PINGPONG",
+      "start": [
+        20,
+        150
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 185,
+        "y": 130,
+        "length": 185
+      }
+    },
+    {
+      "scene": "ILHA_PINGPONG",
+      "npc": "JOGO_PINGPONG",
+      "start": [
+        225,
+        20
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 225,
+        "y": 60,
+        "length": 40
+      }
+    },
+    {
+      "scene": "ILHA_SKATE",
+      "npc": "JOGO_SKATE",
+      "start": [
+        225,
+        20
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 225,
+        "y": 60,
+        "length": 40
+      }
+    },
+    {
+      "scene": "ILHA_SKATE",
+      "npc": "JOGO_SKATE",
+      "start": [
+        20,
+        150
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 185,
+        "y": 130,
+        "length": 185
+      }
+    },
+    {
+      "scene": "ILHA_SKATE",
+      "npc": "JOGO_SKATE",
+      "start": [
+        420,
+        150
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 265,
+        "y": 130,
+        "length": 175
+      }
+    },
+    {
+      "scene": "ILHA_ARCO",
+      "npc": "JOGO_ARCO",
+      "start": [
+        420,
+        150
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 265,
+        "y": 145,
+        "length": 160
+      }
+    },
+    {
+      "scene": "ILHA_ARCO",
+      "npc": "JOGO_ARCO",
+      "start": [
+        225,
+        20
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 225,
+        "y": 70,
+        "length": 50
+      }
+    },
+    {
+      "scene": "ILHA_CORRIDA",
+      "npc": "JOGO_CORRIDA",
+      "start": [
+        420,
+        150
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 265,
+        "y": 135,
+        "length": 170
+      }
+    },
+    {
+      "scene": "ILHA_ESCALADA",
+      "npc": "JOGO_ESCALADA",
+      "start": [
+        225,
+        270
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 225,
+        "y": 135,
+        "length": 135
+      }
+    },
+    {
+      "scene": "ILHA_ESCALADA",
+      "npc": "npc_guia_trilha.png",
+      "start": [
+        225,
+        270
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 100,
+        "y": 165,
+        "length": 230
+      }
+    },
+    {
+      "scene": "ILHA_ESCALADA",
+      "npc": "npc_geologa.png",
+      "start": [
+        225,
+        270
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 365,
+        "y": 165,
+        "length": 245
+      }
+    },
+    {
+      "scene": "ILHA_ESCALADA",
+      "npc": "npc_chef.png",
+      "start": [
+        225,
+        270
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 120,
+        "y": 245,
+        "length": 130
+      }
+    },
+    {
+      "scene": "ILHA_SURF",
+      "npc": "JOGO_SURF",
+      "start": [
+        225,
+        270
+      ],
+      "reachable": true,
+      "arrival": {
+        "x": 225,
+        "y": 140,
+        "length": 130
+      }
+    }
+  ],
+  "functional": [
+    {
+      "scene": "HUB",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 238.19999999999993,
+        "y": 186.80000000000007
+      }
+    },
+    {
+      "scene": "ILHA_BASQUETE",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 238.19999999999993,
+        "y": 186.80000000000007
+      },
+      "target": "JOGO_BASQUETE",
+      "prompt": {
+        "visible": true,
+        "text": "> (Pressione [E] ou [ESPAÇO] para iniciar)"
+      },
+      "entered": "JOGO_BASQUETE",
+      "returned": "ILHA_BASQUETE"
+    },
+    {
+      "scene": "ILHA_ESQUI",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 240.39999999999992,
+        "y": 186.80000000000007
+      },
+      "target": "JOGO_BOXE",
+      "prompt": {
+        "visible": true,
+        "text": "> MESTRE DO BOXE · [E] / [ESPAÇO] INICIAR"
+      },
+      "entered": "JOGO_BOXE",
+      "returned": "ILHA_ESQUI"
+    },
+    {
+      "scene": "ILHA_PINGPONG",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 242.5999999999999,
+        "y": 186.80000000000007
+      },
+      "target": "JOGO_PINGPONG",
+      "prompt": {
+        "visible": true,
+        "text": "> MESTRE DO PING-PONG · [E] / [ESPAÇO] INICIAR"
+      },
+      "entered": "JOGO_PINGPONG",
+      "returned": "ILHA_PINGPONG"
+    },
+    {
+      "scene": "ILHA_SKATE",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 238.19999999999993,
+        "y": 184.60000000000008
+      },
+      "target": "JOGO_SKATE",
+      "prompt": {
+        "visible": true,
+        "text": "> MESTRE DO SKATE · [E] / [ESPAÇO] INICIAR"
+      },
+      "entered": "JOGO_SKATE",
+      "returned": "ILHA_SKATE"
+    },
+    {
+      "scene": "ILHA_ARCO",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 238.19999999999993,
+        "y": 186.80000000000007
+      },
+      "target": "JOGO_ARCO",
+      "prompt": {
+        "visible": true,
+        "text": "> MESTRE DO ARCO · [E] / [ESPAÇO] INICIAR"
+      },
+      "entered": "JOGO_ARCO",
+      "returned": "ILHA_ARCO"
+    },
+    {
+      "scene": "ILHA_CORRIDA",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 240.39999999999992,
+        "y": 186.80000000000007
+      },
+      "target": "JOGO_CORRIDA",
+      "prompt": {
+        "visible": true,
+        "text": "> MESTRE DA CORRIDA · [E] / [ESPAÇO] INICIAR"
+      },
+      "entered": "JOGO_CORRIDA",
+      "returned": "ILHA_CORRIDA"
+    },
+    {
+      "scene": "ILHA_ESCALADA",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 238.19999999999993,
+        "y": 186.80000000000007
+      },
+      "target": "JOGO_ESCALADA",
+      "prompt": {
+        "visible": true,
+        "text": "> MESTRE DA ESCALADA · [E] / [ESPAÇO] INICIAR"
+      },
+      "entered": "JOGO_ESCALADA",
+      "returned": "ILHA_ESCALADA"
+    },
+    {
+      "scene": "ILHA_SURF",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 240.39999999999992,
+        "y": 186.80000000000007
+      },
+      "target": "JOGO_SURF",
+      "prompt": {
+        "visible": true,
+        "text": "> MESTRE DO SURF · [E] / [ESPAÇO] INICIAR"
+      },
+      "entered": "JOGO_SURF",
+      "returned": "ILHA_SURF"
+    }
+  ],
+  "conversations": [
+    {
+      "scene": "HUB",
+      "name": "> TURISTA",
+      "readable": true,
+      "visible": true
+    },
+    {
+      "scene": "HUB",
+      "name": "> GUIA",
+      "readable": true,
+      "visible": true
+    },
+    {
+      "scene": "ILHA_ESQUI",
+      "name": "> TREINADOR",
+      "readable": true,
+      "visible": true
+    },
+    {
+      "scene": "ILHA_ESQUI",
+      "name": "> ÁRBITRO",
+      "readable": true,
+      "visible": true
+    },
+    {
+      "scene": "ILHA_ESQUI",
+      "name": "> PUGILISTA",
+      "readable": true,
+      "visible": true
+    },
+    {
+      "scene": "ILHA_PINGPONG",
+      "name": "> APRENDIZ",
+      "readable": true,
+      "visible": true
+    },
+    {
+      "scene": "ILHA_ESCALADA",
+      "name": "> GUIA DE TRILHA",
+      "readable": true,
+      "visible": true
+    },
+    {
+      "scene": "ILHA_ESCALADA",
+      "name": "> GEÓLOGA",
+      "readable": true,
+      "visible": true
+    },
+    {
+      "scene": "ILHA_ESCALADA",
+      "name": "> CHEF DE ACAMPAMENTO",
+      "readable": true,
+      "visible": true
+    }
+  ],
+  "connections": [
+    {
+      "from": "HUB",
+      "to": "ILHA_ESQUI",
+      "actual": "ILHA_ESQUI"
+    },
+    {
+      "from": "ILHA_ESQUI",
+      "to": "HUB",
+      "actual": "HUB"
+    },
+    {
+      "from": "HUB",
+      "to": "ILHA_SKATE",
+      "actual": "ILHA_SKATE"
+    },
+    {
+      "from": "ILHA_SKATE",
+      "to": "HUB",
+      "actual": "HUB"
+    },
+    {
+      "from": "HUB",
+      "to": "ILHA_PINGPONG",
+      "actual": "ILHA_PINGPONG"
+    },
+    {
+      "from": "ILHA_PINGPONG",
+      "to": "HUB",
+      "actual": "HUB"
+    },
+    {
+      "from": "HUB",
+      "to": "ILHA_ARCO",
+      "actual": "ILHA_ARCO"
+    },
+    {
+      "from": "ILHA_ARCO",
+      "to": "HUB",
+      "actual": "HUB"
+    },
+    {
+      "from": "ILHA_SKATE",
+      "to": "ILHA_CORRIDA",
+      "actual": "ILHA_CORRIDA"
+    },
+    {
+      "from": "ILHA_CORRIDA",
+      "to": "ILHA_SKATE",
+      "actual": "ILHA_SKATE"
+    },
+    {
+      "from": "ILHA_SKATE",
+      "to": "ILHA_BASQUETE",
+      "actual": "ILHA_BASQUETE"
+    },
+    {
+      "from": "ILHA_BASQUETE",
+      "to": "ILHA_SKATE",
+      "actual": "ILHA_SKATE"
+    },
+    {
+      "from": "ILHA_ARCO",
+      "to": "ILHA_ESCALADA",
+      "actual": "ILHA_ESCALADA"
+    },
+    {
+      "from": "ILHA_ESCALADA",
+      "to": "ILHA_ARCO",
+      "actual": "ILHA_ARCO"
+    },
+    {
+      "from": "ILHA_PINGPONG",
+      "to": "ILHA_SURF",
+      "actual": "ILHA_SURF"
+    },
+    {
+      "from": "ILHA_SURF",
+      "to": "ILHA_PINGPONG",
+      "actual": "ILHA_PINGPONG"
+    }
+  ],
+  "fps": 60.00134834490666,
+  "httpErrors": [],
+  "requests": [
+    "http://localhost/2025/Festival_dos_Esportes/",
+    "https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap",
+    "http://localhost/2025/Festival_dos_Esportes/style.css?v=2.2",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/archery_assets_manifest.js?v=2.0.0_archery_runtime",
+    "http://localhost/2025/Festival_dos_Esportes/archery_asset_registry.js?v=2.2.0_archery_island",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas_registry.js?v=1.1_surf_fix",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/boxing_v3_manifest.js?v=3.0.1",
+    "http://localhost/2025/Festival_dos_Esportes/boxing_presentation.js?v=1.0_arena_v3",
+    "http://localhost/2025/Festival_dos_Esportes/boxing_arena.js?v=8.0_arena_v3",
+    "http://localhost/2025/Festival_dos_Esportes/overworld_assets/npc_geometry.js?v=1.0.0",
+    "http://localhost/2025/Festival_dos_Esportes/overworld_visuals.js?v=1.0.0",
+    "http://localhost/2025/Festival_dos_Esportes/script.js?v=10.4_overworld",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_1v1.js?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/skate_new/collision_geometry.js?v=1.2_asset_regions",
+    "http://localhost/2025/Festival_dos_Esportes/skate/space_input_parser.js?v=5.6_journey",
+    "http://localhost/2025/Festival_dos_Esportes/skate/ollie_physics.js?v=5.6_journey",
+    "http://localhost/2025/Festival_dos_Esportes/skate/trick_system.js?v=1.0_air_sequences",
+    "http://localhost/2025/Festival_dos_Esportes/skate/combo_system.js?v=1.0_combo",
+    "http://localhost/2025/Festival_dos_Esportes/skate/traversal_system.js?v=5.6_journey",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/catalog.js?v=2.0_rider",
+    "http://localhost/2025/Festival_dos_Esportes/skate/procedural_track.js?v=5.6_journey",
+    "http://localhost/2025/Festival_dos_Esportes/skate/official_procedural_course.js?v=5.6_journey",
+    "http://localhost/2025/Festival_dos_Esportes/skate/course.js?v=3.0_procedural_official",
+    "http://localhost/2025/Festival_dos_Esportes/skate/rider_presentation.js?v=5.6_journey",
+    "http://localhost/2025/Festival_dos_Esportes/skate/journey_presentation.js?v=5.6_journey",
+    "http://localhost/2025/Festival_dos_Esportes/skate/skate_ollie_runtime.js?v=5.6_journey",
+    "http://localhost/2025/Festival_dos_Esportes/corrida_sprites/runtime/corrida_runners_manifest.js?v=3",
+    "http://localhost/2025/Festival_dos_Esportes/corrida_maratona.js?v=2.3_runner_sprites",
+    "http://localhost/2025/Festival_dos_Esportes/surf_asset_registry.js?v=1.2.0_score_signs",
+    "http://localhost/2025/Festival_dos_Esportes/surf_endless.js?v=9.5.0_surf_fix",
+    "https://fonts.gstatic.com/s/pressstart2p/v16/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arena/archery_arena.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_fast_up_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_fast_up_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_fast_up_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_fast_up_left_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_fast_up_left_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_fast_up_left_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_fast_up_right_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_fast_up_right_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_fast_up_right_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_up_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_up_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_up_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_up_left_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_up_left_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_up_left_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_up_right_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_up_right_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/arrows/arrow_up_right_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/draw_bowstring_back/master_archer_draw_bowstring_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/draw_bowstring_back/master_archer_draw_bowstring_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/draw_bowstring_back/master_archer_draw_bowstring_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/draw_bowstring_back/master_archer_draw_bowstring_back_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/idle_back/master_archer_idle_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/idle_back/master_archer_idle_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/idle_back/master_archer_idle_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/idle_back/master_archer_idle_back_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/miss_reaction_back/master_archer_miss_reaction_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/miss_reaction_back/master_archer_miss_reaction_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/miss_reaction_back/master_archer_miss_reaction_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/raise_bow_back/master_archer_raise_bow_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/raise_bow_back/master_archer_raise_bow_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/raise_bow_back/master_archer_raise_bow_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/raise_bow_back/master_archer_raise_bow_back_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/recovery_back/master_archer_recovery_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/recovery_back/master_archer_recovery_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/recovery_back/master_archer_recovery_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/recovery_back/master_archer_recovery_back_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/release_shot_back/master_archer_release_shot_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/release_shot_back/master_archer_release_shot_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/release_shot_back/master_archer_release_shot_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/release_shot_back/master_archer_release_shot_back_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/victory_back/master_archer_victory_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/victory_back/master_archer_victory_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/victory_back/master_archer_victory_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/victory_back/master_archer_victory_back_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/victory_back/master_archer_victory_back_05.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/victory_back/master_archer_victory_back_06.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/walk_down_back/master_archer_walk_down_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/walk_down_back/master_archer_walk_down_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/walk_down_back/master_archer_walk_down_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/master/walk_down_back/master_archer_walk_down_back_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/draw_bowstring_back/zorp_archer_draw_bowstring_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/draw_bowstring_back/zorp_archer_draw_bowstring_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/draw_bowstring_back/zorp_archer_draw_bowstring_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/draw_bowstring_back/zorp_archer_draw_bowstring_back_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/idle_back/zorp_archer_idle_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/idle_back/zorp_archer_idle_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/idle_back/zorp_archer_idle_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/idle_back/zorp_archer_idle_back_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/miss_reaction_back/zorp_archer_miss_reaction_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/miss_reaction_back/zorp_archer_miss_reaction_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/miss_reaction_back/zorp_archer_miss_reaction_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/raise_bow_back/zorp_archer_raise_bow_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/raise_bow_back/zorp_archer_raise_bow_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/raise_bow_back/zorp_archer_raise_bow_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/raise_bow_back/zorp_archer_raise_bow_back_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/recovery_back/zorp_archer_recovery_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/recovery_back/zorp_archer_recovery_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/recovery_back/zorp_archer_recovery_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/recovery_back/zorp_archer_recovery_back_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/release_shot_back/zorp_archer_release_shot_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/release_shot_back/zorp_archer_release_shot_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/release_shot_back/zorp_archer_release_shot_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/release_shot_back/zorp_archer_release_shot_back_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/victory_back/zorp_archer_victory_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/victory_back/zorp_archer_victory_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/victory_back/zorp_archer_victory_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/victory_back/zorp_archer_victory_back_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/victory_back/zorp_archer_victory_back_05.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/victory_back/zorp_archer_victory_back_06.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/walk_down_back/zorp_archer_walk_down_back_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/walk_down_back/zorp_archer_walk_down_back_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/walk_down_back/zorp_archer_walk_down_back_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/zorp/walk_down_back/zorp_archer_walk_down_back_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/effects/arrow_impact/arrow_impact_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/effects/arrow_impact/arrow_impact_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/effects/arrow_impact/arrow_impact_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/effects/arrow_impact/arrow_impact_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/effects/bullseye/bullseye_hit_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/effects/bullseye/bullseye_hit_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/effects/bullseye/bullseye_hit_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/effects/bullseye/bullseye_hit_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/effects/score/score_hit_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/effects/score/score_hit_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/effects/score/score_hit_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/effects/score/score_hit_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/props/hay/hay_bale_support_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/props/hay/hay_bale_support_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/props/hay/hay_bale_support_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/props/signs/lane_marker_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/props/signs/lane_marker_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/props/signs/lane_marker_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/props/signs/lane_marker_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/props/target_stands/target_stand_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/props/target_stands/target_stand_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/props/target_stands/target_stand_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/props/target_stands/target_stand_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/props/wind/wind_flag_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/props/wind/wind_flag_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/props/wind/wind_flag_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/bonus/target_golden_bonus_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/bonus/target_golden_bonus_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/bonus/target_golden_bonus_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/bonus/target_golden_bonus_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/static/target_large_idle_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/static/target_large_idle_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/static/target_large_idle_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/static/target_large_idle_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/static/target_medium_idle_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/static/target_medium_idle_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/static/target_medium_idle_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/static/target_medium_idle_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/popup/target_popup_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/popup/target_popup_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/popup/target_popup_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/popup/target_popup_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/popup/target_popup_05.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/moving/target_side_moving_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/moving/target_side_moving_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/moving/target_side_moving_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/moving/target_side_moving_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/static/target_small_idle_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/static/target_small_idle_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/static/target_small_idle_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/archery_assets/targets/static/target_small_idle_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/ping_pong_locked.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/ping_pong_unlocked.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/basquete_locked.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/basquete_unlocked.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/corrida_locked.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/corrida_unlocked.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/skate_locked.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/skate_unlocked.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/arco_locked.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/arco_unlocked.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/escalada_locked.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/escalada_unlocked.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/boxe_locked.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/boxe_unlocked.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/surf_locked.png",
+    "http://localhost/2025/Festival_dos_Esportes/medalhas/surf_unlocked.png",
+    "http://localhost/2025/Festival_dos_Esportes/zorp.png",
+    "http://localhost/2025/Festival_dos_Esportes/bg_pingpong.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/npc_turista.png",
+    "http://localhost/2025/Festival_dos_Esportes/npc_guia.png",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/idle/master_basket_idle_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/mestre_surfing_overworld.png?v=1.0",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/decor/beach_palm_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/decor/beach_umbrella_red_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/decor/beach_sign_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/decor/beach_towel_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/decor/beach_cooler_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/npc_aprendiz.png",
+    "http://localhost/2025/Festival_dos_Esportes/npc_mestre_ping_pong.png",
+    "http://localhost/2025/Festival_dos_Esportes/arqueiro_overworld.png?v=1.0_archery_island",
+    "http://localhost/2025/Festival_dos_Esportes/skate_sprites/mestre_corrida_npc.png",
+    "http://localhost/2025/Festival_dos_Esportes/zorp_idle.png",
+    "http://localhost/2025/Festival_dos_Esportes/zorp_mu.png",
+    "http://localhost/2025/Festival_dos_Esportes/zorp_md.png",
+    "http://localhost/2025/Festival_dos_Esportes/zorp_hit.png",
+    "http://localhost/2025/Festival_dos_Esportes/mestre_idle.png",
+    "http://localhost/2025/Festival_dos_Esportes/mestre_mu.png",
+    "http://localhost/2025/Festival_dos_Esportes/mestre_md.png",
+    "http://localhost/2025/Festival_dos_Esportes/mestre_hit.png",
+    "http://localhost/2025/Festival_dos_Esportes/npc_mestre_escalada.png",
+    "http://localhost/2025/Festival_dos_Esportes/npc_guia_trilha.png",
+    "http://localhost/2025/Festival_dos_Esportes/npc_geologa.png",
+    "http://localhost/2025/Festival_dos_Esportes/npc_chef.png",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/idle_hang/zorp_climb_idle_hang_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/idle_hang/zorp_climb_idle_hang_02.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/climb_alternate/zorp_climb_alternate_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/climb_alternate/zorp_climb_alternate_02.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/climb_alternate/zorp_climb_alternate_03.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/climb_alternate/zorp_climb_alternate_04.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/reach/zorp_climb_reach_left_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/reach/zorp_climb_reach_right_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/slip/zorp_climb_slip_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/slip/zorp_climb_slip_02.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/push_up/zorp_climb_push_up_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/push_up/zorp_climb_push_up_02.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/push_up/zorp_climb_push_up_03.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/stun/zorp_climb_stun_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/fall/zorp_climb_fall_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/victory/zorp_climb_victory_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/zorp/victory/zorp_climb_victory_02.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/pedras/pedra_normal_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/pedras/pedra_gelo_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/pedras/pedra_fragil_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/pedras/pedra_musgo_02.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/pedras/pedra_brilhante_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/pedras/pedra_perigosa_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/pedras/pedra_escura_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/pedras/pedra_bonus_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/boulder/hazard_boulder_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/boulder/hazard_boulder_02.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/boulder/hazard_boulder_03.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/boulder/hazard_boulder_04.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/boulder/hazard_boulder_05.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/log/hazard_log_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/log/hazard_log_02.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/log/hazard_log_03.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/crate/hazard_crate_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/crate/hazard_crate_02.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/crate/hazard_crate_03.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/crate/hazard_crate_04.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/boot/hazard_boot_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/boot/hazard_boot_02.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/boot/hazard_boot_03.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/bucket/hazard_bucket_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/bucket/hazard_bucket_02.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/bucket/hazard_bucket_03.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/bucket/hazard_bucket_04.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/coconut/hazard_coconut_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/coconut/hazard_coconut_02.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/coconut/hazard_coconut_03.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/coconut/hazard_coconut_04.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/planter/hazard_planter_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/planter/hazard_planter_02.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/obstaculos/planter/hazard_planter_03.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/efeitos/climb_warning_02.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/efeitos/climb_dust_01.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/efeitos/climb_dust_02.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/efeitos/climb_dust_03.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/climb_assets/efeitos/climb_dust_04.png?v=2",
+    "http://localhost/2025/Festival_dos_Esportes/VictoryEscalada.png?v=3",
+    "http://localhost/2025/Festival_dos_Esportes/arena_boxe3.0.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r01_f01.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r01_f02.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r01_f03.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r01_f04.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r01_f07.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r01_f08.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r02_f01.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r02_f02.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r02_f03.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r02_f07.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r02_f04.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r02_f05.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r02_f06.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r03_f01.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r03_f02.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r03_f08.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r03_f03.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r03_f05.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r03_f07.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r04_f01.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r04_f03.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r04_f04.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r04_f02.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r05_f03.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r05_f04.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r05_f05.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r05_f06.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r05_f07.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r04_f08.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r06_f10.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r05_f01.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/zorp/zorp_r06_f04.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r01_f01.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r01_f02.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r01_f03.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r01_f04.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r01_f08.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r02_f01.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r02_f02.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r02_f03.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r02_f04.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r02_f07.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r02_f05.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r02_f06.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r03_f01.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r03_f02.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r03_f08.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r03_f03.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r03_f05.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r03_f07.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r04_f01.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r04_f02.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r04_f03.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r04_f04.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r04_f05.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r04_f06.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r04_f07.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r04_f08.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r06_f10.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r05_f01.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r05_f02.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r05_f03.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r06_f04.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r06_f05.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r06_f06.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r06_f08.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/master/master_r06_f09.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r01_f01.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r01_f02.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r01_f03.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r01_f06.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r01_f07.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r01_f08.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r01_f09.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r01_f10.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r02_f01.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r02_f04.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r02_f05.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r03_f01.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r03_f03.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r04_f01.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r04_f02.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r04_f04.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r04_f05.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r02_f02.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r02_f03.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r02_f07.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r03_f08.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r05_f01.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r05_f02.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_assets/v3/judge/judge_r05_f03.png?v=3.0.2_boxing_arena",
+    "http://localhost/2025/Festival_dos_Esportes/npc_mestre_novo.png?v=4",
+    "http://localhost/2025/Festival_dos_Esportes/npc_treinador_novo.png?v=4",
+    "http://localhost/2025/Festival_dos_Esportes/npc_arbitro_novo.png?v=4",
+    "http://localhost/2025/Festival_dos_Esportes/npc_pugilista_novo.png?v=4",
+    "http://localhost/2025/Festival_dos_Esportes/boxe_saco_pancada.png?v=4",
+    "http://localhost/2025/Festival_dos_Esportes/mestre_skate.png?v=5_cropped_pixel_perfect",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/basketball_assets_manifest.json?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/ride_idle/ride_idle_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/ride_idle/ride_idle_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/ride_idle/ride_idle_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/push_accelerate/push_accelerate_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/push_accelerate/push_accelerate_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/push_accelerate/push_accelerate_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/push_accelerate/push_accelerate_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/normal_jump/normal_jump_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/normal_jump/normal_jump_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/normal_jump/normal_jump_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/ollie_board_flip/ollie_board_flip_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/ollie_board_flip/ollie_board_flip_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/ollie_board_flip/ollie_board_flip_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/ollie_board_flip/ollie_board_flip_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/ollie_board_flip/ollie_board_flip_05.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/ollie_board_flip/ollie_board_flip_06.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/super_jump/super_jump_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/super_jump/super_jump_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/super_jump/super_jump_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/super_jump/super_jump_06.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/grind_stance/grind_stance_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/grind_stance/grind_stance_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/grind_stance/grind_stance_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/grind_stance/grind_stance_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/grind_jump_out/grind_jump_out_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/grind_jump_out/grind_jump_out_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/grind_jump_out/grind_jump_out_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/air_catch_landing/air_catch_landing_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/air_catch_landing/air_catch_landing_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/air_catch_landing/air_catch_landing_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/bench_trick_slide/bench_trick_slide_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/bench_trick_slide/bench_trick_slide_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/bench_trick_slide/bench_trick_slide_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/stumble_near_fail/stumble_near_fail_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/stumble_near_fail/stumble_near_fail_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/stumble_near_fail/stumble_near_fail_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/crash_fall_off_board/crash_fall_off_board_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/crash_fall_off_board/crash_fall_off_board_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/crash_fall_off_board/crash_fall_off_board_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/skate_v2/zorp/crash_fall_off_board/crash_fall_off_board_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/corrida_sprites/runtime/corrida_runners_atlas.png?v=3",
+    "http://localhost/2025/Festival_dos_Esportes/Obstaculos_Corrida.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf_manifest.json",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf_manifest.json",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/surf_sprites_manifest.json",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/idle/zorp_basket_idle_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/idle/zorp_basket_idle_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/run/zorp_basket_run_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/run/zorp_basket_run_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/run/zorp_basket_run_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/run/zorp_basket_run_04.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/run/zorp_basket_run_05.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/run/zorp_basket_run_06.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/defense_shuffle/zorp_basket_defense_shuffle_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/defense_shuffle/zorp_basket_defense_shuffle_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/defense_shuffle/zorp_basket_defense_shuffle_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/defense_shuffle/zorp_basket_defense_shuffle_04.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/jump/zorp_basket_jump_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/jump/zorp_basket_jump_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/jump/zorp_basket_jump_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/shoot/zorp_basket_shoot_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/shoot/zorp_basket_shoot_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/shoot/zorp_basket_shoot_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/shoot/zorp_basket_shoot_04.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/pump_fake/zorp_basket_pump_fake_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/pump_fake/zorp_basket_pump_fake_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/layup_dunk/zorp_basket_layup_dunk_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/layup_dunk/zorp_basket_layup_dunk_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/layup_dunk/zorp_basket_layup_dunk_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/layup_dunk/zorp_basket_layup_dunk_04.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/steal/zorp_basket_steal_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/steal/zorp_basket_steal_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/steal/zorp_basket_steal_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/block/zorp_basket_block_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/block/zorp_basket_block_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/block/zorp_basket_block_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/hit/zorp_basket_hit_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/hit/zorp_basket_hit_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/hit/zorp_basket_hit_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/victory/zorp_basket_victory_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/victory/zorp_basket_victory_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/victory/zorp_basket_victory_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/defeated/zorp_basket_defeated_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/defeated/zorp_basket_defeated_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/zorp_basket/defeated/zorp_basket_defeated_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/idle/master_basket_idle_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/run/master_basket_run_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/run/master_basket_run_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/run/master_basket_run_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/run/master_basket_run_04.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/run/master_basket_run_05.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/run/master_basket_run_06.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/defense_shuffle/master_basket_defense_shuffle_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/defense_shuffle/master_basket_defense_shuffle_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/defense_shuffle/master_basket_defense_shuffle_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/defense_shuffle/master_basket_defense_shuffle_04.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/jump/master_basket_jump_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/jump/master_basket_jump_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/jump/master_basket_jump_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/shoot/master_basket_shoot_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/shoot/master_basket_shoot_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/shoot/master_basket_shoot_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/shoot/master_basket_shoot_04.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/pump_fake/master_basket_pump_fake_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/pump_fake/master_basket_pump_fake_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/layup_dunk/master_basket_layup_dunk_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/layup_dunk/master_basket_layup_dunk_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/layup_dunk/master_basket_layup_dunk_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/layup_dunk/master_basket_layup_dunk_04.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/steal/master_basket_steal_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/steal/master_basket_steal_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/steal/master_basket_steal_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/block/master_basket_block_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/block/master_basket_block_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/block/master_basket_block_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/hit/master_basket_hit_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/hit/master_basket_hit_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/hit/master_basket_hit_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/victory/master_basket_victory_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/victory/master_basket_victory_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/victory/master_basket_victory_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/defeated/master_basket_defeated_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/defeated/master_basket_defeated_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/master_basket/defeated/master_basket_defeated_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/basketball/ball/ball_spin_01.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/basketball/ball/ball_spin_02.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/basketball/ball/ball_spin_03.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/basketball/ball/ball_spin_04.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/basketball/ball/ball_spin_05.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/basketball/ball/ball_spin_06.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/basketball/hoops/hoop_left_idle.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/basketball/hoops/hoop_right_idle.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/basketball/hoops/hoop_left_net_motion.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/basketball/hoops/hoop_right_net_motion.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/basketball_assets/exported/basketball/arena/arena_basketball_background.png?v=1.0.1_visual_fix",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/aerial/zorp_surf_aerial_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/aerial/zorp_surf_aerial_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/aerial/zorp_surf_aerial_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/aerial/zorp_surf_aerial_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/aerial/zorp_surf_aerial_05.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/ascend/zorp_surf_ascend_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/ascend/zorp_surf_ascend_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/ascend/zorp_surf_ascend_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/ascend/zorp_surf_ascend_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/ascend/zorp_surf_ascend_05.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/ascend/zorp_surf_ascend_06.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/ascend/zorp_surf_ascend_07.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/crest_skim/zorp_surf_crest_skim_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/crest_skim/zorp_surf_crest_skim_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/crest_skim/zorp_surf_crest_skim_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/crest_skim/zorp_surf_crest_skim_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/crest_skim/zorp_surf_crest_skim_05.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/crest_skim/zorp_surf_crest_skim_06.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/crest_skim/zorp_surf_crest_skim_07.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/crest_skim/zorp_surf_crest_skim_08.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/descend/zorp_surf_descend_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/descend/zorp_surf_descend_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/descend/zorp_surf_descend_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/descend/zorp_surf_descend_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/descend/zorp_surf_descend_05.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/descend/zorp_surf_descend_06.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/descend/zorp_surf_descend_07.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/descend/zorp_surf_descend_08.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/glide/zorp_surf_glide_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/glide/zorp_surf_glide_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/glide/zorp_surf_glide_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/glide/zorp_surf_glide_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/glide/zorp_surf_glide_05.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/glide/zorp_surf_glide_06.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/glide/zorp_surf_glide_07.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/glide/zorp_surf_glide_08.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/landing/zorp_surf_landing_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/landing/zorp_surf_landing_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/landing/zorp_surf_landing_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/landing/zorp_surf_landing_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/pump/zorp_surf_pump_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/pump/zorp_surf_pump_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/pump/zorp_surf_pump_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/pump/zorp_surf_pump_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/pump/zorp_surf_pump_05.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/pump/zorp_surf_pump_06.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/pump/zorp_surf_pump_07.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/pump/zorp_surf_pump_08.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/reentry/zorp_surf_reentry_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/reentry/zorp_surf_reentry_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/reentry/zorp_surf_reentry_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/reentry/zorp_surf_reentry_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/takeoff/zorp_surf_takeoff_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/takeoff/zorp_surf_takeoff_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/takeoff/zorp_surf_takeoff_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/trick/zorp_surf_trick_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/trick/zorp_surf_trick_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/trick/zorp_surf_trick_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/trick/zorp_surf_trick_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/trick/zorp_surf_trick_05.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/trick/zorp_surf_trick_06.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/trick/zorp_surf_trick_07.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/trick/zorp_surf_trick_08.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/trick/zorp_surf_trick_09.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/zorp_surf/trick/zorp_surf_trick_10.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/hazards/hazard_barrel.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/hazards/hazard_beach_ball.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/hazards/hazard_buoy_red.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/hazards/hazard_buoy_warning.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/hazards/hazard_buoy_yellow.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/hazards/hazard_log.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/hazards/hazard_wood_crate.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/seagulls/seagull_dive_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/seagulls/seagull_dive_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/seagulls/seagull_fly_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/seagulls/seagull_fly_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/seagulls/seagull_fly_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/seagulls/seagull_fly_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/seagulls/seagull_fly_05.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/seagulls/seagull_front_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/sharks/shark_attack_visual_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/sharks/shark_fin_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/sharks/shark_jump_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/sharks/shark_swim_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/surfers/surfer_female_01_carve.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/surfers/surfer_female_01_surf_back.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/surfers/surfer_female_01_surf_front.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/surfers/surfer_female_01_surf_side.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/surfers/surfer_green_01_carve.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/surfers/surfer_green_01_surf_back.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/surfers/surfer_green_01_surf_front.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/surfers/surfer_green_01_surf_side.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/surfers/surfer_male_01_carve.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/surfers/surfer_male_01_surf_back.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/surfers/surfer_male_01_surf_front.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/surfers/surfer_male_01_surf_side.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_female_01_back_06.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_female_01_idle_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_female_01_panic_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_female_01_panic_05.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_female_01_swim_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_female_01_swim_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_goggles_01_back_06.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_goggles_01_idle_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_goggles_01_panic_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_goggles_01_panic_05.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_goggles_01_swim_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_goggles_01_swim_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_male_01_back_06.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_male_01_idle_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_male_01_panic_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_male_01_panic_05.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_male_01_swim_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_assets/assets_surf/swimmers/swimmer_male_01_swim_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_child_cheer_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_child_confetti_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_child_confetti_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_child_flower_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_child_play_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_child_sit_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_child_sit_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_child_sunglasses_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_child_sunglasses_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_children_sandcastle_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_lifeguard_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_lifeguard_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_lifeguard_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_lifeguard_04.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_blue_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_blue_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_blue_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_chair_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_chair_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_chair_03.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_cheer_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_female_blonde_wave_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_female_pink_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_female_pink_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_goggles_front_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_goggles_side_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_goggles_smile_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_male_cheer_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_male_cheer_02.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_male_icecream_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_person_sit_pink_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/beach/people/beach_surfer_carry_01.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/digits/score_digit_0.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/digits/score_digit_1.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/digits/score_digit_10.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/digits/score_digit_2.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/digits/score_digit_3.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/digits/score_digit_4.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/digits/score_digit_5.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/digits/score_digit_6.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/digits/score_digit_7.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/digits/score_digit_8.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/digits/score_digit_9.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/examples/score_sign_example_0.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/examples/score_sign_example_10.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/examples/score_sign_example_7.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/plates/score_sign_double_empty.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/plates/score_sign_left_empty.png",
+    "http://localhost/2025/Festival_dos_Esportes/surf_sprites/score_signs/plates/score_sign_right_empty.png"
+  ]
+}

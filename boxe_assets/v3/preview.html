@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boxe 3.0 — conferência de animações</title>
+<style>
+body{margin:0;padding:24px;background:#17202c;color:#edf4fa;font:15px system-ui,sans-serif}h1{font-size:24px}main{display:flex;gap:18px;flex-wrap:wrap}.actor{background:#273547;padding:16px;border-radius:10px;width:336px}canvas{background:#39485b;width:320px;height:224px;border:1px solid #708295;image-rendering:pixelated}select,button{font:inherit;margin:6px 0;padding:6px;background:#142233;color:white;border:1px solid #7b8f9b}label{display:block}.info{min-height:56px;color:#a7e4ed;font-size:13px}summary{cursor:pointer}li{margin:4px 0}a{color:#a7e4ed}
+</style>
+<h1>Boxe 3.0 — sprites e anchors</h1>
+<p>Escolha uma ação. A linha ciano é o chão e o ponto amarelo é o contato bottom-center. Esta prévia usa os mesmos arquivos e o mesmo catálogo do jogo.</p>
+<button id="pause">Pausar animações</button>
+<main></main>
+<p>Esta prévia contém apenas os quadros usados no jogo. As poses ambíguas permanecem nas folhas originais, sem recortes exportados. Veja <a href="MAPPING.md">o mapeamento e as limitações da fonte</a>.</p>
+<script src="boxing_v3_manifest.js?v=3.0.1"></script>
+<script>
+"use strict";
+const images=new Map(), cards=[];
+let playing=true, clock=0, previous=0;
+for(const [role,actor] of Object.entries(BOXING_V3_MANIFEST.actors)){
+ const card=document.createElement('section');card.className='actor';
+ const title=document.createElement('h2');title.textContent=role==='zorp'?'Zorp':role==='master'?'Mestre':'Juiz';card.append(title);
+ const source=document.createElement('p');source.textContent=actor.source;card.append(source);
+ const select=document.createElement('select');
+ for(const key of Object.keys(actor.actions)){const option=document.createElement('option');option.value=key;option.textContent=key;select.append(option)}
+ card.append(select);
+ const label=document.createElement('label'),mirror=document.createElement('input');mirror.type='checkbox';label.append(mirror,' Espelhar direção');card.append(label);
+ const canvas=document.createElement('canvas');canvas.width=320;canvas.height=224;card.append(canvas);
+ const info=document.createElement('p');info.className='info';card.append(info);
+ const details=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Frames por ação';details.append(summary);
+ const list=document.createElement('ul');
+ for(const [key,ids] of Object.entries(actor.actions)){const item=document.createElement('li');item.textContent=key+': '+ids.join(' → ');list.append(item)}details.append(list);card.append(details);
+ document.querySelector('main').append(card);
+ cards.push({actor,select,mirror,canvas,info});
+ for(const refs of Object.values(actor.actions))for(const id of refs){const frame=actor.frames[id];if(!images.has(frame.sprite)){const im=new Image();im.src='../../'+frame.sprite+'?v=3.0.0';images.set(frame.sprite,im)}}
+}
+document.querySelector('#pause').onclick=()=>{playing=!playing;document.querySelector('#pause').textContent=playing?'Pausar animações':'Continuar animações'};
+function draw(t){if(previous&&playing)clock+=Math.min(100,t-previous);previous=t;
+ for(const c of cards){const refs=c.actor.actions[c.select.value],i=Math.floor(clock/150)%refs.length,f=c.actor.frames[refs[i]],im=images.get(f.sprite),g=c.canvas.getContext('2d');g.clearRect(0,0,320,224);g.imageSmoothingEnabled=false;
+  if(im.complete&&im.naturalWidth){g.save();if(c.mirror.checked){g.translate(320,0);g.scale(-1,1)}g.drawImage(im,0,0);g.restore()}
+  g.strokeStyle='#66dae6';g.beginPath();g.moveTo(0,210);g.lineTo(320,210);g.stroke();g.fillStyle='#ffe178';g.beginPath();g.arc(160,210,3,0,Math.PI*2);g.fill();
+  c.info.textContent=f.id+' / '+f.label+' / frame '+(i+1)+' de '+refs.length+' / anchor 160, 210';
+ }
+ requestAnimationFrame(draw);
+}requestAnimationFrame(draw);
+</script>
+</html>

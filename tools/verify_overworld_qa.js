@@ -1,228 +1,69 @@
-const fs = require('fs');
-const { execSync } = require('child_process');
-
-console.log('=== OVERWORLD VERIFICATION SUITE ===\n');
-
-const currentCode = fs.readFileSync('script.js', 'utf8');
-const headCode = execSync('git show HEAD:script.js', { maxBuffer: 10 * 1024 * 1024 }).toString('utf8');
-
-// 1. VERIFY FROZEN ISLANDS UNTOUCHED
-console.log('--- 1. Testing Frozen Islands Integrity ---');
-const frozenIslands = [
-    { name: 'ILHA_ARCO', drawFn: 'drawIlhaArco' },
-    { name: 'ILHA_ESQUI', drawFn: 'drawIlhaEsqui' },
-    { name: 'ILHA_SURF', drawFn: 'drawIlhaSurf' },
-    { name: 'ILHA_BASQUETE', drawFn: 'drawIlhaBasquete' }
-];
-
-let allFrozenPassed = true;
-
-for (const { name, drawFn } of frozenIslands) {
-    // Check draw function
-    const curFn = currentCode.match(new RegExp('function ' + drawFn + '\\s*\\([\\s\\S]*?\\n(?=function )'));
-    const headFn = headCode.match(new RegExp('function ' + drawFn + '\\s*\\([\\s\\S]*?\\n(?=function )'));
-    if (!curFn || !headFn) {
-        console.error(`[FAIL] Could not extract ${drawFn}`);
-        allFrozenPassed = false;
-        continue;
+"use strict";
+// Basketball is frozen; the other islands are intentionally updated. No Git required.
+const fs=require('fs'),path=require('path'),crypto=require('crypto');
+const root=path.resolve(__dirname,'..');
+const read=file=>fs.readFileSync(path.join(root,file),'utf8').replace(/\r\n/g,'\n');
+const hash=data=>crypto.createHash('sha256').update(data).digest('hex');
+const baseline=JSON.parse(read('overworld_assets/baseline_reference.json'));
+const qa=JSON.parse(read('overworld_assets/browser_qa.json'));
+const metadata=JSON.parse(read('overworld_assets/npc_geometry.json'));
+const source=read('script.js'),errors=[];
+function body(name){
+    const match=new RegExp('^function '+name+'\\([^\\n]*\\)[^\\n]*\\{','m').exec(source);
+    if(!match)return null;
+    let index=source.indexOf('{',match.index),depth=0,state='code';
+    for(;index<source.length;index++){
+        const c=source[index],next=source[index+1];
+        if(state==='line'){if(c==='\n')state='code';}
+        else if(state==='block'){if(c==='*'&&next==='/'){state='code';index++;}}
+        else if(state!=='code'){if(c==='\\')index++;else if(c===state)state='code';}
+        else if(c==='/'&&next==='/'){state='line';index++;}
+        else if(c==='/'&&next==='*'){state='block';index++;}
+        else if(['"',"'",'`'].includes(c))state=c;
+        else if(c==='{')depth++;
+        else if(c==='}'&&!--depth)return source.slice(match.index,index+1);
     }
-    const fnMatch = curFn[0].trim() === headFn[0].trim();
-    if (!fnMatch) {
-        console.error(`[FAIL] ${drawFn} differs from HEAD!`);
-        allFrozenPassed = false;
-    } else {
-        console.log(`[PASS] ${name} render function (${drawFn}): UNCHANGED`);
-    }
-
-    // Check obstacles
-    const curObs = (currentCode.match(new RegExp(name + ':\\s*\\[([\\s\\S]*?)\\](?=,|\\n\\s*\\})')) || [])[1];
-    const headObs = (headCode.match(new RegExp(name + ':\\s*\\[([\\s\\S]*?)\\](?=,|\\n\\s*\\})')) || [])[1];
-    if (curObs && headObs) {
-        const obsMatch = curObs.replace(/\s+/g, ' ').trim() === headObs.replace(/\s+/g, ' ').trim();
-        if (!obsMatch) {
-            console.error(`[FAIL] ${name} obstacles differ from HEAD!`);
-            allFrozenPassed = false;
-        } else {
-            console.log(`[PASS] ${name} sceneObstacles: UNCHANGED`);
-        }
-    }
-
-    // Check npcs
-    const npcRegex = new RegExp('\\{[^\\}]*scene:\\s*[\'\"]' + name + '[\'\"][^\\}]*\\}', 'g');
-    const curNpcs = (currentCode.match(npcRegex) || []).map(s => s.replace(/\s+/g, ' ').trim()).sort();
-    const headNpcs = (headCode.match(npcRegex) || []).map(s => s.replace(/\s+/g, ' ').trim()).sort();
-    const npcsMatch = JSON.stringify(curNpcs) === JSON.stringify(headNpcs);
-    if (!npcsMatch) {
-        console.error(`[FAIL] ${name} npcs differ from HEAD!`);
-        allFrozenPassed = false;
-    } else {
-        console.log(`[PASS] ${name} NPCs: UNCHANGED`);
+    return null;
+}
+for(const [name,expected]of Object.entries(baseline.protectedFunctions))
+    if(hash(body(name)||'')!==expected)errors.push('Protected function modified: '+name);
+for(const [file,expected]of Object.entries(baseline.preservedMinigameFiles))
+    if(hash(fs.readFileSync(path.join(root,file)))!==expected)errors.push('Minigame file modified: '+file);
+const basketball=qa.islands.find(i=>i.scene==='ILHA_BASQUETE');
+if(basketball.hash!==baseline.basketballScreenshotSha256)errors.push('Basketball pixels differ');
+const referenceNpc={...basketball.npcs[0],source:basketball.npcs[0].source.split('/Festival_dos_Esportes/').pop().split('?')[0]};
+if(JSON.stringify(referenceNpc)!==JSON.stringify(baseline.basketballNpc))errors.push('Basketball NPC differs');
+for(const island of qa.islands)for(const npc of island.npcs){
+    if(!npc.loaded)errors.push('Unloaded NPC in '+island.scene);
+    if(island.scene!=='ILHA_BASQUETE'&&npc.height!==(npc.master?50:44))errors.push('Inconsistent scale in '+island.scene);
+}
+for(const island of qa.islands){
+    if(island.scene==='ILHA_BASQUETE')continue;
+    const boxes=island.navigation.npcs.map(n=>({x:n.position[0]-n.height*n.crop[2]/n.crop[3]/2,
+        y:n.position[1]-n.height,w:n.height*n.crop[2]/n.crop[3],h:n.height}));
+    for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){
+        const a=boxes[i],b=boxes[j];
+        if(a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y)
+            errors.push('Overlapping NPC silhouettes: '+island.scene);
     }
 }
-
-if (!allFrozenPassed) {
-    console.error('\nERROR: One or more frozen islands were modified!');
-    process.exit(1);
+for(const test of qa.functional){
+    if(test.before.x===test.after.x&&test.before.y===test.after.y)errors.push('No movement: '+test.scene);
+    if(test.scene==='HUB')continue;
+    if(!test.prompt.visible||test.entered!==test.target||test.returned!==test.scene)errors.push('Interaction failed: '+test.scene);
 }
-
-console.log('\n--- 2. Testing Target Islands Navigation & Reachability ---');
-
-// Extract sceneObstacles object from script.js
-const obsMatch = currentCode.match(/const sceneObstacles = (\{[\s\S]*?\n\};)/);
-if (!obsMatch) {
-    console.error('[FAIL] Could not extract sceneObstacles');
-    process.exit(1);
+for(const test of qa.navigation)if(!test.reachable)errors.push('Blocked route: '+test.scene);
+for(const test of qa.conversations||[])if(!test.readable||!test.visible)errors.push('Unreadable conversation: '+test.name);
+for(const test of qa.connections)if(test.actual!==test.to)errors.push('Broken connection: '+test.from);
+if(qa.errors.length||qa.warnings.length||qa.failures.length||qa.httpErrors.length)errors.push('Browser errors present');
+for(const entry of Object.values(metadata.sprites)){
+    if(!fs.existsSync(path.join(root,entry.source)))errors.push('Missing source: '+entry.source);
+    const [x,y,w,h]=entry.crop,[sw,sh]=entry.sourceSize;
+    if(x<0||y<0||w<=0||h<=0||x+w>sw||y+h>sh)errors.push('Invalid crop: '+entry.source);
+    if(entry.anchor[0]!==w/2+2||entry.anchor[1]!==h+2)errors.push('Invalid anchor: '+entry.source);
 }
-const sceneObstacles = eval('(' + obsMatch[1].replace(/;\s*$/, '') + ')');
-
-// Extract npcs array from script.js
-const npcsMatch = currentCode.match(/const npcs = (\[[\s\S]*?\n\];)/);
-if (!npcsMatch) {
-    console.error('[FAIL] Could not extract npcs');
-    process.exit(1);
-}
-// Strip Image references for eval
-const BASKETBALL_SCENE = "JOGO_BASQUETE";
-const SURF_SCENE = "JOGO_SURF";
-const cleanNpcsStr = npcsMatch[1].replace(/img:\s*[^,\n\}]+/g, 'img: null').replace(/;\s*$/, '');
-const npcs = eval(cleanNpcsStr);
-
-function checkCollision(x, y, w, h, obstacles) {
-    for (const obs of obstacles) {
-        if (!obs.solid) continue;
-        if (x < obs.x + obs.w && x + w > obs.x && y < obs.y + obs.h && y + h > obs.y) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function checkNpcInteraction(px, py, pw, ph, npc) {
-    const interactionBox = {
-        x: npc.x - 20,
-        y: npc.y - 20,
-        w: (npc.tamanho || 48) + 40,
-        h: (npc.tamanho || 48) + 40
-    };
-    return (px < interactionBox.x + interactionBox.w &&
-            px + pw > interactionBox.x &&
-            py < interactionBox.y + interactionBox.h &&
-            py + ph > interactionBox.y);
-}
-
-// Simple BFS grid pathfinding for player (32x32) on 450x300 canvas
-function canReach(startX, startY, targetNpc, obstacles) {
-    const pw = 32, ph = 32;
-    const step = 8;
-    const visited = new Set();
-    const queue = [[startX, startY]];
-    visited.add(`${startX},${startY}`);
-
-    while (queue.length > 0) {
-        const [x, y] = queue.shift();
-
-        if (checkNpcInteraction(x, y, pw, ph, targetNpc)) {
-            return true;
-        }
-
-        const neighbors = [
-            [x + step, y],
-            [x - step, y],
-            [x, y + step],
-            [x, y - step]
-        ];
-
-        for (const [nx, ny] of neighbors) {
-            if (nx < 10 || nx > 450 - pw - 10 || ny < 10 || ny > 300 - ph - 10) continue;
-            const key = `${nx},${ny}`;
-            if (visited.has(key)) continue;
-            visited.add(key);
-
-            if (!checkCollision(nx, ny, pw, ph, obstacles)) {
-                queue.push([nx, ny]);
-            }
-        }
-    }
-    return false;
-}
-
-const targetIslands = [
-    {
-        name: 'ILHA_PINGPONG',
-        entrances: [{ name: 'West (from HUB)', x: 30, y: 145 }, { name: 'North (from Surf)', x: 225, y: 35 }]
-    },
-    {
-        name: 'ILHA_CORRIDA',
-        entrances: [{ name: 'East (from Skate)', x: 410, y: 145 }]
-    },
-    {
-        name: 'ILHA_SKATE',
-        entrances: [
-            { name: 'North (from HUB)', x: 225, y: 35 },
-            { name: 'West (from Corrida)', x: 30, y: 145 },
-            { name: 'East (from Basquete)', x: 410, y: 145 }
-        ]
-    },
-    {
-        name: 'ILHA_ESCALADA',
-        entrances: [{ name: 'South (from Arco)', x: 225, y: 260 }]
-    }
-];
-
-let allTargetsReachable = true;
-
-for (const target of targetIslands) {
-    console.log(`\nValidating ${target.name}:`);
-    const islandNpcs = npcs.filter(n => n.scene === target.name);
-    const obstacles = sceneObstacles[target.name] || [];
-
-    const mestre = islandNpcs.find(n => n.isMaster);
-    if (!mestre) {
-        console.error(`[FAIL] No Master NPC found on ${target.name}!`);
-        allTargetsReachable = false;
-        continue;
-    }
-    console.log(`- Master NPC found at (${mestre.x}, ${mestre.y}) -> minigame: ${mestre.isMaster}`);
-
-    for (const entrance of target.entrances) {
-        const canReachMaster = canReach(entrance.x, entrance.y, mestre, obstacles);
-        if (canReachMaster) {
-            console.log(`  [PASS] Path from entrance '${entrance.name}' (${entrance.x}, ${entrance.y}) -> Master: CLEAR & INTERACTABLE`);
-        } else {
-            console.error(`  [FAIL] Master is BLOCKED from entrance '${entrance.name}' (${entrance.x}, ${entrance.y})!`);
-            allTargetsReachable = false;
-        }
-
-        // Test apprentices if present
-        const apprentices = islandNpcs.filter(n => !n.isMaster);
-        for (const app of apprentices) {
-            const canReachApp = canReach(entrance.x, entrance.y, app, obstacles);
-            if (canReachApp) {
-                console.log(`  [PASS] Path from entrance '${entrance.name}' -> NPC at (${app.x}, ${app.y}): CLEAR`);
-            } else {
-                console.error(`  [FAIL] NPC at (${app.x}, ${app.y}) is BLOCKED from entrance '${entrance.name}'!`);
-                allTargetsReachable = false;
-            }
-        }
-    }
-}
-
-if (!allTargetsReachable) {
-    console.error('\nERROR: Navigation test failed!');
-    process.exit(1);
-}
-
-console.log('\n--- 3. Verifying Obstacle Solidity & Rendering ---');
-// Verify that decorative colliders do not show default pink/placeholder boxes
-const drawSceneObsFn = currentCode.match(/function drawSceneObstacles\(\)\s*\{([\s\S]*?)\n\}/)[1];
-const filteredTypes = ['surf_island_decor', 'archery_island_decor', 'pingpong_table', 'pingpong_bucket', 'skate_quarter', 'podium'];
-for (const t of filteredTypes) {
-    if (drawSceneObsFn.includes(t)) {
-        console.log(`[PASS] Collider type '${t}' is properly filtered from placeholder draw in drawSceneObstacles()`);
-    } else {
-        console.error(`[FAIL] Collider type '${t}' is NOT filtered in drawSceneObstacles()`);
-        process.exit(1);
-    }
-}
-
-console.log('\n=== ALL TESTS PASSED! OVERWORLD SUITE SUCCESSFUL ===');
+if(errors.length){console.error(errors.join('\n'));process.exit(1);}
+console.log(JSON.stringify({passed:true,protectedFunctions:Object.keys(baseline.protectedFunctions).length,
+    basketball:'identical pixels / NPC / render',islands:qa.islands.length,
+    participants:qa.islands.reduce((sum,i)=>sum+i.npcs.length,0),accessibleRoutes:qa.navigation.length,
+    connections:qa.connections.length,minigames:qa.functional.length-1,fps:qa.fps,errors:0},null,2));

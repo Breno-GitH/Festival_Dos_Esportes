@@ -1,0 +1,115 @@
+{
+  "zorp": {
+    "frames": 32,
+    "runtimeFrames": 32,
+    "excludedSourcePoses": [
+      "4.5",
+      "4.6",
+      "6.1",
+      "6.2",
+      "6.3",
+      "6.5",
+      "6.6",
+      "6.7",
+      "6.8",
+      "6.9"
+    ],
+    "canvasClipping": 0,
+    "seamContacts": [
+      {
+        "row": 4,
+        "nearX": 766,
+        "solidPixelsCrossed": 31
+      },
+      {
+        "row": 4,
+        "nearX": 1106,
+        "solidPixelsCrossed": 1
+      },
+      {
+        "row": 6,
+        "nearX": 137,
+        "solidPixelsCrossed": 8
+      },
+      {
+        "row": 6,
+        "nearX": 259,
+        "solidPixelsCrossed": 8
+      },
+      {
+        "row": 6,
+        "nearX": 503,
+        "solidPixelsCrossed": 10
+      },
+      {
+        "row": 6,
+        "nearX": 627,
+        "solidPixelsCrossed": 10
+      },
+      {
+        "row": 6,
+        "nearX": 751,
+        "solidPixelsCrossed": 11
+      },
+      {
+        "row": 6,
+        "nearX": 875,
+        "solidPixelsCrossed": 8
+      },
+      {
+        "row": 6,
+        "nearX": 998,
+        "solidPixelsCrossed": 10
+      },
+      {
+        "row": 6,
+        "nearX": 1121,
+        "solidPixelsCrossed": 8
+      }
+    ]
+  },
+  "master": {
+    "frames": 35,
+    "runtimeFrames": 35,
+    "excludedSourcePoses": [
+      "1.6",
+      "1.7"
+    ],
+    "canvasClipping": 0,
+    "seamContacts": [
+      {
+        "row": 1,
+        "nearX": 916,
+        "solidPixelsCrossed": 11
+      },
+      {
+        "row": 4,
+        "nearX": 774,
+        "solidPixelsCrossed": 15
+      }
+    ]
+  },
+  "judge": {
+    "frames": 24,
+    "runtimeFrames": 24,
+    "excludedSourcePoses": [
+      "5.4",
+      "5.5",
+      "5.7",
+      "5.8"
+    ],
+    "canvasClipping": 0,
+    "seamContacts": [
+      {
+        "row": 5,
+        "nearX": 602,
+        "solidPixelsCrossed": 5
+      },
+      {
+        "row": 5,
+        "nearX": 981,
+        "solidPixelsCrossed": 6
+      }
+    ]
+  }
+}

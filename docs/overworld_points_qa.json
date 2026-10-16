@@ -1,0 +1,246 @@
+{
+  "changedFunctions": [
+    "drawIlhaPingPong",
+    "drawIlhaSkate",
+    "drawIlhaArco"
+  ],
+  "sharedCodeUnchanged": true,
+  "otherIslandsPixelIdentical": {
+    "HUB": true,
+    "ILHA_BASQUETE": true,
+    "ILHA_ESQUI": true,
+    "ILHA_CORRIDA": true,
+    "ILHA_ESCALADA": true,
+    "ILHA_SURF": true
+  },
+  "skateChangedPixelsBounds": [
+    50,
+    31,
+    125,
+    93
+  ],
+  "staticArco": {
+    "milliseconds": 850,
+    "changedPixels": 0,
+    "region": [
+      30,
+      35,
+      390,
+      225
+    ]
+  },
+  "pingPong": {
+    "records": [
+      {
+        "text": "MESTRE",
+        "color": "#74caff"
+      },
+      {
+        "text": "APRENDIZ",
+        "color": "#ff9696"
+      },
+      {
+        "text": "50",
+        "color": "#61bfff"
+      },
+      {
+        "text": "×",
+        "color": "#c4d3e6"
+      },
+      {
+        "text": "0",
+        "color": "#ff8585"
+      },
+      {
+        "text": "0 PONTOS",
+        "color": "#ffb6b6"
+      },
+      {
+        "text": "AZUL",
+        "color": "#a0dcff"
+      },
+      {
+        "text": "ARENA DE PING-PONG",
+        "color": "#f8e8aa"
+      }
+    ],
+    "apprentice": [
+      138,
+      187
+    ],
+    "master": [
+      312,
+      187
+    ],
+    "midpoint": 225,
+    "tableCenter": 225
+  },
+  "dialogue": {
+    "text": "> APRENDIZ: Desafiei o mestre e não consegui fazer um ponto... Esse vovô é realmente bom nisso ou eu sou muito ruim?",
+    "visible": true,
+    "scene": "ILHA_PINGPONG"
+  },
+  "functional": [
+    {
+      "scene": "HUB",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 238.19999999999993,
+        "y": 184.60000000000008
+      }
+    },
+    {
+      "scene": "ILHA_BASQUETE",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 240.39999999999992,
+        "y": 186.80000000000007
+      },
+      "target": "JOGO_BASQUETE",
+      "prompt": {
+        "visible": true,
+        "text": "> (Pressione [E] ou [ESPAÇO] para iniciar)"
+      },
+      "entered": "JOGO_BASQUETE",
+      "returned": "ILHA_BASQUETE"
+    },
+    {
+      "scene": "ILHA_ESQUI",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 238.19999999999993,
+        "y": 184.60000000000008
+      },
+      "target": "JOGO_BOXE",
+      "prompt": {
+        "visible": true,
+        "text": "> MESTRE DO BOXE · [E] / [ESPAÇO] INICIAR"
+      },
+      "entered": "JOGO_BOXE",
+      "returned": "ILHA_ESQUI"
+    },
+    {
+      "scene": "ILHA_PINGPONG",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 238.19999999999993,
+        "y": 200
+      },
+      "target": "JOGO_PINGPONG",
+      "prompt": {
+        "visible": true,
+        "text": "> MESTRE DO PING-PONG · [E] / [ESPAÇO] INICIAR"
+      },
+      "entered": "JOGO_PINGPONG",
+      "returned": "ILHA_PINGPONG"
+    },
+    {
+      "scene": "ILHA_SKATE",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 238.19999999999993,
+        "y": 184.60000000000008
+      },
+      "target": "JOGO_SKATE",
+      "prompt": {
+        "visible": true,
+        "text": "> MESTRE DO SKATE · [E] / [ESPAÇO] INICIAR"
+      },
+      "entered": "JOGO_SKATE",
+      "returned": "ILHA_SKATE"
+    },
+    {
+      "scene": "ILHA_ARCO",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 240.39999999999992,
+        "y": 186.80000000000007
+      },
+      "target": "JOGO_ARCO",
+      "prompt": {
+        "visible": true,
+        "text": "> MESTRE DO ARCO · [E] / [ESPAÇO] INICIAR"
+      },
+      "entered": "JOGO_ARCO",
+      "returned": "ILHA_ARCO"
+    },
+    {
+      "scene": "ILHA_CORRIDA",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 238.19999999999993,
+        "y": 184.60000000000008
+      },
+      "target": "JOGO_CORRIDA",
+      "prompt": {
+        "visible": true,
+        "text": "> MESTRE DA CORRIDA · [E] / [ESPAÇO] INICIAR"
+      },
+      "entered": "JOGO_CORRIDA",
+      "returned": "ILHA_CORRIDA"
+    },
+    {
+      "scene": "ILHA_ESCALADA",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 240.39999999999992,
+        "y": 186.80000000000007
+      },
+      "target": "JOGO_ESCALADA",
+      "prompt": {
+        "visible": true,
+        "text": "> MESTRE DA ESCALADA · [E] / [ESPAÇO] INICIAR"
+      },
+      "entered": "JOGO_ESCALADA",
+      "returned": "ILHA_ESCALADA"
+    },
+    {
+      "scene": "ILHA_SURF",
+      "before": {
+        "x": 225,
+        "y": 200
+      },
+      "after": {
+        "x": 238.19999999999993,
+        "y": 184.60000000000008
+      },
+      "target": "JOGO_SURF",
+      "prompt": {
+        "visible": true,
+        "text": "> MESTRE DO SURF · [E] / [ESPAÇO] INICIAR"
+      },
+      "entered": "JOGO_SURF",
+      "returned": "ILHA_SURF"
+    }
+  ],
+  "navigationPassed": 28,
+  "connectionsPassed": 16,
+  "http404": 0,
+  "exceptions": 0,
+  "warnings": 0,
+  "fps": 60.00134834490666
+}

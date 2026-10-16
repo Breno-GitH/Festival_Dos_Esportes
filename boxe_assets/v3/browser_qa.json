@@ -1,0 +1,164 @@
+{
+  "sources": {
+    "zorp": {
+      "source": "zorp_boxe3.0.png",
+      "frames": 32
+    },
+    "master": {
+      "source": "mestre_boxe3.0.png",
+      "frames": 35
+    },
+    "judge": {
+      "source": "juiz_boxe3.0.png",
+      "frames": 24
+    }
+  },
+  "initialAssets": {
+    "version": "3.0",
+    "requested": 92,
+    "loaded": 92,
+    "failed": 0,
+    "failedPaths": []
+  },
+  "entered": true,
+  "sweep": {
+    "draws": 300,
+    "missing": []
+  },
+  "anchors": {
+    "count": 91,
+    "bad": []
+  },
+  "movement": {
+    "before": {
+      "x": 194,
+      "y": 205,
+      "hp": 100,
+      "animation": "idle",
+      "attack": null,
+      "guard": false,
+      "dodgeAge": 0,
+      "knockdowns": 0
+    },
+    "after": {
+      "x": 196.35,
+      "y": 206.52,
+      "hp": 100,
+      "animation": "walk",
+      "attack": null,
+      "guard": false,
+      "dodgeAge": 0,
+      "knockdowns": 0
+    }
+  },
+  "attacks": [
+    {
+      "key": "j",
+      "hp": 94
+    },
+    {
+      "key": "k",
+      "hp": 88
+    },
+    {
+      "key": "l",
+      "hp": 83
+    }
+  ],
+  "defense": {
+    "guard": true,
+    "hp": 98,
+    "animation": "guard"
+  },
+  "dodge": {
+    "hp": 100,
+    "dodgeAge": 10,
+    "counterWindow": 39
+  },
+  "damageSelection": [
+    [
+      100,
+      "idle"
+    ],
+    [
+      60,
+      "idle_damaged"
+    ],
+    [
+      20,
+      "idle_heavy"
+    ]
+  ],
+  "judgeCount": {
+    "animation": "count",
+    "count": 2
+  },
+  "getup": {
+    "hp": 30,
+    "knockdowns": 1
+  },
+  "win": {
+    "winner": "zorp",
+    "phase": "RESULT",
+    "medal": true
+  },
+  "restartWin": {
+    "phase": "FIGHTING",
+    "hp": 100,
+    "masterHp": 100
+  },
+  "exitWin": "ILHA_ESQUI",
+  "reentered": true,
+  "ai": {
+    "playerHp": 100,
+    "masterX": 179.08044230812442,
+    "masterDepth": 237.88815451942065,
+    "attacks": 1
+  },
+  "loss": {
+    "winner": "master",
+    "playerAnimation": "defeat",
+    "masterAnimation": "victory",
+    "judge": "ko"
+  },
+  "restartLoss": {
+    "phase": "FIGHTING",
+    "hp": 100,
+    "masterHp": 100
+  },
+  "exitLoss": "ILHA_ESQUI",
+  "preview": {
+    "actors": 3,
+    "images": 91
+  },
+  "requestedDeleted": [],
+  "oldRequests": [],
+  "httpErrors": [],
+  "exceptions": [],
+  "warnings": [],
+  "consoleErrors": [],
+  "networkFailures": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap",
+      "reason": "net::ERR_NETWORK_ACCESS_DENIED"
+    }
+  ],
+  "cleanup": {
+    "deletedFiles": 509,
+    "bytes": 38936088
+  },
+  "screenshots": {
+    "animations": "C:/Users/Usuario/.codex/visualizations/2026/10/09/01a1223f-5e07-7c72-9211-5e97ab434100/boxing_cleanup_animacoes.png",
+    "win": "C:/Users/Usuario/.codex/visualizations/2026/10/09/01a1223f-5e07-7c72-9211-5e97ab434100/boxing_cleanup_vitoria.png",
+    "loss": "C:/Users/Usuario/.codex/visualizations/2026/10/09/01a1223f-5e07-7c72-9211-5e97ab434100/boxing_cleanup_derrota.png"
+  },
+  "validationMethod": "Browser keyboard input and actual game loop, plus 300 render checks and visual inspection of the real renderer montage. HP was reduced only to accelerate knockdown/KO scenarios.",
+  "visualReview": {
+    "inspected": true,
+    "activeSpriteClippingFound": false,
+    "jabAndCrossVisuallyDistinct": true,
+    "hookNote": "Uses the existing compact windup, provided punch pose and procedural arc. The source contains no unambiguously separate hook/uppercut sequence.",
+    "damagePosesCorrect": true,
+    "judgeAndResultsCorrect": true
+  }
+}

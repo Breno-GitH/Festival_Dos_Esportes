@@ -105,35 +105,15 @@ for (const [name, file] of Object.entries({
     image.src = `surf_sprites/beach/decor/${file}`;
     surfIslandDecor[name] = image;
 }
-const imgAlpinista = new Image(); imgAlpinista.src = "npc_alpinista.png";
-const imgMestreGelo = new Image(); imgMestreGelo.src = "npc_mestre_gelo.png";
 const imgAprendiz = new Image(); imgAprendiz.src = "npc_aprendiz.png";
 const imgMestrePingPong = new Image(); imgMestrePingPong.src = "npc_mestre_ping_pong.png";
 // Mestre oficial da Ilha do Arco: PNG frontal com crop de conteúdo no registro do NPC.
 const imgMestreArcoOverworld = new Image();
 imgMestreArcoOverworld.src = "arqueiro_overworld.png?v=1.0_archery_island";
 
-// Mestre da Corrida: a arte fonte possui fundo preto e bastante margem.
-// O arquivo original é preservado; uma cópia com chroma-key é criada em memória.
+// Mestre da Corrida: original preserved; edge-connected background mask is cached by the overworld renderer.
 const imgMestreCorridaNpc = new Image();
-const imgMestreCorridaNpcSource = new Image();
-imgMestreCorridaNpcSource.addEventListener("load", () => {
-    const surface = document.createElement("canvas");
-    surface.width = imgMestreCorridaNpcSource.naturalWidth;
-    surface.height = imgMestreCorridaNpcSource.naturalHeight;
-    const surfaceCtx = surface.getContext("2d", { willReadFrequently: true });
-    surfaceCtx.drawImage(imgMestreCorridaNpcSource, 0, 0);
-    const pixels = surfaceCtx.getImageData(0, 0, surface.width, surface.height);
-    for (let i = 0; i < pixels.data.length; i += 4) {
-        const r = pixels.data[i];
-        const g = pixels.data[i + 1];
-        const b = pixels.data[i + 2];
-        if (r <= 3 && g <= 3 && b <= 3) pixels.data[i + 3] = 0;
-    }
-    surfaceCtx.putImageData(pixels, 0, 0);
-    imgMestreCorridaNpc.src = surface.toDataURL("image/png");
-});
-imgMestreCorridaNpcSource.src = "skate_sprites/mestre_corrida_npc.png";
+imgMestreCorridaNpc.src = "skate_sprites/mestre_corrida_npc.png";
 
 // Sprites Ping-Pong
 const imgZorpIdle = new Image(); imgZorpIdle.src = "zorp_idle.png";
@@ -148,12 +128,8 @@ const imgMestreHit = new Image(); imgMestreHit.src = "mestre_hit.png";
 
 const imgMestreEscalada = new Image(); imgMestreEscalada.src = "npc_mestre_escalada.png";
 const imgGuiaTrilha = new Image(); imgGuiaTrilha.src = "npc_guia_trilha.png";
-const imgFotografo = new Image(); imgFotografo.src = "npc_fotografo.png";
-const imgAtleta = new Image(); imgAtleta.src = "npc_atleta.png";
-const imgIniciante = new Image(); imgIniciante.src = "npc_iniciante.png";
 const imgGeologa = new Image(); imgGeologa.src = "npc_geologa.png";
 const imgChef = new Image(); imgChef.src = "npc_chef.png";
-const imgGuarda = new Image(); imgGuarda.src = "npc_guarda.png";
 
 // Biblioteca oficial da Escalada. Os recortes aprovados mantêm canvas/âncora
 // consistentes e são os únicos assets usados durante a subida.
@@ -209,43 +185,22 @@ const climbAssets = {
 const imgVictoryEscalada = new Image(); imgVictoryEscalada.src = "VictoryEscalada.png?v=3";
 
 // -------------------------------------------------------------
-// BOXE — PACOTE OFICIAL DO BOXE ARCADE DE ARENA
-// A arena e os frames recortados são usados pelo runtime boxing_arena.js.
-// -------------------------------------------------------------
-const BOXING_ASSET_VERSION = "3.0_boxing_arena";
-const BOXING_FRAME_COUNTS = Object.freeze({
-    idle: 4,
-    walk: 4,
-    step_back: 4,
-    jab: 3,
-    cross: 3,
-    hook: 3,
-    uppercut: 3,
-    block: 2,
-    dodge: 2,
-    hurt: 3,
-    knockdown: 4,
-    victory: 3
-});
+// BOXE — recortes oficiais 3.0; geometria e combate permanecem no runtime atual.
+// A seleção de poses e os anchors vêm do catálogo gerado das três folhas 3.0.
+const BOXING_ASSET_VERSION = "3.0.2_boxing_arena";
 const BOXING_FRAME_DURATIONS = Object.freeze({
-    idle: 160,
-    walk: 110,
-    step_back: 110,
-    jab: 80,
-    cross: 85,
-    hook: 90,
-    uppercut: 95,
-    block: 130,
-    dodge: 105,
-    hurt: 115,
-    knockdown: 145,
-    victory: 160
+    idle: 11, walk: 5, guard: 9, jab: 4, cross: 7, hook: 8, dodge: 5, hurt: 5,
+    stun: 10, idle_damaged: 11, idle_heavy: 11,
+    dash: 5, charged: 10, burst: 6, knockdown: 6, getup: 5,
+    victory: 8, defeat: 8, start: 6, count_start: 6, count: 10, continue: 6, ko: 7
 });
-const BOXING_FRAME_CANVAS = Object.freeze({ width: 256, height: 192, anchorX: 128, anchorY: 184 });
-const boxingAssetStatus = { requested: 0, loaded: 0, failed: 0, failedPaths: [] };
-
+const BOXING_FRAME_CANVAS = Object.freeze({ ...BOXING_V3_MANIFEST.canvas });
+const boxingAssetStatus = { version: "3.0", requested: 0, loaded: 0, failed: 0, failedPaths: [] };
+const boxingImageCache = new Map();
 function loadBoxingImage(path) {
+    if (boxingImageCache.has(path)) return boxingImageCache.get(path);
     const img = new Image();
+    boxingImageCache.set(path, img);
     boxingAssetStatus.requested++;
     img.addEventListener("load", () => boxingAssetStatus.loaded++, { once: true });
     img.addEventListener("error", () => {
@@ -255,21 +210,24 @@ function loadBoxingImage(path) {
     img.src = `${path}?v=${BOXING_ASSET_VERSION}`;
     return img;
 }
-
-function loadBoxingSequence(character, animation) {
-    const prefix = character === "zorp" ? "zorp" : "master";
-    return Array.from({ length: BOXING_FRAME_COUNTS[animation] }, (_, index) => {
-        const number = String(index + 1).padStart(2, "0");
-        return loadBoxingImage(`boxe_assets/${character}/${animation}/${prefix}_${animation}_${number}.png`);
-    });
+function loadBoxingSequence(role, action) {
+    const actor = BOXING_V3_MANIFEST.actors[role];
+    return Object.freeze(actor.actions[action].map(key => {
+        const frame = actor.frames[key];
+        const img = loadBoxingImage(frame.sprite);
+        img.boxingFootY = frame.anchor.y - 1;
+        img.boxingAnchorX = frame.anchor.x;
+        img.boxingFrameId = frame.id;
+        return img;
+    }));
 }
-
-const imgBoxeArenaBg = loadBoxingImage("boxe_arena.png");
-const BOXING_SPRITES = Object.freeze({
-    zorp: Object.freeze(Object.fromEntries(Object.keys(BOXING_FRAME_COUNTS).map(animation => [animation, loadBoxingSequence("zorp", animation)]))),
-    master: Object.freeze(Object.fromEntries(Object.keys(BOXING_FRAME_COUNTS).map(animation => [animation, loadBoxingSequence("master", animation)])))
-});
-
+const imgBoxeArenaBg = loadBoxingImage("arena_boxe3.0.png");
+const BOXING_SPRITES = Object.freeze(Object.fromEntries(
+    Object.entries(BOXING_V3_MANIFEST.actors).map(([role, actor]) => [role,
+        Object.freeze(Object.fromEntries(Object.keys(actor.actions).map(action =>
+            [action, loadBoxingSequence(role, action)])))
+    ])
+));
 // Novos NPCs da Ilha de Boxe (Overworld)
 const imgNpcMestreBoxe = new Image(); imgNpcMestreBoxe.src = "npc_mestre_novo.png?v=4";
 const imgNpcTreinadorBoxe = new Image(); imgNpcTreinadorBoxe.src = "npc_treinador_novo.png?v=4";
@@ -3206,16 +3164,16 @@ const SURF_SCENE = "JOGO_SURF";
 // -------------------------------------------------------------
 const sceneObstacles = {
     HUB: [
-        { x: 130, y: 190, w: 40, h: 20, type: 'bench', solid: true },
-        { x: 280, y: 190, w: 40, h: 20, type: 'bench', solid: true },
-        { x: 130, y: 100, w: 30, h: 30, type: 'flower_bed', solid: false },
-        { x: 290, y: 100, w: 30, h: 30, type: 'flower_bed', solid: false }
+        {x:68,y:211,w:46,h:14,type:'bench',solid:true,renderByIsland:true},
+        {x:336,y:211,w:46,h:14,type:'bench',solid:true,renderByIsland:true},
+        {x:46,y:65,w:38,h:25,type:'flower_bed',solid:true,renderByIsland:true},
+        {x:366,y:65,w:38,h:25,type:'flower_bed',solid:true,renderByIsland:true}
     ],
     ILHA_CORRIDA: [
         { x: 105, y: 145, w: 32, h: 10, type: 'hurdle', solid: true },
         { x: 335, y: 145, w: 32, h: 10, type: 'hurdle', solid: true },
-        { x: 75, y: 48, w: 42, h: 20, type: 'water_station', solid: true },
-        { x: 75, y: 200, w: 46, h: 24, type: 'podium', solid: true }
+        { x: 94, y: 88, w: 36, h: 12, type: 'water_station', solid: true, renderByIsland: true },
+        { x: 94, y: 178, w: 42, h: 23, type: 'podium', solid: true, renderByIsland: true }
     ],
     ILHA_SURF: [
         // Colisores pequenos nos pontos de apoio; a arte fica na camada da ilha.
@@ -3269,26 +3227,26 @@ const sceneObstacles = {
         { x: 360, y: 155, w: 30, h: 25, type: 'corner_stool', solid: true }
     ],
     ILHA_PINGPONG: [
-        { x: 290, y: 145, w: 86, h: 36, type: 'pingpong_table', solid: true },
-        { x: 384, y: 152, w: 16, h: 16, type: 'pingpong_bucket', solid: true },
-        { x: 320, y: 45, w: 65, h: 38, type: 'scoreboard', solid: true }
+        { x: 182, y: 154, w: 86, h: 36, type: 'pingpong_table', solid: true },
+        { x: 280, y: 166, w: 16, h: 16, type: 'pingpong_bucket', solid: true },
+        { x: 173, y: 60, w: 104, h: 38, type: 'scoreboard', solid: true }
     ]
 };
 
 const npcs = [
-    { scene: "HUB", x: 180, y: 180, img: imgTurista, tamanho: 48, msg: "> TURISTA: O arquipélago tem diversas modalidades esportivas!" },
-    { scene: "HUB", x: 270, y: 130, img: imgGuia, tamanho: 48, msg: "> GUIA: Explore os caminhos ao Norte, Sul, Leste e Oeste." },
+    { scene: "HUB", x: 180, y: 180, img: imgTurista, tamanho: 44, msg: "> TURISTA: O arquipélago tem diversas modalidades esportivas!" },
+    { scene: "HUB", x: 270, y: 130, img: imgGuia, tamanho: 44, msg: "> GUIA: Explore os caminhos ao Norte, Sul, Leste e Oeste." },
 
     // NPCs da Ilha de Boxe (Arena dos Campeões)
     { scene: "ILHA_ESQUI", x: 225, y: 110, img: imgNpcMestreBoxe, tamanho: 50, msg: "> MESTRE DO BOXE: Controle a distância, circule pelo ringue e lute até o nocaute!", isMaster: "JOGO_BOXE" },
-    { scene: "ILHA_ESQUI", x: 130, y: 190, img: imgNpcTreinadorBoxe, tamanho: 50, msg: "> TREINADOR: Esquiva perfeita abre o COUNTER com [J]. Quando a barra encher, use [Q] para o golpe especial!" },
-    { scene: "ILHA_ESQUI", x: 345, y: 110, img: imgNpcArbitroBoxe, tamanho: 50, msg: "> ÁRBITRO: Boxe limpo: sem agarrões, armas ou objetos. O primeiro HP a chegar a zero perde por K.O.!" },
-    { scene: "ILHA_ESQUI", x: 80, y: 175, img: imgNpcBoxeador, tamanho: 50, msg: "> PUGILISTA: Cuidado com o soco especial carregado do Mestre! Não spameie esquiva ou tomará contragolpe!" },
+    { scene: "ILHA_ESQUI", x: 130, y: 190, img: imgNpcTreinadorBoxe, tamanho: 44, msg: "> TREINADOR: WASD movimenta no ringue. J é jab, K é golpe forte e L é hook. SHIFT defende; ESPAÇO esquiva." },
+    { scene: "ILHA_ESQUI", x: 345, y: 130, img: imgNpcArbitroBoxe, tamanho: 44, msg: "> ÁRBITRO: Lute com distância e timing. Uma queda inicia a contagem; quem não levantar perde por KO." },
+    { scene: "ILHA_ESQUI", x: 98, y: 186, img: imgNpcBoxeador, tamanho: 44, msg: "> PUGILISTA: Use W/S para sair da linha do golpe. Um soco fora da profundidade erra." },
 
-    { scene: "ILHA_PINGPONG", x: 150, y: 220, img: imgAprendiz, tamanho: 48, msg: "> APRENDIZ: Treine seu tempo de reação para rebatidas." },
-    { scene: "ILHA_PINGPONG", x: 225, y: 80, img: imgMestrePingPong, tamanho: 48, msg: "> MESTRE DO PING-PONG: Mostre seus reflexos!", isMaster: "JOGO_PINGPONG" },
+    { scene: "ILHA_PINGPONG", x: 138, y: 187, img: imgAprendiz, tamanho: 44, msg: "> APRENDIZ: Desafiei o mestre e não consegui fazer um ponto... Esse vovô é realmente bom nisso ou eu sou muito ruim?" },
+    { scene: "ILHA_PINGPONG", x: 312, y: 187, img: imgMestrePingPong, tamanho: 50, msg: "> MESTRE DO PING-PONG: Mostre seus reflexos!", isMaster: "JOGO_PINGPONG" },
 
-    { scene: "ILHA_SKATE", x: 225, y: 80, img: imgMestreSkate, tamanho: 54, interactionWidth: 62, interactionHeight: 62, msg: "> mestre_skate: A pista é uma linha contínua. Ganhe velocidade nas descidas, conecte rampas, rails e fios — e chegue ao final da linha!", isMaster: "JOGO_SKATE" },
+    { scene: "ILHA_SKATE", x: 225, y: 105, img: imgMestreSkate, tamanho: 50, msg: "> MESTRE DO SKATE: Conecte rampas e corrimãos e domine a linha até a chegada!", isMaster: "JOGO_SKATE" },
     { id: "entrada_basquete", scene: "ILHA_BASQUETE", x: 225, y: 82, img: imgMestreBasqueteNpc, tamanho: 54, interactionWidth: 62, interactionHeight: 62, msg: "> MESTRE DO BASQUETE: Sessenta segundos. Vença no placar e conquiste a arena!", isMaster: BASKETBALL_SCENE },
     {
         id: "mestre_arco_overworld",
@@ -3296,14 +3254,7 @@ const npcs = [
         x: 225,
         y: 118,
         img: imgMestreArcoOverworld,
-        tamanho: 72,
-        sx: 335,
-        sy: 96,
-        sw: 656,
-        sh: 1114,
-        interactionWidth: 58,
-        interactionHeight: 76,
-        interactionOffsetY: 12,
+        tamanho: 50,
         msg: "> MESTRE DO ARCO: Observe a trajetória, alinhe o disparo e prove sua precisão!",
         isMaster: "JOGO_ARCO"
     },
@@ -3311,26 +3262,20 @@ const npcs = [
         id: "mestre_corrida",
         scene: "ILHA_CORRIDA",
         x: 225,
-        y: 88,
+        y: 106,
         img: imgMestreCorridaNpc,
-        tamanho: 62,
-        sx: 270,
-        sy: 75,
-        sw: 710,
-        sh: 1090,
-        interactionWidth: 78,
-        interactionHeight: 68,
+        tamanho: 50,
         msg: "> MESTRE DA CORRIDA: Duas voltas. Escolha bem a raia, salte as barreiras e me alcance na reta final!",
         isMaster: "JOGO_CORRIDA"
     },
     
     // NPCs da Ilha da Escalada (Reduzidos para 4 icônicos e bem posicionados)
-    { scene: "ILHA_ESCALADA", x: 225, y: 70, img: imgMestreEscalada, tamanho: 48, msg: "> MESTRE DA ESCALADA: O Monte Zorp não perdoa os fracos! Desvie das pedras e alcance o cume!", isMaster: "JOGO_ESCALADA" },
-    { scene: "ILHA_ESCALADA", x: 80, y: 140, img: imgGuiaTrilha, tamanho: 48, msg: "> GUIA DE TRILHA: Cuidado lá em cima! O vento sopra forte e algumas pedras rachadas quebram ao pisar!" },
-    { scene: "ILHA_ESCALADA", x: 370, y: 140, img: imgGeologa, tamanho: 48, msg: "> GEÓLOGA: As pedras azuis deslizam pela montanha, e as vermelhas estão prestes a desmoronar!" },
-    { scene: "ILHA_ESCALADA", x: 95, y: 220, img: imgChef, tamanho: 48, msg: "> CHEF DE ACAMPAMENTO: Uma sopa bem quente para dar energia antes de enfrentar a montanha!" },
+    { scene: "ILHA_ESCALADA", x: 225, y: 108, img: imgMestreEscalada, tamanho: 50, msg: "> MESTRE DA ESCALADA: O Monte Zorp não perdoa os fracos! Desvie das pedras e alcance o cume!", isMaster: "JOGO_ESCALADA" },
+    { scene: "ILHA_ESCALADA", x: 80, y: 140, img: imgGuiaTrilha, tamanho: 44, msg: "> GUIA DE TRILHA: Cuidado lá em cima! O vento sopra forte e algumas pedras rachadas quebram ao pisar!" },
+    { scene: "ILHA_ESCALADA", x: 370, y: 140, img: imgGeologa, tamanho: 44, msg: "> GEÓLOGA: As pedras azuis deslizam pela montanha, e as vermelhas estão prestes a desmoronar!" },
+    { scene: "ILHA_ESCALADA", x: 95, y: 220, img: imgChef, tamanho: 44, msg: "> CHEF DE ACAMPAMENTO: Uma sopa bem quente para dar energia antes de enfrentar a montanha!" },
     
-    { id: "entrada_surf", scene: "ILHA_SURF", x: 225, y: 140, img: imgMestreSurfing, tamanho: 84, interactionWidth: 46, interactionHeight: 70, interactionOffsetY: 8, msg: "> MESTRE DO SURF: Mantenha o flow, enfrente os tubos e sobreviva ao grande evento final!", isMaster: SURF_SCENE }
+    { id: "entrada_surf", scene: "ILHA_SURF", x: 225, y: 112, img: imgMestreSurfing, tamanho: 50, msg: "> MESTRE DO SURF: Mantenha o flow, enfrente os tubos e sobreviva ao grande evento final!", isMaster: SURF_SCENE }
 ];
 
 // -------------------------------------------------------------
@@ -3338,6 +3283,7 @@ const npcs = [
 // -------------------------------------------------------------
 // Captura a borda do comando de interação. O polling de `keys` sozinho podia
 // perder um toque rápido quando keydown e keyup ocorriam entre dois frames.
+configureOverworldPresentation();
 let interactionPressed = false;
 let climbUpPressed = false;
 window.addEventListener("keydown", (e) => {
@@ -3352,12 +3298,26 @@ window.addEventListener("keydown", (e) => {
     if (currentScene === "JOGO_ESCALADA" && !e.repeat) {
         if (k === "w" || k === " ") climbUpPressed = true;
     }
-    if (currentScene === "JOGO_BOXE" && !e.repeat) {
-        if (k === " ") boxingInputPress.dodge = true;
-        if (k === "j") boxingInputPress.jab = true;
-        if (k === "k") boxingInputPress.power = true;
-        if (k === "q") boxingInputPress.special = true;
-        if (k === "w" || k === "a" || k === "s" || k === "d") queueBoxingMoveTap(k);
+    if (currentScene === "JOGO_BOXE") {
+        if (k === " " || k === "shift") e.preventDefault();
+        if (k === "shift") boxingInputPress.guard = true;
+        if (!e.repeat) {
+            if (k === " ") {
+                if (boxeGame.phase === "READY") boxingInputPress.start = true;
+                else boxingInputPress.dodge = true;
+            }
+            if (k === "j") boxingInputPress.jab = true;
+            if (k === "k") boxingInputPress.cross = true;
+            if (k === "l") boxingInputPress.hook = true;
+            if (k === "q") boxingInputPress.special = true;
+            if (k === "r") boxingInputPress.restart = true;
+            if (k === "w" || k === "a" || k === "s" || k === "d") queueBoxingMoveTap(k);
+            if (k === "escape") {
+                currentScene = "ILHA_ESQUI";
+                player.x = 225; player.y = 150;
+                dialogBox.classList.remove("show");
+            }
+        }
     }
     if (k === "escape" && currentScene === "JOGO_SKATE") {
         currentScene = "ILHA_SKATE";
@@ -3368,6 +3328,7 @@ window.addEventListener("keydown", (e) => {
 
 window.addEventListener("keyup", (e) => {
     const k = e.key.toLowerCase();
+    if (k === "shift") boxingInputPress.guard = false;
     if (k === " ") {
         keys.space = false;
     }
@@ -3402,12 +3363,25 @@ function checkObstacleCollision(nextX, nextY) {
             return true; 
         }
     }
+    if (currentScene !== "ILHA_BASQUETE") {
+        for (const npc of npcs) {
+            if (npc.scene !== currentScene || !npc.footprint) continue;
+            const body = { x: npc.x - npc.footprint.width / 2,
+                y: npc.y - npc.footprint.height + 2,
+                w: npc.footprint.width, h: npc.footprint.height };
+            if (feetBox.x < body.x + body.w && feetBox.x + feetBox.w > body.x &&
+                feetBox.y < body.y + body.h && feetBox.y + feetBox.h > body.y) return true;
+        }
+    }
     return false;
 }
 
 function update() {
     const isOverworldScene = !currentScene.startsWith("JOGO_");
-    const interactionRequested = isOverworldScene && (interactionPressed || keys.e || keys.space);
+    // A result-screen Space must not reopen a minigame while the same key is held.
+    // Preserve the basketball island's original interaction path verbatim.
+    const interactionRequested = isOverworldScene && (currentScene === "ILHA_BASQUETE"
+        ? (interactionPressed || keys.e || keys.space) : interactionPressed);
     if (isOverworldScene) interactionPressed = false;
 
     if (isOverworldScene) {
@@ -3490,23 +3464,17 @@ function update() {
 
         // Interação NPC
         let npcProximo = null;
+        let npcDistance = Infinity;
         for (let npc of npcs) {
-            const interactionWidth = npc.interactionWidth || 46;
-            const interactionHeight = npc.interactionHeight || 50;
-            const interactionBox = npc.interactionWidth || npc.interactionHeight
-                ? {
-                    x: npc.x - interactionWidth / 2,
-                    y: npc.y - interactionHeight + (npc.interactionOffsetY || 0),
-                    width: interactionWidth,
-                    height: interactionHeight
-                }
-                : { x: npc.x - 15, y: npc.y - 15, width: 46, height: 50 };
+            const interactionBox = overworldNpcInteractionBox(npc);
             if (npc.scene === currentScene && isColliding(player, interactionBox)) {
-                npcProximo = npc; 
-                break;
+                const distance = Math.hypot(player.x - npc.x, player.y - npc.y);
+                if (distance < npcDistance) { npcProximo = npc; npcDistance = distance; }
+                if (currentScene === "ILHA_BASQUETE") break;
             }
         }
         
+        if (overworldConversationNpc !== npcProximo) overworldConversationNpc = null;
         if (npcProximo) {
             dialogBox.classList.add("show");
 
@@ -3563,9 +3531,14 @@ function update() {
                 keys.space = false;
 
             } else if (interactionRequested) {
+                if (npcProximo.scene !== "ILHA_BASQUETE") overworldConversationNpc = npcProximo;
                 dialogText.innerHTML = npcProximo.msg + extra;
             } else {
-                dialogText.innerHTML = npcProximo.isMaster
+                dialogText.innerHTML = overworldConversationNpc === npcProximo
+                    ? npcProximo.msg : npcProximo.scene !== "ILHA_BASQUETE"
+                    ? "> " + npcProximo.msg.replace(/^>\s*/, "").split(":")[0] +
+                        (npcProximo.isMaster ? " · [E] / [ESPAÇO] INICIAR" : " · [E] CONVERSAR")
+                    : npcProximo.isMaster
                     ? "> (Pressione [E] ou [ESPAÇO] para iniciar)"
                     : "> (Pressione [E] para conversar)";
             }
@@ -4128,6 +4101,10 @@ function drawPlayer() {
 }
 
 function drawNPC(npc) {
+    if (npc.scene !== "ILHA_BASQUETE") {
+        drawUnifiedOverworldNpc(npc);
+        return;
+    }
     drawShadow(npc.x, npc.y);
     if (npc.img.complete && npc.img.naturalWidth !== 0) {
         let larguraCalculada, alturaCalculada, drawX, drawY;
@@ -4157,6 +4134,7 @@ function drawNPC(npc) {
 function drawSceneObstacles() {
     const obstacles = sceneObstacles[currentScene] || [];
     obstacles.forEach(obs => {
+        if (obs.renderByIsland) return;
         if (obs.type === 'surf_island_decor' || obs.type === 'archery_island_decor' || obs.type === 'pingpong_table' || obs.type === 'pingpong_bucket' || obs.type === 'skate_quarter' || obs.type === 'podium') return;
         switch (obs.type) {
             case 'hurdle':
@@ -4185,12 +4163,21 @@ function drawSceneObstacles() {
                 ctx.fillStyle = '#f1c40f'; ctx.beginPath(); ctx.arc(obs.x + 12, obs.y + 12, 4, 0, Math.PI * 2); ctx.fill();
                 break;
             case 'boulder':
-                ctx.fillStyle = '#4e342e'; ctx.beginPath(); ctx.arc(obs.x + 15, obs.y + 15, 15, 0, Math.PI * 2); ctx.fill();
+                ctx.fillStyle='rgba(13,30,40,.25)';ctx.beginPath();ctx.ellipse(obs.x+15,obs.y+25,16,6,0,0,Math.PI*2);ctx.fill();
+                ctx.fillStyle='#526574';ctx.beginPath();ctx.moveTo(obs.x+2,obs.y+22);ctx.lineTo(obs.x+6,obs.y+5);
+                ctx.lineTo(obs.x+20,obs.y+1);ctx.lineTo(obs.x+29,obs.y+12);ctx.lineTo(obs.x+26,obs.y+27);ctx.closePath();ctx.fill();
+                ctx.fillStyle='#819695';ctx.beginPath();ctx.moveTo(obs.x+6,obs.y+5);ctx.lineTo(obs.x+20,obs.y+1);
+                ctx.lineTo(obs.x+17,obs.y+15);ctx.lineTo(obs.x+2,obs.y+22);ctx.closePath();ctx.fill();
                 break;
             case 'pine_tree':
-                ctx.fillStyle = '#3e2723'; ctx.fillRect(obs.x + 10, obs.y + 25, 5, 10); 
-                ctx.fillStyle = '#1b5e20';
-                ctx.beginPath(); ctx.moveTo(obs.x + 12, obs.y); ctx.lineTo(obs.x, obs.y + 25); ctx.lineTo(obs.x + obs.w, obs.y + 25); ctx.closePath(); ctx.fill();
+                ctx.fillStyle='rgba(13,30,40,.22)';ctx.beginPath();ctx.ellipse(obs.x+12,obs.y+32,14,4,0,0,Math.PI*2);ctx.fill();
+                ctx.fillStyle='#665444';ctx.fillRect(obs.x+10,obs.y+23,5,12);
+                for(let tier=0;tier<3;tier++){
+                    const y=obs.y+tier*7,w=9+tier*6;
+                    ctx.fillStyle=tier%2?'#456d60':'#36594f';ctx.beginPath();ctx.moveTo(obs.x+12,y);
+                    ctx.lineTo(obs.x+12-w,y+14);ctx.lineTo(obs.x+12+w,y+14);ctx.closePath();ctx.fill();
+                    ctx.strokeStyle='#729383';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(obs.x+12,y+2);ctx.lineTo(obs.x+13-w,y+13);ctx.stroke();
+                }
                 break;
             case 'bench':
                 ctx.fillStyle = '#8d6e63'; ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
@@ -4322,53 +4309,15 @@ function drawSceneObstacles() {
 }
 
 function drawHUB() {
-    drawWater();
-    drawPath(205, 0, 40, 80);    
-    drawPath(205, 220, 40, 80);  
-    drawPath(310, 130, 140, 40); 
-    drawPath(0, 130, 140, 40);   
-
-    ctx.fillStyle = "#7dbd42";
-    ctx.beginPath(); ctx.arc(225, 150, 95, 0, Math.PI*2); ctx.fill();
-
-    ctx.fillStyle = "#bdc3c7"; ctx.fillRect(190, 115, 70, 70);
-    ctx.strokeStyle = "#7f8c8d"; ctx.strokeRect(190, 115, 70, 70);
+    drawOverworldHub();
 }
 
 function drawIlhaEsqui() {
-    drawWater();
+    drawOverworldBase("ILHA_ESQUI");
+    ctx.save();
+    ctx.fillStyle="#68464b";ctx.fillRect(38,52,60,198);ctx.fillRect(352,52,60,198);
     
-    // 1. Base da Ilha (Estádio de Boxe com bordas atléticas)
-    ctx.fillStyle = "#1e272c";
-    ctx.fillRect(15, 15, 420, 270);
-    
-    // Piso de borracha atlética
-    ctx.fillStyle = "#2c3e50";
-    ctx.fillRect(25, 25, 400, 250);
-    
-    // Pistas laterais emborrachadas vermelhas (Setores de Aquecimento e Oficiais)
-    ctx.fillStyle = "#782828";
-    ctx.fillRect(30, 30, 75, 240);
-    ctx.fillRect(345, 30, 75, 240);
-
-    // Linhas demarcatórias da arena
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
-    ctx.lineWidth = 2;
-    ctx.strokeRect(30, 30, 390, 240);
-
-    // 2. Banner do Topo (Portal de Entrada dos Campeões)
-    ctx.fillStyle = "#111827";
-    ctx.fillRect(90, 18, 270, 22);
-    ctx.strokeStyle = "#f1c40f";
-    ctx.lineWidth = 2;
-    ctx.strokeRect(90, 18, 270, 22);
-    ctx.fillStyle = "#f1c40f";
-    ctx.font = "bold 9px monospace";
-    ctx.textAlign = "center";
-    ctx.fillText("★ ARENA DE BOXE - CLUBE DOS CAMPEÕES ★", 225, 33);
-    ctx.textAlign = "left";
-
-    // 3. Ringue Central de Boxe Elevado (3D Isométrico Pixel Art)
+// 3. Ringue Central de Boxe Elevado (3D Isométrico Pixel Art)
     const rx = 130, ry = 55, rw = 190, rh = 115;
     
     // Sombra do ringue
@@ -4467,51 +4416,25 @@ function drawIlhaEsqui() {
     ctx.fillRect(379, 196, 6, 8);
 
     // Caminho de saída ao Sul (volta para o HUB)
-    drawPath(205, 270, 40, 30);
+
+    finishOverworldIsland("ILHA_ESQUI");
 }
 
 function drawIlhaPingPong() {
-    drawWater();
+    drawOverworldBase("ILHA_PINGPONG");
     ctx.save();
-    ctx.imageSmoothingEnabled = false;
-
-    // 1. Contorno atlético da ilha com cantos chanfrados (Plataforma Esportiva)
-    ctx.beginPath();
-    ctx.moveTo(40, 20); ctx.lineTo(410, 20); ctx.lineTo(432, 42); ctx.lineTo(432, 258);
-    ctx.lineTo(410, 280); ctx.lineTo(40, 280); ctx.lineTo(18, 258); ctx.lineTo(18, 42);
-    ctx.closePath();
-    ctx.fillStyle = "#102a45"; // Base da plataforma azul marinho escuro
-    ctx.fill();
-    ctx.strokeStyle = "#00bcd4"; // Borda ciano olímpico
-    ctx.lineWidth = 2.5;
-    ctx.stroke();
-
-    // 2. Piso emborrachado oficial (Taraflex Verde Esportivo)
-    const courtX = 26, courtY = 28, courtW = 398, courtH = 244;
-    ctx.fillStyle = "#1e3d59";
-    ctx.fillRect(courtX, courtY, courtW, courtH);
-    ctx.fillStyle = "#2e7d32"; // Verde oficial de tênis de mesa
-    ctx.fillRect(courtX + 4, courtY + 4, courtW - 8, courtH - 8);
-
-    // Linhas sutis das placas de piso
-    ctx.fillStyle = "rgba(255, 255, 255, 0.06)";
-    for (let py = courtY + 12; py < courtY + courtH - 8; py += 28) {
-        ctx.fillRect(courtX + 4, py, courtW - 8, 1);
-    }
-    for (let px = courtX + 16; px < courtX + courtW - 8; px += 38) {
-        ctx.fillRect(px, courtY + 4, 1, courtH - 8);
-    }
-
-    // 3. Área de Competição Destacada (Arena Azul ITTF no Lado Leste)
-    const arenaX = 265, arenaY = 95, arenaW = 145, arenaH = 150;
-    ctx.fillStyle = "#1565c0"; // Azul clássico de competição ITTF
+    ctx.imageSmoothingEnabled=false;
+    
+    // Demonstração central: aprendiz à esquerda, Mestre/time azul à direita.
+    const arenaX = 104, arenaY = 114, arenaW = 242, arenaH = 110;
+    ctx.fillStyle = "#285f7e"; // Azul clássico de competição ITTF
     ctx.fillRect(arenaX, arenaY, arenaW, arenaH);
     ctx.strokeStyle = "#e3f2fd";
     ctx.lineWidth = 1.5;
     ctx.strokeRect(arenaX, arenaY, arenaW, arenaH);
 
     // Divisórias de Quadra (Surrounds vermelhos com acabamento)
-    ctx.fillStyle = "#c62828";
+    ctx.fillStyle = "#a64e53";
     ctx.fillRect(arenaX - 2, arenaY - 6, arenaW + 4, 5);
     ctx.fillRect(arenaX - 2, arenaY + arenaH + 1, arenaW + 4, 5);
     ctx.fillRect(arenaX + arenaW + 1, arenaY - 6, 5, arenaH + 12);
@@ -4523,7 +4446,7 @@ function drawIlhaPingPong() {
     }
 
     // 4. MESA OFICIAL DE PING-PONG (LANDMARK PRINCIPAL)
-    const tblX = 290, tblY = 135, tblW = 86, tblH = 46;
+    const tblX = 182, tblY = 144, tblW = 86, tblH = 46;
     
     // Sombra da mesa no solo
     ctx.fillStyle = "rgba(0, 0, 0, 0.35)";
@@ -4585,7 +4508,7 @@ function drawIlhaPingPong() {
 
     ctx.fillStyle = "#d7ccc8";
     ctx.fillRect(tblX + tblW - 24, tblY + 16, 7, 3);
-    ctx.fillStyle = "#212121";
+    ctx.fillStyle = "#3b82f6";
     ctx.beginPath();
     ctx.ellipse(tblX + tblW - 32, tblY + 17, 5, 6, -0.3, 0, Math.PI * 2);
     ctx.fill();
@@ -4601,7 +4524,7 @@ function drawIlhaPingPong() {
     ctx.fill();
 
     // 5. Cesto de Bolinhas de Treino ao Lado da Mesa
-    const bktX = 384, bktY = 152;
+    const bktX = 280, bktY = 166;
     ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
     ctx.fillRect(bktX - 2, bktY + 18, 20, 4);
     ctx.strokeStyle = "#78909c";
@@ -4619,23 +4542,27 @@ function drawIlhaPingPong() {
         ctx.fill();
     }
 
-    // 6. Placar Esportivo Oficial (Scoreboard) no Topo Leste
-    const scbX = 320, scbY = 45;
+    // Placar cenográfico: não modifica a pontuação real do minigame.
+    const scbX = 173, scbY = 60;
     ctx.fillStyle = "#0f172a";
-    ctx.fillRect(scbX, scbY, 65, 38);
+    ctx.fillRect(scbX, scbY, 104, 38);
     ctx.strokeStyle = "#475569";
     ctx.lineWidth = 2;
-    ctx.strokeRect(scbX, scbY, 65, 38);
-    ctx.fillStyle = "#00e5ff";
+    ctx.strokeRect(scbX, scbY, 104, 38);
+    ctx.textAlign = "center";
     ctx.font = "bold 6px monospace";
-    ctx.fillText("TABLE TENNIS", scbX + 8, scbY + 9);
-    ctx.fillStyle = "#ef4444";
-    ctx.font = "bold 13px monospace";
-    ctx.fillText("11", scbX + 8, scbY + 26);
-    ctx.fillStyle = "#3b82f6";
-    ctx.fillText("09", scbX + 38, scbY + 26);
-    ctx.fillStyle = "#64748b";
-    ctx.fillRect(scbX + 30, scbY + 14, 2, 16);
+    ctx.fillStyle = "#74caff";
+    ctx.fillText("MESTRE", scbX + 79, scbY + 10);
+    ctx.fillStyle = "#ff9696";
+    ctx.fillText("APRENDIZ", scbX + 25, scbY + 10);
+    ctx.font = "bold 17px monospace";
+    ctx.fillStyle = "#61bfff"; ctx.fillText("50", scbX + 79, scbY + 30);
+    ctx.fillStyle = "#c4d3e6"; ctx.fillText("×", scbX + 52, scbY + 29);
+    ctx.fillStyle = "#ff8585"; ctx.fillText("0", scbX + 25, scbY + 30);
+    ctx.font = "bold 7px monospace";
+    ctx.fillStyle = "#ffb6b6"; ctx.fillText("0 PONTOS", 138, 207);
+    ctx.fillStyle = "#a0dcff"; ctx.fillText("AZUL", 312, 207);
+    ctx.textAlign = "left";
 
     // 7. Área de Descanso do Aprendiz (Oeste)
     ctx.fillStyle = "#5d4037";
@@ -4648,88 +4575,53 @@ function drawIlhaPingPong() {
     ctx.fillRect(72, 186, 12, 6);
 
     // 8. Caminhos de Conexão (Piso antiderrapante)
-    drawPath(0, 130, 30, 40);
-    drawPath(205, 0, 40, 30);
+
+
 
     ctx.restore();
+    finishOverworldIsland("ILHA_PINGPONG");
 }
 
 function drawIlhaSkate() {
-    drawWater();
-    ctx.save();
-    ctx.imageSmoothingEnabled = false;
-
-    // 1. Silhueta da Skate Plaza Tropical-Urbana
-    ctx.beginPath();
-    ctx.moveTo(42, 20); ctx.lineTo(408, 20); ctx.lineTo(432, 44); ctx.lineTo(432, 256);
-    ctx.lineTo(408, 280); ctx.lineTo(42, 280); ctx.lineTo(18, 256); ctx.lineTo(18, 44);
-    ctx.closePath();
-    ctx.fillStyle = "#455a64"; // Bordas de calçamento reforçado
-    ctx.fill();
-    ctx.strokeStyle = "#78909c";
-    ctx.lineWidth = 3;
-    ctx.stroke();
-
-    // 2. Piso de Lajes de Concreto Polido de Skatepark
-    const plazaX = 26, plazaY = 28, plazaW = 398, plazaH = 244;
-    ctx.fillStyle = "#cfd8dc"; // Concreto liso clássico
-    ctx.fillRect(plazaX, plazaY, plazaW, plazaH);
-
-    // Juntas de dilatação pretas de concreto (grid quadriculado de rua)
-    ctx.strokeStyle = "rgba(0, 0, 0, 0.10)";
-    ctx.lineWidth = 1;
-    for (let gx = plazaX; gx < plazaX + plazaW; gx += 40) {
-        ctx.beginPath(); ctx.moveTo(gx, plazaY); ctx.lineTo(gx, plazaY + plazaH); ctx.stroke();
-    }
-    for (let gy = plazaY; gy < plazaY + plazaH; gy += 40) {
-        ctx.beginPath(); ctx.moveTo(plazaX, gy); ctx.lineTo(plazaX + plazaW, gy); ctx.stroke();
-    }
-
-    // Canteiros Verdes Tropicais nos Cantos
-    ctx.fillStyle = "#33691e";
-    ctx.fillRect(360, 34, 52, 40);
-    ctx.strokeStyle = "#607d8b";
-    ctx.strokeRect(360, 34, 52, 40);
-    ctx.fillStyle = "#33691e";
-    ctx.fillRect(360, 222, 52, 40);
-    ctx.strokeRect(360, 222, 52, 40);
-
-    // 3. MINI QUARTER-PIPE / RAMPA DE TRANSIÇÃO (LANDMARK PRINCIPAL)
+    drawOverworldBase("ILHA_SKATE");
+    ctx.save();ctx.imageSmoothingEnabled=false;
+    ctx.fillStyle="#26445c";ctx.fillRect(360,52,46,28);ctx.fillRect(360,228,46,28);
+    ctx.fillStyle="#587658";ctx.fillRect(363,55,40,22);ctx.fillRect(363,231,40,22);
+    
+    // Quarter-pipe: superfície curva, face estrutural e coping legíveis.
     const qX = 52, qY = 46, qW = 72, qH = 46;
     ctx.fillStyle = "rgba(0, 0, 0, 0.28)";
     ctx.fillRect(qX + 2, qY + qH, qW + 4, 6);
-
-    ctx.fillStyle = "#90a4ae";
+    // Face lateral sustentada no chão; a curva mostra a transição vertical.
+    ctx.fillStyle = "#405865";
     ctx.beginPath();
-    ctx.moveTo(qX, qY + qH); ctx.lineTo(qX + qW, qY + qH); ctx.lineTo(qX + qW, qY); ctx.lineTo(qX + 16, qY);
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.fillStyle = "#b0bec5";
+    ctx.moveTo(qX + qW, qY);
+    ctx.quadraticCurveTo(qX + qW, qY + 30, qX + 52, qY + qH);
+    ctx.lineTo(qX + qW, qY + qH); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = "#b8cbd1";
     ctx.beginPath();
-    ctx.moveTo(qX, qY + qH); ctx.lineTo(qX + qW - 6, qY + qH); ctx.lineTo(qX + qW - 6, qY + 6); ctx.lineTo(qX + 22, qY + 6);
-    ctx.closePath();
-    ctx.fill();
-
-    // Coping Metálico Tubular no Topo
-    ctx.fillStyle = "#eceff1";
-    ctx.fillRect(qX + 18, qY, qW - 20, 5);
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(qX + 18, qY + 1, qW - 20, 1.5);
-
-    // Plataforma / Deck do topo
+    ctx.moveTo(qX + 18, qY); ctx.lineTo(qX + qW, qY);
+    ctx.quadraticCurveTo(qX + qW, qY + 30, qX + 52, qY + qH);
+    ctx.lineTo(qX, qY + qH);
+    ctx.quadraticCurveTo(qX + 18, qY + 30, qX + 18, qY); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = "#718d9a"; ctx.lineWidth = 1.5; ctx.stroke();
+    // Deck e borda metálica no alto, sem grafite usado como substituto da forma.
     ctx.fillStyle = "#546e7a";
-    ctx.fillRect(qX + 20, qY - 8, qW - 20, 8);
-    ctx.strokeStyle = "#37474f";
-    ctx.lineWidth = 1.5;
-    ctx.strokeRect(qX + 20, qY - 14, qW - 20, 6);
-
-    // GRAFITE URBANO NA RAMPA ("SKATE" em magenta/ciano)
-    ctx.fillStyle = "#00e5ff";
-    ctx.font = "bold 9px monospace";
-    ctx.fillText("SKATE", qX + 25, qY + 28);
-    ctx.fillStyle = "#ff007f";
-    ctx.fillText("SKATE", qX + 24, qY + 27);
+    ctx.fillRect(qX + 18, qY - 8, qW - 18, 8);
+    ctx.fillStyle = "#ecf2f3"; ctx.fillRect(qX + 18, qY - 2, qW - 18, 3);
+    ctx.fillStyle = "#62d7df"; ctx.fillRect(qX + 18, qY - 2, qW - 18, 1);
+    ctx.strokeStyle = "rgba(255,255,255,.55)"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(qX + 15, qY + 17); ctx.lineTo(qX + 69, qY + 17);
+    ctx.moveTo(qX + 10, qY + 32); ctx.lineTo(qX + 63, qY + 32); ctx.stroke();
+    ctx.strokeStyle = "#263e4c";
+    ctx.beginPath(); ctx.moveTo(qX + 67, qY + 31); ctx.lineTo(qX + 68, qY + qH - 2); ctx.stroke();
+    // Skate estacionado na base, incluído no mesmo elemento cenográfico.
+    ctx.fillStyle = "#263541"; ctx.beginPath(); ctx.roundRect(qX + 22, qY + 38, 25, 5, 2.5); ctx.fill();
+    ctx.fillStyle = "#deac65"; ctx.fillRect(qX + 26, qY + 39, 17, 2);
+    ctx.fillStyle = "#223541";
+    for (const wheelX of [qX + 27, qX + 42]) {
+        ctx.beginPath(); ctx.arc(wheelX, qY + 44, 2, 0, Math.PI * 2); ctx.fill();
+    }
 
     // 4. CORRIMÃO TUBULAR DE AÇO INOX (GRIND RAIL)
     const rlX = 295, rlY = 180, rlW = 72, rlH = 14;
@@ -4741,10 +4633,11 @@ function drawIlhaSkate() {
     ctx.fillStyle = "#37474f";
     ctx.fillRect(rlX + 7, rlY + rlH - 2, 10, 2);
     ctx.fillRect(rlX + rlW - 17, rlY + rlH - 2, 10, 2);
-    ctx.fillStyle = "#cfd8dc";
+    ctx.fillStyle = "#b5c9d1";
     ctx.fillRect(rlX, rlY, rlW, 4);
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(rlX, rlY, rlW, 1.5);
+    ctx.fillStyle="#62d7df";ctx.fillRect(rlX,rlY,rlW,1);
     // Marcas de atrito e cera preta
     ctx.fillStyle = "#212121";
     ctx.fillRect(rlX + 20, rlY + 3, 14, 1.5);
@@ -4785,11 +4678,12 @@ function drawIlhaSkate() {
     });
 
     // 8. Caminhos de Conexão
-    drawPath(205, 0, 40, 30);
-    drawPath(420, 130, 30, 40);
-    drawPath(0, 130, 30, 40);
+
+
+
 
     ctx.restore();
+    finishOverworldIsland("ILHA_SKATE");
 }
 
 function drawIlhaBasquete() {
@@ -4954,34 +4848,21 @@ function drawIlhaBasquete() {
 }
 
 function drawIlhaArco() {
-    drawWater();
-    ctx.save();
-    ctx.imageSmoothingEnabled = false;
-
-    // Costa pixelada e gramado: mantém a linguagem das outras ilhas sem reutilizar a arena do minigame.
-    ctx.fillStyle = "#24663f"; ctx.fillRect(11, 11, 428, 278);
-    ctx.fillStyle = "#54b85f"; ctx.fillRect(16, 16, 418, 268);
-    ctx.fillStyle = "#72d36c"; ctx.fillRect(22, 22, 406, 256);
-    ctx.fillStyle = "#9de477";
-    [[35, 37, 30, 4], [139, 29, 28, 3], [293, 38, 35, 4], [378, 111, 34, 3],
-     [45, 169, 27, 3], [157, 201, 38, 4], [273, 242, 31, 3], [340, 264, 42, 3]]
-        .forEach(([x, y, w, h]) => ctx.fillRect(x, y, w, h));
-    ctx.fillStyle = "#3c9851";
-    [[74, 150], [132, 253], [305, 181], [398, 250], [320, 60], [51, 118]]
-        .forEach(([x, y]) => { ctx.fillRect(x, y, 8, 3); ctx.fillRect(x + 3, y - 3, 3, 6); });
-
-    // Caminhos de terra ligam a entrada direita ao Mestre e preservam a saída norte para a Escalada.
-    ctx.fillStyle = "#9a7444";
+    drawOverworldBase("ILHA_ARCO");
+    ctx.save();ctx.imageSmoothingEnabled=false;
+    
+// Caminhos de terra ligam a entrada direita ao Mestre e preservam a saída norte para a Escalada.
+    ctx.fillStyle = "#697c70";
     ctx.fillRect(420, 127, 30, 46);
     ctx.fillRect(205, 0, 40, 58);
     ctx.fillRect(160, 52, 130, 101);
     ctx.fillRect(250, 130, 185, 40);
-    ctx.fillStyle = "#d9bd72";
+    ctx.fillStyle = "#b2b28b";
     ctx.fillRect(424, 132, 26, 36);
     ctx.fillRect(210, 0, 30, 62);
     ctx.fillRect(166, 57, 118, 90);
     ctx.fillRect(248, 136, 187, 28);
-    ctx.fillStyle = "#efd98d";
+    ctx.fillStyle = "#d9d0a4";
     ctx.fillRect(177, 66, 96, 4);
     ctx.fillRect(260, 142, 145, 3);
 
@@ -4991,14 +4872,15 @@ function drawIlhaArco() {
     for (let y = 0; y < 24; y += 7) ctx.fillRect(207, y, 36, 4);
 
     const assets = window.archeryAssets;
-    const frame = Math.floor(performance.now() / 240);
+    // Fixed neutral poses in the island only; arena animations remain unchanged.
+    const frame = 0;
     const drawAsset = (category, subtype, state, index, x, y, size) => assets
         ? assets.draw(ctx, category, subtype, state, index, x, y, size, size, "manifest")
         : false;
 
     // Estandartes deixam a modalidade reconhecível ainda na borda da ilha.
     drawAsset("prop", "wind_flag", "IDLE", frame, 45, 96, 58);
-    drawAsset("prop", "wind_flag", "IDLE", frame + 1, 407, 99, 58);
+    drawAsset("prop", "wind_flag", "IDLE", frame, 407, 99, 58);
 
     // Pequena área de treino: alvos diferentes e fardos nas laterais, sem fechar o corredor central.
     if (!drawAsset("target", "large", "IDLE", frame, 95, 124, 64)) {
@@ -5006,9 +4888,9 @@ function drawIlhaArco() {
         ctx.fillStyle = "#e74c3c"; ctx.beginPath(); ctx.arc(95, 94, 17, 0, Math.PI * 2); ctx.fill();
         ctx.fillStyle = "#f1c40f"; ctx.beginPath(); ctx.arc(95, 94, 7, 0, Math.PI * 2); ctx.fill();
     }
-    drawAsset("target", "medium", "IDLE", frame + 2, 355, 132, 56);
+    drawAsset("target", "medium", "IDLE", frame, 355, 132, 56);
     drawAsset("prop", "hay_bale", "IDLE", frame, 62, 239, 64);
-    drawAsset("prop", "hay_bale", "IDLE", frame + 1, 392, 239, 60);
+    drawAsset("prop", "hay_bale", "IDLE", frame, 392, 239, 60);
     drawAsset("prop", "target_stand", "IDLE", frame, 321, 226, 48);
 
     // Caixa de flechas decorativa.
@@ -5035,57 +4917,27 @@ function drawIlhaArco() {
     ctx.fillStyle = "#f5d66d";
     ctx.beginPath(); ctx.moveTo(358, 182); ctx.lineTo(384, 182); ctx.lineTo(378, 177); ctx.moveTo(384, 182); ctx.lineTo(378, 187); ctx.strokeStyle = "#f5d66d"; ctx.lineWidth = 2; ctx.stroke();
 
-    // Label em forma de placa; o sprite do Mestre é desenhado depois pela camada global de NPCs.
-    ctx.fillStyle = "#5b3522"; ctx.fillRect(161, 24, 128, 17);
-    ctx.fillStyle = "#8d5530"; ctx.fillRect(164, 27, 122, 11);
-    ctx.fillStyle = "#fff0b7";
-    ctx.font = "bold 8px monospace";
-    ctx.textAlign = "center";
-    ctx.fillText("MESTRE DO ARCO", 225, 36);
-    ctx.textAlign = "left";
     if (archeryQaParams.has("archeryIslandQa")) {
-        canvas.dataset.archeryIslandDiagnostics = JSON.stringify({
-            scene: currentScene,
-            masterAsset: imgMestreArcoOverworld.src,
-            masterLoaded: imgMestreArcoOverworld.complete && imgMestreArcoOverworld.naturalWidth > 0,
-            masterNaturalSize: [imgMestreArcoOverworld.naturalWidth, imgMestreArcoOverworld.naturalHeight],
-            masterPosition: [225, 118],
-            masterScaleHeight: 72,
-            masterCrop: [335, 96, 656, 1114],
-            interaction: [58, 76, 12],
-            player: [Math.round(player.x), Math.round(player.y)],
-            decorAssets: assets ? assets.diagnostics() : null
-        });
+        canvas.dataset.archeryIslandDiagnostics=JSON.stringify(getOverworldDiagnostics());
     }
     ctx.restore();
+    finishOverworldIsland("ILHA_ARCO");
 }
 
 function drawIlhaCorrida() {
-    drawWater();
-    ctx.save();
-    ctx.imageSmoothingEnabled = false;
-
-    // 1. Silhueta do Estádio Olímpico / Pista de Atletismo Oval
-    ctx.beginPath();
-    ctx.moveTo(50, 18); ctx.lineTo(400, 18); ctx.lineTo(434, 48); ctx.lineTo(434, 252);
-    ctx.lineTo(400, 282); ctx.lineTo(50, 282); ctx.lineTo(16, 252); ctx.lineTo(16, 48);
-    ctx.closePath();
-    ctx.fillStyle = "#2e7d32"; // Grama perimetral de amortecimento
-    ctx.fill();
-    ctx.strokeStyle = "#1b5e20";
-    ctx.lineWidth = 3;
-    ctx.stroke();
-
-    // 2. Anel de Pista de Tartan Vermelho-Terracota Oficial
+    drawOverworldBase("ILHA_CORRIDA");
+    ctx.save();ctx.imageSmoothingEnabled=false;
+    
+// 2. Anel de Pista de Tartan Vermelho-Terracota Oficial
     const trackX = 28, trackY = 28, trackW = 394, trackH = 244;
-    ctx.fillStyle = "#c62828"; // Vermelho tijolo oficial de atletismo
-    ctx.fillRect(trackX, trackY, trackW, trackH);
+    ctx.fillStyle = "#b4674f"; // Vermelho tijolo oficial de atletismo
+    ctx.beginPath();ctx.roundRect(trackX,trackY,trackW,trackH,24);ctx.fill();
 
     // Gramado Central Interno (Infield)
     const fieldX = 82, fieldY = 76, fieldW = 286, fieldH = 148;
-    ctx.fillStyle = "#43a047"; // Grama do campo central
+    ctx.fillStyle = "#64845e"; // Grama do campo central
     ctx.fillRect(fieldX, fieldY, fieldW, fieldH);
-    ctx.strokeStyle = "#ffffff";
+    ctx.strokeStyle = "#f4e7c4";
     ctx.lineWidth = 1.5;
     ctx.strokeRect(fieldX, fieldY, fieldW, fieldH);
 
@@ -5096,17 +4948,17 @@ function drawIlhaCorrida() {
     }
 
     // 3. Marcações das Raias de Atletismo (3 Raias com linhas brancas contínuas)
-    ctx.strokeStyle = "#ffffff";
+    ctx.strokeStyle = "#f4e7c4";
     ctx.lineWidth = 1.5;
     // Raia 1 (Interna)
-    ctx.strokeRect(trackX + 18, trackY + 16, trackW - 36, trackH - 32);
+    ctx.beginPath();ctx.roundRect(trackX + 18, trackY + 16, trackW - 36, trackH - 32,18);ctx.stroke();
     // Raia 2 (Média)
-    ctx.strokeRect(trackX + 36, trackY + 32, trackW - 72, trackH - 64);
+    ctx.beginPath();ctx.roundRect(trackX + 36, trackY + 32, trackW - 72, trackH - 64,18);ctx.stroke();
     // Raia 3 (Externa)
-    ctx.strokeRect(trackX + 2, trackY + 2, trackW - 4, trackH - 4);
+    ctx.beginPath();ctx.roundRect(trackX + 2, trackY + 2, trackW - 4, trackH - 4,18);ctx.stroke();
 
     // Numeração Oficial das Raias pintada no solo
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = "#f4e7c4";
     ctx.font = "bold 9px monospace";
     ctx.fillText("1", trackX + 24, trackY + 12);
     ctx.fillText("2", trackX + 42, trackY + 12);
@@ -5116,7 +4968,7 @@ function drawIlhaCorrida() {
     const finX = 202, finY = 126, finW = 46, finH = 18;
     for (let cx = 0; cx < finW; cx += 5) {
         for (let cy = 0; cy < finH; cy += 4.5) {
-            ctx.fillStyle = ((Math.floor(cx / 5) + Math.floor(cy / 4.5)) % 2 === 0) ? "#ffffff" : "#111111";
+            ctx.fillStyle = ((Math.floor(cx / 5) + Math.floor(cy / 4.5)) % 2 === 0) ? "#f4e7c4" : "#111111";
             ctx.fillRect(finX + cx, finY + cy, 5, 4.5);
         }
     }
@@ -5138,15 +4990,15 @@ function drawIlhaCorrida() {
     // 2º Lugar
     ctx.fillStyle = "#90a4ae";
     ctx.fillRect(podX, podY + 7, 13, 16);
-    ctx.fillStyle = "#ffffff"; ctx.font = "bold 7px monospace"; ctx.fillText("2", podX + 4, podY + 18);
+    ctx.fillStyle = "#f4e7c4"; ctx.font = "bold 7px monospace"; ctx.fillText("2", podX + 4, podY + 18);
     // 1º Lugar
     ctx.fillStyle = "#fbc02d";
     ctx.fillRect(podX + 14, podY, 14, 23);
-    ctx.fillStyle = "#ffffff"; ctx.fillText("1", podX + 18, podY + 15);
+    ctx.fillStyle = "#f4e7c4"; ctx.fillText("1", podX + 18, podY + 15);
     // 3º Lugar
     ctx.fillStyle = "#bcaaa4";
     ctx.fillRect(podX + 29, podY + 11, 13, 12);
-    ctx.fillStyle = "#ffffff"; ctx.fillText("3", podX + 33, podY + 20);
+    ctx.fillStyle = "#f4e7c4"; ctx.fillText("3", podX + 33, podY + 20);
 
     // 6. ESTAÇÃO DE HIDRATAÇÃO (Noroeste)
     const wstX = 94, wstY = 88;
@@ -5168,52 +5020,24 @@ function drawIlhaCorrida() {
         ctx.moveTo(c.x + 5, c.y); ctx.lineTo(c.x, c.y + 10); ctx.lineTo(c.x + 10, c.y + 10);
         ctx.closePath();
         ctx.fill();
-        ctx.fillStyle = "#ffffff";
+        ctx.fillStyle = "#f4e7c4";
         ctx.fillRect(c.x + 2, c.y + 4, 6, 2);
     });
 
     // 8. Caminho de Saída Leste (para a Ilha do Skate)
-    drawPath(420, 130, 30, 40);
+
 
     ctx.restore();
+    finishOverworldIsland("ILHA_CORRIDA");
 }
 
 function drawIlhaEscalada() {
-    drawWater();
-    ctx.save();
-    ctx.imageSmoothingEnabled = false;
-
-    // 1. Orla Alpina Rochosa Orgânica (Pedregulhos e Escarpas quebrando na água)
-    ctx.beginPath();
-    ctx.moveTo(34, 20); ctx.lineTo(416, 20); ctx.lineTo(436, 46); ctx.lineTo(430, 110);
-    ctx.lineTo(438, 170); ctx.lineTo(430, 240); ctx.lineTo(412, 280); ctx.lineTo(38, 280);
-    ctx.lineTo(16, 244); ctx.lineTo(24, 170); ctx.lineTo(16, 110); ctx.lineTo(22, 46);
-    ctx.closePath();
-    ctx.fillStyle = "#37474f"; // Rocha base granítica escura
-    ctx.fill();
-    ctx.strokeStyle = "#263238";
-    ctx.lineWidth = 3;
-    ctx.stroke();
-
-    // Espuma das ondas batendo nas rochas
-    ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
-    [20, 70, 130, 200, 280, 350, 410].forEach(bx => {
-        ctx.fillRect(bx, 17, 8, 2);
-        ctx.fillRect(bx, 281, 8, 2);
-    });
-
-    // 2. Terreno Alpino e Platô de Terra Batida & Grama
-    const mtnX = 26, mtnY = 26, mtnW = 398, mtnH = 248;
-    ctx.fillStyle = "#5d4037"; // Terra e cascalho alpino
-    ctx.fillRect(mtnX, mtnY, mtnW, mtnH);
-
-    // Manchas de vegetação rasteira alpina
-    ctx.fillStyle = "#33691e";
-    ctx.fillRect(36, 115, 95, 140);
-    ctx.fillRect(315, 115, 95, 140);
-    ctx.fillRect(145, 165, 160, 90);
-
-    // 3. Cordilheira de Montanhas Majestosa ao Fundo (Norte)
+    drawOverworldBase("ILHA_ESCALADA");
+    ctx.save();ctx.imageSmoothingEnabled=false;
+    ctx.fillStyle="#485e50";ctx.fillRect(36,115,95,140);ctx.fillRect(315,115,95,140);
+    ctx.fillStyle="#657369";ctx.fillRect(145,165,160,90);
+    
+// 3. Cordilheira de Montanhas Majestosa ao Fundo (Norte)
     // Pico distante da esquerda
     ctx.fillStyle = "#455a64";
     ctx.beginPath();
@@ -5234,7 +5058,7 @@ function drawIlhaEscalada() {
     // Cumes Nevados das Montanhas
     ctx.fillStyle = "#eceff1";
     ctx.beginPath();
-    ctx.moveTo(225, 10); ctx.lineTo(200, 36); ctx.lineTo(215, 30);
+    ctx.moveTo(225, 24); ctx.lineTo(200, 36); ctx.lineTo(215, 30);
     ctx.lineTo(225, 38); ctx.lineTo(235, 28); ctx.lineTo(250, 36);
     ctx.closePath(); ctx.fill();
 
@@ -5329,7 +5153,7 @@ function drawIlhaEscalada() {
     ctx.stroke();
 
     // 5. Trilha de Terra Batida Principal até a base da montanha
-    ctx.fillStyle = "#8d6e63";
+    ctx.fillStyle = "#8b9281";
     ctx.beginPath();
     ctx.moveTo(196, 270); ctx.lineTo(204, 75); ctx.lineTo(246, 75); ctx.lineTo(254, 270);
     ctx.closePath();
@@ -5351,9 +5175,10 @@ function drawIlhaEscalada() {
     ctx.fillText("▲ MONTE ZORP 2.800m", 168, 47);
 
     // Entrada Sul (caminho para a Ilha do Arco)
-    drawPath(205, 270, 40, 30);
+
 
     ctx.restore();
+    finishOverworldIsland("ILHA_ESCALADA");
 }
 
 function drawSurfIslandShape(points, color) {
@@ -5373,23 +5198,10 @@ function drawSurfIslandAsset(image, centerX, bottomY, height) {
 }
 
 function drawIlhaSurf() {
-    drawWater();
-
-    // Água rasa e contorno quebrado: a ilha deixa de parecer uma placa retangular.
-    drawSurfIslandShape([10, 33, 26, 18, 95, 13, 123, 20, 185, 12, 272, 12,
-        330, 20, 363, 14, 424, 22, 440, 37, 440, 84, 435, 106, 441, 176,
-        436, 244, 421, 275, 264, 281, 246, 300, 204, 300, 185, 281,
-        28, 277, 12, 250, 8, 187, 13, 123], "#7ddbd8");
-    drawSurfIslandShape([15, 38, 29, 25, 97, 21, 125, 27, 185, 20, 273, 20,
-        329, 27, 362, 22, 420, 29, 433, 43, 432, 90, 427, 110, 434, 177,
-        429, 241, 417, 268, 259, 274, 243, 300, 207, 300, 190, 274,
-        32, 270, 19, 246, 16, 185, 21, 124], "#fff8d7");
-    drawSurfIslandShape([21, 41, 34, 30, 99, 27, 126, 33, 188, 26, 269, 26,
-        328, 33, 359, 28, 416, 35, 426, 47, 425, 91, 420, 111, 427, 176,
-        422, 237, 411, 261, 255, 267, 239, 300, 211, 300, 195, 267,
-        38, 263, 26, 241, 23, 183, 28, 124], "#f7e3a0");
-
-    // Manchas de areia e um corredor claro até o mestre, sem bloquear a navegação.
+    drawOverworldBase("ILHA_SURF");
+    ctx.save();
+    
+// Manchas de areia e um corredor claro até o mestre, sem bloquear a navegação.
     drawSurfIslandShape([187, 149, 263, 149, 259, 174, 271, 209, 258, 253,
         253, 279, 197, 279, 192, 252, 179, 209, 191, 174], "#ffefb7");
     ctx.fillStyle = "#e7c982";
@@ -5405,37 +5217,24 @@ function drawIlhaSurf() {
         ctx.fillRect(x + 8, 260 - (x % 5), 9, 2);
     }
 
-    // Pequeno deck de treino: o mestre tem uma silhueta própria e espaço ao redor.
-    drawSurfIslandShape([177, 132, 185, 118, 265, 118, 273, 132,
-        267, 150, 183, 150], "#297e94");
-    drawSurfIslandShape([184, 130, 190, 123, 260, 123, 266, 130,
-        261, 142, 189, 142], "#72c8c3");
-    ctx.fillStyle = "#e7ffff";
-    ctx.fillRect(183, 145, 84, 3);
-    ctx.fillRect(193, 150, 64, 2);
-    ctx.fillStyle = "#8a5635";
-    ctx.fillRect(179, 42, 92, 14);
-    ctx.fillStyle = "#bd8350";
-    ctx.fillRect(182, 44, 86, 9);
-    ctx.fillStyle = "#fff6d5";
-    ctx.font = "bold 8px monospace";
-    ctx.textAlign = "center";
-    ctx.fillText("MESTRE DO SURF", 225, 52);
-    ctx.textAlign = "left";
+    // Boardwalk stage, scaled to the same host footprint as the other sports.
+    ctx.fillStyle="#26445c";ctx.fillRect(183,97,84,25);
+    ctx.fillStyle="#af8d60";ctx.fillRect(186,98,78,18);
+    ctx.fillStyle="#e3c391";
+    for(let x=190;x<262;x+=12)ctx.fillRect(x,99,1,16);
+    ctx.fillStyle="#62d7df";ctx.fillRect(183,119,84,2);
 
     // Decoração de praia com os recortes oficiais, mantendo o centro livre.
-    drawSurfIslandAsset(surfIslandDecor.palm, 58, 109, 112);
-    drawSurfIslandAsset(surfIslandDecor.palm, 392, 109, 112);
-    drawSurfIslandAsset(surfIslandDecor.umbrella, 96, 229, 94);
-    drawSurfIslandAsset(surfIslandDecor.towel, 117, 249, 55);
-    drawSurfIslandAsset(surfIslandDecor.cooler, 151, 239, 54);
-    drawSurfIslandAsset(surfIslandDecor.sign, 353, 208, 74);
+    drawSurfIslandAsset(surfIslandDecor.palm, 58, 109, 80);
+    drawSurfIslandAsset(surfIslandDecor.palm, 392, 109, 80);
+    drawSurfIslandAsset(surfIslandDecor.umbrella, 96, 229, 64);
+    drawSurfIslandAsset(surfIslandDecor.towel, 117, 249, 34);
+    drawSurfIslandAsset(surfIslandDecor.cooler, 151, 239, 32);
+    drawSurfIslandAsset(surfIslandDecor.sign, 353, 208, 52);
 
-    // Entrada conectada à ilha ao sul, sem o antigo retângulo cinza.
-    ctx.fillStyle = "#a77348";
-    ctx.fillRect(205, 273, 40, 27);
-    ctx.fillStyle = "#d7a16b";
-    for (let y = 277; y < 300; y += 8) ctx.fillRect(208, y, 34, 5);
+    ctx.restore();
+
+    finishOverworldIsland("ILHA_SURF");
 }
 
 // -------------------------------------------------------------
@@ -5674,10 +5473,16 @@ function draw() {
     
     if (!currentScene.startsWith("JOGO_")) {
         drawSceneObstacles();
-        for (let npc of npcs) {
-            if (npc.scene === currentScene) drawNPC(npc);
+        if (currentScene === "ILHA_BASQUETE") {
+            // Frozen reference: preserve the original actor order and presentation.
+            for (const npc of npcs) if (npc.scene === currentScene) drawNPC(npc);
+            drawPlayer();
+        } else {
+            const actors = npcs.filter(npc => npc.scene === currentScene)
+                .map(npc => ({ y: npc.y, draw: () => drawNPC(npc) }));
+            actors.push({ y: player.y, draw: drawPlayer });
+            actors.sort((a,b) => a.y - b.y).forEach(actor => actor.draw());
         }
-        drawPlayer();
         drawHUD();
     }
 }
@@ -5811,23 +5616,19 @@ if (BOXING_QA_PARAMS.has("boxeNpcQa")) {
 
 if (BOXING_QA_PARAMS.has("boxeQa")) {
     currentScene = "JOGO_BOXE";
-    resetBoxe();
+    resetBoxe(true);
     dialogBox.classList.remove("show");
+    boxeGame.qaFreezeAi = BOXING_QA_PARAMS.get("boxeQaFreezeAi") === "1";
     if (BOXING_QA_PARAMS.get("boxeQaCross") === "1") {
         boxeGame.player.x = 278;
         boxeGame.mestre.x = 172;
     }
-    configureBoxingQaFromQuery(BOXING_QA_PARAMS);
-    const requestedResult = BOXING_QA_PARAMS.get("boxeQaGameover");
-    if (requestedResult === "win" || requestedResult === "lose") {
-        const winner = requestedResult === "win" ? boxeGame.player : boxeGame.mestre;
-        const loser = requestedResult === "win" ? boxeGame.mestre : boxeGame.player;
-        triggerBoxingKO(winner, loser, "cross");
-        boxeGame.koFrames = BOXING_CONFIG.ko.resultDelay;
-        winner.state = "victory";
-        winner.animation = "victory";
-        boxeGame.phase = "RESULT";
-    }
 }
-
 gameLoop();
+
+
+
+
+
+
+

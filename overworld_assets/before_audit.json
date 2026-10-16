@@ -1,0 +1,818 @@
+{
+  "mode": "before",
+  "islands": [
+    {
+      "scene": "HUB",
+      "npcs": [
+        {
+          "id": null,
+          "x": 180,
+          "y": 180,
+          "source": "npc_turista.png",
+          "height": 48,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            46,
+            50,
+            0
+          ],
+          "master": null,
+          "prompt": "> TURISTA: O arquipélago tem diversas modalidades esportivas!",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 270,
+          "y": 130,
+          "source": "npc_guia.png",
+          "height": 48,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            46,
+            50,
+            0
+          ],
+          "master": null,
+          "prompt": "> GUIA: Explore os caminhos ao Norte, Sul, Leste e Oeste.",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 130,
+          "y": 190,
+          "w": 40,
+          "h": 20,
+          "type": "bench",
+          "solid": true
+        },
+        {
+          "x": 280,
+          "y": 190,
+          "w": 40,
+          "h": 20,
+          "type": "bench",
+          "solid": true
+        },
+        {
+          "x": 130,
+          "y": 100,
+          "w": 30,
+          "h": 30,
+          "type": "flower_bed",
+          "solid": false
+        },
+        {
+          "x": 290,
+          "y": 100,
+          "w": 30,
+          "h": 30,
+          "type": "flower_bed",
+          "solid": false
+        }
+      ],
+      "navigation": null,
+      "hash": "01bee492c6b8667ab4b7bc9de2417014e533caf0a94d461bce94809703514b1f"
+    },
+    {
+      "scene": "ILHA_BASQUETE",
+      "npcs": [
+        {
+          "id": "entrada_basquete",
+          "x": 225,
+          "y": 82,
+          "source": "basketball_assets/exported/master_basket/idle/master_basket_idle_01.png",
+          "height": 54,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            62,
+            62,
+            0
+          ],
+          "master": "JOGO_BASQUETE",
+          "prompt": "> MESTRE DO BASQUETE: Sessenta segundos. Vença no placar e conquiste a arena!",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [],
+      "navigation": null,
+      "hash": "3d8e8622b8b21ae95fff3ed3e1876b9c13c0adee6d2907e15645079ad614a2a0"
+    },
+    {
+      "scene": "ILHA_ESQUI",
+      "npcs": [
+        {
+          "id": null,
+          "x": 225,
+          "y": 110,
+          "source": "npc_mestre_novo.png",
+          "height": 50,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            46,
+            50,
+            0
+          ],
+          "master": "JOGO_BOXE",
+          "prompt": "> MESTRE DO BOXE: Controle a distância, circule pelo ringue e lute até o nocaute!",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 130,
+          "y": 190,
+          "source": "npc_treinador_novo.png",
+          "height": 50,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            46,
+            50,
+            0
+          ],
+          "master": null,
+          "prompt": "> TREINADOR: WASD movimenta no ringue. J é jab, K é golpe forte e L é hook. SHIFT defende; ESPAÇO esquiva.",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 345,
+          "y": 110,
+          "source": "npc_arbitro_novo.png",
+          "height": 50,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            46,
+            50,
+            0
+          ],
+          "master": null,
+          "prompt": "> ÁRBITRO: Boxe limpo: sem agarrões, armas ou objetos. O primeiro HP a chegar a zero perde por K.O.!",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 80,
+          "y": 175,
+          "source": "npc_pugilista_novo.png",
+          "height": 50,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            46,
+            50,
+            0
+          ],
+          "master": null,
+          "prompt": "> PUGILISTA: Use W/S para sair da linha do golpe. Um soco fora da profundidade erra.",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 130,
+          "y": 55,
+          "w": 190,
+          "h": 8,
+          "solid": true
+        },
+        {
+          "x": 130,
+          "y": 165,
+          "w": 75,
+          "h": 8,
+          "solid": true
+        },
+        {
+          "x": 245,
+          "y": 165,
+          "w": 75,
+          "h": 8,
+          "solid": true
+        },
+        {
+          "x": 130,
+          "y": 55,
+          "w": 8,
+          "h": 115,
+          "solid": true
+        },
+        {
+          "x": 312,
+          "y": 55,
+          "w": 8,
+          "h": 115,
+          "solid": true
+        },
+        {
+          "x": 45,
+          "y": 65,
+          "w": 28,
+          "h": 42,
+          "type": "punching_bag",
+          "solid": true
+        },
+        {
+          "x": 45,
+          "y": 135,
+          "w": 28,
+          "h": 42,
+          "type": "punching_bag",
+          "solid": true
+        },
+        {
+          "x": 50,
+          "y": 205,
+          "w": 35,
+          "h": 22,
+          "type": "bench_press",
+          "solid": true
+        },
+        {
+          "x": 350,
+          "y": 70,
+          "w": 45,
+          "h": 30,
+          "type": "judges_table",
+          "solid": true
+        },
+        {
+          "x": 360,
+          "y": 155,
+          "w": 30,
+          "h": 25,
+          "type": "corner_stool",
+          "solid": true
+        }
+      ],
+      "navigation": null,
+      "hash": "7b6c6731fbbd22e8bb38bef0219e7c9e75f5f703b4776294caf7fcf90c1e715f"
+    },
+    {
+      "scene": "ILHA_PINGPONG",
+      "npcs": [
+        {
+          "id": null,
+          "x": 150,
+          "y": 220,
+          "source": "npc_aprendiz.png",
+          "height": 48,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            46,
+            50,
+            0
+          ],
+          "master": null,
+          "prompt": "> APRENDIZ: Treine seu tempo de reação para rebatidas.",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 225,
+          "y": 80,
+          "source": "npc_mestre_ping_pong.png",
+          "height": 48,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            46,
+            50,
+            0
+          ],
+          "master": "JOGO_PINGPONG",
+          "prompt": "> MESTRE DO PING-PONG: Mostre seus reflexos!",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 290,
+          "y": 145,
+          "w": 86,
+          "h": 36,
+          "type": "pingpong_table",
+          "solid": true
+        },
+        {
+          "x": 384,
+          "y": 152,
+          "w": 16,
+          "h": 16,
+          "type": "pingpong_bucket",
+          "solid": true
+        },
+        {
+          "x": 320,
+          "y": 45,
+          "w": 65,
+          "h": 38,
+          "type": "scoreboard",
+          "solid": true
+        }
+      ],
+      "navigation": null,
+      "hash": "cd51288504f561a6bd6b8b2844fd312de1b7ce1814f16b5f91e348a7792a30af"
+    },
+    {
+      "scene": "ILHA_SKATE",
+      "npcs": [
+        {
+          "id": null,
+          "x": 225,
+          "y": 80,
+          "source": "mestre_skate.png",
+          "height": 54,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            62,
+            62,
+            0
+          ],
+          "master": "JOGO_SKATE",
+          "prompt": "> mestre_skate: A pista é uma linha contínua. Ganhe velocidade nas descidas, conecte rampas, rails e fios — e chegue ao final da linha!",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 52,
+          "y": 46,
+          "w": 72,
+          "h": 46,
+          "type": "skate_quarter",
+          "solid": true
+        },
+        {
+          "x": 295,
+          "y": 180,
+          "w": 72,
+          "h": 14,
+          "type": "rail",
+          "solid": true
+        },
+        {
+          "x": 64,
+          "y": 190,
+          "w": 58,
+          "h": 20,
+          "type": "bench",
+          "solid": true
+        },
+        {
+          "x": 135,
+          "y": 225,
+          "w": 14,
+          "h": 14,
+          "type": "cone",
+          "solid": true
+        },
+        {
+          "x": 340,
+          "y": 70,
+          "w": 14,
+          "h": 14,
+          "type": "cone",
+          "solid": true
+        }
+      ],
+      "navigation": null,
+      "hash": "7960d2861145c89dcd82fa626148c93dd5f5b5588ec08b9de0566e6de3595f97"
+    },
+    {
+      "scene": "ILHA_ARCO",
+      "npcs": [
+        {
+          "id": "mestre_arco_overworld",
+          "x": 225,
+          "y": 118,
+          "source": "arqueiro_overworld.png",
+          "height": 72,
+          "crop": [
+            335,
+            96,
+            656,
+            1114
+          ],
+          "interaction": [
+            58,
+            76,
+            12
+          ],
+          "master": "JOGO_ARCO",
+          "prompt": "> MESTRE DO ARCO: Observe a trajetória, alinhe o disparo e prove sua precisão!",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 68,
+          "y": 68,
+          "w": 54,
+          "h": 55,
+          "type": "archery_island_decor",
+          "solid": true
+        },
+        {
+          "x": 330,
+          "y": 79,
+          "w": 50,
+          "h": 52,
+          "type": "archery_island_decor",
+          "solid": true
+        },
+        {
+          "x": 35,
+          "y": 202,
+          "w": 55,
+          "h": 38,
+          "type": "archery_island_decor",
+          "solid": true
+        },
+        {
+          "x": 365,
+          "y": 201,
+          "w": 54,
+          "h": 39,
+          "type": "archery_island_decor",
+          "solid": true
+        },
+        {
+          "x": 35,
+          "y": 48,
+          "w": 20,
+          "h": 45,
+          "type": "archery_island_decor",
+          "solid": false
+        },
+        {
+          "x": 397,
+          "y": 51,
+          "w": 20,
+          "h": 45,
+          "type": "archery_island_decor",
+          "solid": false
+        }
+      ],
+      "navigation": null,
+      "hash": "09cae92a9e544af94e4ff10f95521f686bfde6ba6eb4c955d818d2dfd927692f"
+    },
+    {
+      "scene": "ILHA_CORRIDA",
+      "npcs": [
+        {
+          "id": "mestre_corrida",
+          "x": 225,
+          "y": 88,
+          "source": "skate_sprites/mestre_corrida_npc.png (old chroma-key canvas)",
+          "height": 62,
+          "crop": [
+            270,
+            75,
+            710,
+            1090
+          ],
+          "interaction": [
+            78,
+            68,
+            0
+          ],
+          "master": "JOGO_CORRIDA",
+          "prompt": "> MESTRE DA CORRIDA: Duas voltas. Escolha bem a raia, salte as barreiras e me alcance na reta final!",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 105,
+          "y": 145,
+          "w": 32,
+          "h": 10,
+          "type": "hurdle",
+          "solid": true
+        },
+        {
+          "x": 335,
+          "y": 145,
+          "w": 32,
+          "h": 10,
+          "type": "hurdle",
+          "solid": true
+        },
+        {
+          "x": 75,
+          "y": 48,
+          "w": 42,
+          "h": 20,
+          "type": "water_station",
+          "solid": true
+        },
+        {
+          "x": 75,
+          "y": 200,
+          "w": 46,
+          "h": 24,
+          "type": "podium",
+          "solid": true
+        }
+      ],
+      "navigation": null,
+      "hash": "c68be233431e0ccb5f51293128d51afe5825de898906d95f07e833863c6d924c"
+    },
+    {
+      "scene": "ILHA_ESCALADA",
+      "npcs": [
+        {
+          "id": null,
+          "x": 225,
+          "y": 70,
+          "source": "npc_mestre_escalada.png",
+          "height": 48,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            46,
+            50,
+            0
+          ],
+          "master": "JOGO_ESCALADA",
+          "prompt": "> MESTRE DA ESCALADA: O Monte Zorp não perdoa os fracos! Desvie das pedras e alcance o cume!",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 80,
+          "y": 140,
+          "source": "npc_guia_trilha.png",
+          "height": 48,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            46,
+            50,
+            0
+          ],
+          "master": null,
+          "prompt": "> GUIA DE TRILHA: Cuidado lá em cima! O vento sopra forte e algumas pedras rachadas quebram ao pisar!",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 370,
+          "y": 140,
+          "source": "npc_geologa.png",
+          "height": 48,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            46,
+            50,
+            0
+          ],
+          "master": null,
+          "prompt": "> GEÓLOGA: As pedras azuis deslizam pela montanha, e as vermelhas estão prestes a desmoronar!",
+          "loaded": true,
+          "visual": null
+        },
+        {
+          "id": null,
+          "x": 95,
+          "y": 220,
+          "source": "npc_chef.png",
+          "height": 48,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            46,
+            50,
+            0
+          ],
+          "master": null,
+          "prompt": "> CHEF DE ACAMPAMENTO: Uma sopa bem quente para dar energia antes de enfrentar a montanha!",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 45,
+          "y": 190,
+          "w": 40,
+          "h": 35,
+          "type": "tent",
+          "solid": true
+        },
+        {
+          "x": 130,
+          "y": 220,
+          "w": 25,
+          "h": 25,
+          "type": "campfire",
+          "solid": true
+        },
+        {
+          "x": 110,
+          "y": 140,
+          "w": 20,
+          "h": 25,
+          "type": "trail_sign",
+          "solid": true
+        },
+        {
+          "x": 330,
+          "y": 140,
+          "w": 25,
+          "h": 20,
+          "type": "climbing_gear",
+          "solid": true
+        },
+        {
+          "x": 35,
+          "y": 65,
+          "w": 25,
+          "h": 35,
+          "type": "pine_tree",
+          "solid": true
+        },
+        {
+          "x": 385,
+          "y": 65,
+          "w": 25,
+          "h": 35,
+          "type": "pine_tree",
+          "solid": true
+        },
+        {
+          "x": 390,
+          "y": 200,
+          "w": 25,
+          "h": 35,
+          "type": "pine_tree",
+          "solid": true
+        },
+        {
+          "x": 80,
+          "y": 70,
+          "w": 30,
+          "h": 30,
+          "type": "boulder",
+          "solid": true
+        },
+        {
+          "x": 340,
+          "y": 70,
+          "w": 30,
+          "h": 30,
+          "type": "boulder",
+          "solid": true
+        }
+      ],
+      "navigation": null,
+      "hash": "81f3f79dd54b723635c7a56d259c1a513a388d4e23d393cf3e1dae89650e6412"
+    },
+    {
+      "scene": "ILHA_SURF",
+      "npcs": [
+        {
+          "id": "entrada_surf",
+          "x": 225,
+          "y": 140,
+          "source": "surf_assets/mestre_surfing_overworld.png",
+          "height": 84,
+          "crop": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "interaction": [
+            46,
+            70,
+            8
+          ],
+          "master": "JOGO_SURF",
+          "prompt": "> MESTRE DO SURF: Mantenha o flow, enfrente os tubos e sobreviva ao grande evento final!",
+          "loaded": true,
+          "visual": null
+        }
+      ],
+      "obstacles": [
+        {
+          "x": 52,
+          "y": 99,
+          "w": 14,
+          "h": 10,
+          "type": "surf_island_decor",
+          "solid": true
+        },
+        {
+          "x": 384,
+          "y": 99,
+          "w": 14,
+          "h": 10,
+          "type": "surf_island_decor",
+          "solid": true
+        },
+        {
+          "x": 84,
+          "y": 219,
+          "w": 24,
+          "h": 10,
+          "type": "surf_island_decor",
+          "solid": true
+        },
+        {
+          "x": 345,
+          "y": 198,
+          "w": 17,
+          "h": 10,
+          "type": "surf_island_decor",
+          "solid": true
+        }
+      ],
+      "navigation": null,
+      "hash": "4d25247db77297884b978331d5dfac85e01f081927c037c96c085b1cc7016330"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "failures": [],
+  "httpErrors": []
+}

@@ -1,0 +1,936 @@
+{
+  "checks": [
+    {
+      "name": "WASD",
+      "value": {
+        "phase": "FIGHTING",
+        "winner": null,
+        "finisherFrame": null,
+        "knockdown": null,
+        "player": {
+          "x": 209.22499999999997,
+          "y": 194.35999999999993,
+          "hp": 100,
+          "animation": "walk",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "mestre": {
+          "x": 239.22499999999997,
+          "y": 205,
+          "hp": 100,
+          "animation": "idle",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "juiz": {
+          "x": 76,
+          "y": 172,
+          "animation": "idle",
+          "count": 0
+        },
+        "distance": 34.75936040838502,
+        "assets": {
+          "version": "3.0",
+          "requested": 92,
+          "loaded": 92,
+          "failed": 0,
+          "failedPaths": []
+        },
+        "presentation": {
+          "arena": "arena_boxe3.0.png",
+          "uniformScale": 0.344,
+          "crowd": 52,
+          "energy": 0,
+          "activeParticles": 0,
+          "peakParticles": 0,
+          "particleLimit": 128,
+          "celebrationFrames": 0,
+          "events": {}
+        }
+      }
+    },
+    {
+      "name": "attack_j",
+      "value": {
+        "phase": "FIGHTING",
+        "winner": null,
+        "finisherFrame": null,
+        "knockdown": null,
+        "player": {
+          "x": 194,
+          "y": 205,
+          "hp": 100,
+          "animation": "idle",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "mestre": {
+          "x": 243,
+          "y": 205,
+          "hp": 94,
+          "animation": "idle",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "juiz": {
+          "x": 76,
+          "y": 172,
+          "animation": "idle",
+          "count": 0
+        },
+        "distance": 49,
+        "assets": {
+          "version": "3.0",
+          "requested": 92,
+          "loaded": 92,
+          "failed": 0,
+          "failedPaths": []
+        },
+        "presentation": {
+          "arena": "arena_boxe3.0.png",
+          "uniformScale": 0.344,
+          "crowd": 52,
+          "energy": 0.12004563031646857,
+          "activeParticles": 0,
+          "peakParticles": 0,
+          "particleLimit": 128,
+          "celebrationFrames": 0,
+          "events": {
+            "jab": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "attack_k",
+      "value": {
+        "phase": "FIGHTING",
+        "winner": null,
+        "finisherFrame": null,
+        "knockdown": null,
+        "player": {
+          "x": 194,
+          "y": 205,
+          "hp": 100,
+          "animation": "cross",
+          "attack": "cross",
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "mestre": {
+          "x": 247,
+          "y": 205,
+          "hp": 88,
+          "animation": "idle",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "juiz": {
+          "x": 76,
+          "y": 172,
+          "animation": "idle",
+          "count": 0
+        },
+        "distance": 53,
+        "assets": {
+          "version": "3.0",
+          "requested": 92,
+          "loaded": 92,
+          "failed": 0,
+          "failedPaths": []
+        },
+        "presentation": {
+          "arena": "arena_boxe3.0.png",
+          "uniformScale": 0.344,
+          "crowd": 52,
+          "energy": 0.2600988656856819,
+          "activeParticles": 0,
+          "peakParticles": 0,
+          "particleLimit": 128,
+          "celebrationFrames": 0,
+          "events": {
+            "cross": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "attack_l",
+      "value": {
+        "phase": "FIGHTING",
+        "winner": null,
+        "finisherFrame": null,
+        "knockdown": null,
+        "player": {
+          "x": 194,
+          "y": 205,
+          "hp": 100,
+          "animation": "hook",
+          "attack": "hook",
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "mestre": {
+          "x": 250,
+          "y": 205,
+          "hp": 83,
+          "animation": "idle",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "juiz": {
+          "x": 76,
+          "y": 172,
+          "animation": "idle",
+          "count": 0
+        },
+        "distance": 56,
+        "assets": {
+          "version": "3.0",
+          "requested": 92,
+          "loaded": 92,
+          "failed": 0,
+          "failedPaths": []
+        },
+        "presentation": {
+          "arena": "arena_boxe3.0.png",
+          "uniformScale": 0.344,
+          "crowd": 52,
+          "energy": 0.3550349516609559,
+          "activeParticles": 0,
+          "peakParticles": 5,
+          "particleLimit": 128,
+          "celebrationFrames": 0,
+          "events": {
+            "hook": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "guard",
+      "value": {
+        "phase": "FIGHTING",
+        "winner": null,
+        "finisherFrame": null,
+        "knockdown": null,
+        "player": {
+          "x": 192,
+          "y": 205,
+          "hp": 98,
+          "animation": "guard",
+          "attack": null,
+          "guard": true,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "mestre": {
+          "x": 238,
+          "y": 205,
+          "hp": 100,
+          "animation": "jab",
+          "attack": "jab",
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "juiz": {
+          "x": 76,
+          "y": 172,
+          "animation": "idle",
+          "count": 0
+        },
+        "distance": 46,
+        "assets": {
+          "version": "3.0",
+          "requested": 92,
+          "loaded": 92,
+          "failed": 0,
+          "failedPaths": []
+        },
+        "presentation": {
+          "arena": "arena_boxe3.0.png",
+          "uniformScale": 0.344,
+          "crowd": 52,
+          "energy": 0.0926859375,
+          "activeParticles": 0,
+          "peakParticles": 0,
+          "particleLimit": 128,
+          "celebrationFrames": 0,
+          "events": {
+            "block": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "dodge",
+      "value": {
+        "phase": "FIGHTING",
+        "winner": null,
+        "finisherFrame": null,
+        "knockdown": null,
+        "player": {
+          "x": 165.37832988800278,
+          "y": 214.12315734819913,
+          "hp": 100,
+          "animation": "dodge",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 8,
+          "knockdowns": 0
+        },
+        "mestre": {
+          "x": 238,
+          "y": 205,
+          "hp": 100,
+          "animation": "cross",
+          "attack": "cross",
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "juiz": {
+          "x": 76,
+          "y": 172,
+          "animation": "idle",
+          "count": 0
+        },
+        "distance": 74.16539684958039,
+        "assets": {
+          "version": "3.0",
+          "requested": 92,
+          "loaded": 92,
+          "failed": 0,
+          "failedPaths": []
+        },
+        "presentation": {
+          "arena": "arena_boxe3.0.png",
+          "uniformScale": 0.344,
+          "crowd": 52,
+          "energy": 0.156,
+          "activeParticles": 5,
+          "peakParticles": 5,
+          "particleLimit": 128,
+          "celebrationFrames": 0,
+          "events": {
+            "dodge": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "counter",
+      "value": {
+        "phase": "FIGHTING",
+        "winner": null,
+        "finisherFrame": null,
+        "knockdown": null,
+        "player": {
+          "x": 194,
+          "y": 205,
+          "hp": 100,
+          "animation": "jab",
+          "attack": "jab",
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "mestre": {
+          "x": 243,
+          "y": 205,
+          "hp": 91,
+          "animation": "hurt",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "juiz": {
+          "x": 76,
+          "y": 172,
+          "animation": "idle",
+          "count": 0
+        },
+        "distance": 49,
+        "assets": {
+          "version": "3.0",
+          "requested": 92,
+          "loaded": 92,
+          "failed": 0,
+          "failedPaths": []
+        },
+        "presentation": {
+          "arena": "arena_boxe3.0.png",
+          "uniformScale": 0.344,
+          "crowd": 52,
+          "energy": 0.7600246875,
+          "activeParticles": 5,
+          "peakParticles": 5,
+          "particleLimit": 128,
+          "celebrationFrames": 0,
+          "events": {
+            "counter": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "guardBreak",
+      "value": {
+        "phase": "FIGHTING",
+        "winner": null,
+        "finisherFrame": null,
+        "knockdown": null,
+        "player": {
+          "x": 190.4,
+          "y": 205,
+          "hp": 96,
+          "animation": "hurt",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "mestre": {
+          "x": 238,
+          "y": 205,
+          "hp": 100,
+          "animation": "cross",
+          "attack": "cross",
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "juiz": {
+          "x": 76,
+          "y": 172,
+          "animation": "idle",
+          "count": 0
+        },
+        "distance": 47.599999999999994,
+        "assets": {
+          "version": "3.0",
+          "requested": 92,
+          "loaded": 92,
+          "failed": 0,
+          "failedPaths": []
+        },
+        "presentation": {
+          "arena": "arena_boxe3.0.png",
+          "uniformScale": 0.344,
+          "crowd": 52,
+          "energy": 0.7410240703125,
+          "activeParticles": 9,
+          "peakParticles": 9,
+          "particleLimit": 128,
+          "celebrationFrames": 0,
+          "events": {
+            "guardBreak": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "dash",
+      "value": {
+        "phase": "FIGHTING",
+        "winner": null,
+        "finisherFrame": null,
+        "knockdown": null,
+        "player": {
+          "x": 271.6,
+          "y": 205,
+          "hp": 100,
+          "animation": "dash",
+          "attack": "dash",
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "mestre": {
+          "x": 301.6,
+          "y": 205,
+          "hp": 76,
+          "animation": "hurt",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "juiz": {
+          "x": 76,
+          "y": 172,
+          "animation": "idle",
+          "count": 0
+        },
+        "distance": 30,
+        "assets": {
+          "version": "3.0",
+          "requested": 92,
+          "loaded": 92,
+          "failed": 0,
+          "failedPaths": []
+        },
+        "presentation": {
+          "arena": "arena_boxe3.0.png",
+          "uniformScale": 0.344,
+          "crowd": 52,
+          "energy": 0.5964340078124999,
+          "activeParticles": 5,
+          "peakParticles": 5,
+          "particleLimit": 128,
+          "celebrationFrames": 0,
+          "events": {
+            "dash": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "knockdown",
+      "value": {
+        "phase": "KNOCKDOWN",
+        "winner": null,
+        "finisherFrame": null,
+        "knockdown": {
+          "role": "master",
+          "attacker": "zorp",
+          "cause": "jab",
+          "frames": 94,
+          "count": 2
+        },
+        "player": {
+          "x": 194,
+          "y": 205,
+          "hp": 100,
+          "animation": "idle",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "mestre": {
+          "x": 243,
+          "y": 205,
+          "hp": 0,
+          "animation": "knockdown",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 1
+        },
+        "juiz": {
+          "x": 281,
+          "y": 193,
+          "animation": "count",
+          "count": 2
+        },
+        "distance": 49,
+        "assets": {
+          "version": "3.0",
+          "requested": 92,
+          "loaded": 92,
+          "failed": 0,
+          "failedPaths": []
+        },
+        "presentation": {
+          "arena": "arena_boxe3.0.png",
+          "uniformScale": 0.344,
+          "crowd": 52,
+          "energy": 0.27868242799974685,
+          "activeParticles": 0,
+          "peakParticles": 0,
+          "particleLimit": 128,
+          "celebrationFrames": 0,
+          "events": {
+            "jab": 1,
+            "knockdown": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "getup",
+      "value": {
+        "phase": "FIGHTING",
+        "winner": null,
+        "finisherFrame": null,
+        "knockdown": null,
+        "player": {
+          "x": 194,
+          "y": 205,
+          "hp": 100,
+          "animation": "idle",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "mestre": {
+          "x": 243,
+          "y": 205,
+          "hp": 30,
+          "animation": "idle",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 1
+        },
+        "juiz": {
+          "x": 274.40000000000003,
+          "y": 188.5,
+          "animation": "step",
+          "count": 5
+        },
+        "distance": 49,
+        "assets": {
+          "version": "3.0",
+          "requested": 92,
+          "loaded": 92,
+          "failed": 0,
+          "failedPaths": []
+        },
+        "presentation": {
+          "arena": "arena_boxe3.0.png",
+          "uniformScale": 0.344,
+          "crowd": 52,
+          "energy": 0.037711536359159054,
+          "activeParticles": 0,
+          "peakParticles": 0,
+          "particleLimit": 128,
+          "celebrationFrames": 0,
+          "events": {
+            "jab": 1,
+            "knockdown": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "finisher",
+      "value": {
+        "phase": "FINISHER",
+        "winner": "zorp",
+        "finisherFrame": 109,
+        "knockdown": {
+          "role": "master",
+          "attacker": "zorp",
+          "cause": "jab",
+          "frames": 420,
+          "count": 10
+        },
+        "player": {
+          "x": 194,
+          "y": 205,
+          "hp": 100,
+          "animation": "cross",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "mestre": {
+          "x": 243,
+          "y": 205,
+          "hp": 0,
+          "animation": "hurt",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 2
+        },
+        "juiz": {
+          "x": 76,
+          "y": 173,
+          "animation": "ko",
+          "count": 10
+        },
+        "distance": 49,
+        "assets": {
+          "version": "3.0",
+          "requested": 92,
+          "loaded": 92,
+          "failed": 0,
+          "failedPaths": []
+        },
+        "presentation": {
+          "arena": "arena_boxe3.0.png",
+          "uniformScale": 0.344,
+          "crowd": 52,
+          "energy": 0.8810956933593749,
+          "activeParticles": 24,
+          "peakParticles": 24,
+          "particleLimit": 128,
+          "celebrationFrames": 205,
+          "events": {
+            "jab": 2,
+            "knockdown": 2,
+            "finisher": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "victory",
+      "value": {
+        "phase": "RESULT",
+        "winner": "zorp",
+        "finisherFrame": null,
+        "knockdown": {
+          "role": "master",
+          "attacker": "zorp",
+          "cause": "jab",
+          "frames": 420,
+          "count": 10
+        },
+        "player": {
+          "x": 194,
+          "y": 205,
+          "hp": 100,
+          "animation": "victory",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "mestre": {
+          "x": 243,
+          "y": 205,
+          "hp": 0,
+          "animation": "defeat",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 2
+        },
+        "juiz": {
+          "x": 76,
+          "y": 173,
+          "animation": "ko",
+          "count": 10
+        },
+        "distance": 49,
+        "assets": {
+          "version": "3.0",
+          "requested": 92,
+          "loaded": 92,
+          "failed": 0,
+          "failedPaths": []
+        },
+        "presentation": {
+          "arena": "arena_boxe3.0.png",
+          "uniformScale": 0.344,
+          "crowd": 52,
+          "energy": 0.37254609219269774,
+          "activeParticles": 92,
+          "peakParticles": 92,
+          "particleLimit": 128,
+          "celebrationFrames": 231,
+          "events": {
+            "jab": 2,
+            "knockdown": 2,
+            "finisher": 1,
+            "victory": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "fpsCelebration",
+      "value": {
+        "fps": 60,
+        "p95ms": 16.700000000000728
+      }
+    },
+    {
+      "name": "restart",
+      "value": {
+        "phase": "FIGHTING",
+        "winner": null,
+        "finisherFrame": null,
+        "knockdown": null,
+        "player": {
+          "x": 145,
+          "y": 218,
+          "hp": 100,
+          "animation": "idle",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "mestre": {
+          "x": 297.47243735223776,
+          "y": 199.77501035622498,
+          "hp": 100,
+          "animation": "walk",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "juiz": {
+          "x": 76,
+          "y": 172,
+          "animation": "idle",
+          "count": 0
+        },
+        "distance": 155.40953381628032,
+        "assets": {
+          "version": "3.0",
+          "requested": 92,
+          "loaded": 92,
+          "failed": 0,
+          "failedPaths": []
+        },
+        "presentation": {
+          "arena": "arena_boxe3.0.png",
+          "uniformScale": 0.344,
+          "crowd": 52,
+          "energy": 0,
+          "activeParticles": 0,
+          "peakParticles": 0,
+          "particleLimit": 128,
+          "celebrationFrames": 0,
+          "events": {}
+        }
+      }
+    },
+    {
+      "name": "exit",
+      "value": "ILHA_ESQUI"
+    },
+    {
+      "name": "reentry",
+      "value": {
+        "phase": "READY",
+        "winner": null,
+        "finisherFrame": null,
+        "knockdown": null,
+        "player": {
+          "x": 145,
+          "y": 218,
+          "hp": 100,
+          "animation": "idle",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "mestre": {
+          "x": 302,
+          "y": 198,
+          "hp": 100,
+          "animation": "idle",
+          "attack": null,
+          "guard": false,
+          "dodgeAge": 0,
+          "knockdowns": 0
+        },
+        "juiz": {
+          "x": 76,
+          "y": 172,
+          "animation": "idle",
+          "count": 0
+        },
+        "distance": 160.4306703844374,
+        "assets": {
+          "version": "3.0",
+          "requested": 92,
+          "loaded": 92,
+          "failed": 0,
+          "failedPaths": []
+        },
+        "presentation": {
+          "arena": "arena_boxe3.0.png",
+          "uniformScale": 0.344,
+          "crowd": 52,
+          "energy": 0,
+          "activeParticles": 0,
+          "peakParticles": 0,
+          "particleLimit": 128,
+          "celebrationFrames": 0,
+          "events": {}
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "failures": [],
+  "httpErrors": [],
+  "arenaRequests": [
+    "http://127.0.0.1:8765/script.js?v=10.3_boxe_arena_v3",
+    "http://127.0.0.1:8765/archery_assets/arena/archery_arena.png",
+    "http://127.0.0.1:8765/arena_boxe3.0.png?v=3.0.2_boxing_arena",
+    "http://127.0.0.1:8765/basketball_assets/exported/basketball/arena/arena_basketball_background.png?v=1.0.1_visual_fix"
+  ],
+  "loadedArena": "http://127.0.0.1:8765/arena_boxe3.0.png?v=3.0.2_boxing_arena",
+  "snapshot": {
+    "phase": "READY",
+    "winner": null,
+    "finisherFrame": null,
+    "knockdown": null,
+    "player": {
+      "x": 145,
+      "y": 218,
+      "hp": 100,
+      "animation": "idle",
+      "attack": null,
+      "guard": false,
+      "dodgeAge": 0,
+      "knockdowns": 0
+    },
+    "mestre": {
+      "x": 302,
+      "y": 198,
+      "hp": 100,
+      "animation": "idle",
+      "attack": null,
+      "guard": false,
+      "dodgeAge": 0,
+      "knockdowns": 0
+    },
+    "juiz": {
+      "x": 76,
+      "y": 172,
+      "animation": "idle",
+      "count": 0
+    },
+    "distance": 160.4306703844374,
+    "assets": {
+      "version": "3.0",
+      "requested": 92,
+      "loaded": 92,
+      "failed": 0,
+      "failedPaths": []
+    },
+    "presentation": {
+      "arena": "arena_boxe3.0.png",
+      "uniformScale": 0.344,
+      "crowd": 52,
+      "energy": 0,
+      "activeParticles": 0,
+      "peakParticles": 0,
+      "particleLimit": 128,
+      "celebrationFrames": 0,
+      "events": {}
+    }
+  }
+}
