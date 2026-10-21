@@ -56,9 +56,10 @@
         const r = record(owner);
         const player = owner === 'PLAYER';
         const logic = player ? game.playerState : game.mestreState;
+        const masterLogic=!player&&game.masterAI?game.masterAI.state:logic;
         const shotAge = time - r.shot;
         const playerBusy=player&&game.playerControl&&['RAISE_BOW','DRAW_BOWSTRING','RELEASE_SHOT','RECOVERY'].includes(logic);
-        const masterBusy=!player&&game.masterAI&&['READY','RAISE_BOW','DRAW_BOWSTRING','AIM','RELEASE_SHOT','RECOVERY'].includes(logic);
+        const masterBusy=!player&&game.masterAI&&['READY','RAISE_BOW','DRAW_BOWSTRING','AIM','RELEASE_SHOT','RECOVERY'].includes(masterLogic);
         // Reactions never skip a real draw/release/recovery or replace walking
         // with stationary feet. A single pending reaction is held until readable.
         const reaction=!playerBusy&&!masterBusy&&logic!=='MOVE'&&(player||shotAge>=.40)
@@ -79,8 +80,8 @@
             // These poses follow the actual AI simulation, including the moment
             // the projectile is released. Scoring feedback never skips a draw.
             const timing={READY:'ready',RAISE_BOW:'raise',DRAW_BOWSTRING:'draw',AIM:'aim',RELEASE_SHOT:'release',RECOVERY:'recovery'};
-            state=logic;elapsed=game.masterAI.age/60;
-            fps=manifest.states[state].count*60/window.ArcheryMasterAI.CONFIG[timing[state]];
+            state=masterLogic;elapsed=game.masterAI.age/60;
+            fps=manifest.states[state].count*60/(game.masterAI.timing||window.ArcheryMasterAI.CONFIG)[timing[state]];
         } else if (!player && shotAge < 0.16) {
             state = 'RELEASE_SHOT'; elapsed = shotAge; fps = 25;
         } else if (!player && shotAge < 0.40) {

@@ -28,16 +28,18 @@
             entryPoint:flight.entry,exitPoint:flight.entry==='LEFT'?'RIGHT':'LEFT',
             radius:RADIUS,basePoints:48,speedTier:'BIRD',speed:flight.speed,sizeTier:'SMALL',isGolden:false,isExplosive:false,detonated:false,
             pathLength:WIDTH+MARGIN*2,margin:MARGIN,progress:0,age:0,hit:false,hitBy:null,
-            hitAge:0,hitOffsetX:0,hitOffsetY:0,speedX:0,speedY:0,qaStatic:false};
+            hitAge:0,hitOffsetX:0,hitOffsetY:0,speedX:0,speedY:0,retireAfterCollision:false,qaStatic:false};
         target.goldenVariant=golden?'SKY':null;
         if(golden)Object.assign(target,{radius:7,basePoints:180,speed:2.40,speedTier:'GOLD',isGolden:true});
         Object.assign(target,position(target,0));target.previousX=target.x;target.previousY=target.y;
+        target.prevX=target.previousX;target.prevY=target.previousY;
         visibility(target);return target;
     }
-    function step(target) {
-        target.age++;if(target.hit)target.hitAge++;
-        target.previousX=target.x;target.previousY=target.y;
-        target.progress=Math.min(1,target.progress+target.speed/target.pathLength);
+    function step(target,deltaSeconds=1/60) {
+        const frames=deltaSeconds*60;
+        target.age+=frames;if(target.hit)target.hitAge+=frames;
+        target.prevX=target.previousX=target.x;target.prevY=target.previousY=target.y;
+        target.progress=Math.min(1,target.progress+target.speed*frames/target.pathLength);
         Object.assign(target,position(target,target.progress));
         target.speedX=target.x-target.previousX;target.speedY=target.y-target.previousY;
         visibility(target);return target.progress>=1&&!target.visible;

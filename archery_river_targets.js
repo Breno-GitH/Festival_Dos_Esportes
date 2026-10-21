@@ -153,15 +153,17 @@
         const target={carrier:'RIVER',route,pathType:path,entry,entryPoint:entry,exitPoint:route.exit,
             radius:spec.radius,basePoints:spec.basePoints+(spec.golden?0:speedBonus[tier]),speedTier:spec.golden?'GOLD':tier,speed:spec.travelSpeed||SPEEDS[tier],
             sizeTier:spec.sizeTier,isGolden:spec.golden,goldenVariant:descriptor.goldenVariant||null,isExplosive:!!spec.explosive,detonated:false,pathLength:route.length,margin:route.margin,
-            progress:0,age:0,hit:false,hitBy:null,hitAge:0,hitOffsetX:0,hitOffsetY:0,speedX:0,speedY:0,qaStatic:!!descriptor.qaStatic};
+            progress:0,age:0,hit:false,hitBy:null,hitAge:0,hitOffsetX:0,hitOffsetY:0,speedX:0,speedY:0,retireAfterCollision:false,qaStatic:!!descriptor.qaStatic};
         const p=position(target,0);Object.assign(target,p,{previousX:p.x,previousY:p.y});
         if(target.qaStatic){target.x=descriptor.x??225;target.y=descriptor.y??145;target.waterY=target.y+target.radius+3;target.previousX=target.x;target.previousY=target.y;}
+        target.prevX=target.previousX;target.prevY=target.previousY;
         updateVisibility(target);return target;
     }
-    function step(target) {
-        target.age++;if(target.hit)target.hitAge++;
-        target.previousX=target.x;target.previousY=target.y;
-        if(!target.qaStatic){target.progress=Math.min(1,target.progress+target.speed/target.route.length);Object.assign(target,position(target,target.progress));}
+    function step(target,deltaSeconds=1/60) {
+        const frames=deltaSeconds*60;
+        target.age+=frames;if(target.hit)target.hitAge+=frames;
+        target.prevX=target.previousX=target.x;target.prevY=target.previousY=target.y;
+        if(!target.qaStatic){target.progress=Math.min(1,target.progress+target.speed*frames/target.route.length);Object.assign(target,position(target,target.progress));}
         target.speedX=target.x-target.previousX;target.speedY=target.y-target.previousY;
         updateVisibility(target);
         // Retire only after the entire drawing (raft + wake) has left the viewport.
@@ -169,31 +171,7 @@
     }
 
     function sweep(arrow,target) {
-        if(!target.active||target.hit)return null;
-        // Relative segment against the moving circular face. The arrow is its tip,
-        // not a generous rectangle around the shaft, stand or floating support.
-        const ax=arrow.previousX-target.previousX,ay=arrow.previousY-target.previousY;
-        const vx=(arrow.x-arrow.previousX)-(target.x-target.previousX);
-        const vy=(arrow.y-arrow.previousY)-(target.y-target.previousY);
-        const rr=target.radius*target.radius,A=vx*vx+vy*vy;
-        if(A<1e-12)return null;
-        const B=2*(ax*vx+ay*vy),C=ax*ax+ay*ay-rr,D=B*B-4*A*C;
-        if(D<0)return null;
-        let enter=Math.max(0,(-B-Math.sqrt(D))/(2*A)),leave=Math.min(1,(-B+Math.sqrt(D))/(2*A));
-        if(enter>leave)return null;
-        // Hidden pieces of a source-portal target must never absorb an arrow.
-        const xAt=t=>arrow.previousX+(arrow.x-arrow.previousX)*t;
-        const yAt=t=>arrow.previousY+(arrow.y-arrow.previousY)*t;
-        const centerAt=t=>({x:target.previousX+(target.x-target.previousX)*t,y:target.previousY+(target.y-target.previousY)*t});
-        const center=centerAt(enter);
-        const ux=vx/Math.sqrt(A),uy=vy/Math.sqrt(A);
-        const signed=ax*uy-ay*ux;
-        let offsetX=signed*uy,offsetY=-signed*ux;
-        if(xAt(enter)<0||xAt(enter)>WIDTH)return null;
-        if(target.entry==='TOP'&&yAt(enter)<SOURCE_LIP)return null;
-        if(target.entry==='TOP')offsetY=Math.max(offsetY,SOURCE_LIP-center.y);
-        const distance=Math.hypot(offsetX,offsetY);
-        return {t:enter,x:xAt(enter),y:yAt(enter),distance,center,offsetX,offsetY};
+        return window.ArcheryCollision.sweep(arrow,target);
     }
     function markHit(target,owner,impact) {
         target.hit=true;target.hitBy=owner;target.hitAge=0;target.active=false;target.state='HIT_REACTION';

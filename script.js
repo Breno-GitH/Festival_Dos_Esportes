@@ -1784,6 +1784,8 @@ const arcoGame = {
     lastGoldenSpawnFrame: -10000,
     roundFrame: 0,
     roundFrames: ARCHERY_CONFIG.roundFrames,
+    lastUpdateTime: null,
+    simulationAccumulator: 0,
     phase: 0,
     pacing: window.ArcheryMatchPacing.create(),
     gameState: 'TUTORIAL',
@@ -1793,6 +1795,7 @@ const arcoGame = {
 };
 
 function resetArco() {
+    arcoGame.lastUpdateTime=null;arcoGame.simulationAccumulator=0;
     window.archeryCharactersV2.reset();
     arcoGame.playerScore = 0;
     arcoGame.mestreScore = 0;
@@ -1992,6 +1995,7 @@ function queueArcoQaShowcase(descriptors) {
 }
 
 function beginArcoRound() {
+    arcoGame.lastUpdateTime=performance.now();arcoGame.simulationAccumulator=0;
     window.archeryCharactersV2.reset();
     arcoGame.playerControl = window.ArcheryPlayerControl.create();
     arcoGame.masterAI = window.ArcheryMasterAI.create();
@@ -2116,6 +2120,9 @@ function fireArcoArrow(owner, shot = null) {
         y,
         previousX: x,
         previousY: y,
+        prevX: x,
+        prevY: y,
+        state: 'ACTIVE',
         speedX,
         speedY,
         owner
@@ -2177,8 +2184,8 @@ function updateArcoMaster() {
     if (arcoGame.mestreReactionTimer > 0) arcoGame.mestreReactionTimer--;
     const previousState=arcoGame.masterAI.state;
     const result=window.ArcheryMasterAI.step(arcoGame.masterAI,{
-        frame:arcoGame.roundFrame,phase:arcoGame.phase,x:arcoGame.mestreX,y:arcoGame.mestreY,
-        area,targets:arcoGame.targets,arrowSpeed:ARCHERY_CONFIG.arrowSpeed+.35,aggressive:arcoGame.phase===3,
+        frame:arcoGame.roundFrame,totalFrames:arcoGame.roundFrames,phase:arcoGame.phase,x:arcoGame.mestreX,y:arcoGame.mestreY,
+        area,targets:arcoGame.targets,arrowSpeed:ARCHERY_CONFIG.arrowSpeed+.35,
         opponent:{x:arcoGame.playerX,y:arcoGame.playerY,
             arrowVisible:arcoGame.arrows.some(arrow=>arrow.owner==='PLAYER'&&arrow.y>=0&&arrow.y<=300)},
         explosionRadius:window.ArcheryExplosiveTargets.RADIUS
@@ -2186,7 +2193,7 @@ function updateArcoMaster() {
     arcoGame.mestreX=result.x;arcoGame.mestreY=result.y;
     arcoGame.mestreAimTargetId=result.targetId;
     arcoGame.mestreShootCooldown=result.cooldown;
-    arcoGame.mestreDecisionTimer=result.state==='DECIDING'?Math.max(0,window.ArcheryMasterAI.CONFIG.decisionTime-arcoGame.masterAI.age):0;
+    arcoGame.mestreDecisionTimer=result.state==='DECIDING'?Math.max(0,arcoGame.masterAI.timing.decisionTime-arcoGame.masterAI.age):0;
     if(result.state==='DRAW_BOWSTRING'&&previousState!==result.state)window.ArcheryRiverTargets.bowSound('MESTRE');
     if(result.fire){fireArcoArrow('MESTRE',result.fire);arcoGame.mestreShootTimer=window.ArcheryMasterAI.CONFIG.release;}
     updateArcoRange(arcoGame.stats.mestreRange, arcoGame.mestreX, arcoGame.mestreY);
@@ -2198,10 +2205,11 @@ function updateArcoMaster() {
     }
 }
 
-function updateArcoTargets() {
+function updateArcoTargets(deltaSeconds=1/60) {
     for(let index=arcoGame.targets.length-1;index>=0;index--){
         const target=arcoGame.targets[index],wasVisible=target.visible;
-        const retired=(target.carrier==='BIRD'?window.ArcheryBirdTargets:window.ArcheryRiverTargets).step(target);
+        const retired=(target.carrier==='BIRD'?window.ArcheryBirdTargets:window.ArcheryRiverTargets).step(target,deltaSeconds);
+        target.retireAfterCollision=retired;
         const step=Math.hypot(target.speedX,target.speedY);
         arcoGame.stats.maxTargetStep=Math.max(arcoGame.stats.maxTargetStep,step);
         if(step>ARCHERY_CONFIG.teleportThreshold)arcoGame.stats.teleportEvents++;
@@ -2211,7 +2219,14 @@ function updateArcoTargets() {
                 effectKind:'GOLD_NOTICE',timer:72,duration:72
             }));
         }
-        if(retired){
+    }
+}
+
+function retireArcoTargets() {
+    // A fast carrier may cross an arrow before leaving this step. Test it first.
+    for(let index=arcoGame.targets.length-1;index>=0;index--){
+        const target=arcoGame.targets[index];
+        if(target.retireAfterCollision){
             if(target.isGolden&&!target.hit)window.archeryCharactersV2.goldenLost('MESTRE');
             arcoGame.stats.targetExits++;if(target.hit)arcoGame.stats.spentTargetExits++;
             if(target.carrier==='BIRD')arcoGame.stats.birdExits++;
@@ -2353,23 +2368,37 @@ function awardArcoHit(arrow, target, impactDistance, impact) {
     return true;
 }
 
-function updateArcoArrows() {
+function updateArcoArrows(deltaSeconds=1/60) {
+    const collisionSystem=window.ArcheryCollision,frames=deltaSeconds*60;
+    collisionSystem.advanceDebug(deltaSeconds);
     for(let arrowIndex=arcoGame.arrows.length-1;arrowIndex>=0;arrowIndex--){
-        const arrow=arcoGame.arrows[arrowIndex];arrow.previousX=arrow.x;arrow.previousY=arrow.y;
-        arrow.x+=arrow.speedX;arrow.y+=arrow.speedY;
+        const arrow=arcoGame.arrows[arrowIndex];
+        if(arrow.state&&arrow.state!=='ACTIVE'){
+            arrow.state='REMOVED';arcoGame.arrowPool.push(arcoGame.arrows.splice(arrowIndex,1)[0]);continue;
+        }
+        arrow.state='ACTIVE';
+        arrow.prevX=arrow.previousX=arrow.x;arrow.prevY=arrow.previousY=arrow.y;
+        arrow.x+=arrow.speedX*frames;arrow.y+=arrow.speedY*frames;
         let targetIndex=-1,first=null;
         for(let index=0;index<arcoGame.targets.length;index++){
             const collision=window.ArcheryRiverTargets.sweep(arrow,arcoGame.targets[index]);
             if(collision&&(!first||collision.t<first.t)){first=collision;targetIndex=index;}
         }
+        collisionSystem.trace(arrow,first);
         if(first){
             arrow.x=first.x;arrow.y=first.y;
-            awardArcoHit(arrow,arcoGame.targets[targetIndex],first.distance,first);
+            arrow.state='HIT';
+            // Explosion neighbourhoods and hit effects use positions at contact,
+            // not endpoints a fast target may already have travelled beyond.
+            collisionSystem.atImpact(arcoGame.targets,first.t,()=>
+                awardArcoHit(arrow,arcoGame.targets[targetIndex],first.distance,first));
             // The carrier keeps travelling: a raft drifts, a bird flies on unharmed.
+            arrow.state='REMOVED';
             arcoGame.arrowPool.push(arcoGame.arrows.splice(arrowIndex,1)[0]);continue;
         }
         const visualMargin=arrow.owner==='PLAYER'?48:30;
         if(arrow.y < -visualMargin || arrow.x < -30 || arrow.x > canvas.width+30){
+            arrow.state='REMOVED';
             window.archeryCharactersV2.miss(arrow.owner);
             if(arrow.owner==='PLAYER'){arcoGame.stats.playerMisses++;arcoGame.playerReactionTimer=18;}
             else{arcoGame.stats.mestreMisses++;arcoGame.mestreReactionTimer=14;}
@@ -2412,7 +2441,7 @@ function resolveArcoFrame() {
     // No new shots or spawns after the buzzer. Live targets and all projectiles
     // already released continue using the same movement and collision routines.
     arcoGame.pacing.settleFrames++;
-    updateArcoTargets();updateArcoArrows();updateArcoEffects();
+    updateArcoTargets();updateArcoArrows();retireArcoTargets();updateArcoEffects();
     consumeArcoShootEdges();
     const pacing=window.ArcheryMatchPacing;
     if((arcoGame.arrows.length===0&&arcoGame.pacing.settleFrames>=pacing.SETTLE_MIN)
@@ -2430,12 +2459,26 @@ function simulateArcoFrame() {
     updateArcoMaster();
     updateArcoTargets();
     updateArcoArrows();
+    retireArcoTargets();
     updateArcoEffects();
     window.ArcheryMatchPacing.sample(arcoGame.pacing,arcoGame.phase,arcoGame.targets,arcoGame.roundFrames-arcoGame.roundFrame);
     if (arcoGame.roundFrame >= arcoGame.roundFrames) beginArcoResolution();
 }
 
-function updateArco() {
+function advanceArcoSimulation(deltaSeconds,speed=1) {
+    if(!Number.isFinite(deltaSeconds)||deltaSeconds<0)return 0;
+    // Keep existing 60 Hz AI, schedules, cooldowns and scoring. Rendering may run
+    // at 30, 60 or 144 Hz; collision always sees matching target/arrow intervals.
+    arcoGame.simulationAccumulator+=Math.min(deltaSeconds,.25)*60*speed;
+    let steps=0;
+    while(arcoGame.simulationAccumulator>=1-1e-9&&['PLAYING','RESOLVING'].includes(arcoGame.gameState)){
+        arcoGame.simulationAccumulator=Math.max(0,arcoGame.simulationAccumulator-1);
+        simulateArcoFrame();consumeArcoShootEdges();steps++;
+    }
+    return steps;
+}
+
+function updateArco(now=performance.now()) {
     if (arcoGame.gameState === 'TUTORIAL') {
         if (archeryShootPressed) beginArcoRound();
         consumeArcoShootEdges();
@@ -2464,8 +2507,9 @@ function updateArco() {
     const frameStep = archeryQaParams.get('archeryQa') === '1' && Number.isFinite(qaFrameStepValue)
         ? clampArco(Math.round(qaFrameStepValue), 1, 60)
         : 1;
-    for (let step = 0; step < frameStep && ['PLAYING','RESOLVING'].includes(arcoGame.gameState); step++) simulateArcoFrame();
-    consumeArcoShootEdges();
+    const deltaSeconds=arcoGame.lastUpdateTime===null?0:Math.max(0,(now-arcoGame.lastUpdateTime)/1000);
+    arcoGame.lastUpdateTime=now;
+    advanceArcoSimulation(deltaSeconds,frameStep);
 }
 function getArcoCharacterVisual(actor) {
     return window.archeryCharactersV2.resolve(actor, arcoGame).state;
@@ -2628,6 +2672,7 @@ function drawArcoGame() {
     drawArcoBirds();
     for(const arrow of arcoGame.arrows)window.ArcheryRiverTargets.drawArrow(ctx,assets,arrow);
     drawArcoEffects();
+    window.ArcheryCollision.drawDebug(ctx,arcoGame.targets);
 
     drawArcoCharacters();
     if(arcoGame.gameState==='PLAYING')window.ArcheryPlayerControl.drawGuide(ctx,getArcoArrowOrigin('PLAYER'),arcoGame.playerControl);
