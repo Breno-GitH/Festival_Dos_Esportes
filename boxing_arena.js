@@ -86,6 +86,7 @@ function resetBoxe(startImmediately = false) {
     boxeGame.phase = startImmediately ? "FIGHTING" : "READY";
     boxeGame.player = makeBoxingFighter("zorp", 145, 218);
     boxeGame.mestre = makeBoxingFighter("master", 302, 198);
+    window.FestivalChallenges.onBoxingStart();
     boxeGame.juiz = { role: "judge", x: 76, y: 172, animation: "idle", stateFrame: 0, facing: 1 };
     boxeGame.fightFrames = 0;
     boxeGame.effects.length = 0;
@@ -231,6 +232,7 @@ function boxingCompleteKo() {
     if (!down || boxeGame.phase === "RESULT") return;
     boxeGame.phase = "RESULT";
     boxeGame.winner = down.attacker;
+    window.FestivalChallenges.onBoxingResult(boxeGame.winner, boxeGame.player.knockdowns);
     boxeGame.finisher = null;
     boxeGame.juiz.animation = "ko";
     boxeGame.juiz.stateFrame = 0;

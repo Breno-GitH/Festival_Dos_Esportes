@@ -1,0 +1,3137 @@
+{
+  "version": "2.2.0",
+  "source": "zorp_escalada2.0.png",
+  "canvas": [
+    144,
+    192
+  ],
+  "anchor": [
+    72,
+    186
+  ],
+  "bodyHeight": 153,
+  "displayBodyHeight": 64,
+  "actions": {
+    "idle": [
+      "idle_01",
+      "idle_02",
+      "idle_03",
+      "idle_04"
+    ],
+    "edge_wait": [
+      "edge_wait_01",
+      "edge_wait_02",
+      "edge_wait_03",
+      "edge_wait_04"
+    ],
+    "walk": [
+      "walk_01",
+      "walk_02",
+      "walk_03",
+      "walk_04"
+    ],
+    "side_grip": [
+      "side_grip_01",
+      "side_grip_02",
+      "side_grip_03",
+      "side_grip_04"
+    ],
+    "pull_up": [
+      "pull_up_01",
+      "pull_up_02",
+      "pull_up_03",
+      "pull_up_04"
+    ],
+    "jump": [
+      "jump_01",
+      "jump_02",
+      "jump_03",
+      "jump_04"
+    ],
+    "fall": [
+      "fall_01",
+      "fall_02",
+      "fall_03"
+    ],
+    "lower_grip": [
+      "lower_grip_01",
+      "lower_grip_02",
+      "lower_grip_03"
+    ],
+    "transfer": [
+      "transfer_01",
+      "transfer_02",
+      "transfer_03",
+      "transfer_04"
+    ],
+    "corner": [
+      "corner_01",
+      "corner_02",
+      "corner_03"
+    ],
+    "checkpoint": [
+      "checkpoint_01",
+      "checkpoint_02",
+      "checkpoint_03",
+      "checkpoint_04",
+      "checkpoint_05",
+      "checkpoint_06"
+    ],
+    "tired": [
+      "tired_01",
+      "tired_02",
+      "tired_03"
+    ],
+    "hurt": [
+      "hurt_01",
+      "hurt_02",
+      "hurt_03"
+    ],
+    "victory": [
+      "victory_01",
+      "victory_02",
+      "victory_03",
+      "victory_04"
+    ]
+  },
+  "frames": [
+    {
+      "id": "idle_01",
+      "file": "zorp_v2/idle_01.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "idle",
+      "state": "IDLE",
+      "frame": 1,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        33,
+        54,
+        141,
+        210
+      ],
+      "sourceRect": [
+        33,
+        54,
+        108,
+        156
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          130.8
+        ],
+        "hands": [
+          71,
+          74
+        ]
+      },
+      "visibleBounds": [
+        18,
+        30,
+        126,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "idle_02",
+      "file": "zorp_v2/idle_02.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "idle",
+      "state": "IDLE",
+      "frame": 2,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        151,
+        56,
+        257,
+        211
+      ],
+      "sourceRect": [
+        151,
+        56,
+        106,
+        155
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          131.15
+        ],
+        "hands": [
+          72,
+          74
+        ]
+      },
+      "visibleBounds": [
+        19,
+        31,
+        125,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "idle_03",
+      "file": "zorp_v2/idle_03.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "idle",
+      "state": "IDLE",
+      "frame": 3,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        268,
+        56,
+        372,
+        208
+      ],
+      "sourceRect": [
+        268,
+        56,
+        104,
+        152
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          132.2
+        ],
+        "hands": [
+          73,
+          75
+        ]
+      },
+      "visibleBounds": [
+        20,
+        34,
+        124,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "idle_04",
+      "file": "zorp_v2/idle_04.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "idle",
+      "state": "IDLE",
+      "frame": 4,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        383,
+        54,
+        489,
+        208
+      ],
+      "sourceRect": [
+        383,
+        54,
+        106,
+        154
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          131.5
+        ],
+        "hands": [
+          71,
+          73
+        ]
+      },
+      "visibleBounds": [
+        19,
+        32,
+        125,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "edge_wait_01",
+      "file": "zorp_v2/edge_wait_01.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "edge_wait",
+      "state": "EDGE_WAIT",
+      "frame": 1,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        541,
+        52,
+        647,
+        208
+      ],
+      "sourceRect": [
+        541,
+        52,
+        106,
+        156
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          130.8
+        ],
+        "hands": [
+          72,
+          69
+        ]
+      },
+      "visibleBounds": [
+        19,
+        30,
+        125,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "edge_wait_02",
+      "file": "zorp_v2/edge_wait_02.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "edge_wait",
+      "state": "EDGE_WAIT",
+      "frame": 2,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        657,
+        54,
+        763,
+        210
+      ],
+      "sourceRect": [
+        657,
+        54,
+        106,
+        156
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          130.8
+        ],
+        "hands": [
+          72,
+          70
+        ]
+      },
+      "visibleBounds": [
+        19,
+        30,
+        125,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "edge_wait_03",
+      "file": "zorp_v2/edge_wait_03.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "edge_wait",
+      "state": "EDGE_WAIT",
+      "frame": 3,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        773,
+        53,
+        878,
+        208
+      ],
+      "sourceRect": [
+        773,
+        53,
+        105,
+        155
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          131.15
+        ],
+        "hands": [
+          72,
+          70
+        ]
+      },
+      "visibleBounds": [
+        20,
+        31,
+        125,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "edge_wait_04",
+      "file": "zorp_v2/edge_wait_04.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "edge_wait",
+      "state": "EDGE_WAIT",
+      "frame": 4,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        883,
+        52,
+        987,
+        207
+      ],
+      "sourceRect": [
+        883,
+        52,
+        104,
+        155
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          131.15
+        ],
+        "hands": [
+          73,
+          70
+        ]
+      },
+      "visibleBounds": [
+        20,
+        31,
+        124,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "walk_01",
+      "file": "zorp_v2/walk_01.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "walk",
+      "state": "WALK",
+      "frame": 1,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1058,
+        52,
+        1167,
+        210
+      ],
+      "sourceRect": [
+        1058,
+        52,
+        109,
+        158
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          130.10000000000002
+        ]
+      },
+      "visibleBounds": [
+        18,
+        28,
+        127,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "walk_02",
+      "file": "zorp_v2/walk_02.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "walk",
+      "state": "WALK",
+      "frame": 2,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1195,
+        54,
+        1302,
+        211
+      ],
+      "sourceRect": [
+        1195,
+        54,
+        107,
+        157
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          130.45
+        ]
+      },
+      "visibleBounds": [
+        19,
+        29,
+        126,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "walk_03",
+      "file": "zorp_v2/walk_03.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "walk",
+      "state": "WALK",
+      "frame": 3,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1332,
+        54,
+        1437,
+        209
+      ],
+      "sourceRect": [
+        1332,
+        54,
+        105,
+        155
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          131.15
+        ]
+      },
+      "visibleBounds": [
+        20,
+        31,
+        125,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "walk_04",
+      "file": "zorp_v2/walk_04.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "walk",
+      "state": "WALK",
+      "frame": 4,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1470,
+        53,
+        1580,
+        210
+      ],
+      "sourceRect": [
+        1470,
+        53,
+        110,
+        157
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          130.45
+        ]
+      },
+      "visibleBounds": [
+        17,
+        29,
+        127,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "side_grip_01",
+      "file": "zorp_v2/side_grip_01.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "side_grip",
+      "state": "SIDE_GRIP",
+      "frame": 1,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        28,
+        275,
+        105,
+        443
+      ],
+      "sourceRect": [
+        28,
+        275,
+        77,
+        168
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          75,
+          126
+        ]
+      },
+      "visibleBounds": [
+        34,
+        18,
+        111,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "side_grip_02",
+      "file": "zorp_v2/side_grip_02.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "side_grip",
+      "state": "SIDE_GRIP",
+      "frame": 2,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        126,
+        275,
+        211,
+        449
+      ],
+      "sourceRect": [
+        126,
+        275,
+        85,
+        174
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          73,
+          122
+        ]
+      },
+      "visibleBounds": [
+        30,
+        12,
+        115,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "side_grip_03",
+      "file": "zorp_v2/side_grip_03.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "side_grip",
+      "state": "SIDE_GRIP",
+      "frame": 3,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        229,
+        275,
+        311,
+        447
+      ],
+      "sourceRect": [
+        229,
+        275,
+        82,
+        172
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          76,
+          125
+        ]
+      },
+      "visibleBounds": [
+        31,
+        14,
+        113,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "side_grip_04",
+      "file": "zorp_v2/side_grip_04.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "side_grip",
+      "state": "SIDE_GRIP",
+      "frame": 4,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        337,
+        274,
+        416,
+        439
+      ],
+      "sourceRect": [
+        337,
+        274,
+        79,
+        165
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          75,
+          130
+        ]
+      },
+      "visibleBounds": [
+        33,
+        21,
+        112,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "pull_up_01",
+      "file": "zorp_v2/pull_up_01.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "pull_up",
+      "state": "PULL_UP",
+      "frame": 1,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        457,
+        303,
+        559,
+        455
+      ],
+      "sourceRect": [
+        457,
+        303,
+        102,
+        152
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          73,
+          139
+        ]
+      },
+      "visibleBounds": [
+        21,
+        34,
+        123,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "pull_up_02",
+      "file": "zorp_v2/pull_up_02.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "pull_up",
+      "state": "PULL_UP",
+      "frame": 2,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        556,
+        287,
+        653,
+        439
+      ],
+      "sourceRect": [
+        556,
+        287,
+        97,
+        152
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          75,
+          138
+        ]
+      },
+      "visibleBounds": [
+        24,
+        34,
+        121,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "pull_up_03",
+      "file": "zorp_v2/pull_up_03.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "pull_up",
+      "state": "PULL_UP",
+      "frame": 3,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        652,
+        286,
+        754,
+        450
+      ],
+      "sourceRect": [
+        652,
+        286,
+        102,
+        164
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          73,
+          136
+        ]
+      },
+      "visibleBounds": [
+        21,
+        22,
+        123,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "pull_up_04",
+      "file": "zorp_v2/pull_up_04.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "pull_up",
+      "state": "PULL_UP",
+      "frame": 4,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        753,
+        266,
+        855,
+        418
+      ],
+      "sourceRect": [
+        753,
+        266,
+        102,
+        152
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          74,
+          141
+        ]
+      },
+      "visibleBounds": [
+        21,
+        34,
+        123,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "jump_01",
+      "file": "zorp_v2/jump_01.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "jump",
+      "state": "JUMP",
+      "frame": 1,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        890,
+        288,
+        997,
+        448
+      ],
+      "sourceRect": [
+        890,
+        288,
+        107,
+        160
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          129.39999999999998
+        ]
+      },
+      "visibleBounds": [
+        19,
+        26,
+        126,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "jump_02",
+      "file": "zorp_v2/jump_02.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "jump",
+      "state": "JUMP",
+      "frame": 2,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1013,
+        264,
+        1114,
+        427
+      ],
+      "sourceRect": [
+        1013,
+        264,
+        101,
+        163
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          128.35000000000002
+        ]
+      },
+      "visibleBounds": [
+        22,
+        23,
+        123,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "jump_03",
+      "file": "zorp_v2/jump_03.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "jump",
+      "state": "JUMP",
+      "frame": 3,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1119,
+        264,
+        1239,
+        416
+      ],
+      "sourceRect": [
+        1119,
+        264,
+        120,
+        152
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          132.2
+        ]
+      },
+      "visibleBounds": [
+        12,
+        34,
+        132,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "jump_04",
+      "file": "zorp_v2/jump_04.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "jump",
+      "state": "JUMP",
+      "frame": 4,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1226,
+        278,
+        1327,
+        440
+      ],
+      "sourceRect": [
+        1226,
+        278,
+        101,
+        162
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          128.7
+        ]
+      },
+      "visibleBounds": [
+        22,
+        24,
+        123,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "fall_01",
+      "file": "zorp_v2/fall_01.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "fall",
+      "state": "FALL",
+      "frame": 1,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1352,
+        321,
+        1463,
+        451
+      ],
+      "sourceRect": [
+        1352,
+        321,
+        111,
+        130
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          139.89999999999998
+        ]
+      },
+      "visibleBounds": [
+        17,
+        56,
+        128,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "fall_02",
+      "file": "zorp_v2/fall_02.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "fall",
+      "state": "FALL",
+      "frame": 2,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1437,
+        274,
+        1542,
+        378
+      ],
+      "sourceRect": [
+        1437,
+        274,
+        105,
+        104
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          149.0
+        ]
+      },
+      "visibleBounds": [
+        20,
+        82,
+        125,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "fall_03",
+      "file": "zorp_v2/fall_03.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "fall",
+      "state": "FALL",
+      "frame": 3,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1540,
+        329,
+        1645,
+        452
+      ],
+      "sourceRect": [
+        1540,
+        329,
+        105,
+        123
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          142.35000000000002
+        ]
+      },
+      "visibleBounds": [
+        20,
+        63,
+        125,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "lower_grip_01",
+      "file": "zorp_v2/lower_grip_01.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "lower_grip",
+      "state": "LOWER_GRIP",
+      "frame": 1,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        43,
+        519,
+        130,
+        671
+      ],
+      "sourceRect": [
+        43,
+        519,
+        87,
+        152
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          132.20000000000005
+        ],
+        "hands": [
+          73,
+          48
+        ]
+      },
+      "visibleBounds": [
+        29,
+        34,
+        116,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "lower_grip_02",
+      "file": "zorp_v2/lower_grip_02.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "lower_grip",
+      "state": "LOWER_GRIP",
+      "frame": 2,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        141,
+        519,
+        225,
+        675
+      ],
+      "sourceRect": [
+        141,
+        519,
+        84,
+        156
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          71.5,
+          130.79999999999995
+        ],
+        "hands": [
+          72,
+          44
+        ]
+      },
+      "visibleBounds": [
+        30,
+        30,
+        114,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "lower_grip_03",
+      "file": "zorp_v2/lower_grip_03.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "lower_grip",
+      "state": "LOWER_GRIP",
+      "frame": 3,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        234,
+        518,
+        317,
+        671
+      ],
+      "sourceRect": [
+        234,
+        518,
+        83,
+        153
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          131.85000000000002
+        ],
+        "hands": [
+          72,
+          47
+        ]
+      },
+      "visibleBounds": [
+        31,
+        33,
+        114,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "transfer_01",
+      "file": "zorp_v2/transfer_01.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "transfer",
+      "state": "TRANSFER",
+      "frame": 1,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        365,
+        523,
+        466,
+        679
+      ],
+      "sourceRect": [
+        365,
+        523,
+        101,
+        156
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72,
+          116
+        ]
+      },
+      "visibleBounds": [
+        22,
+        30,
+        123,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "transfer_02",
+      "file": "zorp_v2/transfer_02.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "transfer",
+      "state": "TRANSFER",
+      "frame": 2,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        471,
+        513,
+        548,
+        676
+      ],
+      "sourceRect": [
+        471,
+        513,
+        77,
+        163
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          73,
+          114
+        ]
+      },
+      "visibleBounds": [
+        34,
+        23,
+        111,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "transfer_03",
+      "file": "zorp_v2/transfer_03.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "transfer",
+      "state": "TRANSFER",
+      "frame": 3,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        553,
+        524,
+        644,
+        653
+      ],
+      "sourceRect": [
+        553,
+        524,
+        91,
+        129
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          73,
+          139
+        ]
+      },
+      "visibleBounds": [
+        27,
+        57,
+        118,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "transfer_04",
+      "file": "zorp_v2/transfer_04.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "transfer",
+      "state": "TRANSFER",
+      "frame": 4,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        660,
+        513,
+        737,
+        672
+      ],
+      "sourceRect": [
+        660,
+        513,
+        77,
+        159
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          75,
+          115
+        ]
+      },
+      "visibleBounds": [
+        34,
+        27,
+        111,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "corner_01",
+      "file": "zorp_v2/corner_01.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "corner",
+      "state": "CORNER",
+      "frame": 1,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        769,
+        510,
+        853,
+        676
+      ],
+      "sourceRect": [
+        769,
+        510,
+        84,
+        166
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          67,
+          126
+        ]
+      },
+      "visibleBounds": [
+        30,
+        20,
+        114,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "corner_02",
+      "file": "zorp_v2/corner_02.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "corner",
+      "state": "CORNER",
+      "frame": 2,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        874,
+        525,
+        958,
+        686
+      ],
+      "sourceRect": [
+        874,
+        525,
+        84,
+        161
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72,
+          123
+        ]
+      },
+      "visibleBounds": [
+        30,
+        25,
+        114,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "corner_03",
+      "file": "zorp_v2/corner_03.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "corner",
+      "state": "CORNER",
+      "frame": 3,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        955,
+        519,
+        1038,
+        673
+      ],
+      "sourceRect": [
+        955,
+        519,
+        83,
+        154
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          71,
+          128
+        ]
+      },
+      "visibleBounds": [
+        31,
+        32,
+        114,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "checkpoint_01",
+      "file": "zorp_v2/checkpoint_01.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "checkpoint",
+      "state": "CHECKPOINT",
+      "frame": 1,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1068,
+        533,
+        1148,
+        683
+      ],
+      "sourceRect": [
+        1068,
+        533,
+        80,
+        150
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          132.89999999999998
+        ]
+      },
+      "visibleBounds": [
+        32,
+        36,
+        112,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "checkpoint_02",
+      "file": "zorp_v2/checkpoint_02.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "checkpoint",
+      "state": "CHECKPOINT",
+      "frame": 2,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1161,
+        533,
+        1249,
+        684
+      ],
+      "sourceRect": [
+        1161,
+        533,
+        88,
+        151
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          132.54999999999995
+        ]
+      },
+      "visibleBounds": [
+        28,
+        35,
+        116,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "checkpoint_03",
+      "file": "zorp_v2/checkpoint_03.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "checkpoint",
+      "state": "CHECKPOINT",
+      "frame": 3,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1258,
+        533,
+        1353,
+        683
+      ],
+      "sourceRect": [
+        1258,
+        533,
+        95,
+        150
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          132.89999999999998
+        ]
+      },
+      "visibleBounds": [
+        25,
+        36,
+        120,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "checkpoint_04",
+      "file": "zorp_v2/checkpoint_04.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "checkpoint",
+      "state": "CHECKPOINT",
+      "frame": 4,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1366,
+        532,
+        1454,
+        682
+      ],
+      "sourceRect": [
+        1366,
+        532,
+        88,
+        150
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          132.89999999999998
+        ]
+      },
+      "visibleBounds": [
+        28,
+        36,
+        116,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "checkpoint_05",
+      "file": "zorp_v2/checkpoint_05.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "checkpoint",
+      "state": "CHECKPOINT",
+      "frame": 5,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1460,
+        534,
+        1542,
+        683
+      ],
+      "sourceRect": [
+        1460,
+        534,
+        82,
+        149
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          133.25
+        ]
+      },
+      "visibleBounds": [
+        31,
+        37,
+        113,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "checkpoint_06",
+      "file": "zorp_v2/checkpoint_06.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "checkpoint",
+      "state": "CHECKPOINT",
+      "frame": 6,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1548,
+        523,
+        1652,
+        678
+      ],
+      "sourceRect": [
+        1548,
+        523,
+        104,
+        155
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          131.79999999999995
+        ]
+      },
+      "visibleBounds": [
+        20,
+        31,
+        124,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "tired_01",
+      "file": "zorp_v2/tired_01.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "tired",
+      "state": "TIRED",
+      "frame": 1,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        33,
+        770,
+        147,
+        915
+      ],
+      "sourceRect": [
+        33,
+        770,
+        114,
+        145
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          70.5,
+          134.64999999999998
+        ]
+      },
+      "visibleBounds": [
+        15,
+        41,
+        129,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "tired_02",
+      "file": "zorp_v2/tired_02.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "tired",
+      "state": "TIRED",
+      "frame": 2,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        163,
+        771,
+        272,
+        918
+      ],
+      "sourceRect": [
+        163,
+        771,
+        109,
+        147
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          133.95000000000005
+        ]
+      },
+      "visibleBounds": [
+        18,
+        39,
+        127,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "tired_03",
+      "file": "zorp_v2/tired_03.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "tired",
+      "state": "TIRED",
+      "frame": 3,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        291,
+        759,
+        407,
+        912
+      ],
+      "sourceRect": [
+        291,
+        759,
+        116,
+        153
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          71.0,
+          131.85000000000002
+        ]
+      },
+      "visibleBounds": [
+        14,
+        33,
+        130,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "hurt_01",
+      "file": "zorp_v2/hurt_01.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "hurt",
+      "state": "HURT",
+      "frame": 1,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        455,
+        754,
+        575,
+        914
+      ],
+      "sourceRect": [
+        455,
+        754,
+        120,
+        160
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          136.39999999999998
+        ]
+      },
+      "visibleBounds": [
+        12,
+        26,
+        132,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "hurt_02",
+      "file": "zorp_v2/hurt_02.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "hurt",
+      "state": "HURT",
+      "frame": 2,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        590,
+        755,
+        709,
+        914
+      ],
+      "sourceRect": [
+        590,
+        755,
+        119,
+        159
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          136.75
+        ]
+      },
+      "visibleBounds": [
+        13,
+        27,
+        132,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "hurt_03",
+      "file": "zorp_v2/hurt_03.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "hurt",
+      "state": "HURT",
+      "frame": 3,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        723,
+        748,
+        841,
+        918
+      ],
+      "sourceRect": [
+        723,
+        748,
+        118,
+        170
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          133.60000000000002
+        ]
+      },
+      "visibleBounds": [
+        13,
+        16,
+        131,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale."
+    },
+    {
+      "id": "victory_01",
+      "file": "zorp_v2/victory_01.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "victory",
+      "state": "VICTORY",
+      "frame": 1,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        932,
+        767,
+        1055,
+        918
+      ],
+      "sourceRect": [
+        932,
+        767,
+        123,
+        151
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          132.54999999999995
+        ]
+      },
+      "visibleBounds": [
+        11,
+        35,
+        134,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale. Character only; detached victory decoration excluded."
+    },
+    {
+      "id": "victory_02",
+      "file": "zorp_v2/victory_02.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "victory",
+      "state": "VICTORY",
+      "frame": 2,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1095,
+        753,
+        1214,
+        914
+      ],
+      "sourceRect": [
+        1095,
+        753,
+        119,
+        161
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          129.04999999999995
+        ]
+      },
+      "visibleBounds": [
+        13,
+        25,
+        132,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale. Character only; detached victory decoration excluded."
+    },
+    {
+      "id": "victory_03",
+      "file": "zorp_v2/victory_03.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "victory",
+      "state": "VICTORY",
+      "frame": 3,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1265,
+        746,
+        1384,
+        917
+      ],
+      "sourceRect": [
+        1265,
+        746,
+        119,
+        171
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.5,
+          125.54999999999995
+        ]
+      },
+      "visibleBounds": [
+        13,
+        15,
+        132,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale. Character only; detached victory decoration excluded."
+    },
+    {
+      "id": "victory_04",
+      "file": "zorp_v2/victory_04.png",
+      "source": "zorp_escalada2.0.png",
+      "category": "zorp",
+      "subtype": "victory",
+      "state": "VICTORY",
+      "frame": 4,
+      "width": 144,
+      "height": 192,
+      "anchorX": 72,
+      "anchorY": 186,
+      "contactAnchorX": 72,
+      "contactAnchorY": 186,
+      "anchorType": "BOTTOM_CENTER",
+      "canvasGroup": "climb_zorp",
+      "sourceBounds": [
+        1454,
+        771,
+        1564,
+        918
+      ],
+      "sourceRect": [
+        1454,
+        771,
+        110,
+        147
+      ],
+      "anchors": {
+        "feet": [
+          72,
+          186
+        ],
+        "lowerCenter": [
+          72,
+          180
+        ],
+        "body": [
+          72.0,
+          133.95000000000005
+        ]
+      },
+      "visibleBounds": [
+        17,
+        39,
+        127,
+        186
+      ],
+      "notes": "Original RGBA pixels, component-isolated with 6px minimum safety margin; uniform scale. Character only; detached victory decoration excluded."
+    }
+  ],
+  "states": {
+    "CLIMB_IDLE": {
+      "frames": [
+        "idle_01",
+        "idle_02",
+        "idle_03",
+        "idle_04"
+      ],
+      "anchor": "hands",
+      "targetOffset": [
+        0,
+        -44
+      ],
+      "fps": 5,
+      "loop": true,
+      "orientation": "back",
+      "mirror": false,
+      "note": ""
+    },
+    "CLIMB_HOLD": {
+      "frames": [
+        "edge_wait_01",
+        "edge_wait_02",
+        "edge_wait_03",
+        "edge_wait_04"
+      ],
+      "anchor": "hands",
+      "targetOffset": [
+        0,
+        -44
+      ],
+      "fps": 6,
+      "loop": true,
+      "orientation": "back",
+      "mirror": false,
+      "note": ""
+    },
+    "CLIMB_MOVE": {
+      "frames": [
+        "transfer_01",
+        "transfer_03",
+        "transfer_04"
+      ],
+      "anchor": "body",
+      "targetOffset": [
+        0,
+        -24
+      ],
+      "fps": 9,
+      "loop": true,
+      "orientation": "back",
+      "mirror": false,
+      "note": "Transições de costas/3/4 traseiro; a variante frontal transfer_02 permanece catalogada separadamente."
+    },
+    "CLIMB_SIDE": {
+      "frames": [
+        "side_grip_03"
+      ],
+      "anchor": "body",
+      "targetOffset": [
+        0,
+        -24
+      ],
+      "fps": 6,
+      "loop": true,
+      "orientation": "back",
+      "mirror": "right",
+      "note": "Pose lateral de costas; a mesma pose é espelhada para a mão oposta, sem criar outro desenho."
+    },
+    "PULL_UP": {
+      "frames": [
+        "pull_up_01",
+        "pull_up_02",
+        "pull_up_03",
+        "pull_up_04"
+      ],
+      "anchor": "body",
+      "targetOffset": [
+        0,
+        -24
+      ],
+      "fps": 6,
+      "loop": false,
+      "orientation": "back",
+      "mirror": false,
+      "note": ""
+    },
+    "JUMP": {
+      "frames": [
+        "jump_01",
+        "jump_02",
+        "jump_03",
+        "jump_04"
+      ],
+      "anchor": "lowerCenter",
+      "targetOffset": [
+        0,
+        0
+      ],
+      "fps": 9,
+      "loop": false,
+      "orientation": "side",
+      "mirror": "left",
+      "note": ""
+    },
+    "FALL": {
+      "frames": [
+        "fall_01",
+        "fall_02",
+        "fall_03"
+      ],
+      "anchor": "lowerCenter",
+      "targetOffset": [
+        0,
+        0
+      ],
+      "fps": 7,
+      "loop": true,
+      "orientation": "tumbling",
+      "mirror": "left",
+      "note": ""
+    },
+    "HANG": {
+      "frames": [
+        "lower_grip_01",
+        "lower_grip_02",
+        "lower_grip_03"
+      ],
+      "anchor": "hands",
+      "targetOffset": [
+        0,
+        -44
+      ],
+      "fps": 6,
+      "loop": true,
+      "orientation": "back",
+      "mirror": false,
+      "note": ""
+    },
+    "CLIMB_CORNER": {
+      "frames": [
+        "corner_01",
+        "corner_02",
+        "corner_03"
+      ],
+      "anchor": "body",
+      "targetOffset": [
+        0,
+        -24
+      ],
+      "fps": 10,
+      "loop": false,
+      "orientation": "back",
+      "mirror": false,
+      "note": "Trecho final do climb-up já existente no cume; não cria uma nova mecânica de movimento."
+    },
+    "CHECKPOINT_IDLE": {
+      "frames": [
+        "checkpoint_01"
+      ],
+      "anchor": "feet",
+      "targetOffset": [
+        0,
+        3
+      ],
+      "fps": 6,
+      "loop": true,
+      "orientation": "standing",
+      "mirror": false,
+      "note": ""
+    },
+    "CHECKPOINT_WALK_LEFT": {
+      "frames": [
+        "walk_01",
+        "walk_02",
+        "walk_03",
+        "walk_04"
+      ],
+      "anchor": "feet",
+      "targetOffset": [
+        0,
+        3
+      ],
+      "fps": 8,
+      "loop": true,
+      "orientation": "standing_side",
+      "mirror": true,
+      "note": ""
+    },
+    "CHECKPOINT_WALK_RIGHT": {
+      "frames": [
+        "walk_01",
+        "walk_02",
+        "walk_03",
+        "walk_04"
+      ],
+      "anchor": "feet",
+      "targetOffset": [
+        0,
+        3
+      ],
+      "fps": 8,
+      "loop": true,
+      "orientation": "standing_side",
+      "mirror": false,
+      "note": ""
+    },
+    "CHECKPOINT_JUMP": {
+      "frames": [
+        "checkpoint_06"
+      ],
+      "anchor": "lowerCenter",
+      "targetOffset": [
+        0,
+        0
+      ],
+      "fps": 6,
+      "loop": false,
+      "orientation": "standing_three_quarter",
+      "mirror": "left",
+      "note": ""
+    },
+    "TIRED": {
+      "frames": [
+        "tired_01",
+        "tired_02",
+        "tired_03"
+      ],
+      "anchor": "feet",
+      "targetOffset": [
+        0,
+        3
+      ],
+      "fps": 4,
+      "loop": true,
+      "orientation": "mixed",
+      "mirror": false,
+      "note": "Estado visual preparado, sem adicionar stamina/cansaço à gameplay. Na parede, prioriza tired_02 de costas."
+    },
+    "HIT": {
+      "frames": [
+        "hurt_01",
+        "hurt_02",
+        "hurt_03"
+      ],
+      "anchor": "feet",
+      "targetOffset": [
+        0,
+        3
+      ],
+      "fps": 9,
+      "loop": false,
+      "orientation": "three_quarter",
+      "mirror": false,
+      "note": ""
+    },
+    "VICTORY": {
+      "frames": [
+        "victory_01",
+        "victory_02",
+        "victory_03",
+        "victory_04",
+        "victory_01"
+      ],
+      "anchor": "feet",
+      "targetOffset": [
+        0,
+        3
+      ],
+      "fps": 5,
+      "loop": false,
+      "orientation": "front",
+      "mirror": false,
+      "note": "Quatro poses reais, uma comemoração e retorno à primeira pose de vencedor; sem marcas decorativas da folha."
+    }
+  },
+  "usedFrames": [
+    "checkpoint_01",
+    "checkpoint_06",
+    "corner_01",
+    "corner_02",
+    "corner_03",
+    "edge_wait_01",
+    "edge_wait_02",
+    "edge_wait_03",
+    "edge_wait_04",
+    "fall_01",
+    "fall_02",
+    "fall_03",
+    "hurt_01",
+    "hurt_02",
+    "hurt_03",
+    "idle_01",
+    "idle_02",
+    "idle_03",
+    "idle_04",
+    "jump_01",
+    "jump_02",
+    "jump_03",
+    "jump_04",
+    "lower_grip_01",
+    "lower_grip_02",
+    "lower_grip_03",
+    "pull_up_01",
+    "pull_up_02",
+    "pull_up_03",
+    "pull_up_04",
+    "side_grip_03",
+    "tired_01",
+    "tired_02",
+    "tired_03",
+    "transfer_01",
+    "transfer_03",
+    "transfer_04",
+    "victory_01",
+    "victory_02",
+    "victory_03",
+    "victory_04",
+    "walk_01",
+    "walk_02",
+    "walk_03",
+    "walk_04"
+  ],
+  "availableOnly": [
+    "checkpoint_02",
+    "checkpoint_03",
+    "checkpoint_04",
+    "checkpoint_05",
+    "side_grip_01",
+    "side_grip_02",
+    "side_grip_04",
+    "transfer_02"
+  ],
+  "excluded": [],
+  "collision": {
+    "body": {
+      "offset": [
+        0,
+        -14
+      ],
+      "radius": 16
+    },
+    "note": "Existing runtime damage circle; independent of PNG bounds and visual anchors."
+  }
+}

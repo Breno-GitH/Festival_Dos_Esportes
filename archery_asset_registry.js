@@ -7,16 +7,6 @@
         return;
     }
 
-    const CHARACTER_STATES = new Set([
-        "IDLE_BACK",
-        "WALK_DOWN_BACK",
-        "RAISE_BOW_BACK",
-        "DRAW_BOWSTRING_BACK",
-        "RELEASE_SHOT_BACK",
-        "RECOVERY_BACK",
-        "MISS_REACTION_BACK",
-        "VICTORY_BACK"
-    ]);
     const TARGET_SUBTYPES = new Set(["small", "medium", "large", "golden", "side_moving", "popup"]);
     const ARROW_SUBTYPES = new Set([
         "arrow_up", "arrow_up_left", "arrow_up_right",
@@ -53,8 +43,8 @@
         }
 
         isRuntimeEntry(entry) {
-            if (entry.category === "arena") return true;
-            if (entry.category === "character") return CHARACTER_STATES.has(entry.state);
+            // The minigame now renders its valley in Canvas. Keep the catalogued
+            // old arena file on disk, without preloading an unused background.
             if (entry.category === "target") return TARGET_SUBTYPES.has(entry.subtype);
             if (entry.category === "arrow") return ARROW_SUBTYPES.has(entry.subtype);
             if (entry.category === "effect") return EFFECT_SUBTYPES.has(entry.subtype);

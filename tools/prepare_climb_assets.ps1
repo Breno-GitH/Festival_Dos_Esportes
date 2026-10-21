@@ -147,34 +147,11 @@ function Write-Preview([object[]]$manifestFrames, [string]$fileName, [string[]]$
 
 $entries = [System.Collections.Generic.List[object]]::new()
 
-# Zorp: selected individual silhouettes, ordered by source rows. The game shows him
-# mostly from behind, so back-facing climb poses are explicitly named and prioritized.
-$zorp = [System.Drawing.Bitmap]::FromFile((Join-Path $root 'escalada_zorp.png'))
-$zorpFrames = @(
-    @('zorp/idle_hang/zorp_climb_idle_hang_01.png','idle_hang','IDLE_HANG',1,30,42,145,272),
-    @('zorp/idle_hang/zorp_climb_idle_hang_02.png','idle_hang','IDLE_HANG',2,190,42,145,272),
-    @('zorp/climb_alternate/zorp_climb_alternate_01.png','climb_alternate','CLIMB',1,365,42,145,272),
-    @('zorp/climb_alternate/zorp_climb_alternate_02.png','climb_alternate','CLIMB',2,520,42,145,272),
-    @('zorp/climb_alternate/zorp_climb_alternate_03.png','climb_alternate','CLIMB',3,650,42,150,272),
-    @('zorp/climb_alternate/zorp_climb_alternate_04.png','climb_alternate','CLIMB',4,795,42,145,272),
-    @('zorp/reach/zorp_climb_reach_01.png','reach','REACH',1,920,42,145,272),
-    @('zorp/push_up/zorp_climb_push_up_01.png','push_up','PUSH_UP',1,1065,38,175,280),
-    @('zorp/reach/zorp_climb_reach_left_01.png','reach_left','REACH_LEFT',1,20,355,200,275),
-    @('zorp/reach/zorp_climb_reach_right_01.png','reach_right','REACH_RIGHT',1,210,355,190,275),
-    @('zorp/slip/zorp_climb_slip_01.png','slip','SLIP',1,385,355,200,275),
-    @('zorp/push_up/zorp_climb_push_up_02.png','push_up','PUSH_UP',2,610,355,190,275),
-    @('zorp/push_up/zorp_climb_push_up_03.png','push_up','PUSH_UP',3,790,355,200,275),
-    @('zorp/push_up/zorp_climb_push_up_04.png','push_up','PUSH_UP',4,1030,350,220,280),
-    @('zorp/fall/zorp_climb_fall_01.png','fall','FALL',1,20,665,185,285),
-    @('zorp/fall/zorp_climb_fall_02.png','fall','FALL',2,235,665,190,285),
-    @('zorp/stun/zorp_climb_stun_01.png','stun','STUN',1,1015,665,220,285),
-    @('zorp/slip/zorp_climb_slip_02.png','slip','SLIP',2,50,955,250,280),
-    @('zorp/fall/zorp_climb_fall_05.png','fall','FALL',5,335,955,250,280),
-    @('zorp/victory/zorp_climb_victory_01.png','victory','VICTORY',1,670,955,220,280),
-    @('zorp/victory/zorp_climb_victory_02.png','victory','VICTORY',2,915,955,220,280)
-)
-foreach ($f in $zorpFrames) { Add-Sprite $entries $zorp 'escalada_zorp.png' $f[0] 'zorp' $f[1] $f[2] $f[3] 'climb_zorp' 'BASE' $f[4] $f[5] $f[6] $f[7] 'Back-facing climbing frame isolated from the supplied source sheet.' }
-$zorp.Dispose()
+# Zorp 2.0 is extracted by prepare_climb_zorp_v2.py (visible components + alpha).
+# Reuse that catalog here, so rebuilding props cannot restore the old sprites.
+$zorpCatalogPath = Join-Path $output 'zorp_v2\manifest.json'
+if (-not (Test-Path -LiteralPath $zorpCatalogPath)) { throw 'Run tools/prepare_climb_zorp_v2.py first.' }
+$zorpCatalog = Get-Content -Raw -LiteralPath $zorpCatalogPath | ConvertFrom-Json
 
 # Holds/effects: every visible variant is kept. State labels are visual labels, not new gameplay rules.
 $holds = [System.Drawing.Bitmap]::FromFile((Join-Path $root 'pedras_efeitos.png'))
@@ -223,11 +200,11 @@ foreach ($entry in $entries) {
     $padded.image.Dispose(); $entry.image.Dispose()
 }
 
+foreach ($frame in $zorpCatalog.frames) { $frames.Add($frame) }
 $manifest = [ordered]@{
-    assetSet = 'climb_assets_2026'; sources = @('escalada_zorp.png','pedras_efeitos.png','assets_escalada.png')
-    transparency = 'Only black pixels connected to a selected crop boundary were made transparent; internal black outlines/details are retained.'
+    assetSet = 'climb_assets_2026'; sources = @('zorp_escalada2.0.png','pedras_efeitos.png','assets_escalada.png')
+    transparency = 'Zorp 2.0 retains original RGBA alpha; other sheets retain edge-connected background removal.'
     cropMarginPixels = 6; frames = @($frames | Sort-Object category, subtype, file); uncertainCrops = @(
-        [ordered]@{ source='escalada_zorp.png'; region='third source row, center/right fall poses'; reason='The two silhouettes touch neighboring artwork in the source; excluded rather than inventing missing pixels or exporting foreign fragments.' },
         [ordered]@{ source='assets_escalada.png'; region='spiked-ball row'; reason='The ball frames overlap the log row in the supplied sheet; excluded until an isolated source is available.' }
     )
 }

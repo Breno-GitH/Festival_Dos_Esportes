@@ -38,9 +38,15 @@
 
         async load() {
             try {
-                const response = await fetch(this.manifestUrl, { cache: 'no-store' });
-                if (!response.ok) throw new Error(`manifest HTTP ${response.status}`);
-                const manifest = await response.json();
+                let manifest;
+                if (location.protocol === 'file:' && window.FESTIVAL_LOCAL_MANIFESTS) {
+                    manifest = window.FESTIVAL_LOCAL_MANIFESTS[this.manifestUrl.split('?')[0]];
+                    if (!manifest) throw new Error('Manifesto local do Basquete ausente.');
+                } else {
+                    const response = await fetch(this.manifestUrl, { cache: 'no-store' });
+                    if (!response.ok) throw new Error(`manifest HTTP ${response.status}`);
+                    manifest = await response.json();
+                }
                 this.entries = manifest.assets || [];
                 const loaders = this.entries.map((entry) => new Promise((resolve) => {
                     const image = new Image();

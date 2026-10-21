@@ -11,13 +11,15 @@ const OVERWORLD_ISLANDS = Object.freeze({
     ILHA_ESQUI: { title: "CLUBE DE BOXE", floor: "#344959", exits: ["s"] },
     ILHA_PINGPONG: { title: "ARENA DE PING-PONG", floor: "#356351", exits: ["w","n"] },
     ILHA_SKATE: { title: "SKATE PLAZA", floor: "#8296a0", exits: ["n","w","e"] },
-    ILHA_ARCO: { title: "CAMPO DE ARCO", floor: "#63855d", exits: ["n","e"] },
+    ILHA_ARCO: { title: "VALE DA ARQUEARIA", floor: "#63855d", exits: ["n","e"] },
     ILHA_CORRIDA: { title: "ESTÁDIO DE ATLETISMO", floor: "#42664f", exits: ["e"] },
     ILHA_ESCALADA: { title: "BASE DO MONTE ZORP", floor: "#596267", exits: ["s"] },
     ILHA_SURF: { title: "PRAIA DO SURF", floor: "#d9c58d", exits: ["s"] }
 });
 const overworldSpriteCache = new WeakMap();
+const overworldNpcRenderIssues = new Map();
 let overworldConversationNpc = null;
+let overworldFocusNpc = null;
 function overworldChamfer(x, y, w, h, cut = 18) {
     ctx.beginPath(); ctx.moveTo(x + cut, y); ctx.lineTo(x + w - cut, y);
     ctx.lineTo(x + w, y + cut); ctx.lineTo(x + w, y + h - cut);
@@ -123,14 +125,76 @@ function drawOverworldHub() {
     ctx.restore();finishOverworldIsland("HUB");
 }
 function overworldNpcGeometry(npc) {
+    if(!npc.img?.src)return null;
     const path=decodeURIComponent(new URL(npc.img.src,location.href).pathname);
-    return Object.values(OVERWORLD_NPC_GEOMETRY.sprites).find(e=>path.endsWith('/'+e.source));
+    // Several different characters share the climbing sheet: select explicitly.
+    if(npc.spriteKey) {
+        const entry=OVERWORLD_NPC_GEOMETRY.sprites[npc.spriteKey];
+        return entry&&path.endsWith('/'+entry.source)?entry:null;
+    }
+    const matches=Object.values(OVERWORLD_NPC_GEOMETRY.sprites).filter(e=>path.endsWith('/'+e.source));
+    return matches.length===1?matches[0]:null;
+}
+function validateOverworldNpcGeometry(geometry,image) {
+    const errors=[];
+    if(!geometry)return {valid:false,errors:['missing-or-ambiguous-atlas-entry']};
+    const ints=(a,length)=>Array.isArray(a)&&a.length===length&&a.every(Number.isInteger);
+    const finite=(a,length)=>Array.isArray(a)&&a.length===length&&a.every(Number.isFinite);
+    const size=geometry.sourceSize,crop=geometry.crop,padding=geometry.padding;
+    if(!ints(size,2)||size.some(n=>n<=0)||size[0]!==image.naturalWidth||size[1]!==image.naturalHeight)
+        errors.push('atlas-source-size-does-not-match-png');
+    const cropValid=ints(crop,4)&&crop[0]>=0&&crop[1]>=0&&crop[2]>0&&crop[3]>0&&
+        crop[0]+crop[2]<=image.naturalWidth&&crop[1]+crop[3]<=image.naturalHeight;
+    if(!cropValid)errors.push('invalid-source-rectangle');
+    if(!Number.isInteger(padding)||padding<0||padding>16)errors.push('invalid-padding');
+    if(!Number.isInteger(geometry.visibleWidth)||!Number.isInteger(geometry.visibleHeight)||
+        geometry.visibleWidth<=0||geometry.visibleHeight<=0||
+        (cropValid&&(geometry.visibleWidth>crop[2]||geometry.visibleHeight>crop[3])))
+        errors.push('invalid-visible-bounds');
+    const width=cropValid?crop[2]+padding*2:0,height=cropValid?crop[3]+padding*2:0;
+    if(!finite(geometry.anchor,2)||geometry.anchor[0]<0||geometry.anchor[1]<0||
+        geometry.anchor[0]>width||geometry.anchor[1]>height)errors.push('invalid-feet-anchor');
+    if(!Array.isArray(geometry.backgroundRectangles)||geometry.backgroundRectangles.some(r=>
+        !ints(r,4)||r[0]<0||r[1]<0||r[2]<=0||r[3]<=0||r[0]+r[2]>width||r[1]+r[3]>height))
+        errors.push('invalid-alpha-mask');
+    return {valid:errors.length===0,errors};
+}
+function reportOverworldNpcRenderIssue(npc,errors) {
+    const key=(npc.id||npc.spriteKey||npc.img?.src||'npc')+':'+errors.join(',');
+    if(overworldNpcRenderIssues.has(key))return;
+    const issue={id:npc.id||null,source:npc.img?.src||null,errors:[...errors]};
+    overworldNpcRenderIssues.set(key,issue);
+    console.warn('Overworld NPC sprite rejected:',issue);
+}
+function freezeOverworldNpcGeometry(geometry) {
+    for(const key of ['sourceSize','crop','anchor'])Object.freeze(geometry[key]);
+    for(const rect of geometry.backgroundRectangles)Object.freeze(rect);
+    Object.freeze(geometry.backgroundRectangles);
+    return Object.freeze(geometry);
+}
+function overworldNpcDrawBounds(npc,width,height,geometry,snapOrigin=false) {
+    if(![npc.x,npc.y,npc.tamanho,width,height,geometry.visibleHeight].every(Number.isFinite)||
+        npc.tamanho<=0||width<=0||height<=0||geometry.visibleHeight<=0)return null;
+    // One scale, derived from useful character height; never fit into a fixed box.
+    const scale=npc.tamanho/geometry.visibleHeight;
+    let x=npc.x-geometry.anchor[0]*scale,y=npc.y-geometry.anchor[1]*scale;
+    if(snapOrigin){x=Math.floor(x);y=Math.floor(y);}
+    return {x,y,width:width*scale,height:height*scale,scale};
 }
 function prepareOverworldNpc(npc) {
-    if(!npc.img.complete||!npc.img.naturalWidth)return null;
-    if(overworldSpriteCache.has(npc.img))return overworldSpriteCache.get(npc.img);
+    if(!npc.img?.complete||!npc.img.naturalWidth||!npc.img.naturalHeight)return null;
     const geometry=overworldNpcGeometry(npc);
-    if(!geometry)return null;
+    const source=npc.img.currentSrc||npc.img.src;
+    let cache=overworldSpriteCache.get(npc.img);
+    if(!cache||cache.source!==source||cache.width!==npc.img.naturalWidth||cache.height!==npc.img.naturalHeight) {
+        cache={source,width:npc.img.naturalWidth,height:npc.img.naturalHeight,frames:new Map()};
+        overworldSpriteCache.set(npc.img,cache);
+    }
+    // The same Image may legitimately supply several characters from one sheet.
+    if(cache.frames.has(geometry))return cache.frames.get(geometry);
+    const validation=validateOverworldNpcGeometry(geometry,npc.img);
+    if(!validation.valid){reportOverworldNpcRenderIssue(npc,validation.errors);return null;}
+    freezeOverworldNpcGeometry(geometry);
     const [x,y,w,h]=geometry.crop,padding=geometry.padding;
     const surface=document.createElement('canvas');surface.width=w+padding*2;surface.height=h+padding*2;
     const paint=surface.getContext('2d');paint.imageSmoothingEnabled=false;
@@ -138,16 +202,40 @@ function prepareOverworldNpc(npc) {
     // Offline flood-fill spans: no getImageData, safe under HTTP and file://.
     // Eyes, clothes and interior black outlines are never blanket-keyed out.
     for(const rect of geometry.backgroundRectangles)paint.clearRect(...rect);
-    const sprite={surface,geometry};overworldSpriteCache.set(npc.img,sprite);return sprite;
+    const sprite={surface,geometry};cache.frames.set(geometry,sprite);return sprite;
 }
 function drawUnifiedOverworldNpc(npc) {
     const sprite=prepareOverworldNpc(npc);if(!sprite)return;
     const {surface,geometry}=sprite;
-    const scale=npc.tamanho/geometry.crop[3];
-    drawShadow(npc.x,npc.y);
+    const bounds=overworldNpcDrawBounds(npc,surface.width,surface.height,geometry);
+    if(!bounds)return;
+    const radius=Math.max(8,Math.min(13,geometry.visibleWidth*bounds.scale*.48));
+    const naturalIsland=npc.scene==='ILHA_ARCO'||npc.scene==='ILHA_ESCALADA';
+    ctx.save();ctx.fillStyle=naturalIsland?'rgba(0,0,0,.28)':'rgba(0,0,0,.25)';ctx.beginPath();
+    ctx.ellipse(npc.x,npc.y-1,radius,naturalIsland?5:4,0,0,Math.PI*2);ctx.fill();
+    if(overworldFocusNpc===npc) {
+        ctx.strokeStyle='#a3e8df';ctx.lineWidth=1;ctx.beginPath();
+        ctx.ellipse(npc.x,npc.y-1,radius+3,5,0,0,Math.PI*2);ctx.stroke();
+    }
+    ctx.restore();
     ctx.save();ctx.imageSmoothingEnabled=false;
-    ctx.drawImage(surface,npc.x-geometry.anchor[0]*scale,npc.y-geometry.anchor[1]*scale,
-        surface.width*scale,surface.height*scale);ctx.restore();
+    ctx.drawImage(surface,bounds.x,bounds.y,bounds.width,bounds.height);ctx.restore();
+}
+function drawBasketballOverworldNpc(npc) {
+    // Keep the reference island's established framing, shadow and pixel positions.
+    drawShadow(npc.x,npc.y);
+    const image=npc.img;
+    if(!image?.complete||!image.naturalWidth||!image.naturalHeight)return;
+    const hasFrame=npc.sw!==undefined||npc.sh!==undefined;
+    const crop=hasFrame?[npc.sx??0,npc.sy??0,npc.sw,npc.sh]:[0,0,image.naturalWidth,image.naturalHeight];
+    const geometry={sourceSize:[image.naturalWidth,image.naturalHeight],crop,padding:0,
+        anchor:[crop[2]/2,crop[3]],visibleWidth:crop[2],visibleHeight:crop[3],backgroundRectangles:[]};
+    const validation=validateOverworldNpcGeometry(geometry,image);
+    if(!validation.valid){reportOverworldNpcRenderIssue(npc,validation.errors);return;}
+    const bounds=overworldNpcDrawBounds(npc,crop[2],crop[3],geometry,true);
+    if(!bounds)return;
+    ctx.save();ctx.imageSmoothingEnabled=false;
+    ctx.drawImage(image,...crop,bounds.x,bounds.y,bounds.width,bounds.height);ctx.restore();
 }
 function overworldNpcInteractionBox(npc) {
     const w=npc.interactionWidth||46,h=npc.interactionHeight||50;
@@ -157,6 +245,10 @@ function overworldNpcInteractionBox(npc) {
 }
 function configureOverworldPresentation() {
     for(const npc of npcs) {
+        if(!npc.id) {
+            const role=npc.msg.replace(/^>\s*/, '').split(':')[0].normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+            npc.id=(npc.scene+'_'+role).toLowerCase().replace(/[^a-z0-9]+/g,'_');
+        }
         if(npc.scene==='ILHA_BASQUETE')continue;
         npc.tamanho=npc.isMaster?OVERWORLD_STYLE.masterHeight:OVERWORLD_STYLE.npcHeight;
         npc.interactionWidth=npc.isMaster?58:44;
@@ -178,5 +270,6 @@ function getOverworldDiagnostics() {
             crop:overworldNpcGeometry(n)?.crop||null,footprint:n.footprint||null,
             interaction:overworldNpcInteractionBox(n),master:n.isMaster||null,
             ready:n.img.complete&&n.img.naturalWidth>0})),
+        renderIssues:[...overworldNpcRenderIssues.values()],
         solidProps:(sceneObstacles[currentScene]||[]).filter(o=>o.solid).length};
 }

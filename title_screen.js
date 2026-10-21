@@ -2,7 +2,7 @@
  * title_screen.js
  * Tela Inicial Oficial do Festival dos Esportes (Ilha dos Campeões)
  * 
- * Fluxo: CARREGAMENTO -> TELA INICIAL -> INICIAR -> OVERWORLD
+ * Fluxo: CARREGAMENTO -> TELA INICIAL -> INICIAR -> CHEGADA / OVERWORLD
  */
 
 (function(global) {
@@ -19,6 +19,7 @@
     // Chaves de localStorage pertencentes exclusivamente ao Festival dos Esportes
     const FESTIVAL_STORAGE_KEYS = [
         "zorp_esportes_medalhas",
+        "zorp_festival_story",
         "zorpSurfMedal",
         "zorpSurfCompleted",
         "zorpSurfBestDistance",
@@ -279,6 +280,7 @@
         handleKeyDown(e) {
             if (!this.isActive()) return false;
             const k = e.key.toLowerCase();
+            if (e.repeat && (k === " " || k === "enter")) return true;
 
             // Bloquear se estiver no meio de um fade para Overworld
             if (this.fadeAction && this.fadeTarget === 1.0) {
@@ -570,6 +572,23 @@
             ctx.fillStyle = seaGrad;
             ctx.fillRect(0, H * 0.78, W, H * 0.22);
 
+            // Ilhas em planos separados: o horizonte permanece discreto atrás da logo.
+            ctx.save();
+            for (let i = 0; i < 5; i++) {
+                const ix = i * 116 - 25 + Math.sin(this.animTime * 0.003 + i) * 2;
+                const iy = H * 0.71 + (i % 2) * 16;
+                ctx.fillStyle = "#174b63";
+                ctx.beginPath(); ctx.ellipse(ix, iy + 7, 42, 13, 0, 0, Math.PI * 2); ctx.fill();
+                ctx.fillStyle = "#327474";
+                ctx.beginPath(); ctx.ellipse(ix, iy, 39, 8, 0, 0, Math.PI * 2); ctx.fill();
+                ctx.strokeStyle = "#17434f"; ctx.lineWidth = 3;
+                ctx.beginPath(); ctx.moveTo(ix, iy); ctx.quadraticCurveTo(ix - 4, iy - 12, ix + 2, iy - 23); ctx.stroke();
+                ctx.lineWidth = 2;
+                for (const s of [-1, 1]) {
+                    ctx.beginPath(); ctx.moveTo(ix + 2, iy - 23); ctx.quadraticCurveTo(ix + s * 9, iy - 27, ix + s * 15, iy - 19); ctx.stroke();
+                }
+            }
+            ctx.restore();
             // Espuma das ondas com movimento sutil
             ctx.fillStyle = "rgba(125, 211, 252, 0.35)";
             const waveY = H * 0.78;
@@ -657,6 +676,15 @@
 
             // 3. Renderizar o Menu Vertical: INICIAR, SOBRE, SAIR
             this.drawMenu(ctx, W, H, cardY + cardH);
+            if (global.AdventureIntro?.endingSeen) {
+                ctx.save();ctx.globalAlpha=.9;
+                const startX=W/2-47;
+                for(let i=0;i<8;i++) {
+                    const image=global.MEDALHAS_REGISTRY[i].imgUnlocked;
+                    if(image.complete&&image.naturalWidth)ctx.drawImage(image,startX+i*12,H-24,10,10);
+                }
+                ctx.restore();
+            }
 
             if (dimmed) {
                 ctx.restore();
@@ -899,42 +927,26 @@
             ctx.lineTo(panelX + panelW - 24, panelY + 54);
             ctx.stroke();
 
-            // Descrição curta do projeto
-            ctx.fillStyle = "#cbd5e1";
-            ctx.font = "6.5px 'Press Start 2P', monospace, sans-serif";
-            ctx.fillText("Projeto desenvolvido utilizando", W / 2, panelY + 62);
-            ctx.fillText("HTML5, JavaScript e Canvas.", W / 2, panelY + 74);
-
-            // Protagonista
-            ctx.fillStyle = "#4ade80";
-            ctx.fillText("Protagonista: Zorp", W / 2, panelY + 90);
-
-            // Título das Modalidades
-            ctx.fillStyle = "#38bdf8";
-            ctx.font = "7px 'Press Start 2P', monospace, sans-serif";
-            ctx.fillText("MODALIDADES:", W / 2, panelY + 106);
-
-            // Lista das 8 Modalidades em duas colunas alinhadas à esquerda
-            const col1X = panelX + Math.round(panelW * 0.16);
-            const col2X = panelX + Math.round(panelW * 0.55);
-            const listY = panelY + 120;
-            const lineH = 13;
-
-            ctx.fillStyle = "#f1f5f9";
-            ctx.font = "6.5px 'Press Start 2P', monospace, sans-serif";
+            // Sinopse breve: a conclusão permanece como recompensa da aventura.
+            const paragraphs = [
+                "Zorpzin Nonaris é um competidor alienígena que chegou à Terra em busca de novos desafios.",
+                "Explore as ilhas, enfrente os oito Mestres e conquiste suas medalhas.",
+                "Complete todos os minigames para desbloquear o final da aventura e descobrir o que espera Zorpzin quando chegar a hora de voltar para casa."
+            ];
+            ctx.fillStyle = "#d6e7eb";
+            ctx.font = "10px monospace";
             ctx.textAlign = "left";
-
-            // Coluna 1
-            ctx.fillText("• Ping-Pong", col1X, listY);
-            ctx.fillText("• Basquete", col1X, listY + lineH);
-            ctx.fillText("• Corrida", col1X, listY + lineH * 2);
-            ctx.fillText("• Skate", col1X, listY + lineH * 3);
-
-            // Coluna 2
-            ctx.fillText("• Arco e Flecha", col2X, listY);
-            ctx.fillText("• Escalada", col2X, listY + lineH);
-            ctx.fillText("• Boxe", col2X, listY + lineH * 2);
-            ctx.fillText("• Surf", col2X, listY + lineH * 3);
+            let textY = panelY + 67;
+            for (const paragraph of paragraphs) {
+                let row = "";
+                for (const word of paragraph.split(" ")) {
+                    const candidate = row ? row + " " + word : word;
+                    if (ctx.measureText(candidate).width > panelW - 44 && row) {
+                        ctx.fillText(row, panelX + 22, textY); textY += 13; row = word;
+                    } else row = candidate;
+                }
+                ctx.fillText(row, panelX + 22, textY); textY += 23;
+            }
 
             // Botão VOLTAR
             const btnW = 120;

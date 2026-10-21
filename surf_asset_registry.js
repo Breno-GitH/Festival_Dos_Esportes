@@ -83,6 +83,11 @@
         }
 
         async fetchManifest(url) {
+            if (location.protocol === 'file:' && window.FESTIVAL_LOCAL_MANIFESTS) {
+                const manifest = window.FESTIVAL_LOCAL_MANIFESTS[url];
+                if (!manifest) throw new Error(`Manifesto local ausente: ${url}`);
+                return manifest;
+            }
             const response = await fetch(url, { cache: 'no-store' });
             if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
             return response.json();

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Arquearia 2.0 — atlas e anchors</title>
+<style>
+body{margin:24px;background:#111e2b;color:#e5f6ff;font:14px system-ui}h1{font-size:24px}p{max-width:880px;line-height:1.6}a{color:#77e1ec}button,select,input{margin:6px;padding:7px}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px}article{background:#1b3041;border:1px solid #37586b;padding:12px;border-radius:8px}h2{font-size:14px;margin:0 0 8px}canvas{width:230px;height:270px;image-rendering:pixelated;background:repeating-conic-gradient(#304355 0% 25%,#3b5063 0% 50%) 50%/20px 20px}code{display:block;font-size:11px;line-height:1.7;white-space:normal}label{display:inline-block}header{position:sticky;top:0;background:#111e2bf5;padding:8px 0;z-index:1}
+</style>
+<h1>Arquearia 2.0 — 88 frames de costas / cima</h1>
+<p>Dois atlas transparentes, 44 frames por personagem. Canvas 192 × 240, anchor nos pés [96, 228]. Nenhuma pose lateral, inversão ou escala por animação. O cruzamento ciano marca os pés. Pausa e seletor permitem conferir cada recorte individualmente.</p>
+<p><a href="archery_v2_mapping.md">Mapa completo de sourceRects</a> · <a href="../archery_assets/v2/characters_manifest.json">Manifesto JSON</a> · <a href="archery_zorp_v2_preview.png">Todos os frames de Zorp</a> · <a href="archery_master_v2_preview.png">Todos os frames do Mestre</a></p>
+<header><button id="pause">Pausar</button><label>Frame <input id="frame" type="range" min="1" max="6" value="1"></label><span id="status">Carregando…</span></header>
+<main></main>
+<script src="../archery_assets/v2/characters_manifest.js?v=2.0.0"></script>
+<script src="../archery_characters_v2.js?v=2.0.0"></script>
+<script>
+const renderer=window.archeryCharactersV2,cards=[];let paused=false,start=performance.now();
+document.querySelector('#pause').onclick=()=>{paused=!paused;document.querySelector('#pause').textContent=paused?'Animar':'Pausar';};
+for(const name of ['zorp','master'])for(const state of Object.keys(renderer.manifest.states)){
+ const article=document.createElement('article');article.innerHTML=`<h2>${name==='zorp'?'Zorpzin':'Mestre'} · ${state}</h2><canvas width="230" height="270"></canvas><code></code>`;
+ document.querySelector('main').append(article);cards.push({name,state,canvas:article.querySelector('canvas'),label:article.querySelector('code')});
+}
+function animate(time){
+ for(const card of cards){const c=card.canvas.getContext('2d');c.clearRect(0,0,230,270);
+ const frame=renderer.drawState(c,card.name,card.state,((time-start)/1000)%1.4,115,246,{scale:1,debug:true,...(paused?{frame:+document.querySelector('#frame').value-1}:{})});
+ if(frame)card.label.textContent=`${frame.id} | sourceRect: [${frame.sourceRect}] | anchor: [${frame.anchor}]`;
+ }requestAnimationFrame(animate);
+}
+renderer.ready.then(()=>{document.querySelector('#status').textContent='2 atlas carregados · 11 ações por personagem';requestAnimationFrame(animate);});
+window.archeryAtlasPreview={cards,renderer};
+</script>
+</html>

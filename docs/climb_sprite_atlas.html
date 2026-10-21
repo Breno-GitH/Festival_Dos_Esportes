@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zorp — Atlas da Escalada 2.0</title>
+<link rel="icon" href="data:,">
+<style>
+    *{box-sizing:border-box}body{margin:0;padding:24px;background:#091420;color:#dfebf4;font:15px system-ui,sans-serif}
+    main{max-width:1120px;margin:auto}h1{font-size:24px;margin:0 0 8px}p{color:#9eb6c8;line-height:1.5}
+    .controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:18px 0}
+    select,button{background:#172c3d;color:#e1f1fc;border:1px solid #3e617b;padding:10px;border-radius:6px}
+    button{cursor:pointer}canvas{display:block;width:100%;height:auto;border:1px solid #35516b;background:#102335;image-rendering:pixelated}
+    #info{white-space:pre-wrap;font:13px/1.7 monospace;background:#102335;border:1px solid #35516b;padding:14px;min-height:110px}
+    a{color:#79d8f7}.legend{color:#b8cbd9;font-size:13px}.legend span{margin-right:18px}
+</style>
+<main>
+    <h1>Zorpzin Nonaris · Atlas da Escalada 2.0</h1>
+    <p>Recortes pelos pixels visíveis. Sem grade uniforme, textos ou molduras dentro dos PNGs.
+        O inspetor não altera a partida nem o save.</p>
+    <div class="controls">
+        <label>Estado <select id="state"></select></label>
+        <button id="previous">← Frame</button><button id="next">Frame →</button>
+        <label><input id="animate" type="checkbox"> Animar</label>
+        <button id="all">Ver todos os 53 recortes</button>
+    </div>
+    <p class="legend"><span style="color:#54e7ff">Ciano: bounds visíveis</span>
+        <span style="color:#ffe26b">Amarelo: âncora</span><span style="color:#ff79d5">Rosa: hitbox física</span></p>
+    <canvas id="preview" width="1000" height="520"></canvas>
+    <pre id="info"></pre>
+    <p>PageUp / PageDown: trocar estado · ← / →: trocar frame · <a href="climb_zorp_v2_atlas.md">Mapa completo com sourceRects e âncoras</a></p>
+</main>
+<script src="../climb_assets/zorp_v2/manifest.js?v=2.2.0_character_victory"></script>
+<script src="../climb_sprites.js?v=2.4.0_summit_victory"></script>
+<script>
+    'use strict';
+    const atlas=CLIMB_ZORP_V2_MANIFEST,names=Object.keys(atlas.states),canvas=document.getElementById('preview'),ctx=canvas.getContext('2d');
+    const select=document.getElementById('state'),info=document.getElementById('info'),animate=document.getElementById('animate');
+    names.forEach(name=>select.add(new Option(name,name)));
+    const images=new Map();let frame=0,all=false,start=performance.now(),ready=0;
+    atlas.frames.forEach(f=>{const im=new Image();images.set(f.id,im);im.onload=()=>{ready++;draw()};im.src='../climb_assets/'+f.file+'?v='+atlas.version;});
+    const label=(text,x,y,color='#cbdde8',size=13)=>{ctx.fillStyle=color;ctx.font=size+'px monospace';ctx.fillText(text,x,y);};
+    function renderPose(state,index,x,y,zoom,guides=true){
+        const p=ClimbSprites.describe(state,index,1);ctx.save();ctx.translate(x,y);ctx.scale(zoom,zoom);
+        ClimbSprites.drawPose(ctx,images.get(p.id),p,0,0);if(guides)ClimbSprites.drawGuides(ctx,p,0,0);ctx.restore();return p;
+    }
+    function draw(){
+        canvas.height=all?Math.ceil(atlas.frames.length/8)*160+40:520;ctx.imageSmoothingEnabled=false;
+        ctx.fillStyle='#102335';ctx.fillRect(0,0,canvas.width,canvas.height);
+        if(all){
+            atlas.frames.forEach((f,i)=>{const x=15+i%8*123,y=15+Math.floor(i/8)*160,im=images.get(f.id);
+                ctx.fillStyle='#1c3445';ctx.fillRect(x,y,113,147);if(im.complete&&im.naturalWidth)ctx.drawImage(im,x+13,y+2,86.4,115.2);
+                label(f.id,x+3,y+134,'#dcecf5',11);});
+            info.textContent='53 frames originais. Mesma escala e canvas em todos os recortes. '+ready+'/53 carregados.';
+            document.body.dataset.currentState='ALL';return;
+        }
+        const state=select.value,config=atlas.states[state];
+        if(animate.checked){const n=Math.floor((performance.now()-start)*config.fps/1000);frame=config.loop?n%config.frames.length:Math.min(n,config.frames.length-1);}
+        ctx.fillStyle='#182d3b';ctx.fillRect(14,14,465,490);
+        label(state,30,42,'#ffe5a1',18);label('Mesma escala da partida · ampliação 4x',30,65,'#9db6c8',12);
+        // Standing/air use feet. Climbing targets are on the wall; neither
+        // representation changes the physical reference (blue point/circle).
+        ctx.strokeStyle='#365062';ctx.beginPath();ctx.moveTo(28,394);ctx.lineTo(465,394);ctx.stroke();
+        const p=renderPose(state,frame,246,382,4);
+        label('Todos os frames deste estado',503,42,'#d2e8f3',15);
+        // A held return pose can reuse a frame. Show each source image once.
+        [...new Set(config.frames)].forEach((id,i)=>{
+            const x=525+(i%4)*117,y=230+Math.floor(i/4)*160;
+            ctx.fillStyle=id===config.frames[frame]?'#294d61':'#193242';ctx.fillRect(x-20,80,110,280);
+            renderPose(state,config.frames.indexOf(id),x+30,y,1.8,false);label(id,x-16,387,'#cbdde8',11);
+        });
+        info.textContent=[state+' · '+(frame+1)+' / '+config.frames.length+' · '+p.id+'.png',
+            'sourceRect [x, y, w, h]: '+p.frame.sourceRect.join(', '),
+            'anchor '+config.anchor+': '+p.anchor.map(n=>n.toFixed(2)).join(', ')+' · offset mundo: '+p.offset.join(', '),
+            'escala: '+p.scale.toFixed(6)+' (uniforme) · espelhado: '+p.flipX+' · orientação: '+config.orientation,
+            config.note||''].join('\n');
+        document.body.dataset.currentState=state;document.body.dataset.currentFrame=p.id;
+    }
+    function step(delta){all=false;animate.checked=false;const length=atlas.states[select.value].frames.length;frame=(frame+delta+length)%length;draw();}
+    function changeState(delta){all=false;frame=0;select.selectedIndex=(select.selectedIndex+delta+names.length)%names.length;start=performance.now();draw();}
+    document.getElementById('previous').onclick=()=>step(-1);document.getElementById('next').onclick=()=>step(1);
+    document.getElementById('all').onclick=()=>{all=!all;draw();};
+    select.onchange=()=>{all=false;frame=0;start=performance.now();draw();};animate.onchange=()=>{start=performance.now();draw();};
+    addEventListener('keydown',event=>{
+        if(event.code==='ArrowRight'){event.preventDefault();step(1)}
+        else if(event.code==='ArrowLeft'){event.preventDefault();step(-1)}
+        else if(event.code==='PageDown'){event.preventDefault();changeState(1)}
+        else if(event.code==='PageUp'){event.preventDefault();changeState(-1)}
+    });
+    function loop(){if(animate.checked&&!all)draw();requestAnimationFrame(loop)}loop();draw();
+</script>
+</html>

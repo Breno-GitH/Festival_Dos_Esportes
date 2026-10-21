@@ -109,7 +109,7 @@ const imgAprendiz = new Image(); imgAprendiz.src = "npc_aprendiz.png";
 const imgMestrePingPong = new Image(); imgMestrePingPong.src = "npc_mestre_ping_pong.png";
 // Mestre oficial da Ilha do Arco: PNG frontal com crop de conteúdo no registro do NPC.
 const imgMestreArcoOverworld = new Image();
-imgMestreArcoOverworld.src = "arqueiro_overworld.png?v=1.0_archery_island";
+imgMestreArcoOverworld.src = "mestre_arquearia2.0_overworld.png?v=2.0.0_frontal";
 
 // Mestre da Corrida: original preserved; edge-connected background mask is cached by the overworld renderer.
 const imgMestreCorridaNpc = new Image();
@@ -127,9 +127,12 @@ const imgMestreMD = new Image(); imgMestreMD.src = "mestre_md.png";
 const imgMestreHit = new Image(); imgMestreHit.src = "mestre_hit.png";
 
 const imgMestreEscalada = new Image(); imgMestreEscalada.src = "npc_mestre_escalada.png";
-const imgGuiaTrilha = new Image(); imgGuiaTrilha.src = "npc_guia_trilha.png";
-const imgGeologa = new Image(); imgGeologa.src = "npc_geologa.png";
-const imgChef = new Image(); imgChef.src = "npc_chef.png";
+// Separate image/cache entries select the four frontal Overworld figures.
+// imgMestreEscalada above belongs to the minigame summit and stays unchanged.
+const imgMestreEscaladaOverworld = new Image(); imgMestreEscaladaOverworld.src = "npcs_escalada2.0.png?v=1";
+const imgGuiaTrilha = new Image(); imgGuiaTrilha.src = "npcs_escalada2.0.png?v=1";
+const imgGeologa = new Image(); imgGeologa.src = "npcs_escalada2.0.png?v=1";
+const imgChef = new Image(); imgChef.src = "npcs_escalada2.0.png?v=1";
 
 // Biblioteca oficial da Escalada. Os recortes aprovados mantêm canvas/âncora
 // consistentes e são os únicos assets usados durante a subida.
@@ -138,25 +141,27 @@ const loadClimbAsset = (path) => {
     image.src = `climb_assets/${path}?v=2`;
     return image;
 };
+// Catálogo exclusivo de zorp_escalada2.0.png: apenas recortes transparentes.
+// O cache é separado dos props; nenhuma folha/pose antiga é carregada.
+const climbZorpImageCache = new Map();
+const climbZorpAssetStatus = { version: "2.0", requested: 0, loaded: 0, failed: [] };
+function loadClimbZorpFrame(id) {
+    if (climbZorpImageCache.has(id)) return climbZorpImageCache.get(id);
+    const frame = CLIMB_ZORP_V2_MANIFEST.frames.find(frame => frame.id === id);
+    if (!frame) throw new Error(`Frame da Escalada não catalogado: ${id}`);
+    const image = new Image();
+    climbZorpImageCache.set(id, image);
+    climbZorpAssetStatus.requested++;
+    image.addEventListener("load", () => climbZorpAssetStatus.loaded++, { once: true });
+    image.addEventListener("error", () => {
+        climbZorpAssetStatus.failed.push(frame.file);
+        console.error(`Não foi possível carregar o Zorp da Escalada: ${frame.file}`);
+    }, { once: true });
+    image.src = `climb_assets/${frame.file}?v=${CLIMB_ZORP_V2_MANIFEST.version}`;
+    return image;
+}
 const climbAssets = {
-    zorp: {
-        idle: [loadClimbAsset("zorp/idle_hang/zorp_climb_idle_hang_01.png"), loadClimbAsset("zorp/idle_hang/zorp_climb_idle_hang_02.png")],
-        climb: [
-            loadClimbAsset("zorp/climb_alternate/zorp_climb_alternate_01.png"),
-            loadClimbAsset("zorp/climb_alternate/zorp_climb_alternate_02.png"),
-            loadClimbAsset("zorp/climb_alternate/zorp_climb_alternate_03.png"),
-            loadClimbAsset("zorp/climb_alternate/zorp_climb_alternate_04.png")
-        ],
-        reachLeft: loadClimbAsset("zorp/reach/zorp_climb_reach_left_01.png"),
-        reachRight: loadClimbAsset("zorp/reach/zorp_climb_reach_right_01.png"),
-        slip: [loadClimbAsset("zorp/slip/zorp_climb_slip_01.png"), loadClimbAsset("zorp/slip/zorp_climb_slip_02.png")],
-        pushUp: loadClimbAsset("zorp/push_up/zorp_climb_push_up_01.png"),
-        pushLeft: loadClimbAsset("zorp/push_up/zorp_climb_push_up_02.png"),
-        pushRight: loadClimbAsset("zorp/push_up/zorp_climb_push_up_03.png"),
-        stun: loadClimbAsset("zorp/stun/zorp_climb_stun_01.png"),
-        fall: loadClimbAsset("zorp/fall/zorp_climb_fall_01.png"),
-        victory: [loadClimbAsset("zorp/victory/zorp_climb_victory_01.png"), loadClimbAsset("zorp/victory/zorp_climb_victory_02.png")]
-    },
+    zorp: ClimbSprites.createLibrary(loadClimbZorpFrame),
     holds: {
         normal: loadClimbAsset("pedras/pedra_normal_01.png"),
         moving: loadClimbAsset("pedras/pedra_gelo_01.png"),
@@ -262,13 +267,39 @@ const zorpSprite = {
     isMoving: false, timer: 0, speed: 8 
 };
 
+// One coordinate model for the arena crop, tabletop, net and shot landing zones.
+// Crop the existing artwork at its native aspect ratio; do not stretch the table.
+const PINGPONG_COURT = (() => {
+    const artwork = Object.freeze({ width: 1683, height: 935, x: 454, y: 200, w: 775, h: 775 * 300 / 450 });
+    const scale = 450 / artwork.w;
+    // Visible white tabletop boundary in bg_pingpong.png's native pixels.
+    const table = Object.freeze({
+        left: (609 - artwork.x) * scale, right: (1074 - artwork.x) * scale,
+        back: (357 - artwork.y) * scale, front: (585 - artwork.y) * scale
+    });
+    return Object.freeze({
+        artwork, table,
+        net: Object.freeze({ x: (table.left + table.right) / 2, back: table.back,
+            front: table.front, height: (357 - 322) * scale, collisionEnabled: false }),
+        player: Object.freeze({ homeX: 44, minX: 30, maxX: 58 }),
+        opponent: Object.freeze({ homeX: 366 })
+    });
+})();
+function pingPongTableX(x) {
+    return PINGPONG_COURT.table.left + (x - 150) / 150 * (PINGPONG_COURT.table.right - PINGPONG_COURT.table.left);
+}
+function pingPongTableY(y) {
+    return PINGPONG_COURT.table.back + (y - 100) / 90 * (PINGPONG_COURT.table.front - PINGPONG_COURT.table.back);
+}
+
 const pingPong = {
-    playerX: 50, playerY: 140, 
-    opponentX: 370, opponentY: 140, 
+    playerX: PINGPONG_COURT.player.homeX, playerY: pingPongTableY(145) - 20,
+    opponentX: PINGPONG_COURT.opponent.homeX, opponentY: pingPongTableY(145) - 20,
     speed: 4.0, // Velocidade de caminhada do Zorp
     opponentSpeed: 2.75, // Velocidade justa de caminhada do Mestre (estilo Tengu, sem dash)
+    masterAI: PingPongMasterAI.create(),
     balls: [], // Array de bolas ativas em campo
-    ballRadius: 4, gravity: 0.22,
+    ballRadius: 4,
     playerScore: 0, opponentScore: 0, maxScore: 50, // Partida até 50 pontos
     playerAction: "IDLE", opponentAction: "IDLE",  
     playerHitTimer: 0, opponentHitTimer: 0,
@@ -277,12 +308,15 @@ const pingPong = {
     gameState: 'TUTORIAL',
     win: false,
     bounceEffects: [],
-    aoeEffects: [], // Efeito de onda de choque do Especial
+    specialEffects: [], // Arcos curtos da raquetada global
     server: 'PLAYER',
     nextBallId: 1,
     serveCooldown: 0,
-    mestreSpawnCooldown: 140,
-    mestreSpawnWindup: 0,
+    pointFreeze: 0, pendingPoints: [], pointFeedback: [],
+    multiball: PingPongMultiball.create(),
+    scoreCooldown: 0,
+    globalReturnCooldown: 0,
+    playerVelocityY: 0,
     mestreReaction: null // { text: '💦', timer: 30 }
 };
 
@@ -337,125 +371,7 @@ const CLIMB_QUERY = new URLSearchParams(window.location.search);
 const CLIMB_QA_MODE = CLIMB_QUERY.has('climbQa');
 const CLIMB_QA_NO_HAZARDS = CLIMB_QUERY.has('climbNoHazards');
 const CLIMB_SPIKE_EXCLUSION_RADIUS = 168;
-const CLIMB_LEVEL = [
-    {
-        id: 'intro', share: 0.11, width: 500, gap: [47, 49, 46, 48],
-        route: [710, 665, 715, 770, 720, 670, 620, 675, 730, 690],
-        types: ['normal', 'normal', 'normal', 'purple', 'normal', 'moving_horizontal', 'normal', 'normal', 'purple', 'normal'],
-        branches: [
-            { step: 5, x: 735, type: 'normal', route: 'intro_alt' },
-            { step: 6, x: 785, type: 'normal', route: 'intro_alt' },
-            { step: 7, x: 735, type: 'bonus', route: 'intro_alt' }
-        ], throws: []
-    },
-    {
-        id: 'route_choice', share: 0.17, width: 720, gap: [41, 42, 43, 41],
-        route: [650, 600, 555, 605, 660, 715, 670, 615, 570, 620, 680, 740, 695, 645, 700, 750],
-        types: ['normal', 'normal', 'moss', 'normal', 'normal', 'purple', 'normal', 'moss', 'normal', 'normal', 'purple', 'normal', 'normal', 'moss', 'normal', 'normal'],
-        branches: [
-            { step: 0, x: 725, type: 'normal', route: 'right_safe' },
-            { step: 1, x: 780, type: 'normal', route: 'right_safe' },
-            { step: 2, x: 830, type: 'normal', route: 'right_safe' },
-            { step: 3, x: 785, type: 'moss', route: 'right_safe' },
-            { step: 4, x: 730, type: 'normal', route: 'right_safe' },
-            { step: 5, x: 770, type: 'normal', route: 'right_safe' },
-            { step: 7, x: 720, type: 'moving_diagonal_low', route: 'center_risk' },
-            { step: 8, x: 775, type: 'bonus', route: 'center_risk' },
-            { step: 9, x: 825, type: 'brittle', route: 'center_risk' },
-            { step: 10, x: 780, type: 'normal', route: 'center_risk' },
-            { step: 12, x: 610, type: 'moving_horizontal', route: 'fast_left', shortcut: true },
-            { step: 14, x: 665, type: 'bonus', route: 'fast_left', shortcut: true }
-        ],
-        throws: ['single']
-    },
-    {
-        id: 'moving_holds', share: 0.20, width: 780, gap: [43, 44, 42, 45],
-        route: [705, 650, 595, 650, 710, 770, 715, 655, 600, 660, 720, 780, 725, 665, 610, 670, 730, 690],
-        types: ['normal', 'moving_horizontal', 'normal', 'moving_vertical', 'normal', 'moving_diagonal_low', 'normal', 'moving_diagonal_steep', 'normal', 'moving_elliptical_wide', 'checkpoint', 'normal', 'moving_arc', 'normal', 'moving_pendulum', 'normal', 'moving_circular', 'normal'],
-        branches: [
-            { step: 0, x: 775, type: 'normal', route: 'right_timing' },
-            { step: 1, x: 830, type: 'moving_vertical', route: 'right_timing' },
-            { step: 2, x: 875, type: 'normal', route: 'right_timing' },
-            { step: 3, x: 900, type: 'moving_diagonal_steep', route: 'right_timing' },
-            { step: 4, x: 845, type: 'bonus', route: 'right_timing' },
-            { step: 6, x: 880, type: 'moving_horizontal', route: 'transfer_pair' },
-            { step: 7, x: 820, type: 'moving_vertical', route: 'transfer_pair' },
-            { step: 8, x: 770, type: 'normal', route: 'transfer_pair' },
-            { step: 9, x: 835, type: 'moving_circular', route: 'transfer_pair' },
-            { step: 11, x: 655, type: 'normal', route: 'left_arc' },
-            { step: 12, x: 600, type: 'moving_arc', route: 'left_arc' },
-            { step: 13, x: 545, type: 'bonus', route: 'left_arc' },
-            { step: 14, x: 600, type: 'normal', route: 'left_arc' },
-            { step: 15, x: 655, type: 'normal', route: 'left_arc' },
-            { step: 16, x: 650, type: 'moving_elliptical_tall', route: 'left_arc' }
-        ],
-        throws: ['single']
-    },
-    {
-        id: 'special_holds', share: 0.20, width: 760, gap: [47, 50, 46, 49],
-        route: [735, 790, 735, 675, 620, 675, 730, 785, 730, 670, 615, 665, 720, 775, 720, 660, 610, 670],
-        types: ['normal', 'brittle', 'normal', 'ice', 'normal', 'moss', 'normal', 'brittle', 'normal', 'ice', 'normal', 'moss', 'normal', 'brittle', 'normal', 'moving_ice', 'normal', 'normal'],
-        branches: [
-            { step: 0, x: 665, type: 'moss', route: 'left_safe' },
-            { step: 1, x: 610, type: 'normal', route: 'left_safe' },
-            { step: 2, x: 555, type: 'normal', route: 'left_safe' },
-            { step: 3, x: 605, type: 'moss', route: 'left_safe' },
-            { step: 4, x: 660, type: 'normal', route: 'left_safe' },
-            { step: 5, x: 710, type: 'normal', route: 'left_safe' },
-            { step: 6, x: 790, type: 'spike', route: 'right_risk' },
-            { step: 7, x: 845, type: 'bonus', route: 'right_risk' },
-            { step: 8, x: 800, type: 'moving_diagonal_low', route: 'right_risk' },
-            { step: 9, x: 750, type: 'normal', route: 'right_risk' },
-            { step: 10, x: 690, type: 'normal', route: 'right_risk' },
-            { step: 11, x: 610, type: 'brittle', route: 'fragile_reward' },
-            { step: 12, x: 555, type: 'moving_horizontal', route: 'fragile_reward' },
-            { step: 13, x: 610, type: 'bonus', route: 'fragile_reward' },
-            { step: 14, x: 665, type: 'normal', route: 'fragile_reward' },
-            { step: 16, x: 720, type: 'bonus', route: 'ice_exit' }
-        ],
-        throws: ['single', 'center']
-    },
-    {
-        id: 'master_pressure', share: 0.15, width: 820, gap: [46, 49, 47, 50],
-        route: [725, 665, 610, 665, 725, 785, 730, 670, 615, 675, 735, 790, 735, 690],
-        types: ['normal', 'brittle', 'normal', 'moving_diagonal_steep', 'normal', 'moss', 'normal', 'normal', 'ice', 'normal', 'checkpoint', 'normal', 'moving_pendulum', 'normal'],
-        branches: [
-            { step: 0, x: 785, type: 'normal', route: 'right_pressure' },
-            { step: 1, x: 850, type: 'moving_horizontal', route: 'right_pressure' },
-            { step: 2, x: 900, type: 'normal', route: 'right_pressure' },
-            { step: 3, x: 850, type: 'brittle', route: 'right_pressure' },
-            { step: 4, x: 795, type: 'bonus', route: 'right_pressure' },
-            { step: 6, x: 700, type: 'moving_vertical', route: 'center_fast', shortcut: true },
-            { step: 8, x: 725, type: 'bonus', route: 'center_fast', shortcut: true },
-            { step: 9, x: 700, type: 'spike', route: 'center_risk' },
-            { step: 10, x: 755, type: 'normal', route: 'center_risk' },
-            { step: 11, x: 870, type: 'moving_figure_eight', route: 'center_risk' },
-            { step: 12, x: 755, type: 'bonus', route: 'center_risk' }
-        ],
-        throws: ['force_left', 'force_right', 'swap', 'double']
-    },
-    {
-        id: 'final_gauntlet', share: 0.17, width: 780, gap: [44, 47, 45, 48],
-        route: [745, 800, 855, 805, 750, 695, 640, 695, 750, 810, 865, 810, 755, 700, 750, 790],
-        types: ['normal', 'moving_circular', 'normal', 'brittle', 'normal', 'moving_elliptical_tall', 'normal', 'moss', 'moving_arc', 'normal', 'moving_pendulum', 'normal', 'brittle', 'normal', 'moving_rect', 'normal'],
-        branches: [
-            { step: 0, x: 675, type: 'normal', route: 'left_final' },
-            { step: 1, x: 620, type: 'moving_diagonal_steep', route: 'left_final' },
-            { step: 2, x: 565, type: 'normal', route: 'left_final' },
-            { step: 3, x: 615, type: 'moving_triangle', route: 'left_final' },
-            { step: 4, x: 670, type: 'bonus', route: 'left_final' },
-            { step: 6, x: 800, type: 'moving_figure_eight', route: 'figure8_risk' },
-            { step: 7, x: 755, type: 'bonus', route: 'figure8_risk' },
-            { step: 8, x: 810, type: 'brittle', route: 'figure8_risk' },
-            { step: 9, x: 755, type: 'normal', route: 'figure8_risk' },
-            { step: 11, x: 745, type: 'spike', route: 'spike_shortcut' },
-            { step: 12, x: 690, type: 'bonus', route: 'spike_shortcut' },
-            { step: 13, x: 640, type: 'moving_elliptical_wide', route: 'spike_shortcut' },
-            { step: 14, x: 695, type: 'bonus', route: 'spike_shortcut' }
-        ],
-        throws: ['fragile_pressure', 'force_left', 'force_right', 'gauntlet']
-    }
-];
+const CLIMB_LEVEL = ClimbCourse.sections;
 
 const CLIMB_THROW_PATTERNS = {
     single: [{ delay: 0, offset: 0, type: 'stone' }],
@@ -493,11 +409,11 @@ const escaladaGame = {
     invulTimer: 0,
     shakeTimer: 0,
     
-    // Mundo Amplo da Montanha (1500px de largura com Exploração Lateral Completa)
-    mountainWidth: 1500,
+    // Mountain silhouette and routes share the same world-space profile.
+    mountainWidth: ClimbCourse.worldWidth,
     cameraX: 525,
     
-    playerX: 750,
+    playerX: ClimbCourse.profile(0,1).spine,
     playerY: 220,
     pedraAtual: null,
     playerState: 'GRABBED',
@@ -530,7 +446,6 @@ const escaladaGame = {
     sectionRanges: [],
     levelValidation: null,
     finishStarted: false,
-    summitTimer: 0,
     startTime: 0,
     lastRunSeconds: 0,
     qaLastFpsTime: 0,
@@ -569,50 +484,7 @@ const escaladaGame = {
 };
 
 function buildClimbLevel() {
-    const holds = [{
-        id: 0, x: 750, baseX: 750, y: 220, baseY: 220, climbY: 0,
-        r: 17, tipo: 'normal', levelStep: 0, sectionIndex: 0, coletado: false
-    }];
-    const ranges = [];
-    let levelStep = 0;
-    let climbY = 0;
-    let nextId = 1;
-
-    CLIMB_LEVEL.forEach((section, sectionIndex) => {
-        const startHeight = climbY;
-        const startStep = levelStep + 1;
-        section.route.forEach((x, localStep) => {
-            climbY += section.gap[localStep % section.gap.length];
-            levelStep++;
-            const type = section.types[localStep] || 'normal';
-            const hold = {
-                id: nextId++, x, baseX: x, y: 220 - climbY, baseY: 220 - climbY,
-                climbY, r: type === 'checkpoint' ? 22 : 17, tipo: type,
-                levelStep, sectionIndex, coletado: false, routeTag: 'safe'
-            };
-            configureClimbHold(hold, localStep);
-            holds.push(hold);
-
-            section.branches.filter(branch => branch.step === localStep).forEach(branch => {
-                const branchHold = {
-                    id: nextId++, x: branch.x, baseX: branch.x, y: 220 - climbY,
-                    baseY: 220 - climbY, climbY, r: 17, tipo: branch.type,
-                    levelStep, sectionIndex, coletado: false, optionalRoute: true,
-                    routeTag: branch.route || 'alternate', shortcut: !!branch.shortcut
-                };
-                configureClimbHold(branchHold, localStep + 0.5);
-                holds.push(branchHold);
-            });
-        });
-        ranges.push({
-            sectionIndex, id: section.id, startHeight, endHeight: climbY,
-            startStep, endStep: levelStep, width: section.width
-        });
-    });
-
-    const finish = holds.filter(hold => !hold.optionalRoute).sort((a, b) => b.levelStep - a.levelStep)[0];
-    finish.isFinish = true;
-    return { holds, ranges, totalHeight: Math.max(1, climbY - 40), finishId: finish.id };
+    return ClimbCourse.build(configureClimbHold);
 }
 
 const CLIMB_MOVING_TYPES = Object.freeze([
@@ -701,214 +573,205 @@ function climbHoldPositionAtTime(hold, timeSeconds) {
     return { x: hold.baseX + motion.x, climbY: hold.climbY - motion.y };
 }
 
+// Use the actual discrete jump integration, rather than a circular distance guess.
+// The graph checks directed transfers at 64 deterministic departure phases.
 function measureClimbTransfer(from, to) {
-    const stepDelta = to.levelStep - from.levelStep;
-    if (stepDelta < 1 || stepDelta > 2) return { reachable: false, minDistance: Infinity, contactWindowFrames: 0 };
-    if (!isMovingClimbHold(from) && !isMovingClimbHold(to)) {
-        const vertical = to.climbY - from.climbY;
-        const distance = Math.hypot(to.baseX - from.baseX, vertical);
-        return { reachable: vertical > 15 && vertical <= 91 && distance <= CLIMB_SAFE_REACH, minDistance: distance, contactWindowFrames: 999 };
-    }
-    let minDistance = Infinity;
-    let consecutive = 0;
-    let bestConsecutive = 0;
-    const samples = 96;
-    const sampleFrames = 4;
-    for (let sample = 0; sample < samples; sample++) {
-        const time = sample * sampleFrames / 60;
-        const a = climbHoldPositionAtTime(from, time);
-        const b = climbHoldPositionAtTime(to, time);
-        const vertical = b.climbY - a.climbY;
-        const distance = Math.hypot(b.x - a.x, vertical);
-        minDistance = Math.min(minDistance, distance);
-        if (vertical > 12 && vertical <= 94 && distance <= CLIMB_SAFE_REACH) {
-            consecutive++;
-            bestConsecutive = Math.max(bestConsecutive, consecutive);
-        } else {
-            consecutive = 0;
+    const rise = to.climbY - from.climbY;
+    if (rise < 18 || rise > 145 || Math.abs(to.baseX-from.baseX)>220)
+        return {reachable:false, minDistance:Infinity, contactWindowFrames:0};
+    const moving = isMovingClimbHold(from)||isMovingClimbHold(to);
+    const samples = moving ? 64 : 1;
+    let longest=0, run=0, successes=0, fastest=Infinity;
+    for (let sample=0;sample<samples;sample++) {
+        const time=sample*.1, origin=climbHoldPositionAtTime(from,time);
+        const initial=climbHoldPositionAtTime(to,time);
+        const next=climbHoldPositionAtTime(from,time+1/60);
+        let x=origin.x,y=-origin.climbY,vy=-CLIMB_PHYSICS.jumpForce;
+        let vx=Math.sign(initial.x-x)*CLIMB_PHYSICS.launchSpeed+(next.x-origin.x)*.55;
+        let hit=false;
+        for(let frame=1;frame<=60;frame++) {
+            const target=climbHoldPositionAtTime(to,time+frame/60);
+            const desired=Math.max(-3.85,Math.min(3.85,(target.x-x)*.18));
+            const input=Math.abs(desired-vx)<.25?0:Math.sign(desired-vx);
+            vx+=input*CLIMB_PHYSICS.airAcceleration*(from.tipo==='moss'?.72:1);
+            vx*=input?.992:.982;
+            vx=Math.max(-CLIMB_PHYSICS.maxAirSpeed,Math.min(CLIMB_PHYSICS.maxAirSpeed,vx));
+            vy=Math.min(CLIMB_PHYSICS.terminalVelocity,vy+CLIMB_PHYSICS.gravity);
+            x+=vx;y+=vy;
+            const dy=-target.climbY-y, radius=to.grabRadius||CLIMB_PHYSICS.grabRadius;
+            const contact=to.isFinish ? frame>=4&&x>=to.surface.left+16&&x<=to.surface.right-16&&Math.abs(dy+44)<=8
+                : frame>=4&&Math.hypot(target.x-x,dy)<=radius&&Math.abs(dy)<=radius*.92;
+            if(contact){hit=true;fastest=Math.min(fastest,frame);break;}
         }
+        if(hit){successes++;run++;longest=Math.max(longest,run);}else run=0;
     }
-    const contactWindowFrames = bestConsecutive * sampleFrames;
-    return { reachable: contactWindowFrames >= 12, minDistance, contactWindowFrames };
+    return {reachable:successes>0&&(!moving||longest>=3),
+        minDistance:Math.hypot(to.baseX-from.baseX,rise),
+        contactWindowFrames:moving?longest*6:999, phaseCoverage:successes/samples, fastestFrames:fastest};
 }
 
 function buildClimbGraph(holds) {
-    const outgoing = new Map(holds.map(hold => [hold.id, []]));
-    const incoming = new Map(holds.map(hold => [hold.id, []]));
-    const edges = [];
-    for (const from of holds) {
-        for (const to of holds) {
-            if (to.levelStep <= from.levelStep || to.levelStep > from.levelStep + 2) continue;
-            const transfer = measureClimbTransfer(from, to);
-            if (!transfer.reachable) continue;
-            const edge = { from: from.id, to: to.id, fromHold: from, toHold: to, ...transfer };
-            edges.push(edge);
-            outgoing.get(from.id).push(edge);
-            incoming.get(to.id).push(edge);
-        }
+    const outgoing=new Map(holds.map(h=>[h.id,[]])),incoming=new Map(holds.map(h=>[h.id,[]])),edges=[];
+    for(const from of holds)for(const to of holds){
+        if(to.climbY<=from.climbY||to.climbY>from.climbY+145)continue;
+        const transfer=measureClimbTransfer(from,to);if(!transfer.reachable)continue;
+        const edge={from:from.id,to:to.id,fromHold:from,toHold:to,...transfer};
+        outgoing.get(from.id).push(edge);incoming.get(to.id).push(edge);edges.push(edge);
     }
-    return { outgoing, incoming, edges };
+    return {outgoing,incoming,edges};
 }
 
-function isConnectedClimbPath(path, graph) {
-    for (let index = 1; index < path.length; index++) {
-        if (!graph.outgoing.get(path[index - 1].id).some(edge => edge.to === path[index].id)) return false;
-    }
-    return true;
+function isConnectedClimbPath(path,graph) {
+    return path.every((h,i)=>!i||graph.outgoing.get(path[i-1].id).some(e=>e.to===h.id));
 }
 
-function validateClimbLevel(holds, finishId, ranges = []) {
-    const start = holds.find(hold => hold.id === 0);
-    const finish = holds.find(hold => hold.id === finishId);
-    const graph = buildClimbGraph(holds);
-    const reachable = new Set([start.id]);
-    const queue = [start];
-    while (queue.length) {
-        const from = queue.shift();
-        for (const edge of graph.outgoing.get(from.id)) {
-            if (!reachable.has(edge.to)) {
-                reachable.add(edge.to);
-                queue.push(edge.toHold);
-            }
+// Check authored transfers with independent motion phases. A short shared-clock
+// sample can miss an unfavourable combination between two different trajectories.
+function auditClimbTransferPhases(from, to) {
+    const phaseCount = 64, fromCount = isMovingClimbHold(from) ? phaseCount : 1;
+    const toCount = isMovingClimbHold(to) ? phaseCount : 1;
+    let failures=0, narrow=0, jitterFailures=0, minContactFrames=Infinity;
+    function contacts(timeFrom,timeTo,offset=0,delay=0) {
+        const origin=climbHoldPositionAtTime(from,timeFrom),initial=climbHoldPositionAtTime(to,timeTo);
+        const next=climbHoldPositionAtTime(from,timeFrom+1/60);
+        let x=origin.x+offset,y=-origin.climbY,vy=-CLIMB_PHYSICS.jumpForce;
+        let vx=Math.sign(initial.x-x)*CLIMB_PHYSICS.launchSpeed+(next.x-origin.x)*.55,run=0,longest=0;
+        for(let frame=1;frame<=60;frame++) {
+            const target=climbHoldPositionAtTime(to,timeTo+frame/60);
+            const desired=Math.max(-CLIMB_PHYSICS.maxAirSpeed,Math.min(CLIMB_PHYSICS.maxAirSpeed,(target.x-x)*.18));
+            const input=frame<=delay?0:Math.abs(desired-vx)<.25?0:Math.sign(desired-vx);
+            vx+=input*CLIMB_PHYSICS.airAcceleration*(from.tipo==='moss'?.72:1);
+            vx*=input?.992:.982;
+            vx=Math.max(-CLIMB_PHYSICS.maxAirSpeed,Math.min(CLIMB_PHYSICS.maxAirSpeed,vx));
+            vy=Math.min(CLIMB_PHYSICS.terminalVelocity,vy+CLIMB_PHYSICS.gravity);x+=vx;y+=vy;
+            const dy=-target.climbY-y,radius=to.grabRadius||CLIMB_PHYSICS.grabRadius;
+            const contact=to.isFinish ? frame>=4&&x>=to.surface.left+16&&x<=to.surface.right-16&&Math.abs(dy+44)<=8
+                : frame>=4&&Math.hypot(target.x-x,dy)<=radius&&Math.abs(dy)<=radius*.92;
+            if(contact){run++;longest=Math.max(longest,run);}else run=0;
         }
+        return longest;
     }
-    const mainRoute = holds.filter(hold => !hold.optionalRoute).sort((a, b) => a.levelStep - b.levelStep);
-    let lateralDistance = 0;
-    for (let i = 1; i < mainRoute.length; i++) lateralDistance += Math.abs(mainRoute[i].x - mainRoute[i - 1].x);
-    const sections = ranges.map(range => {
-        const sectionHolds = holds.filter(hold => hold.sectionIndex === range.sectionIndex);
-        const main = sectionHolds.filter(hold => !hold.optionalRoute).sort((a, b) => a.levelStep - b.levelStep);
-        const entry = holds.filter(hold => !hold.optionalRoute && hold.levelStep < range.startStep).sort((a, b) => b.levelStep - a.levelStep)[0] || start;
-        const exit = holds.filter(hold => !hold.optionalRoute && hold.levelStep > range.endStep).sort((a, b) => a.levelStep - b.levelStep)[0] || finish;
-        const routeTags = [...new Set(sectionHolds.filter(hold => hold.optionalRoute).map(hold => hold.routeTag))];
-        const validRouteTags = routeTags.filter(tag => {
-            const branch = sectionHolds.filter(hold => hold.routeTag === tag).sort((a, b) => a.levelStep - b.levelStep);
-            if (!branch.length) return false;
-            const before = holds.filter(hold => !hold.optionalRoute && hold.levelStep < branch[0].levelStep).sort((a, b) => b.levelStep - a.levelStep)[0] || entry;
-            const after = holds.filter(hold => !hold.optionalRoute && hold.levelStep > branch[branch.length - 1].levelStep).sort((a, b) => a.levelStep - b.levelStep)[0] || exit;
-            return isConnectedClimbPath([before, ...branch, after], graph);
+    for(let a=0;a<fromCount;a++)for(let b=0;b<toCount;b++) {
+        const ta=fromCount===1?0:(a/fromCount*Math.PI*2-from.offset)/from.speed;
+        const tb=toCount===1?0:(b/toCount*Math.PI*2-to.offset)/to.speed;
+        const frames=contacts(ta,tb);
+        minContactFrames=Math.min(minContactFrames,frames);
+        if(!frames)failures++;else if(frames<3)narrow++;
+        if(!contacts(ta,tb,-4,2)||!contacts(ta,tb,4,2))jitterFailures++;
+    }
+    return {from:from.id,to:to.id,samples:fromCount*toCount,failures,narrow,jitterFailures,minContactFrames};
+}
+
+function validateClimbLevel(holds,finishId,ranges=[]) {
+    const graph=buildClimbGraph(holds), dangerous=h=>['spike','danger'].includes(h.tipo);
+    const reachable=new Set([0]),queue=[holds[0]];
+    const minJumps=new Map([[0,0]]);
+    while(queue.length){const h=queue.shift();for(const e of graph.outgoing.get(h.id)){
+        if(dangerous(e.toHold))continue;
+        if(!reachable.has(e.to)){reachable.add(e.to);minJumps.set(e.to,minJumps.get(h.id)+1);queue.push(e.toHold);}
+    }}
+    const main=holds.filter(h=>!h.optionalRoute).sort((a,b)=>a.climbY-b.climbY);
+    const authoredPairs=new Map();
+    function includePath(path){path.slice(1).forEach((h,i)=>authoredPairs.set(`${path[i].id}:${h.id}`,[path[i],h]));}
+    includePath(main);
+    for(const tag of new Set(holds.filter(h=>h.forkEntry!==undefined).map(h=>h.routeTag))){
+        const branch=holds.filter(h=>h.routeTag===tag).sort((a,b)=>a.climbY-b.climbY);
+        includePath([holds.find(h=>h.id===branch[0].forkEntry),...branch,holds.find(h=>h.id===branch[0].forkExit)]);
+    }
+    const phaseChecks=[...authoredPairs.values()].map(([a,b])=>auditClimbTransferPhases(a,b));
+    const phaseIssues=phaseChecks.filter(c=>c.failures||c.narrow||c.jitterFailures);
+    const transferValidator={valid:!phaseIssues.length,transfers:phaseChecks.length,independentPhases:64,
+        simulations:phaseChecks.reduce((n,c)=>n+c.samples*3,0),positionTolerance:4,controlDelayFrames:2,
+        requiredContinuousFrames:3,minContactFrames:Math.min(...phaseChecks.map(c=>c.minContactFrames)),issues:phaseIssues};
+    const missingMain=[];
+    main.forEach((h,i)=>{if(i&&!graph.outgoing.get(main[i-1].id).some(e=>e.to===h.id))missingMain.push([main[i-1].id,h.id]);});
+    const sections=ranges.map(r=>{
+        const group=holds.filter(h=>h.sectionIndex===r.sectionIndex);
+        const tags=[...new Set(group.filter(h=>h.forkEntry!==undefined).map(h=>h.routeTag))];
+        const invalidRouteTags=tags.filter(tag=>{
+            // A route can cross visual zones; validate its complete authored path.
+            const branch=holds.filter(h=>h.routeTag===tag).sort((a,b)=>a.climbY-b.climbY);
+            return !isConnectedClimbPath([holds.find(h=>h.id===branch[0].forkEntry),...branch,holds.find(h=>h.id===branch[0].forkExit)],graph);
         });
-        const choiceLevels = new Set(sectionHolds.filter(hold => hold.optionalRoute).map(hold => hold.levelStep)).size;
-        const safeConnected = isConnectedClimbPath([entry, ...main, exit].filter((hold, index, array) => index === 0 || hold.id !== array[index - 1].id), graph);
-        return {
-            id: range.id,
-            startStep: range.startStep,
-            endStep: range.endStep,
-            reachableEnd: holds.some(hold => hold.levelStep === range.endStep && reachable.has(hold.id)),
-            holdCount: sectionHolds.length,
-            routes: (safeConnected ? 1 : 0) + validRouteTags.length,
-            declaredRoutes: 1 + routeTags.length,
-            bifurcations: validRouteTags.length,
-            merges: validRouteTags.length,
-            choiceCoverage: Number((choiceLevels / Math.max(1, range.endStep - range.startStep + 1)).toFixed(2)),
-            invalidRouteTags: routeTags.filter(tag => !validRouteTags.includes(tag))
-        };
+        const lanes=[...new Set(group.filter(h=>!dangerous(h)&&h.lane!=='connection').map(h=>h.lane||'center'))];
+        return {id:r.id,holdCount:group.length,startHeight:r.startHeight,endHeight:r.endHeight,
+            reachableEnd:main.filter(h=>h.sectionIndex===r.sectionIndex).every(h=>reachable.has(h.id)),
+            routes:lanes.length,lanes,bifurcations:tags.length-invalidRouteTags.length,invalidRouteTags};
     });
-    const spikeHolds = holds.filter(hold => hold.tipo === 'spike' || hold.tipo === 'danger');
-    let minSpikeDistance = Infinity;
-    const spikeRadiusViolations = [];
-    for (let left = 0; left < spikeHolds.length; left++) {
-        for (let right = left + 1; right < spikeHolds.length; right++) {
-            const distance = Math.hypot(spikeHolds[left].baseX - spikeHolds[right].baseX, spikeHolds[left].climbY - spikeHolds[right].climbY);
-            minSpikeDistance = Math.min(minSpikeDistance, distance);
-            if (distance < CLIMB_SPIKE_EXCLUSION_RADIUS) spikeRadiusViolations.push([spikeHolds[left].id, spikeHolds[right].id]);
+    const spikes=holds.filter(dangerous),pairs=[],spikeEdges=[],withoutAlternative=[];
+    let minSpikeDistance=Infinity;
+    spikes.forEach((h,i)=>{
+        spikes.slice(i+1).forEach(b=>{const d=Math.hypot(h.baseX-b.baseX,h.climbY-b.climbY);minSpikeDistance=Math.min(minSpikeDistance,d);if(d<CLIMB_SPIKE_EXCLUSION_RADIUS)pairs.push([h.id,b.id]);});
+        graph.outgoing.get(h.id).forEach(e=>{if(dangerous(e.toHold))spikeEdges.push([h.id,e.to]);});
+        if(!holds.some(b=>!dangerous(b)&&Math.abs(b.climbY-h.climbY)<10&&reachable.has(b.id)&&graph.outgoing.get(b.id).some(e=>!dangerous(e.toHold))))withoutAlternative.push(h.id);
+    });
+    const moving=holds.filter(isMovingClimbHold),withoutTransfer=moving.filter(h=>!graph.incoming.get(h.id).some(e=>!dangerous(e.fromHold))||!graph.outgoing.get(h.id).some(e=>!dangerous(e.toHold))).map(h=>h.id);
+    const collisionViolations=[];
+    moving.forEach((h,i)=>moving.slice(i+1).forEach(b=>{
+        if(Math.abs(h.climbY-b.climbY)>110)return;
+        let min=Infinity;for(let k=0;k<96;k++){const a=climbHoldPositionAtTime(h,k/10),c=climbHoldPositionAtTime(b,k/10);min=Math.min(min,Math.hypot(a.x-c.x,a.climbY-c.climbY));}
+        if(min<34)collisionViolations.push({holds:[h.id,b.id],minDistance:min});
+    }));
+    const finish=holds.find(h=>h.id===finishId), checkpoints=holds.filter(h=>h.tipo==='checkpoint').map(h=>{
+        const visited=new Set([0]),pending=[0];
+        while(pending.length){const id=pending.shift();for(const e of graph.outgoing.get(id)){
+            if(e.to===h.id||dangerous(e.toHold)||visited.has(e.to))continue;
+            visited.add(e.to);pending.push(e.to);
+        }}
+        return {id:h.id,step:h.levelStep,progress:h.climbY/finish.climbY,reachable:reachable.has(h.id),mandatory:!visited.has(finishId)};
+    });
+    const checkpointValidator={valid:checkpoints.length===2&&checkpoints.every((c,i)=>c.reachable&&c.mandatory&&c.progress>=[.30,.65][i]&&c.progress<=[.35,.70][i]),checkpoints};
+    const spikeValidator={valid:!pairs.length&&!spikeEdges.length&&!withoutAlternative.length,count:spikes.length,minDistance:Number.isFinite(minSpikeDistance)?minSpikeDistance:null,radiusViolations:pairs,spikeEdges,withoutAlternative};
+    const routeValidator={valid:!missingMain.length&&sections.every(s=>s.reachableEnd&&!s.invalidRouteTags.length),missingMain,totalBifurcations:sections.reduce((n,s)=>n+s.bifurcations,0),sections};
+    const canReachSummit=new Set([finishId]),backward=[finishId];
+    while(backward.length){const id=backward.shift();for(const e of graph.incoming.get(id)){
+        if(dangerous(e.fromHold)||canReachSummit.has(e.from))continue;
+        canReachSummit.add(e.from);backward.push(e.from);
+    }}
+    const deadEnds=holds.filter(h=>!dangerous(h)&&reachable.has(h.id)&&!canReachSummit.has(h.id)).map(h=>h.id);
+    routeValidator.deadEnds=deadEnds;routeValidator.valid=routeValidator.valid&&!deadEnds.length;
+    const movingValidator={valid:!withoutTransfer.length&&!collisionViolations.length,withoutTransfer,collisionViolations,minTransferWindowFrames:Math.min(...graph.edges.filter(e=>isMovingClimbHold(e.toHold)).map(e=>e.contactWindowFrames))};
+    const outsideMountain=[];let minimumClearance=Infinity;
+    for(const hold of holds.filter(h=>!h.isFinish)){
+        const count=isMovingClimbHold(hold)?64:1;
+        for(let i=0;i<count;i++){
+            const time=count===1?0:(i/count*Math.PI*2-hold.offset)/hold.speed;
+            const pos=climbHoldPositionAtTime(hold,time),face=ClimbCourse.profile(pos.climbY,finish.climbY);
+            const clearance=Math.min(pos.x-face.left,face.right-pos.x);
+            minimumClearance=Math.min(minimumClearance,clearance);
+            if(clearance<36){outsideMountain.push(hold.id);break;}
         }
     }
-    const spikeEdges = graph.edges.filter(edge => (edge.fromHold.tipo === 'spike' || edge.fromHold.tipo === 'danger') && (edge.toHold.tipo === 'spike' || edge.toHold.tipo === 'danger'));
-    const spikesWithoutAlternative = spikeHolds.filter(spike => !holds.some(hold =>
-        hold.levelStep === spike.levelStep && hold.id !== spike.id &&
-        hold.tipo !== 'spike' && hold.tipo !== 'danger' && reachable.has(hold.id) &&
-        (hold.isFinish || graph.outgoing.get(hold.id).length > 0)
-    ));
-    const movingEdges = graph.edges.filter(edge => isMovingClimbHold(edge.fromHold) || isMovingClimbHold(edge.toHold));
-    const movingWithoutTransfer = holds.filter(isMovingClimbHold).filter(hold => !movingEdges.some(edge => edge.from === hold.id || edge.to === hold.id));
-    const movingHolds = holds.filter(isMovingClimbHold);
-    const movingCollisionViolations = [];
-    for (let left = 0; left < movingHolds.length; left++) {
-        for (let right = left + 1; right < movingHolds.length; right++) {
-            const a = movingHolds[left], b = movingHolds[right];
-            if (Math.abs(a.climbY - b.climbY) > 105) continue;
-            let minDistance = Infinity;
-            for (let sample = 0; sample < 96; sample++) {
-                const time = sample * 4 / 60;
-                const pa = climbHoldPositionAtTime(a, time);
-                const pb = climbHoldPositionAtTime(b, time);
-                minDistance = Math.min(minDistance, Math.hypot(pa.x - pb.x, pa.climbY - pb.climbY));
-            }
-            if (minDistance < 34) movingCollisionViolations.push({ holds: [a.id, b.id], minDistance: Number(minDistance.toFixed(1)) });
-        }
-    }
-    const specialFamilies = hold => {
-        if (hold.tipo === 'ice' || hold.tipo === 'moving_ice') return 'ice';
-        if (hold.tipo === 'brittle') return 'brittle';
-        if (hold.tipo === 'moss') return 'moss';
-        if (isMovingClimbHold(hold)) return 'moving';
-        if (hold.tipo === 'spike' || hold.tipo === 'danger') return 'spike';
-        return null;
-    };
-    const repetitionViolations = [];
-    const checkRepetition = (label, sequence) => {
-        let previous = null;
-        let run = 0;
-        for (const hold of sequence) {
-            const family = specialFamilies(hold);
-            if (family && family === previous) run++;
-            else run = family ? 1 : 0;
-            previous = family;
-            const allowed = family === 'spike' ? 1 : 2;
-            if (family && run > allowed) repetitionViolations.push({ route: label, family, hold: hold.id, run });
-        }
-    };
-    checkRepetition('safe', mainRoute);
-    for (const range of ranges) {
-        const tags = [...new Set(holds.filter(hold => hold.sectionIndex === range.sectionIndex && hold.optionalRoute).map(hold => hold.routeTag))];
-        for (const tag of tags) checkRepetition(`${range.id}:${tag}`, holds.filter(hold => hold.sectionIndex === range.sectionIndex && hold.routeTag === tag).sort((a, b) => a.levelStep - b.levelStep));
-    }
-    const spikeValidator = {
-        valid: spikeRadiusViolations.length === 0 && spikeEdges.length === 0 && spikesWithoutAlternative.length === 0,
-        count: spikeHolds.length,
-        exclusionRadius: CLIMB_SPIKE_EXCLUSION_RADIUS,
-        minDistance: Number.isFinite(minSpikeDistance) ? Number(minSpikeDistance.toFixed(1)) : null,
-        radiusViolations: spikeRadiusViolations,
-        spikeEdges: spikeEdges.map(edge => [edge.from, edge.to]),
-        withoutAlternative: spikesWithoutAlternative.map(hold => hold.id)
-    };
-    const routeValidator = {
-        valid: sections.every(section => section.reachableEnd && section.routes >= 2 && section.invalidRouteTags.length === 0),
-        totalBifurcations: sections.reduce((sum, section) => sum + section.bifurcations, 0),
-        totalMerges: sections.reduce((sum, section) => sum + section.merges, 0),
-        sections
-    };
-    const movingValidator = {
-        valid: movingWithoutTransfer.length === 0 && movingCollisionViolations.length === 0 && (movingEdges.length === 0 || Math.min(...movingEdges.map(edge => edge.contactWindowFrames)) >= 12),
-        withoutTransfer: movingWithoutTransfer.map(hold => hold.id),
-        collisionViolations: movingCollisionViolations,
-        minTransferWindowFrames: movingEdges.length ? Math.min(...movingEdges.map(edge => edge.contactWindowFrames)) : null
-    };
-    const repetitionValidator = { valid: repetitionViolations.length === 0, violations: repetitionViolations };
-    return {
-        valid: reachable.has(finish.id) && routeValidator.valid && spikeValidator.valid && movingValidator.valid && repetitionValidator.valid,
-        reachable: reachable.size, edgeCount: graph.edges.length,
-        holds: holds.length, steps: finish.levelStep, lateralDistance,
-        sections, routeValidator, spikeValidator, movingValidator, repetitionValidator,
-        minMovingWindowFrames: movingEdges.length ? Math.min(...movingEdges.map(edge => edge.contactWindowFrames)) : null,
-        movingWithoutTransfer: movingWithoutTransfer.map(hold => hold.id)
-    };
+    const mountainValidator={valid:!outsideMountain.length,requiredClearance:36,minimumClearance,outsideMountain,
+        widths:[0,.5,.9,1].map(p=>{const e=ClimbCourse.profile(p*finish.climbY,finish.climbY);return {progress:p,width:e.right-e.left};})};
+    const distribution=sections.map(s=>{
+        const group=holds.filter(h=>!dangerous(h)&&h.sectionIndex===ranges.find(r=>r.id===s.id).sectionIndex);
+        const positions=group.map(h=>{const face=ClimbCourse.profile(h.climbY,finish.climbY);return (h.baseX-face.left)/(face.right-face.left);});
+        return {id:s.id,lanes:s.lanes,bands:[...new Set(positions.map(p=>Math.max(0,Math.min(4,Math.floor(p*5)))))].sort(),
+            left:Math.min(...positions),right:Math.max(...positions)};
+    });
+    const distributionValidator={valid:distribution.every(s=>s.lanes.length===3&&s.bands.length>=(s.id==='base'?3:5)),sections:distribution};
+    return {valid:reachable.has(finishId)&&routeValidator.valid&&spikeValidator.valid&&movingValidator.valid&&checkpointValidator.valid&&transferValidator.valid&&mountainValidator.valid&&distributionValidator.valid,
+        holds:holds.length,steps:finish.levelStep,height:finish.climbY,reachable:reachable.size,edgeCount:graph.edges.length,
+        minimumJumps:minJumps.get(finishId),sections,routeValidator,spikeValidator,movingValidator,checkpointValidator,transferValidator,mountainValidator,distributionValidator,
+        summit:{physical:true,surface:finish.surface,height:finish.climbY},physics:{...CLIMB_PHYSICS}};
 }
 
 function getCurrentClimbSection() {
-    const currentStep = escaladaGame.pedraAtual ? escaladaGame.pedraAtual.levelStep : escaladaGame.currentStep;
-    const range = escaladaGame.sectionRanges.find(item => currentStep >= item.startStep && currentStep <= item.endStep);
+    const height = Math.max(0,Math.min(escaladaGame.alturaTotal,escaladaGame.pedraAtual ? escaladaGame.pedraAtual.climbY : 220-escaladaGame.playerY+escaladaGame.alturaAtual));
+    const range = escaladaGame.sectionRanges.find(item => height >= item.startHeight && height <= item.endHeight);
     return range || escaladaGame.sectionRanges[0] || { sectionIndex: 0, id: 'intro', width: 620 };
 }
 
 function resetEscalada() {
+    document.getElementById('game-title').style.visibility = 'hidden';
+    hintText.innerText = '';
     escaladaGame.vida = 3;
     escaladaGame.invulTimer = 0;
     escaladaGame.shakeTimer = 0;
-    escaladaGame.mountainWidth = 1500;
+    escaladaGame.mountainWidth = ClimbCourse.worldWidth;
     escaladaGame.cameraX = 525;
-    escaladaGame.playerX = 750;
+    escaladaGame.playerX = ClimbCourse.profile(0,1).spine;
     escaladaGame.playerY = 220;
     escaladaGame.alturaAtual = 0;
     escaladaGame.checkpointAltura = 0;
@@ -929,6 +792,8 @@ function resetEscalada() {
     escaladaGame.score = 0;
     escaladaGame.combo = 0;
     escaladaGame.hazardCooldown = 150;
+    escaladaGame.blockedHoldId=-1;escaladaGame.blockedHoldTimer=0;
+    escaladaGame.motionClock=0;escaladaGame.summitContactX=null;
     escaladaGame.lastHazardLane = -1;
     escaladaGame.slipTimer = 0;
     escaladaGame.fallFrames = 0;
@@ -939,7 +804,8 @@ function resetEscalada() {
     escaladaGame.hazardQueue = [];
     escaladaGame.throwPatternIndex = 0;
     escaladaGame.finishStarted = false;
-    escaladaGame.summitTimer = 0;
+    ClimbSummit.reset(escaladaGame);
+    climbSummitAdvancePressed=false;
     escaladaGame.startTime = performance.now();
     escaladaGame.lastRunSeconds = 0;
     escaladaGame.qaLastFpsTime = performance.now();
@@ -962,13 +828,18 @@ function resetEscalada() {
     const builtLevel = buildClimbLevel();
     escaladaGame.pedrasGeradas = builtLevel.holds;
     escaladaGame.sectionRanges = builtLevel.ranges;
+    escaladaGame.routePlan = builtLevel.routePlan;
     escaladaGame.alturaTotal = builtLevel.totalHeight;
     escaladaGame.levelValidation = validateClimbLevel(builtLevel.holds, builtLevel.finishId, builtLevel.ranges);
     escaladaGame.pedraAtual = escaladaGame.pedrasGeradas[0];
+    escaladaGame.playerX=escaladaGame.pedraAtual.x;
+    escaladaGame.cameraX=escaladaGame.playerX-canvas.width*.5;
     if (!escaladaGame.levelValidation.valid) {
         console.error('[Escalada] Blueprint sem caminho seguro ate o topo.', escaladaGame.levelValidation);
     }
     escaladaGame.gameState = 'TUTORIAL';
+    ClimbSprites.reset(escaladaGame);
+    ClimbCheckpoints.reset(escaladaGame);
 }
 
 function tentarPular() {
@@ -976,6 +847,12 @@ function tentarPular() {
     if (!podePular || escaladaGame.isGameOver || escaladaGame.settleTimer > 0 || escaladaGame.finishStarted) return false;
 
     const direction = (keys.d ? 1 : 0) - (keys.a ? 1 : 0);
+    if(escaladaGame.playerState==='STANDING'&&escaladaGame.pedraAtual?.tipo==='checkpoint')
+        return ClimbCheckpoints.prepareJump(escaladaGame,direction);
+    return iniciarSaltoEscalada(direction);
+}
+
+function iniciarSaltoEscalada(direction, fromCheckpoint = false) {
     const holdVelocity = escaladaGame.pedraAtual ? (escaladaGame.pedraAtual.motionVX || 0) : 0;
     escaladaGame.launchHoldId = escaladaGame.pedraAtual ? escaladaGame.pedraAtual.id : -1;
     escaladaGame.playerState = 'AIRBORNE';
@@ -987,6 +864,7 @@ function tentarPular() {
     escaladaGame.jumpDir = direction;
     escaladaGame.nextJumpControl = Math.max(0.68, escaladaGame.nextJumpControl || 1);
     criarPoeira(escaladaGame.playerX, escaladaGame.playerY, '#d7ccc8', 7);
+    ClimbSprites.notify(escaladaGame, 'jump', { checkpoint: fromCheckpoint });
     return true;
 }
 
@@ -1017,12 +895,21 @@ function criarHitSpark(x, y) {
 }
 
 function concluirAgarrada(pedra) {
+    if(pedra.isFinish){ClimbSummit.begin(escaladaGame,pedra);return;}
+    if(pedra.tipo==='checkpoint'){ClimbCheckpoints.begin(escaladaGame,pedra);return;}
+    if (pedra.tipo === 'spike' || pedra.tipo === 'danger') {
+        escaladaGame.blockedHoldId=pedra.id;escaladaGame.blockedHoldTimer=45;
+        aplicarDanoJogador('Espinhos! Procure a rota de rocha ao lado.', {drop:true,knockbackX:escaladaGame.playerX<pedra.x?-2.7:2.7});
+        if(escaladaGame.playerState!=='AIRBORNE'&&escaladaGame.gameState!=='GAMEOVER')soltarDaAgarra(2.4,1.6);
+        return;
+    }
     const estavaCaindo = escaladaGame.vy > 1.25;
-    escaladaGame.playerState = pedra.tipo === 'checkpoint' ? 'STANDING' : 'GRABBED';
+    escaladaGame.playerState = (pedra.tipo === 'checkpoint'||pedra.isFinish) ? 'STANDING' : 'GRABBED';
     escaladaGame.pedraAtual = pedra;
     escaladaGame.currentStep = Math.max(escaladaGame.currentStep, pedra.levelStep);
     escaladaGame.grabTarget = null;
-    escaladaGame.playerX = pedra.x;
+    escaladaGame.summitContactX = pedra.isFinish ? escaladaGame.playerX : null;
+    escaladaGame.playerX = pedra.isFinish ? escaladaGame.summitContactX : pedra.x;
     escaladaGame.playerY = pedra.y;
     escaladaGame.vx = 0;
     escaladaGame.vy = 0;
@@ -1030,8 +917,11 @@ function concluirAgarrada(pedra) {
     escaladaGame.settleTimer = CLIMB_PHYSICS.settleFrames;
     escaladaGame.gripTimer = 0;
     escaladaGame.nextJumpControl = pedra.tipo === 'moss' ? 0.72 : 1;
-    escaladaGame.combo = Math.min(99, escaladaGame.combo + 1);
-    escaladaGame.score += 80 + escaladaGame.combo * 12 + (estavaCaindo ? 55 : 0);
+    if (!pedra.visited) {
+        escaladaGame.combo = Math.min(99, escaladaGame.combo + 1);
+        escaladaGame.score += 80 + escaladaGame.combo * 12 + (estavaCaindo ? 55 : 0);
+        pedra.visited = true;
+    }
     criarPoeira(pedra.x, pedra.y, estavaCaindo ? '#f1c40f' : '#d7ccc8', estavaCaindo ? 10 : 6);
 
     if (pedra.tipo === 'brittle') pedra.quebrando = true;
@@ -1043,20 +933,28 @@ function concluirAgarrada(pedra) {
         escaladaGame.slipTimer = 20;
         escaladaGame.gripTimer = pedra.tipo === 'moving_ice' ? 58 : 76;
     }
-    if (pedra.tipo === 'spike' || pedra.tipo === 'danger') {
-        criarPoeira(pedra.x, pedra.y, '#e45845', 14);
-        aplicarDanoJogador('Os espinhos fizeram Zorp perder a pegada!', { drop: true, knockbackX: escaladaGame.playerX < 750 ? -2.7 : 2.7 });
-        return;
-    }
-    if ((pedra.tipo === 'bonus' || pedra.tipo === 'checkpoint') && !pedra.coletado) {
+    if (pedra.tipo === 'bonus' && !pedra.coletado) {
         escaladaGame.score += 500;
         escaladaGame.combo += 2;
         pedra.coletado = true;
     }
-    if (pedra.tipo === 'checkpoint' && escaladaGame.checkpointHoldId !== pedra.id) {
+    ClimbSprites.notify(escaladaGame, 'grip', { hold: pedra, descending: estavaCaindo });
+}
+
+function confirmarCheckpointEscalada(pedra) {
+    if(!ClimbCheckpoints.confirm(escaladaGame,pedra))return;
+    escaladaGame.currentStep=Math.max(escaladaGame.currentStep,pedra.levelStep);
+    if(!pedra.visited){
+        escaladaGame.combo=Math.min(99,escaladaGame.combo+1);
+        escaladaGame.score+=80+escaladaGame.combo*12;
+        pedra.visited=true;
+    }
+    if(!pedra.coletado){escaladaGame.score+=500;escaladaGame.combo+=2;pedra.coletado=true;}
+    if (escaladaGame.checkpointHoldId !== pedra.id) {
         escaladaGame.vida = escaladaGame.maxVida;
         escaladaGame.checkpointAltura = Math.max(0, pedra.climbY - 42);
         escaladaGame.checkpointHoldId = pedra.id;
+        escaladaGame.hazardCooldown=180;escaladaGame.hazardQueue.length=0;escaladaGame.objetosCaindo.length=0;
         criarPoeira(pedra.x, pedra.y, '#f1c40f', 24);
     }
 }
@@ -1067,11 +965,21 @@ function procurarAutoGrab() {
     let bestScore = Infinity;
     for (const pedra of escaladaGame.pedrasGeradas) {
         if (pedra.quebrada) continue;
+        if(pedra.id===escaladaGame.blockedHoldId&&escaladaGame.blockedHoldTimer>0)continue;
+        if(['spike','danger'].includes(pedra.tipo)&&escaladaGame.invulTimer>0)continue;
+        if(pedra.isFinish){
+            if(ClimbSummit.canGrip(escaladaGame,pedra))return pedra;
+            continue;
+        }
         if (pedra.id === escaladaGame.launchHoldId && escaladaGame.airFrames < 15) continue;
+        if(pedra.tipo==='checkpoint'){
+            if(ClimbCheckpoints.canGrip(escaladaGame,pedra))return pedra;
+            continue;
+        }
         const dx = pedra.x - escaladaGame.playerX;
         const dy = pedra.y - escaladaGame.playerY;
         const distance = Math.hypot(dx, dy);
-        const radius = CLIMB_PHYSICS.grabRadius + (isMovingClimbHold(pedra) ? 3 : 0);
+        const radius = pedra.grabRadius || CLIMB_PHYSICS.grabRadius;
         const dangerPenalty = pedra.tipo === 'spike' || pedra.tipo === 'danger' ? 9 : 0;
         const score = distance + dangerPenalty;
         if (distance <= radius && score < bestScore && Math.abs(dy) <= radius * 0.92) {
@@ -1083,6 +991,7 @@ function procurarAutoGrab() {
 }
 
 function soltarDaAgarra(vx = 0, vy = 1.6) {
+    if(escaladaGame.pedraAtual){escaladaGame.blockedHoldId=escaladaGame.pedraAtual.id;escaladaGame.blockedHoldTimer=45;}
     escaladaGame.playerState = 'AIRBORNE';
     escaladaGame.pedraAtual = null;
     escaladaGame.grabTarget = null;
@@ -1090,9 +999,13 @@ function soltarDaAgarra(vx = 0, vy = 1.6) {
     escaladaGame.vx = vx;
     escaladaGame.vy = vy;
     escaladaGame.jumpDir = Math.sign(vx);
+    ClimbSprites.notify(escaladaGame, 'drop');
 }
 
 function atualizarFisicaEscalada() {
+    if(escaladaGame.playerState==='STANDING'&&escaladaGame.pedraAtual?.tipo==='checkpoint'){
+        ClimbCheckpoints.walk(escaladaGame,keys);return;
+    }
     if (escaladaGame.playerState === 'GRABBING') {
         const alvo = escaladaGame.grabTarget;
         if (!alvo || alvo.quebrada) {
@@ -1109,7 +1022,7 @@ function atualizarFisicaEscalada() {
 
     if (escaladaGame.playerState === 'GRABBED' || escaladaGame.playerState === 'STANDING') {
         if (escaladaGame.pedraAtual) {
-            escaladaGame.playerX = escaladaGame.pedraAtual.x;
+            escaladaGame.playerX = escaladaGame.pedraAtual.isFinish ? escaladaGame.summitContactX : escaladaGame.pedraAtual.x;
             escaladaGame.playerY = escaladaGame.pedraAtual.y;
         }
         if (escaladaGame.gripTimer > 0) {
@@ -1136,10 +1049,9 @@ function atualizarFisicaEscalada() {
     escaladaGame.playerY += escaladaGame.vy;
     escaladaGame.jumpDir = Math.abs(escaladaGame.vx) > 0.2 ? Math.sign(escaladaGame.vx) : escaladaGame.jumpDir;
 
-    const section = getCurrentClimbSection();
-    const halfWidth = section.width * 0.5;
-    const minX = 750 - halfWidth + 24;
-    const maxX = 750 + halfWidth - 24;
+    const mountainFace=ClimbCourse.profile(220-escaladaGame.playerY+escaladaGame.alturaAtual,escaladaGame.alturaTotal);
+    const minX = mountainFace.left+24;
+    const maxX = mountainFace.right-24;
     if (escaladaGame.playerX < minX || escaladaGame.playerX > maxX) {
         escaladaGame.playerX = Math.max(minX, Math.min(maxX, escaladaGame.playerX));
         escaladaGame.vx *= -0.28;
@@ -1147,14 +1059,18 @@ function atualizarFisicaEscalada() {
 
     const alvo = procurarAutoGrab();
     if (alvo) {
+        if(alvo.isFinish){ClimbSummit.begin(escaladaGame,alvo);return;}
+        if(alvo.tipo==='checkpoint'){ClimbCheckpoints.begin(escaladaGame,alvo);return;}
         escaladaGame.playerState = 'GRABBING';
         escaladaGame.grabTarget = alvo;
         escaladaGame.snapTimer = CLIMB_PHYSICS.snapFrames;
+        ClimbSprites.notify(escaladaGame, 'reach', { hold: alvo, descending: escaladaGame.vy > 1.25 });
     }
 }
 
 function atualizarCameraEMundo() {
-    const limiteTelaY = canvas.height * 0.60;
+    if(ClimbCheckpoints.lockCamera(escaladaGame))return;
+    const limiteTelaY = canvas.height * 0.69;
     const limiteQuedaY = canvas.height * 0.75;
 
     // A câmera revela a próxima decisão e também acompanha uma queda tempo suficiente
@@ -1170,20 +1086,26 @@ function atualizarCameraEMundo() {
             escaladaGame.playerY -= diferenca;
             escaladaGame.alturaAtual -= diferenca;
         }
+    } else if (['GRABBED','STANDING'].includes(escaladaGame.playerState) && escaladaGame.playerY>limiteTelaY+10 && escaladaGame.alturaAtual>0) {
+        const correction=Math.min(escaladaGame.alturaAtual,(escaladaGame.playerY-limiteTelaY)*.12);
+        escaladaGame.playerY-=correction;escaladaGame.alturaAtual-=correction;
     }
 
     for (const hold of escaladaGame.pedrasGeradas) {
         hold.y = 220 - hold.climbY + escaladaGame.alturaAtual + (hold.motionY || 0);
     }
 
-    // Acompanhamento horizontal suave pela montanha ampla de 1500px
+    // Reveal the exposed slope, then center the view as the route reaches the ridge.
     const maxCamX = escaladaGame.mountainWidth - canvas.width;
-    const targetCamX = Math.max(0, Math.min(maxCamX, escaladaGame.playerX - canvas.width * 0.50));
+    const framing=.5;
+    const targetCamX = Math.max(0, Math.min(maxCamX, escaladaGame.playerX - canvas.width * framing));
     escaladaGame.cameraX += (targetCamX - escaladaGame.cameraX) * 0.18;
 }
 
 function gerenciarPedras(atualizarTimers = true) {
-    const now = performance.now() * 0.001;
+    // Restarting the climb restarts the same predictable motion choreography.
+    if(atualizarTimers)escaladaGame.motionClock+=1/60;
+    const now = escaladaGame.motionClock || 0;
 
     for (let p of escaladaGame.pedrasGeradas) {
         const previousX = p.x;
@@ -1191,7 +1113,7 @@ function gerenciarPedras(atualizarTimers = true) {
         const motion = isMovingClimbHold(p) ? sampleClimbHoldMotion(p, phase) : { x: 0, y: 0 };
         p.x = p.baseX + motion.x;
         p.motionY = motion.y;
-        p.motionVX = p.x - previousX;
+        if(atualizarTimers)p.motionVX = p.x - previousX;
         p.y = 220 - p.climbY + escaladaGame.alturaAtual + p.motionY;
 
         if (atualizarTimers && p.tipo === 'brittle' && p.quebrando && !p.quebrada) {
@@ -1246,6 +1168,9 @@ function respawnEscaladaNoCheckpoint() {
     escaladaGame.grabTarget = null;
     escaladaGame.airFrames = 0;
     escaladaGame.settleTimer = 18;
+    ClimbCheckpoints.restore(escaladaGame,checkpoint);
+    gerenciarPedras(false);
+    ClimbSprites.reset(escaladaGame);
 }
 
 function aplicarDanoJogador(motivo, options = {}) {
@@ -1257,6 +1182,7 @@ function aplicarDanoJogador(motivo, options = {}) {
     escaladaGame.slipTimer = 38;
     escaladaGame.combo = 0;
     escaladaGame.fallFrames = 10;
+    ClimbSprites.notify(escaladaGame, 'hit');
     escaladaGame.mensagemAtual = motivo;
     escaladaGame.mensagemTimer = 70;
 
@@ -1323,10 +1249,9 @@ function spawnClimbHazard(spec, progresso) {
         planter: { sprite: randomClimbSprite(climbAssets.hazards.planter), radius: 19, speed: 3.55 }
     };
     const hazard = definitions[spec.type] || definitions.stone;
-    const currentSection = getCurrentClimbSection();
-    const halfWidth = currentSection.width * 0.5;
-    const minX = 750 - halfWidth + 42;
-    const maxX = 750 + halfWidth - 42;
+    const face=ClimbCourse.profile(220-escaladaGame.playerY+escaladaGame.alturaAtual,escaladaGame.alturaTotal);
+    const minX = face.left+42;
+    const maxX = face.right-42;
     const targetX = Math.max(minX, Math.min(maxX, escaladaGame.playerX + spec.offset));
     escaladaGame.objetosCaindo.push({
         x: targetX,
@@ -1336,7 +1261,7 @@ function spawnClimbHazard(spec, progresso) {
         type: spec.type,
         sprite: hazard.sprite,
         rotacao: 0,
-        telegraph: true
+        telegraph: true, warningFrames: 48
     });
 }
 
@@ -1347,7 +1272,8 @@ function gerenciarObjetosCaindo() {
     const section = CLIMB_LEVEL[sectionInfo.sectionIndex];
     if (escaladaGame.hazardCooldown > 0) escaladaGame.hazardCooldown--;
 
-    if (escaladaGame.hazardQueue.length === 0 && escaladaGame.hazardCooldown <= 0 && section.throws.length > 0) {
+    const checkpointSafe=ClimbCheckpoints.locked(escaladaGame);
+    if (!checkpointSafe && escaladaGame.hazardQueue.length === 0 && escaladaGame.hazardCooldown <= 0 && section.throws.length > 0) {
         const patternName = section.throws[escaladaGame.throwPatternIndex % section.throws.length];
         escaladaGame.throwPatternIndex++;
         let cumulativeDelay = 0;
@@ -1355,10 +1281,11 @@ function gerenciarObjetosCaindo() {
             cumulativeDelay += spec.delay;
             return { ...spec, remaining: cumulativeDelay };
         });
-        escaladaGame.hazardCooldown = Math.max(115, 230 - sectionInfo.sectionIndex * 24);
+        escaladaGame.hazardCooldown = section.cooldown;
     }
 
     for (let i = escaladaGame.hazardQueue.length - 1; i >= 0; i--) {
+        if(checkpointSafe)break;
         const queued = escaladaGame.hazardQueue[i];
         queued.remaining--;
         if (queued.remaining <= 0) {
@@ -1371,6 +1298,7 @@ function gerenciarObjetosCaindo() {
     
     for (let i = escaladaGame.objetosCaindo.length - 1; i >= 0; i--) {
         let obj = escaladaGame.objetosCaindo[i];
+        if(obj.warningFrames>0){obj.warningFrames--;continue;}
         obj.y += obj.speed;
         obj.rotacao += 0.12;
 
@@ -1378,7 +1306,7 @@ function gerenciarObjetosCaindo() {
         let dy = obj.y - (escaladaGame.playerY - 14);
         let dist = Math.hypot(dx, dy);
 
-        if (dist < obj.r + 16) {
+        if (!checkpointSafe && dist < obj.r + 16) {
             criarPoeira(obj.x, obj.y, '#d6c4aa', 14);
             criarHitSpark(escaladaGame.playerX, escaladaGame.playerY - 15);
             escaladaGame.combo = 0;
@@ -1416,15 +1344,7 @@ function gerenciarParticulas() {
 }
 
 function checarVitoriaEscalada() {
-    if (escaladaGame.pedraAtual && escaladaGame.pedraAtual.isFinish && !escaladaGame.finishStarted) {
-        escaladaGame.finishStarted = true;
-        escaladaGame.summitTimer = 72;
-        escaladaGame.alturaAtual = escaladaGame.alturaTotal;
-        escaladaGame.objetosCaindo.length = 0;
-        escaladaGame.hazardQueue.length = 0;
-        escaladaGame.score += 2000 + escaladaGame.vida * 500;
-        criarPoeira(escaladaGame.playerX, escaladaGame.playerY, '#f1c40f', 28);
-    }
+    if(ClimbSummit.canFinish(escaladaGame)&&!escaladaGame.win)finalizarMinigame('VITORIA');
 }
 
 function resolverQuedaEscalada() {
@@ -1441,11 +1361,12 @@ function resolverQuedaEscalada() {
 }
 
 function finalizarMinigame(resultado) {
+    // A height, a standing flag or a direct finish-hold attachment is not a victory.
+    if(resultado==='VITORIA'&&(!ClimbSummit.canFinish(escaladaGame)||escaladaGame.win))return false;
     escaladaGame.gameState = 'GAMEOVER';
     escaladaGame.win = (resultado === "VITORIA");
-    escaladaGame.lastRunSeconds = (performance.now() - escaladaGame.startTime) / 1000;
+    escaladaGame.lastRunSeconds = resultado==='VITORIA' ? escaladaGame.summitClimbSeconds : (performance.now() - escaladaGame.startTime) / 1000;
     if (resultado === "VITORIA") {
-        insignias.escalada = true;
         dialogText.innerHTML = "> MESTRE DA ESCALADA: Espetacular! Você dominou o Monte Zorp e conquistou a Insígnia da Escalada!";
     } else {
         dialogText.innerHTML = "> MESTRE DA ESCALADA: A montanha exige atenção! Use as rotas laterais e desvie das pedras que arremesso!";
@@ -1481,9 +1402,24 @@ function updateEscaladaGame() {
     if (escaladaGame.gameState === 'GAMEOVER') {
         if (climbUpPressed) {
             currentScene = "ILHA_ESCALADA";
+            document.getElementById('game-title').style.visibility = '';
             climbUpPressed = false;
             dialogBox.classList.add("show");
         }
+        return;
+    }
+
+    if (ClimbSummit.active(escaladaGame)) {
+        const event=ClimbSummit.update(escaladaGame,climbSummitAdvancePressed);
+        climbSummitAdvancePressed=false;climbUpPressed=false;
+        gerenciarPedras(false);gerenciarParticulas();
+        if(event==='STOOD')criarPoeira(escaladaGame.playerX,escaladaGame.playerY,'#e2edf0',6);
+        if(event==='MEDAL'&&ClimbSummit.canAward(escaladaGame)&&!escaladaGame.summitSequence.medalAwarded){
+            insignias.escalada=true;
+            escaladaGame.summitSequence.medalAwarded=true;
+        }
+        if(event==='CELEBRATE')criarPoeira(escaladaGame.playerX,escaladaGame.playerY-22,'#eddb9b',12);
+        if(event==='COMPLETE')checarVitoriaEscalada();
         return;
     }
 
@@ -1494,6 +1430,7 @@ function updateEscaladaGame() {
     if (escaladaGame.slipTimer > 0) escaladaGame.slipTimer--;
     if (escaladaGame.fallFrames > 0) escaladaGame.fallFrames--;
     if (escaladaGame.settleTimer > 0) escaladaGame.settleTimer--;
+    if (escaladaGame.blockedHoldTimer > 0) escaladaGame.blockedHoldTimer--;
 
     if (escaladaGame.respawnTimer > 0) {
         escaladaGame.respawnTimer--;
@@ -1503,10 +1440,12 @@ function updateEscaladaGame() {
         return;
     }
 
-    if (escaladaGame.finishStarted) {
-        escaladaGame.summitTimer--;
-        gerenciarParticulas();
-        if (escaladaGame.summitTimer <= 0) finalizarMinigame("VITORIA");
+    if(ClimbCheckpoints.active(escaladaGame)){
+        climbUpPressed=false;escaladaGame.jumpBufferTimer=0;
+        const event=ClimbCheckpoints.update(escaladaGame);
+        gerenciarPedras();gerenciarParticulas();gerenciarObjetosCaindo();
+        if(event?.type==='STOOD')confirmarCheckpointEscalada(event.hold);
+        if(event?.type==='LAUNCH')iniciarSaltoEscalada(event.direction,true);
         return;
     }
 
@@ -1516,7 +1455,7 @@ function updateEscaladaGame() {
         escaladaGame.climbFrameIndex = (escaladaGame.climbFrameIndex + 1) % 4;
     }
 
-    hintText.innerText = "A/D controla a trajetória  •  ESPAÇO/W salta  •  aproxime-se para agarrar  •  brilho = bônus";
+    hintText.innerText = '';
 
     if (climbUpPressed) escaladaGame.jumpBufferTimer = 6;
     climbUpPressed = false;
@@ -1525,13 +1464,17 @@ function updateEscaladaGame() {
         if (tentarPular()) escaladaGame.jumpBufferTimer = 0;
         else escaladaGame.jumpBufferTimer--;
     }
+    if(ClimbCheckpoints.active(escaladaGame))return;
 
     gerenciarPedras();
     atualizarFisicaEscalada();
+    if(ClimbSummit.active(escaladaGame)){climbUpPressed=false;climbSummitAdvancePressed=false;return;}
+    if(ClimbCheckpoints.active(escaladaGame)){climbUpPressed=false;escaladaGame.jumpBufferTimer=0;return;}
     atualizarCameraEMundo();
     gerenciarPedras(false);
     if ((escaladaGame.playerState === 'GRABBED' || escaladaGame.playerState === 'STANDING') && escaladaGame.pedraAtual) {
-        escaladaGame.playerX = escaladaGame.pedraAtual.x;
+        if(escaladaGame.pedraAtual.tipo!=='checkpoint')
+            escaladaGame.playerX = escaladaGame.pedraAtual.isFinish ? escaladaGame.summitContactX : escaladaGame.pedraAtual.x;
         escaladaGame.playerY = escaladaGame.pedraAtual.y;
     }
     resolverQuedaEscalada();
@@ -1540,11 +1483,10 @@ function updateEscaladaGame() {
     gerenciarParticulas();
     
     const sectionMessages = {
-        route_choice: 'MESTRE: Escolha: rota longa e segura ou atalho arriscado.',
-        moving_holds: 'MESTRE: Observe o ciclo e transfira entre pedras moveis.',
-        special_holds: 'MESTRE: Gelo, musgo e rochas frageis mudam seu ritmo.',
-        master_pressure: 'MESTRE: Meus arremessos pressionam uma rota; procure outra!',
-        final_gauntlet: 'MESTRE: Ultimo gauntlet. Ainda existem dois caminhos!'
+        wall: 'Parede: esquerda firme; direita mais rápida.',
+        cliffs: 'Penhascos: espere o movimento e salte.',
+        snow: 'Gelo: a pegada dura pouco. Continue!',
+        ascent: 'O cume está perto. Acerte a última travessia!'
     };
     for (const range of escaladaGame.sectionRanges.slice(1)) {
         if (escaladaGame.currentStep >= range.startStep && !escaladaGame.mensagensMostradas[range.id]) {
@@ -1574,84 +1516,13 @@ function drawEscaladaGame() {
 
     ctx.save();
     ctx.translate(shakeX, shakeY);
+    const summitView=ClimbPresentation.view(escaladaGame);
+    ctx.translate(canvas.width/2,summitView.pivotY);ctx.scale(summitView.zoom,summitView.zoom);ctx.translate(-canvas.width/2,-summitView.pivotY);
 
-    // 1. Parede rochosa com grandes planos e uma leitura de subida vertical.
     const progresso = Math.min(1, escaladaGame.alturaAtual / escaladaGame.alturaTotal);
-    let gradiente = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    if (progresso < 0.35) {
-        gradiente.addColorStop(0, "#8d6751");
-        gradiente.addColorStop(0.5, "#634638");
-        gradiente.addColorStop(1, "#382a27");
-    } else if (progresso < 0.75) {
-        gradiente.addColorStop(0, "#74818a");
-        gradiente.addColorStop(0.5, "#52616b");
-        gradiente.addColorStop(1, "#39464e");
-    } else {
-        gradiente.addColorStop(0, "#b7d9e3");
-        gradiente.addColorStop(0.28, "#758e9a");
-        gradiente.addColorStop(1, "#3c4b56");
-    }
-    ctx.fillStyle = gradiente;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    const activeSection = getCurrentClimbSection();
-    const wallLeft = 750 - activeSection.width * 0.5 - cameraX;
-    const wallRight = 750 + activeSection.width * 0.5 - cameraX;
-    ctx.fillStyle = "rgba(17, 13, 16, 0.58)";
-    if (wallLeft > 0) ctx.fillRect(0, 0, wallLeft, canvas.height);
-    if (wallRight < canvas.width) ctx.fillRect(wallRight, 0, canvas.width - wallRight, canvas.height);
-    ctx.strokeStyle = "rgba(235, 210, 172, 0.22)";
-    ctx.lineWidth = 4;
-    if (wallLeft > -10 && wallLeft < canvas.width + 10) {
-        ctx.beginPath(); ctx.moveTo(wallLeft, 0); ctx.lineTo(wallLeft, canvas.height); ctx.stroke();
-    }
-    if (wallRight > -10 && wallRight < canvas.width + 10) {
-        ctx.beginPath(); ctx.moveTo(wallRight, 0); ctx.lineTo(wallRight, canvas.height); ctx.stroke();
-    }
-
-    // Broad, low contrast rock facets move with the wall instead of reading as a flat color.
-    for (let i = -2; i < 8; i++) {
-        const worldY = Math.floor((escaladaGame.alturaAtual * 0.55) / 190) * 190 + i * 190;
-        const screenY = ((i * 190 - (escaladaGame.alturaAtual * 0.55)) % (canvas.height + 190) + canvas.height + 190) % (canvas.height + 190) - 90;
-        const facetX = ((i * 173 + worldY * 0.13) % escaladaGame.mountainWidth) - cameraX;
-        ctx.fillStyle = i % 2 ? "rgba(232, 211, 181, 0.055)" : "rgba(10, 18, 24, 0.09)";
-        ctx.beginPath();
-        ctx.moveTo(facetX, screenY);
-        ctx.lineTo(facetX + 150, screenY + 34);
-        ctx.lineTo(facetX + 95, screenY + 142);
-        ctx.lineTo(facetX - 45, screenY + 108);
-        ctx.closePath(); ctx.fill();
-    }
-
-    // Fendas rochosas e estratos montanhosos na coordenada de mundo (1500px)
-    ctx.strokeStyle = "rgba(0, 0, 0, 0.22)";
-    ctx.lineWidth = 3;
-    for (let i = 0; i < 26; i++) {
-        let fendaMundoX = 30 + (i * 58);
-        let renderFendaX = fendaMundoX - cameraX;
-        let fendaY = ((i * 55 - (escaladaGame.alturaAtual * 0.4)) % (canvas.height + 80));
-        
-        if (renderFendaX > -40 && renderFendaX < canvas.width + 40) {
-            ctx.beginPath();
-            ctx.moveTo(renderFendaX, fendaY);
-            ctx.lineTo(renderFendaX + 18, fendaY + 35);
-            ctx.lineTo(renderFendaX + 8, fendaY + 70);
-            ctx.stroke();
-        }
-    }
-
-    // Paredões de penhasco nas extremidades do mundo da montanha
-    const leftCliffRenderX = 0 - cameraX;
-    if (leftCliffRenderX + 40 > 0) {
-        ctx.fillStyle = "#271c19";
-        ctx.fillRect(0, 0, Math.max(0, leftCliffRenderX + 40), canvas.height);
-    }
-    const rightCliffRenderX = (escaladaGame.mountainWidth - 40) - cameraX;
-    if (rightCliffRenderX < canvas.width) {
-        ctx.fillStyle = "#271c19";
-        ctx.fillRect(Math.max(0, rightCliffRenderX), 0, canvas.width - rightCliffRenderX, canvas.height);
-    }
-
+    ClimbPresentation.background(ctx,escaladaGame,canvas);
+    // The summit face is behind the climber, including the final approach from below.
+    ClimbPresentation.summit(ctx,escaladaGame,cameraX,imgMestreEscalada);
     // 2. Partículas de Poeira
     escaladaGame.particulas.forEach(p => {
         const renderX = p.x - cameraX;
@@ -1664,162 +1535,16 @@ function drawEscaladaGame() {
     });
     ctx.globalAlpha = 1.0;
 
-    // 3. Desenhar Agarras Coloridas de Escalada (Estilo Google Doodle Champion Island)
-    escaladaGame.pedrasGeradas.forEach((p) => {
-        if (p.quebrada) return;
-        const renderX = p.x - cameraX;
-        const renderY = p.y - cameraY;
-
-        if (renderX > -60 && renderX < canvas.width + 60 && renderY > -60 && renderY < canvas.height + 60) {
-            let shakePedraX = 0;
-            if (p.tipo === 'brittle' && p.quebrando) {
-                shakePedraX = (Math.random() - 0.5) * 4;
-            }
-
-            if (isMovingClimbHold(p)) {
-                const baseRenderX = p.baseX - cameraX;
-                const baseRenderY = 220 - p.climbY + escaladaGame.alturaAtual;
-                ctx.save();
-                ctx.strokeStyle = 'rgba(164, 239, 255, 0.30)';
-                ctx.lineWidth = 1.5;
-                ctx.setLineDash([4, 5]);
-                ctx.beginPath();
-                const samples = (p.tipo === 'moving_rect' || p.tipo === 'moving_triangle') ? 24 : 36;
-                for (let sample = 0; sample <= samples; sample++) {
-                    const motion = sampleClimbHoldMotion(p, (sample / samples) * Math.PI * 2);
-                    const trackX = baseRenderX + motion.x;
-                    const trackY = baseRenderY + motion.y;
-                    if (sample === 0) ctx.moveTo(trackX, trackY);
-                    else ctx.lineTo(trackX, trackY);
-                }
-                ctx.stroke();
-                ctx.restore();
-            }
-
-            // Renderiza de acordo com o tipo de agarra
-            if (p.tipo === 'checkpoint') {
-                // Pequeno patamar de descanso: checkpoint é uma superfície real,
-                // sem transformar a escalada inteira em plataformas.
-                ctx.fillStyle = "#4a3a32";
-                ctx.fillRect(renderX - 52, renderY + 13, 104, 13);
-                ctx.fillStyle = "#a88a63";
-                ctx.fillRect(renderX - 55, renderY + 10, 110, 5);
-                if (climbAssets.holds.checkpoint.complete && climbAssets.holds.checkpoint.naturalWidth > 0) {
-                    ctx.shadowColor = "#f1c40f";
-                    ctx.shadowBlur = 14;
-                    ctx.drawImage(climbAssets.holds.checkpoint, renderX - 28, renderY - 28, 56, 56);
-                    ctx.shadowBlur = 0;
-                }
-            } else if (p.tipo === 'bonus') {
-                if (climbAssets.holds.bonus.complete && climbAssets.holds.bonus.naturalWidth > 0) {
-                    ctx.shadowColor = "#48e7ff";
-                    ctx.shadowBlur = 12;
-                    ctx.drawImage(climbAssets.holds.bonus, renderX - 28, renderY - 28, 56, 56);
-                    ctx.shadowBlur = 0;
-                }
-            } else if (isMovingClimbHold(p) || p.tipo === 'ice') {
-                if (climbAssets.holds.moving.complete && climbAssets.holds.moving.naturalWidth > 0) {
-                    ctx.shadowColor = "#00e5ff";
-                    ctx.shadowBlur = 10;
-                    ctx.drawImage(climbAssets.holds.moving, renderX + shakePedraX - 22, renderY - 22, 44, 44);
-                    ctx.shadowBlur = 0;
-                } else {
-                    ctx.fillStyle = "#0288d1";
-                    ctx.beginPath(); ctx.arc(renderX + shakePedraX, renderY, p.r, 0, Math.PI * 2); ctx.fill();
-                }
-            } else if (p.tipo === 'brittle') {
-                if (climbAssets.holds.brittle.complete && climbAssets.holds.brittle.naturalWidth > 0) {
-                    ctx.drawImage(climbAssets.holds.brittle, renderX + shakePedraX - 21, renderY - 21, 42, 42);
-                } else {
-                    ctx.fillStyle = "#e74c3c";
-                    ctx.beginPath(); ctx.arc(renderX + shakePedraX, renderY, p.r, 0, Math.PI * 2); ctx.fill();
-                }
-                if (p.quebrando) {
-                    const urgency = 1 - p.tempoRestante / p.breakMax;
-                    ctx.strokeStyle = urgency > 0.65 ? '#fff3b0' : '#6d261f';
-                    ctx.lineWidth = 1.5 + urgency;
-                    ctx.beginPath();
-                    ctx.moveTo(renderX - 8, renderY - 11);
-                    ctx.lineTo(renderX - 2, renderY - 2);
-                    ctx.lineTo(renderX - 7, renderY + 9);
-                    ctx.moveTo(renderX + 6, renderY - 9);
-                    ctx.lineTo(renderX + 1, renderY + 1);
-                    ctx.lineTo(renderX + 9, renderY + 8);
-                    ctx.stroke();
-                }
-            } else if (p.tipo === 'moss') {
-                if (climbAssets.holds.moss.complete && climbAssets.holds.moss.naturalWidth > 0) {
-                    ctx.drawImage(climbAssets.holds.moss, renderX - 23, renderY - 23, 46, 46);
-                }
-            } else if (p.tipo === 'danger' || p.tipo === 'spike') {
-                if (climbAssets.holds.danger.complete && climbAssets.holds.danger.naturalWidth > 0) {
-                    ctx.drawImage(climbAssets.holds.danger, renderX - 23, renderY - 23, 46, 46);
-                }
-            } else if (p.tipo === 'purple') {
-                if (climbAssets.holds.purple.complete && climbAssets.holds.purple.naturalWidth > 0) {
-                    ctx.drawImage(climbAssets.holds.purple, renderX - 21, renderY - 21, 42, 42);
-                } else {
-                    ctx.fillStyle = "#8e44ad";
-                    ctx.beginPath(); ctx.arc(renderX, renderY, p.r, 0, Math.PI * 2); ctx.fill();
-                }
-            } else {
-                if (climbAssets.holds.normal.complete && climbAssets.holds.normal.naturalWidth > 0) {
-                    ctx.drawImage(climbAssets.holds.normal, renderX - 21, renderY - 21, 42, 42);
-                } else {
-                    ctx.fillStyle = "#27ae60";
-                    ctx.beginPath(); ctx.arc(renderX, renderY, p.r, 0, Math.PI * 2); ctx.fill();
-                }
-            }
-        }
-    });
+    // Rock formations and their supports share the existing hold coordinates.
+    ClimbPresentation.holds(ctx,escaladaGame,canvas,sampleClimbHoldMotion);
 
     // 4. Desenhar Jogador (Zorp - Sprites Puros de Escalada de Costas, Sem Pedra de Gelo)
     const playerRenderX = escaladaGame.playerX - cameraX;
     const playerRenderY = escaladaGame.playerY - cameraY;
-    const isBlinking = (escaladaGame.invulTimer > 0 && Math.floor(Date.now() / 80) % 2 === 0);
+    const isBlinking = (!ClimbCheckpoints.locked(escaladaGame) && escaladaGame.invulTimer > 0 && Math.floor(Date.now() / 80) % 2 === 0);
 
     if (!isBlinking) {
-        let currentZorpSprite = null;
-        let zW = 72, zH = 98;
-
-        if (escaladaGame.finishStarted && escaladaGame.summitTimer < 42) {
-            currentZorpSprite = climbAssets.zorp.victory[Math.floor(Date.now() / 180) % climbAssets.zorp.victory.length];
-        } else if (escaladaGame.fallFrames > 0) {
-            currentZorpSprite = climbAssets.zorp.fall;
-        } else if (escaladaGame.invulTimer > 42) {
-            currentZorpSprite = climbAssets.zorp.stun;
-        } else if (escaladaGame.playerState === 'AIRBORNE' || escaladaGame.playerState === 'GRABBING') {
-            if (escaladaGame.jumpDir < 0) {
-                currentZorpSprite = climbAssets.zorp.pushLeft;
-            } else if (escaladaGame.jumpDir > 0) {
-                currentZorpSprite = climbAssets.zorp.pushRight;
-            } else {
-                currentZorpSprite = climbAssets.zorp.pushUp;
-            }
-        } else if (escaladaGame.slipTimer > 0) {
-            currentZorpSprite = climbAssets.zorp.slip[Math.floor(Date.now() / 110) % climbAssets.zorp.slip.length];
-        } else if (keys.a) {
-            currentZorpSprite = climbAssets.zorp.reachLeft;
-        } else if (keys.d) {
-            currentZorpSprite = climbAssets.zorp.reachRight;
-        } else {
-            const climbFrames = [climbAssets.zorp.idle[0], climbAssets.zorp.climb[0], climbAssets.zorp.idle[1], climbAssets.zorp.climb[1]];
-            currentZorpSprite = climbFrames[escaladaGame.climbFrameIndex % climbFrames.length];
-        }
-
-        if (currentZorpSprite && currentZorpSprite.complete && currentZorpSprite.naturalWidth > 0) {
-            ctx.drawImage(
-                currentZorpSprite,
-                playerRenderX - zW / 2,
-                playerRenderY - zH + 6,
-                zW, zH
-            );
-        } else {
-            ctx.fillStyle = "#2ecc71";
-            ctx.beginPath();
-            ctx.arc(playerRenderX, playerRenderY - 12, 14, 0, Math.PI * 2);
-            ctx.fill();
-        }
+        ClimbSprites.draw(ctx, climbAssets.zorp, escaladaGame, keys, playerRenderX, playerRenderY);
     }
 
     // 5. Desenhar Projéteis Jogados pelo Mestre (Pedras jogadas, Pedregulhos e Bolas de Neve)
@@ -1836,6 +1561,10 @@ function drawEscaladaGame() {
         ctx.fillStyle = "rgba(22, 20, 24, 0.20)";
         ctx.beginPath(); ctx.ellipse(renderX, targetRenderY, 14, 4, 0, 0, Math.PI * 2); ctx.fill();
 
+        if(obj.warningFrames>0){
+            ctx.fillStyle='#f5ce72';ctx.font='bold 15px monospace';ctx.textAlign='center';
+            ctx.fillText('▼',renderX,52);ctx.textAlign='left';return;
+        }
         if (obj.sprite && obj.sprite.complete && obj.sprite.naturalWidth > 0) {
             const size = Math.max(36, obj.r * 2.65);
             ctx.save(); ctx.translate(renderX, renderY); ctx.rotate(obj.rotacao);
@@ -1866,71 +1595,28 @@ function drawEscaladaGame() {
         }
     });
 
-    // 7. Vento Montanhoso
-    if (escaladaGame.ventoParticulas.length > 0) {
-        ctx.strokeStyle = "#ffffff";
-        ctx.lineWidth = 1.5;
-        escaladaGame.ventoParticulas.forEach(vp => {
-            const renderX = vp.x - cameraX;
-            ctx.globalAlpha = vp.alpha;
-            ctx.beginPath();
-            ctx.moveTo(renderX, vp.y);
-            ctx.lineTo(renderX + vp.vx * 3, vp.y + vp.vy * 3);
-            ctx.stroke();
-        });
-        ctx.globalAlpha = 1.0;
+    ClimbSummit.drawWorld(ctx,escaladaGame);
+    ClimbPresentation.atmosphere(ctx,escaladaGame,canvas);
+    if(!ClimbSummit.active(escaladaGame))ClimbPresentation.foreground(ctx,escaladaGame,canvas);
+    ctx.restore(); // World camera transform ends here.
+    if(ClimbSummit.active(escaladaGame)){
+        ClimbSummit.drawOverlay(ctx,escaladaGame,canvas);
+        ClimbSprites.drawOverlay(ctx,escaladaGame,canvas);
+        return;
     }
-
-    // 8. Cume do Monte Zorp
-    const topoDist = (escaladaGame.alturaTotal - escaladaGame.alturaAtual);
-    const topoRenderY = escaladaGame.playerY - topoDist - cameraY;
-    if (topoRenderY > -150 && topoRenderY < canvas.height) {
-        // Platô do Cume amplo (1500px)
-        const platoRenderX = 40 - cameraX;
-        ctx.fillStyle = "#eceff1";
-        ctx.fillRect(platoRenderX, topoRenderY + 30, escaladaGame.mountainWidth - 80, 26);
-        
-        // Mastro da Bandeira no centro
-        const flagRenderX = 750 - cameraX;
-        ctx.fillStyle = "#f1c40f";
-        ctx.fillRect(flagRenderX, topoRenderY - 14, 5, 45);
-        ctx.fillStyle = "#e74c3c";
-        ctx.beginPath();
-        ctx.moveTo(flagRenderX + 5, topoRenderY - 14);
-        ctx.lineTo(flagRenderX + 34, topoRenderY - 2);
-        ctx.lineTo(flagRenderX + 5, topoRenderY + 10);
-        ctx.closePath();
-        ctx.fill();
-
-        // Mestre da Escalada esperando no topo
-        if (imgMestreEscalada.complete) {
-            ctx.drawImage(imgMestreEscalada, flagRenderX + 45, topoRenderY - 20, 36, 54);
-        }
-    }
-
-    ctx.restore(); // Restaura contexto após tremor
 
     // 9. HUD Superior e Minimapa 2D
-    // Minimapa Amplo
+    // Perfil compacto: deixa as vistas laterais livres.
+    const climbMap = { x: 8, y: 44, width: 48, height: 84 };
     ctx.fillStyle = "rgba(0, 0, 0, 0.65)";
-    ctx.fillRect(escaladaGame.minimapaX, escaladaGame.minimapaY, escaladaGame.minimapaLargura, escaladaGame.minimapaAltura);
+    ctx.fillRect(climbMap.x, climbMap.y, climbMap.width, climbMap.height);
     ctx.strokeStyle = "#ffffff";
     ctx.lineWidth = 1.5;
-    ctx.strokeRect(escaladaGame.minimapaX, escaladaGame.minimapaY, escaladaGame.minimapaLargura, escaladaGame.minimapaAltura);
+    ctx.strokeRect(climbMap.x, climbMap.y, climbMap.width, climbMap.height);
 
-    const progressoMini = Math.min(1, escaladaGame.alturaAtual / escaladaGame.alturaTotal);
-    const posZorpY = escaladaGame.minimapaY + escaladaGame.minimapaAltura - (progressoMini * escaladaGame.minimapaAltura);
-    const posZorpX = escaladaGame.minimapaX + (escaladaGame.playerX / escaladaGame.mountainWidth) * escaladaGame.minimapaLargura;
-
-    // Marcador do Cume
-    ctx.fillStyle = "#f1c40f";
-    ctx.fillRect(escaladaGame.minimapaX - 2, escaladaGame.minimapaY, escaladaGame.minimapaLargura + 4, 3);
-
-    // Marcador do Zorp
-    ctx.fillStyle = "#2ecc71";
-    ctx.beginPath();
-    ctx.arc(posZorpX, posZorpY, 3.5, 0, Math.PI * 2);
-    ctx.fill();
+    ctx.save();ctx.translate(climbMap.x,climbMap.y);
+    ClimbPresentation.overview(ctx,escaladaGame,climbMap,{mini:true,routes:true});
+    ctx.restore();
 
     // Barra Superior
     ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
@@ -1943,18 +1629,20 @@ function drawEscaladaGame() {
     for (let v = 0; v < escaladaGame.maxVida; v++) {
         coracoes += (v < escaladaGame.vida) ? "♥ " : "♡ ";
     }
-    ctx.fillText(`VIDAS: ${coracoes}`, 65, 21);
+    ctx.fillText(`VIDAS: ${coracoes}`, 8, 21);
 
     // Altura Atual
     ctx.fillStyle = "#f1c40f";
-    ctx.font = "bold 13px monospace";
-    ctx.fillText(`ALTITUDE: ${Math.floor(escaladaGame.alturaAtual)}m / ${escaladaGame.alturaTotal}m`, 230, 21);
+    ctx.font = "bold 10px monospace";
+    ctx.fillText(`${Math.min(100,Math.floor((220-escaladaGame.playerY+escaladaGame.alturaAtual)/escaladaGame.alturaTotal*100))}%  •  ${getCurrentClimbSection().name || getCurrentClimbSection().id}`, 140, 21);
 
     ctx.fillStyle = "#ffffff";
     ctx.font = "bold 12px monospace";
     ctx.textAlign = "right";
     ctx.fillText(`PONTOS ${escaladaGame.score}`, canvas.width - 10, canvas.height - 12);
     ctx.textAlign = "left";
+    ctx.fillStyle='#d7e8df';ctx.font='9px monospace';
+    ctx.fillText('A/D: NO AR  •  ESPAÇO/W: SALTO',70,canvas.height-12);
 
     if (CLIMB_QA_MODE) {
         const qaSection = getCurrentClimbSection();
@@ -1962,43 +1650,24 @@ function drawEscaladaGame() {
         ctx.fillRect(62, canvas.height - 32, 250, 22);
         ctx.fillStyle = "#9fffe0";
         ctx.font = "bold 10px monospace";
-        ctx.fillText(`QA ${qaSection.id.toUpperCase()}  ${escaladaGame.currentStep}/92  ${escaladaGame.playerState}  ${escaladaGame.qaFps} FPS`, 68, canvas.height - 17);
+        ctx.fillText(`QA ${qaSection.id.toUpperCase()}  ${Math.floor(escaladaGame.currentStep)}/${escaladaGame.levelValidation.steps}  ${escaladaGame.playerState}  ${escaladaGame.qaFps} FPS`, 68, canvas.height - 17);
     }
 
-    // Indicador de Vento
-    if (escaladaGame.ventoDuracao > 0) {
-        ctx.fillStyle = (Date.now() % 400 < 200) ? "#00e5ff" : "#ffffff";
-        ctx.font = "bold 11px monospace";
-        let setaVento = escaladaGame.ventoDirecao > 0 ? ">>>" : "<<<";
-        ctx.fillText(`VENTO ${setaVento}`, canvas.width - 85, 21);
+    if(escaladaGame.mensagemTimer>0){
+        ctx.fillStyle='rgba(13,26,35,.88)';ctx.fillRect(70,canvas.height-50,canvas.width-82,22);
+        ctx.fillStyle='#f6dd98';ctx.font='10px monospace';
+        ctx.fillText(escaladaGame.mensagemAtual,77,canvas.height-35);
     }
 
-    // 10. Caixa de Diálogo do Mestre durante a subida
-    if (escaladaGame.mensagemTimer > 0) {
-        ctx.fillStyle = "rgba(20, 20, 30, 0.9)";
-        ctx.fillRect(35, 42, canvas.width - 70, 44);
-        ctx.strokeStyle = "#f1c40f";
-        ctx.lineWidth = 2;
-        ctx.strokeRect(35, 42, canvas.width - 70, 44);
-        
-        if (imgMestreEscalada.complete) {
-            ctx.drawImage(imgMestreEscalada, 40, 45, 26, 38);
-        }
-        
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "bold 11px monospace";
-        ctx.fillText(escaladaGame.mensagemAtual, 75, 68);
-    }
-    
-    // 11. Telas de Tutorial e Fim de Jogo
+    ClimbSprites.drawOverlay(ctx, escaladaGame, canvas);
     if (escaladaGame.gameState === 'TUTORIAL') {
-        drawOverlayScreen("ESCALADA NO MONTE ZORP", [
-            `Suba ${Math.round(escaladaGame.alturaTotal)}m ate o cume controlando cada salto.`,
-            "[A / D] controla o movimento; [ESPAÇO / W] dá um salto físico.",
-            "Chegue perto de uma pedra para agarrar automaticamente; cair ainda permite recuperação.",
-            "Gelo desliza, pedra rachada quebra; brilho vale pontos e recupera vida.",
-            "Leia o circulo no chao: ele indica onde o proximo objeto vai cair."
-        ], "#f1c40f");
+        drawOverlayScreen('MONTE ZORP', [
+            'A / D: controle a trajetória no ar.',
+            'ESPAÇO / W: um salto por toque.',
+            'Agarre apoios; recupere-se nos inferiores.',
+            'Gelo escorrega. Rocha rachada quebra.',
+            'Dois patamares salvam sua subida.'
+        ], '#bde7df');
     } else if (escaladaGame.gameState === 'GAMEOVER') {
         if (escaladaGame.win) {
             // TELA DE VITÓRIA COM VictoryEscalada.png, ZORP COM A MEDALHA E MESTRE COM POLEGAR
@@ -2049,94 +1718,28 @@ function drawEscaladaGame() {
 // -------------------------------------------------------------
 const ARCHERY_CONFIG = Object.freeze({
     shooterArea: Object.freeze({ left: 48, right: 402, front: 216, back: 270 }),
-    roundFrames: 55 * 60,
+    roundFrames: 60 * 60,
     playerSpeedX: 4.3,
     playerSpeedY: 3.2,
     arrowSpeed: 11.8,
-    playerFireCooldown: 10,
-    phaseBreaks: Object.freeze([0.34, 0.70]),
-    maxTargets: Object.freeze([3, 4, 4]),
-    patternIntervals: Object.freeze([168, 142, 118]),
-    targetField: Object.freeze({ top: 44, bottom: 184 }),
+    playerFireCooldown: window.ArcheryPlayerControl.CONFIG.cooldown,
+    maxTargets: Object.freeze(window.ArcheryMatchPacing.PHASES.map(p=>p.riverCapacity)),
+    patternIntervals: Object.freeze(window.ArcheryMatchPacing.PHASES.map(p=>p.interval)),
+    maxCarriers: 16,
+    targetField: Object.freeze({ top: 118, bottom: 204 }),
     teleportThreshold: 8
 });
 
-const ARCHERY_SPEEDS = Object.freeze({
-    SLOW: 0.92,
-    MEDIUM: 1.38,
-    FAST: 1.92,
-    GOLD_FAST: 2.34
-});
-
+const ARCHERY_SPEEDS = window.ArcheryRiverTargets.SPEEDS;
 const ARCHERY_TARGET_TYPES = Object.freeze({
-    NORMAL_LARGE: Object.freeze({ subtype: 'large', state: 'IDLE', radius: 22, basePoints: 10, renderSize: 72, sizeTier: 'LARGE', golden: false }),
-    NORMAL_MEDIUM: Object.freeze({ subtype: 'medium', state: 'IDLE', radius: 17, basePoints: 16, renderSize: 62, sizeTier: 'MEDIUM', golden: false }),
-    NORMAL_SMALL: Object.freeze({ subtype: 'small', state: 'IDLE', radius: 12, basePoints: 26, renderSize: 52, sizeTier: 'SMALL', golden: false }),
-    GOLD_SMALL: Object.freeze({ subtype: 'golden', state: 'BONUS', radius: 9, basePoints: 75, renderSize: 45, sizeTier: 'SMALL', golden: true }),
-    GOLD_FAST: Object.freeze({ subtype: 'golden', state: 'BONUS', radius: 14, basePoints: 68, renderSize: 58, sizeTier: 'MEDIUM', golden: true }),
-    GOLD_ZIGZAG: Object.freeze({ subtype: 'golden', state: 'BONUS', radius: 12, basePoints: 82, renderSize: 52, sizeTier: 'SMALL', golden: true }),
-    GOLD_S_CURVE: Object.freeze({ subtype: 'golden', state: 'BONUS', radius: 12, basePoints: 86, renderSize: 52, sizeTier: 'SMALL', golden: true }),
-    GOLD_CIRCLE: Object.freeze({ subtype: 'golden', state: 'BONUS', radius: 13, basePoints: 90, renderSize: 55, sizeTier: 'MEDIUM', golden: true }),
-    GOLD_ARC: Object.freeze({ subtype: 'golden', state: 'BONUS', radius: 12, basePoints: 84, renderSize: 52, sizeTier: 'SMALL', golden: true }),
-    GOLD_FIGURE8: Object.freeze({ subtype: 'golden', state: 'BONUS', radius: 11, basePoints: 105, renderSize: 49, sizeTier: 'SMALL', golden: true })
+    NORMAL_LARGE: Object.freeze({radius:18,basePoints:10,sizeTier:'LARGE',golden:false}),
+    NORMAL_MEDIUM: Object.freeze({radius:14,basePoints:16,sizeTier:'MEDIUM',golden:false}),
+    NORMAL_SMALL: Object.freeze({radius:10,basePoints:26,sizeTier:'SMALL',golden:false}),
+    EXPLOSIVE: Object.freeze({radius:13,basePoints:24,sizeTier:'MEDIUM',golden:false,explosive:true}),
+    ...window.ArcheryGoldenTargets.SPECS
 });
-
-const ARCHERY_PATH_TYPES = Object.freeze([
-    'HORIZONTAL', 'DIAGONAL', 'ZIGZAG', 'S_CURVE', 'CIRCLE',
-    'ELLIPSE', 'ARC', 'WAVE', 'FIGURE_EIGHT'
-]);
-
-const ARCHERY_PATTERNS = Object.freeze([
-    Object.freeze({ id: 'OPENING_HORIZONTAL', phases: [0], targets: [
-        { delay: 0, kind: 'NORMAL_LARGE', path: 'HORIZONTAL', speed: 'SLOW', entry: 'LEFT', lane: 'LOW' },
-        { delay: 54, kind: 'NORMAL_LARGE', path: 'HORIZONTAL', speed: 'SLOW', entry: 'RIGHT', lane: 'HIGH' }
-    ] }),
-    Object.freeze({ id: 'EASY_ARC', phases: [0], targets: [
-        { delay: 0, kind: 'NORMAL_MEDIUM', path: 'ARC', speed: 'SLOW', entry: 'LEFT', lane: 'LOW', amplitude: 54 },
-        { delay: 62, kind: 'NORMAL_LARGE', path: 'HORIZONTAL', speed: 'MEDIUM', entry: 'RIGHT', lane: 'MID' }
-    ] }),
-    Object.freeze({ id: 'DIAGONAL_CROSS', phases: [1], targets: [
-        { delay: 0, kind: 'NORMAL_MEDIUM', path: 'DIAGONAL', speed: 'MEDIUM', entry: 'LEFT', lane: 'LOW', exitLane: 'HIGH' },
-        { delay: 48, kind: 'NORMAL_SMALL', path: 'DIAGONAL', speed: 'MEDIUM', entry: 'RIGHT', lane: 'HIGH', exitLane: 'LOW' }
-    ] }),
-    Object.freeze({ id: 'ZIGZAG_PAIR', phases: [1], targets: [
-        { delay: 0, kind: 'NORMAL_MEDIUM', path: 'ZIGZAG', speed: 'MEDIUM', entry: 'LEFT', lane: 'MID', amplitude: 35 },
-        { delay: 70, kind: 'NORMAL_SMALL', path: 'ZIGZAG', speed: 'MEDIUM', entry: 'RIGHT', lane: 'MID', amplitude: 42, phaseOffset: Math.PI }
-    ] }),
-    Object.freeze({ id: 'S_AND_GOLD_SMALL', phases: [1], goldEvent: true, targets: [
-        { delay: 0, kind: 'NORMAL_MEDIUM', path: 'S_CURVE', speed: 'MEDIUM', entry: 'LEFT', lane: 'MID', amplitude: 44 },
-        { delay: 66, kind: 'GOLD_SMALL', path: 'HORIZONTAL', speed: 'FAST', entry: 'RIGHT', lane: 'HIGH' }
-    ] }),
-    Object.freeze({ id: 'WAVE_AND_DIAGONAL', phases: [1, 2], targets: [
-        { delay: 0, kind: 'NORMAL_SMALL', path: 'WAVE', speed: 'MEDIUM', entry: 'LEFT', lane: 'MID', amplitude: 32 },
-        { delay: 58, kind: 'NORMAL_MEDIUM', path: 'DIAGONAL', speed: 'FAST', entry: 'RIGHT', lane: 'LOW', exitLane: 'HIGH' }
-    ] }),
-    Object.freeze({ id: 'CIRCLE_AND_ARC', phases: [2], targets: [
-        { delay: 0, kind: 'NORMAL_SMALL', path: 'CIRCLE', speed: 'FAST', entry: 'LEFT', lane: 'MID' },
-        { delay: 78, kind: 'NORMAL_MEDIUM', path: 'ARC', speed: 'FAST', entry: 'RIGHT', lane: 'LOW', amplitude: 70 }
-    ] }),
-    Object.freeze({ id: 'ADVANCED_ELLIPSE_WAVE', phases: [2], targets: [
-        { delay: 0, kind: 'NORMAL_MEDIUM', path: 'ELLIPSE', speed: 'FAST', entry: 'RIGHT', lane: 'MID' },
-        { delay: 76, kind: 'NORMAL_SMALL', path: 'WAVE', speed: 'FAST', entry: 'LEFT', lane: 'MID', amplitude: 34 }
-    ] }),
-    Object.freeze({ id: 'ELLIPSE_GOLD_FAST', phases: [2], goldEvent: true, targets: [
-        { delay: 0, kind: 'NORMAL_MEDIUM', path: 'ELLIPSE', speed: 'FAST', entry: 'RIGHT', lane: 'MID' },
-        { delay: 82, kind: 'GOLD_FAST', path: 'HORIZONTAL', speed: 'GOLD_FAST', entry: 'LEFT', lane: 'HIGH' }
-    ] }),
-    Object.freeze({ id: 'GOLD_CURVES', phases: [2], goldEvent: true, targets: [
-        { delay: 0, kind: 'NORMAL_LARGE', path: 'HORIZONTAL', speed: 'FAST', entry: 'RIGHT', lane: 'LOW' },
-        { delay: 52, kind: 'GOLD_ZIGZAG', path: 'ZIGZAG', speed: 'GOLD_FAST', entry: 'LEFT', lane: 'MID', amplitude: 39 },
-        { delay: 120, kind: 'NORMAL_SMALL', path: 'S_CURVE', speed: 'FAST', entry: 'RIGHT', lane: 'MID', amplitude: 47 }
-    ] }),
-    Object.freeze({ id: 'RARE_GOLD_FIGURE8', phases: [2], rare: true, goldEvent: true, targets: [
-        { delay: 0, kind: 'NORMAL_SMALL', path: 'WAVE', speed: 'FAST', entry: 'LEFT', lane: 'LOW', amplitude: 29 },
-        { delay: 74, kind: 'GOLD_FIGURE8', path: 'FIGURE_EIGHT', speed: 'FAST', entry: 'RIGHT', lane: 'MID' }
-    ] }),
-    Object.freeze({ id: 'GOLD_CIRCLE_EVENT', phases: [2], rare: true, goldEvent: true, targets: [
-        { delay: 0, kind: 'GOLD_CIRCLE', path: 'CIRCLE', speed: 'FAST', entry: 'LEFT', lane: 'MID' },
-        { delay: 104, kind: 'NORMAL_MEDIUM', path: 'ARC', speed: 'FAST', entry: 'RIGHT', lane: 'LOW', amplitude: 58 }
-    ] })
-]);
+const ARCHERY_PATH_TYPES = window.ArcheryRiverTargets.PATHS;
+const ARCHERY_PATTERNS = window.ArcheryMatchPacing.PATTERNS;
 
 function clampArco(value, min, max) {
     return Math.max(min, Math.min(max, value));
@@ -2151,6 +1754,7 @@ const arcoGame = {
     playerShootTimer: 0,
     playerShootCooldown: 0,
     playerReactionTimer: 0,
+    playerControl: window.ArcheryPlayerControl.create(),
 
     mestreX: 315,
     mestreY: 252,
@@ -2160,7 +1764,7 @@ const arcoGame = {
     mestreReactionTimer: 0,
     mestreAimTargetId: null,
     mestreDecisionTimer: 0,
-    mestreAimError: 0,
+    masterAI: window.ArcheryMasterAI.create(),
 
     arrows: [],
     targets: [],
@@ -2172,11 +1776,16 @@ const arcoGame = {
     spawnTimer: 0,
     lastPatternId: null,
     nextTargetId: 1,
-    midGoldMomentQueued: false,
-    finalGoldMomentQueued: false,
+    lastTargetSpawnFrame: -1000,
+    lastEntryFrames: {TOP:-1000,LEFT:-1000,RIGHT:-1000},
+    nextBirdFrame: window.ArcheryBirdTargets.FIRST_FRAME,
+    birdFlightIndex: 0,
+    goldenSchedule: [],
+    lastGoldenSpawnFrame: -10000,
     roundFrame: 0,
     roundFrames: ARCHERY_CONFIG.roundFrames,
     phase: 0,
+    pacing: window.ArcheryMatchPacing.create(),
     gameState: 'TUTORIAL',
     win: false,
     tie: false,
@@ -2184,6 +1793,7 @@ const arcoGame = {
 };
 
 function resetArco() {
+    window.archeryCharactersV2.reset();
     arcoGame.playerScore = 0;
     arcoGame.mestreScore = 0;
     arcoGame.playerX = 135;
@@ -2197,10 +1807,11 @@ function resetArco() {
     arcoGame.playerShootCooldown = 0;
     arcoGame.mestreShootCooldown = 0;
     arcoGame.playerReactionTimer = 0;
+    arcoGame.playerControl = window.ArcheryPlayerControl.create();
     arcoGame.mestreReactionTimer = 0;
     arcoGame.mestreAimTargetId = null;
     arcoGame.mestreDecisionTimer = 0;
-    arcoGame.mestreAimError = 0;
+    arcoGame.masterAI = window.ArcheryMasterAI.create();
     while (arcoGame.arrows.length) arcoGame.arrowPool.push(arcoGame.arrows.pop());
     while (arcoGame.targets.length) arcoGame.targetPool.push(arcoGame.targets.pop());
     while (arcoGame.effects.length) arcoGame.effectPool.push(arcoGame.effects.pop());
@@ -2208,11 +1819,16 @@ function resetArco() {
     arcoGame.spawnTimer = 0;
     arcoGame.lastPatternId = null;
     arcoGame.nextTargetId = 1;
-    arcoGame.midGoldMomentQueued = false;
-    arcoGame.finalGoldMomentQueued = false;
+    arcoGame.lastTargetSpawnFrame = -1000;
+    arcoGame.lastEntryFrames = {TOP:-1000,LEFT:-1000,RIGHT:-1000};
+    arcoGame.nextBirdFrame = window.ArcheryBirdTargets.FIRST_FRAME;
+    arcoGame.birdFlightIndex = 0;
+    arcoGame.goldenSchedule = [];
+    arcoGame.lastGoldenSpawnFrame = -10000;
     arcoGame.roundFrame = 0;
     arcoGame.roundFrames = ARCHERY_CONFIG.roundFrames;
     arcoGame.phase = 0;
+    arcoGame.pacing = window.ArcheryMatchPacing.create();
     arcoGame.gameState = 'TUTORIAL';
     arcoGame.win = false;
     arcoGame.tie = false;
@@ -2232,7 +1848,24 @@ function resetArco() {
         patternCounts: {},
         normalTargetsSpawned: 0,
         goldenTargetsSpawned: 0,
+        goldenHits: {PLAYER:0,MESTRE:0},
+        goldenBullseyes: {PLAYER:0,MESTRE:0},
+        goldenVariantCounts: {},
+        goldenAppearances: [],
+        birdTargetsSpawned: 0,
+        birdHits: {PLAYER:0,MESTRE:0},
+        birdExits: 0,
+        maxBirds: 0,
+        explosivesSpawned: 0,
+        detonations: 0,
+        explosionHits: 0,
+        maxChain: 0,
+        maxExplosionCombo: 0,
+        comboBonuses: {PLAYER:0,MESTRE:0},
+        explosionEvents: [],
         targetExits: 0,
+        spentTargetExits: 0,
+        lifecycleEvents: [],
         teleportEvents: 0,
         maxTargetStep: 0,
         lastImpacts: [],
@@ -2246,14 +1879,13 @@ function resetArco() {
 }
 
 function getArcoPhase() {
-    const progress = arcoGame.roundFrame / Math.max(1, arcoGame.roundFrames);
-    return progress < ARCHERY_CONFIG.phaseBreaks[0] ? 0 : (progress < ARCHERY_CONFIG.phaseBreaks[1] ? 1 : 2);
+    return window.ArcheryMatchPacing.phaseAt(arcoGame.roundFrame,arcoGame.roundFrames);
 }
 
-function getArcoLaneY(lane) {
-    if (lane === 'HIGH') return 66;
-    if (lane === 'LOW') return 158;
-    return 112;
+function recordArcoTargetEvent(type, target) {
+    const events=arcoGame.stats.lifecycleEvents;
+    events.push({type,id:target.id,frame:arcoGame.roundFrame,x:+target.x.toFixed(2),y:+target.y.toFixed(2),state:target.state});
+    if(events.length>160)events.shift();
 }
 
 function acquireArcoObject(pool, fields) {
@@ -2261,152 +1893,91 @@ function acquireArcoObject(pool, fields) {
 }
 
 function evaluateArcoTargetPath(target, progress) {
-    const p = clampArco(progress, 0, 1);
-    const direction = target.entry === 'LEFT' ? 1 : -1;
-    const startX = direction === 1 ? -target.margin : canvas.width + target.margin;
-    const endX = direction === 1 ? canvas.width + target.margin : -target.margin;
-    const linearX = startX + (endX - startX) * p;
-    const laneY = target.laneY;
-    const amplitude = target.amplitude;
-    let x = linearX;
-    let y = laneY;
-
-    if (target.pathType === 'DIAGONAL') {
-        y = laneY + (target.exitY - laneY) * p;
-    } else if (target.pathType === 'ZIGZAG') {
-        y = laneY + Math.sin(p * Math.PI * 4 + target.phaseOffset) * amplitude;
-    } else if (target.pathType === 'S_CURVE') {
-        y = laneY + Math.sin((p - 0.5) * Math.PI) * amplitude;
-    } else if (target.pathType === 'ARC') {
-        y = laneY - Math.sin(p * Math.PI) * amplitude;
-    } else if (target.pathType === 'WAVE') {
-        y = laneY + Math.sin(p * Math.PI * 6 + target.phaseOffset) * amplitude;
-    } else if (target.pathType === 'CIRCLE' || target.pathType === 'ELLIPSE') {
-        const enterEnd = 0.18;
-        const orbitEnd = 0.80;
-        const radiusX = target.pathType === 'ELLIPSE' ? 96 : 63;
-        const radiusY = target.pathType === 'ELLIPSE' ? 39 : 58;
-        const centerX = canvas.width / 2;
-        const centerY = laneY;
-        const anchorX = centerX - direction * radiusX;
-        if (p < enterEnd) {
-            const q = p / enterEnd;
-            x = startX + (anchorX - startX) * q;
-            y = laneY;
-        } else if (p <= orbitEnd) {
-            const q = (p - enterEnd) / (orbitEnd - enterEnd);
-            const startAngle = direction === 1 ? Math.PI : 0;
-            const angle = startAngle + direction * q * Math.PI * 2;
-            x = centerX + Math.cos(angle) * radiusX;
-            y = centerY + Math.sin(angle) * radiusY;
-        } else {
-            const q = (p - orbitEnd) / (1 - orbitEnd);
-            x = anchorX + (startX - anchorX) * q;
-            y = laneY;
-        }
-    } else if (target.pathType === 'FIGURE_EIGHT') {
-        const enterEnd = 0.18;
-        const loopEnd = 0.82;
-        const centerX = canvas.width / 2;
-        const centerY = laneY;
-        if (p < enterEnd) {
-            const q = p / enterEnd;
-            x = startX + (centerX - startX) * q;
-            y = laneY;
-        } else if (p <= loopEnd) {
-            const q = (p - enterEnd) / (loopEnd - enterEnd);
-            const angle = q * Math.PI * 2;
-            x = centerX + Math.sin(angle) * 92 * direction;
-            y = centerY + Math.sin(angle * 2) * 43;
-        } else {
-            const q = (p - loopEnd) / (1 - loopEnd);
-            x = centerX + (endX - centerX) * q;
-            y = laneY;
-        }
-    }
-
-    return {
-        x,
-        y: clampArco(y, ARCHERY_CONFIG.targetField.top, ARCHERY_CONFIG.targetField.bottom)
-    };
+    if(target.carrier==='BIRD')return window.ArcheryBirdTargets.position(target,progress);
+    return window.ArcheryRiverTargets.position(target, progress);
 }
 
-function spawnArcoTarget(descriptor) {
-    const kind = descriptor.kind || 'NORMAL_MEDIUM';
-    const spec = ARCHERY_TARGET_TYPES[kind] || ARCHERY_TARGET_TYPES.NORMAL_MEDIUM;
-    const pathType = ARCHERY_PATH_TYPES.includes(descriptor.path) ? descriptor.path : 'HORIZONTAL';
-    const speedTier = ARCHERY_SPEEDS[descriptor.speed] ? descriptor.speed : 'MEDIUM';
-    const entry = descriptor.entry || (Math.random() < 0.5 ? 'LEFT' : 'RIGHT');
-    const speedVariation = descriptor.exactSpeed ? 1 : 0.94 + Math.random() * 0.12;
-    const target = acquireArcoObject(arcoGame.targetPool, {
-        id: arcoGame.nextTargetId++,
-        x: 0,
-        y: 0,
-        previousX: 0,
-        previousY: 0,
-        speedX: 0,
-        speedY: 0,
-        type: kind,
-        assetSubtype: spec.subtype,
-        assetState: spec.state,
-        pathType,
-        speedTier,
-        speed: ARCHERY_SPEEDS[speedTier] * speedVariation,
-        sizeTier: spec.sizeTier,
-        radius: spec.radius,
-        basePoints: spec.basePoints,
-        renderSize: spec.renderSize,
-        isGolden: spec.golden,
-        entry,
-        entryPoint: entry,
-        exitPoint: (pathType === 'CIRCLE' || pathType === 'ELLIPSE') ? entry : (entry === 'LEFT' ? 'RIGHT' : 'LEFT'),
-        laneY: getArcoLaneY(descriptor.lane),
-        exitY: getArcoLaneY(descriptor.exitLane || descriptor.lane),
-        amplitude: descriptor.amplitude || (pathType === 'WAVE' ? 31 : 38),
-        phaseOffset: descriptor.phaseOffset || 0,
-        margin: spec.renderSize * 0.58 + 12,
-        pathLength: (pathType === 'CIRCLE' || pathType === 'ELLIPSE' || pathType === 'FIGURE_EIGHT') ? 610 : 540,
-        progress: 0,
-        age: 0,
-        active: true,
-        visible: false,
-        qaStatic: !!descriptor.qaStatic,
-        hit: false,
-        animationOffset: Math.floor(Math.random() * 5)
+function spawnArcoBirdTarget(golden=false) {
+    if(arcoGame.targets.some(target=>target.carrier==='BIRD')||arcoGame.targets.length>=ARCHERY_CONFIG.maxCarriers)return null;
+    const target=acquireArcoObject(arcoGame.targetPool,{
+        ...window.ArcheryBirdTargets.create(arcoGame.birdFlightIndex,golden),id:arcoGame.nextTargetId++,type:golden?'GOLD_SKY':'BIRD_TARGET'
     });
-    const start = descriptor.qaStatic
-        ? { x: descriptor.x || 225, y: descriptor.y || 105 }
-        : evaluateArcoTargetPath(target, 0);
-    target.x = target.previousX = start.x;
-    target.y = target.previousY = start.y;
-    target.visible = descriptor.qaStatic;
+    arcoGame.birdFlightIndex++;
+    if(!golden)arcoGame.nextBirdFrame=window.ArcheryMatchPacing.nextBirdAfter(arcoGame.roundFrame);
     arcoGame.targets.push(target);
-    arcoGame.stats.maxTargets = Math.max(arcoGame.stats.maxTargets, arcoGame.targets.length);
-    arcoGame.stats.spawnedTypes[kind] = (arcoGame.stats.spawnedTypes[kind] || 0) + 1;
-    arcoGame.stats.pathTypes[pathType] = (arcoGame.stats.pathTypes[pathType] || 0) + 1;
-    arcoGame.stats.speedTiers[speedTier] = (arcoGame.stats.speedTiers[speedTier] || 0) + 1;
-    if (spec.golden) arcoGame.stats.goldenTargetsSpawned++;
-    else arcoGame.stats.normalTargetsSpawned++;
+    arcoGame.stats.birdTargetsSpawned++;
+    if(golden)arcoGame.stats.goldenTargetsSpawned++;
+    arcoGame.stats.maxBirds=Math.max(arcoGame.stats.maxBirds,arcoGame.targets.filter(t=>t.carrier==='BIRD').length);
+    arcoGame.stats.maxTargets=Math.max(arcoGame.stats.maxTargets,arcoGame.targets.length);
+    arcoGame.stats.spawnedTypes[target.type]=(arcoGame.stats.spawnedTypes[target.type]||0)+1;
+    window.ArcheryMatchPacing.recordSpawn(arcoGame.pacing,target,arcoGame.phase);
+    recordArcoTargetEvent('SPAWN_OUTSIDE',target);
     return target;
 }
 
-function chooseArcoPattern() {
-    let candidates = ARCHERY_PATTERNS.filter((pattern) => pattern.phases.includes(arcoGame.phase));
-    const roll = Math.random();
-    if (arcoGame.phase === 2 && roll < 0.05) {
-        candidates = candidates.filter((pattern) => pattern.rare);
-    } else {
-        const chooseGold = (arcoGame.phase === 1 && roll < 0.10)
-            || (arcoGame.phase === 2 && roll < 0.22);
-        candidates = candidates.filter((pattern) => !pattern.rare && !!pattern.goldEvent === chooseGold);
+function spawnArcoTarget(descriptor) {
+    const kind=descriptor.kind || 'NORMAL_MEDIUM';
+    const spec=ARCHERY_TARGET_TYPES[kind] || ARCHERY_TARGET_TYPES.NORMAL_MEDIUM;
+    const target=acquireArcoObject(arcoGame.targetPool,{
+        ...window.ArcheryRiverTargets.create(spec,descriptor),id:arcoGame.nextTargetId++,type:kind
+    });
+    arcoGame.targets.push(target);
+    arcoGame.lastTargetSpawnFrame=arcoGame.roundFrame;
+    arcoGame.lastEntryFrames[target.entry]=arcoGame.roundFrame;
+    arcoGame.stats.maxTargets=Math.max(arcoGame.stats.maxTargets,arcoGame.targets.length);
+    for(const [bucket,key]of [['spawnedTypes',kind],['pathTypes',target.pathType],['speedTiers',target.speedTier]]){
+        arcoGame.stats[bucket][key]=(arcoGame.stats[bucket][key]||0)+1;
     }
-    const alternatives = candidates.filter((pattern) => pattern.id !== arcoGame.lastPatternId);
-    if (alternatives.length) candidates = alternatives;
-    return candidates[Math.floor(Math.random() * candidates.length)] || ARCHERY_PATTERNS[0];
+    if(spec.explosive)arcoGame.stats.explosivesSpawned++;
+    else if(spec.golden)arcoGame.stats.goldenTargetsSpawned++;else arcoGame.stats.normalTargetsSpawned++;
+    window.ArcheryMatchPacing.recordSpawn(arcoGame.pacing,target,arcoGame.phase);
+    recordArcoTargetEvent('SPAWN_OUTSIDE',target);
+    return target;
+}
+
+function spawnArcoGoldenEvent(event) {
+    if(arcoGame.targets.length>=ARCHERY_CONFIG.maxCarriers)return null;
+    let target;
+    if(event.variant==='SKY'){
+        if(arcoGame.birdFlightIndex>=window.ArcheryBirdTargets.MAX_PER_ROUND)return null;
+        target=spawnArcoBirdTarget(true);
+    }else{
+        const arc=event.variant==='ARC';
+        target=spawnArcoTarget({kind:arc?'GOLD_ARC':'GOLD_FAST',path:arc?'ARC':'STRAIGHT',speed:'FAST',
+            entry:arc?event.entry:'TOP',exit:event.entry,goldenVariant:event.variant});
+    }
+    if(target){
+        arcoGame.lastGoldenSpawnFrame=arcoGame.roundFrame;
+        const variants=arcoGame.stats.goldenVariantCounts;
+        variants[event.variant]=(variants[event.variant]||0)+1;
+        arcoGame.stats.goldenAppearances.push({id:target.id,frame:arcoGame.roundFrame,variant:event.variant});
+    }
+    return target;
+}
+
+function updateArcoGoldenSpawns() {
+    const gold=window.ArcheryGoldenTargets,event=arcoGame.goldenSchedule[0];
+    if(!event||arcoGame.roundFrame<event.frame||arcoGame.stats.goldenTargetsSpawned>=gold.MAX_PER_ROUND
+        ||arcoGame.roundFrame-arcoGame.lastGoldenSpawnFrame<gold.MIN_INTERVAL
+        ||arcoGame.targets.some(target=>target.isGolden)||arcoGame.targets.length>=ARCHERY_CONFIG.maxCarriers)return;
+    // If a regular carrier occupies the sky, wait briefly, then use the rapids.
+    // No bird is removed or overlapped to make room for the special opportunity.
+    if(event.variant==='SKY'&&(arcoGame.targets.some(target=>target.carrier==='BIRD')
+        ||arcoGame.birdFlightIndex>=window.ArcheryBirdTargets.MAX_PER_ROUND)){
+        if(arcoGame.roundFrame-event.frame<120)return;
+        event.variant='RAPIDS';
+    }
+    if(spawnArcoGoldenEvent(event))arcoGame.goldenSchedule.shift();
+}
+
+function chooseArcoPattern() {
+    return window.ArcheryMatchPacing.choose(arcoGame.phase,arcoGame.pacing.waveCounts[arcoGame.phase]);
 }
 
 function queueArcoPattern(pattern) {
     arcoGame.lastPatternId = pattern.id;
+    arcoGame.pacing.waveCounts[arcoGame.phase]++;
+    arcoGame.pacing.waves.push({id:pattern.id,phase:arcoGame.phase,frame:arcoGame.roundFrame});
     arcoGame.stats.patternCounts[pattern.id] = (arcoGame.stats.patternCounts[pattern.id] || 0) + 1;
     for (const descriptor of pattern.targets) {
         arcoGame.pendingTargetSpawns.push({ delay: descriptor.delay || 0, descriptor: { ...descriptor } });
@@ -2421,13 +1992,22 @@ function queueArcoQaShowcase(descriptors) {
 }
 
 function beginArcoRound() {
+    window.archeryCharactersV2.reset();
+    arcoGame.playerControl = window.ArcheryPlayerControl.create();
+    arcoGame.masterAI = window.ArcheryMasterAI.create();
     arcoGame.gameState = 'PLAYING';
     arcoGame.roundFrame = 0;
+    arcoGame.phase = 0;
+    arcoGame.pacing = window.ArcheryMatchPacing.create();
     arcoGame.spawnTimer = 0;
     arcoGame.targets.length = 0;
     arcoGame.pendingTargetSpawns.length = 0;
+    arcoGame.nextBirdFrame = window.ArcheryBirdTargets.FIRST_FRAME;
+    arcoGame.birdFlightIndex = 0;
+    arcoGame.goldenSchedule = window.ArcheryGoldenTargets.plan();
+    arcoGame.lastGoldenSpawnFrame = -10000;
     if (archeryQaParams.get('archeryQaBullseye') === '1') {
-        spawnArcoTarget({ kind: 'NORMAL_LARGE', path: 'HORIZONTAL', speed: 'SLOW', entry: 'LEFT', lane: 'MID', qaStatic: true, x: 225, y: 105 });
+        spawnArcoTarget({ kind: 'NORMAL_LARGE', path: 'STRAIGHT', speed: 'SLOW', entry: 'LEFT', lane: 'MID', qaStatic: true, x: 225, y: 145 });
         arcoGame.playerX = 225;
     } else if (archeryQaParams.get('archeryQaAllPaths') === '1') {
         queueArcoQaShowcase(ARCHERY_PATH_TYPES.map((path, index) => ({
@@ -2442,16 +2022,16 @@ function beginArcoRound() {
         })));
     } else if (archeryQaParams.get('archeryQaAllGold') === '1') {
         queueArcoQaShowcase([
-            { kind: 'GOLD_SMALL', path: 'HORIZONTAL', speed: 'FAST', entry: 'LEFT', lane: 'HIGH' },
-            { kind: 'GOLD_FAST', path: 'DIAGONAL', speed: 'GOLD_FAST', entry: 'RIGHT', lane: 'LOW', exitLane: 'HIGH' },
-            { kind: 'GOLD_ZIGZAG', path: 'ZIGZAG', speed: 'FAST', entry: 'LEFT', lane: 'MID', amplitude: 39 },
+            { kind: 'GOLD_SMALL', path: 'STRAIGHT', speed: 'FAST', entry: 'LEFT', lane: 'HIGH' },
+            { kind: 'GOLD_FAST', path: 'DIAGONAL', speed: 'FAST', entry: 'RIGHT', lane: 'LOW', exitLane: 'HIGH' },
+            { kind: 'GOLD_WAVE', path: 'WAVE', speed: 'FAST', entry: 'LEFT', lane: 'MID', amplitude: 39 },
             { kind: 'GOLD_S_CURVE', path: 'S_CURVE', speed: 'FAST', entry: 'RIGHT', lane: 'MID', amplitude: 46 },
-            { kind: 'GOLD_CIRCLE', path: 'CIRCLE', speed: 'FAST', entry: 'LEFT', lane: 'MID' },
+            { kind: 'GOLD_ELLIPSE', path: 'ELLIPSE', speed: 'FAST', entry: 'LEFT', lane: 'MID' },
             { kind: 'GOLD_ARC', path: 'ARC', speed: 'FAST', entry: 'RIGHT', lane: 'LOW', amplitude: 68 },
-            { kind: 'GOLD_FIGURE8', path: 'FIGURE_EIGHT', speed: 'FAST', entry: 'LEFT', lane: 'MID' }
+            { kind: 'GOLD_CURVE', path: 'CURVE', speed: 'FAST', entry: 'LEFT', lane: 'MID' }
         ]);
     } else {
-        queueArcoPattern(ARCHERY_PATTERNS[0]);
+        queueArcoPattern(ARCHERY_PATTERNS.find(pattern=>pattern.id==='OPENING_CURRENT'));
     }
     keys.space = false;
     archeryShootPressed = false;
@@ -2509,16 +2089,27 @@ function updateArcoRange(range, x, y) {
     range.maxY = Math.max(range.maxY, y);
 }
 
-function fireArcoArrow(owner, target = null) {
+function getArcoArrowOrigin(owner) {
+    return {x:owner==='PLAYER'?arcoGame.playerX:arcoGame.mestreX,
+        y:(owner==='PLAYER'?arcoGame.playerY:arcoGame.mestreY)-73};
+}
+
+function fireArcoArrow(owner, shot = null) {
+    window.archeryCharactersV2.shoot(owner);
+    window.ArcheryRiverTargets.releaseSound(owner);
     const isPlayer = owner === 'PLAYER';
-    const x = isPlayer ? arcoGame.playerX : arcoGame.mestreX;
-    const y = (isPlayer ? arcoGame.playerY : arcoGame.mestreY) - 49;
+    const {x,y} = getArcoArrowOrigin(owner);
     const speed = isPlayer ? ARCHERY_CONFIG.arrowSpeed : ARCHERY_CONFIG.arrowSpeed + 0.35;
     let speedX = 0;
-    if (!isPlayer && target) {
-        const travelFrames = Math.max(1, (y - target.y) / speed);
-        const predictedX = target.x + target.speedX * travelFrames;
-        speedX = clampArco((predictedX + arcoGame.mestreAimError - x) / travelFrames, -2.7, 2.7);
+    let speedY = -speed;
+    if(isPlayer){
+        const direction=shot&&shot.direction?shot.direction:window.ArcheryPlayerControl.aim(arcoGame.playerX,arcoGame.playerY,ARCHERY_CONFIG.shooterArea);
+        speedX=speed*direction.x;speedY=speed*direction.y;
+    }
+    if (!isPlayer && shot && shot.lockedAim) {
+        // This is the previously committed aim point, not a live target lookup.
+        const travelFrames = Math.max(1, (y - shot.y) / speed);
+        speedX = clampArco((shot.x - x) / travelFrames, -2.7, 2.7);
     }
     arcoGame.arrows.push(acquireArcoObject(arcoGame.arrowPool, {
         x,
@@ -2526,11 +2117,12 @@ function fireArcoArrow(owner, target = null) {
         previousX: x,
         previousY: y,
         speedX,
-        speedY: -speed,
+        speedY,
         owner
     }));
     if (isPlayer) arcoGame.stats.playerShots++;
     else arcoGame.stats.mestreShots++;
+    arcoGame.pacing.phases[arcoGame.phase][isPlayer?'playerShots':'masterShots']++;
 }
 
 function updateArcoPlayer() {
@@ -2553,34 +2145,25 @@ function updateArcoPlayer() {
     }
     updateArcoRange(arcoGame.stats.playerRange, arcoGame.playerX, arcoGame.playerY);
 
-    if (arcoGame.playerShootCooldown > 0) arcoGame.playerShootCooldown--;
     if (arcoGame.playerReactionTimer > 0) arcoGame.playerReactionTimer--;
+    const previousState=arcoGame.playerControl.state;
+    const result=window.ArcheryPlayerControl.step(arcoGame.playerControl,{
+        frame:arcoGame.roundFrame,x:arcoGame.playerX,y:arcoGame.playerY,
+        area,pressed:archeryShootPressed
+    });
+    archeryShootPressed=false;
+    if(result.state==='DRAW_BOWSTRING'&&previousState!==result.state)window.ArcheryRiverTargets.bowSound('PLAYER');
+    arcoGame.playerShootCooldown=result.cooldown;
+    if(result.accepted)arcoGame.playerReactionTimer=0;
+    if(result.fire){fireArcoArrow('PLAYER',result.fire);arcoGame.playerShootTimer=window.ArcheryPlayerControl.CONFIG.release;}
+    else if(arcoGame.playerShootTimer>0)arcoGame.playerShootTimer--;
 
-    if (archeryShootPressed && arcoGame.playerShootCooldown <= 0) {
-        fireArcoArrow('PLAYER');
-        arcoGame.playerShootCooldown = ARCHERY_CONFIG.playerFireCooldown;
-        arcoGame.playerShootTimer = 14;
-        archeryShootPressed = false;
-    }
-
-    if (arcoGame.playerReactionTimer > 0) {
+    if(result.state!=='IDLE')arcoGame.playerState=result.state;
+    else if (arcoGame.playerReactionTimer > 0) {
         arcoGame.playerState = 'MISS';
-    } else if (arcoGame.playerShootTimer > 0) {
-        arcoGame.playerShootTimer--;
-        arcoGame.playerState = 'SHOOT';
     } else {
         arcoGame.playerState = moveX || moveY ? 'MOVE' : 'IDLE';
     }
-}
-
-function selectArcoMasterTarget() {
-    return arcoGame.targets
-        .filter((target) => target.active && target.visible && target.progress < 0.90)
-        .sort((a, b) => {
-            const valueDifference = b.basePoints - a.basePoints;
-            if (valueDifference !== 0) return valueDifference;
-            return Math.abs(a.x - arcoGame.mestreX) - Math.abs(b.x - arcoGame.mestreX);
-        })[0] || null;
 }
 
 function updateArcoMaster() {
@@ -2590,114 +2173,87 @@ function updateArcoMaster() {
         updateArcoRange(arcoGame.stats.mestreRange, arcoGame.mestreX, arcoGame.mestreY);
         return;
     }
-    if (arcoGame.mestreShootCooldown > 0) arcoGame.mestreShootCooldown--;
+    if (arcoGame.mestreShootTimer > 0) arcoGame.mestreShootTimer--;
     if (arcoGame.mestreReactionTimer > 0) arcoGame.mestreReactionTimer--;
-
-    let target = arcoGame.targets.find((candidate) => candidate.id === arcoGame.mestreAimTargetId && candidate.active && candidate.visible) || null;
-    if (!target) {
-        target = selectArcoMasterTarget();
-        arcoGame.mestreAimTargetId = target ? target.id : null;
-        arcoGame.mestreDecisionTimer = target ? [42, 31, 23][arcoGame.phase] + Math.floor(Math.random() * 12) : 0;
-        if (target) {
-            const baseError = [25, 17, 11][arcoGame.phase];
-            const deliberateMiss = Math.random() < [0.30, 0.22, 0.16][arcoGame.phase];
-            arcoGame.mestreAimError = deliberateMiss
-                ? (Math.random() < 0.5 ? -1 : 1) * (target.radius + 18 + Math.random() * 13)
-                : (Math.random() * 2 - 1) * baseError;
-        }
-    }
-    if (arcoGame.mestreDecisionTimer > 0) arcoGame.mestreDecisionTimer--;
-    let moving = false;
-    if (target && arcoGame.mestreShootTimer <= 0 && arcoGame.mestreDecisionTimer <= 0) {
-        const speed = ARCHERY_CONFIG.arrowSpeed + 0.35;
-        const travelFrames = Math.max(1, (arcoGame.mestreY - 49 - target.y) / speed);
-        const aimX = clampArco(target.x + target.speedX * travelFrames + arcoGame.mestreAimError, area.left, area.right);
-        const difference = aimX - arcoGame.mestreX;
-        if (Math.abs(difference) > 8) {
-            arcoGame.mestreX += Math.sign(difference) * (2.8 + arcoGame.phase * 0.25);
-            moving = true;
-        } else if (arcoGame.mestreShootCooldown <= 0) {
-            fireArcoArrow('MESTRE', target);
-            arcoGame.mestreShootCooldown = [78, 62, 50][arcoGame.phase];
-            arcoGame.mestreShootTimer = 14;
-            arcoGame.mestreAimTargetId = null;
-        }
-    }
-
-    const desiredY = 226 + Math.sin(arcoGame.roundFrame / 100) * 6;
-    if (Math.abs(desiredY - arcoGame.mestreY) > 1.5) {
-        arcoGame.mestreY += Math.sign(desiredY - arcoGame.mestreY) * 1.35;
-        moving = true;
-    }
-    arcoGame.mestreX = clampArco(arcoGame.mestreX, area.left, area.right);
-    arcoGame.mestreY = clampArco(arcoGame.mestreY, area.front, area.back);
+    const previousState=arcoGame.masterAI.state;
+    const result=window.ArcheryMasterAI.step(arcoGame.masterAI,{
+        frame:arcoGame.roundFrame,phase:arcoGame.phase,x:arcoGame.mestreX,y:arcoGame.mestreY,
+        area,targets:arcoGame.targets,arrowSpeed:ARCHERY_CONFIG.arrowSpeed+.35,aggressive:arcoGame.phase===3,
+        opponent:{x:arcoGame.playerX,y:arcoGame.playerY,
+            arrowVisible:arcoGame.arrows.some(arrow=>arrow.owner==='PLAYER'&&arrow.y>=0&&arrow.y<=300)},
+        explosionRadius:window.ArcheryExplosiveTargets.RADIUS
+    });
+    arcoGame.mestreX=result.x;arcoGame.mestreY=result.y;
+    arcoGame.mestreAimTargetId=result.targetId;
+    arcoGame.mestreShootCooldown=result.cooldown;
+    arcoGame.mestreDecisionTimer=result.state==='DECIDING'?Math.max(0,window.ArcheryMasterAI.CONFIG.decisionTime-arcoGame.masterAI.age):0;
+    if(result.state==='DRAW_BOWSTRING'&&previousState!==result.state)window.ArcheryRiverTargets.bowSound('MESTRE');
+    if(result.fire){fireArcoArrow('MESTRE',result.fire);arcoGame.mestreShootTimer=window.ArcheryMasterAI.CONFIG.release;}
     updateArcoRange(arcoGame.stats.mestreRange, arcoGame.mestreX, arcoGame.mestreY);
 
-    if (arcoGame.mestreReactionTimer > 0) {
+    if (arcoGame.mestreReactionTimer > 0 && ['OBSERVE','RECOVERY'].includes(result.state)) {
         arcoGame.mestreState = 'MISS';
-    } else if (arcoGame.mestreShootTimer > 0) {
-        arcoGame.mestreShootTimer--;
-        arcoGame.mestreState = 'SHOOT';
     } else {
-        arcoGame.mestreState = moving ? 'MOVE' : 'IDLE';
+        arcoGame.mestreState = ['OBSERVE','DECIDING'].includes(result.state)?'IDLE':result.state;
     }
 }
 
 function updateArcoTargets() {
-    for (let index = arcoGame.targets.length - 1; index >= 0; index--) {
-        const target = arcoGame.targets[index];
-        target.age++;
-        if (!target.qaStatic) {
-            target.previousX = target.x;
-            target.previousY = target.y;
-            target.progress = Math.min(1, target.progress + target.speed / target.pathLength);
-            const position = evaluateArcoTargetPath(target, target.progress);
-            target.x = position.x;
-            target.y = position.y;
-            target.speedX = target.x - target.previousX;
-            target.speedY = target.y - target.previousY;
-            const step = Math.hypot(target.speedX, target.speedY);
-            arcoGame.stats.maxTargetStep = Math.max(arcoGame.stats.maxTargetStep, step);
-            if (step > ARCHERY_CONFIG.teleportThreshold) arcoGame.stats.teleportEvents++;
+    for(let index=arcoGame.targets.length-1;index>=0;index--){
+        const target=arcoGame.targets[index],wasVisible=target.visible;
+        const retired=(target.carrier==='BIRD'?window.ArcheryBirdTargets:window.ArcheryRiverTargets).step(target);
+        const step=Math.hypot(target.speedX,target.speedY);
+        arcoGame.stats.maxTargetStep=Math.max(arcoGame.stats.maxTargetStep,step);
+        if(step>ARCHERY_CONFIG.teleportThreshold)arcoGame.stats.teleportEvents++;
+        if(!wasVisible&&target.visible){
+            recordArcoTargetEvent('ENTERED',target);
+            if(target.isGolden)arcoGame.effects.push(acquireArcoObject(arcoGame.effectPool,{
+                effectKind:'GOLD_NOTICE',timer:72,duration:72
+            }));
         }
-        target.visible = target.x >= -target.radius && target.x <= canvas.width + target.radius
-            && target.y >= ARCHERY_CONFIG.targetField.top - target.radius
-            && target.y <= ARCHERY_CONFIG.targetField.bottom + target.radius;
-        if (target.progress >= 1 && !target.qaStatic) {
-            arcoGame.stats.targetExits++;
-            arcoGame.targetPool.push(arcoGame.targets.splice(index, 1)[0]);
+        if(retired){
+            if(target.isGolden&&!target.hit)window.archeryCharactersV2.goldenLost('MESTRE');
+            arcoGame.stats.targetExits++;if(target.hit)arcoGame.stats.spentTargetExits++;
+            if(target.carrier==='BIRD')arcoGame.stats.birdExits++;
+            recordArcoTargetEvent('EXITED_OUTSIDE',target);
+            arcoGame.targetPool.push(arcoGame.targets.splice(index,1)[0]);
         }
     }
 }
 
 function updateArcoTargetSpawns() {
-    for (let index = arcoGame.pendingTargetSpawns.length - 1; index >= 0; index--) {
+    const showcase=archeryQaParams.get('archeryQaBullseye')==='1'
+        ||archeryQaParams.get('archeryQaAllPaths')==='1'||archeryQaParams.get('archeryQaAllGold')==='1';
+    if(arcoGame.pacing.phase!==arcoGame.phase){
+        arcoGame.pacing.phase=arcoGame.phase;
+        arcoGame.pacing.phaseEntries.push({phase:arcoGame.phase,frame:arcoGame.roundFrame});
+        if(!showcase){
+            // Existing carriers keep flowing. Only unlaunched entries from the
+            // previous phase are retired so they cannot stall the new section.
+            arcoGame.pendingTargetSpawns.length=0;
+            arcoGame.spawnTimer=ARCHERY_CONFIG.patternIntervals[arcoGame.phase];
+        }
+    }
+    if(!showcase)updateArcoGoldenSpawns();
+    if(!showcase&&arcoGame.roundFrame>=arcoGame.nextBirdFrame
+        &&arcoGame.birdFlightIndex<window.ArcheryBirdTargets.MAX_PER_ROUND
+        &&arcoGame.targets.filter(target=>!target.hit).length<window.ArcheryMatchPacing.PHASES[arcoGame.phase].capacity){
+        spawnArcoBirdTarget();
+    }
+    for (let index = 0; index < arcoGame.pendingTargetSpawns.length; index++) {
         const pending = arcoGame.pendingTargetSpawns[index];
         pending.delay--;
-        if (pending.delay <= 0 && arcoGame.targets.length < ARCHERY_CONFIG.maxTargets[arcoGame.phase]) {
+        const entry=pending.descriptor.entry||'TOP';
+        const spaced=arcoGame.roundFrame-arcoGame.lastTargetSpawnFrame>=24
+            &&arcoGame.roundFrame-arcoGame.lastEntryFrames[entry]>=66;
+        const capacity=pending.descriptor.capacity||ARCHERY_CONFIG.maxTargets[arcoGame.phase];
+        if (pending.delay <= 0 && spaced && arcoGame.targets.filter(target=>!target.hit).length < capacity && arcoGame.targets.length < ARCHERY_CONFIG.maxCarriers) {
             spawnArcoTarget(pending.descriptor);
-            arcoGame.pendingTargetSpawns.splice(index, 1);
+            arcoGame.pendingTargetSpawns.splice(index--, 1);
         }
     }
 
-    if (archeryQaParams.get('archeryQaBullseye') === '1'
-        || archeryQaParams.get('archeryQaAllPaths') === '1'
-        || archeryQaParams.get('archeryQaAllGold') === '1') return;
-
-    const progress = arcoGame.roundFrame / Math.max(1, arcoGame.roundFrames);
-    if (!arcoGame.midGoldMomentQueued && progress >= 0.47 && arcoGame.pendingTargetSpawns.length === 0) {
-        arcoGame.midGoldMomentQueued = true;
-        queueArcoPattern(ARCHERY_PATTERNS.find((pattern) => pattern.id === 'S_AND_GOLD_SMALL'));
-        arcoGame.spawnTimer = 0;
-        return;
-    }
-    if (!arcoGame.finalGoldMomentQueued && progress >= 0.82 && arcoGame.pendingTargetSpawns.length === 0) {
-        arcoGame.finalGoldMomentQueued = true;
-        const finalEventId = Math.random() < 0.5 ? 'RARE_GOLD_FIGURE8' : 'GOLD_CIRCLE_EVENT';
-        queueArcoPattern(ARCHERY_PATTERNS.find((pattern) => pattern.id === finalEventId));
-        arcoGame.spawnTimer = 0;
-        return;
-    }
+    if(showcase)return;
 
     arcoGame.spawnTimer++;
     if (arcoGame.spawnTimer >= ARCHERY_CONFIG.patternIntervals[arcoGame.phase] && arcoGame.pendingTargetSpawns.length === 0) {
@@ -2706,11 +2262,20 @@ function updateArcoTargetSpawns() {
     }
 }
 
-function awardArcoHit(arrow, target, impactDistance) {
+function awardArcoTargetHit(arrow, target, impactDistance, impact, silent=false) {
+    if(!target.active||target.hit)return false;
+    (target.carrier==='BIRD'?window.ArcheryBirdTargets:window.ArcheryRiverTargets).markHit(target,arrow.owner,impact);
+    if(target.carrier==='BIRD')arcoGame.stats.birdHits[arrow.owner]++;
+    recordArcoTargetEvent('HIT_ONCE',target);
+    window.archeryCharactersV2.hit(arrow.owner);
     const normalized = impactDistance / Math.max(1, target.radius);
     const bullseye = normalized <= 0.35;
-    const innerRing = normalized <= 0.70;
-    let points = target.basePoints + (bullseye ? 30 : (innerRing ? 15 : 0));
+    let points = target.basePoints + window.ArcheryGoldenTargets.precisionBonus(target,normalized);
+    if(target.isGolden){
+        if(arrow.owner==='PLAYER')window.archeryCharactersV2.goldenLost('MESTRE');
+        arcoGame.stats.goldenHits[arrow.owner]++;
+        if(bullseye)arcoGame.stats.goldenBullseyes[arrow.owner]++;
+    }
     arcoGame.stats.lastImpacts.push({
         owner: arrow.owner,
         distance: +impactDistance.toFixed(2),
@@ -2732,66 +2297,83 @@ function awardArcoHit(arrow, target, impactDistance) {
         if (bullseye) arcoGame.stats.mestreBullseyes++;
     }
 
+    if(!silent)window.ArcheryRiverTargets.sound(target.isGolden||bullseye);
     const subtype = target.isGolden ? 'bullseye' : (bullseye ? 'bullseye' : 'arrow_impact');
     const state = target.isGolden || bullseye ? 'BULLSEYE' : 'IMPACT';
     arcoGame.effects.push(acquireArcoObject(arcoGame.effectPool, {
-        x: target.x,
-        y: target.y,
+        effectKind: 'HIT',
+        x: target.x + target.hitOffsetX,
+        y: target.y + target.hitOffsetY,
         subtype,
         state,
         timer: target.isGolden ? 46 : 34,
         duration: target.isGolden ? 46 : 34,
-        label: (target.isGolden ? 'GOLD +' : (bullseye ? 'BULLSEYE +' : '+')) + points,
-        color: target.isGolden || bullseye ? '#ffe066' : '#ffffff'
+        bullseye,
+        label: (arrow.owner==='MESTRE'?'MESTRE ':'')+(target.isGolden ? (bullseye?'MOSCA DOURADA! +':'OURO +') : (target.carrier==='BIRD' ? 'AEREO +' : (bullseye ? 'BULLSEYE! +' : '+'))) + points,
+        color: target.isGolden || bullseye ? '#ffe066' : (arrow.owner==='MESTRE'?'#ffb69e':'#ffffff')
     }));
+    return true;
+}
+
+function awardArcoHit(arrow, target, impactDistance, impact) {
+    const explosive=window.ArcheryExplosiveTargets;
+    if(!explosive.valid(target))return false;
+    if(!target.isExplosive)return awardArcoTargetHit(arrow,target,impactDistance,impact);
+    const result=explosive.resolve(target,arcoGame.targets);
+    if(!result.hits.length)return false;
+    for(const {target:victim,source}of result.hits){
+        if(!source){awardArcoTargetHit(arrow,victim,impactDistance,impact,true);continue;}
+        // Blast collateral earns the target's base value, never a fabricated bullseye.
+        const dx=source.x-victim.x,dy=source.y-victim.y,d=Math.hypot(dx,dy)||1;
+        const offsetX=dx/d*victim.radius,offsetY=dy/d*victim.radius;
+        awardArcoTargetHit({owner:arrow.owner,x:victim.x+offsetX,y:victim.y+offsetY},victim,victim.radius,{offsetX,offsetY},true);
+    }
+    arcoGame.stats.detonations+=result.blasts.length;
+    arcoGame.stats.explosionHits+=result.hits.length-1;
+    arcoGame.stats.maxChain=Math.max(arcoGame.stats.maxChain,result.blasts.length);
+    arcoGame.stats.maxExplosionCombo=Math.max(arcoGame.stats.maxExplosionCombo,result.hits.length);
+    const event={frame:arcoGame.roundFrame,owner:arrow.owner,targets:result.hits.map(hit=>hit.target.id),
+        detonations:result.blasts.length,bonus:result.bonus};
+    arcoGame.stats.explosionEvents.push(event);if(arcoGame.stats.explosionEvents.length>32)arcoGame.stats.explosionEvents.shift();
+    for(const blast of result.blasts){
+        const delay=blast.depth*3,duration=explosive.DURATION+delay;
+        arcoGame.effects.push(acquireArcoObject(arcoGame.effectPool,{...blast,effectKind:'EXPLOSION',timer:duration,duration,delay}));
+        window.ArcheryRiverTargets.explosionSound(blast.depth);
+    }
+    if(result.bonus){
+        window.ArcheryRiverTargets.comboSound(result.hits.length);
+        if(arrow.owner==='PLAYER')arcoGame.playerScore+=result.bonus;else arcoGame.mestreScore+=result.bonus;
+        arcoGame.stats.comboBonuses[arrow.owner]+=result.bonus;
+        arcoGame.effects.push(acquireArcoObject(arcoGame.effectPool,{
+            effectKind:'COMBO',count:result.hits.length,bonus:result.bonus,owner:arrow.owner,
+            x:clampArco(target.x,85,365),y:Math.max(88,target.y-22),timer:52,duration:52,
+            bullseye:true,label:(result.hits.length>=6?'SUPER COMBO x':'COMBO x')+result.hits.length+' +'+result.bonus,color:'#ffe69d'
+        }));
+    }
+    return true;
 }
 
 function updateArcoArrows() {
-    for (let arrowIndex = arcoGame.arrows.length - 1; arrowIndex >= 0; arrowIndex--) {
-        const arrow = arcoGame.arrows[arrowIndex];
-        arrow.previousX = arrow.x;
-        arrow.previousY = arrow.y;
-        arrow.x += arrow.speedX;
-        arrow.y += arrow.speedY;
-        let hitTargetIndex = -1;
-        let impactDistance = Infinity;
-        let impactX = arrow.x;
-
-        for (let targetIndex = arcoGame.targets.length - 1; targetIndex >= 0; targetIndex--) {
-            const target = arcoGame.targets[targetIndex];
-            if (!target.active) continue;
-            const crossedTargetCenter = arrow.previousY >= target.y && arrow.y <= target.y;
-            if (!crossedTargetCenter) continue;
-            const verticalTravel = Math.max(0.0001, arrow.previousY - arrow.y);
-            const crossingRatio = clampArco((arrow.previousY - target.y) / verticalTravel, 0, 1);
-            const crossingX = arrow.previousX + (arrow.x - arrow.previousX) * crossingRatio;
-            const distance = Math.abs(crossingX - target.x);
-            if (distance <= target.radius && distance < impactDistance) {
-                impactDistance = distance;
-                impactX = crossingX;
-                hitTargetIndex = targetIndex;
-            }
+    for(let arrowIndex=arcoGame.arrows.length-1;arrowIndex>=0;arrowIndex--){
+        const arrow=arcoGame.arrows[arrowIndex];arrow.previousX=arrow.x;arrow.previousY=arrow.y;
+        arrow.x+=arrow.speedX;arrow.y+=arrow.speedY;
+        let targetIndex=-1,first=null;
+        for(let index=0;index<arcoGame.targets.length;index++){
+            const collision=window.ArcheryRiverTargets.sweep(arrow,arcoGame.targets[index]);
+            if(collision&&(!first||collision.t<first.t)){first=collision;targetIndex=index;}
         }
-
-        if (hitTargetIndex >= 0) {
-            const target = arcoGame.targets[hitTargetIndex];
-            arrow.x = impactX;
-            arrow.y = target.y;
-            awardArcoHit(arrow, target, impactDistance);
-            arcoGame.targetPool.push(arcoGame.targets.splice(hitTargetIndex, 1)[0]);
-            arcoGame.arrowPool.push(arcoGame.arrows.splice(arrowIndex, 1)[0]);
-            continue;
+        if(first){
+            arrow.x=first.x;arrow.y=first.y;
+            awardArcoHit(arrow,arcoGame.targets[targetIndex],first.distance,first);
+            // The carrier keeps travelling: a raft drifts, a bird flies on unharmed.
+            arcoGame.arrowPool.push(arcoGame.arrows.splice(arrowIndex,1)[0]);continue;
         }
-
-        if (arrow.y < -30 || arrow.x < -30 || arrow.x > canvas.width + 30) {
-            if (arrow.owner === 'PLAYER') {
-                arcoGame.stats.playerMisses++;
-                arcoGame.playerReactionTimer = 18;
-            } else {
-                arcoGame.stats.mestreMisses++;
-                arcoGame.mestreReactionTimer = 14;
-            }
-            arcoGame.arrowPool.push(arcoGame.arrows.splice(arrowIndex, 1)[0]);
+        const visualMargin=arrow.owner==='PLAYER'?48:30;
+        if(arrow.y < -visualMargin || arrow.x < -30 || arrow.x > canvas.width+30){
+            window.archeryCharactersV2.miss(arrow.owner);
+            if(arrow.owner==='PLAYER'){arcoGame.stats.playerMisses++;arcoGame.playerReactionTimer=18;}
+            else{arcoGame.stats.mestreMisses++;arcoGame.mestreReactionTimer=14;}
+            arcoGame.arrowPool.push(arcoGame.arrows.splice(arrowIndex,1)[0]);
         }
     }
 }
@@ -2808,11 +2390,38 @@ function finishArcoRound() {
     arcoGame.win = arcoGame.playerScore > arcoGame.mestreScore;
     if (arcoGame.win) insignias.arco = true;
     arcoGame.gameState = 'GAMEOVER';
+    arcoGame.pacing.finalScores={player:arcoGame.playerScore,master:arcoGame.mestreScore};
     keys.a = keys.d = keys.w = keys.s = keys.space = false;
     consumeArcoShootEdges();
 }
 
+function beginArcoResolution() {
+    arcoGame.gameState='RESOLVING';
+    arcoGame.pacing.settleFrames=0;
+    arcoGame.pacing.arrowsAtBuzzer=arcoGame.arrows.length;
+    arcoGame.pacing.scoresAtBuzzer={player:arcoGame.playerScore,master:arcoGame.mestreScore};
+    arcoGame.pendingTargetSpawns.length=0;
+    arcoGame.playerControl.buffer=0;
+    arcoGame.playerControl.state='IDLE';arcoGame.playerControl.age=0;
+    arcoGame.playerState='IDLE';arcoGame.mestreState='IDLE';
+    keys.a=keys.d=keys.w=keys.s=keys.space=false;
+    consumeArcoShootEdges();
+}
+
+function resolveArcoFrame() {
+    // No new shots or spawns after the buzzer. Live targets and all projectiles
+    // already released continue using the same movement and collision routines.
+    arcoGame.pacing.settleFrames++;
+    updateArcoTargets();updateArcoArrows();updateArcoEffects();
+    consumeArcoShootEdges();
+    const pacing=window.ArcheryMatchPacing;
+    if((arcoGame.arrows.length===0&&arcoGame.pacing.settleFrames>=pacing.SETTLE_MIN)
+        ||arcoGame.pacing.settleFrames>=pacing.SETTLE_MAX)finishArcoRound();
+}
+
 function simulateArcoFrame() {
+    if(arcoGame.gameState==='RESOLVING'){resolveArcoFrame();return;}
+    if(arcoGame.gameState!=='PLAYING')return;
     arcoGame.roundFrame++;
     arcoGame.phase = getArcoPhase();
     applyArcoQaAutomation();
@@ -2822,18 +2431,19 @@ function simulateArcoFrame() {
     updateArcoTargets();
     updateArcoArrows();
     updateArcoEffects();
-    if (arcoGame.roundFrame >= arcoGame.roundFrames) finishArcoRound();
+    window.ArcheryMatchPacing.sample(arcoGame.pacing,arcoGame.phase,arcoGame.targets,arcoGame.roundFrames-arcoGame.roundFrame);
+    if (arcoGame.roundFrame >= arcoGame.roundFrames) beginArcoResolution();
 }
 
 function updateArco() {
     if (arcoGame.gameState === 'TUTORIAL') {
-        if (archeryShootPressed || keys.space) beginArcoRound();
+        if (archeryShootPressed) beginArcoRound();
         consumeArcoShootEdges();
         return;
     }
 
     if (arcoGame.gameState === 'GAMEOVER') {
-        if (archeryShootPressed || keys.space) {
+        if (archeryShootPressed) {
             currentScene = 'ILHA_ARCO';
             keys.space = false;
             archeryShootPressed = false;
@@ -2849,45 +2459,40 @@ function updateArco() {
         return;
     }
 
-    hintText.innerText = '[W A S D] AREA DE TIRO | [ESPACO] ATIRAR';
+    hintText.innerText = arcoGame.gameState==='RESOLVING'?'TEMPO ESGOTADO | RESOLVENDO FLECHAS EM VOO':'[W A S D] AREA DE TIRO | [ESPACO] ATIRAR';
     const qaFrameStepValue = Number(archeryQaParams.get('archeryQaSpeed'));
     const frameStep = archeryQaParams.get('archeryQa') === '1' && Number.isFinite(qaFrameStepValue)
         ? clampArco(Math.round(qaFrameStepValue), 1, 60)
         : 1;
-    for (let step = 0; step < frameStep && arcoGame.gameState === 'PLAYING'; step++) simulateArcoFrame();
+    for (let step = 0; step < frameStep && ['PLAYING','RESOLVING'].includes(arcoGame.gameState); step++) simulateArcoFrame();
     consumeArcoShootEdges();
 }
 function getArcoCharacterVisual(actor) {
-    const isPlayer = actor === 'PLAYER';
-    const state = isPlayer ? arcoGame.playerState : arcoGame.mestreState;
-    const shootTimer = isPlayer ? arcoGame.playerShootTimer : arcoGame.mestreShootTimer;
-    if (arcoGame.gameState === 'GAMEOVER') {
-        const actorWon = !arcoGame.tie && (isPlayer ? arcoGame.win : !arcoGame.win);
-        return actorWon ? 'VICTORY_BACK' : (arcoGame.tie ? 'IDLE_BACK' : 'MISS_REACTION_BACK');
-    }
-    if (state === 'MISS') return 'MISS_REACTION_BACK';
-    if (state === 'MOVE') return 'WALK_DOWN_BACK';
-    if (state === 'SHOOT') return shootTimer > 8 ? 'RELEASE_SHOT_BACK' : 'RECOVERY_BACK';
-    return 'IDLE_BACK';
+    return window.archeryCharactersV2.resolve(actor, arcoGame).state;
 }
 
-function getArcoTargetFrame(target, timeFrame) {
-    return timeFrame + target.animationOffset;
-}
+
 
 function drawArcoShooterArea() {
     const area = ARCHERY_CONFIG.shooterArea;
-    ctx.fillStyle = 'rgba(255, 238, 171, 0.10)';
-    ctx.fillRect(area.left, area.front, area.right - area.left, area.back - area.front + 18);
-    ctx.strokeStyle = 'rgba(255, 245, 200, 0.82)';
-    ctx.lineWidth = 2;
-    ctx.setLineDash([7, 5]);
+    ctx.strokeStyle = 'rgba(245, 232, 187, 0.74)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([5, 4]);
     ctx.beginPath();
     ctx.moveTo(area.left, area.front);
     ctx.lineTo(area.right, area.front);
     ctx.stroke();
     ctx.setLineDash([]);
-    ctx.fillStyle = 'rgba(35, 46, 29, 0.86)';
+    // Ground markings only; physical bounds remain in ARCHERY_CONFIG.
+    for (const x of [area.left, area.right]) {
+        const direction = x === area.left ? 1 : -1;
+        for (const y of [area.front + 15, area.back + 15]) {
+            ctx.fillStyle = '#d9ca98';
+            ctx.fillRect(x, y, direction * 8, 1);
+            ctx.fillRect(x, y + (y === area.front + 15 ? 0 : -5), 1, 5);
+        }
+    }
+    ctx.fillStyle = '#665f42';
     ctx.fillRect(canvas.width / 2 - 42, area.front - 10, 84, 10);
     ctx.fillStyle = '#fff4c2';
     ctx.font = 'bold 6px monospace';
@@ -2896,86 +2501,36 @@ function drawArcoShooterArea() {
     ctx.textAlign = 'left';
 }
 
-function drawArcoTargets(assets, timeFrame) {
-    for (const target of arcoGame.targets) {
-        if (!target.visible) continue;
-        const pulse = target.isGolden ? 1 + Math.sin(performance.now() / 120) * 0.06 : 1;
-        const size = target.renderSize * pulse;
-        const bottomY = target.y + size * 0.43;
-        if (assets) {
-            assets.draw(
-                ctx,
-                'target',
-                target.assetSubtype,
-                target.assetState,
-                getArcoTargetFrame(target, timeFrame),
-                target.x,
-                bottomY,
-                size,
-                size,
-                'manifest'
-            );
-        }
-        if (target.isGolden && target.active) {
-            ctx.fillStyle = 'rgba(48, 34, 8, 0.82)';
-            ctx.fillRect(Math.floor(target.x - 22), Math.floor(target.y - target.radius - 13), 44, 10);
-            ctx.fillStyle = '#ffe066';
-            ctx.font = 'bold 7px monospace';
-            ctx.textAlign = 'center';
-            ctx.fillText('BONUS', Math.floor(target.x), Math.floor(target.y - target.radius - 5));
-            ctx.textAlign = 'left';
-        }
+function drawArcoTargets() {
+    for(const target of arcoGame.targets.filter(t=>t.carrier!=='BIRD').sort((a,b)=>a.waterY-b.waterY)){
+        window.ArcheryRiverTargets.draw(ctx,target);window.ArcheryExplosiveTargets.drawBadge(ctx,target);
     }
 }
 
-function getArcoArrowVisual(arrow) {
-    const fast = arrow.owner === 'MESTRE';
-    if (arrow.speedX < -0.35) return fast
-        ? { subtype: 'arrow_fast_up_left', state: 'FAST_UP_LEFT' }
-        : { subtype: 'arrow_up_left', state: 'UP_LEFT' };
-    if (arrow.speedX > 0.35) return fast
-        ? { subtype: 'arrow_fast_up_right', state: 'FAST_UP_RIGHT' }
-        : { subtype: 'arrow_up_right', state: 'UP_RIGHT' };
-    return fast
-        ? { subtype: 'arrow_fast_up', state: 'FAST_UP' }
-        : { subtype: 'arrow_up', state: 'UP' };
+function drawArcoBirds() {
+    for(const target of arcoGame.targets)if(target.carrier==='BIRD')window.ArcheryBirdTargets.draw(ctx,target);
 }
 
-function drawArcoEffects(assets) {
-    for (const effect of arcoGame.effects) {
-        const progress = 1 - effect.timer / effect.duration;
-        const frame = Math.min(3, Math.floor(progress * 4));
-        const size = 38 + progress * 18;
-        ctx.globalAlpha = clampArco(effect.timer / 9, 0, 1);
-        if (assets) assets.draw(ctx, 'effect', effect.subtype, effect.state, frame, effect.x, effect.y, size, size, 'center');
-        ctx.fillStyle = effect.color;
-        ctx.font = 'bold 8px monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText(effect.label, effect.x, effect.y - 25 - progress * 13);
-        ctx.textAlign = 'left';
-        ctx.globalAlpha = 1;
+function drawArcoEffects() {
+    const shocks=arcoGame.effects.filter(effect=>effect.effectKind==='EXPLOSION').length;
+    for(const effect of arcoGame.effects){
+        if(effect.effectKind==='EXPLOSION')window.ArcheryExplosiveTargets.drawShock(ctx,effect,shocks);
+        else if(effect.effectKind==='GOLD_NOTICE')window.ArcheryGoldenTargets.drawNotice(ctx,effect);
+        else window.ArcheryRiverTargets.drawImpact(ctx,effect);
     }
 }
 
-function drawArcoCharacters(assets, timeFrame) {
-    if (!assets) return;
+function drawArcoCharacters() {
     const actors = [
-        { type: 'PLAYER', subtype: 'zorp', x: arcoGame.playerX, y: arcoGame.playerY, offset: 0 },
-        { type: 'MESTRE', subtype: 'master', x: arcoGame.mestreX, y: arcoGame.mestreY, offset: 1 }
+        { type: 'PLAYER', x: arcoGame.playerX, y: arcoGame.playerY },
+        { type: 'MESTRE', x: arcoGame.mestreX, y: arcoGame.mestreY }
     ].sort((a, b) => a.y - b.y);
     for (const actor of actors) {
-        assets.draw(
-            ctx,
-            'character',
-            actor.subtype,
-            getArcoCharacterVisual(actor.type),
-            timeFrame + actor.offset,
-            actor.x,
-            actor.y + 15,
-            94,
-            94,
-            'manifest'
-        );
+        ctx.save();
+        ctx.fillStyle = 'rgba(42, 49, 37, 0.25)';
+        ctx.beginPath(); ctx.ellipse(actor.x, actor.y + 15, 12, 3, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+        window.archeryCharactersV2.draw(ctx, actor.type, arcoGame, actor.x, actor.y + 15);
     }
 
 }
@@ -2995,7 +2550,7 @@ function getArcoDiagnostics() {
         scene: currentScene,
         state: arcoGame.gameState,
         phase: arcoGame.phase,
-        phaseName: ['AQUECIMENTO', 'MOVIMENTO', 'PRECISAO'][arcoGame.phase],
+        phaseName: window.ArcheryMatchPacing.PHASES[arcoGame.phase].name,
         secondsRemaining: Math.max(0, Math.ceil((arcoGame.roundFrames - arcoGame.roundFrame) / 60)),
         scores: { player: arcoGame.playerScore, master: arcoGame.mestreScore },
         player: { x: +arcoGame.playerX.toFixed(1), y: +arcoGame.playerY.toFixed(1), state: arcoGame.playerState },
@@ -3008,20 +2563,32 @@ function getArcoDiagnostics() {
         targetTypes: arcoGame.targets.map((target) => target.type),
         targetPaths: arcoGame.targets.map((target) => ({
             id: target.id,
+            carrier: target.carrier,
+            explosive: target.isExplosive, detonated: target.detonated,
             path: target.pathType,
             entry: target.entryPoint,
             exit: target.exitPoint,
             speed: target.speedTier,
             size: target.sizeTier,
             golden: target.isGolden,
+            goldenVariant: target.goldenVariant,
             progress: +target.progress.toFixed(3),
-            visible: target.visible
+            visible: target.visible, state: target.state, radius: target.radius, x:+target.x.toFixed(2), y:+target.y.toFixed(2), waterY:+target.waterY.toFixed(2), active:target.active
         })),
         pendingTargets: arcoGame.pendingTargetSpawns.length,
         arrows: arcoGame.arrows.length,
         effects: arcoGame.effects.length,
         stats: arcoGame.stats,
         assets: window.archeryAssets ? window.archeryAssets.diagnostics() : null,
+        characters: window.archeryCharactersV2.diagnostics(),
+        environment: window.ArcheryValley.diagnostics(),
+        riverTargets: window.ArcheryRiverTargets.diagnostics(),
+        birdTargets: window.ArcheryBirdTargets.diagnostics(),
+        explosiveTargets: window.ArcheryExplosiveTargets.diagnostics(),
+        goldenTargets: {...window.ArcheryGoldenTargets.diagnostics(),pending:arcoGame.goldenSchedule.length},
+        masterAI: window.ArcheryMasterAI.diagnostics(arcoGame.masterAI),
+        playerControl: window.ArcheryPlayerControl.diagnostics(arcoGame.playerControl),
+        pacing: arcoGame.pacing,
         hasNaN: values.some((value) => !Number.isFinite(value))
     };
 }
@@ -3044,7 +2611,6 @@ function recordArcoFps() {
 
 function drawArcoGame() {
     const assets = window.archeryAssets;
-    const timeFrame = Math.floor(performance.now() / 105);
     recordArcoFps();
     const diagnostics = getArcoDiagnostics();
     if (assets && archeryQaParams.get('archeryQa') === '1') {
@@ -3054,66 +2620,55 @@ function drawArcoGame() {
 
     ctx.save();
     ctx.imageSmoothingEnabled = false;
-    const arenaReady = assets && assets.drawCover(ctx, 0, 0, canvas.width, canvas.height);
-    if (!arenaReady) {
-        ctx.fillStyle = '#183d2c';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 10px monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText('CARREGANDO ARQUEARIA...', canvas.width / 2, canvas.height / 2);
-        ctx.textAlign = 'left';
-    }
-
+    window.ArcheryValley.draw(ctx, performance.now() / 1000);
     drawArcoShooterArea();
-    if (assets) {
-        assets.draw(ctx, 'prop', 'wind_flag', 'IDLE', timeFrame, 28, 136, 46, 46, 'manifest');
-        assets.draw(ctx, 'prop', 'wind_flag', 'IDLE', timeFrame + 1, canvas.width - 28, 136, 46, 46, 'manifest');
-        [92, 225, 358].forEach((x, index) => assets.draw(ctx, 'prop', 'lane_marker', 'IDLE', index, x, 190, 32, 32, 'manifest'));
-    }
 
-    drawArcoTargets(assets, timeFrame);
-    for (let index = 0; index < arcoGame.arrows.length; index++) {
-        const arrow = arcoGame.arrows[index];
-        const visual = getArcoArrowVisual(arrow);
-        if (assets) assets.draw(ctx, 'arrow', visual.subtype, visual.state, timeFrame + index, arrow.x, arrow.y, 38, 38, 'center');
-    }
-    drawArcoEffects(assets);
-    drawArcoCharacters(assets, timeFrame);
+    drawArcoTargets();
+    window.ArcheryValley.drawSourceLip(ctx);
+    drawArcoBirds();
+    for(const arrow of arcoGame.arrows)window.ArcheryRiverTargets.drawArrow(ctx,assets,arrow);
+    drawArcoEffects();
+
+    drawArcoCharacters();
+    if(arcoGame.gameState==='PLAYING')window.ArcheryPlayerControl.drawGuide(ctx,getArcoArrowOrigin('PLAYER'),arcoGame.playerControl);
     ctx.restore();
 
-    ctx.fillStyle = 'rgba(7, 14, 12, 0.88)';
-    ctx.fillRect(0, 0, canvas.width, 35);
+    ctx.fillStyle = 'rgba(12, 37, 34, 0.78)';
+    ctx.fillRect(5, 14, 100, 18);
+    ctx.fillRect(canvas.width - 105, 14, 100, 18);
+    ctx.fillRect(canvas.width / 2 - 57, 3, 114, 29);
     ctx.font = 'bold 10px monospace';
     ctx.fillStyle = '#ffe066';
     ctx.textAlign = 'left';
-    ctx.fillText('ZORP ' + arcoGame.playerScore, 12, 15);
+    ctx.fillText('ZORP ' + arcoGame.playerScore, 12, 26);
     ctx.fillStyle = '#ff806f';
     ctx.textAlign = 'right';
-    ctx.fillText('MESTRE ' + arcoGame.mestreScore, canvas.width - 12, 15);
+    ctx.fillText('MESTRE ' + arcoGame.mestreScore, canvas.width - 12, 26);
     ctx.fillStyle = '#ffffff';
     ctx.textAlign = 'center';
     const seconds = Math.max(0, Math.ceil((arcoGame.roundFrames - arcoGame.roundFrame) / 60));
     ctx.fillText(seconds + 's', canvas.width / 2, 14);
-    ctx.fillStyle = ['#9ff3b0', '#74e6ff', '#ffcf70'][arcoGame.phase];
+    ctx.fillStyle = window.ArcheryMatchPacing.PHASES[arcoGame.phase].color;
     ctx.font = 'bold 7px monospace';
-    ctx.fillText(['AQUECIMENTO', 'ALVOS MOVEIS', 'PRECISAO FINAL'][arcoGame.phase], canvas.width / 2, 27);
+    ctx.fillText(arcoGame.gameState==='RESOLVING'?'FLECHAS EM VOO':window.ArcheryMatchPacing.PHASES[arcoGame.phase].name, canvas.width / 2, 27);
     ctx.textAlign = 'left';
+    if(arcoGame.gameState==='PLAYING')window.ArcheryMatchPacing.drawCountdown(ctx,arcoGame.roundFrame,arcoGame.roundFrames);
 
     if (arcoGame.gameState === 'TUTORIAL') {
         drawOverlayScreen('ARCO E FLECHA', [
-            'Disputa de 55 segundos contra o Mestre.',
+            'Disputa de 60 segundos em quatro fases.',
             '[W A S D]: mova-se dentro da area de tiro.',
-            '[ESPACO]: dispara imediatamente. Sem barra de forca.',
+            '[ESPACO]: um toque, uma flecha. Intervalo de 0,5 s.',
             'Anel externo: base | interno: +15 | centro: +30.',
-            'Leia a trajetoria dos dourados raros. [ESPACO] inicia.'
+            'Lento / medio / rapido: siga o rio. [ESPACO] inicia.'
         ], '#e67e22');
     } else if (arcoGame.gameState === 'GAMEOVER') {
         const scoreLine = 'ZORP ' + arcoGame.playerScore + '  x  ' + arcoGame.mestreScore + ' MESTRE';
         if (arcoGame.tie) {
             drawOverlayScreen('EMPATE!', [
                 scoreLine,
-                'Bullseyes: ' + arcoGame.stats.playerBullseyes + ' x ' + arcoGame.stats.mestreBullseyes
+                'Bullseyes: ' + arcoGame.stats.playerBullseyes + ' x ' + arcoGame.stats.mestreBullseyes,
+                'Sem medalha no empate. [ESPACO] volta a ilha.'
             ], '#f1c40f');
         } else if (arcoGame.win) {
             drawOverlayScreen('VITORIA NA ARENA!', [
@@ -3190,24 +2745,10 @@ const sceneObstacles = {
         { x: 340, y: 70, w: 14, h: 14, type: 'cone', solid: true }
     ],
     ILHA_ARCO: [
-        // Colisores acompanham apenas os volumes externos; centro, entrada direita e saída norte ficam livres.
-        { x: 68, y: 68, w: 54, h: 55, type: 'archery_island_decor', solid: true },
-        { x: 330, y: 79, w: 50, h: 52, type: 'archery_island_decor', solid: true },
-        { x: 35, y: 202, w: 55, h: 38, type: 'archery_island_decor', solid: true },
-        { x: 365, y: 201, w: 54, h: 39, type: 'archery_island_decor', solid: true },
-        { x: 35, y: 48, w: 20, h: 45, type: 'archery_island_decor', solid: false },
-        { x: 397, y: 51, w: 20, h: 45, type: 'archery_island_decor', solid: false }
+        ...ArcheryIsland.obstacles
     ],
     ILHA_ESCALADA: [
-        { x: 45, y: 190, w: 40, h: 35, type: 'tent', solid: true },
-        { x: 130, y: 220, w: 25, h: 25, type: 'campfire', solid: true },
-        { x: 110, y: 140, w: 20, h: 25, type: 'trail_sign', solid: true },
-        { x: 330, y: 140, w: 25, h: 20, type: 'climbing_gear', solid: true },
-        { x: 35, y: 65, w: 25, h: 35, type: 'pine_tree', solid: true },
-        { x: 385, y: 65, w: 25, h: 35, type: 'pine_tree', solid: true },
-        { x: 390, y: 200, w: 25, h: 35, type: 'pine_tree', solid: true },
-        { x: 80, y: 70, w: 30, h: 30, type: 'boulder', solid: true },
-        { x: 340, y: 70, w: 30, h: 30, type: 'boulder', solid: true }
+        ...ClimbIsland.obstacles
     ],
     ILHA_ESQUI: [
         // Ringue Central (Cordas e Postes)
@@ -3235,15 +2776,15 @@ const sceneObstacles = {
 
 const npcs = [
     { scene: "HUB", x: 180, y: 180, img: imgTurista, tamanho: 44, msg: "> TURISTA: O arquipélago tem diversas modalidades esportivas!" },
-    { scene: "HUB", x: 270, y: 130, img: imgGuia, tamanho: 44, msg: "> GUIA: Explore os caminhos ao Norte, Sul, Leste e Oeste." },
+    { id: "guia_festival", scene: "HUB", x: 270, y: 130, img: imgGuia, tamanho: 44, msg: "> GUIA: Explore os caminhos ao Norte, Sul, Leste e Oeste." },
 
     // NPCs da Ilha de Boxe (Arena dos Campeões)
     { scene: "ILHA_ESQUI", x: 225, y: 110, img: imgNpcMestreBoxe, tamanho: 50, msg: "> MESTRE DO BOXE: Controle a distância, circule pelo ringue e lute até o nocaute!", isMaster: "JOGO_BOXE" },
     { scene: "ILHA_ESQUI", x: 130, y: 190, img: imgNpcTreinadorBoxe, tamanho: 44, msg: "> TREINADOR: WASD movimenta no ringue. J é jab, K é golpe forte e L é hook. SHIFT defende; ESPAÇO esquiva." },
     { scene: "ILHA_ESQUI", x: 345, y: 130, img: imgNpcArbitroBoxe, tamanho: 44, msg: "> ÁRBITRO: Lute com distância e timing. Uma queda inicia a contagem; quem não levantar perde por KO." },
-    { scene: "ILHA_ESQUI", x: 98, y: 186, img: imgNpcBoxeador, tamanho: 44, msg: "> PUGILISTA: Use W/S para sair da linha do golpe. Um soco fora da profundidade erra." },
+    { id: "pugilista_apostador", scene: "ILHA_ESQUI", x: 98, y: 186, img: imgNpcBoxeador, tamanho: 44, msg: "> PUGILISTA/APOSTADOR: Ganhe do Mestre do Boxe sem cair nenhuma vez. Volte aqui para receber 40 moedas." },
 
-    { scene: "ILHA_PINGPONG", x: 138, y: 187, img: imgAprendiz, tamanho: 44, msg: "> APRENDIZ: Desafiei o mestre e não consegui fazer um ponto... Esse vovô é realmente bom nisso ou eu sou muito ruim?" },
+    { id: "aprendiz_pingpong", scene: "ILHA_PINGPONG", x: 138, y: 187, img: imgAprendiz, tamanho: 44, msg: "> APRENDIZ: Desafiei o mestre e não consegui fazer um ponto... Esse vovô é realmente bom nisso ou eu sou muito ruim?" },
     { scene: "ILHA_PINGPONG", x: 312, y: 187, img: imgMestrePingPong, tamanho: 50, msg: "> MESTRE DO PING-PONG: Mostre seus reflexos!", isMaster: "JOGO_PINGPONG" },
 
     { scene: "ILHA_SKATE", x: 225, y: 105, img: imgMestreSkate, tamanho: 50, msg: "> MESTRE DO SKATE: Conecte rampas e corrimãos e domine a linha até a chegada!", isMaster: "JOGO_SKATE" },
@@ -3270,12 +2811,17 @@ const npcs = [
     },
     
     // NPCs da Ilha da Escalada (Reduzidos para 4 icônicos e bem posicionados)
-    { scene: "ILHA_ESCALADA", x: 225, y: 108, img: imgMestreEscalada, tamanho: 50, msg: "> MESTRE DA ESCALADA: O Monte Zorp não perdoa os fracos! Desvie das pedras e alcance o cume!", isMaster: "JOGO_ESCALADA" },
-    { scene: "ILHA_ESCALADA", x: 80, y: 140, img: imgGuiaTrilha, tamanho: 44, msg: "> GUIA DE TRILHA: Cuidado lá em cima! O vento sopra forte e algumas pedras rachadas quebram ao pisar!" },
-    { scene: "ILHA_ESCALADA", x: 370, y: 140, img: imgGeologa, tamanho: 44, msg: "> GEÓLOGA: As pedras azuis deslizam pela montanha, e as vermelhas estão prestes a desmoronar!" },
-    { scene: "ILHA_ESCALADA", x: 95, y: 220, img: imgChef, tamanho: 44, msg: "> CHEF DE ACAMPAMENTO: Uma sopa bem quente para dar energia antes de enfrentar a montanha!" },
+    { scene: "ILHA_ESCALADA", x: 225, y: 168, img: imgMestreEscaladaOverworld, spriteKey: "climb_v2_mestre", tamanho: 50, msg: "> MESTRE DA ESCALADA: O Monte Zorp não perdoa os fracos! Desvie das pedras e alcance o cume!", isMaster: "JOGO_ESCALADA" },
+    { scene: "ILHA_ESCALADA", x: 87, y: 166, img: imgGuiaTrilha, spriteKey: "climb_v2_guia", tamanho: 44, msg: "> GUIA DE TRILHA: Cuidado lá em cima! O vento sopra forte e algumas pedras rachadas quebram ao pisar!" },
+    { id: "geologa_escalada", scene: "ILHA_ESCALADA", x: 365, y: 176, img: imgGeologa, spriteKey: "climb_v2_geologa", tamanho: 44, msg: "> GEÓLOGA: As pedras azuis deslizam pela montanha, e as vermelhas estão prestes a desmoronar!" },
+    { scene: "ILHA_ESCALADA", x: 112, y: 224, img: imgChef, spriteKey: "climb_v2_chef", tamanho: 44, msg: "> CHEF DE ACAMPAMENTO: Uma sopa bem quente para dar energia antes de enfrentar a montanha!" },
     
-    { id: "entrada_surf", scene: "ILHA_SURF", x: 225, y: 112, img: imgMestreSurfing, tamanho: 50, msg: "> MESTRE DO SURF: Mantenha o flow, enfrente os tubos e sobreviva ao grande evento final!", isMaster: SURF_SCENE }
+    { id: "entrada_surf", scene: "ILHA_SURF", x: 225, y: 112, img: imgMestreSurfing, tamanho: 50, msg: "> MESTRE DO SURF: Mantenha o flow, enfrente os tubos e sobreviva ao grande evento final!", isMaster: SURF_SCENE },
+    {
+        id: "capitao", scene: "ILHA_SURF", x: 310, y: 180,
+        img: FestivalAssets.images.capitao, tamanho: 44,
+        msg: "> CAPITÃO: Minha embarcação quebrou e não tenho dinheiro para pagar. Se me trouxer 100 moedas, te deixo embarcar no iate com comida, diversão e etc."
+    }
 ];
 
 // -------------------------------------------------------------
@@ -3284,8 +2830,11 @@ const npcs = [
 // Captura a borda do comando de interação. O polling de `keys` sozinho podia
 // perder um toque rápido quando keydown e keyup ocorriam entre dois frames.
 configureOverworldPresentation();
+let overworldConversationText = null;
 let interactionPressed = false;
+let shipInteractionPressed = false;
 let climbUpPressed = false;
+let climbSummitAdvancePressed = false;
 window.addEventListener("keydown", (e) => {
     if (typeof TitleScreen !== "undefined" && TitleScreen.isActive()) {
         if (TitleScreen.handleKeyDown(e)) {
@@ -3294,15 +2843,27 @@ window.addEventListener("keydown", (e) => {
         }
     }
     const k = e.key.toLowerCase();
+    if (currentScene === 'JOGO_ARCO' && [' ', 'w', 'a', 's', 'd'].includes(k)) ArcheryRiverTargets.unlockAudio();
+    if (currentScene === 'JOGO_PINGPONG' && [' ', 'w', 'a', 's', 'd'].includes(k)) PingPongBall.unlockAudio();
+    if (currentScene === 'JOGO_ESCALADA' && ClimbSprites.handleKeyDown(e)) return;
+    if (CaptainRoute.handleKeyDown(e)) return;
+    if (EndingCinematic.handleKeyDown(e)) return;
+    if (typeof AdventureIntro !== "undefined" && AdventureIntro.handleKeyDown(e)) return;
+    if (MedalCompletion.handleKeyDown(e)) return;
+    if (MastersFarewell.handleKeyDown(e)) return;
     if (!e.repeat && (k === "e" || k === " ") && !currentScene.startsWith("JOGO_")) {
         interactionPressed = true;
+        if (k === "e") shipInteractionPressed = true;
     }
     if (k === " ") keys.space = true;
-    if (currentScene === "JOGO_ARCO" && k === " " && !e.repeat) {
-        archeryShootPressed = true;
+    if (currentScene === "JOGO_ARCO" && k === " ") {
+        e.preventDefault();
+        if(window.ArcheryPlayerControl.press(e.repeat))archeryShootPressed = true;
     }
     if (currentScene === "JOGO_ESCALADA" && !e.repeat) {
-        if (k === "w" || k === " ") climbUpPressed = true;
+        if(ClimbSummit.active(escaladaGame)) {
+            if(k===' ')climbSummitAdvancePressed=true;
+        }else if (k === "w" || k === " ") climbUpPressed = true;
     }
     if (currentScene === "JOGO_BOXE") {
         if (k === " " || k === "shift") e.preventDefault();
@@ -3360,7 +2921,11 @@ function isColliding(player, box) {
 }
 
 function checkObstacleCollision(nextX, nextY) {
+    if (currentScene === "HUB" && AdventureIntro.collides(nextX, nextY)) return true;
+    if (currentScene === "HUB" && MastersFarewell.collides(nextX, nextY)) return true;
     const feetBox = { x: nextX - 10, y: nextY - 8, w: 20, h: 10 };
+    if (currentScene === "ILHA_ARCO" && ArcheryIsland.blocks(feetBox)) return true;
+    if (currentScene === "ILHA_ESCALADA" && ClimbIsland.blocks(feetBox)) return true;
     const obstacles = sceneObstacles[currentScene] || [];
 
     for (let obs of obstacles) {
@@ -3392,15 +2957,21 @@ function update() {
         TitleScreen.update();
         return;
     }
+    if (AdventureIntro.active) { AdventureIntro.update(); return; }
+    if (EndingCinematic.active) { EndingCinematic.update(); return; }
+    if (CaptainRoute.active) { CaptainRoute.update(); return; }
+    if (MedalCompletion.update(currentScene)) return;
+    if (MastersFarewell.update(currentScene)) return;
     const isOverworldScene = !currentScene.startsWith("JOGO_");
     // A result-screen Space must not reopen a minigame while the same key is held.
     // Preserve the basketball island's original interaction path verbatim.
     const interactionRequested = isOverworldScene && (currentScene === "ILHA_BASQUETE"
         ? (interactionPressed || keys.e || keys.space) : interactionPressed);
-    if (isOverworldScene) interactionPressed = false;
+    const shipInteractionRequested = isOverworldScene && shipInteractionPressed;
+    if (isOverworldScene) { interactionPressed = false; shipInteractionPressed = false; }
 
     if (isOverworldScene) {
-        hintText.innerText = "USE [W A S D] PARA MOVER | [E] PARA FALAR";
+        hintText.innerText = "[W A S D] MOVER | [E / ESPAÇO] CONVERSAR";
         
         let moveX = 0, moveY = 0;
         if (keys.w) moveY -= 1;
@@ -3414,7 +2985,7 @@ function update() {
         }
 
         if (moveX !== 0 || moveY !== 0) {
-            zorpSprite.isMoving = true;
+            const previousX = player.x, previousY = player.y, previousRow = zorpSprite.row;
 
             if (moveY > 0) zorpSprite.row = 0;       
             else if (moveY < 0) zorpSprite.row = 1;  
@@ -3426,6 +2997,8 @@ function update() {
 
             if (!checkObstacleCollision(nextX, player.y)) player.x = nextX;
             if (!checkObstacleCollision(player.x, nextY)) player.y = nextY;
+            zorpSprite.isMoving = player.x !== previousX || player.y !== previousY;
+            if (zorpSprite.row !== previousRow) { zorpSprite.animIndex = 0; zorpSprite.timer = 0; }
 
         } else {
             zorpSprite.isMoving = false;
@@ -3489,7 +3062,10 @@ function update() {
             }
         }
         
-        if (overworldConversationNpc !== npcProximo) overworldConversationNpc = null;
+        overworldFocusNpc = npcProximo;
+        if (overworldConversationNpc !== npcProximo) {
+            overworldConversationNpc = null; overworldConversationText = null;
+        }
         if (npcProximo) {
             dialogBox.classList.add("show");
 
@@ -3547,18 +3123,22 @@ function update() {
 
             } else if (interactionRequested) {
                 if (npcProximo.scene !== "ILHA_BASQUETE") overworldConversationNpc = npcProximo;
-                dialogText.innerHTML = npcProximo.msg + extra;
+                overworldConversationText = CaptainRoute.interact(npcProximo) || FestivalChallenges.interact(npcProximo) || npcProximo.msg;
+                dialogText.innerHTML = overworldConversationText + extra;
             } else {
                 dialogText.innerHTML = overworldConversationNpc === npcProximo
-                    ? npcProximo.msg : npcProximo.scene !== "ILHA_BASQUETE"
+                    ? (overworldConversationText || npcProximo.msg) : npcProximo.scene !== "ILHA_BASQUETE"
                     ? "> " + npcProximo.msg.replace(/^>\s*/, "").split(":")[0] +
-                        (npcProximo.isMaster ? " · [E] / [ESPAÇO] INICIAR" : " · [E] CONVERSAR")
+                        (npcProximo.isMaster ? " · [E] / [ESPAÇO] INICIAR" : " · [E] / [ESPAÇO] CONVERSAR")
                     : npcProximo.isMaster
                     ? "> (Pressione [E] ou [ESPAÇO] para iniciar)"
                     : "> (Pressione [E] para conversar)";
             }
         } else { 
             dialogBox.classList.remove("show"); 
+        }
+        if (currentScene === "HUB" && AdventureIntro.introSeen) {
+            AdventureIntro.updateShipInteraction(interactionRequested, Boolean(npcProximo), shipInteractionRequested);
         }
     } 
     else if (currentScene === "JOGO_PINGPONG") {
@@ -3583,45 +3163,53 @@ function update() {
 // -------------------------------------------------------------
 // 5. MINIGAME PING PONG
 // -------------------------------------------------------------
-function spawnPingPongBall(from = 'PLAYER', customTargetY = 145, customSpeed = 4.2, isSuper = false) {
-    let bx, by, bz, bSpeedX;
-    if (from === 'PLAYER') {
-        bx = pingPong.playerX + 28;
-        by = pingPong.playerY + 20;
-        bz = 22;
-        bSpeedX = customSpeed;
-        let targetX = 250;
-        let t = Math.max(1, (targetX - bx) / bSpeedX);
-        let bSpeedY = (customTargetY - by) / t;
-        let bSpeedZ = 0.5 * pingPong.gravity * t - bz / t + 0.6;
-        pingPong.balls.push({
-            id: pingPong.nextBallId++,
-            x: bx, y: by, z: bz,
-            speedX: bSpeedX, speedY: bSpeedY, speedZ: Math.max(1.8, bSpeedZ),
-            radius: pingPong.ballRadius,
-            lastHitter: 'PLAYER',
-            trail: [],
-            isSuper: isSuper
-        });
-    } else {
-        bx = pingPong.opponentX - 6;
-        by = pingPong.opponentY + 20;
-        bz = 22;
-        bSpeedX = -customSpeed;
-        let targetX = 190;
-        let t = Math.max(1, (targetX - bx) / bSpeedX);
-        let bSpeedY = (customTargetY - by) / t;
-        let bSpeedZ = 0.5 * pingPong.gravity * t - bz / t + 0.6;
-        pingPong.balls.push({
-            id: pingPong.nextBallId++,
-            x: bx, y: by, z: bz,
-            speedX: bSpeedX, speedY: bSpeedY, speedZ: Math.max(1.8, bSpeedZ),
-            radius: pingPong.ballRadius,
-            lastHitter: 'OPPONENT',
-            trail: [],
-            isSuper: false
-        });
-    }
+function pingPongPaddle(receiver) {
+    const playerSide = receiver === 'PLAYER';
+    const x = playerSide ? pingPong.playerX : pingPong.opponentX;
+    const y = playerSide ? pingPong.playerY : pingPong.opponentY;
+    return { left: x - (playerSide ? 2 : 8), right: x + (playerSide ? 40 : 32),
+        top: y - 6, bottom: y + 54 };
+}
+
+function aimPingPongReturn(ball, hitter, targetX, targetY, speed, loft = 25, serve = false, style = null) {
+    PingPongBall.launch(ball, { hitter, targetX, targetY, speed, loft,
+        serve, isSuper: ball.isSuper, rally: pingPong.rallyHits,
+        contact: serve ? 0 : (ball.y - ((hitter === 'PLAYER' ? pingPong.playerY : pingPong.opponentY) + 24)) / 30,
+        paddleVelocity: serve ? 0 : hitter === 'PLAYER' ? pingPong.playerVelocityY : pingPong.masterAI.velocityY,
+        style }, PINGPONG_COURT);
+}
+
+function spawnPingPongBall(from = 'PLAYER', customTargetY = pingPongTableY(145), customSpeed = 4.2, isSuper = false) {
+    if (pingPong.balls.filter(b => b.state !== 'MISSED').length >= 10) return null;
+    const playerSide = from === 'PLAYER';
+    const ball = { id: pingPong.nextBallId++,
+        x: playerSide ? pingPong.playerX + 28 : pingPong.opponentX - 6,
+        y: (playerSide ? pingPong.playerY : pingPong.opponentY) + 20,
+        z: 22, radius: pingPong.ballRadius, isSuper: playerSide && isSuper, trail: [] };
+    aimPingPongReturn(ball, from, pingPongTableX(playerSide ? 250 : 190), customTargetY, customSpeed, 25, true);
+    pingPong.balls.push(ball);
+    return ball;
+}
+
+function emitPingPongEventBall(index) {
+    if (pingPong.balls.filter(b => b.state !== 'MISSED').length >= 10) return;
+    const ball = { id: pingPong.nextBallId++, x: pingPong.opponentX - 6,
+        y: pingPong.opponentY + 24, z: 22, radius: pingPong.ballRadius, trail: [], isSuper: false };
+    let destinationY = pingPongTableY(145) + Math.sin(index * 0.85) * 22;
+    const arriving = pingPong.balls.filter(b => b.state !== 'MISSED' && b.receiver === 'PLAYER')
+        .map(b => ({ b, time: PingPongBall.timeToReceiver(b, 70) }))
+        .filter(item => Math.abs(item.time - 68) < 18)
+        .sort((a, b) => Math.abs(a.time - 68) - Math.abs(b.time - 68))[0];
+    // Nearby receiving deadlines share a reachable lane at release. Each shot
+    // then has its own physical ray, with no tracking after it leaves the racket.
+    if (arriving) destinationY = Math.max(PINGPONG_COURT.table.back + 12,
+        Math.min(PINGPONG_COURT.table.front - 12, arriving.b.receive.y + Math.sin(index) * 7));
+    PingPongBall.launch(ball, { hitter: 'OPPONENT', targetX: 198,
+        targetY: destinationY, speed: 4.2, rally: 3, loft: 25 }, PINGPONG_COURT);
+    pingPong.balls.push(ball);
+    pingPong.multiball.flash = 0.65;
+    pingPong.opponentHitTimer = 5;
+    PingPongBall.playPaddle();
 }
 
 function resetPingPong(fullReset = false) {
@@ -3629,10 +3217,10 @@ function resetPingPong(fullReset = false) {
         pingPong.playerScore = 0;
         pingPong.opponentScore = 0;
         pingPong.power = 0;
-        pingPong.playerX = 50;
-        pingPong.playerY = 140;
-        pingPong.opponentX = 370;
-        pingPong.opponentY = 140;
+        pingPong.playerX = PINGPONG_COURT.player.homeX;
+        pingPong.playerY = pingPongTableY(145) - 20;
+        pingPong.opponentX = PINGPONG_COURT.opponent.homeX;
+        pingPong.opponentY = pingPongTableY(145) - 20;
         pingPong.gameState = 'TUTORIAL';
         pingPong.win = false;
         pingPong.server = 'PLAYER';
@@ -3644,16 +3232,46 @@ function resetPingPong(fullReset = false) {
     pingPong.isPowerActive = false;
     pingPong.rallyHits = 0;
     pingPong.bounceEffects = [];
-    pingPong.aoeEffects = [];
+    pingPong.specialEffects = [];
     pingPong.balls = [];
-    pingPong.mestreSpawnCooldown = 140;
-    pingPong.mestreSpawnWindup = 0;
+    pingPong.multiball = PingPongMultiball.create();
+    pingPong.scoreCooldown = 0;
+    pingPong.globalReturnCooldown = 0;
+    pingPong.playerVelocityY = 0;
     pingPong.mestreReaction = null;
+    pingPong.masterAI = PingPongMasterAI.create();
     pingPong.serveCooldown = 0;
+    pingPong.pointFreeze = 0;
+    pingPong.pendingPoints = [];
+    pingPong.pointFeedback = [];
 
     // Saque inicial com 1 bola
-    spawnPingPongBall(pingPong.server, 145, 4.2);
+    spawnPingPongBall(pingPong.server, pingPongTableY(145), 4.2);
     pingPong.server = (pingPong.server === 'PLAYER') ? 'OPPONENT' : 'PLAYER';
+}
+
+function finishPingPongMatch() {
+    if (pingPong.playerScore >= pingPong.maxScore) {
+        insignias.pingpong = true;
+        pingPong.gameState = 'GAMEOVER'; pingPong.win = true;
+    } else if (pingPong.opponentScore >= pingPong.maxScore) {
+        pingPong.gameState = 'GAMEOVER'; pingPong.win = false;
+    }
+}
+
+function commitPingPongPoints() {
+    const point = pingPong.pendingPoints.shift();
+    if (!point || pingPong.gameState !== 'PLAYING') return;
+    if (point.playerWon) pingPong.playerScore++;
+    else pingPong.opponentScore++;
+    point.feedback.phase = 'POINT'; point.feedback.timer = 26;
+    pingPong.scoreCooldown = 12;
+    pingPong.balls = pingPong.balls.filter(ball => ball.id !== point.id);
+    if (pingPong.balls.length === 0) pingPong.serveCooldown = 32;
+    finishPingPongMatch();
+    if (pingPong.gameState === 'GAMEOVER') {
+        pingPong.pendingPoints = []; pingPong.multiball.remaining = 0;
+    }
 }
 
 function updatePingPong() {
@@ -3672,7 +3290,20 @@ function updatePingPong() {
         return;
     }
 
-    hintText.innerText = "[W/S] MIRAR CIMA/BAIXO | [A/D] RECUAR/AVANÇAR | [ESPAÇO] SMASH GLOBAL (EM ÁREA)";
+    for (const effect of pingPong.pointFeedback) if (effect.phase === 'POINT') effect.timer--;
+    pingPong.pointFeedback = pingPong.pointFeedback.filter(effect => effect.phase === 'MISS' || effect.timer > 0);
+    if (pingPong.scoreCooldown > 0) pingPong.scoreCooldown--;
+    if (pingPong.globalReturnCooldown > 0) pingPong.globalReturnCooldown--;
+    if (pingPong.pointFreeze > 0) {
+        // Freeze the short receiving failure, never let that ball cross the hall.
+        pingPong.pointFreeze--;
+        if (pingPong.pointFreeze === 0) commitPingPongPoints();
+        return;
+    }
+    if (pingPong.pendingPoints.length && pingPong.scoreCooldown === 0) commitPingPongPoints();
+    if (pingPong.gameState === 'GAMEOVER') return;
+    PingPongMultiball.update(pingPong.multiball, pingPong, emitPingPongEventBall);
+    hintText.innerText = "[W/S] MIRAR CIMA/BAIXO | [A/D] RECUAR/AVANÇAR | [ESPAÇO] RAQUETADA GLOBAL";
 
     // 1. Movimentação do Jogador Zorp
     let pMoveX = 0, pMoveY = 0;
@@ -3681,8 +3312,10 @@ function updatePingPong() {
     if (keys.a) pMoveX -= pingPong.speed;
     if (keys.d) pMoveX += pingPong.speed;
 
-    pingPong.playerX = Math.max(30, Math.min(150, pingPong.playerX + pMoveX));
-    pingPong.playerY = Math.max(75, Math.min(215, pingPong.playerY + pMoveY));
+    const oldPlayerY = pingPong.playerY;
+    pingPong.playerX = Math.max(PINGPONG_COURT.player.minX, Math.min(PINGPONG_COURT.player.maxX, pingPong.playerX + pMoveX));
+    pingPong.playerY = Math.max(PINGPONG_COURT.table.back - 20, Math.min(PINGPONG_COURT.table.front - 20, pingPong.playerY + pMoveY));
+    pingPong.playerVelocityY = pingPong.playerY - oldPlayerY;
 
     if (pMoveY < 0) pingPong.playerAction = "MOVE_UP";
     else if (pMoveY > 0) pingPong.playerAction = "MOVE_DOWN";
@@ -3693,132 +3326,41 @@ function updatePingPong() {
         pingPong.playerHitTimer--;
     }
 
-    // 2. ESPECIAL GLOBAL DO JOGADOR (ÁREA DE EFEITO TOTAL)
-    // Acionamento com [ESPAÇO] com barra cheia: rebate TODAS as bolas em campo simultaneamente!
-    if (keys.space && pingPong.power >= pingPong.maxPower) {
+    // One global racket stroke: every eligible ball becomes a NEW Zorp return.
+    const specialTargets = pingPong.balls.filter(ball => PingPongBall.canGlobalReturn(ball, PINGPONG_COURT) &&
+        !PingPongBall.missed(ball, pingPongPaddle(ball.receiver)));
+    if (keys.space && pingPong.power >= pingPong.maxPower && pingPong.globalReturnCooldown === 0 && specialTargets.length > 0) {
         keys.space = false;
         pingPong.power = 0;
+        pingPong.globalReturnCooldown = 150;
         pingPong.playerHitTimer = 18;
         pingPong.playerAction = "HIT";
-
-        // Onda de choque visual em tela inteira
-        pingPong.aoeEffects.push({
-            x: pingPong.playerX + 18,
-            y: pingPong.playerY + 24,
-            radius: 8,
-            maxRadius: 360,
-            alpha: 1.0,
-            color: '#00e5ff'
-        });
-
-        // Rebate todas as bolas ativas simultaneamente em direção ao Mestre
-        const spreadAngles = [112, 145, 178, 125, 165];
-        pingPong.balls.forEach((ball, idx) => {
-            ball.lastHitter = 'PLAYER';
-            ball.isSuper = true;
-            let smashSpeed = Math.max(9.5, Math.abs(ball.speedX) + 2.8);
-            ball.speedX = smashSpeed;
-            let targetX = 275;
-            let targetY = spreadAngles[idx % spreadAngles.length] || 145;
-            let t = Math.max(1, (targetX - ball.x) / ball.speedX);
-            ball.speedY = (targetY - ball.y) / t;
-            ball.speedZ = Math.max(2.4, 0.5 * pingPong.gravity * t - ball.z / t + 0.8);
-            
-            pingPong.bounceEffects.push({
-                x: ball.x, y: ball.y - ball.z,
-                radius: 4, maxRadius: 22,
-                alpha: 1.0, color: '#00e5ff'
-            });
+        pingPong.rallyHits++;
+        pingPong.specialEffects.push({ age: 0, lifetime: 16 });
+        PingPongBall.playGlobalReturn();
+        specialTargets.forEach((ball, index) => {
+            if (PingPongBall.returnGlobally(ball, index, specialTargets.length, pingPong.rallyHits, PINGPONG_COURT)) {
+                pingPong.bounceEffects.push({ x: ball.x, y: ball.y - ball.z,
+                    radius: 2, maxRadius: 8, alpha: 0.8, color: '#c1faff', racketHit: true });
+            }
         });
     }
-
-    // Atualização dos efeitos visuais AoE
-    for (let i = pingPong.aoeEffects.length - 1; i >= 0; i--) {
-        let aoe = pingPong.aoeEffects[i];
-        aoe.radius += 12;
-        aoe.alpha -= 0.04;
-        if (aoe.alpha <= 0) pingPong.aoeEffects.splice(i, 1);
+    for (let i = pingPong.specialEffects.length - 1; i >= 0; i--) {
+        if (++pingPong.specialEffects[i].age >= pingPong.specialEffects[i].lifetime) pingPong.specialEffects.splice(i, 1);
     }
 
-    // 3. SPAWN GRADATIVO DE BOLAS PELO MESTRE (ESTILO TENGU)
-    // As bolas NUNCA entram do nada; são lançadas da raquete do Mestre conforme a pontuação avança
-    const totalScore = pingPong.playerScore + pingPong.opponentScore;
-    let maxAllowedBalls = 1;
-    if (totalScore >= 40) maxAllowedBalls = 4;
-    else if (totalScore >= 25) maxAllowedBalls = 3;
-    else if (totalScore >= 10) maxAllowedBalls = 2;
-
-    if (pingPong.balls.length < maxAllowedBalls) {
-        if (pingPong.mestreSpawnWindup > 0) {
-            pingPong.mestreSpawnWindup--;
-            pingPong.opponentAction = "HIT";
-            if (pingPong.mestreSpawnWindup === 0) {
-                // Lança bola telegrafada diretamente da raquete do Mestre
-                let spawnTargetY = 110 + Math.random() * 70;
-                spawnPingPongBall('OPPONENT', spawnTargetY, 4.4 + pingPong.rallyHits * 0.15);
-                pingPong.bounceEffects.push({
-                    x: pingPong.opponentX - 6, y: pingPong.opponentY + 20,
-                    radius: 3, maxRadius: 18, alpha: 1.0, color: '#f39c12'
-                });
-                pingPong.mestreSpawnCooldown = 180 + Math.random() * 80;
-            }
-        } else {
-            pingPong.mestreSpawnCooldown--;
-            if (pingPong.mestreSpawnCooldown <= 0) {
-                pingPong.mestreSpawnWindup = 22; // Inicia telegrafia do saque de bola adicional
-            }
-        }
-    }
-
-    // 4. IA DO MESTRE ESTILO TENGU (CAMINHADA REALISTA, LIMITE DE VELOCIDADE E DESISTÊNCIA)
-    // Procura bola prioritária se movendo em direção ao Mestre
-    let targetBall = null;
-    let minTime = 9999;
-    for (let b of pingPong.balls) {
-        if (b.speedX > 0) {
-            let timeToMestre = (pingPong.opponentX - b.x) / b.speedX;
-            if (timeToMestre > 0 && timeToMestre < minTime) {
-                minTime = timeToMestre;
-                targetBall = b;
-            }
-        }
-    }
-
-    let isGivingUp = false;
-    if (targetBall) {
-        // Lógica Tengu: se a bola estiver muito rápida (speedX > 7.2 ou Super Smash)
-        // e longe do Mestre, o Mestre desiste da bola (não dá tempo de reação)
-        let distanceY = Math.abs((targetBall.y - 20) - pingPong.opponentY);
-        if (targetBall.isSuper || targetBall.speedX > 7.2) {
-            if (distanceY > 30 || targetBall.isSuper) {
-                isGivingUp = true;
-                pingPong.mestreReaction = { text: '💦', timer: 30 };
-            }
-        }
-
-        if (!isGivingUp) {
-            let targetY = targetBall.y - 20;
-            let mSpeed = pingPong.opponentSpeed; // Velocidade justa de caminhada (2.75)
-            if (pingPong.opponentY < targetY - 8) {
-                pingPong.opponentY += mSpeed;
-                pingPong.opponentAction = "MOVE_DOWN";
-            } else if (pingPong.opponentY > targetY + 8) {
-                pingPong.opponentY -= mSpeed;
-                pingPong.opponentAction = "MOVE_UP";
-            } else {
-                pingPong.opponentAction = "IDLE";
-            }
-        } else {
-            pingPong.opponentAction = "IDLE";
-        }
-    } else {
-        // Retorna suavemente ao centro da mesa
-        if (pingPong.opponentY < 135) pingPong.opponentY += 1.5;
-        else if (pingPong.opponentY > 145) pingPong.opponentY -= 1.5;
-        else pingPong.opponentAction = "IDLE";
-    }
-
-    pingPong.opponentY = Math.max(75, Math.min(215, pingPong.opponentY));
+    // 4. React only to a legal bounce on the master's half. No pre-bounce aim.
+    const masterRead = PingPongMasterAI.update(pingPong.masterAI, {
+        balls: pingPong.balls, y: pingPong.opponentY,
+        minY: PINGPONG_COURT.table.back - 20, maxY: PINGPONG_COURT.table.front - 20,
+        homeY: pingPongTableY(145) - 20, baseSpeed: pingPong.opponentSpeed,
+        paddleLeft: pingPong.opponentX - 8, paddleRight: pingPong.opponentX + 32,
+        rally: pingPong.rallyHits,
+        holdPosition: pingPong.multiball.phase === 'PREPARING_MULTIBALL'
+    });
+    pingPong.opponentY = masterRead.y;
+    pingPong.opponentAction = masterRead.action;
+    if (masterRead.struggling) pingPong.mestreReaction = { text: '💦', timer: 30 };
 
     if (pingPong.opponentHitTimer > 0) {
         pingPong.opponentAction = "HIT";
@@ -3830,84 +3372,39 @@ function updatePingPong() {
         if (pingPong.mestreReaction.timer <= 0) pingPong.mestreReaction = null;
     }
 
-    // 5. FÍSICA E COLISÃO DAS BOLAS
-    const TABLE_MIN_X = 150;
-    const TABLE_MAX_X = 300;
-    const TABLE_MIN_Y = 100;
-    const TABLE_MAX_Y = 190;
-
-    let scoredBallIds = [];
-
-    for (let b of pingPong.balls) {
-        let prevZ = b.z;
-
-        b.speedZ -= pingPong.gravity;
-        b.x += b.speedX;
-        b.y += b.speedY;
-        b.z += b.speedZ;
-
-        // Rastro luminoso individual da bola
-        b.trail.push({
-            x: b.x,
-            y: b.y - b.z,
-            alpha: 0.85,
-            speed: Math.abs(b.speedX)
-        });
+    // 5. Serve: own half then receiving half. Rally: receiving half only.
+    for (const b of pingPong.balls) {
+        const event = PingPongBall.step(b);
+        if (event === 'BOUNCE' || event === 'SERVE_BOUNCE') {
+            pingPong.bounceEffects.push({ x: b.x, y: b.y, radius: 2, maxRadius: 13,
+                alpha: 1, color: b.isSuper ? '#00e5ff' : '#fff7cf' });
+            PingPongBall.playBounce();
+        }
+        b.trail.push({ x: b.x, y: b.y - b.z, alpha: 0.85, speed: Math.abs(b.speedX) });
         if (b.trail.length > 7) b.trail.shift();
-        for (let tr of b.trail) tr.alpha *= 0.82;
-
-        // A REDE NÃO TEM HITBOX FÍSICA: a bola passa direto por X=225 sem nunca colidir ou enganchar!
-
-        // Quique na Superfície da Mesa / Chão (Z <= 0)
-        if (prevZ >= 0 && b.z <= 0) {
-            b.z = 0;
-            if (b.x >= TABLE_MIN_X && b.x <= TABLE_MAX_X && b.y >= TABLE_MIN_Y && b.y <= TABLE_MAX_Y) {
-                b.speedZ = -b.speedZ * 0.72;
-            } else {
-                b.speedZ = -b.speedZ * 0.65;
-            }
-            if (Math.abs(b.speedZ) < 0.5) b.speedZ = 0;
-
-            let bounceColor = b.isSuper ? '#00e5ff' : (pingPong.rallyHits >= 8 ? '#e74c3c' : '#ffffff');
-            pingPong.bounceEffects.push({
-                x: b.x, y: b.y,
-                radius: 2, maxRadius: 10, alpha: 1.0, color: bounceColor
-            });
-        }
-
-        // LIMITES DO MAPA (PAREDES INVISÍVEIS):
-        // A bola nunca sai da arena visualmente em Y
-        if (b.y <= 42 && b.speedY < 0) {
-            b.speedY = Math.abs(b.speedY);
-            pingPong.bounceEffects.push({ x: b.x, y: b.y, radius: 2, maxRadius: 8, alpha: 0.8, color: '#ffffff' });
-        } else if (b.y >= 252 && b.speedY > 0) {
-            b.speedY = -Math.abs(b.speedY);
-            pingPong.bounceEffects.push({ x: b.x, y: b.y, radius: 2, maxRadius: 8, alpha: 0.8, color: '#ffffff' });
-        }
+        for (const tr of b.trail) tr.alpha *= 0.82;
 
         // 6. REBATIDA DO ZORP (CONTROLE TOTAL DE BOLA)
-        if (b.speedX < 0) {
-            let zLeft = pingPong.playerX - 2;
-            let zRight = pingPong.playerX + 40;
-            let zTopY = pingPong.playerY - 6;
-            let zBottomY = pingPong.playerY + 54;
-
-            if (b.x >= zLeft && b.x <= zRight && b.y >= zTopY && b.y <= zBottomY && b.z >= -6 && b.z <= 48) {
+        if (PingPongBall.canReturn(b, 'PLAYER')) {
+            const contact = PingPongBall.paddleContact(b, pingPongPaddle('PLAYER'));
+            if (contact) {
+                Object.assign(b, contact);
                 pingPong.playerHitTimer = 12;
+                PingPongBall.playPaddle();
                 b.lastHitter = 'PLAYER';
                 pingPong.rallyHits++;
 
                 // Aumenta velocidade gradativamente no rali
                 let baseSpeed = Math.min(10.5, 4.2 + pingPong.rallyHits * 0.38);
-                let targetX = 260;
+                let targetX = pingPongTableX(260);
 
                 // Avanço ([D]) e Recuo ([A])
-                if (keys.d || pingPong.playerX > 75) {
+                if (keys.d || pingPong.playerX > PINGPONG_COURT.player.homeX + 8) {
                     baseSpeed += 1.6;
-                    targetX = 275;
-                } else if (keys.a || pingPong.playerX < 65) {
+                    targetX = pingPongTableX(275);
+                } else if (keys.a || pingPong.playerX < PINGPONG_COURT.player.homeX - 4) {
                     baseSpeed = Math.max(3.8, baseSpeed - 1.2);
-                    targetX = 245;
+                    targetX = pingPongTableX(245);
                 }
 
                 // Super Smash individual se o botão estiver pressionado
@@ -3920,21 +3417,20 @@ function updatePingPong() {
                 b.speedX = baseSpeed;
 
                 // Direcional [W/S]
-                let targetY = 145;
-                if (keys.w) targetY = 112; // Canto superior
-                else if (keys.s) targetY = 178; // Canto inferior
+                let targetY = pingPongTableY(145);
+                if (keys.w) targetY = pingPongTableY(112); // Canto superior
+                else if (keys.s) targetY = pingPongTableY(178); // Canto inferior
 
                 // Ponto de contato na raquete
                 const paddleCenter = pingPong.playerY + 24;
                 const contactRatio = (b.y - paddleCenter) / 24;
                 if (Math.abs(contactRatio) >= 0.25) {
-                    targetY += contactRatio * 26;
+                    targetY += contactRatio * (pingPongTableY(171) - pingPongTableY(145));
                 }
-                targetY = Math.max(105, Math.min(185, targetY));
+                targetY = Math.max(pingPongTableY(105), Math.min(pingPongTableY(185), targetY));
 
-                let t = Math.max(1, (targetX - b.x) / b.speedX);
-                b.speedY = (targetY - b.y) / t;
-                b.speedZ = Math.max(2.0, 0.5 * pingPong.gravity * t - b.z / t + 0.6);
+                aimPingPongReturn(b, 'PLAYER', targetX, targetY, baseSpeed, 25, false,
+                    keys.w || keys.s ? 'wide' : null);
 
                 let hitColor = pingPong.rallyHits >= 8 ? '#e74c3c' : (pingPong.rallyHits >= 4 ? '#f1c40f' : '#2ecc71');
                 pingPong.bounceEffects.push({
@@ -3945,53 +3441,52 @@ function updatePingPong() {
         }
 
         // 7. REBATIDA DO MESTRE (VARIAÇÕES SEM SUPER APELATIVO)
-        if (b.speedX > 0 && (!isGivingUp || targetBall !== b)) {
-            let mLeft = pingPong.opponentX - 8;
-            let mRight = pingPong.opponentX + 32;
-            let mTopY = pingPong.opponentY - 6;
-            let mBottomY = pingPong.opponentY + 54;
-
-            if (b.x >= mLeft && b.x <= mRight && b.y >= mTopY && b.y <= mBottomY && b.z >= -6 && b.z <= 48) {
+        if (PingPongBall.canReturn(b, 'OPPONENT')) {
+            const contact = PingPongBall.paddleContact(b, pingPongPaddle('OPPONENT'));
+            if (contact) {
+                Object.assign(b, contact);
                 pingPong.opponentHitTimer = 12;
+                PingPongBall.playPaddle();
                 b.lastHitter = 'OPPONENT';
                 b.isSuper = false;
                 pingPong.rallyHits++;
 
                 let baseSpeed = Math.min(9.5, 3.8 + pingPong.rallyHits * 0.32);
-                let targetX = 185;
-                let targetY = 145;
+                let targetX = pingPongTableX(185);
+                let targetY = pingPongTableY(145);
                 let zBoost = 0.6;
+                let shotStyle = 'straight';
 
                 const rndShot = Math.random();
                 if (rndShot < 0.35) {
                     // Cruzada na ponta oposta
-                    targetY = (pingPong.playerY < 145) ? (168 + Math.random() * 12) : (110 + Math.random() * 12);
-                    targetX = 175;
+                    shotStyle = 'cross';
+                    targetY = pingPongTableY(b.y < pingPongTableY(145) ? 168 : 122);
+                    targetX = pingPongTableX(175);
                 } else if (rndShot < 0.50) {
                     // Lob alto
-                    targetY = 145 + (Math.random() - 0.5) * 30;
+                    shotStyle = 'central';
+                    targetY = pingPongTableY(145 + (Math.random() - 0.5) * 30);
                     baseSpeed = Math.max(3.6, baseSpeed - 1.2);
                     zBoost = 1.4;
-                    targetX = 195;
+                    targetX = pingPongTableX(195);
                 } else if (rndShot < 0.62 && pingPong.rallyHits >= 4) {
                     // Cortada rápida
+                    shotStyle = 'wide';
                     baseSpeed += 1.5;
-                    targetY = (Math.random() < 0.5) ? 120 : 170;
-                    targetX = 170;
+                    targetY = pingPongTableY((Math.random() < 0.5) ? 120 : 170);
+                    targetX = pingPongTableX(170);
                     pingPong.bounceEffects.push({
                         x: pingPong.opponentX - 8, y: pingPong.opponentY + 20,
                         radius: 4, maxRadius: 16, alpha: 1.0, color: '#f39c12'
                     });
                 } else {
                     // Retorno neutro
-                    targetY = 145 + (Math.random() - 0.5) * 20;
-                    targetX = 185;
+                    targetY = pingPongTableY(145 + (Math.random() - 0.5) * 20);
+                    targetX = pingPongTableX(185);
                 }
 
-                b.speedX = -baseSpeed;
-                let t = Math.max(1, (targetX - b.x) / b.speedX);
-                b.speedY = (targetY - b.y) / t;
-                b.speedZ = Math.max(2.0, 0.5 * pingPong.gravity * t - b.z / t + zBoost);
+                aimPingPongReturn(b, 'OPPONENT', targetX, targetY, baseSpeed, zBoost > 1 ? 36 : 25, false, shotStyle);
 
                 let hitColor = pingPong.rallyHits >= 8 ? '#e74c3c' : '#ffffff';
                 pingPong.bounceEffects.push({
@@ -4001,34 +3496,26 @@ function updatePingPong() {
             }
         }
 
-        // 8. REGRA DE PONTUAÇÃO (Ponto imediato ao passar do limite válido)
-        if (b.x < 20) {
-            // Passou pelo Zorp -> Ponto do Mestre!
-            pingPong.opponentScore++;
-            scoredBallIds.push(b.id);
-            pingPong.bounceEffects.push({ x: 25, y: b.y, radius: 4, maxRadius: 20, alpha: 1.0, color: '#e74c3c' });
-        } else if (b.x > 430) {
-            // Passou pelo Mestre -> Ponto do Zorp!
-            pingPong.playerScore++;
-            scoredBallIds.push(b.id);
-            pingPong.bounceEffects.push({ x: 425, y: b.y, radius: 4, maxRadius: 20, alpha: 1.0, color: '#2ecc71' });
+        // 8. A point requires the legal bounce AND a missed receiving attempt.
+        if (PingPongBall.markMissed(b, pingPongPaddle(b.receiver))) {
+            const playerWon = b.receiver === 'OPPONENT';
+            const feedback = { x: b.x, y: b.y - b.z, phase: 'MISS', timer: 26,
+                color: playerWon ? '#2ecc71' : '#e74c3c' };
+            pingPong.pointFeedback.push(feedback);
+            pingPong.pendingPoints.push({ id: b.id, playerWon, feedback });
+            if (pingPong.pendingPoints.length === 1 && pingPong.scoreCooldown === 0) pingPong.pointFreeze = 6;
         }
     }
 
-    // Remove bolas que pontuaram
-    if (scoredBallIds.length > 0) {
-        pingPong.balls = pingPong.balls.filter(b => !scoredBallIds.includes(b.id));
-    }
-
     // Se todas as bolas saíram de jogo, agenda novo saque
-    if (pingPong.balls.length === 0) {
+    if (pingPong.balls.length === 0 && pingPong.pendingPoints.length === 0 && pingPong.multiball.remaining === 0) {
         if (pingPong.serveCooldown <= 0) {
             pingPong.serveCooldown = 32;
         } else {
             pingPong.serveCooldown--;
             if (pingPong.serveCooldown === 0) {
                 pingPong.rallyHits = 0;
-                spawnPingPongBall(pingPong.server, 145, 4.2);
+                spawnPingPongBall(pingPong.server, pingPongTableY(145), 4.2);
                 pingPong.server = (pingPong.server === 'PLAYER') ? 'OPPONENT' : 'PLAYER';
             }
         }
@@ -4043,14 +3530,7 @@ function updatePingPong() {
     }
 
     // 10. CONDIÇÃO DE VITÓRIA (LIMITE DE 50 PONTOS)
-    if (pingPong.playerScore >= pingPong.maxScore) {
-        insignias.pingpong = true;
-        pingPong.gameState = 'GAMEOVER';
-        pingPong.win = true;
-    } else if (pingPong.opponentScore >= pingPong.maxScore) {
-        pingPong.gameState = 'GAMEOVER';
-        pingPong.win = false;
-    }
+    finishPingPongMatch();
 }
 
 // -------------------------------------------------------------
@@ -4080,70 +3560,21 @@ function drawShadow(footX, footY) {
 
 function drawPlayer() {
     drawShadow(player.x, player.y);
-
     if (zorpImg.complete && zorpImg.naturalWidth !== 0) {
         ctx.imageSmoothingEnabled = false;
-
-        const frameWidth = zorpImg.width / zorpSprite.cols;
-        const frameHeight = zorpImg.height / zorpSprite.rows;
-
-        const sequences = [
-            [1, 0, 1, 2], 
-            [1, 0, 1, 2], 
-            [1, 2, 1, 0], 
-            [1, 2, 1, 0]  
-        ];
-        
-        const currentSeq = sequences[zorpSprite.row];
-        const sx = currentSeq[zorpSprite.animIndex] * frameWidth;
-        const sy = zorpSprite.row * frameHeight;
-
-        const offsetsY = [0, 0, 15, 15]; 
-        const currentOffsetY = offsetsY[zorpSprite.row] || 0;
-
-        const targetHeight = 48;
-        const targetWidth = Math.floor(targetHeight * (frameWidth / frameHeight));
-
-        const drawX = Math.floor(player.x - targetWidth / 2);
-        const drawY = Math.floor(player.y - targetHeight + currentOffsetY);
-
-        ctx.drawImage(
-            zorpImg, 
-            Math.floor(sx), Math.floor(sy), Math.floor(frameWidth), Math.floor(frameHeight), 
-            drawX, drawY, targetWidth, targetHeight
-        );
+        const atlas = OVERWORLD_ZORP_WALK;
+        const column = atlas.sequences[zorpSprite.row][zorpSprite.animIndex];
+        const [x,y,w,h] = atlas.frames[zorpSprite.row][column];
+        const scale = atlas.scale;
+        ctx.drawImage(zorpImg, x,y,w,h,
+            Math.round(player.x - (atlas.pivots[column]-x)*scale),
+            Math.round(player.y - h*scale), w*scale, h*scale);
     }
 }
 
 function drawNPC(npc) {
-    if (npc.scene !== "ILHA_BASQUETE") {
-        drawUnifiedOverworldNpc(npc);
-        return;
-    }
-    drawShadow(npc.x, npc.y);
-    if (npc.img.complete && npc.img.naturalWidth !== 0) {
-        let larguraCalculada, alturaCalculada, drawX, drawY;
-
-        if (npc.sw && npc.sh) {
-            const proporcao = npc.sw / npc.sh;
-            larguraCalculada = npc.tamanho * proporcao;
-            alturaCalculada = npc.tamanho;
-            drawX = Math.floor(npc.x - larguraCalculada / 2);
-            drawY = Math.floor(npc.y - alturaCalculada);
-
-            ctx.imageSmoothingEnabled = false;
-            ctx.drawImage(npc.img, npc.sx, npc.sy, npc.sw, npc.sh, drawX, drawY, larguraCalculada, alturaCalculada);
-        } else {
-            const proporcao = npc.img.width / npc.img.height;
-            larguraCalculada = npc.tamanho * proporcao;
-            alturaCalculada = npc.tamanho;
-            drawX = Math.floor(npc.x - larguraCalculada / 2);
-            drawY = Math.floor(npc.y - alturaCalculada);
-
-            ctx.imageSmoothingEnabled = false;
-            ctx.drawImage(npc.img, drawX, drawY, larguraCalculada, alturaCalculada);
-        }
-    }
+    if(npc.scene==="ILHA_BASQUETE")drawBasketballOverworldNpc(npc);
+    else drawUnifiedOverworldNpc(npc);
 }
 
 function drawSceneObstacles() {
@@ -4863,80 +4294,14 @@ function drawIlhaBasquete() {
 }
 
 function drawIlhaArco() {
-    drawOverworldBase("ILHA_ARCO");
-    ctx.save();ctx.imageSmoothingEnabled=false;
-    
-// Caminhos de terra ligam a entrada direita ao Mestre e preservam a saída norte para a Escalada.
-    ctx.fillStyle = "#697c70";
-    ctx.fillRect(420, 127, 30, 46);
-    ctx.fillRect(205, 0, 40, 58);
-    ctx.fillRect(160, 52, 130, 101);
-    ctx.fillRect(250, 130, 185, 40);
-    ctx.fillStyle = "#b2b28b";
-    ctx.fillRect(424, 132, 26, 36);
-    ctx.fillRect(210, 0, 30, 62);
-    ctx.fillRect(166, 57, 118, 90);
-    ctx.fillRect(248, 136, 187, 28);
-    ctx.fillStyle = "#d9d0a4";
-    ctx.fillRect(177, 66, 96, 4);
-    ctx.fillRect(260, 142, 145, 3);
-
-    // Pontes curtas nas duas conexões do mapa.
-    ctx.fillStyle = "#654225";
-    for (let x = 422; x < 450; x += 7) ctx.fillRect(x, 129, 4, 42);
-    for (let y = 0; y < 24; y += 7) ctx.fillRect(207, y, 36, 4);
-
-    const assets = window.archeryAssets;
-    // Fixed neutral poses in the island only; arena animations remain unchanged.
-    const frame = 0;
-    const drawAsset = (category, subtype, state, index, x, y, size) => assets
-        ? assets.draw(ctx, category, subtype, state, index, x, y, size, size, "manifest")
-        : false;
-
-    // Estandartes deixam a modalidade reconhecível ainda na borda da ilha.
-    drawAsset("prop", "wind_flag", "IDLE", frame, 45, 96, 58);
-    drawAsset("prop", "wind_flag", "IDLE", frame, 407, 99, 58);
-
-    // Pequena área de treino: alvos diferentes e fardos nas laterais, sem fechar o corredor central.
-    if (!drawAsset("target", "large", "IDLE", frame, 95, 124, 64)) {
-        ctx.fillStyle = "#f5f0dc"; ctx.beginPath(); ctx.arc(95, 94, 25, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = "#e74c3c"; ctx.beginPath(); ctx.arc(95, 94, 17, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = "#f1c40f"; ctx.beginPath(); ctx.arc(95, 94, 7, 0, Math.PI * 2); ctx.fill();
-    }
-    drawAsset("target", "medium", "IDLE", frame, 355, 132, 56);
-    drawAsset("prop", "hay_bale", "IDLE", frame, 62, 239, 64);
-    drawAsset("prop", "hay_bale", "IDLE", frame, 392, 239, 60);
-    drawAsset("prop", "target_stand", "IDLE", frame, 321, 226, 48);
-
-    // Caixa de flechas decorativa.
-    ctx.fillStyle = "#5a351f"; ctx.fillRect(103, 212, 29, 17);
-    ctx.fillStyle = "#9b632f"; ctx.fillRect(106, 215, 23, 11);
-    ctx.fillStyle = "#e0aa45"; ctx.fillRect(106, 217, 23, 3);
-    [[111, 194], [119, 190], [127, 196]].forEach(([x, y], index) => {
-        ctx.strokeStyle = "#f0f3e8"; ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, 216); ctx.stroke();
-        ctx.fillStyle = index === 1 ? "#e74c3c" : "#f1c40f";
-        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x - 3, y + 5); ctx.lineTo(x + 3, y + 5); ctx.closePath(); ctx.fill();
-    });
-
-    // Arco apoiado no cavalete direito.
-    ctx.strokeStyle = "#8a4b24"; ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.arc(333, 204, 12, -Math.PI / 2, Math.PI / 2); ctx.stroke();
-    ctx.strokeStyle = "#f4ead1"; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(333, 192); ctx.lineTo(333, 216); ctx.stroke();
-    ctx.fillStyle = "#d9a441"; ctx.fillRect(328, 202, 9, 4);
-
-    // Placa de entrada aponta o caminho para a área do Mestre.
-    ctx.fillStyle = "#5a351f"; ctx.fillRect(372, 177, 4, 25);
-    ctx.fillStyle = "#8e572a"; ctx.fillRect(350, 174, 45, 17);
-    ctx.fillStyle = "#f5d66d";
-    ctx.beginPath(); ctx.moveTo(358, 182); ctx.lineTo(384, 182); ctx.lineTo(378, 177); ctx.moveTo(384, 182); ctx.lineTo(378, 187); ctx.strokeStyle = "#f5d66d"; ctx.lineWidth = 2; ctx.stroke();
-
-    if (archeryQaParams.has("archeryIslandQa")) {
-        canvas.dataset.archeryIslandDiagnostics=JSON.stringify(getOverworldDiagnostics());
-    }
-    ctx.restore();
+    drawWater();
+    ArcheryIsland.draw(ctx);
     finishOverworldIsland("ILHA_ARCO");
+    if (archeryQaParams.has("archeryIslandQa")) {
+        canvas.dataset.archeryIslandDiagnostics=JSON.stringify({
+            ...getOverworldDiagnostics(),island:ArcheryIsland.diagnostics()
+        });
+    }
 }
 
 function drawIlhaCorrida() {
@@ -5047,153 +4412,10 @@ function drawIlhaCorrida() {
 }
 
 function drawIlhaEscalada() {
-    drawOverworldBase("ILHA_ESCALADA");
-    ctx.save();ctx.imageSmoothingEnabled=false;
-    ctx.fillStyle="#485e50";ctx.fillRect(36,115,95,140);ctx.fillRect(315,115,95,140);
-    ctx.fillStyle="#657369";ctx.fillRect(145,165,160,90);
-    
-// 3. Cordilheira de Montanhas Majestosa ao Fundo (Norte)
-    // Pico distante da esquerda
-    ctx.fillStyle = "#455a64";
-    ctx.beginPath();
-    ctx.moveTo(30, 90); ctx.lineTo(130, 18); ctx.lineTo(230, 90);
-    ctx.closePath(); ctx.fill();
-
-    // Pico distante da direita
-    ctx.beginPath();
-    ctx.moveTo(220, 90); ctx.lineTo(320, 18); ctx.lineTo(420, 90);
-    ctx.closePath(); ctx.fill();
-
-    // Pico Central Mais Alto (Monte Zorp)
-    ctx.fillStyle = "#263238";
-    ctx.beginPath();
-    ctx.moveTo(120, 100); ctx.lineTo(225, 10); ctx.lineTo(330, 100);
-    ctx.closePath(); ctx.fill();
-
-    // Cumes Nevados das Montanhas
-    ctx.fillStyle = "#eceff1";
-    ctx.beginPath();
-    ctx.moveTo(225, 24); ctx.lineTo(200, 36); ctx.lineTo(215, 30);
-    ctx.lineTo(225, 38); ctx.lineTo(235, 28); ctx.lineTo(250, 36);
-    ctx.closePath(); ctx.fill();
-
-    // Neve do Pico Esquerdo e Direito
-    ctx.beginPath();
-    ctx.moveTo(130, 18); ctx.lineTo(110, 34); ctx.lineTo(130, 30); ctx.lineTo(150, 34);
-    ctx.closePath(); ctx.fill();
-    ctx.beginPath();
-    ctx.moveTo(320, 18); ctx.lineTo(300, 34); ctx.lineTo(320, 30); ctx.lineTo(340, 34);
-    ctx.closePath(); ctx.fill();
-
-    // 4. PAREDÃO ROCHOSO DE ESCALADA COM AGARRAS COLORIDAS (LANDMARK PRINCIPAL)
-    // Paredão de treino da esquerda (Noroeste: x=108..190, y=32..76)
-    const wallX = 108, wallY = 32, wallW = 82, wallH = 44;
-    ctx.fillStyle = "#37474f";
-    ctx.fillRect(wallX, wallY, wallW, wallH);
-    ctx.strokeStyle = "#546e7a";
-    ctx.lineWidth = 1.5;
-    ctx.strokeRect(wallX, wallY, wallW, wallH);
-
-    // Agarras de Escalada em Resina Coloridas (Climbing Holds)
-    const holds = [
-        { x: wallX + 10, y: wallY + 8, c: "#e53935" },
-        { x: wallX + 28, y: wallY + 12, c: "#ffeb3b" },
-        { x: wallX + 46, y: wallY + 6, c: "#1e88e5" },
-        { x: wallX + 66, y: wallY + 10, c: "#76ff03" },
-        { x: wallX + 18, y: wallY + 22, c: "#ff9800" },
-        { x: wallX + 38, y: wallY + 25, c: "#e53935" },
-        { x: wallX + 58, y: wallY + 22, c: "#ffeb3b" },
-        { x: wallX + 74, y: wallY + 28, c: "#1e88e5" },
-        { x: wallX + 12, y: wallY + 34, c: "#76ff03" },
-        { x: wallX + 32, y: wallY + 36, c: "#ff9800" },
-        { x: wallX + 52, y: wallY + 35, c: "#e53935" }
-    ];
-    holds.forEach(h => {
-        ctx.fillStyle = h.c;
-        ctx.beginPath();
-        ctx.ellipse(h.x, h.y, 3.5, 2.5, 0.2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = "#111111";
-        ctx.fillRect(h.x - 0.7, h.y - 0.7, 1.4, 1.4);
-    });
-
-    // Corda Dinâmica de Segurança Suspensa com Mosquetões
-    ctx.strokeStyle = "#fbc02d";
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(wallX + 46, wallY + 4);
-    ctx.lineTo(wallX + 44, wallY + 25);
-    ctx.lineTo(wallX + 48, wallY + wallH);
-    ctx.stroke();
-    // Mosquetão prateado clipado
-    ctx.fillStyle = "#eceff1";
-    ctx.fillRect(wallX + 43, wallY + 18, 4, 6);
-
-    // Paredão de treino da direita (Nordeste: x=265..345, y=32..76)
-    const wall2X = 265, wall2Y = 32, wall2W = 80, wall2H = 44;
-    ctx.fillStyle = "#37474f";
-    ctx.fillRect(wall2X, wall2Y, wall2W, wall2H);
-    ctx.strokeStyle = "#546e7a";
-    ctx.lineWidth = 1.5;
-    ctx.strokeRect(wall2X, wall2Y, wall2W, wall2H);
-
-    const holds2 = [
-        { x: wall2X + 12, y: wall2Y + 8, c: "#1e88e5" },
-        { x: wall2X + 30, y: wall2Y + 12, c: "#76ff03" },
-        { x: wall2X + 50, y: wall2Y + 6, c: "#ff9800" },
-        { x: wall2X + 68, y: wall2Y + 10, c: "#e53935" },
-        { x: wall2X + 20, y: wall2Y + 24, c: "#ffeb3b" },
-        { x: wall2X + 40, y: wall2Y + 22, c: "#1e88e5" },
-        { x: wall2X + 60, y: wall2Y + 26, c: "#76ff03" },
-        { x: wall2X + 14, y: wall2Y + 36, c: "#e53935" },
-        { x: wall2X + 36, y: wall2Y + 35, c: "#ff9800" },
-        { x: wall2X + 58, y: wall2Y + 36, c: "#ffeb3b" }
-    ];
-    holds2.forEach(h => {
-        ctx.fillStyle = h.c;
-        ctx.beginPath();
-        ctx.ellipse(h.x, h.y, 3.5, 2.5, -0.2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = "#111111";
-        ctx.fillRect(h.x - 0.7, h.y - 0.7, 1.4, 1.4);
-    });
-
-    // Corda suspensa direita
-    ctx.strokeStyle = "#ff7043";
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(wall2X + 30, wall2Y + 4);
-    ctx.lineTo(wall2X + 34, wall2Y + 24);
-    ctx.lineTo(wall2X + 31, wall2Y + wall2H);
-    ctx.stroke();
-
-    // 5. Trilha de Terra Batida Principal até a base da montanha
-    ctx.fillStyle = "#8b9281";
-    ctx.beginPath();
-    ctx.moveTo(196, 270); ctx.lineTo(204, 75); ctx.lineTo(246, 75); ctx.lineTo(254, 270);
-    ctx.closePath();
-    ctx.fill();
-
-    // Pedregulhos na trilha
-    ctx.fillStyle = "#d7ccc8";
-    for (let i = 0; i < 8; i++) {
-        ctx.fillRect(212 + (i % 2) * 14, 90 + i * 22, 4, 3);
-    }
-
-    // Portal de Expedição no Norte
-    ctx.fillStyle = "#6d4c41";
-    ctx.fillRect(195, 52, 6, 26);
-    ctx.fillRect(249, 52, 6, 26);
-    ctx.fillRect(195, 52, 60, 6);
-    ctx.fillStyle = "#fbc02d";
-    ctx.font = "bold 7px monospace";
-    ctx.fillText("▲ MONTE ZORP 2.800m", 168, 47);
-
-    // Entrada Sul (caminho para a Ilha do Arco)
-
-
-    ctx.restore();
-    finishOverworldIsland("ILHA_ESCALADA");
+    drawWater();
+    ClimbIsland.draw(ctx);
+    drawOverworldConnections("ILHA_ESCALADA");
+    drawOverworldMasterMark("ILHA_ESCALADA");
 }
 
 function drawSurfIslandShape(points, color) {
@@ -5258,7 +4480,13 @@ function drawIlhaSurf() {
 function drawPingPongGame() {
     ctx.imageSmoothingEnabled = false;
 
-    if (bgPingPong.complete) ctx.drawImage(bgPingPong, 0, 0, canvas.width, canvas.height);
+    if (bgPingPong.complete && bgPingPong.naturalWidth > 0) {
+        const art = PINGPONG_COURT.artwork;
+        const sx = bgPingPong.naturalWidth / art.width;
+        const sy = bgPingPong.naturalHeight / art.height;
+        ctx.drawImage(bgPingPong, art.x * sx, art.y * sy, art.w * sx, art.h * sy,
+            0, 0, canvas.width, canvas.height);
+    }
 
     let zorpSpriteImg = imgZorpIdle;
     if (pingPong.playerAction === "MOVE_UP") zorpSpriteImg = imgZorpMU;
@@ -5269,6 +4497,7 @@ function drawPingPongGame() {
     if (pingPong.opponentAction === "MOVE_UP") mestreSpriteImg = imgMestreMU;
     else if (pingPong.opponentAction === "MOVE_DOWN") mestreSpriteImg = imgMestreMD;
     else if (pingPong.opponentAction === "HIT") mestreSpriteImg = imgMestreHit;
+    if (pingPong.multiball.phase === "PREPARING_MULTIBALL") mestreSpriteImg = imgMestreHit;
 
     drawShadow(pingPong.playerX + 18, pingPong.playerY + 45);
     drawShadow(pingPong.opponentX + 18, pingPong.opponentY + 45);
@@ -5276,35 +4505,26 @@ function drawPingPongGame() {
     if (zorpSpriteImg.complete) ctx.drawImage(zorpSpriteImg, pingPong.playerX, pingPong.playerY, 36, 48);
     if (mestreSpriteImg.complete) ctx.drawImage(mestreSpriteImg, pingPong.opponentX, pingPong.opponentY, 36, 48);
 
-    // Reação Visual do Mestre (Desistência/Suor estilo Tengu)
+    // Esforço e cansaço ao acompanhar a trajetória pós-quique.
     if (pingPong.mestreReaction) {
         ctx.font = "bold 16px sans-serif";
         ctx.fillText(pingPong.mestreReaction.text, pingPong.opponentX + 10, pingPong.opponentY - 8);
     }
 
-    // Telegrafia do Saque de Novas Bolas pelo Mestre
-    if (pingPong.mestreSpawnWindup > 0) {
-        ctx.save();
-        ctx.fillStyle = (Date.now() % 160 < 80) ? "rgba(243, 156, 18, 0.7)" : "rgba(231, 76, 60, 0.7)";
-        ctx.beginPath();
-        ctx.arc(pingPong.opponentX - 6, pingPong.opponentY + 20, 10 + (pingPong.mestreSpawnWindup % 6), 0, Math.PI * 2);
-        ctx.fill();
+    // A single exaggerated racket swing, attached to Zorp, never a radial blast.
+    for (const effect of pingPong.specialEffects) {
+        const t = effect.age / effect.lifetime;
+        const x = pingPong.playerX + 29, y = pingPong.playerY + 23;
+        ctx.save(); ctx.globalAlpha = (1 - t) * 0.85;
+        ctx.strokeStyle = '#b9faff'; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.arc(x - 7, y, 12 + t * 10, -1.2 + t * 0.4, 0.9 + t * 0.4); ctx.stroke();
+        ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(x - 9, y + 1, 16 + t * 8, -1.0, 0.65); ctx.stroke();
+        ctx.fillStyle = '#efffff'; ctx.fillRect(x - 2, y - 4, 4, 8);
         ctx.restore();
     }
 
-    // Ondas de Choque do Especial AoE (Tela Inteira)
-    if (pingPong.aoeEffects) {
-        pingPong.aoeEffects.forEach(aoe => {
-            ctx.save();
-            ctx.strokeStyle = aoe.color || "#00e5ff";
-            ctx.lineWidth = 3;
-            ctx.globalAlpha = Math.max(0, aoe.alpha);
-            ctx.beginPath();
-            ctx.arc(aoe.x, aoe.y, aoe.radius, 0, Math.PI * 2);
-            ctx.stroke();
-            ctx.restore();
-        });
-    }
+    // Subtle projected contact marker; the outgoing attack remains a reaction.
+    for (const ball of pingPong.balls) PingPongBall.drawTelegraph(ctx, ball);
 
     // Efeitos Visuais de Quique
     if (pingPong.bounceEffects) {
@@ -5314,7 +4534,10 @@ function drawPingPongGame() {
             ctx.lineWidth = 1.5;
             ctx.globalAlpha = Math.max(0, b.alpha);
             ctx.beginPath();
-            ctx.ellipse(b.x, b.y, b.radius * 1.5, b.radius * 0.7, 0, 0, Math.PI * 2);
+            if (b.racketHit) {
+                ctx.moveTo(b.x - b.radius, b.y + b.radius); ctx.lineTo(b.x + b.radius, b.y - b.radius);
+                ctx.moveTo(b.x - b.radius, b.y - 2); ctx.lineTo(b.x + b.radius, b.y + 2);
+            } else ctx.ellipse(b.x, b.y, b.radius * 1.5, b.radius * 0.7, 0, 0, Math.PI * 2);
             ctx.stroke();
             ctx.restore();
         });
@@ -5322,14 +4545,15 @@ function drawPingPongGame() {
 
     // RENDERIZAÇÃO DAS BOLAS ATIVAS (MULTI-BOLAS)
     for (let b of pingPong.balls) {
+        ctx.save();
         // Rastro luminoso individual
-        if (b.trail && b.trail.length > 0) {
+        if (b.trail && b.trail.length > 0 && (b.attackSpeed >= 6.7 || b.isSuper || b.specialTicks > 0)) {
             for (let i = 0; i < b.trail.length; i++) {
                 let tr = b.trail[i];
                 let trRad = Math.max(1.5, b.radius * (i / b.trail.length));
                 ctx.save();
-                ctx.globalAlpha = tr.alpha * 0.45;
-                let trailColor = b.isSuper ? "#00e5ff" : ((pingPong.rallyHits >= 8) ? "#e74c3c" : (pingPong.rallyHits >= 4 ? "#f1c40f" : "#ffffff"));
+                ctx.globalAlpha = tr.alpha * (b.specialTicks > 0 ? 0.65 : 0.45);
+                let trailColor = b.isSuper || b.specialTicks > 0 ? "#00e5ff" : (b.attackSpeed >= 7.5 ? "#ff7658" : "#ffe19a");
                 ctx.fillStyle = trailColor;
                 ctx.beginPath();
                 ctx.arc(tr.x, tr.y, trRad, 0, Math.PI * 2);
@@ -5347,20 +4571,38 @@ function drawPingPongGame() {
 
         // Posição 3D da Bolinha (Y_draw = Y - Z)
         let bDrawY = b.y - b.z;
-        if (b.isSuper) {
-            ctx.fillStyle = "#00e5ff"; ctx.shadowBlur = 14; ctx.shadowColor = "#00e5ff";
-        } else if (pingPong.rallyHits >= 8 || Math.abs(b.speedX) > 7) {
-            ctx.fillStyle = "#e74c3c"; ctx.shadowBlur = 12; ctx.shadowColor = "#ff0055";
-        } else if (pingPong.rallyHits >= 4) {
-            ctx.fillStyle = "#ff9800"; ctx.shadowBlur = 8; ctx.shadowColor = "#ffeb3b";
+        if (b.state === PingPongBall.STATES.MISSED) {
+            ctx.fillStyle = '#cbd5e1'; ctx.shadowBlur = 0;
+        } else if (b.isSuper || b.specialTicks > 0) {
+            ctx.fillStyle = "#bcfaff"; ctx.shadowBlur = 6; ctx.shadowColor = "#00e5ff";
+        } else if (b.attackSpeed >= 7.5) {
+            ctx.fillStyle = "#ff7658"; ctx.shadowBlur = 5; ctx.shadowColor = "#ff7455";
+        } else if (b.attackSpeed >= 6.3) {
+            ctx.fillStyle = "#ffce67"; ctx.shadowBlur = 3; ctx.shadowColor = "#ffeb3b";
         } else {
             ctx.fillStyle = "#ffffff"; ctx.shadowBlur = 0;
         }
 
         ctx.beginPath();
-        ctx.arc(b.x, bDrawY, b.radius, 0, Math.PI * 2);
+        if (b.state === PingPongBall.STATES.TABLE_BOUNCE || b.state === PingPongBall.STATES.SERVE_OWN_BOUNCE) {
+            ctx.ellipse(b.x, bDrawY, b.radius * 1.45, b.radius * 0.62, 0, 0, Math.PI * 2);
+        } else {
+            ctx.arc(b.x, bDrawY, b.radius, 0, Math.PI * 2);
+        }
         ctx.fill();
         ctx.shadowBlur = 0;
+        ctx.restore();
+    }
+    for (const effect of pingPong.pointFeedback) {
+        ctx.save(); ctx.strokeStyle = effect.color; ctx.fillStyle = effect.color;
+        ctx.globalAlpha = effect.phase === 'MISS' ? 0.9 : Math.min(1, effect.timer / 12);
+        ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.arc(effect.x, effect.y, effect.phase === 'MISS' ? 9 : 10 + (26 - effect.timer) * 0.25, 0, Math.PI * 2); ctx.stroke();
+        if (effect.phase === 'POINT') {
+            ctx.font = 'bold 10px monospace'; ctx.textAlign = 'center';
+            ctx.fillText('+1', Math.max(20, Math.min(430, effect.x)), Math.max(65, effect.y - 14));
+        }
+        ctx.restore();
     }
 
     // -------------------------------------------------------------
@@ -5392,15 +4634,17 @@ function drawPingPongGame() {
     ctx.fillText(`${String(pingPong.opponentScore).padStart(2, '0')} MESTRE`, boardX + boardW - 10, boardY + 22);
     ctx.textAlign = "left";
 
+    PingPongMultiball.draw(ctx, pingPong.multiball, pingPong);
+
     // Informações Adicionais: Bolas em jogo e Barra de Especial
     ctx.fillStyle = "#ffffff";
     ctx.font = "bold 9px monospace";
-    ctx.fillText(`BOLAS EM JOGO: ${pingPong.balls.length}`, 328, 22);
+    ctx.fillText(`BOLAS EM JOGO: ${pingPong.balls.filter(b => b.state !== PingPongBall.STATES.MISSED).length}`, 328, 22);
 
     // Indicador Dinâmico de Rali
     if (pingPong.rallyHits > 0) {
         ctx.font = "bold 10px monospace";
-        if (pingPong.rallyHits >= 8) {
+        if (pingPong.rallyHits >= 13) {
             ctx.fillStyle = (Date.now() % 200 < 100) ? "#e74c3c" : "#f1c40f";
             ctx.fillText(`⚡ RALI: ${pingPong.rallyHits}x (VELOCIDADE MÁXIMA!) ⚡`, 125, 52);
         } else if (pingPong.rallyHits >= 4) {
@@ -5417,11 +4661,11 @@ function drawPingPongGame() {
     ctx.fillRect(15, 12, 100, 10);
     let barraPreenchida = (pingPong.power / pingPong.maxPower) * 100;
     if (pingPong.power >= pingPong.maxPower) {
-        ctx.fillStyle = (Date.now() % 300 < 150) ? "#00e5ff" : "#ffea00";
+        ctx.fillStyle = pingPong.globalReturnCooldown > 0 ? '#607d8b' : (Date.now() % 300 < 150) ? "#00e5ff" : "#ffea00";
         ctx.fillRect(15, 12, 100, 10);
         ctx.fillStyle = "#00e5ff";
         ctx.font = "bold 8px monospace";
-        ctx.fillText("ESPAÇO: SMASH TOTAL!", 15, 32);
+        ctx.fillText(pingPong.globalReturnCooldown > 0 ? `RECARGA: ${(pingPong.globalReturnCooldown / 60).toFixed(1)}s` : "ESPAÇO: RAQUETADA!", 15, 32);
     } else {
         ctx.fillStyle = "#3b82f6";
         ctx.fillRect(15, 12, barraPreenchida, 10);
@@ -5441,7 +4685,7 @@ function drawPingPongGame() {
             "[A / D]: Recuar para amortecer | Avançar para bater rápido.",
             "O Mestre lança novas bolas conforme a disputa se intensifica!",
             "Em alta velocidade, o Mestre não consegue reagir a tempo.",
-            "Aperte [ESPAÇO] com a barra cheia para o Smash Global em Área!"
+            "[ESPAÇO] com a barra cheia: RAQUETADA GLOBAL!"
         ], "#00e5ff");
     } else if (pingPong.gameState === 'GAMEOVER') {
         if (pingPong.win) {
@@ -5472,8 +4716,12 @@ function draw() {
         TitleScreen.draw(ctx);
         return;
     }
+    if (AdventureIntro.active) { AdventureIntro.draw(ctx); return; }
+    if (EndingCinematic.active) { EndingCinematic.draw(ctx); return; }
+    if (CaptainRoute.active && ['FERIAS_MERECIDAS','ENDING_CARD'].includes(CaptainRoute.state)) { CaptainRoute.draw(ctx); return; }
 
-    if (currentScene === "HUB") drawHUB();
+    const displayScene = MastersFarewell.displayScene(currentScene);
+    if (displayScene === "HUB") drawHUB();
     else if (currentScene === "ILHA_ESQUI") drawIlhaEsqui();
     else if (currentScene === "ILHA_PINGPONG") drawIlhaPingPong();
     else if (currentScene === "ILHA_SKATE") drawIlhaSkate();
@@ -5498,13 +4746,21 @@ function draw() {
             for (const npc of npcs) if (npc.scene === currentScene) drawNPC(npc);
             drawPlayer();
         } else {
-            const actors = npcs.filter(npc => npc.scene === currentScene)
+            const actors = npcs.filter(npc => npc.scene === displayScene)
                 .map(npc => ({ y: npc.y, draw: () => drawNPC(npc) }));
+            if (displayScene === "HUB" && AdventureIntro.introSeen) {
+                actors.push({ y: 150, draw: () => AdventureIntro.drawParked(ctx) });
+            }
+            actors.push(...MastersFarewell.actors(displayScene));
             actors.push({ y: player.y, draw: drawPlayer });
             actors.sort((a,b) => a.y - b.y).forEach(actor => actor.draw());
         }
         drawHUD();
+        if (!MastersFarewell.active) MedalCompletion.drawObjective(ctx, currentScene);
     }
+    MedalCompletion.draw(ctx);
+    MastersFarewell.draw(ctx);
+    CaptainRoute.draw(ctx);
 }
 
 function gameLoop() { 
@@ -5561,6 +4817,10 @@ if (CLIMB_QA_MODE) {
     if (qaStartHold && qaStartHold.id !== 0) {
         escaladaGame.alturaAtual = Math.max(0, qaStartHold.climbY - 42);
         gerenciarPedras(false);
+        if(qaStartHold.tipo==='checkpoint'){
+            escaladaGame.playerState='AIRBORNE';escaladaGame.airFrames=4;
+            escaladaGame.playerX=qaStartHold.x;escaladaGame.playerY=qaStartHold.y+44;escaladaGame.vy=-1;
+        }
         concluirAgarrada(qaStartHold);
     }
 }
@@ -5610,6 +4870,10 @@ window.attachClimbQaToHold = (type) => {
     if (!hold) return false;
     escaladaGame.alturaAtual = Math.max(0, hold.climbY - 42);
     gerenciarPedras(false);
+    if(hold.tipo==='checkpoint'){
+        escaladaGame.playerState='AIRBORNE';escaladaGame.airFrames=4;
+        escaladaGame.playerX=hold.x;escaladaGame.playerY=hold.y+44;escaladaGame.vy=-1;
+    }
     concluirAgarrada(hold);
     return true;
 };
@@ -5657,15 +4921,118 @@ function hideOverworldUI() {
     if (controlsHint) controlsHint.style.display = "none";
 }
 
+// As duas cinemáticas enquadram as mesmas ilhas, sem mapas ou colliders paralelos.
+function captureOverworldIsland(scene) {
+    const previousScene = currentScene;
+    const renderers = {HUB:drawHUB,ILHA_ESQUI:drawIlhaEsqui,ILHA_PINGPONG:drawIlhaPingPong,
+        ILHA_SKATE:drawIlhaSkate,ILHA_BASQUETE:drawIlhaBasquete,ILHA_CORRIDA:drawIlhaCorrida,
+        ILHA_ARCO:drawIlhaArco,ILHA_ESCALADA:drawIlhaEscalada,ILHA_SURF:drawIlhaSurf};
+    const snapshot = document.createElement('canvas');snapshot.width=450;snapshot.height=300;
+    const previousFrame = document.createElement('canvas');previousFrame.width=450;previousFrame.height=300;
+    previousFrame.getContext('2d').drawImage(canvas,0,0);
+    ctx.save();
+    try {
+        ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;
+        currentScene=scene;renderers[scene]();drawSceneObstacles();
+        snapshot.getContext('2d').drawImage(canvas,0,0);
+    } finally {
+        currentScene=previousScene;ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;
+        ctx.clearRect(0,0,450,300);ctx.drawImage(previousFrame,0,0);ctx.restore();
+    }
+    return snapshot;
+}
+
+AdventureIntro.init({
+    player, dialogBox, dialogText,
+    medalCount: () => MEDALHAS_REGISTRY.filter(m => insignias[m.id]).length,
+    captureIsland: captureOverworldIsland,
+    clearInput: () => {
+        Object.keys(keys).forEach(key => keys[key] = false);
+        interactionPressed = false; shipInteractionPressed = false; zorpSprite.isMoving = false;
+        dialogBox.classList.remove("show");
+    },
+    drawHub: () => {
+        drawHUB(); drawSceneObstacles();
+        npcs.filter(npc => npc.scene === "HUB" && npc.y <= 150).sort((a,b) => a.y-b.y).forEach(drawNPC);
+    },
+    drawHubForeground: () => {
+        npcs.filter(npc => npc.scene === "HUB" && npc.y > 150).sort((a,b) => a.y-b.y).forEach(drawNPC);
+    },
+    drawActor: (x, y, walking) => {
+        player.x = x; player.y = y;
+        zorpSprite.row = walking ? 0 : 1;
+        zorpSprite.animIndex = walking ? Math.floor(AdventureIntro.elapsed * 8) % 4 : 0;
+        drawPlayer();
+    },
+    complete: () => {
+        currentScene = "HUB"; player.x = 225; player.y = 194;
+        zorpSprite.row = 1; zorpSprite.animIndex = 0;
+        showOverworldUI();
+    }
+});
+
+MedalCompletion.init({
+    player,
+    clearInput: () => AdventureIntro.config.clearInput(),
+    interactionHeld: () => keys.space || keys.e || interactionPressed,
+    faceForward: () => { zorpSprite.row = 0; zorpSprite.animIndex = 0; zorpSprite.timer = 0; },
+    drawActor: drawPlayer
+});
+
+MastersFarewell.init({
+    player, npcs, ctx, dialogBox, dialogText,
+    clearInput: () => AdventureIntro.config.clearInput(),
+    hideUI: hideOverworldUI,
+    showUI: showOverworldUI,
+    drawNPC,
+    blocked: checkObstacleCollision,
+    face: (dx, dy, time = 0) => {
+        zorpSprite.isMoving = Boolean(dx || dy);
+        zorpSprite.row = dy > 0 ? 0 : dy < 0 ? 1 : dx < 0 ? 2 : dx > 0 ? 3 : 0;
+        zorpSprite.animIndex = zorpSprite.isMoving ? Math.floor(time / 130) % 4 : 0;
+    },
+    enterFinal: () => EndingCinematic.start(),
+    resume: () => { currentScene = "HUB"; }
+});
+
+EndingCinematic.init({
+    zorp: zorpImg, npcs, drawNPC,
+    victoryPortrait: climbAssets.zorp.victory[0],
+    clearInput: () => AdventureIntro.config.clearInput(),
+    hideUI: hideOverworldUI,
+    enter: () => { currentScene = "FINAL_CUTSCENE"; },
+    captureIsland: captureOverworldIsland,
+    returnToMenu: () => {
+        currentScene="TITLE_SCREEN";MastersFarewell.active=false;MastersFarewell.path=[];MastersFarewell.setState('COMPLETE');
+        TitleScreen.active=true;TitleScreen.state='TITLE';TitleScreen.selectedIndex=0;
+        TitleScreen.fadeAction=null;TitleScreen.fadeAlpha=1;TitleScreen.fadeTarget=0;
+        canvas.style.cursor='default';hideOverworldUI();
+    }
+});
+
+CaptainRoute.init({
+    clearInput: () => AdventureIntro.config.clearInput(),
+    hideUI: hideOverworldUI,
+    offerHint: () => { hintText.innerText = "[ESPAÇO / E] CONFIRMAR | [ESC] CANCELAR"; },
+    enterEnding: () => { currentScene = "FERIAS_MERECIDAS"; },
+    showMessage: text => {
+        overworldConversationText = text; dialogText.textContent = text;
+        dialogBox.classList.add("show");
+    },
+    returnToMenu: () => EndingCinematic.config.returnToMenu()
+});
+
 if (typeof TitleScreen !== "undefined") {
     TitleScreen.init({
         canvas: canvas,
         ctx: ctx,
         onStartGame: () => {
-            currentScene = "HUB";
+            currentScene = AdventureIntro.introSeen ? "HUB" : "INTRO_ARRIVAL";
             player.x = 225;
-            player.y = 150;
-            showOverworldUI();
+            player.y = 194;
+            AdventureIntro.config.clearInput();
+            if (AdventureIntro.introSeen) showOverworldUI();
+            else { hideOverworldUI(); AdventureIntro.start(); }
         },
         onResetGame: () => {
             window.location.reload();

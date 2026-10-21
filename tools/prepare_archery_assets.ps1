@@ -149,27 +149,8 @@ function Write-Preview([object[]]$frames, [string]$fileName, [string[]]$groups) 
 
 $entries = [System.Collections.Generic.List[object]]::new()
 
-# Character sheets use the authored rows: windows only locate visual groups, then New-Crop detects the final silhouette.
-$characterRows = @(
-    @('idle_back','IDLE_BACK',@(@(12,75,96,178),@(112,75,110,178),@(220,75,108,178),@(330,75,108,178))),
-    @('ready_stance_back','READY_STANCE_BACK',@(@(445,72,126,185),@(572,72,118,185),@(695,72,115,185),@(815,72,110,185))),
-    @('walk_down_back','WALK_DOWN_BACK',@(@(945,72,110,188),@(1065,72,110,188),@(1195,72,110,188),@(1328,72,110,188))),
-    @('raise_bow_back','RAISE_BOW_BACK',@(@(5,332,108,202),@(115,332,108,202),@(224,332,108,202),@(336,332,112,202))),
-    @('draw_bowstring_back','DRAW_BOWSTRING_BACK',@(@(475,328,112,208),@(595,328,116,208),@(715,328,120,208),@(835,328,112,208))),
-    @('aim_back','AIM_BACK',@(@(980,324,115,214),@(1100,324,115,214),@(1218,324,112,214),@(1335,324,105,214))),
-    @('release_shot_back','RELEASE_SHOT_BACK',@(@(12,620,103,210),@(117,620,105,210),@(224,620,106,210),@(332,620,98,210))),
-    @('recovery_back','RECOVERY_BACK',@(@(425,620,100,210),@(525,620,100,210),@(625,620,100,210),@(725,620,110,210))),
-    @('hit_reaction_back','HIT_REACTION_BACK',@(@(835,620,110,210),@(945,620,110,210),@(1055,620,90,210))),
-    @('miss_reaction_back','MISS_REACTION_BACK',@(@(1142,620,93,210),@(1235,620,100,210),@(1335,620,105,210))),
-    @('victory_back','VICTORY_BACK',@(@(12,890,96,175),@(112,890,112,175),@(225,890,160,175),@(385,890,125,175),@(510,890,140,175),@(650,890,140,175)))
-)
-foreach ($character in @(@('zorp_arqueiro.png','zorp','zorp_archer'), @('mestre_arqueiro.png','master','master_archer'))) {
-    $sheet = [System.Drawing.Bitmap]::FromFile((Join-Path $root $character[0]))
-    foreach ($row in $characterRows) {
-        Add-RowFrames $entries $sheet $character[0] ($character[1] + '/' + $row[0]) ($character[2] + '_' + $row[0]) 'character' $character[1] $row[1] $character[1] 'BOTTOM_CENTER' $row[2] 'Back-facing archer frame isolated from the supplied sheet.'
-    }
-    $sheet.Dispose()
-}
+# Shared arena, target, prop and projectile assets only.
+# Character atlases are built separately by prepare_archery_v2.py.
 
 $targets = [System.Drawing.Bitmap]::FromFile((Join-Path $root 'alvos_arquearia.png'))
 Add-RowFrames $entries $targets 'alvos_arquearia.png' 'targets/static' 'target_small_idle' 'target' 'small' 'IDLE' 'targets_static' 'BOTTOM_CENTER' @(@(20,160,92,135),@(122,160,92,135),@(225,160,92,135),@(327,160,92,135)) 'Small static target.'
@@ -207,7 +188,7 @@ $assets.Dispose()
 $frames = [System.Collections.Generic.List[object]]::new()
 foreach ($entry in $entries) {
     $size = switch ($entry.canvasGroup) {
-        'zorp' { 192 }; 'master' { 192 }; 'targets_static' { 192 }; 'targets_moving' { 224 }; 'props' { 192 }; 'arrows' { 160 }; 'effects' { 160 }
+        'targets_static' { 192 }; 'targets_moving' { 224 }; 'props' { 192 }; 'arrows' { 160 }; 'effects' { 160 }
         default { 192 }
     }
     $padded = Make-Canvas $entry.image $size $size $entry.anchorType
@@ -225,7 +206,7 @@ $frames.Add([pscustomobject]@{ file='arena/archery_arena.png'; source='arena_Arq
 $arenaSource.Dispose()
 
 $manifest = [ordered]@{
-    assetSet = 'archery_assets_2026'; sources = @('arena_Arquearia.png','zorp_arqueiro.png','mestre_arqueiro.png','alvos_arquearia.png','assets_arquearia.png')
+    assetSet = 'archery_assets_2026'; sources = @('arena_Arquearia.png','alvos_arquearia.png','assets_arquearia.png')
     transparency = 'For sprite crops, only near-white pixels connected to the selected crop edge were made transparent. Enclosed white artwork and light sprite details remain intact.'
     cropMarginPixels = 6; frames = @($frames | Sort-Object category, subtype, file)
     uncertainCrops = @(
@@ -236,7 +217,6 @@ $manifestJson = $manifest | ConvertTo-Json -Depth 6
 [System.IO.File]::WriteAllText((Join-Path $output 'archery_assets_manifest.json'), $manifestJson, [System.Text.UTF8Encoding]::new($false))
 $manifestScript = "window.ARCHERY_ASSET_MANIFEST = $manifestJson;`r`n"
 [System.IO.File]::WriteAllText((Join-Path $output 'archery_assets_manifest.js'), $manifestScript, [System.Text.UTF8Encoding]::new($false))
-Write-Preview @($frames) 'archery_characters_preview.png' @('zorp','master')
 Write-Preview @($frames) 'archery_targets_preview.png' @('targets_static','targets_moving','props')
 Write-Preview @($frames) 'archery_projectiles_preview.png' @('arrows','effects')
 $counts = $frames | Group-Object category | Sort-Object Name | ForEach-Object { "$($_.Name)=$($_.Count)" }

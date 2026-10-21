@@ -835,7 +835,7 @@
 
         setPresentation(active) {
             const header = document.getElementById('header-ui');
-            if (header) header.style.display = active ? 'none' : '';
+            if (header) header.style.display = active ? 'none' : 'flex';
         }
 
         startCountdown() {
@@ -1068,9 +1068,6 @@
             this.camera.y = lerp(this.camera.y, targetY, clamp(dt * 3.8, 0, 1));
             this.distractionTimer = Math.max(0, this.distractionTimer - dt * 60);
             this.impactFlash = Math.max(0, this.impactFlash - dt * 60);
-
-            const scoreElement = document.getElementById('score-val');
-            if (scoreElement) scoreElement.textContent = String(Math.floor(this.score));
 
             if (this.qaMode === 'shortcut') {
                 if (this.phase === 'READY') this.startCountdown();

@@ -12,14 +12,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=2.2">
+    <link rel="stylesheet" href="style.css?v=2.5_npc_polish">
 </head>
 <body>
     <div id="game-container">
         <!-- Interface Superior -->
         <div id="header-ui">
             <h1 id="game-title">ILHA DOS CAMPEOES</h1>
-            <div id="score-tag">PONTOS: <span id="score-val">0</span></div>
+            <div id="coin-counter" role="status" aria-live="polite" aria-atomic="true" aria-label="Moedas: 0">
+                <canvas id="coin-icon" width="32" height="32" aria-hidden="true"></canvas>
+                <span id="coin-value">0</span>
+                <span id="coin-feedback" role="status" aria-live="polite"></span>
+            </div>
         </div>
         
         <!-- Tela de Jogo -->
@@ -38,17 +42,49 @@
         </div>
     </div>
 
-    <script src="archery_assets/archery_assets_manifest.js?v=2.0.0_archery_runtime"></script>
-    <script src="archery_asset_registry.js?v=2.2.0_archery_island"></script>
+    <script src="festival_economy.js?v=1.2.0_captain_payment"></script>
+    <script src="local_asset_manifests.js?v=1.0.0"></script>
+    <script src="archery_assets/archery_assets_manifest.js?v=2.1.0_shared_assets"></script>
+    <script src="archery_asset_registry.js?v=2.4.0_canvas_valley"></script>
+    <script src="archery_assets/v2/characters_manifest.js?v=2.0.0"></script>
+    <script src="archery_characters_v2.js?v=2.3.0_readable_reactions"></script>
+    <script src="archery_valley.js?v=1.2.0_water_polish"></script>
+    <script src="archery_river_targets.js?v=1.6.1_audio_impact_polish"></script>
+    <script src="archery_match_pacing.js?v=1.0.0_four_phase_round"></script>
+    <script src="archery_bird_targets.js?v=1.3.0_four_phase_schedule"></script>
+    <script src="archery_explosive_targets.js?v=1.0.0_chain_targets"></script>
+    <script src="archery_golden_targets.js?v=1.1.0_late_round_opportunities"></script>
+    <script src="archery_master_ai.js?v=1.1.0_climax_pressure"></script>
+    <script src="archery_player_control.js?v=1.0.0_single_press_shot"></script>
     <script src="medalhas_registry.js?v=1.1_surf_fix"></script>
+    <script src="festival_challenges.js?v=1.0.0"></script>
     <script src="boxe_assets/v3/boxing_v3_manifest.js?v=3.0.1"></script>
     <script src="boxing_presentation.js?v=1.0_arena_v3"></script>
-    <script src="boxing_arena.js?v=8.0_arena_v3"></script>
-    <script src="overworld_assets/npc_geometry.js?v=1.0.0"></script>
-    <script src="overworld_visuals.js?v=1.0.1"></script>
-    <script src="title_screen.js?v=1.0.0"></script>
-    <script src="script.js?v=10.4.3_pingpong_score"></script>
-    <script src="basketball_1v1.js?v=1.0.1_visual_fix"></script>
+    <script src="boxing_arena.js?v=8.0.1_rewards"></script>
+    <script src="overworld_assets/npc_geometry.js?v=1.3.1_climb_feet_alignment"></script>
+    <script src="overworld_assets/zorp_walk.js?v=1.0.0"></script>
+    <script src="overworld_visuals.js?v=1.5.0_validated_npc_render"></script>
+    <script src="archery_island.js?v=1.1.0_consistency"></script>
+    <script src="climb_island.js?v=1.1.0_consistency"></script>
+    <script src="title_screen.js?v=1.2.0_ending"></script>
+    <script src="adventure_intro.js?v=2.1.0_ship_trigger"></script>
+    <script src="medal_completion.js?v=1.2.0_ship_trigger"></script>
+    <script src="masters_farewell.js?v=1.4.0_farewell_spotlight"></script>
+    <script src="ending_cinematic.js?v=3.0.0_orbital_homecoming"></script>
+    <script src="vacation_sprite.js?v=1.0.0"></script>
+    <script src="ending_card.js?v=1.3.0_soft_reveal"></script>
+    <script src="captain_route.js?v=2.2.0_relaxed_pacing"></script>
+    <script src="climb_assets/zorp_v2/manifest.js?v=2.2.0_character_victory"></script>
+    <script src="climb_checkpoints.js?v=1.0.0_safe_platforms"></script>
+    <script src="climb_sprites.js?v=2.4.0_summit_victory"></script>
+    <script src="climb_course.js?v=2.0.0_connected_wall_routes"></script>
+    <script src="climb_presentation.js?v=1.3_mountain_silhouette"></script>
+    <script src="climb_summit.js?v=1.1.0_summit_medal_victory"></script>
+    <script src="pingpong_ball.js?v=1.5.0_global_racket_return"></script>
+    <script src="pingpong_master_ai.js?v=1.2.0_impulse_reaction"></script>
+    <script src="pingpong_multiball.js?v=1.1.0_racket_special"></script>
+    <script src="script.js?v=10.43.0_validated_npc_render"></script>
+    <script src="basketball_1v1.js?v=1.0.2_local_manifest"></script>
     <script src="skate_new/collision_geometry.js?v=1.2_asset_regions"></script>
     <script src="skate/space_input_parser.js?v=5.6_journey"></script>
     <script src="skate/ollie_physics.js?v=5.6_journey"></script>
@@ -63,8 +99,8 @@
     <script src="skate/journey_presentation.js?v=5.6_journey"></script>
     <script src="skate/skate_ollie_runtime.js?v=5.6_journey"></script>
     <script src="corrida_sprites/runtime/corrida_runners_manifest.js?v=3"></script>
-    <script src="corrida_maratona.js?v=2.3_runner_sprites"></script>
-    <script src="surf_asset_registry.js?v=1.2.0_score_signs"></script>
+    <script src="corrida_maratona.js?v=2.3.1_wallet_hud"></script>
+    <script src="surf_asset_registry.js?v=1.2.1_local_manifest"></script>
     <script src="surf_endless.js?v=9.5.0_surf_fix"></script>
 </body>
 </html>
