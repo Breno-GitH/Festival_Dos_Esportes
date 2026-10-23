@@ -149,11 +149,11 @@
     const STORAGE_KEY = "zorp_esportes_medalhas";
 
     function salvarMedalhas(insigniasObj) {
-        if (qaOverride) return; // Modo QA nunca salva no disco
+        if (qaOverride) return false; // Modo QA nunca confirma uma gravação real.
         try {
-            if (typeof localStorage === 'undefined') return;
+            if (typeof localStorage === 'undefined') return false;
             const target = insigniasObj || global.insignias;
-            if (!target) return;
+            if (!target) return false;
 
             const estadoSalvar = {};
             MEDALHAS_REGISTRY.forEach(m => {
@@ -166,8 +166,10 @@
             if (estadoSalvar.surf) {
                 localStorage.setItem("zorpSurfMedal", "1");
             }
+            return true;
         } catch (err) {
             console.warn('[Medalhas] Falha ao persistir medalhas:', err);
+            return false;
         }
     }
 
@@ -237,6 +239,8 @@
 
         const target = global.insignias;
         const jaTinha = Boolean(target && (target[norm] || (global.rawInsignias && global.rawInsignias[norm])));
+        const previousCount = MEDALHAS_REGISTRY.filter(m => target && target[m.id]).length;
+        let persisted = false;
 
         global.__desbloqueandoMedalha = true;
         try {
@@ -252,13 +256,18 @@
 
             if (!jaTinha) {
                 dispararAnimacaoDesbloqueio(norm);
-                salvarMedalhas(target);
+                persisted = salvarMedalhas(target);
                 console.log(`[Medalha Conquistada]: ${norm.toUpperCase()}`);
             }
         } finally {
             global.__desbloqueandoMedalha = false;
         }
 
+        if (!jaTinha && target) {
+            global.dispatchEvent(new CustomEvent('festival:medal-unlocked', { detail: {
+                id: norm, previousCount, total: MEDALHAS_REGISTRY.filter(m => target[m.id]).length, persisted
+            } }));
+        }
         return true;
     }
 

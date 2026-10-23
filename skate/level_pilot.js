@@ -34,10 +34,22 @@
                 }
                 while (queue.length && queue[0].at <= now) events.push(queue.shift());
                 if (events.length || queue.length) return events;
+                const ramp = p.grounded && course.ramps.find(r => p.x >= r.startX - 60 && p.x <= r.endX);
+                if (ramp && view.mode !== "GRIND") {
+                    while (nextJump < (course.playLine || []).length && course.playLine[nextJump].x <= ramp.endX + 3) nextJump++;
+                    if (!view.held) {
+                        log.push({ x:p.x, action:"hold-ramp", ramp:ramp.id, at:now });
+                        return [{ at:now, code:"Space", down:true }];
+                    }
+                    return [];
+                }
+                if (p.grounded && view.held && view.mode !== "GRIND"
+                    && !p.specialRampAir?.active) return [{ at:now, code:"Space", down:false }];
                 if (p.specialRampAir?.active && view.mode === "AIR" && !specialReleased) {
                     if (!specialStarted) {
                         specialStarted = true;
                         if (options.specialMode !== "d-only" && options.specialMode !== "none") enqueue(now, "Space", true);
+                        else if (view.held) enqueue(now, "Space", false);
                         
                         log.push({ x: p.x, action: "special-sustain", at: now });
                     } else if (p.specialRampAir.controlledMs >= p.specialRampAir.maxControlledMs - 8

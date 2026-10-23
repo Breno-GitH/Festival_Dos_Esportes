@@ -18,7 +18,7 @@ test("SPACE pula imediatamente, diferencia double-tap e hold sem upgrade", () =>
     assert.deepEqual(input.update(900, "AIR"), []);
 });
 
-test("rampas de teste dão impulsos naturais proporcionais e Ollie reforça o launch", () => {
+test("rampas de teste usam hold até a borda e preservam impulsos proporcionais", () => {
     const maxHeights = [];
     for (const ramp of course.ramps) {
         const simulation = physics.createSimulation({
@@ -29,12 +29,12 @@ test("rampas de teste dão impulsos naturais proporcionais e Ollie reforça o la
         let launched = false;
         let maxHeight = 0;
         for (let step = 0; step < 1200; step++) {
-            simulation.step({}, 1 / 120);
-            launched ||= simulation.state.lastEvent === "RAMP_TAKEOFF";
+            simulation.step({spaceHeld:true}, 1 / 120);
+            launched ||= simulation.state.rampLaunches.length > 0;
             maxHeight = Math.max(maxHeight, 250 - simulation.state.player.y);
             if (launched && simulation.state.player.landings > 0) break;
         }
-        assert.equal(launched, true, `${ramp.kind} launches without SPACE`);
+        assert.equal(launched, true, `${ramp.kind} launches with held SPACE`);
         assert.equal(simulation.state.player.landings, 1, `${ramp.kind} returns to the track`);
         maxHeights.push(maxHeight);
     }
@@ -42,9 +42,9 @@ test("rampas de teste dão impulsos naturais proporcionais e Ollie reforça o la
 
     const ramp = course.ramps[1];
     const simulation = physics.createSimulation({ startX: ramp.startX + 10, groundY: 250, ramps: [ramp], obstacle: null });
-    const natural = simulation.rampImpulse(ramp) * physics.DEFAULTS.rampNaturalScale;
-    assert.equal(simulation.launch(100, ramp), true);
-        assert.ok(Math.abs(simulation.state.player.verticalVelocity) > Math.abs(physics.DEFAULTS.jumpVelocities.normal) + natural);
+    assert.equal(simulation.launch(100, ramp), false, 'a tap cannot jump away from the ramp surface');
+    while(!simulation.state.rampLaunches.length) simulation.step({spaceHeld:true},1/120);
+    assert.equal(simulation.state.rampLaunches[0].held,true);
 });
 
 test("Grind usa release imediato para Super Out e hold captura o segundo rail", () => {

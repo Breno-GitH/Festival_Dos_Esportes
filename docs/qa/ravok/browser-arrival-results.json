@@ -1,0 +1,384 @@
+{
+  "automatic": true,
+  "phases": [
+    {
+      "id": "FADE_OUT",
+      "elapsed": 0.2561999999284744
+    },
+    {
+      "id": "SILENCE",
+      "elapsed": 1.0888999999761582
+    },
+    {
+      "id": "SPACE",
+      "elapsed": 1.7392999999523153
+    },
+    {
+      "id": "FLYBY",
+      "elapsed": 6.504799999952306
+    },
+    {
+      "id": "SKY",
+      "elapsed": 9.706199999928469
+    },
+    {
+      "id": "ARCHIPELAGO",
+      "elapsed": 12.78869999992848
+    },
+    {
+      "id": "LANDING",
+      "elapsed": 16.238600000023858
+    },
+    {
+      "id": "DOOR",
+      "elapsed": 20.838600000023792
+    },
+    {
+      "id": "K7_EXIT",
+      "elapsed": 22.7207999999522
+    },
+    {
+      "id": "DIALOGUE",
+      "elapsed": 25.706299999952147
+    },
+    {
+      "id": "WITHDRAW",
+      "elapsed": 28.73810000002362
+    },
+    {
+      "id": "FADE_BACK",
+      "elapsed": 30.921100000023582
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "RAVOK",
+      "text": "Então é verdade..."
+    },
+    {
+      "speaker": "K7",
+      "text": "QUATRO ASSINATURAS CONFIRMADAS."
+    },
+    {
+      "speaker": "RAVOK",
+      "text": "Vamos ver até onde ele consegue chegar."
+    }
+  ],
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": [],
+  "three": {
+    "arrival": {
+      "active": false,
+      "pending": false,
+      "seen": false,
+      "phase": "INACTIVE",
+      "time": 0,
+      "elapsed": 0,
+      "line": 0,
+      "dialogue": null,
+      "readyScene": null,
+      "completedRuns": 0,
+      "duration": 28.85,
+      "k7Outside": false,
+      "ravokOutside": false,
+      "returnPoint": null
+    },
+    "event": {
+      "state": "DORMANT",
+      "medals": 3,
+      "arrived": false,
+      "ravokArrivalSeen": false,
+      "ravokArrivalPending": false,
+      "ravokAvailable": false,
+      "metK7": false,
+      "metRavok": false,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [],
+      "assetErrors": []
+    },
+    "saved": {
+      "pingpong": true,
+      "basquete": true,
+      "corrida": true,
+      "skate": false,
+      "arco": false,
+      "escalada": false,
+      "boxe": false,
+      "surf": false
+    }
+  },
+  "fourth": {
+    "arrival": {
+      "active": false,
+      "pending": true,
+      "seen": false,
+      "phase": "INACTIVE",
+      "time": 0,
+      "elapsed": 0,
+      "line": 0,
+      "dialogue": null,
+      "readyScene": "JOGO_ARCO",
+      "completedRuns": 0,
+      "duration": 28.85,
+      "k7Outside": false,
+      "ravokOutside": false,
+      "returnPoint": null
+    },
+    "event": {
+      "state": "DORMANT",
+      "medals": 4,
+      "arrived": false,
+      "ravokArrivalSeen": false,
+      "ravokArrivalPending": true,
+      "ravokAvailable": false,
+      "metK7": false,
+      "metRavok": false,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [],
+      "assetErrors": []
+    },
+    "gameState": "GAMEOVER",
+    "saved": {
+      "pingpong": true,
+      "basquete": true,
+      "corrida": true,
+      "skate": false,
+      "arco": true,
+      "escalada": false,
+      "boxe": false,
+      "surf": false
+    },
+    "frame": 0,
+    "x": 225,
+    "y": 150
+  },
+  "frozen": {
+    "x": 225,
+    "y": 150,
+    "frame": 0,
+    "keys": false,
+    "scene": "RAVOK_ARRIVAL"
+  },
+  "durationWallSeconds": 31.957,
+  "after": {
+    "arrival": {
+      "active": false,
+      "pending": false,
+      "seen": true,
+      "phase": "INACTIVE",
+      "time": 1.1003999999761582,
+      "elapsed": 31.921499999999728,
+      "line": 3,
+      "dialogue": null,
+      "readyScene": null,
+      "completedRuns": 1,
+      "duration": 28.85,
+      "k7Outside": false,
+      "ravokOutside": false,
+      "returnPoint": [
+        "ILHA_ARCO",
+        225,
+        150
+      ]
+    },
+    "event": {
+      "state": "LANDED",
+      "medals": 4,
+      "arrived": true,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokAvailable": false,
+      "metK7": false,
+      "metRavok": false,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [
+        {
+          "id": "k7",
+          "x": 396,
+          "y": 113,
+          "height": 44,
+          "source": "K7.png",
+          "crop": [
+            37,
+            66,
+            99,
+            172
+          ],
+          "scale": 0.2619047619047619,
+          "footprint": {
+            "width": 18,
+            "height": 8
+          }
+        }
+      ],
+      "assetErrors": []
+    },
+    "scene": "ILHA_ARCO",
+    "saved": {
+      "version": 4,
+      "arrived": true,
+      "metK7": false,
+      "metRavok": false,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false
+    },
+    "x": 225,
+    "y": 150
+  },
+  "k7Text": "> K7: Não me atrapalhe.",
+  "navigation": {
+    "steps": 294,
+    "turns": [
+      {
+        "k": "w",
+        "x": 225,
+        "y": 188
+      },
+      {
+        "k": "d",
+        "x": 386,
+        "y": 188
+      },
+      {
+        "k": "w",
+        "x": 386,
+        "y": 131
+      },
+      {
+        "k": "a",
+        "x": 384,
+        "y": 131
+      }
+    ]
+  },
+  "reload": {
+    "arrival": {
+      "active": false,
+      "pending": false,
+      "seen": true,
+      "phase": "INACTIVE",
+      "time": 0,
+      "elapsed": 0,
+      "line": 0,
+      "dialogue": null,
+      "readyScene": null,
+      "completedRuns": 0,
+      "duration": 28.85,
+      "k7Outside": false,
+      "ravokOutside": false,
+      "returnPoint": null
+    },
+    "event": {
+      "state": "LANDED",
+      "medals": 4,
+      "arrived": true,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokAvailable": false,
+      "metK7": true,
+      "metRavok": false,
+      "k7Line": 1,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [
+        {
+          "id": "k7",
+          "x": 396,
+          "y": 113,
+          "height": 44,
+          "source": "K7.png",
+          "crop": [
+            37,
+            66,
+            99,
+            172
+          ],
+          "scale": 0.2619047619047619,
+          "footprint": {
+            "width": 18,
+            "height": 8
+          }
+        }
+      ],
+      "assetErrors": []
+    }
+  },
+  "fifth": {
+    "active": false,
+    "pending": false,
+    "seen": true,
+    "phase": "INACTIVE",
+    "time": 0,
+    "elapsed": 0,
+    "line": 0,
+    "dialogue": null,
+    "readyScene": null,
+    "completedRuns": 0,
+    "duration": 28.85,
+    "k7Outside": false,
+    "ravokOutside": false,
+    "returnPoint": null
+  },
+  "eight": {
+    "state": "RAVOK_PRESENT",
+    "medals": 8,
+    "arrived": true,
+    "ravokArrivalSeen": true,
+    "ravokArrivalPending": false,
+    "ravokAvailable": true,
+    "metK7": true,
+    "metRavok": false,
+    "k7Line": 1,
+    "preludeSeen": false,
+    "conversation": null,
+    "npcs": [
+      {
+        "id": "k7",
+        "x": 396,
+        "y": 113,
+        "height": 44,
+        "source": "K7.png",
+        "crop": [
+          37,
+          66,
+          99,
+          172
+        ],
+        "scale": 0.2619047619047619,
+        "footprint": {
+          "width": 18,
+          "height": 8
+        }
+      },
+      {
+        "id": "ravok",
+        "x": 350,
+        "y": 114,
+        "height": 44,
+        "source": "Ravok.png",
+        "crop": [
+          158,
+          15,
+          84,
+          136
+        ],
+        "scale": 0.3333333333333333,
+        "footprint": {
+          "width": 18,
+          "height": 8
+        }
+      }
+    ],
+    "assetErrors": []
+  },
+  "renderIssues": []
+}

@@ -1,0 +1,251 @@
+{
+  "etapas": [
+    {
+      "etapa": 1,
+      "resultado": "APROVADO",
+      "verificacao": "0–3 medalhas: Ravok não aparece",
+      "evidencia": "Verificados 0, 1, 2 e 3 medalhas: sem nave, K7, Ravok, colisores ou chegada ativa."
+    },
+    {
+      "etapa": 2,
+      "resultado": "APROVADO",
+      "verificacao": "Quarta medalha: chegada acontece uma vez",
+      "evidencia": "Vitória preparada na Arquearia chamou finishArcoRound; a quarta medalha foi salva antes da chegada. Reload e quinta/sétima/oitava medalhas não repetiram a cutscene."
+    },
+    {
+      "etapa": 3,
+      "resultado": "APROVADO",
+      "verificacao": "Nave e K7 permanecem na Escalada",
+      "evidencia": "Nave desenhada e sólida, K7 acessível por navegação real com teclado; ambos persistem depois de reload."
+    },
+    {
+      "etapa": 4,
+      "resultado": "APROVADO",
+      "verificacao": "Ravok continua dentro da nave",
+      "evidencia": "A chegada só mostra K7 saindo. O sprite exterior de Ravok não fica visível com quatro medalhas."
+    },
+    {
+      "etapa": 5,
+      "resultado": "APROVADO",
+      "verificacao": "K7 possui apenas diálogos vagos",
+      "evidencia": "Quatro respostas curtas verificadas; nenhuma explica Ravok, armamento ou proposta."
+    },
+    {
+      "etapa": 6,
+      "resultado": "APROVADO",
+      "verificacao": "Ravok não oferece proposta antes de oito",
+      "evidencia": "Com quatro e sete medalhas, interagir com Ravok retorna nulo; aproximar-se não inicia saída ou conversa."
+    },
+    {
+      "etapa": 7,
+      "resultado": "APROVADO",
+      "verificacao": "Reload mantém a progressão",
+      "evidencia": "Nave e K7 continuam no local, Ravok continua oculto, e a chegada não reinicia."
+    },
+    {
+      "etapa": 8,
+      "resultado": "APROVADO",
+      "verificacao": "Com oito medalhas, Ravok sai da nave",
+      "evidencia": "Registradas abertura da porta, posições intermediárias da saída e pausa diante do jogador. Movimento ficou bloqueado."
+    },
+    {
+      "etapa": 9,
+      "resultado": "APROVADO",
+      "verificacao": "Conversa completa inicia",
+      "evidencia": "Todas as 29 falas foram percorridas em ordem, incluindo a objeção de Zorp e a lei intergaláctica; textos cabem no painel."
+    },
+    {
+      "etapa": 10,
+      "resultado": "APROVADO",
+      "verificacao": "Proposta aparece ao fim da conversa",
+      "evidencia": "Menu AJUDAR RAVOK? aparece depois de PROTOCOLO DISPONÍVEL; a seleção inicial é NÃO, sem gravar decisão antecipada."
+    },
+    {
+      "etapa": 11,
+      "resultado": "APROVADO",
+      "verificacao": "Escolhas SIM e NÃO funcionam",
+      "evidencia": "Ambas as escolhas foram acionadas pelos controles reais, em fixtures independentes da mesma versão do jogo."
+    },
+    {
+      "etapa": 12,
+      "resultado": "APROVADO",
+      "verificacao": "SIM exige confirmação extra",
+      "evidencia": "Confirmação inicia em NÃO. Cancelar volta à escolha; somente um novo input na opção SIM salva accept."
+    },
+    {
+      "etapa": 13,
+      "resultado": "APROVADO",
+      "verificacao": "Duas naves decolam",
+      "evidencia": "Revisados embarques separados, plano das duas decolagens e ambas as naves nas nuvens, atmosfera e espaço."
+    },
+    {
+      "etapa": 14,
+      "resultado": "APROVADO",
+      "verificacao": "Arma aparece",
+      "evidencia": "Mecanismo abre na nave de Ravok, carrega e dispara; não há nave ou arma adicional criada por este QA."
+    },
+    {
+      "etapa": 15,
+      "resultado": "APROVADO",
+      "verificacao": "Destruição distante e não gráfica",
+      "evidencia": "Câmera fixa no espaço; Terra como disco distante. Clarão encobre a transição para fragmentos abstratos. Sem pessoas, cidades, vítimas ou destruição de superfície em detalhe."
+    },
+    {
+      "etapa": 16,
+      "resultado": "APROVADO",
+      "verificacao": "Final secreto aparece",
+      "evidencia": "Ending card e os três parágrafos pedidos foram exibidos dentro dos limites do painel."
+    },
+    {
+      "etapa": 17,
+      "resultado": "APROVADO",
+      "verificacao": "SIM volta ao menu",
+      "evidencia": "Espaço fecha a card e salva a conclusão. Reload na card a restaura; continuar depois de concluir não libera o Overworld."
+    },
+    {
+      "etapa": 18,
+      "resultado": "APROVADO",
+      "verificacao": "Zorp recusa",
+      "evidencia": "A rota NÃO começa com a recusa e mantém todas as 15 falas previstas."
+    },
+    {
+      "etapa": 19,
+      "resultado": "APROVADO",
+      "verificacao": "Autoridades são chamadas",
+      "evidencia": "Comunicador, transmissão de coordenadas, três naves oficiais e cerco observados no navegador."
+    },
+    {
+      "etapa": 20,
+      "resultado": "APROVADO",
+      "verificacao": "Ravok é preso",
+      "evidencia": "Nave desativada sem destruição, acusação integral pelo holograma, custódia e retirada de Ravok/K7/equipamentos."
+    },
+    {
+      "etapa": 21,
+      "resultado": "APROVADO",
+      "verificacao": "NÃO não exibe ending card",
+      "evidencia": "Todas as fases da recusa foram acompanhadas; nenhuma card, crédito ou menu foi aberto."
+    },
+    {
+      "etapa": 22,
+      "resultado": "APROVADO",
+      "verificacao": "Jogador recupera controle",
+      "evidencia": "Retorno na mesma posição lógica da conversa, seguido de movimento real por teclado."
+    },
+    {
+      "etapa": 23,
+      "resultado": "APROVADO",
+      "verificacao": "Ravok permanece removido",
+      "evidencia": "Após reload e retorno à ilha, Ravok, K7 e nave continuam ausentes. Não há prompts ou colisores deles; NPCs normais permanecem."
+    },
+    {
+      "etapa": 24,
+      "resultado": "APROVADO",
+      "verificacao": "Save registra prisão",
+      "evidencia": "ravokArrested permanece true e ravokEndingCompleted permanece false; a campanha continua aberta."
+    },
+    {
+      "etapa": 25,
+      "resultado": "APROVADO",
+      "verificacao": "Final padrão continua disponível",
+      "evidencia": "E na nave central iniciou a despedida; confirmação de embarque iniciou o final padrão. Este QA verificou sua entrada, sem repetir esse filme inteiro."
+    },
+    {
+      "etapa": 26,
+      "resultado": "APROVADO",
+      "verificacao": "Férias Merecidas continua disponível",
+      "evidencia": "Interação com Capitão, oferta, pagamento existente de 100 moedas e início da viagem funcionaram após a prisão."
+    },
+    {
+      "etapa": 27,
+      "resultado": "APROVADO",
+      "verificacao": "Cutscenes bloqueiam movimento",
+      "evidencia": "Teclas de movimento/ação foram pressionadas durante chegada, saída, proposta, SIM e NÃO. Posição e frame do minigame ficaram congelados até a liberação prevista."
+    },
+    {
+      "etapa": 28,
+      "resultado": "APROVADO",
+      "verificacao": "Diálogo avança corretamente",
+      "evidencia": "Três falas da chegada, 29 da proposta e 15 da recusa avançaram por novos toques. Segurar Espaço não pulou falas ou tomadas essenciais."
+    },
+    {
+      "etapa": 29,
+      "resultado": "APROVADO",
+      "verificacao": "Escolha rejeita input duplicado",
+      "evidencia": "Testados keydown repetido, repeat=true e duplicado com repeat=false sem keyup; nenhum confirmou uma escolha adicional."
+    },
+    {
+      "etapa": 30,
+      "resultado": "APROVADO",
+      "verificacao": "Espaço de avanço não seleciona SIM",
+      "evidencia": "O Espaço da última fala foi mantido ao abrir o menu. Mesmo mudando o destaque para SIM, o toque antigo não selecionou nem confirmou SIM; a decisão só veio em novos inputs."
+    }
+  ],
+  "aprovadas": 30,
+  "testesLocais": 34,
+  "adaptadoresMinigames": 8,
+  "errosExecucao": 0,
+  "errosHTTP": 0,
+  "falhasCarregamento": 0,
+  "corrigido": "Conclusão da chegada aguardava gravação real; rollback e retry adicionados no fade já existente.",
+  "flagsAntesEscolha": {
+    "version": 7,
+    "arrived": true,
+    "metK7": true,
+    "metRavok": true,
+    "k7Line": 0,
+    "preludeSeen": true,
+    "ravokArrivalSeen": true,
+    "ravokArrivalPending": false,
+    "ravokExited": true,
+    "ravokProposalSeen": true,
+    "ravokChoice": null,
+    "ravokChoicePosition": null,
+    "ravokEndingCompleted": false,
+    "ravokBadEndingCardReady": false,
+    "ravokBadEndingSeen": false,
+    "ravokArrested": false
+  },
+  "flagsSIM": {
+    "version": 7,
+    "arrived": true,
+    "metK7": false,
+    "metRavok": true,
+    "k7Line": 0,
+    "preludeSeen": false,
+    "ravokArrivalSeen": true,
+    "ravokArrivalPending": false,
+    "ravokExited": true,
+    "ravokProposalSeen": true,
+    "ravokChoice": "accept",
+    "ravokChoicePosition": [
+      368,
+      132
+    ],
+    "ravokEndingCompleted": true,
+    "ravokBadEndingCardReady": true,
+    "ravokBadEndingSeen": true,
+    "ravokArrested": false
+  },
+  "flagsNAO": {
+    "version": 7,
+    "arrived": true,
+    "metK7": false,
+    "metRavok": true,
+    "k7Line": 0,
+    "preludeSeen": false,
+    "ravokArrivalSeen": true,
+    "ravokArrivalPending": false,
+    "ravokExited": true,
+    "ravokProposalSeen": true,
+    "ravokChoice": "refuse",
+    "ravokChoicePosition": [
+      368,
+      132
+    ],
+    "ravokEndingCompleted": false,
+    "ravokBadEndingCardReady": false,
+    "ravokBadEndingSeen": false,
+    "ravokArrested": true
+  }
+}

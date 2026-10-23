@@ -1,0 +1,255 @@
+TAP version 13
+# Subtest: soft capture flat: no teleport, no frozen velocity, contact in 100ms
+ok 1 - soft capture flat: no teleport, no frozen velocity, contact in 100ms
+  ---
+  duration_ms: 7.8978
+  ...
+# Subtest: soft capture ascending: no teleport, no frozen velocity, contact in 100ms
+ok 2 - soft capture ascending: no teleport, no frozen velocity, contact in 100ms
+  ---
+  duration_ms: 1.1705
+  ...
+# Subtest: soft capture descending: no teleport, no frozen velocity, contact in 100ms
+ok 3 - soft capture descending: no teleport, no frozen velocity, contact in 100ms
+  ---
+  duration_ms: 1.2494
+  ...
+# Subtest: soft capture curved: no teleport, no frozen velocity, contact in 100ms
+ok 4 - soft capture curved: no teleport, no frozen velocity, contact in 100ms
+  ---
+  duration_ms: 0.5938
+  ...
+# Subtest: capture before first post leaves x unchanged; no hold never captures
+ok 5 - capture before first post leaves x unchanged; no hold never captures
+  ---
+  duration_ms: 0.5719
+  ...
+# Subtest: holding on flat ground gives exactly the same height and one takeoff as a tap
+ok 6 - holding on flat ground gives exactly the same height and one takeoff as a tap
+  ---
+  duration_ms: 3.7729
+  ...
+# Subtest: intro has five distinct rails, safe first transfer and two real gaps
+ok 7 - intro has five distinct rails, safe first transfer and two real gaps
+  ---
+  duration_ms: 333.2733
+  ...
+# Subtest: release launches once immediately with strong impulse, tangent and preserved momentum
+ok 8 - release launches once immediately with strong impulse, tangent and preserved momentum
+  ---
+  duration_ms: 6.7618
+  ...
+# Subtest: huge stair exit repeats ten times; early release and no release fail
+ok 9 - huge stair exit repeats ten times; early release and no release fail
+  ---
+  duration_ms: 1281.7787
+  ...
+# Subtest: Mega Air needs only SPACE and finite sustained execution
+ok 10 - Mega Air needs only SPACE and finite sustained execution
+  ---
+  duration_ms: 532.5317
+  ...
+# Subtest: full line survives frame scheduling at 30, 60, 90 and 120 Hz
+ok 11 - full line survives frame scheduling at 30, 60, 90 and 120 Hz
+  ---
+  duration_ms: 6999.0419
+  ...
+# Subtest: every gameplay pose uses an existing Skate 2.0 frame with its board attached
+ok 12 - every gameplay pose uses an existing Skate 2.0 frame with its board attached
+  ---
+  duration_ms: 19.6739
+  ...
+# Subtest: ride, normal jump, Ollie, Super Jump, air catch and landing follow physical state
+ok 13 - ride, normal jump, Ollie, Super Jump, air catch and landing follow physical state
+  ---
+  duration_ms: 1.1339
+  ...
+# Subtest: grind, jump out, bench top, crash and respawn use their own poses
+ok 14 - grind, jump out, bench top, crash and respawn use their own poses
+  ---
+  duration_ms: 0.7706
+  ...
+# Subtest: push, board flip trick and near-fail keep the board attached
+ok 15 - push, board flip trick and near-fail keep the board attached
+  ---
+  duration_ms: 0.3868
+  ...
+# Subtest: frame anchor keeps board contact fixed through every gameplay animation
+ok 16 - frame anchor keeps board contact fixed through every gameplay animation
+  ---
+  duration_ms: 1.2712
+  ...
+# Subtest: Mega Hold sustenta sem interpretar Ollie ou sequência aérea
+ok 17 - Mega Hold sustenta sem interpretar Ollie ou sequência aérea
+  ---
+  duration_ms: 4.3919
+  ...
+# Subtest: um Space inicia Normal Jump imediatamente e o segundo Space no ar faz upgrade Ollie
+ok 18 - um Space inicia Normal Jump imediatamente e o segundo Space no ar faz upgrade Ollie
+  ---
+  duration_ms: 0.4457
+  ...
+# Subtest: hold permanece intenção de Grind sem produzir Super Jump
+ok 19 - hold permanece intenção de Grind sem produzir Super Jump
+  ---
+  duration_ms: 0.3912
+  ...
+# Subtest: hold não gera impulso; release do Grind é resolvido pela travessia
+ok 20 - hold não gera impulso; release do Grind é resolvido pela travessia
+  ---
+  duration_ms: 0.3111
+  ...
+# Subtest: rail capturável prioriza Grind sobre Ollie e Super Jump no mesmo pressionamento
+ok 21 - rail capturável prioriza Grind sobre Ollie e Super Jump no mesmo pressionamento
+  ---
+  duration_ms: 0.5102
+  ...
+# Subtest: novo hold aéreo após captura e Jump Out não adiciona energia
+ok 22 - novo hold aéreo após captura e Jump Out não adiciona energia
+  ---
+  duration_ms: 0.3066
+  ...
+# Subtest: RAMP input holds without jumping, charging or leaving a double-tap pending
+ok 23 - RAMP input holds without jumping, charging or leaving a double-tap pending
+  ---
+  duration_ms: 3.4339
+  ...
+# Subtest: start-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 24 - start-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 61.4854
+  ...
+# Subtest: first-rail-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 25 - first-rail-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 36.1126
+  ...
+# Subtest: transfer-bank: follow surface, lip launch, planned landing, weaker early release
+ok 26 - transfer-bank: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 48.5699
+  ...
+# Subtest: chain-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 27 - chain-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 21.0593
+  ...
+# Subtest: street-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 28 - street-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 20.8154
+  ...
+# Subtest: bench-bank: follow surface, lip launch, planned landing, weaker early release
+ok 29 - bench-bank: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 34.2046
+  ...
+# Subtest: bench-exit-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 30 - bench-exit-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 60.0247
+  ...
+# Subtest: stair-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 31 - stair-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 49.2869
+  ...
+# Subtest: danger-chain-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 32 - danger-chain-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 24.1022
+  ...
+# Subtest: speed-kicker-first: follow surface, lip launch, planned landing, weaker early release
+ok 33 - speed-kicker-first: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 24.1849
+  ...
+# Subtest: ascent-bank-1: follow surface, lip launch, planned landing, weaker early release
+ok 34 - ascent-bank-1: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 41.3489
+  ...
+# Subtest: ascent-bank-2: follow surface, lip launch, planned landing, weaker early release
+ok 35 - ascent-bank-2: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 31.3884
+  ...
+# Subtest: ascent-bank-3: follow surface, lip launch, planned landing, weaker early release
+ok 36 - ascent-bank-3: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 35.4095
+  ...
+# Subtest: huge-launch: follow surface, lip launch, planned landing, weaker early release
+ok 37 - huge-launch: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 108.44
+  ...
+# Subtest: void-entry-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 38 - void-entry-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 21.2154
+  ...
+# Subtest: advanced-launch: follow surface, lip launch, planned landing, weaker early release
+ok 39 - advanced-launch: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 44.7959
+  ...
+# Subtest: release-small: follow surface, lip launch, planned landing, weaker early release
+ok 40 - release-small: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 33.0346
+  ...
+# Subtest: release-medium: follow surface, lip launch, planned landing, weaker early release
+ok 41 - release-medium: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 32.1731
+  ...
+# Subtest: release-curve: follow surface, lip launch, planned landing, weaker early release
+ok 42 - release-curve: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 37.6879
+  ...
+# Subtest: final-medium-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 43 - final-medium-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 40.8916
+  ...
+# Subtest: final-big-ramp: follow surface, lip launch, planned landing, weaker early release
+ok 44 - final-big-ramp: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 187.4291
+  ...
+# Subtest: finish-landing-bank: follow surface, lip launch, planned landing, weaker early release
+ok 45 - finish-landing-bank: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 17.7066
+  ...
+# Subtest: press/double press on a ramp cannot bypass riding to its physical lip
+ok 46 - press/double press on a ramp cannot bypass riding to its physical lip
+  ---
+  duration_ms: 1.0172
+  ...
+# Subtest: ramp impulse uses current rider speed and multiplier, not configured cruise speed
+ok 47 - ramp impulse uses current rider speed and multiplier, not configured cruise speed
+  ---
+  duration_ms: 0.3519
+  ...
+# Subtest: authored quarter-pipe uses the same surface/hold/lip pipeline
+ok 48 - authored quarter-pipe uses the same surface/hold/lip pipeline
+  ---
+  duration_ms: 1.0757
+  ...
+# Subtest: complete keyboard line preserves grind, Super Jump Out, Mega Air and finish at 30/60/144 Hz
+ok 49 - complete keyboard line preserves grind, Super Jump Out, Mega Air and finish at 30/60/144 Hz
+  ---
+  duration_ms: 5884.8882
+  ...
+1..49
+# tests 49
+# suites 0
+# pass 49
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9048.6654

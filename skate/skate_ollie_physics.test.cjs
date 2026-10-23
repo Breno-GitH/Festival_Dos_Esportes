@@ -149,8 +149,10 @@ test("impulso de rampa mantém avanço e superfície inclinada é amostrada", ()
         surfacePoints: [{ x: 400, y: 250 }, { x: 520, y: 205 }], collisionEnabled: true };
     const simulation = physics.createSimulation({ startX: 410, ramps: [ramp], obstacle: null });
     const speed = simulation.config.forwardSpeed;
-    assert.equal(simulation.launchImmediate("normal", ramp), true);
-    assert.equal(simulation.state.player.jumpTier, "normal");
+    assert.equal(simulation.launchImmediate("normal", ramp), false);
+    while(!simulation.state.rampLaunches.length) simulation.step({spaceHeld:true},FIXED);
+    assert.equal(simulation.state.player.jumpTier, "ramp");
+    assert.equal(simulation.state.rampLaunches[0].x,520);
     assert.equal(simulation.config.forwardSpeed, speed);
     assert.ok(physics.rampSurfaceAt([ramp], 460));
 });

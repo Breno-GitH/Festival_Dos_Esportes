@@ -1,0 +1,696 @@
+{
+  "initial": {
+    "ready": true,
+    "failures": 0,
+    "debug": false,
+    "hoops": {
+      "left": {
+        "side": "left",
+        "x": 60,
+        "rimX": 95.6,
+        "rimY": 188.39999999999998,
+        "netTimer": 0,
+        "rimLeft": {
+          "x": 81.2,
+          "y": 188.39999999999998,
+          "radius": 1.6,
+          "id": "left-rim-left"
+        },
+        "rimRight": {
+          "x": 110,
+          "y": 188.39999999999998,
+          "radius": 1.6,
+          "id": "left-rim-right"
+        },
+        "opening": {
+          "left": 82.8,
+          "right": 108.4
+        },
+        "backboard": {
+          "a": {
+            "x": 69.6,
+            "y": 150.39999999999998
+          },
+          "b": {
+            "x": 83.2,
+            "y": 196.4
+          },
+          "radius": 1.3,
+          "id": "left-backboard"
+        }
+      },
+      "right": {
+        "side": "right",
+        "x": 390,
+        "rimX": 351.4,
+        "rimY": 188.39999999999998,
+        "netTimer": 0,
+        "rimLeft": {
+          "x": 336.8,
+          "y": 188.39999999999998,
+          "radius": 1.6,
+          "id": "right-rim-left"
+        },
+        "rimRight": {
+          "x": 366,
+          "y": 188.39999999999998,
+          "radius": 1.6,
+          "id": "right-rim-right"
+        },
+        "opening": {
+          "left": 338.40000000000003,
+          "right": 364.4
+        },
+        "backboard": {
+          "a": {
+            "x": 376.4,
+            "y": 150.39999999999998
+          },
+          "b": {
+            "x": 363.2,
+            "y": 196.4
+          },
+          "radius": 1.3,
+          "id": "right-backboard"
+        }
+      }
+    }
+  },
+  "results": [
+    {
+      "name": "physics-swoosh",
+      "score": {
+        "zorp": 2,
+        "master": 0
+      },
+      "baskets": [
+        {
+          "shotId": 1,
+          "scorer": "zorp",
+          "points": 2,
+          "kind": "SWOOSH",
+          "crossing": {
+            "x": 351.4,
+            "y": 188.39999999999998,
+            "vy": 4.384974344280713,
+            "hoop": "right",
+            "shotId": 1
+          },
+          "rimTouched": false,
+          "backboardTouched": false
+        }
+      ],
+      "rimHits": 0,
+      "boardHits": 0,
+      "sounds": [
+        "SWOOSH"
+      ],
+      "flagsAtScore": {
+        "state": "REBOUND",
+        "owner": null,
+        "x": 351.4,
+        "y": 199.25,
+        "vx": 0,
+        "vy": 4.88,
+        "shotId": 1,
+        "scoredShotId": 1,
+        "previousX": 351.4,
+        "previousY": 195.19996288672232,
+        "radius": 8.8,
+        "wasAboveRim": true,
+        "crossedRimPlane": true,
+        "basketScored": true,
+        "enteredRimFromBelow": false,
+        "rimTouched": false,
+        "backboardTouched": false,
+        "scoreKind": "SWOOSH",
+        "scoreCrossing": {
+          "x": 351.4,
+          "y": 188.39999999999998,
+          "vy": 4.384974344280713,
+          "hoop": "right",
+          "shotId": 1
+        },
+        "pendingBasket": null
+      },
+      "underSeen": false,
+      "audio": "running"
+    },
+    {
+      "name": "physics-rim-in",
+      "score": {
+        "zorp": 2,
+        "master": 0
+      },
+      "baskets": [
+        {
+          "shotId": 1,
+          "scorer": "zorp",
+          "points": 2,
+          "kind": "NORMAL",
+          "crossing": {
+            "x": 348.2245466306288,
+            "y": 188.39999999999998,
+            "vy": 5.523841871311343,
+            "hoop": "right",
+            "shotId": 1
+          },
+          "rimTouched": true,
+          "backboardTouched": false
+        }
+      ],
+      "rimHits": 1,
+      "boardHits": 0,
+      "sounds": [
+        "RIM",
+        "BASKET"
+      ],
+      "flagsAtScore": {
+        "state": "REBOUND",
+        "owner": null,
+        "x": 354.82,
+        "y": 203.3,
+        "vx": 2.56,
+        "vy": 6.06,
+        "shotId": 1,
+        "scoredShotId": 1,
+        "previousX": 352.23245001274904,
+        "previousY": 197.2926416363922,
+        "radius": 8.8,
+        "wasAboveRim": true,
+        "crossedRimPlane": true,
+        "basketScored": true,
+        "enteredRimFromBelow": false,
+        "rimTouched": true,
+        "backboardTouched": false,
+        "scoreKind": "NORMAL",
+        "scoreCrossing": {
+          "x": 348.2245466306288,
+          "y": 188.39999999999998,
+          "vy": 5.523841871311343,
+          "hoop": "right",
+          "shotId": 1
+        },
+        "pendingBasket": null
+      },
+      "underSeen": false,
+      "audio": "running"
+    },
+    {
+      "name": "physics-board-in",
+      "score": {
+        "zorp": 2,
+        "master": 0
+      },
+      "baskets": [
+        {
+          "shotId": 1,
+          "scorer": "zorp",
+          "points": 2,
+          "kind": "NORMAL",
+          "crossing": {
+            "x": 353.6746124422558,
+            "y": 188.39999999999998,
+            "vy": 5.918445741915695,
+            "hoop": "right",
+            "shotId": 1
+          },
+          "rimTouched": false,
+          "backboardTouched": true
+        }
+      ],
+      "rimHits": 0,
+      "boardHits": 1,
+      "sounds": [
+        "BACKBOARD",
+        "BASKET"
+      ],
+      "flagsAtScore": {
+        "state": "REBOUND",
+        "owner": null,
+        "x": 347.7,
+        "y": 199.22,
+        "vx": -3.67,
+        "vy": 4.87,
+        "shotId": 1,
+        "scoredShotId": 1,
+        "previousX": 352.5983066070259,
+        "previousY": 192.92627764315708,
+        "radius": 8.8,
+        "wasAboveRim": true,
+        "crossedRimPlane": true,
+        "basketScored": true,
+        "enteredRimFromBelow": false,
+        "rimTouched": false,
+        "backboardTouched": true,
+        "scoreKind": "NORMAL",
+        "scoreCrossing": {
+          "x": 353.6746124422558,
+          "y": 188.39999999999998,
+          "vy": 5.918445741915695,
+          "hoop": "right",
+          "shotId": 1
+        },
+        "pendingBasket": null
+      },
+      "underSeen": false,
+      "audio": "running"
+    },
+    {
+      "name": "physics-rim-out",
+      "score": {
+        "zorp": 0,
+        "master": 0
+      },
+      "baskets": [],
+      "rimHits": 1,
+      "boardHits": 0,
+      "sounds": [
+        "RIM"
+      ],
+      "flagsAtScore": null,
+      "underSeen": false,
+      "audio": "running"
+    },
+    {
+      "name": "physics-outside",
+      "score": {
+        "zorp": 0,
+        "master": 0
+      },
+      "baskets": [],
+      "rimHits": 0,
+      "boardHits": 0,
+      "sounds": [],
+      "flagsAtScore": null,
+      "underSeen": false,
+      "audio": "running"
+    },
+    {
+      "name": "physics-under",
+      "score": {
+        "zorp": 0,
+        "master": 0
+      },
+      "baskets": [],
+      "rimHits": 0,
+      "boardHits": 0,
+      "sounds": [],
+      "flagsAtScore": null,
+      "underSeen": true,
+      "audio": "running"
+    },
+    {
+      "name": "physics-net",
+      "score": {
+        "zorp": 0,
+        "master": 0
+      },
+      "baskets": [],
+      "rimHits": 0,
+      "boardHits": 0,
+      "sounds": [],
+      "flagsAtScore": null,
+      "underSeen": false,
+      "audio": "running"
+    },
+    {
+      "name": "physics-lateral",
+      "score": {
+        "zorp": 0,
+        "master": 0
+      },
+      "baskets": [],
+      "rimHits": 1,
+      "boardHits": 0,
+      "sounds": [
+        "RIM"
+      ],
+      "flagsAtScore": null,
+      "underSeen": false,
+      "audio": "running"
+    },
+    {
+      "name": "physics-repeated",
+      "score": {
+        "zorp": 2,
+        "master": 0
+      },
+      "baskets": [
+        {
+          "shotId": 1,
+          "scorer": "zorp",
+          "points": 2,
+          "kind": "NORMAL",
+          "crossing": {
+            "x": 351.6097759288688,
+            "y": 188.39999999999998,
+            "vy": 4.235854492999992,
+            "hoop": "right",
+            "shotId": 1
+          },
+          "rimTouched": true,
+          "backboardTouched": true
+        }
+      ],
+      "rimHits": 2,
+      "boardHits": 1,
+      "sounds": [
+        "RIM",
+        "BACKBOARD",
+        "BASKET"
+      ],
+      "flagsAtScore": {
+        "state": "REBOUND",
+        "owner": null,
+        "x": 342.68,
+        "y": 202.01,
+        "vx": -1.52,
+        "vy": 4.84,
+        "shotId": 1,
+        "scoredShotId": 1,
+        "previousX": 344.19753830626104,
+        "previousY": 197.26330818853674,
+        "radius": 8.8,
+        "wasAboveRim": true,
+        "crossedRimPlane": true,
+        "basketScored": true,
+        "enteredRimFromBelow": false,
+        "rimTouched": true,
+        "backboardTouched": true,
+        "scoreKind": "NORMAL",
+        "scoreCrossing": {
+          "x": 351.6097759288688,
+          "y": 188.39999999999998,
+          "vy": 4.235854492999992,
+          "hoop": "right",
+          "shotId": 1
+        },
+        "pendingBasket": null
+      },
+      "underSeen": false,
+      "audio": "running"
+    },
+    {
+      "name": "keyboard-two",
+      "score": {
+        "zorp": 2,
+        "master": 0
+      },
+      "baskets": [
+        {
+          "shotId": 1,
+          "scorer": "zorp",
+          "points": 2,
+          "kind": "NORMAL",
+          "crossing": {
+            "x": 349.6139804586615,
+            "y": 188.39999999999998,
+            "vy": 4.331526280489703,
+            "hoop": "right",
+            "shotId": 1
+          },
+          "rimTouched": false,
+          "backboardTouched": true
+        }
+      ],
+      "rimHits": 0,
+      "boardHits": 1,
+      "sounds": [
+        "BACKBOARD",
+        "BASKET"
+      ],
+      "flagsAtScore": {
+        "state": "REBOUND",
+        "owner": null,
+        "x": 351.15,
+        "y": 202.65,
+        "vx": -1.49,
+        "vy": 4.94,
+        "shotId": 1,
+        "scoredShotId": 1,
+        "previousX": 353.0644728725559,
+        "previousY": 196.47805191024494,
+        "radius": 8.8,
+        "wasAboveRim": true,
+        "crossedRimPlane": true,
+        "basketScored": true,
+        "enteredRimFromBelow": false,
+        "rimTouched": false,
+        "backboardTouched": true,
+        "scoreKind": "NORMAL",
+        "scoreCrossing": {
+          "x": 349.6139804586615,
+          "y": 188.39999999999998,
+          "vy": 4.331526280489703,
+          "hoop": "right",
+          "shotId": 1
+        },
+        "pendingBasket": null
+      },
+      "underSeen": false,
+      "audio": "running"
+    },
+    {
+      "name": "keyboard-three",
+      "score": {
+        "zorp": 3,
+        "master": 0
+      },
+      "baskets": [
+        {
+          "shotId": 1,
+          "scorer": "zorp",
+          "points": 3,
+          "kind": "NORMAL",
+          "crossing": {
+            "x": 349.11829761044226,
+            "y": 188.39999999999998,
+            "vy": 4.7412430997375585,
+            "hoop": "right",
+            "shotId": 1
+          },
+          "rimTouched": false,
+          "backboardTouched": true
+        }
+      ],
+      "rimHits": 0,
+      "boardHits": 1,
+      "sounds": [
+        "BACKBOARD",
+        "BASKET"
+      ],
+      "flagsAtScore": {
+        "state": "REBOUND",
+        "owner": null,
+        "x": 348.54,
+        "y": 203.47,
+        "vx": -2.75,
+        "vy": 4.91,
+        "shotId": 1,
+        "scoredShotId": 1,
+        "previousX": 351.3041625553047,
+        "previousY": 198.62775961429108,
+        "radius": 8.8,
+        "wasAboveRim": true,
+        "crossedRimPlane": true,
+        "basketScored": true,
+        "enteredRimFromBelow": false,
+        "rimTouched": false,
+        "backboardTouched": true,
+        "scoreKind": "NORMAL",
+        "scoreCrossing": {
+          "x": 349.11829761044226,
+          "y": 188.39999999999998,
+          "vy": 4.7412430997375585,
+          "hoop": "right",
+          "shotId": 1
+        },
+        "pendingBasket": null
+      },
+      "underSeen": false,
+      "audio": "running"
+    },
+    {
+      "name": "dunk",
+      "score": {
+        "zorp": 2,
+        "master": 0
+      },
+      "baskets": [
+        {
+          "shotId": 1,
+          "scorer": "zorp",
+          "points": 2,
+          "kind": "SWOOSH",
+          "crossing": {
+            "x": 350.5877258829593,
+            "y": 188.39999999999998,
+            "vy": 5.188448708429135,
+            "hoop": "right",
+            "shotId": 1
+          },
+          "rimTouched": false,
+          "backboardTouched": false
+        }
+      ],
+      "rimHits": 0,
+      "boardHits": 0,
+      "sounds": [
+        "SWOOSH"
+      ],
+      "flagsAtScore": {
+        "state": "REBOUND",
+        "owner": null,
+        "x": 350.7,
+        "y": 200.58,
+        "vx": 0.05,
+        "vy": 5.66,
+        "shotId": 1,
+        "scoredShotId": 1,
+        "previousX": 350.6501999999283,
+        "previousY": 195.04680167220246,
+        "radius": 8.8,
+        "wasAboveRim": true,
+        "crossedRimPlane": true,
+        "basketScored": true,
+        "enteredRimFromBelow": false,
+        "rimTouched": false,
+        "backboardTouched": false,
+        "scoreKind": "SWOOSH",
+        "scoreCrossing": {
+          "x": 350.5877258829593,
+          "y": 188.39999999999998,
+          "vy": 5.188448708429135,
+          "hoop": "right",
+          "shotId": 1
+        },
+        "pendingBasket": null
+      },
+      "underSeen": false,
+      "audio": "running"
+    },
+    {
+      "name": "master-swoosh",
+      "score": {
+        "zorp": 0,
+        "master": 3
+      },
+      "baskets": [
+        {
+          "shotId": 1,
+          "scorer": "master",
+          "points": 3,
+          "kind": "SWOOSH",
+          "crossing": {
+            "x": 95.6,
+            "y": 188.39999999999998,
+            "vy": 4.384974344280708,
+            "hoop": "left",
+            "shotId": 1
+          },
+          "rimTouched": false,
+          "backboardTouched": false
+        }
+      ],
+      "rimHits": 0,
+      "boardHits": 0,
+      "sounds": [
+        "SWOOSH"
+      ],
+      "flagsAtScore": {
+        "state": "REBOUND",
+        "owner": null,
+        "x": 95.6,
+        "y": 199.13,
+        "vx": 0,
+        "vy": 4.87,
+        "shotId": 1,
+        "scoredShotId": 1,
+        "previousX": 95.6,
+        "previousY": 194.32951449999996,
+        "radius": 8.8,
+        "wasAboveRim": true,
+        "crossedRimPlane": true,
+        "basketScored": true,
+        "enteredRimFromBelow": false,
+        "rimTouched": false,
+        "backboardTouched": false,
+        "scoreKind": "SWOOSH",
+        "scoreCrossing": {
+          "x": 95.6,
+          "y": 188.39999999999998,
+          "vy": 4.384974344280708,
+          "hoop": "left",
+          "shotId": 1
+        },
+        "pendingBasket": null
+      },
+      "underSeen": false,
+      "audio": "running"
+    },
+    {
+      "name": "master-board-in",
+      "score": {
+        "zorp": 0,
+        "master": 2
+      },
+      "baskets": [
+        {
+          "shotId": 1,
+          "scorer": "master",
+          "points": 2,
+          "kind": "NORMAL",
+          "crossing": {
+            "x": 93.32538755774483,
+            "y": 188.39999999999998,
+            "vy": 5.918445741915703,
+            "hoop": "left",
+            "shotId": 1
+          },
+          "rimTouched": false,
+          "backboardTouched": true
+        }
+      ],
+      "rimHits": 0,
+      "boardHits": 1,
+      "sounds": [
+        "BACKBOARD",
+        "BASKET"
+      ],
+      "flagsAtScore": {
+        "state": "REBOUND",
+        "owner": null,
+        "x": 98.89,
+        "y": 199.98,
+        "vx": 3.75,
+        "vy": 4.83,
+        "shotId": 1,
+        "scoredShotId": 1,
+        "previousX": 94.38468853190426,
+        "previousY": 194.3411602343543,
+        "radius": 8.8,
+        "wasAboveRim": true,
+        "crossedRimPlane": true,
+        "basketScored": true,
+        "enteredRimFromBelow": false,
+        "rimTouched": false,
+        "backboardTouched": true,
+        "scoreKind": "NORMAL",
+        "scoreCrossing": {
+          "x": 93.32538755774483,
+          "y": 188.39999999999998,
+          "vy": 5.918445741915703,
+          "hoop": "left",
+          "shotId": 1
+        },
+        "pendingBasket": null
+      },
+      "underSeen": false,
+      "audio": "running"
+    }
+  ],
+  "errors": [],
+  "http": [],
+  "failed": []
+}

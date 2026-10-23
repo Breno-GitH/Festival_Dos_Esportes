@@ -1,0 +1,1195 @@
+{
+  "cases": [
+    {
+      "id": "start-kicker",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "start-kicker",
+        "x": 778.073,
+        "y": 216,
+        "entrySpeed": 230,
+        "speed": 227.55625,
+        "angle": -16.886791123944043,
+        "impulse": 77.17125,
+        "vy": -146.25082589285714,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.6250000000000002
+      },
+      "landing": {
+        "x": 849.5381562499991,
+        "y": 250,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "start-kicker",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "start-kicker",
+        "x": 778.073,
+        "y": 216,
+        "entrySpeed": 230,
+        "speed": 227.55625,
+        "angle": -16.886791123944043,
+        "impulse": 30.8685,
+        "vy": -99.94807589285713,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.6250000000000002
+      },
+      "landing": {
+        "x": 839.954822916666,
+        "y": 250,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "first-rail-kicker",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "first-rail-kicker",
+        "x": 1042.5,
+        "y": 199.888,
+        "entrySpeed": 230,
+        "speed": 227.0768,
+        "angle": -19.95750018656925,
+        "impulse": 90.83072,
+        "vy": -173.28921711304346,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.7416666666666665
+      },
+      "landing": {
+        "x": 1075.8883866666645,
+        "y": 193.10503430675266,
+        "mode": "GRIND",
+        "rail": "first-rail"
+      }
+    },
+    {
+      "id": "first-rail-kicker",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "first-rail-kicker",
+        "x": 1042.5,
+        "y": 199.888,
+        "entrySpeed": 230,
+        "speed": 227.0768,
+        "angle": -19.95750018656925,
+        "impulse": 36.332288,
+        "vy": -118.79078511304346,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.7416666666666665
+      },
+      "landing": {
+        "x": 1118.0550533333328,
+        "y": 250,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "transfer-bank",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "transfer-bank",
+        "x": 1795.25,
+        "y": 208.96,
+        "entrySpeed": 230,
+        "speed": 228.05262599469498,
+        "angle": -13.599153078953574,
+        "impulse": 44.61899204244032,
+        "vy": -99.78716045282803,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.8749999999999993
+      },
+      "landing": {
+        "x": 1862.489030946077,
+        "y": 250,
+        "mode": "MANUAL",
+        "rail": ""
+      }
+    },
+    {
+      "id": "transfer-bank",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "transfer-bank",
+        "x": 1795.25,
+        "y": 208.96,
+        "entrySpeed": 230,
+        "speed": 228.05262599469498,
+        "angle": -13.599153078953574,
+        "impulse": 17.84759681697613,
+        "vy": -73.01576522736383,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.8749999999999993
+      },
+      "landing": {
+        "x": 1856.7390309460768,
+        "y": 250,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "chain-kicker",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "chain-kicker",
+        "x": 3278.493,
+        "y": 201.28,
+        "entrySpeed": 230,
+        "speed": 227.379630124539,
+        "angle": -18.030679414315067,
+        "impulse": 276.80998449943877,
+        "vy": -350.82473394935283,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.7916666666666663
+      },
+      "landing": {
+        "x": 3357.7610813443393,
+        "y": 180.7354963356984,
+        "mode": "GRIND",
+        "rail": "three-c"
+      }
+    },
+    {
+      "id": "chain-kicker",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "chain-kicker",
+        "x": 3278.493,
+        "y": 201.28,
+        "entrySpeed": 230,
+        "speed": 227.379630124539,
+        "angle": -18.030679414315067,
+        "impulse": 110.72399379977551,
+        "vy": -184.73874324968958,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.7916666666666663
+      },
+      "landing": {
+        "x": 3375.012589831992,
+        "y": 250,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "street-kicker",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "street-kicker",
+        "x": 4947.653,
+        "y": 216,
+        "entrySpeed": 230,
+        "speed": 227.55625,
+        "angle": -16.886791123944043,
+        "impulse": 69.25625,
+        "vy": -138.33582589285714,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.6250000000000002
+      },
+      "landing": {
+        "x": 5017.201489583357,
+        "y": 250,
+        "mode": "MANUAL",
+        "rail": ""
+      }
+    },
+    {
+      "id": "street-kicker",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "street-kicker",
+        "x": 4947.653,
+        "y": 216,
+        "entrySpeed": 230,
+        "speed": 227.55625,
+        "angle": -16.886791123944043,
+        "impulse": 27.7025,
+        "vy": -96.78207589285714,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.6250000000000002
+      },
+      "landing": {
+        "x": 5009.534822916689,
+        "y": 250,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "bench-bank",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "bench-bank",
+        "x": 6451,
+        "y": 196.42,
+        "entrySpeed": 230,
+        "speed": 227.24572796934868,
+        "angle": -18.888156014772868,
+        "impulse": 61.25754406130269,
+        "vy": -139.00866861173486,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.8249999999999995
+      },
+      "landing": {
+        "x": 6532.744961845483,
+        "y": 250,
+        "mode": "MANUAL",
+        "rail": ""
+      }
+    },
+    {
+      "id": "bench-bank",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "bench-bank",
+        "x": 6451,
+        "y": 196.42,
+        "entrySpeed": 230,
+        "speed": 227.24572796934868,
+        "angle": -18.888156014772868,
+        "impulse": 24.50301762452108,
+        "vy": -102.25414217495324,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.8249999999999995
+      },
+      "landing": {
+        "x": 6525.078295178815,
+        "y": 250,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "bench-exit-kicker",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "bench-exit-kicker",
+        "x": 7238.912,
+        "y": 211.245,
+        "entrySpeed": 230,
+        "speed": 227.7718103189681,
+        "angle": -15.471755771974186,
+        "impulse": 495.1561093890611,
+        "vy": -558.2019227285243,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.7499999999999998
+      },
+      "landing": {
+        "x": 7339.6906163633985,
+        "y": 128.05812316646728,
+        "mode": "GRIND",
+        "rail": "bench-exit"
+      }
+    },
+    {
+      "id": "bench-exit-kicker",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "bench-exit-kicker",
+        "x": 7238.912,
+        "y": 211.245,
+        "entrySpeed": 230,
+        "speed": 227.7718103189681,
+        "angle": -15.471755771974186,
+        "impulse": 198.06244375562446,
+        "vy": -261.10825709508765,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.7499999999999998
+      },
+      "landing": {
+        "x": 7335.8572830300645,
+        "y": 250,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "stair-kicker",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "stair-kicker",
+        "x": 7990,
+        "y": 187.36,
+        "entrySpeed": 230,
+        "speed": 227.2595,
+        "angle": -18.800360137757934,
+        "impulse": 474.28069565217396,
+        "vy": -551.6477341304349,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.9416666666666658
+      },
+      "landing": {
+        "x": 8049.784762499985,
+        "y": 101.4855553830923,
+        "mode": "GRIND",
+        "rail": "stair-handrail"
+      }
+    },
+    {
+      "id": "stair-kicker",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "stair-kicker",
+        "x": 7990,
+        "y": 187.36,
+        "entrySpeed": 230,
+        "speed": 227.2595,
+        "angle": -18.800360137757934,
+        "impulse": 189.7122782608696,
+        "vy": -267.07931673913043,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.9416666666666658
+      },
+      "landing": {
+        "x": 8099.618095833326,
+        "y": 250,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "danger-chain-kicker",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "danger-chain-kicker",
+        "x": 8946.75,
+        "y": 199.366,
+        "entrySpeed": 230,
+        "speed": 227.31486363636364,
+        "angle": -18.44649778886348,
+        "impulse": 113.65743181818182,
+        "vy": -189.47996676787673,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.7999999999999996
+      },
+      "landing": {
+        "x": 8947.15990909089,
+        "y": 199.02968269563308,
+        "mode": "GRIND",
+        "rail": "danger-a"
+      }
+    },
+    {
+      "id": "danger-chain-kicker",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "danger-chain-kicker",
+        "x": 8946.75,
+        "y": 199.366,
+        "entrySpeed": 230,
+        "speed": 227.31486363636364,
+        "angle": -18.44649778886348,
+        "impulse": 45.46297272727273,
+        "vy": -121.28550767696764,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.7999999999999996
+      },
+      "landing": {
+        "x": 9021.909909090866,
+        "y": 250,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "speed-kicker-first",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "speed-kicker-first",
+        "x": 10762.863,
+        "y": 216,
+        "entrySpeed": 230,
+        "speed": 227.55625,
+        "angle": -16.886791123944043,
+        "impulse": 71.235,
+        "vy": -140.31457589285714,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.6250000000000002
+      },
+      "landing": {
+        "x": 10832.411489583255,
+        "y": 250,
+        "mode": "MANUAL",
+        "rail": ""
+      }
+    },
+    {
+      "id": "speed-kicker-first",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "speed-kicker-first",
+        "x": 10762.863,
+        "y": 216,
+        "entrySpeed": 230,
+        "speed": 227.55625,
+        "angle": -16.886791123944043,
+        "impulse": 28.494,
+        "vy": -97.57357589285714,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.6250000000000002
+      },
+      "landing": {
+        "x": 10824.744822916591,
+        "y": 250,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "ascent-bank-1",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "ascent-bank-1",
+        "x": 11394,
+        "y": 130.3,
+        "entrySpeed": 233.94543436099516,
+        "speed": 239.8439841485252,
+        "angle": -23.26562051239561,
+        "impulse": 12.513599172966533,
+        "vy": -115.63617425406747,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 1.3166666666666644
+      },
+      "landing": {
+        "x": 11427.517691871704,
+        "y": 130,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "ascent-bank-1",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "ascent-bank-1",
+        "x": 11394,
+        "y": 130.3,
+        "entrySpeed": 233.94543436099516,
+        "speed": 239.8439841485252,
+        "angle": -23.26562051239561,
+        "impulse": 5.005439669186614,
+        "vy": -108.12801475028755,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 1.3166666666666644
+      },
+      "landing": {
+        "x": 11423.44117823797,
+        "y": 130,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "ascent-bank-2",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "ascent-bank-2",
+        "x": 11744,
+        "y": 10.3,
+        "entrySpeed": 245.95802820310809,
+        "speed": 251.66199415842382,
+        "angle": -23.26562051239561,
+        "impulse": 13.13019099956994,
+        "vy": -121.33400098794411,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 1.249999999999998
+      },
+      "landing": {
+        "x": 11780.4088076057,
+        "y": 10,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "ascent-bank-2",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "ascent-bank-2",
+        "x": 11744,
+        "y": 10.3,
+        "entrySpeed": 245.95802820310809,
+        "speed": 251.66199415842382,
+        "angle": -23.26562051239561,
+        "impulse": 5.252076399827977,
+        "vy": -113.45588638820215,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 1.249999999999998
+      },
+      "landing": {
+        "x": 11778.269199241333,
+        "y": 10,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "ascent-bank-3",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "ascent-bank-3",
+        "x": 12094,
+        "y": -179.7,
+        "entrySpeed": 257.9637226147133,
+        "speed": 261.20721012108424,
+        "angle": -34.2702700607667,
+        "impulse": 13.628202267187003,
+        "vy": -191.61314393374496,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 1.2083333333333315
+      },
+      "landing": {
+        "x": 12165.115756094707,
+        "y": -171.56758829348212,
+        "mode": "MANUAL",
+        "rail": ""
+      }
+    },
+    {
+      "id": "ascent-bank-3",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "ascent-bank-3",
+        "x": 12094,
+        "y": -179.7,
+        "entrySpeed": 257.9637226147133,
+        "speed": 261.20721012108424,
+        "angle": -34.2702700607667,
+        "impulse": 5.451280906874802,
+        "vy": -183.4362225734328,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 1.2083333333333315
+      },
+      "landing": {
+        "x": 12160.616841745652,
+        "y": -172.82728431121745,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "huge-launch",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "huge-launch",
+        "x": 12870,
+        "y": -220,
+        "entrySpeed": 278.22022865053947,
+        "speed": 267.0793757560197,
+        "angle": -25.042183671340226,
+        "impulse": 731.565246636054,
+        "vy": -856.3458797177644,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 1.7916666666666627
+      },
+      "landing": {
+        "x": 13158.10171721181,
+        "y": -170,
+        "mode": "MANUAL",
+        "rail": ""
+      }
+    },
+    {
+      "id": "huge-launch",
+      "early": true,
+      "done": true,
+      "phase": "FAILED",
+      "failure": "FELL_IN_GAP",
+      "launch": {
+        "rampId": "huge-launch",
+        "x": 12870,
+        "y": -220,
+        "entrySpeed": 278.22022865053947,
+        "speed": 267.0793757560197,
+        "angle": -25.042183671340226,
+        "impulse": 292.6260986544216,
+        "vy": -417.406731736132,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 1.7916666666666627
+      },
+      "landing": {
+        "x": 13194.40234334379,
+        "y": 526.2398959136469,
+        "mode": "CRASH",
+        "rail": ""
+      }
+    },
+    {
+      "id": "void-entry-kicker",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "void-entry-kicker",
+        "x": 14125,
+        "y": -220,
+        "entrySpeed": 230.8692372885966,
+        "speed": 224.79991784882986,
+        "angle": -40.0302592718897,
+        "impulse": 80.14605766784369,
+        "vy": -268.9779886608608,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.6416666666666668
+      },
+      "landing": {
+        "x": 14145.808537064006,
+        "y": -236.9172015336896,
+        "mode": "GRIND",
+        "rail": "void-a"
+      }
+    },
+    {
+      "id": "void-entry-kicker",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "void-entry-kicker",
+        "x": 14125,
+        "y": -220,
+        "entrySpeed": 230.8692372885966,
+        "speed": 224.79991784882986,
+        "angle": -40.0302592718897,
+        "impulse": 32.058423067137475,
+        "vy": -220.89035406015455,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.6416666666666668
+      },
+      "landing": {
+        "x": 14221.227914429532,
+        "y": -170,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "advanced-launch",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "advanced-launch",
+        "x": 18355.8,
+        "y": 185.2,
+        "entrySpeed": 280,
+        "speed": 275.86461538461526,
+        "angle": -22.878675898944124,
+        "impulse": 479.76454849498305,
+        "vy": -596.173353228714,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.8333333333333328
+      },
+      "landing": {
+        "x": 18513.65517472375,
+        "y": 115.20091813410613,
+        "mode": "GRIND",
+        "rail": "advanced-ledge-edge"
+      }
+    },
+    {
+      "id": "advanced-launch",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "advanced-launch",
+        "x": 18355.8,
+        "y": 185.2,
+        "entrySpeed": 280,
+        "speed": 275.86461538461526,
+        "angle": -22.878675898944124,
+        "impulse": 191.90581939799324,
+        "vy": -308.3146241317242,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.8333333333333328
+      },
+      "landing": {
+        "x": 18434.321841390458,
+        "y": 165,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "release-small",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "release-small",
+        "x": 20380,
+        "y": 245,
+        "entrySpeed": 279.02000000000004,
+        "speed": 276.5,
+        "angle": -19.653824058053306,
+        "impulse": 57.70434782608696,
+        "vy": -156.45434782608697,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.5833333333333337
+      },
+      "landing": {
+        "x": 20480.216833333187,
+        "y": 297.10320972220876,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "release-small",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "release-small",
+        "x": 20380,
+        "y": 245,
+        "entrySpeed": 279.02000000000004,
+        "speed": 276.5,
+        "angle": -19.653824058053306,
+        "impulse": 23.081739130434784,
+        "vy": -121.83173913043478,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.5833333333333337
+      },
+      "landing": {
+        "x": 20473.21683333319,
+        "y": 296.46154305554245,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "release-medium",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "release-medium",
+        "x": 20650,
+        "y": 266,
+        "entrySpeed": 280,
+        "speed": 275.9166666666667,
+        "angle": -22.619864948040426,
+        "impulse": 83.97463768115942,
+        "vy": -198.9399154589372,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.5250000000000006
+      },
+      "landing": {
+        "x": 20760.317340011257,
+        "y": 317.9174776591481,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "release-medium",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "release-medium",
+        "x": 20650,
+        "y": 266,
+        "entrySpeed": 280,
+        "speed": 275.9166666666667,
+        "angle": -22.619864948040426,
+        "impulse": 33.58985507246377,
+        "vy": -148.55513285024156,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.5250000000000006
+      },
+      "landing": {
+        "x": 20751.009923396352,
+        "y": 318.66623326414077,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "release-curve",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "release-curve",
+        "x": 20885,
+        "y": 275,
+        "entrySpeed": 280,
+        "speed": 275.24461159017835,
+        "angle": -25.884688852030006,
+        "impulse": 101.7208347181094,
+        "vy": -235.2815526591093,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.6583333333333334
+      },
+      "landing": {
+        "x": 21003.50925892688,
+        "y": 325.0724184798402,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "release-curve",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "release-curve",
+        "x": 20885,
+        "y": 275,
+        "entrySpeed": 280,
+        "speed": 275.24461159017835,
+        "angle": -25.884688852030006,
+        "impulse": 40.688333887243765,
+        "vy": -174.2490518282437,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.6583333333333334
+      },
+      "landing": {
+        "x": 20991.927738459042,
+        "y": 327.84204473726896,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "final-medium-kicker",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "final-medium-kicker",
+        "x": 21092.4,
+        "y": 285.606,
+        "entrySpeed": 280,
+        "speed": 276.3993927125507,
+        "angle": -20.17378170760145,
+        "impulse": 450.65118377046315,
+        "vy": -552.2027825099904,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.7499999999999998
+      },
+      "landing": {
+        "x": 21182.556418016153,
+        "y": 195.53587528961262,
+        "mode": "GRIND",
+        "rail": "final-descending"
+      }
+    },
+    {
+      "id": "final-medium-kicker",
+      "early": true,
+      "done": true,
+      "phase": "FAILED",
+      "failure": "DANGEROUS_STAIR_FALL",
+      "launch": {
+        "rampId": "final-medium-kicker",
+        "x": 21092.4,
+        "y": 285.606,
+        "entrySpeed": 280,
+        "speed": 276.3993927125507,
+        "angle": -20.17378170760145,
+        "impulse": 180.26047350818527,
+        "vy": -281.8120722477124,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.7499999999999998
+      },
+      "landing": {
+        "x": 21219.889751349467,
+        "y": 331.4777897561067,
+        "mode": "CRASH",
+        "rail": ""
+      }
+    },
+    {
+      "id": "final-big-ramp",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "final-big-ramp",
+        "x": 24056,
+        "y": 140,
+        "entrySpeed": 280,
+        "speed": 274.93083333333334,
+        "angle": -27.35080357181969,
+        "impulse": 741.1178985507246,
+        "vy": -883.3291450785025,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 1.6249999999999967
+      },
+      "landing": {
+        "x": 25226.102944443825,
+        "y": 250,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    },
+    {
+      "id": "final-big-ramp",
+      "early": true,
+      "done": true,
+      "phase": "FAILED",
+      "failure": "FELL_IN_GAP",
+      "launch": {
+        "rampId": "final-big-ramp",
+        "x": 24056,
+        "y": 140,
+        "entrySpeed": 280,
+        "speed": 274.93083333333334,
+        "angle": -27.35080357181969,
+        "impulse": 296.44715942028984,
+        "vy": -438.65840594806775,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 1.6249999999999967
+      },
+      "landing": {
+        "x": 24334.769611110954,
+        "y": 527.9530330996687,
+        "mode": "CRASH",
+        "rail": ""
+      }
+    },
+    {
+      "id": "finish-landing-bank",
+      "early": false,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "finish-landing-bank",
+        "x": 25649,
+        "y": 250,
+        "entrySpeed": 280,
+        "speed": 280,
+        "angle": 0,
+        "impulse": 21.91304347826087,
+        "vy": -21.91304347826087,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.5750000000000004
+      },
+      "landing": {
+        "x": 25654.66666666658,
+        "y": 250,
+        "mode": "MANUAL",
+        "rail": ""
+      }
+    },
+    {
+      "id": "finish-landing-bank",
+      "early": true,
+      "done": true,
+      "phase": "PLAYING",
+      "failure": "",
+      "launch": {
+        "rampId": "finish-landing-bank",
+        "x": 25649,
+        "y": 250,
+        "entrySpeed": 280,
+        "speed": 280,
+        "angle": 0,
+        "impulse": 8.765217391304349,
+        "vy": -8.765217391304349,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.5750000000000004
+      },
+      "landing": {
+        "x": 25652.33333333325,
+        "y": 250,
+        "mode": "GROUND",
+        "rail": ""
+      }
+    }
+  ],
+  "errors": [],
+  "http": [],
+  "failed": []
+}

@@ -1,0 +1,190 @@
+TAP version 13
+# Subtest: only the saved 3→4 award queues arrival, never earlier awards or duplicates
+ok 1 - only the saved 3→4 award queues arrival, never earlier awards or duplicates
+  ---
+  duration_ms: 16.4253
+  ...
+# Subtest: a failed medal save does not queue the cutscene
+ok 2 - a failed medal save does not queue the cutscene
+  ---
+  duration_ms: 6.6665
+  ...
+# Subtest: minigame celebration finishes first; held or repeated result input cannot start or skip arrival
+ok 3 - minigame celebration finishes first; held or repeated result input cannot start or skip arrival
+  ---
+  duration_ms: 7.6599
+  ...
+# Subtest: all essential shots precede three paced lines; only the final fade commits completion
+ok 4 - all essential shots precede three paced lines; only the final fade commits completion
+  ---
+  duration_ms: 10.7251
+  ...
+# Subtest: unfinished pending save remains unfinished and can resume before Overworld movement
+ok 5 - unfinished pending save remains unfinished and can resume before Overworld movement
+  ---
+  duration_ms: 8.2527
+  ...
+# Subtest: a victory starts arrival automatically after its short result hold, without an extra command
+ok 6 - a victory starts arrival automatically after its short result hold, without an extra command
+  ---
+  duration_ms: 4.0468
+  ...
+# Subtest: legacy saves already at four medals are not given a retroactive arrival cutscene
+ok 7 - legacy saves already at four medals are not given a retroactive arrival cutscene
+  ---
+  duration_ms: 5.1411
+  ...
+# Subtest: arrival completion waits for a successful save and a failed write can be retried without replay
+ok 8 - arrival completion waits for a successful save and a failed write can be retried without replay
+  ---
+  duration_ms: 15.4832
+  ...
+# Subtest: 0–3 medals hide the ship, both event NPCs and all event colliders
+ok 9 - 0–3 medals hide the ship, both event NPCs and all event colliders
+  ---
+  duration_ms: 9.6174
+  ...
+# Subtest: fourth medal persists arrival once, through the official award hook
+ok 10 - fourth medal persists arrival once, through the official award hook
+  ---
+  duration_ms: 2.7632
+  ...
+# Subtest: four through seven medals preserve K7, short lines and the central path
+ok 11 - four through seven medals preserve K7, short lines and the central path
+  ---
+  duration_ms: 4.6017
+  ...
+# Subtest: eight medals without the completed arrival cannot reveal Ravok or his proposal
+ok 12 - eight medals without the completed arrival cannot reveal Ravok or his proposal
+  ---
+  duration_ms: 3.6687
+  ...
+# Subtest: Ravok exits physically only on approach; seven medals cannot trigger it
+ok 13 - Ravok exits physically only on approach; seven medals cannot trigger it
+  ---
+  duration_ms: 5.596
+  ...
+# Subtest: exit and narrative pause when the document is hidden; leaving closes safely
+ok 14 - exit and narrative pause when the document is hidden; leaving closes safely
+  ---
+  duration_ms: 2.5275
+  ...
+# Subtest: all 29 lines require distinct Space presses, including the full law; old prelude does not skip them
+ok 15 - all 29 lines require distinct Space presses, including the full law; old prelude does not skip them
+  ---
+  duration_ms: 3.8278
+  ...
+# Subtest: NO commits refusal directly once and never marks the ending complete
+ok 16 - NO commits refusal directly once and never marks the ending complete
+  ---
+  duration_ms: 3.8048
+  ...
+# Subtest: YES opens a second confirmation defaulted to NO; held Space cannot confirm it
+ok 17 - YES opens a second confirmation defaulted to NO; held Space cannot confirm it
+  ---
+  duration_ms: 4.1441
+  ...
+# Subtest: Escape before deciding closes the menu and reopens it without recording a route
+ok 18 - Escape before deciding closes the menu and reopens it without recording a route
+  ---
+  duration_ms: 2.8866
+  ...
+# Subtest: a failed choice save keeps the choice open and does not dispatch a cutscene
+ok 19 - a failed choice save keeps the choice open and does not dispatch a cutscene
+  ---
+  duration_ms: 2.7091
+  ...
+# Subtest: choice and completion survive reload independently; an opposite route cannot complete
+ok 20 - choice and completion survive reload independently; an opposite route cannot complete
+  ---
+  duration_ms: 4.3847
+  ...
+# Subtest: landing ground is absent before arrival and uses one static cached surface
+ok 21 - landing ground is absent before arrival and uses one static cached surface
+  ---
+  duration_ms: 3.9728
+  ...
+# Subtest: arrest removes ship, both NPCs, prompts and physical colliders after save/load
+ok 22 - arrest removes ship, both NPCs, prompts and physical colliders after save/load
+  ---
+  duration_ms: 2.5105
+  ...
+# Subtest: failed arrest save rolls back removal, and old refusal completion never closes the campaign
+ok 23 - failed arrest save rolls back removal, and old refusal completion never closes the campaign
+  ---
+  duration_ms: 2.1646
+  ...
+# Subtest: accept: saved choice resumes the correct cutscene; completion waits for its last fade
+ok 24 - accept: saved choice resumes the correct cutscene; completion waits for its last fade
+  ---
+  duration_ms: 32.895
+  ...
+# Subtest: completed saved ending does not replay; seven medals and missing choices cannot start
+ok 25 - completed saved ending does not replay; seven medals and missing choices cannot start
+  ---
+  duration_ms: 16.159
+  ...
+# Subtest: Space never skips timed scenes; hiding the document pauses progress
+ok 26 - Space never skips timed scenes; hiding the document pauses progress
+  ---
+  duration_ms: 5.2611
+  ...
+# Subtest: refusal plays authorities, disables and removes evidence, saves arrest, then resumes Overworld without any card or menu
+ok 27 - refusal plays authorities, disables and removes evidence, saves arrest, then resumes Overworld without any card or menu
+  ---
+  duration_ms: 18.6357
+  ...
+# Subtest: failed arrest save holds the final scene, preserves the campaign and allows retry
+ok 28 - failed arrest save holds the final scene, preserves the campaign and allows retry
+  ---
+  duration_ms: 13.2674
+  ...
+# Subtest: refusal requires separate Space presses for every line; timed shots and hidden tabs cannot be skipped
+ok 29 - refusal requires separate Space presses for every line; timed shots and hidden tabs cannot be skipped
+  ---
+  duration_ms: 4.1452
+  ...
+# Subtest: acceptance card persists before completion, and reload resumes that card instead of Earth
+ok 30 - acceptance card persists before completion, and reload resumes that card instead of Earth
+  ---
+  duration_ms: 14.951
+  ...
+# Subtest: acceptance cannot complete before the card, and a failed card-dismiss save cannot return to the world/menu
+ok 31 - acceptance cannot complete before the card, and a failed card-dismiss save cannot return to the world/menu
+  ---
+  duration_ms: 6.4942
+  ...
+# Subtest: old completed acceptance restores the new card without setting its new seen flag early
+ok 32 - old completed acceptance restores the new card without setting its new seen flag early
+  ---
+  duration_ms: 4.0591
+  ...
+# Subtest: every acceptance shot draws with both original hulls; the damaged planet is always a distant abstraction
+ok 33 - every acceptance shot draws with both original hulls; the damaged planet is always a distant abstraction
+  ---
+  duration_ms: 38.7747
+  ...
+# Subtest: all arrest shots render, officer text fits and the eight actual medal icons can be drawn
+ok 34 - all arrest shots render, officer text fits and the eight actual medal icons can be drawn
+  ---
+  duration_ms: 18.331
+  ...
+# Subtest: official acceptance portrait crops the entire frontal head with one uniform scale and one cached surface
+ok 35 - official acceptance portrait crops the entire frontal head with one uniform scale and one cached surface
+  ---
+  duration_ms: 7.2453
+  ...
+# Subtest: failed official card load cannot close the card or award completion; Space retries the same real file
+ok 36 - failed official card load cannot close the card or award completion; Space retries the same real file
+  ---
+  duration_ms: 7.9917
+  ...
+1..36
+# tests 36
+# suites 0
+# pass 36
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 399.3029

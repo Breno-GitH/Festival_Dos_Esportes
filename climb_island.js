@@ -19,9 +19,9 @@ window.ClimbIsland = (() => {
         {x:151,y:177,w:11,h:9,type:'climb_trail_sign'},
         {x:47,y:184,w:12,h:9,type:'climb_tree'},
         {x:386,y:211,w:12,h:9,type:'climb_tree'},
-        {x:395,y:128,w:10,h:8,type:'climb_tree'}
+        {x:402,y:122,w:10,h:8,type:'climb_tree'}
     ].map(o=>Object.freeze({...o,solid:true,renderByIsland:true})));
-    let cached=null;
+    let cached=null,cachedScenery=null;
     function polygon(g,points,fill) {
         g.beginPath();points.forEach(([x,y],i)=>i?g.lineTo(x,y):g.moveTo(x,y));g.closePath();
         if(fill){g.fillStyle=fill;g.fill();}
@@ -172,7 +172,7 @@ window.ClimbIsland = (() => {
         g.fillStyle='#b59b70';g.fillRect(144,159,25,9);
         polygon(g,[[149,166],[155,160],[160,166]],'#eee7be');
         g.fillStyle='#eee7be';g.fillRect(163,162,4,1);g.fillRect(164,160,1,5);
-        tree(g,53,190,.9);tree(g,392,217,1);tree(g,400,134,.7);
+        tree(g,53,190,.9);tree(g,392,217,1);tree(g,407,128,.7);
         for(const [x,y,w,h]of [[46,179,13,8],[127,239,14,8],[175,246,11,7],[370,243,17,10],
             [398,170,11,8],[302,180,13,8]])rock(g,x,y,w,h);
         for(const [x,y]of [[38,190],[76,247],[144,223],[171,222],[280,246],[345,246],
@@ -188,10 +188,16 @@ window.ClimbIsland = (() => {
         if(cached)return;
         cached=document.createElement('canvas');cached.width=450;cached.height=300;
         const g=cached.getContext('2d');g.imageSmoothingEnabled=false;
-        terrain(g);mountainFacade(g);baseCamp(g);
+        terrain(g);
+        // Keep ground decals behind the mountain, trees and camp equipment.
+        cachedScenery=document.createElement('canvas');cachedScenery.width=450;cachedScenery.height=300;
+        const scenery=cachedScenery.getContext('2d');scenery.imageSmoothingEnabled=false;
+        mountainFacade(scenery);baseCamp(scenery);
     }
-    function draw(g,time=performance.now()/1000) {
+    function draw(g,time=performance.now()/1000,drawGround=null) {
         ensureCache();g.save();g.imageSmoothingEnabled=false;g.drawImage(cached,0,0);
+        if(drawGround)drawGround(g);
+        g.drawImage(cachedScenery,0,0);
         // One-pixel pennant motion and six small wind/snow flecks near the summit only.
         const flutter=Math.floor(time*3)%2;
         polygon(g,[[293,84],[302,84+flutter],[300,89],[293,89]],'#c77554');
@@ -207,5 +213,5 @@ window.ClimbIsland = (() => {
             master:[225,168],mountain:{baseWidth:300,middleWidth:180,summitWidth:33,
                 bounds:[75,18,300,136],outline:mountain.map(p=>[...p])},
             visualRoutes:3,decorativeLedges:1,animated:['pennant','summit-wind'],
-            gameplayEntities:0,cachedLayers:cached?1:0,obstacleCount:obstacles.length})});
+            gameplayEntities:0,cachedLayers:cached?2:0,obstacleCount:obstacles.length})});
 })();

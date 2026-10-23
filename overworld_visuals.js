@@ -127,6 +127,8 @@ function drawOverworldHub() {
 function overworldNpcGeometry(npc) {
     if(!npc.img?.src)return null;
     const path=decodeURIComponent(new URL(npc.img.src,location.href).pathname);
+    // Event NPCs supply a measured pose without changing the shared island atlas.
+    if(npc.spriteGeometry)return path.endsWith('/'+npc.spriteGeometry.source)?npc.spriteGeometry:null;
     // Several different characters share the climbing sheet: select explicitly.
     if(npc.spriteKey) {
         const entry=OVERWORLD_NPC_GEOMETRY.sprites[npc.spriteKey];
@@ -264,7 +266,7 @@ function configureOverworldPresentation() {
 }
 function getOverworldDiagnostics() {
     return {scene:currentScene,reference:'ILHA_BASQUETE',bounds:[16,18,418,264],bridgeWidth:40,
-        npcs:npcs.filter(n=>n.scene===currentScene).map(n=>({id:n.id||n.img.src.split('/').pop(),
+        npcs:npcs.filter(n=>n.scene===currentScene&&RavokEvent.isNpcVisible(n)).map(n=>({id:n.id||n.img.src.split('/').pop(),
             position:[n.x,n.y],height:n.tamanho,anchor:'bottom-center',
             source:overworldNpcGeometry(n)?.source||n.img.src,
             crop:overworldNpcGeometry(n)?.crop||null,footprint:n.footprint||null,

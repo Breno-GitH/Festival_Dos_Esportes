@@ -103,5 +103,5 @@ test('the short sandbox can be played from spawn to finish with the current phys
         'upper-platform-edge', 'sandbox-stairs-handrail']) {
         assert.ok(result.enteredRails.includes(railId), `não entrou em ${railId}`);
     }
-    assert.ok(result.inputs.some(input => input.action === 'ollie' && input.x > 2400));
+    assert.ok(result.rampLaunches.some(launch => launch.held && launch.x > 2200));
 });

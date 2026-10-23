@@ -35,7 +35,7 @@
         },
         update(){
             if(!this.active)return;
-            if(this.state==='ENDING_CARD')return;
+            if(this.state==='ENDING_CARD'){global.EndingCard.update();return;}
             const now=performance.now(),raw=(now-this.lastTime)/1000;this.lastTime=now;
             if(document.hidden)return;
             const dt=Math.max(0,Math.min(.1,raw));
@@ -54,9 +54,7 @@
             this.state='ENDING_CARD';this.atlas=null;this.transitionFrame=null;this.waitingForText=false;
             this.config.clearInput();
             global.EndingCard.show({
-                id:'true_ending',theme:'champion',label:'FINAL VERDADEIRO',title:'DE VOLTA PARA CASA',
-                text:'Depois de conquistar todas as medalhas da Ilha dos Campeões, Zorpzin Nonaris finalmente partiu de volta ao seu planeta.',
-                portrait:()=>this.config.victoryPortrait,badges:MEDALHAS_REGISTRY.map(m=>m.imgUnlocked),
+                id:'true_ending',
                 onClose:()=>{this.active=false;this.state='COMPLETE';this.config.clearInput();this.config.returnToMenu();}
             });
         },

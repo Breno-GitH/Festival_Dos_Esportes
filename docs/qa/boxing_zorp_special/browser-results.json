@@ -1,0 +1,1163 @@
+{
+  "cases": {
+    "chargeHit": {
+      "phase": "FIGHTING",
+      "winner": null,
+      "hitPauseFrames": 0,
+      "finisherFrame": null,
+      "knockdown": null,
+      "player": {
+        "x": 200,
+        "y": 210,
+        "hp": 100,
+        "animation": "jab",
+        "attack": "jab",
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": 1,
+        "combo": 1,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "mestre": {
+        "x": 244,
+        "y": 210,
+        "hp": 94,
+        "animation": "hurt",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": -1,
+        "combo": 0,
+        "hitstun": 11,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "juiz": {
+        "x": 76,
+        "y": 172,
+        "animation": "idle",
+        "count": 0
+      },
+      "distance": 44,
+      "assets": {
+        "version": "3.0",
+        "requested": 92,
+        "loaded": 92,
+        "failed": 0,
+        "failedPaths": []
+      },
+      "presentation": {
+        "arena": "arena_boxe3.0.png",
+        "uniformScale": 0.344,
+        "crowd": 52,
+        "energy": 0.1755,
+        "activeParticles": 0,
+        "peakParticles": 0,
+        "particleLimit": 128,
+        "celebrationFrames": 0,
+        "events": {
+          "jab": 1
+        },
+        "audio": {
+          "state": "running",
+          "activeVoices": 1,
+          "peakVoices": 1,
+          "played": 1
+        }
+      },
+      "special": {
+        "status": "ready",
+        "failed": false,
+        "frames": 7,
+        "source": "zorp_boxe3.0_especial.png?v=1.0.0_curated_special",
+        "charge": 8.49,
+        "active": null,
+        "last": null
+      }
+    },
+    "chargeReceived": {
+      "phase": "FIGHTING",
+      "winner": null,
+      "hitPauseFrames": 1,
+      "finisherFrame": null,
+      "knockdown": null,
+      "player": {
+        "x": 196,
+        "y": 210,
+        "hp": 94,
+        "animation": "hurt",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": 1,
+        "combo": 0,
+        "hitstun": 12,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "mestre": {
+        "x": 244,
+        "y": 210,
+        "hp": 94,
+        "animation": "jab",
+        "attack": "jab",
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": -1,
+        "combo": 1,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "juiz": {
+        "x": 76,
+        "y": 172,
+        "animation": "idle",
+        "count": 0
+      },
+      "distance": 48,
+      "assets": {
+        "version": "3.0",
+        "requested": 92,
+        "loaded": 92,
+        "failed": 0,
+        "failedPaths": []
+      },
+      "presentation": {
+        "arena": "arena_boxe3.0.png",
+        "uniformScale": 0.344,
+        "crowd": 52,
+        "energy": 0.18,
+        "activeParticles": 0,
+        "peakParticles": 0,
+        "particleLimit": 128,
+        "celebrationFrames": 0,
+        "events": {
+          "jab": 2
+        },
+        "audio": {
+          "state": "running",
+          "activeVoices": 1,
+          "peakVoices": 1,
+          "played": 2
+        }
+      },
+      "special": {
+        "status": "ready",
+        "failed": false,
+        "frames": 7,
+        "source": "zorp_boxe3.0_especial.png?v=1.0.0_curated_special",
+        "charge": 16.020000000000003,
+        "active": null,
+        "last": null
+      }
+    },
+    "normalStart": {
+      "phase": "FIGHTING",
+      "winner": null,
+      "hitPauseFrames": 0,
+      "finisherFrame": null,
+      "knockdown": null,
+      "player": {
+        "x": 206,
+        "y": 210,
+        "hp": 100,
+        "animation": "special",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": 1,
+        "combo": 0,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "mestre": {
+        "x": 240,
+        "y": 210,
+        "hp": 100,
+        "animation": "idle",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": -1,
+        "combo": 0,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "juiz": {
+        "x": 76,
+        "y": 172,
+        "animation": "idle",
+        "count": 0
+      },
+      "distance": 34,
+      "assets": {
+        "version": "3.0",
+        "requested": 92,
+        "loaded": 92,
+        "failed": 0,
+        "failedPaths": []
+      },
+      "presentation": {
+        "arena": "arena_boxe3.0.png",
+        "uniformScale": 0.344,
+        "crowd": 52,
+        "energy": 0.13745092816406249,
+        "activeParticles": 5,
+        "peakParticles": 5,
+        "particleLimit": 128,
+        "celebrationFrames": 0,
+        "events": {
+          "dodge": 1
+        },
+        "audio": {
+          "state": "running",
+          "activeVoices": 0,
+          "peakVoices": 2,
+          "played": 3
+        }
+      },
+      "special": {
+        "status": "ready",
+        "failed": false,
+        "frames": 7,
+        "source": "zorp_boxe3.0_especial.png?v=1.0.0_curated_special",
+        "charge": 0,
+        "active": {
+          "mode": "normal",
+          "phase": "WEAVE",
+          "age": 6,
+          "hits": 0,
+          "confirmed": false
+        },
+        "last": null
+      }
+    },
+    "normalHit": {
+      "phase": "FIGHTING",
+      "winner": null,
+      "hitPauseFrames": 3,
+      "finisherFrame": null,
+      "knockdown": null,
+      "player": {
+        "x": 206,
+        "y": 210,
+        "hp": 100,
+        "animation": "special",
+        "attack": "weave_finish",
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": 1,
+        "combo": 1,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "mestre": {
+        "x": 258,
+        "y": 210,
+        "hp": 74,
+        "animation": "hurt",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": -1,
+        "combo": 0,
+        "hitstun": 22,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "juiz": {
+        "x": 76,
+        "y": 172,
+        "animation": "idle",
+        "count": 0
+      },
+      "distance": 52,
+      "assets": {
+        "version": "3.0",
+        "requested": 92,
+        "loaded": 92,
+        "failed": 0,
+        "failedPaths": []
+      },
+      "presentation": {
+        "arena": "arena_boxe3.0.png",
+        "uniformScale": 0.344,
+        "crowd": 52,
+        "energy": 0.8,
+        "activeParticles": 0,
+        "peakParticles": 5,
+        "particleLimit": 128,
+        "celebrationFrames": 0,
+        "events": {
+          "dodge": 1,
+          "special": 1
+        },
+        "audio": {
+          "state": "running",
+          "activeVoices": 1,
+          "peakVoices": 2,
+          "played": 4
+        }
+      },
+      "special": {
+        "status": "ready",
+        "failed": false,
+        "frames": 7,
+        "source": "zorp_boxe3.0_especial.png?v=1.0.0_curated_special",
+        "charge": 0,
+        "active": {
+          "mode": "normal",
+          "phase": "FINISH",
+          "age": 10,
+          "hits": 1,
+          "confirmed": false
+        },
+        "last": null
+      }
+    },
+    "normalEnd": {
+      "phase": "FIGHTING",
+      "winner": null,
+      "hitPauseFrames": 0,
+      "finisherFrame": null,
+      "knockdown": null,
+      "player": {
+        "x": 206,
+        "y": 210,
+        "hp": 100,
+        "animation": "idle",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": 1,
+        "combo": 1,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "mestre": {
+        "x": 258,
+        "y": 210,
+        "hp": 74,
+        "animation": "hurt",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": -1,
+        "combo": 0,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "juiz": {
+        "x": 76,
+        "y": 172,
+        "animation": "idle",
+        "count": 0
+      },
+      "distance": 52,
+      "assets": {
+        "version": "3.0",
+        "requested": 92,
+        "loaded": 92,
+        "failed": 0,
+        "failedPaths": []
+      },
+      "presentation": {
+        "arena": "arena_boxe3.0.png",
+        "uniformScale": 0.344,
+        "crowd": 52,
+        "energy": 0.45834398080662564,
+        "activeParticles": 0,
+        "peakParticles": 5,
+        "particleLimit": 128,
+        "celebrationFrames": 0,
+        "events": {
+          "dodge": 1,
+          "special": 1
+        },
+        "audio": {
+          "state": "running",
+          "activeVoices": 0,
+          "peakVoices": 2,
+          "played": 4
+        }
+      },
+      "special": {
+        "status": "ready",
+        "failed": false,
+        "frames": 7,
+        "source": "zorp_boxe3.0_especial.png?v=1.0.0_curated_special",
+        "charge": 0,
+        "active": null,
+        "last": {
+          "mode": "normal",
+          "hits": 1,
+          "confirmed": false,
+          "connected": true,
+          "history": []
+        }
+      }
+    },
+    "miss": {
+      "phase": "FIGHTING",
+      "winner": null,
+      "hitPauseFrames": 0,
+      "finisherFrame": null,
+      "knockdown": null,
+      "player": {
+        "x": 206,
+        "y": 210,
+        "hp": 100,
+        "animation": "idle",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": 1,
+        "combo": 0,
+        "hitstun": 0,
+        "whiffFrames": 12,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "mestre": {
+        "x": 240,
+        "y": 235,
+        "hp": 100,
+        "animation": "idle",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": -1,
+        "combo": 0,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "juiz": {
+        "x": 76,
+        "y": 172,
+        "animation": "idle",
+        "count": 0
+      },
+      "distance": 53.456173637850284,
+      "assets": {
+        "version": "3.0",
+        "requested": 92,
+        "loaded": 92,
+        "failed": 0,
+        "failedPaths": []
+      },
+      "presentation": {
+        "arena": "arena_boxe3.0.png",
+        "uniformScale": 0.344,
+        "crowd": 52,
+        "energy": 0.024573190323408853,
+        "activeParticles": 0,
+        "peakParticles": 5,
+        "particleLimit": 128,
+        "celebrationFrames": 0,
+        "events": {
+          "dodge": 1
+        },
+        "audio": {
+          "state": "running",
+          "activeVoices": 0,
+          "peakVoices": 2,
+          "played": 5
+        }
+      },
+      "special": {
+        "status": "ready",
+        "failed": false,
+        "frames": 7,
+        "source": "zorp_boxe3.0_especial.png?v=1.0.0_curated_special",
+        "charge": 0,
+        "active": null,
+        "last": {
+          "mode": "normal",
+          "hits": 0,
+          "confirmed": false,
+          "connected": false,
+          "history": []
+        }
+      }
+    },
+    "guarded": {
+      "phase": "FIGHTING",
+      "winner": null,
+      "hitPauseFrames": 3,
+      "finisherFrame": null,
+      "knockdown": null,
+      "player": {
+        "x": 206,
+        "y": 210,
+        "hp": 100,
+        "animation": "special",
+        "attack": "weave_finish",
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": 1,
+        "combo": 0,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "mestre": {
+        "x": 246.84,
+        "y": 210,
+        "hp": 93,
+        "animation": "guard",
+        "attack": null,
+        "guard": true,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": -1,
+        "combo": 0,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 86.83999999999999,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "juiz": {
+        "x": 76,
+        "y": 172,
+        "animation": "idle",
+        "count": 0
+      },
+      "distance": 40.84,
+      "assets": {
+        "version": "3.0",
+        "requested": 92,
+        "loaded": 92,
+        "failed": 0,
+        "failedPaths": []
+      },
+      "presentation": {
+        "arena": "arena_boxe3.0.png",
+        "uniformScale": 0.344,
+        "crowd": 52,
+        "energy": 0.1,
+        "activeParticles": 0,
+        "peakParticles": 5,
+        "particleLimit": 128,
+        "celebrationFrames": 0,
+        "events": {
+          "dodge": 1,
+          "block": 1
+        },
+        "audio": {
+          "state": "running",
+          "activeVoices": 1,
+          "peakVoices": 2,
+          "played": 7
+        }
+      },
+      "special": {
+        "status": "ready",
+        "failed": false,
+        "frames": 7,
+        "source": "zorp_boxe3.0_especial.png?v=1.0.0_curated_special",
+        "charge": 0,
+        "active": {
+          "mode": "normal",
+          "phase": "FINISH",
+          "age": 10,
+          "hits": 0,
+          "confirmed": false
+        },
+        "last": null
+      }
+    },
+    "counterStart": {
+      "phase": "FIGHTING",
+      "winner": null,
+      "hitPauseFrames": 0,
+      "finisherFrame": null,
+      "knockdown": null,
+      "player": {
+        "x": 200,
+        "y": 210,
+        "hp": 100,
+        "animation": "special",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": 1,
+        "combo": 0,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "mestre": {
+        "x": 240,
+        "y": 210,
+        "hp": 100,
+        "animation": "cross",
+        "attack": "cross",
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": -1,
+        "combo": 0,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "juiz": {
+        "x": 76,
+        "y": 172,
+        "animation": "idle",
+        "count": 0
+      },
+      "distance": 40,
+      "assets": {
+        "version": "3.0",
+        "requested": 92,
+        "loaded": 92,
+        "failed": 0,
+        "failedPaths": []
+      },
+      "presentation": {
+        "arena": "arena_boxe3.0.png",
+        "uniformScale": 0.344,
+        "crowd": 52,
+        "energy": 0.15209999999999999,
+        "activeParticles": 10,
+        "peakParticles": 10,
+        "particleLimit": 128,
+        "celebrationFrames": 0,
+        "events": {
+          "dodge": 2
+        },
+        "audio": {
+          "state": "running",
+          "activeVoices": 1,
+          "peakVoices": 2,
+          "played": 9
+        }
+      },
+      "special": {
+        "status": "ready",
+        "failed": false,
+        "frames": 7,
+        "source": "zorp_boxe3.0_especial.png?v=1.0.0_curated_special",
+        "charge": 0,
+        "active": {
+          "mode": "counter",
+          "phase": "EVADE",
+          "age": 7,
+          "hits": 0,
+          "confirmed": true
+        },
+        "last": null
+      }
+    },
+    "counterHits": [
+      {
+        "hits": 1,
+        "hp": 95,
+        "hitstun": 11,
+        "animation": "hurt"
+      },
+      {
+        "hits": 2,
+        "hp": 90,
+        "hitstun": 11,
+        "animation": "hurt"
+      },
+      {
+        "hits": 3,
+        "hp": 85,
+        "hitstun": 11,
+        "animation": "hurt"
+      },
+      {
+        "hits": 4,
+        "hp": 80,
+        "hitstun": 11,
+        "animation": "hurt"
+      },
+      {
+        "hits": 5,
+        "hp": 75,
+        "hitstun": 11,
+        "animation": "hurt"
+      },
+      {
+        "hits": 6,
+        "hp": 66,
+        "hitstun": 22,
+        "animation": "hurt"
+      }
+    ],
+    "counterEnd": {
+      "phase": "FIGHTING",
+      "winner": null,
+      "hitPauseFrames": 0,
+      "finisherFrame": null,
+      "knockdown": null,
+      "player": {
+        "x": 214.8,
+        "y": 210,
+        "hp": 100,
+        "animation": "idle",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": 1,
+        "combo": 6,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "mestre": {
+        "x": 268,
+        "y": 210,
+        "hp": 66,
+        "animation": "hurt",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": -1,
+        "combo": 0,
+        "hitstun": 8,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "juiz": {
+        "x": 76,
+        "y": 172,
+        "animation": "idle",
+        "count": 0
+      },
+      "distance": 53.19999999999999,
+      "assets": {
+        "version": "3.0",
+        "requested": 92,
+        "loaded": 92,
+        "failed": 0,
+        "failedPaths": []
+      },
+      "presentation": {
+        "arena": "arena_boxe3.0.png",
+        "uniformScale": 0.344,
+        "crowd": 52,
+        "energy": 0.5612477420011681,
+        "activeParticles": 0,
+        "peakParticles": 10,
+        "particleLimit": 128,
+        "celebrationFrames": 0,
+        "events": {
+          "dodge": 2,
+          "jab": 5,
+          "special": 1
+        },
+        "audio": {
+          "state": "running",
+          "activeVoices": 0,
+          "peakVoices": 2,
+          "played": 15
+        }
+      },
+      "special": {
+        "status": "ready",
+        "failed": false,
+        "frames": 7,
+        "source": "zorp_boxe3.0_especial.png?v=1.0.0_curated_special",
+        "charge": 0,
+        "active": null,
+        "last": {
+          "mode": "counter",
+          "hits": 6,
+          "confirmed": true,
+          "connected": true,
+          "history": [
+            "right",
+            "left",
+            "right",
+            "left",
+            "right",
+            "left"
+          ]
+        }
+      }
+    },
+    "frames": [
+      {
+        "frame": "weave_low_a",
+        "width": 320,
+        "height": 224,
+        "anchor": [
+          160,
+          210
+        ],
+        "opaque": 6344,
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "frame": "weave_high_a",
+        "width": 320,
+        "height": 224,
+        "anchor": [
+          160,
+          210
+        ],
+        "opaque": 6545,
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "frame": "weave_low_b",
+        "width": 320,
+        "height": 224,
+        "anchor": [
+          160,
+          210
+        ],
+        "opaque": 5962,
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "frame": "windup",
+        "width": 320,
+        "height": 224,
+        "anchor": [
+          160,
+          210
+        ],
+        "opaque": 7664,
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "frame": "drive",
+        "width": 320,
+        "height": 224,
+        "anchor": [
+          160,
+          210
+        ],
+        "opaque": 8631,
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "frame": "finish_right",
+        "width": 320,
+        "height": 224,
+        "anchor": [
+          160,
+          210
+        ],
+        "opaque": 9649,
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "frame": "finish_left",
+        "width": 320,
+        "height": 224,
+        "anchor": [
+          160,
+          210
+        ],
+        "opaque": 8902,
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "passive": {
+      "phase": "FIGHTING",
+      "winner": null,
+      "hitPauseFrames": 0,
+      "finisherFrame": null,
+      "knockdown": null,
+      "player": {
+        "x": 200,
+        "y": 210,
+        "hp": 100,
+        "animation": "idle",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": 1,
+        "combo": 0,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "mestre": {
+        "x": 240,
+        "y": 210,
+        "hp": 100,
+        "animation": "idle",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": -1,
+        "combo": 0,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "juiz": {
+        "x": 76,
+        "y": 172,
+        "animation": "idle",
+        "count": 0
+      },
+      "distance": 40,
+      "assets": {
+        "version": "3.0",
+        "requested": 92,
+        "loaded": 92,
+        "failed": 0,
+        "failedPaths": []
+      },
+      "presentation": {
+        "arena": "arena_boxe3.0.png",
+        "uniformScale": 0.344,
+        "crowd": 52,
+        "energy": 0,
+        "activeParticles": 0,
+        "peakParticles": 0,
+        "particleLimit": 128,
+        "celebrationFrames": 0,
+        "events": {},
+        "audio": {
+          "state": "running",
+          "activeVoices": 0,
+          "peakVoices": 2,
+          "played": 15
+        }
+      },
+      "special": {
+        "status": "ready",
+        "failed": false,
+        "frames": 7,
+        "source": "zorp_boxe3.0_especial.png?v=1.0.0_curated_special",
+        "charge": 2.2749999999999995,
+        "active": null,
+        "last": null
+      }
+    },
+    "fight": {
+      "phase": "RESULT",
+      "winner": "zorp",
+      "hitPauseFrames": 0,
+      "finisherFrame": null,
+      "knockdown": {
+        "role": "master",
+        "attacker": "zorp",
+        "frames": 48,
+        "count": 0
+      },
+      "player": {
+        "x": 218.3883297014436,
+        "y": 217.63675323681474,
+        "hp": 44,
+        "animation": "victory",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": 1,
+        "combo": 0,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "mestre": {
+        "x": 262.8860474838977,
+        "y": 214.13213566201148,
+        "hp": 0,
+        "animation": "defeat",
+        "attack": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 1,
+        "facing": -1,
+        "combo": 0,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 5.860000000000014,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "juiz": {
+        "x": 76,
+        "y": 172,
+        "animation": "ko",
+        "count": 0
+      },
+      "distance": 44.87187950518544,
+      "assets": {
+        "version": "3.0",
+        "requested": 92,
+        "loaded": 92,
+        "failed": 0,
+        "failedPaths": []
+      },
+      "presentation": {
+        "arena": "arena_boxe3.0.png",
+        "uniformScale": 0.344,
+        "crowd": 52,
+        "energy": 0.975,
+        "activeParticles": 36,
+        "peakParticles": 36,
+        "particleLimit": 128,
+        "celebrationFrames": 269,
+        "events": {
+          "jab": 11,
+          "cross": 6,
+          "dodge": 1,
+          "block": 1,
+          "knockdown": 1,
+          "victory": 1
+        },
+        "audio": {
+          "state": "running",
+          "activeVoices": 0,
+          "peakVoices": 2,
+          "played": 34
+        }
+      },
+      "special": {
+        "status": "ready",
+        "failed": false,
+        "frames": 7,
+        "source": "zorp_boxe3.0_especial.png?v=1.0.0_curated_special",
+        "charge": 69.37499999999974,
+        "active": null,
+        "last": {
+          "mode": "normal",
+          "hits": 0,
+          "confirmed": false,
+          "connected": false,
+          "history": []
+        }
+      }
+    },
+    "specialsUsedInFight": 2
+  },
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": []
+}

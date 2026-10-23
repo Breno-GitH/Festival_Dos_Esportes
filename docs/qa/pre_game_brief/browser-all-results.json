@@ -1,0 +1,191 @@
+{
+  "results": [
+    {
+      "sport": "pingpong",
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "pingpong",
+        "progress": 1,
+        "outcome": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "PLAYING",
+        "score": [
+          0,
+          0
+        ],
+        "balls": 1,
+        "rally": 0,
+        "tick": 26,
+        "x": 44,
+        "y": 137.35483870967744
+      }
+    },
+    {
+      "sport": "basketball",
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "basketball",
+        "progress": 1,
+        "outcome": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "PLAYING",
+        "clock": 59.65019999992845,
+        "frame": 20.98800000429154,
+        "score": {
+          "zorp": 0,
+          "master": 0
+        },
+        "ball": [
+          157,
+          220,
+          "POSSESSED_ZORP"
+        ],
+        "master": [
+          240.3443551839087,
+          null
+        ]
+      }
+    },
+    {
+      "sport": "marathon",
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "marathon",
+        "progress": 1,
+        "outcome": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "COUNTDOWN",
+        "clock": 0.3821000000238419,
+        "countdown": 2.6178999999761587,
+        "player": [
+          -912,
+          470,
+          38
+        ],
+        "gates": 0
+      }
+    },
+    {
+      "sport": "skate",
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "skate",
+        "progress": 1,
+        "outcome": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "PLAYING",
+        "elapsed": 0.3250000000000002,
+        "x": 224.74999999999963,
+        "y": 250,
+        "bank": 0
+      }
+    },
+    {
+      "sport": "archery",
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "archery",
+        "progress": 1,
+        "outcome": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "PLAYING",
+        "frame": 21,
+        "score": [
+          0,
+          0
+        ],
+        "targets": 1,
+        "arrows": 0,
+        "master": [
+          315,
+          252
+        ]
+      }
+    },
+    {
+      "sport": "climbing",
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "climbing",
+        "progress": 1,
+        "outcome": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "PLAYING",
+        "motion": 0.35,
+        "step": 0,
+        "x": 3220.459192103578,
+        "y": 220,
+        "hazards": 0
+      }
+    },
+    {
+      "sport": "boxing",
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "boxing",
+        "progress": 1,
+        "outcome": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "INTRO",
+        "frames": 0,
+        "intro": 15,
+        "player": [
+          145,
+          218,
+          100
+        ],
+        "master": [
+          302,
+          198,
+          100
+        ]
+      }
+    },
+    {
+      "sport": "surf",
+      "brief": {
+        "active": true,
+        "state": "OPENING",
+        "id": "surf",
+        "progress": 0.9177777780426875,
+        "outcome": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "PLAYING",
+        "time": 0.3333333333333333,
+        "distance": 76.8520804758715,
+        "score": 63.01870599021464,
+        "player": [
+          0.6969110670473984,
+          0
+        ],
+        "generated": 5
+      }
+    }
+  ],
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": []
+}

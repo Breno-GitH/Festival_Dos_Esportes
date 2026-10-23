@@ -6,14 +6,20 @@ O mini-game usa uma pista fixa, linear e lateral. O runtime ativo é `skate/skat
 
 - Velocidade base: `230` unidades/s; descida chega a `280`.
 - Gravidade: `1650` unidades/s².
-- Primeiro SPACE: Normal Jump imediato, velocidade vertical `-350`.
+- Primeiro SPACE no chão comum: Normal Jump imediato, velocidade vertical `-350`.
 - Segundo SPACE no ar em até `220 ms`: upgrade do mesmo salto para Ollie, `-485`, com o flip existente.
-- HOLD no chão/ar não aumenta a altura; mantém intenção de Grind. Não existe Super Jump de chão.
+- Todas as 22 rampas usam HOLD SPACE. A aproximação reserva o input, o contato segue a superfície desenhada e a saída acontece somente no lip físico. Não há tap/Ollie exclusivo para rampas.
+- Lançamento: `vy = tangenteFinal × velocidadeAtual − launchStrength × velocidadeAtual / 230 × launchMultiplier × qualidade`. Qualidade: `1` segurando, `0,40` se soltou na rampa, `0,18` sem preparação. Não existe carga por tempo.
+- HOLD no chão comum/ar não aumenta a altura; mantém intenção de Grind. Não existe Super Jump de chão.
 - AIR + HOLD em até `24 px` do path: captura suave em `100 ms`. A projeção na tangente preserva o avanço (variação inicial limitada a ±4%). HOLD mantém o Grind; RELEASE lança imediatamente com `-650 + clamp(slope × vx × 0,35, -100, 100)`. O fim do rail nunca lança automaticamente.
-- Na Mega Ramp, HOLD SPACE sustenta a trajetória por até `3400 ms`; slow motion usa escala `0,68`. A força vem da rampa e sua velocidade.
+- Na Mega Ramp, HOLD SPACE percorre a rampa e sustenta o Mega Air por até `3400 ms`; slow motion usa escala `0,68`. A força vem da rampa e sua velocidade. Sem HOLD no lip, não ativa Mega Air.
 - Câmera distante: zoom normal `0,72`, Zorp perto de 30% da tela; deadzone vertical e enquadramentos existentes dos grandes saltos preservados.
 
 SPACE é tratado como evento de borda e permanece pendente até a física consumir o primeiro passo. A soltura depois do pouso em Manual também é reconhecida mesmo que o pressionamento tenha começado no ar.
+
+Prioridade: `GROUND + RAMP` reserva Space para a rampa; `AIR` permite captura de rail; `GRIND` mantém/solta; `MEGA_AIR` somente sustenta a trajetória e não captura rails simultaneamente. `RAMP_PREP` reutiliza a pose agachada existente, com rotação suavizada no contato do skate. Áreas de aproximação, superfície, lip e destino ficam no próprio objeto da rampa. As antigas propriedades de autoria `autoLaunch` não escolhem comportamento na física.
+
+Relatório desta revisão, funções das 22 rampas e evidências: [qa/UNIVERSAL_RAMPS.md](qa/UNIVERSAL_RAMPS.md).
 
 ## Curso e colisões
 

@@ -1,8 +1,10 @@
 /*
- * Basquete 1v1 — versão 1.0
- * Módulo independente. Usa exclusivamente os assets exportados e o manifesto
- * em basketball_assets/exported/. A integração com script.js é limitada às
- * funções reset/update/draw expostas no final deste arquivo.
+ * Basquete 1v1 — versão 1.4, torcida humana/alien e placar da arena.
+ * Jogadores, bola e arquitetura usam os assets exportados e o manifesto
+ * em basketball_assets/exported/; o público é criado por Canvas/código.
+ * A integração com script.js é limitada às
+ * funções reset/update/draw expostas no final deste arquivo. Colisões e sensor
+ * pertencem ao módulo basketball_hoop_physics.js.
  */
 (function () {
     'use strict';
@@ -17,6 +19,11 @@
     const BALL_GRAVITY = 0.21;
     const CHARACTER_SCALE = 0.36;
     const BALL_DRAW_SIZE = 20;
+    const hoopPhysics = window.BasketballHoopPhysics;
+    const courtPhysics = window.BasketballCourtPhysics;
+    const crowdPresentation = window.BasketballCrowd;
+    const scoreboardPresentation = window.BasketballScoreboard;
+    window.BASKET_COLLISION_DEBUG = window.BASKET_COLLISION_DEBUG ?? false;
     const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
     const lerp = (a, b, amount) => a + (b - a) * amount;
     const distance = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
@@ -148,16 +155,13 @@
             this.assets = new BasketballAssets();
             this.qaMode = new URLSearchParams(window.location.search).has('basketballQa');
             this.pendingQaScenario = new URLSearchParams(window.location.search).get('basketballQaScenario');
-            this.hoops = {
-                left: {
-                    side: 'left', x: 60, rimX: 84, rimY: 190,
-                    backboard: { x: 63, y: 151, w: 6, h: 44 }, netTimer: 0
-                },
-                right: {
-                    side: 'right', x: 390, rimX: 366, rimY: 190,
-                    backboard: { x: 381, y: 151, w: 6, h: 44 }, netTimer: 0
-                }
-            };
+            this.hoops = {left:hoopPhysics.createHoop('left',60,GROUND_Y),
+                right:hoopPhysics.createHoop('right',390,GROUND_Y)};
+            this.court = courtPhysics.createCourt();
+            this.crowd = new crowdPresentation.Crowd();
+            this.scoreboard = new scoreboardPresentation.Scoreboard();
+            this.audio = null;
+            this.audioVoices = 0;
             this.previousKeys = {};
             this.inputBuffer = new Set();
             this.qaLockFrames = 0;
@@ -168,6 +172,7 @@
             this.random = Math.random;
             window.addEventListener('keydown', (event) => {
                 if (currentScene !== SCENE || event.repeat) return;
+                this.unlockAudio();
                 const raw = event.key.toLowerCase();
                 const input = raw === ' ' ? 'space'
                     : raw === 'arrowleft' ? 'left'
@@ -183,6 +188,8 @@
         }
 
         reset(showReady = true) {
+            this.crowd.reset();
+            this.scoreboard.reset();
             this.phase = showReady ? 'READY' : 'PLAYING';
             this.clock = MATCH_SECONDS;
             this.overtime = false;
@@ -198,6 +205,7 @@
                 pickupLock: 0, scoreResetTimer: 0, missRecordedShotId: -1
             };
             this.scoreResetOwner = null;
+            this.ballRecovery = courtPhysics.createRecovery();
             this.announcement = showReady ? 'BASQUETE 1v1' : 'VALENDO!';
             this.announcementTimer = showReady ? 0 : 70;
             this.effects = [];
@@ -210,6 +218,7 @@
                 dunks: 0, pumpFakes: 0, steals: 0, blocks: 0,
                 rebounds: 0, dashes: 0, specials: 0, overtimes: 0,
                 rimHits: 0, backboardHits: 0, floorBounces: 0,
+                swooshes: 0, normalBaskets: 0, baskets: [],
                 possessions: 1, nonFinitePhysics: 0,
                 actionsSeen: new Set(['IDLE']),
                 ballStatesSeen: new Set(['POSSESSED_ZORP']),
@@ -234,6 +243,22 @@
                 this.previousKeys[name] = this.keyDown(name);
             }
             this.inputBuffer.clear();
+        }
+
+        clearBriefingInput() {
+            this.inputBuffer.clear();
+            this.previousKeys = {};
+        }
+
+        startFromBriefing() {
+            if (this.phase !== 'READY') return false;
+            this.clearBriefingInput();
+            this.phase = 'PLAYING';
+            this.clock = MATCH_SECONDS;
+            this.lastTime = performance.now();
+            this.announcement = 'VALENDO!';
+            this.announcementTimer = 60;
+            return true;
         }
 
         // Possession and ball anchors --------------------------------------
@@ -285,12 +310,16 @@
         }
 
         setOwner(actor, silent = false) {
+            this.ballRecovery.clearAttempt();
             this.ball.owner = actor.id;
             this.ball.state = actor === this.player ? 'POSSESSED_ZORP' : 'POSSESSED_MASTER';
             this.ball.vx = 0;
             this.ball.vy = 0;
             this.ball.pickupLock = 12;
             this.ball.shooter = null;
+            this.ball.scoreResetTimer = 0;
+            this.scoreResetOwner = null;
+            hoopPhysics.resetShot(this.ball);
             this.stats.ballStatesSeen.add(this.ball.state);
             if (!silent) {
                 this.stats.possessions++;
@@ -300,10 +329,14 @@
         }
 
         releaseBall(actor, state = 'SHOT') {
+            this.ballRecovery.clearAttempt();
             this.ball.owner = null;
             this.ball.state = state;
             this.ball.shooter = actor.id;
             this.ball.shotId++;
+            this.ball.scoreResetTimer=0;
+            this.scoreResetOwner=null;
+            hoopPhysics.resetShot(this.ball);
             this.ball.pickupLock = 16;
             this.stats.ballStatesSeen.add(state);
         }
@@ -340,6 +373,7 @@
                 this.ball.y = footY - 39;
             }
             this.ball.previousY = this.ball.y;
+            this.ball.previousX = this.ball.x;
             this.ball.rotation += 0.12;
         }
 
@@ -410,6 +444,7 @@
                 this.ball.vy = -2.5;
                 defender.special = clamp(defender.special + 24, 0, 100);
                 this.stats.blocks++;
+                this.crowd.react('BLOCK',defender.id);
                 this.announcement = 'TOCO!';
                 this.announcementTimer = 45;
                 return;
@@ -545,6 +580,11 @@
                     }
                 } else if (this.ball.owner === null) {
                     actor.aiIntent = Math.sign(this.ball.x - actor.x);
+                    // Use the existing jump to retrieve a high loose ball;
+                    // walking alone cannot reach every rebound beside a board.
+                    const d=Math.hypot(this.ball.x-actor.x,this.ball.y-this.court.handY);
+                    if(actor.grounded&&Math.abs(this.ball.x-actor.x)<34&&d>28
+                        &&this.ball.y<this.court.handY&&courtPhysics.reachable(this.ball,this.court))this.jump(actor);
                 } else {
                     const defensiveTarget = clamp(foe.x + 30, 95, 355);
                     actor.aiIntent = Math.sign(defensiveTarget - actor.x);
@@ -647,6 +687,7 @@
                 victim.vx = actor.facing * 1.4;
                 actor.special = clamp(actor.special + 25, 0, 100);
                 this.stats.steals++;
+                this.crowd.react('STEAL',actor.id);
                 this.announcement = 'ROUBO!';
                 this.announcementTimer = 38;
             }
@@ -663,6 +704,7 @@
                 this.ball.pickupLock = 12;
                 actor.special = clamp(actor.special + 24, 0, 100);
                 this.stats.blocks++;
+                this.crowd.react('BLOCK',actor.id);
                 this.stats.ballStatesSeen.add('FREE');
                 this.announcement = 'TOCO!';
                 this.announcementTimer = 42;
@@ -683,98 +725,94 @@
             b.vx += exchange;
         }
 
-        collideBallWithRim(hoop, rimX) {
-            const dx = this.ball.x - rimX;
-            const dy = this.ball.y - hoop.rimY;
-            const minDistance = 9;
-            const length = Math.hypot(dx, dy);
-            if (length >= minDistance || length < 0.001) return false;
-            const nx = dx / length;
-            const ny = dy / length;
-            const dot = this.ball.vx * nx + this.ball.vy * ny;
-            this.ball.x = rimX + nx * minDistance;
-            this.ball.y = hoop.rimY + ny * minDistance;
-            this.ball.vx -= 1.65 * dot * nx;
-            this.ball.vy -= 1.65 * dot * ny;
-            this.ball.vx *= 0.82;
-            this.ball.vy *= 0.82;
-            this.ball.state = 'REBOUND';
-            this.stats.rimHits++;
-            this.stats.ballStatesSeen.add('REBOUND');
-            return true;
-        }
-
         updateFreeBall(step) {
             const wasLiveShot = this.ball.state === 'SHOT' || this.ball.state === 'REBOUND';
-            this.ball.previousY = this.ball.y;
-            this.ball.x += this.ball.vx * step;
-            this.ball.y += this.ball.vy * step;
-            this.ball.vy += BALL_GRAVITY * step;
+            hoopPhysics.advance(this.ball,this.hoops,step,{
+                gravity:BALL_GRAVITY,
+                court:this.court,boundaryHit:courtPhysics.boundaryHit,
+                onBoundary:event=>{
+                    if(event.shape.kind==='FLOOR') {
+                        if(wasLiveShot&&this.ball.scoredShotId!==this.ball.shotId&&this.ball.missRecordedShotId!==this.ball.shotId) {
+                            this.ball.missRecordedShotId=this.ball.shotId;this.stats.misses++;
+                        }
+                        if(-event.normalVelocity>1.15)this.stats.floorBounces++;
+                    }
+                    this.ball.state='REBOUND';this.stats.ballStatesSeen.add('REBOUND');
+                },
+                onContact:event=>{
+                    this.ball.state='REBOUND';
+                    this.stats.ballStatesSeen.add('REBOUND');
+                    if(event.kind==='RIM')this.stats.rimHits++;
+                    else this.stats.backboardHits++;
+                    if(event.kind==='RIM'&&this.ball.shooter&&!this.ball.basketScored)
+                        this.crowd.react('RIM',this.ball.shooter);
+                    this.playBallSound(event.kind);
+                    this.effects.push({type:'impact',x:event.x,y:event.y,life:12,
+                        color:event.kind==='RIM'?'#ffd078':'#b8e9ff'});
+                },
+                onScore:event=>this.checkScore(event.hoop,event)
+            });
             this.ball.rotation += this.ball.angularVelocity * step;
             this.ball.pickupLock = Math.max(0, this.ball.pickupLock - step);
-
-            for (const hoop of Object.values(this.hoops)) {
-                const board = hoop.backboard;
-                if (this.ball.x + 7 > board.x && this.ball.x - 7 < board.x + board.w && this.ball.y > board.y && this.ball.y < board.y + board.h) {
-                    this.ball.x = this.ball.vx > 0 ? board.x - 7 : board.x + board.w + 7;
-                    this.ball.vx *= -0.74;
-                    this.ball.state = 'REBOUND';
-                    this.stats.backboardHits++;
-                    this.stats.ballStatesSeen.add('REBOUND');
-                }
-                this.checkScore(hoop);
-                this.collideBallWithRim(hoop, hoop.rimX - 11);
-                this.collideBallWithRim(hoop, hoop.rimX + 11);
+            if(this.ball.y>=GROUND_Y-this.ball.radius-.001&&this.ball.vy===0) {
+                this.ball.state='FREE';this.stats.ballStatesSeen.add('FREE');
             }
-
-            if (this.ball.y >= GROUND_Y - 7) {
-                this.ball.y = GROUND_Y - 7;
-                if (wasLiveShot && this.ball.scoredShotId !== this.ball.shotId && this.ball.missRecordedShotId !== this.ball.shotId) {
-                    this.ball.missRecordedShotId = this.ball.shotId;
-                    this.stats.misses++;
-                }
-                if (Math.abs(this.ball.vy) > 1.15) {
-                    this.ball.vy *= -0.58;
-                    this.ball.vx *= 0.86;
-                    this.ball.state = 'REBOUND';
-                    this.stats.floorBounces++;
-                    this.stats.ballStatesSeen.add('REBOUND');
-                } else {
-                    this.ball.vy = 0;
-                    this.ball.vx *= Math.pow(0.88, step);
-                    this.ball.state = 'FREE';
-                    this.stats.ballStatesSeen.add('FREE');
-                }
-            }
-            if (this.ball.x < 9 || this.ball.x > canvas.width - 9) {
-                this.ball.x = clamp(this.ball.x, 9, canvas.width - 9);
-                this.ball.vx *= -0.65;
-                this.ball.state = 'REBOUND';
-            }
+            this.ballRecovery.update(this.ball,step/60,this.court,this.hoops);
             this.tryPickupBall();
         }
 
-        checkScore(hoop) {
-            if (this.ball.state !== 'SHOT' || this.ball.scoredShotId === this.ball.shotId) return;
-            const descending = this.ball.previousY < hoop.rimY - 1 && this.ball.y >= hoop.rimY - 1 && this.ball.vy > 0;
-            const centered = Math.abs(this.ball.x - hoop.rimX) < 9.5;
-            if (!descending || !centered || this.ball.target !== hoop.side) return;
-            this.ball.scoredShotId = this.ball.shotId;
+        checkScore(hoop, event) {
+            if (!event || !this.ball.basketScored || this.ball.awardedShotId===this.ball.shotId
+                || !['zorp','master'].includes(this.ball.shooter)
+                || this.ball.target!==hoop.side || event.crossing.shotId!==this.ball.shotId) return;
+            this.ball.awardedShotId=this.ball.shotId;
             const scorer = this.ball.shooter === 'zorp' ? this.player : this.master;
             const points = this.ball.points;
+            const previousLead=this.score[scorer.id]-this.score[this.opponentOf(scorer).id];
             this.score[scorer.id] += points;
             scorer.special = clamp(scorer.special + (points === 3 ? 30 : 22), 0, 100);
             hoop.netTimer = 34;
             if (points === 3) this.stats.threePointers++;
             else this.stats.twoPointers++;
-            this.announcement = `${points} PONTOS!`;
+            const swoosh=event.kind==='SWOOSH';
+            this.crowd.react('BASKET',scorer.id,{points,swoosh,late:this.clock<=10,
+                comeback:previousLead<0&&this.score[scorer.id]>this.score[this.opponentOf(scorer).id]});
+            if(swoosh)this.stats.swooshes++;else this.stats.normalBaskets++;
+            this.stats.baskets.push({shotId:this.ball.shotId,scorer:scorer.id,points,kind:event.kind,
+                crossing:{...event.crossing},rimTouched:this.ball.rimTouched,backboardTouched:this.ball.backboardTouched});
+            if(this.stats.baskets.length>30)this.stats.baskets.shift();
+            this.announcement = swoosh ? `SWOOSH! ${points} PONTOS!` : `${points} PONTOS!`;
             this.announcementTimer = 55;
             this.ball.state = 'REBOUND';
-            this.ball.vy = Math.max(2.2, this.ball.vy * 0.45);
-            this.ball.vx *= 0.35;
+            this.playBallSound(swoosh?'SWOOSH':'BASKET');
             this.ball.scoreResetTimer = 48;
             this.scoreResetOwner = scorer === this.player ? this.master : this.player;
             this.effects.push({ type: 'score', x: hoop.rimX, y: hoop.rimY - 18, life: 42, color: scorer === this.player ? '#39e7ff' : '#ff9d32', text: `+${points}` });
+            if(swoosh)this.effects.push({type:'swoosh',x:hoop.rimX,y:hoop.rimY,life:22,color:'#83fff0'});
+        }
+
+        unlockAudio() {
+            try {
+                const Context=window.AudioContext||window.webkitAudioContext;
+                if(!Context)return;
+                if(!this.audio)this.audio=new Context();
+                if(this.audio.state==='suspended')this.audio.resume().catch(()=>{});
+            } catch (_) { /* Sound is optional; physical outcomes are unchanged. */ }
+        }
+
+        playBallSound(kind) {
+            if(!this.audio||this.audio.state!=='running'||this.audioVoices>=3)return;
+            const audio=this.audio,t=audio.currentTime,o=audio.createOscillator(),gain=audio.createGain();
+            const rim=kind==='RIM',board=kind==='BACKBOARD',swoosh=kind==='SWOOSH';
+            const duration=rim?.075:board?.10:.16;
+            o.type=rim?'triangle':board?'sine':'sine';
+            o.frequency.setValueAtTime(rim?630:board?170:swoosh?740:440,t);
+            o.frequency.exponentialRampToValueAtTime(rim?350:board?85:swoosh?1100:660,t+duration);
+            gain.gain.setValueAtTime(.025/Math.sqrt(this.audioVoices+1),t);
+            gain.gain.exponentialRampToValueAtTime(.0001,t+duration);
+            o.connect(gain);gain.connect(audio.destination);this.audioVoices++;
+            o.onended=()=>{this.audioVoices--;o.disconnect();gain.disconnect();};
+            o.start(t);o.stop(t+duration);
         }
 
         tryPickupBall() {
@@ -828,6 +866,7 @@
         finishMatch(winner) {
             this.phase = 'RESULT';
             this.winner = winner;
+            this.crowd.react('VICTORY',winner);
             this.stats.resultsSeen.add(winner);
             if (winner === 'zorp') {
                 this.player.state = 'VICTORY';
@@ -863,6 +902,11 @@
             root.dataset.basketballDiagnostics = JSON.stringify(this.diagnostics());
         }
 
+        updatePresentation(seconds) {
+            this.crowd.update(seconds,{phase:this.phase,clock:this.clock,score:this.score});
+            this.scoreboard.update(seconds,this,this.crowd.lastReaction);
+        }
+
         update() {
             const now = performance.now();
             const deltaSeconds = clamp((now - this.lastTime) / 1000, 0, 0.05);
@@ -874,15 +918,12 @@
 
             if (this.phase === 'READY') {
                 if (this.pressed('space') || this.pressed('j')) {
-                    this.phase = 'PLAYING';
-                    this.clock = MATCH_SECONDS;
-                    this.lastTime = now;
-                    this.announcement = 'VALENDO!';
-                    this.announcementTimer = 60;
+                    this.startFromBriefing();
                     keys.space = false;
                     keys.j = false;
                 }
                 this.updatePossessedBall();
+                this.updatePresentation(deltaSeconds);
                 this.updateQaBridge();
                 this.finishInputFrame();
                 return;
@@ -899,6 +940,7 @@
                     player.x = 225;
                     player.y = 145;
                 }
+                this.updatePresentation(deltaSeconds);
                 this.updateQaBridge();
                 this.finishInputFrame();
                 return;
@@ -921,6 +963,7 @@
             this.updateBall(step);
             this.updateClock(deltaSeconds);
             this.updateEffects(step);
+            this.updatePresentation(deltaSeconds);
             this.updateQaBridge();
             this.finishInputFrame();
         }
@@ -1004,25 +1047,15 @@
                 y: this.ball.y - BALL_DRAW_SIZE / 2,
                 width: BALL_DRAW_SIZE,
                 height: BALL_DRAW_SIZE,
+                alpha:this.ballRecovery.alpha(),
                 flipX: this.ball.angularVelocity < 0
             });
         }
 
         drawHUD() {
             ctx.save();
-            ctx.fillStyle = 'rgba(4, 8, 24, 0.86)';
-            ctx.fillRect(0, 0, canvas.width, 34);
-            ctx.font = 'bold 12px monospace';
-            ctx.textAlign = 'left';
-            ctx.fillStyle = '#47e9ff';
-            ctx.fillText(`ZORP ${this.score.zorp}`, 12, 15);
-            ctx.textAlign = 'right';
-            ctx.fillStyle = '#ffae45';
-            ctx.fillText(`${this.score.master} MESTRE`, canvas.width - 12, 15);
-            ctx.textAlign = 'center';
-            ctx.fillStyle = this.overtime ? '#ffeb3b' : '#ffffff';
-            ctx.fillText(this.overtime ? `OT ${Math.ceil(this.clock)}` : `${Math.ceil(this.clock)}`, canvas.width / 2, 15);
-            const barWidth = 112;
+            // Charges remain available; score/time live only in the arena panel.
+            const barWidth = 100;
             const drawBar = (x, y, value, color, alignRight) => {
                 ctx.fillStyle = '#18223e';
                 ctx.fillRect(x, y, barWidth, 7);
@@ -1033,8 +1066,8 @@
                 ctx.lineWidth = 1;
                 ctx.strokeRect(x, y, barWidth, 7);
             };
-            drawBar(12, 22, this.player.special, '#39e7ff', false);
-            drawBar(canvas.width - 124, 22, this.master.special, '#ff9d32', true);
+            drawBar(12, 14, this.player.special, '#39e7ff', false);
+            drawBar(canvas.width - 112, 14, this.master.special, '#ff9d32', true);
             ctx.font = '7px monospace';
             ctx.textAlign = 'left';
             ctx.fillStyle = '#d6fbff';
@@ -1060,6 +1093,12 @@
                         ctx.lineTo(effect.x + 8, effect.y + i * 6);
                         ctx.stroke();
                     }
+                } else if (effect.type === 'impact') {
+                    ctx.lineWidth=1.2;ctx.beginPath();
+                    ctx.arc(effect.x,effect.y,2+(12-effect.life)*.35,0,Math.PI*2);ctx.stroke();
+                } else if (effect.type === 'swoosh') {
+                    ctx.lineWidth=1.5;ctx.beginPath();
+                    ctx.ellipse(effect.x,effect.y+3,8+(22-effect.life)*.5,3,0,0,Math.PI*2);ctx.stroke();
                 } else if (effect.type === 'score') {
                     ctx.font = 'bold 18px monospace';
                     ctx.textAlign = 'center';
@@ -1099,16 +1138,14 @@
         }
 
         drawResult() {
-            ctx.fillStyle = 'rgba(2, 4, 18, 0.82)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(2, 4, 18, 0.62)';
+            ctx.fillRect(0, 95, canvas.width, canvas.height-95);
             ctx.textAlign = 'center';
             const won = this.winner === 'zorp';
             ctx.fillStyle = won ? '#39e7ff' : '#ff9d32';
             ctx.font = 'bold 24px monospace';
-            ctx.fillText(won ? 'ZORP VENCEU!' : 'MESTRE VENCEU!', canvas.width / 2, 88);
+            ctx.fillText(won ? 'ZORP VENCEU!' : 'MESTRE VENCEU!', canvas.width / 2, 112);
             ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 20px monospace';
-            ctx.fillText(`${this.score.zorp}  x  ${this.score.master}`, canvas.width / 2, 128);
             ctx.font = '11px monospace';
             ctx.fillText('[ESPAÇO OU J] REVANCHE', canvas.width / 2, 190);
             ctx.fillText('[ESC] VOLTAR À ILHA', canvas.width / 2, 216);
@@ -1127,7 +1164,10 @@
                 return;
             }
             const arena = this.assets.getSingle('arena', 'background');
-            this.assets.drawEntry(arena, { x: 0, y: 0, width: canvas.width, height: canvas.height });
+            const architecture = this.assets.images.get(arena.file);
+            crowdPresentation.drawArchitecture(ctx,architecture,canvas.width,canvas.height);
+            this.crowd.draw(ctx);
+            this.scoreboard.draw(ctx,this);
             ctx.fillStyle = 'rgba(4, 6, 28, 0.09)';
             ctx.fillRect(0, 34, canvas.width, canvas.height - 34);
             this.drawHoop(this.hoops.left);
@@ -1136,19 +1176,10 @@
             this.drawActor(this.master);
             this.drawBall();
             this.drawEffects();
+            if(window.BASKET_COLLISION_DEBUG)hoopPhysics.drawDebug(ctx,this.ball,this.hoops);
+            if(window.BASKET_COLLISION_DEBUG)courtPhysics.drawDebug(ctx,this.court);
             this.drawHUD();
-            if (this.announcementTimer > 0 && this.phase === 'PLAYING') {
-                ctx.save();
-                ctx.textAlign = 'center';
-                ctx.font = 'bold 16px monospace';
-                ctx.fillStyle = '#ffffff';
-                ctx.strokeStyle = '#07102d';
-                ctx.lineWidth = 4;
-                ctx.strokeText(this.announcement, canvas.width / 2, 57);
-                ctx.fillText(this.announcement, canvas.width / 2, 57);
-                ctx.restore();
-            }
-            if (this.phase === 'READY') this.drawReady();
+            if (this.phase === 'READY' && !window.PreGameBrief?.active) this.drawReady();
             else if (this.phase === 'RESULT') this.drawResult();
         }
 
@@ -1169,13 +1200,22 @@
                 clock: Number(this.clock.toFixed(2)),
                 overtime: this.overtime,
                 winner: this.winner,
+                recovery:this.ballRecovery.snapshot(),
+                crowd:this.crowd.snapshot(),
+                scoreboard:this.scoreboard.snapshot(this),
                 player: actorSnapshot(this.player),
                 master: actorSnapshot(this.master),
                 ball: {
                     state: this.ball.state, owner: this.ball.owner,
                     x: Number(this.ball.x.toFixed(2)), y: Number(this.ball.y.toFixed(2)),
                     vx: Number(this.ball.vx.toFixed(2)), vy: Number(this.ball.vy.toFixed(2)),
-                    shotId: this.ball.shotId, scoredShotId: this.ball.scoredShotId
+                    shotId: this.ball.shotId, scoredShotId: this.ball.scoredShotId,
+                    previousX:this.ball.previousX,previousY:this.ball.previousY,radius:this.ball.radius,
+                    wasAboveRim:this.ball.wasAboveRim,crossedRimPlane:this.ball.crossedRimPlane,
+                    basketScored:this.ball.basketScored,enteredRimFromBelow:this.ball.enteredRimFromBelow,
+                    rimTouched:this.ball.rimTouched,backboardTouched:this.ball.backboardTouched,
+                    scoreKind:this.ball.scoreKind,scoreCrossing:this.ball.scoreCrossing,
+                    pendingBasket:this.ball.pendingBasket,recoveryScoringBlocked:this.ball.recoveryScoringBlocked
                 },
                 stats: {
                     ...this.stats,
@@ -1184,8 +1224,8 @@
                     resultsSeen: [...this.stats.resultsSeen]
                 },
                 colliders: {
-                    left: { rimX: this.hoops.left.rimX, rimY: this.hoops.left.rimY, backboard: this.hoops.left.backboard },
-                    right: { rimX: this.hoops.right.rimX, rimY: this.hoops.right.rimY, backboard: this.hoops.right.backboard }
+                    left: this.hoops.left,
+                    right: this.hoops.right
                 }
             };
         }
@@ -1195,7 +1235,27 @@
             this.phase = 'PLAYING';
             this.clock = Math.max(this.clock, 20);
             this.qaLockFrames = 180;
-            if (name === 'two') {
+            if (name.startsWith('physics-')) {
+                const h=this.hoops.right;
+                const seeds={
+                    'physics-swoosh':[h.rimX,h.rimY-43.4,0,1],
+                    'physics-rim-in':[h.rimX-43,h.rimY-80.4,1,-2],
+                    'physics-board-in':[h.rimX-40,h.rimY-83.4,1.5,0],
+                    'physics-rim-out':[h.rimX-45,h.rimY-88.4,.5,-2],
+                    'physics-outside':[h.rimX-45,h.rimY-28.4,0,2],
+                    'physics-under':[h.rimX,h.rimY+31.6,0,-6],
+                    'physics-net':[h.rimX,h.rimY+28,0,2],
+                    'physics-lateral':[h.rimX-25,h.rimY,3,0],
+                    'physics-repeated':[h.rimX-45,h.rimY-88.4,1,-2]
+                };
+                const seed=seeds[name];if(!seed)return false;
+                this.player.x=150;this.master.x=220;
+                this.releaseBall(this.player,'SHOT');
+                Object.assign(this.ball,{x:seed[0],y:seed[1],vx:seed[2],vy:seed[3],
+                    target:'right',points:2,pickupLock:600,scoreResetTimer:0});
+                hoopPhysics.resetShot(this.ball);
+                this.qaLockFrames=600;this.stats.shots++;
+            } else if (name === 'two') {
                 this.player.x = 295;
                 this.master.x = 190;
                 this.setOwner(this.player, true);
@@ -1277,25 +1337,19 @@
                 this.score.master = 6;
                 this.clock = 0.01;
             } else if (name === 'backboard') {
-                this.ball.owner = null;
-                this.ball.state = 'SHOT';
-                this.ball.shooter = 'zorp';
+                this.releaseBall(this.player,'SHOT');
                 this.ball.target = 'right';
                 this.ball.x = 350;
                 this.ball.y = 165;
                 this.ball.vx = 4.2;
                 this.ball.vy = -0.2;
-                this.ball.shotId++;
             } else if (name === 'rim') {
-                this.ball.owner = null;
-                this.ball.state = 'SHOT';
-                this.ball.shooter = 'zorp';
+                this.releaseBall(this.player,'SHOT');
                 this.ball.target = 'right';
                 this.ball.x = 340;
                 this.ball.y = 176;
                 this.ball.vx = 2.2;
                 this.ball.vy = 1.1;
-                this.ball.shotId++;
             } else return false;
             return true;
         }
@@ -1304,6 +1358,7 @@
     const game = new BasketballGame();
     window.basketball1v1 = game;
     window.resetBasketball1v1 = function (showReady = true) { game.reset(showReady); };
+    window.startBasketball1v1FromBrief = function () { return game.startFromBriefing(); };
     window.updateBasketball1v1 = function () { game.update(); };
     window.drawBasketball1v1 = function () { game.draw(); };
     window.getBasketball1v1Diagnostics = function () { return game.diagnostics(); };
@@ -1313,6 +1368,8 @@
             diagnostics: () => game.diagnostics()
         };
         currentScene = SCENE;
+        // QA enters without passing through the title menu's normal exit.
+        if(typeof TitleScreen!=='undefined')TitleScreen.active=false;
         game.reset(true);
     }
 })();

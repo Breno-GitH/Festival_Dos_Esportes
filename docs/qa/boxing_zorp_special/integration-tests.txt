@@ -1,0 +1,375 @@
+TAP version 13
+# Subtest: both fighters start at 100 HP and use the existing mat bounds
+ok 1 - both fighters start at 100 HP and use the existing mat bounds
+  ---
+  duration_ms: 37.1471
+  ...
+# Subtest: movement and depth have identical speed at 30, 60 and 144 FPS
+ok 2 - movement and depth have identical speed at 30, 60 and 144 FPS
+  ---
+  duration_ms: 22.9778
+  ...
+# Subtest: all four rope corners constrain body colliders; overlapping bodies separate even at a wall
+ok 3 - all four rope corners constrain body colliders; overlapping bodies separate even at a wall
+  ---
+  duration_ms: 4.7045
+  ...
+# Subtest: light and heavy require real horizontal reach and matching depth
+ok 4 - light and heavy require real horizontal reach and matching depth
+  ---
+  duration_ms: 27.6722
+  ...
+# Subtest: walking to another depth line avoids a committed straight punch
+ok 5 - walking to another depth line avoids a committed straight punch
+  ---
+  duration_ms: 8.656
+  ...
+# Subtest: guard reduces damage, still permits chip and pushback, and breaks under sustained pressure
+ok 6 - guard reduces damage, still permits chip and pushback, and breaks under sustained pressure
+  ---
+  duration_ms: 5.1733
+  ...
+# Subtest: well-timed dodge avoids a real hit and opens a counter; an early dodge can be punished
+ok 7 - well-timed dodge avoids a real hit and opens a counter; an early dodge can be punished
+  ---
+  duration_ms: 6.6137
+  ...
+# Subtest: dodge cannot be restarted or spammed while active
+ok 8 - dodge cannot be restarted or spammed while active
+  ---
+  duration_ms: 3.0159
+  ...
+# Subtest: J J K links only connected lights and finishes a three-hit combo with heavier damage
+ok 9 - J J K links only connected lights and finishes a three-hit combo with heavier damage
+  ---
+  duration_ms: 4.6341
+  ...
+# Subtest: missed heavy has a longer committed recovery and cannot be canceled into another hit
+ok 10 - missed heavy has a longer committed recovery and cannot be canceled into another hit
+  ---
+  duration_ms: 4.1779
+  ...
+# Subtest: fighters turn toward each other after changing sides, including during recovery
+ok 11 - fighters turn toward each other after changing sides, including during recovery
+  ---
+  duration_ms: 4.9369
+  ...
+# Subtest: O has no installed special, produces no attack or damage, and only supplies a future hook
+ok 12 - O has no installed special, produces no attack or damage, and only supplies a future hook
+  ---
+  duration_ms: 5.3591
+  ...
+# Subtest: zero HP leads to KO once, no HP recovery, and the existing winner reward
+ok 13 - zero HP leads to KO once, no HP recovery, and the existing winner reward
+  ---
+  duration_ms: 4.1847
+  ...
+# Subtest: master KO awards no medal; restarting restores both fighters to 100 HP
+ok 14 - master KO awards no medal; restarting restores both fighters to 100 HP
+  ---
+  duration_ms: 3.1765
+  ...
+# Subtest: simultaneous lethal contacts produce a double KO without choosing an arbitrary winner
+ok 15 - simultaneous lethal contacts produce a double KO without choosing an arbitrary winner
+  ---
+  duration_ms: 3.8729
+  ...
+# Subtest: briefing and hidden documents freeze combat; blur releases movement and guard
+ok 16 - briefing and hidden documents freeze combat; blur releases movement and guard
+  ---
+  duration_ms: 2.4218
+  ...
+# Subtest: jab → jab → cross is a real connected combo with exactly one contact per punch
+ok 17 - jab → jab → cross is a real connected combo with exactly one contact per punch
+  ---
+  duration_ms: 41.7471
+  ...
+# Subtest: jab → cross is a real connected combo with exactly one contact per punch
+ok 18 - jab → cross is a real connected combo with exactly one contact per punch
+  ---
+  duration_ms: 7.8795
+  ...
+# Subtest: jab → jab → jab is a real connected combo with exactly one contact per punch
+ok 19 - jab → jab → jab is a real connected combo with exactly one contact per punch
+  ---
+  duration_ms: 5.5506
+  ...
+# Subtest: a late follow-up cannot keep a combo after the defender has left hitstun
+ok 20 - a late follow-up cannot keep a combo after the defender has left hitstun
+  ---
+  duration_ms: 5.1132
+  ...
+# Subtest: a fourth light cannot cancel the third hit into an infinite combo
+ok 21 - a fourth light cannot cancel the third hit into an infinite combo
+  ---
+  duration_ms: 5.9441
+  ...
+# Subtest: a blocked punch does not authorize a hit-confirm cancel
+ok 22 - a blocked punch does not authorize a hit-confirm cancel
+  ---
+  duration_ms: 5.6938
+  ...
+# Subtest: holding guard alone breaks it after about six seconds, then a short stun recovers
+ok 23 - holding guard alone breaks it after about six seconds, then a short stun recovers
+  ---
+  duration_ms: 18.4608
+  ...
+# Subtest: several blocks build pressure; releasing guard recovers gradually rather than resetting it
+ok 24 - several blocks build pressure; releasing guard recovers gradually rather than resetting it
+  ---
+  duration_ms: 9.5473
+  ...
+# Subtest: future blocked specials add much more guard pressure but install no special attack
+ok 25 - future blocked specials add much more guard pressure but install no special attack
+  ---
+  duration_ms: 2.7441
+  ...
+# Subtest: correct dodge permits an early counter, with bonus damage and a short extra hitstun
+ok 26 - correct dodge permits an early counter, with bonus damage and a short extra hitstun
+  ---
+  duration_ms: 6.0586
+  ...
+# Subtest: a timed sidestep out of the punch line opens a counter, even without overlap at the final position
+ok 27 - a timed sidestep out of the punch line opens a counter, even without overlap at the final position
+  ---
+  duration_ms: 3.5494
+  ...
+# Subtest: dodging outside the threatened range awards no free counter
+ok 28 - dodging outside the threatened range awards no free counter
+  ---
+  duration_ms: 3.4272
+  ...
+# Subtest: waiting out the counter window removes the damage bonus
+ok 29 - waiting out the counter window removes the damage bonus
+  ---
+  duration_ms: 7.8603
+  ...
+# Subtest: hit pause freezes both fighters for only 1–3 steps and preserves a newly buffered punch
+ok 30 - hit pause freezes both fighters for only 1–3 steps and preserves a newly buffered punch
+  ---
+  duration_ms: 5.6675
+  ...
+# Subtest: a missed punch produces no contact pause or impact event
+ok 31 - a missed punch produces no contact pause or impact event
+  ---
+  duration_ms: 4.1452
+  ...
+# Subtest: guard strain and real-time contact pause stay equivalent at 30, 60 and 144 FPS
+ok 32 - guard strain and real-time contact pause stay equivalent at 30, 60 and 144 FPS
+  ---
+  duration_ms: 81.5197
+  ...
+# Subtest: official sheet is preloaded once and masked frames use a uniform scale with foot anchors
+ok 33 - official sheet is preloaded once and masked frames use a uniform scale with foot anchors
+  ---
+  duration_ms: 71.8094
+  ...
+# Subtest: a full meter is required; activation consumes it once and cannot be spammed
+ok 34 - a full meter is required; activation consumes it once and cannot be spammed
+  ---
+  duration_ms: 9.6553
+  ...
+# Subtest: normal weave advances physically and lands one stronger final punch
+ok 35 - normal weave advances physically and lands one stronger final punch
+  ---
+  duration_ms: 15.336
+  ...
+# Subtest: normal special can be partially guarded and adds high guard pressure
+ok 36 - normal special can be partially guarded and adds high guard pressure
+  ---
+  duration_ms: 8.3954
+  ...
+# Subtest: using weave on the wrong depth line whiffs and leaves a punishable recovery
+ok 37 - using weave on the wrong depth line whiffs and leaves a punishable recovery
+  ---
+  duration_ms: 7.3777
+  ...
+# Subtest: a very distant normal special cannot teleport or invent contact
+ok 38 - a very distant normal special cannot teleport or invent contact
+  ---
+  duration_ms: 8.2302
+  ...
+# Subtest: an incoming committed attack triggers evasion, then exactly R L R L R L
+ok 39 - an incoming committed attack triggers evasion, then exactly R L R L R L
+  ---
+  duration_ms: 13.7553
+  ...
+# Subtest: after the first counter contact, the opponent stays in hitstun between all six punches
+ok 40 - after the first counter contact, the opponent stays in hitstun between all six punches
+  ---
+  duration_ms: 6.586
+  ...
+# Subtest: a windup that is too early, distant or off-line does not grant the rare counter
+ok 41 - a windup that is too early, distant or off-line does not grant the rare counter
+  ---
+  duration_ms: 17.5188
+  ...
+# Subtest: a baited counter without a real avoided contact fails safely rather than granting six punches
+ok 42 - a baited counter without a real avoided contact fails safely rather than granting six punches
+  ---
+  duration_ms: 12.2253
+  ...
+# Subtest: normal weave has no global invulnerability and can be interrupted
+ok 43 - normal weave has no global invulnerability and can be interrupted
+  ---
+  duration_ms: 10.2988
+  ...
+# Subtest: meter recharges through active fighting, landing, receiving and nearby exchanges, but not by its own special
+ok 44 - meter recharges through active fighting, landing, receiving and nearby exchanges, but not by its own special
+  ---
+  duration_ms: 32.3603
+  ...
+# Subtest: briefing, result, hidden documents, far-away inactivity and a missing sheet do not refill or spend the bar incorrectly
+ok 45 - briefing, result, hidden documents, far-away inactivity and a missing sheet do not refill or spend the bar incorrectly
+  ---
+  duration_ms: 30.9523
+  ...
+# Subtest: the same meter and special resolve consistently at 30, 60 and 144 FPS
+ok 46 - the same meter and special resolve consistently at 30, 60 and 144 FPS
+  ---
+  duration_ms: 57.7955
+  ...
+# Subtest: a left-facing weave uses real leftward movement and pushback without changing sprite proportions
+ok 47 - a left-facing weave uses real leftward movement and pushback without changing sprite proportions
+  ---
+  duration_ms: 10.9027
+  ...
+# Subtest: KO during the rush cleans locks/special state and never strikes a defeated target again
+ok 48 - KO during the rush cleans locks/special state and never strikes a defeated target again
+  ---
+  duration_ms: 8.9022
+  ...
+# Subtest: cooldown still prevents activation even when a development tool fills the bar again
+ok 49 - cooldown still prevents activation even when a development tool fills the bar again
+  ---
+  duration_ms: 8.2654
+  ...
+# Subtest: all eight sports share one short configuration contract
+ok 50 - all eight sports share one short configuration contract
+  ---
+  duration_ms: 5.7435
+  ...
+# Subtest: inactive controller does not intercept normal gameplay
+ok 51 - inactive controller does not intercept normal gameplay
+  ---
+  duration_ms: 0.8344
+  ...
+# Subtest: briefing remains open indefinitely and never starts from its animation clock
+ok 52 - briefing remains open indefinitely and never starts from its animation clock
+  ---
+  duration_ms: 0.9728
+  ...
+# Subtest: Space confirms once after the short exit transition
+ok 53 - Space confirms once after the short exit transition
+  ---
+  duration_ms: 0.7665
+  ...
+# Subtest: Enter confirms once after the short exit transition
+ok 54 - Enter confirms once after the short exit transition
+  ---
+  duration_ms: 0.6896
+  ...
+# Subtest: Escape cancels without triggering the start callback
+ok 55 - Escape cancels without triggering the start callback
+  ---
+  duration_ms: 0.6677
+  ...
+# Subtest: opening with the NPC interaction key held cannot confirm until release and a fresh press
+ok 56 - opening with the NPC interaction key held cannot confirm until release and a fresh press
+  ---
+  duration_ms: 0.961
+  ...
+# Subtest: repeated keydown never confirms
+ok 57 - repeated keydown never confirms
+  ---
+  duration_ms: 0.4695
+  ...
+# Subtest: confirming and movement keys do not leak into gameplay while held
+ok 58 - confirming and movement keys do not leak into gameplay while held
+  ---
+  duration_ms: 1.2874
+  ...
+# Subtest: lost focus releases stale held-key guards
+ok 59 - lost focus releases stale held-key guards
+  ---
+  duration_ms: 1.3692
+  ...
+# Subtest: all inputs are consumed while a briefing is open
+ok 60 - all inputs are consumed while a briefing is open
+  ---
+  duration_ms: 0.6272
+  ...
+# Subtest: active briefing stops propagation to minigame-specific listeners
+ok 61 - active briefing stops propagation to minigame-specific listeners
+  ---
+  duration_ms: 0.5361
+  ...
+# Subtest: opening another briefing cannot silently replace an active one
+ok 62 - opening another briefing cannot silently replace an active one
+  ---
+  duration_ms: 0.3221
+  ...
+# Subtest: cancel is optional for sports without a return route
+ok 63 - cancel is optional for sports without a return route
+  ---
+  duration_ms: 0.3717
+  ...
+# Subtest: fade, layout, essential controls and icon render through the same Canvas component
+ok 64 - fade, layout, essential controls and icon render through the same Canvas component
+  ---
+  duration_ms: 5.6908
+  ...
+# Subtest: every sport renders inside the same fixed card without truncated instructional text
+ok 65 - every sport renders inside the same fixed card without truncated instructional text
+  ---
+  duration_ms: 3.6679
+  ...
+# Subtest: configuration validates essentials and bounds tutorial size
+ok 66 - configuration validates essentials and bounds tutorial size
+  ---
+  duration_ms: 1.3217
+  ...
+# Subtest: animation uses deltaTime at 30 Hz
+ok 67 - animation uses deltaTime at 30 Hz
+  ---
+  duration_ms: 0.2554
+  ...
+# Subtest: animation uses deltaTime at 60 Hz
+ok 68 - animation uses deltaTime at 60 Hz
+  ---
+  duration_ms: 0.1598
+  ...
+# Subtest: animation uses deltaTime at 144 Hz
+ok 69 - animation uses deltaTime at 144 Hz
+  ---
+  duration_ms: 0.1476
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 30 Hz
+ok 70 - countdown keeps simulation/input gated until VAI finishes at 30 Hz
+  ---
+  duration_ms: 0.9119
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 60 Hz
+ok 71 - countdown keeps simulation/input gated until VAI finishes at 60 Hz
+  ---
+  duration_ms: 0.3759
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 144 Hz
+ok 72 - countdown keeps simulation/input gated until VAI finishes at 144 Hz
+  ---
+  duration_ms: 0.6333
+  ...
+# Subtest: countdown is optional so Marathon can retain its own native countdown
+ok 73 - countdown is optional so Marathon can retain its own native countdown
+  ---
+  duration_ms: 0.2388
+  ...
+1..73
+# tests 73
+# suites 0
+# pass 73
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 549.0257

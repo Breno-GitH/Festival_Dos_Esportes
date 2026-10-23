@@ -1,0 +1,1384 @@
+{
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": [],
+  "confirmation": {
+    "event": {
+      "state": "RAVOK_PRESENT",
+      "medals": 8,
+      "arrived": true,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokAvailable": true,
+      "ravokExited": true,
+      "ravokProposalSeen": true,
+      "ravokChoice": "accept",
+      "ravokChoicePosition": [
+        368,
+        132
+      ],
+      "ravokEndingCompleted": false,
+      "ravokBadEndingCardReady": false,
+      "ravokBadEndingSeen": false,
+      "ravokArrested": false,
+      "exit": null,
+      "metK7": false,
+      "metRavok": true,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [
+        {
+          "id": "k7",
+          "x": 396,
+          "y": 113,
+          "height": 44,
+          "source": "K7.png",
+          "crop": [
+            37,
+            66,
+            99,
+            172
+          ],
+          "scale": 0.2619047619047619,
+          "footprint": {
+            "width": 18,
+            "height": 8
+          }
+        },
+        {
+          "id": "ravok",
+          "x": 350,
+          "y": 114,
+          "height": 44,
+          "source": "Ravok.png",
+          "crop": [
+            158,
+            15,
+            84,
+            136
+          ],
+          "scale": 0.3333333333333333,
+          "footprint": {
+            "width": 18,
+            "height": 8
+          }
+        }
+      ],
+      "assetErrors": []
+    },
+    "outcome": {
+      "active": true,
+      "route": "accept",
+      "phase": "SILENT_ACCEPTANCE",
+      "time": 0.12859999990463256,
+      "completed": false,
+      "arrested": false,
+      "badEndingSeen": false,
+      "cardReady": false,
+      "saveFailed": false,
+      "pendingSave": null,
+      "dialogue": null,
+      "waitingForSpace": false,
+      "origin": {
+        "x": 368,
+        "y": 132
+      },
+      "duration": 52.699999999999996
+    }
+  },
+  "inputFrozen": true,
+  "blackInterval": true,
+  "phases": [
+    {
+      "id": "SILENT_ACCEPTANCE",
+      "at": 0.073
+    },
+    {
+      "id": "ACCEPTANCE",
+      "at": 2.251
+    },
+    {
+      "id": "AUTHORIZATION",
+      "at": 4.556
+    },
+    {
+      "id": "RAVOK_BOARD",
+      "at": 6.475
+    },
+    {
+      "id": "RETURN_TO_SHIP",
+      "at": 9.915
+    },
+    {
+      "id": "ISLAND_DEPARTURE",
+      "at": 14.503
+    },
+    {
+      "id": "CLOUDS",
+      "at": 18.224
+    },
+    {
+      "id": "ATMOSPHERE",
+      "at": 20.694
+    },
+    {
+      "id": "SPACE_ESTABLISH",
+      "at": 23.525
+    },
+    {
+      "id": "WEAPON_DEPLOY",
+      "at": 25.953
+    },
+    {
+      "id": "TRANSMISSION",
+      "at": 28.982
+    },
+    {
+      "id": "CHARGE",
+      "at": 33.414
+    },
+    {
+      "id": "FIRE",
+      "at": 36.889
+    },
+    {
+      "id": "PLANET_FLASH",
+      "at": 37.567
+    },
+    {
+      "id": "SILENT_AFTERMATH",
+      "at": 38.957
+    },
+    {
+      "id": "LAST_WORDS",
+      "at": 42.558
+    },
+    {
+      "id": "DEPARTURE",
+      "at": 45.376
+    },
+    {
+      "id": "FADE",
+      "at": 50.379
+    },
+    {
+      "id": "BLACK_INTERVAL",
+      "at": 51.985
+    },
+    {
+      "id": "CARD",
+      "at": 52.577
+    }
+  ],
+  "duration": 52.577,
+  "frames": {
+    "count": 3154,
+    "medianMs": 16.69999999999709,
+    "p95Ms": 16.700000000004366,
+    "averageFps": 59.99824989241448
+  },
+  "cardTexts": [
+    {
+      "text": "A MAIOR CONQUISTA",
+      "x": 225,
+      "y": 178,
+      "width": 153
+    },
+    {
+      "text": "Zorpzin conquistou todas as medalhas da Terra.",
+      "x": 225,
+      "y": 200,
+      "width": 230
+    },
+    {
+      "text": "Mas, ao lado de Ravok, decidiu buscar algo que nenhuma medalha poderia",
+      "x": 225,
+      "y": 217,
+      "width": 350
+    },
+    {
+      "text": "representar.",
+      "x": 225,
+      "y": 228,
+      "width": 60
+    },
+    {
+      "text": "Depois disso, os dois desapareceram no espaço.",
+      "x": 225,
+      "y": 245,
+      "width": 230
+    },
+    {
+      "text": "[ESPAÇO] MENU PRINCIPAL",
+      "x": 225,
+      "y": 278,
+      "width": 92
+    }
+  ],
+  "officialCard": {
+    "asset": {
+      "source": "card_zorp_MaiorConquista.png?v=1.0.0_official_secret_card",
+      "sourceRect": [
+        892,
+        141,
+        179,
+        217
+      ],
+      "destination": {
+        "x": 171.3,
+        "y": 22,
+        "width": 107.4,
+        "height": 130.2,
+        "scale": 0.6
+      },
+      "status": "ready",
+      "cached": true
+    },
+    "cacheSize": [
+      179,
+      217
+    ],
+    "visibleBounds": [
+      6,
+      6,
+      173,
+      211
+    ],
+    "whiteEdgePixels": 0,
+    "calls": {
+      "source": [
+        {
+          "source": "http://127.0.0.1:8815/card_zorp_MaiorConquista.png?v=1.0.0_official_secret_card",
+          "args": [
+            892,
+            141,
+            179,
+            217,
+            0,
+            0,
+            179,
+            217
+          ],
+          "smooth": false
+        }
+      ],
+      "render": [
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        },
+        {
+          "args": [
+            171.3,
+            22,
+            107.4,
+            130.2
+          ],
+          "smooth": false,
+          "route": "accept",
+          "phase": "CARD"
+        }
+      ]
+    }
+  },
+  "cardResume": {
+    "scene": "RAVOK_SECRET_CUTSCENE",
+    "outcome": {
+      "active": true,
+      "route": "accept",
+      "phase": "CARD",
+      "time": 1.2748999999761572,
+      "completed": false,
+      "arrested": false,
+      "badEndingSeen": false,
+      "cardReady": true,
+      "saveFailed": false,
+      "pendingSave": null,
+      "dialogue": null,
+      "waitingForSpace": false,
+      "origin": {
+        "x": 368,
+        "y": 132
+      },
+      "duration": 52.699999999999996
+    },
+    "saved": {
+      "version": 7,
+      "arrived": true,
+      "metK7": false,
+      "metRavok": true,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokExited": true,
+      "ravokProposalSeen": true,
+      "ravokChoice": "accept",
+      "ravokChoicePosition": [
+        368,
+        132
+      ],
+      "ravokEndingCompleted": false,
+      "ravokBadEndingCardReady": true,
+      "ravokBadEndingSeen": false,
+      "ravokArrested": false
+    }
+  },
+  "completed": {
+    "scene": "TITLE_SCREEN",
+    "saved": {
+      "version": 7,
+      "arrived": true,
+      "metK7": false,
+      "metRavok": true,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokExited": true,
+      "ravokProposalSeen": true,
+      "ravokChoice": "accept",
+      "ravokChoicePosition": [
+        368,
+        132
+      ],
+      "ravokEndingCompleted": true,
+      "ravokBadEndingCardReady": true,
+      "ravokBadEndingSeen": true,
+      "ravokArrested": false
+    }
+  },
+  "completedContinue": {
+    "scene": "RAVOK_SECRET_CUTSCENE",
+    "outcome": {
+      "active": true,
+      "route": "accept",
+      "phase": "CARD",
+      "time": 1.2766000000238418,
+      "completed": true,
+      "arrested": false,
+      "badEndingSeen": true,
+      "cardReady": true,
+      "saveFailed": false,
+      "pendingSave": null,
+      "dialogue": null,
+      "waitingForSpace": false,
+      "origin": {
+        "x": 368,
+        "y": 132
+      },
+      "duration": 52.699999999999996
+    },
+    "event": {
+      "state": "RAVOK_PRESENT",
+      "medals": 8,
+      "arrived": true,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokAvailable": false,
+      "ravokExited": true,
+      "ravokProposalSeen": true,
+      "ravokChoice": "accept",
+      "ravokChoicePosition": [
+        368,
+        132
+      ],
+      "ravokEndingCompleted": true,
+      "ravokBadEndingCardReady": true,
+      "ravokBadEndingSeen": true,
+      "ravokArrested": false,
+      "exit": null,
+      "metK7": false,
+      "metRavok": true,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [
+        {
+          "id": "k7",
+          "x": 396,
+          "y": 113,
+          "height": 44,
+          "source": "K7.png",
+          "crop": [
+            37,
+            66,
+            99,
+            172
+          ],
+          "scale": 0.2619047619047619,
+          "footprint": {
+            "width": 18,
+            "height": 8
+          }
+        }
+      ],
+      "assetErrors": []
+    }
+  }
+}

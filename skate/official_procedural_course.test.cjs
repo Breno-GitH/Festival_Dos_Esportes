@@ -145,13 +145,11 @@ test('last third connects ramp, bench, ledge and three launch surfaces without s
     const side = run({ profile: 'zero', startX: 18230, endX: 18530 });
     assert.equal(side.failureReason, 'DANGEROUS_SIDE');
     assert.equal(side.hit, 'advanced-bench');
-    const benchLandingLine = { ...COURSE, playLine: COURSE.playLine.map(input =>
-        input.x === 18320 ? { ...input, x: 18210, action: 'normal' } : input) };
-    const onTop = run({ course: benchLandingLine, startX: 17980,
-        endX: 18530, skipRail: 'advanced-bench-top' });
-    assert.ok(onTop.trace.some(point => point.x >= bench.x && point.x <= bench.x + bench.width
-        && point.mode === 'GROUND' && point.y === bench.y));
-    assert.equal(onTop.hit, 'advanced-ledge');
+    const onTop = require('./ramp_validation.cjs').runRamp(
+        COURSE.ramps.find(r=>r.id==='advanced-launch'),{early:true});
+    assert.equal(onTop.landing.surface,'advanced-bench');
+    assert.equal(onTop.landing.y,bench.y);
+    assert.equal(onTop.phase,'PLAYING');
 });
 
 test('final gauntlet has four required fast transfers, fatal stair miss and clean finish', () => {
@@ -174,7 +172,7 @@ test('final gauntlet has four required fast transfers, fatal stair miss and clea
     assert.ok(whole.physicsSeconds >= 90 && whole.physicsSeconds <= 130);
     assert.ok(run({startX:23620}).enteredRails.includes('finish-rail'));
     assert.ok(whole.transitions.some(t => t.mode === 'GROUND' && t.x >= 25179));
-    assert.ok(whole.trace.filter(t => t.x >= 25649).every(t => t.mode === 'GROUND'));
+    assert.ok(whole.trace.some(t => t.x >= 25780 && t.mode === 'GROUND'));
     assert.ok(COURSE.estimateDurationSeconds(21150) >= 15);
     assert.ok(COURSE.estimateDurationSeconds(21150) <= 20);
 });

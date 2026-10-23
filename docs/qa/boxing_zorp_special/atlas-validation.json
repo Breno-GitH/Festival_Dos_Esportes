@@ -1,0 +1,160 @@
+{
+  "frames": {
+    "weave_low_a": {
+      "sourceRect": [
+        5,
+        145,
+        165,
+        235
+      ],
+      "sourceAnchor": [
+        87.5,
+        380
+      ],
+      "scale": 0.52,
+      "sourcePose": [
+        1,
+        1
+      ]
+    },
+    "weave_high_a": {
+      "sourceRect": [
+        171,
+        106,
+        141,
+        276
+      ],
+      "sourceAnchor": [
+        195.0,
+        382
+      ],
+      "scale": 0.52,
+      "sourcePose": [
+        1,
+        2
+      ]
+    },
+    "weave_low_b": {
+      "sourceRect": [
+        308,
+        154,
+        179,
+        228
+      ],
+      "sourceAnchor": [
+        390.5,
+        382
+      ],
+      "scale": 0.52,
+      "sourcePose": [
+        1,
+        3
+      ]
+    },
+    "windup": {
+      "sourceRect": [
+        25,
+        548,
+        259,
+        229
+      ],
+      "sourceAnchor": [
+        154.0,
+        777
+      ],
+      "scale": 0.52,
+      "sourcePose": [
+        2,
+        1
+      ]
+    },
+    "drive": {
+      "sourceRect": [
+        308,
+        512,
+        269,
+        264
+      ],
+      "sourceAnchor": [
+        441.0,
+        776
+      ],
+      "scale": 0.52,
+      "sourcePose": [
+        2,
+        2
+      ]
+    },
+    "finish_right": {
+      "sourceRect": [
+        590,
+        511,
+        362,
+        268
+      ],
+      "sourceAnchor": [
+        723.5,
+        779
+      ],
+      "scale": 0.52,
+      "sourcePose": [
+        2,
+        3
+      ]
+    },
+    "finish_left": {
+      "sourceRect": [
+        916,
+        511,
+        312,
+        269
+      ],
+      "sourceAnchor": [
+        1046.0,
+        780
+      ],
+      "scale": 0.52,
+      "sourcePose": [
+        2,
+        4
+      ]
+    }
+  },
+  "seams": [
+    {
+      "frame": "weave_low_a",
+      "leftSolidCrossings": 0,
+      "rightSolidCrossings": 0
+    },
+    {
+      "frame": "weave_high_a",
+      "leftSolidCrossings": 0,
+      "rightSolidCrossings": 0
+    },
+    {
+      "frame": "weave_low_b",
+      "leftSolidCrossings": 0,
+      "rightSolidCrossings": 0
+    },
+    {
+      "frame": "windup",
+      "leftSolidCrossings": 0,
+      "rightSolidCrossings": 0
+    },
+    {
+      "frame": "drive",
+      "leftSolidCrossings": 0,
+      "rightSolidCrossings": 0
+    },
+    {
+      "frame": "finish_right",
+      "leftSolidCrossings": 0,
+      "rightSolidCrossings": 0
+    },
+    {
+      "frame": "finish_left",
+      "leftSolidCrossings": 0,
+      "rightSolidCrossings": 0
+    }
+  ]
+}

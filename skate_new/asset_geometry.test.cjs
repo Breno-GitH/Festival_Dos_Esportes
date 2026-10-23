@@ -52,14 +52,14 @@ test("rampa pequena e grande acompanham superfície inclinada e voltam ao chão"
         let followedSurface = false;
         let leftRamp = false;
         for (let step = 0; step < 1800; step++) {
-            simulation.step({}, 1 / 120);
+            simulation.step({spaceHeld:true}, 1 / 120);
             const player = simulation.state.player;
             const sample = geometry.rampSurfaceAt([ramp], player.x);
             if (sample && player.grounded) {
                 followedSurface = true;
                 assert.ok(Math.abs(player.groundContactY - sample.y) < 1e-6);
             }
-            if (simulation.state.lastEvent === "RAMP_TAKEOFF") leftRamp = true;
+            if (simulation.state.rampLaunches.some(l=>l.rampId===id && l.held)) leftRamp = true;
             if (leftRamp && player.grounded && player.x > ramp.surfacePoints.at(-1).x) break;
         }
         assert.equal(simulation.state.phase, "PLAYING");

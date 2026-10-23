@@ -11,6 +11,7 @@
         OLLIE: "ollie_board_flip",
         SUPER_JUMP: "super_jump",
         GRINDING: "grind_stance",
+        RAMP_PREP: "grind_stance",
         GRIND_JUMP_OUT: "grind_jump_out",
         AIRBORNE: "air_catch_landing",
         LANDING: "air_catch_landing",
@@ -24,7 +25,7 @@
         STUMBLE: 250, CRASH: 450
     });
     const LOOP_INTERVAL_MS = Object.freeze({
-        RIDING: 120, PUSH: 95, GRINDING: 105, BENCH_TRICK: 115
+        RIDING: 120, PUSH: 95, GRINDING: 105, RAMP_PREP:105, BENCH_TRICK: 115
     });
 
     function placement(frame, x, boardContactY, scale) {
@@ -90,6 +91,7 @@
             if (phase === "FAILED" || mode === "CRASH") state = "CRASH";
             else if (stumble || player.stumble || player.nearFail) state = "STUMBLE";
             else if (mode === "GRIND") state = "GRINDING";
+            else if (player.grounded && player.rampRide?.prepared) state = "RAMP_PREP";
             else if (!player.grounded && grindLaunch
                 && now - grindOutAt < DURATION_MS.GRIND_JUMP_OUT) state = "GRIND_JUMP_OUT";
             else if (player.grounded && benchActive) state = "BENCH_TRICK";

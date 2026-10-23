@@ -1,0 +1,275 @@
+TAP version 13
+# Subtest: preload loads exactly the three official assets, with no old fallback
+ok 1 - preload loads exactly the three official assets, with no old fallback
+  ---
+  duration_ms: 12.4823
+  ...
+# Subtest: true_ending: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+ok 2 - true_ending: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+  ---
+  duration_ms: 91.0986
+  ...
+# Subtest: ferias_merecidas: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+ok 3 - ferias_merecidas: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+  ---
+  duration_ms: 78.3746
+  ...
+# Subtest: ravok_maior_conquista: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+ok 4 - ravok_maior_conquista: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+  ---
+  duration_ms: 42.1221
+  ...
+# Subtest: fade to black, black pause, background, portrait/title/text reveal and ready are distinct paced states
+ok 5 - fade to black, black pause, background, portrait/title/text reveal and ready are distinct paced states
+  ---
+  duration_ms: 48.6028
+  ...
+# Subtest: a held press from the last dialogue and repeats cannot skip any ending; fresh Space fades before closing once
+ok 6 - a held press from the last dialogue and repeats cannot skip any ending; fresh Space fades before closing once
+  ---
+  duration_ms: 53.1863
+  ...
+# Subtest: unrendered cards never become eligible to continue, even after their clock reaches READY
+ok 7 - unrendered cards never become eligible to continue, even after their clock reaches READY
+  ---
+  duration_ms: 18.1429
+  ...
+# Subtest: missing assets hold the reveal and failed official PNGs retry without a substituted sprite
+ok 8 - missing assets hold the reveal and failed official PNGs retry without a substituted sprite
+  ---
+  duration_ms: 96.7261
+  ...
+# Subtest: hidden tabs pause reveal and exit fade and cannot confirm
+ok 9 - hidden tabs pause reveal and exit fade and cannot confirm
+  ---
+  duration_ms: 121.5429
+  ...
+# Subtest: failed completion save retains the visible card and permits a fresh retry before the shared fade
+ok 10 - failed completion save retains the visible card and permits a fresh retry before the shared fade
+  ---
+  duration_ms: 58.3933
+  ...
+# Subtest: sequential endings have exclusive cached images and cannot replace an active card
+ok 11 - sequential endings have exclusive cached images and cannot replace an active card
+  ---
+  duration_ms: 232.4741
+  ...
+# Subtest: standard and vacation controllers use shared presets while retaining their own completion callbacks
+ok 12 - standard and vacation controllers use shared presets while retaining their own completion callbacks
+  ---
+  duration_ms: 98.1976
+  ...
+# Subtest: preview uses the same renderer but cannot mark a live card presented
+ok 13 - preview uses the same renderer but cannot mark a live card presented
+  ---
+  duration_ms: 4.6158
+  ...
+# Subtest: browser modifier shortcuts cannot confirm the card and are not prevented by its input gate
+ok 14 - browser modifier shortcuts cannot confirm the card and are not prevented by its input gate
+  ---
+  duration_ms: 48.9535
+  ...
+# Subtest: only the saved 3→4 award queues arrival, never earlier awards or duplicates
+ok 15 - only the saved 3→4 award queues arrival, never earlier awards or duplicates
+  ---
+  duration_ms: 26.3666
+  ...
+# Subtest: a failed medal save does not queue the cutscene
+ok 16 - a failed medal save does not queue the cutscene
+  ---
+  duration_ms: 8.1691
+  ...
+# Subtest: minigame celebration finishes first; held or repeated result input cannot start or skip arrival
+ok 17 - minigame celebration finishes first; held or repeated result input cannot start or skip arrival
+  ---
+  duration_ms: 15.5118
+  ...
+# Subtest: all essential shots precede three paced lines; only the final fade commits completion
+ok 18 - all essential shots precede three paced lines; only the final fade commits completion
+  ---
+  duration_ms: 25.6311
+  ...
+# Subtest: unfinished pending save remains unfinished and can resume before Overworld movement
+ok 19 - unfinished pending save remains unfinished and can resume before Overworld movement
+  ---
+  duration_ms: 15.2383
+  ...
+# Subtest: a victory starts arrival automatically after its short result hold, without an extra command
+ok 20 - a victory starts arrival automatically after its short result hold, without an extra command
+  ---
+  duration_ms: 8.4645
+  ...
+# Subtest: legacy saves already at four medals are not given a retroactive arrival cutscene
+ok 21 - legacy saves already at four medals are not given a retroactive arrival cutscene
+  ---
+  duration_ms: 6.9321
+  ...
+# Subtest: arrival completion waits for a successful save and a failed write can be retried without replay
+ok 22 - arrival completion waits for a successful save and a failed write can be retried without replay
+  ---
+  duration_ms: 21.5
+  ...
+# Subtest: 0–3 medals hide the ship, both event NPCs and all event colliders
+ok 23 - 0–3 medals hide the ship, both event NPCs and all event colliders
+  ---
+  duration_ms: 15.6379
+  ...
+# Subtest: fourth medal persists arrival once, through the official award hook
+ok 24 - fourth medal persists arrival once, through the official award hook
+  ---
+  duration_ms: 4.6049
+  ...
+# Subtest: four through seven medals preserve K7, short lines and the central path
+ok 25 - four through seven medals preserve K7, short lines and the central path
+  ---
+  duration_ms: 8.9479
+  ...
+# Subtest: eight medals without the completed arrival cannot reveal Ravok or his proposal
+ok 26 - eight medals without the completed arrival cannot reveal Ravok or his proposal
+  ---
+  duration_ms: 5.096
+  ...
+# Subtest: Ravok exits physically only on approach; seven medals cannot trigger it
+ok 27 - Ravok exits physically only on approach; seven medals cannot trigger it
+  ---
+  duration_ms: 13.5621
+  ...
+# Subtest: exit and narrative pause when the document is hidden; leaving closes safely
+ok 28 - exit and narrative pause when the document is hidden; leaving closes safely
+  ---
+  duration_ms: 13.3861
+  ...
+# Subtest: all 29 lines require distinct Space presses, including the full law; old prelude does not skip them
+ok 29 - all 29 lines require distinct Space presses, including the full law; old prelude does not skip them
+  ---
+  duration_ms: 7.7154
+  ...
+# Subtest: NO commits refusal directly once and never marks the ending complete
+ok 30 - NO commits refusal directly once and never marks the ending complete
+  ---
+  duration_ms: 6.9944
+  ...
+# Subtest: YES opens a second confirmation defaulted to NO; held Space cannot confirm it
+ok 31 - YES opens a second confirmation defaulted to NO; held Space cannot confirm it
+  ---
+  duration_ms: 9.2319
+  ...
+# Subtest: Escape before deciding closes the menu and reopens it without recording a route
+ok 32 - Escape before deciding closes the menu and reopens it without recording a route
+  ---
+  duration_ms: 4.3985
+  ...
+# Subtest: a failed choice save keeps the choice open and does not dispatch a cutscene
+ok 33 - a failed choice save keeps the choice open and does not dispatch a cutscene
+  ---
+  duration_ms: 4.0364
+  ...
+# Subtest: choice and completion survive reload independently; an opposite route cannot complete
+ok 34 - choice and completion survive reload independently; an opposite route cannot complete
+  ---
+  duration_ms: 7.2504
+  ...
+# Subtest: landing ground is absent before arrival and uses one static cached surface
+ok 35 - landing ground is absent before arrival and uses one static cached surface
+  ---
+  duration_ms: 13.9896
+  ...
+# Subtest: arrest removes ship, both NPCs, prompts and physical colliders after save/load
+ok 36 - arrest removes ship, both NPCs, prompts and physical colliders after save/load
+  ---
+  duration_ms: 5.4474
+  ...
+# Subtest: failed arrest save rolls back removal, and old refusal completion never closes the campaign
+ok 37 - failed arrest save rolls back removal, and old refusal completion never closes the campaign
+  ---
+  duration_ms: 3.1452
+  ...
+# Subtest: accept: saved choice resumes the correct cutscene; completion waits for its last fade
+ok 38 - accept: saved choice resumes the correct cutscene; completion waits for its last fade
+  ---
+  duration_ms: 142.0764
+  ...
+# Subtest: completed saved ending does not replay; seven medals and missing choices cannot start
+ok 39 - completed saved ending does not replay; seven medals and missing choices cannot start
+  ---
+  duration_ms: 19.0704
+  ...
+# Subtest: Space never skips timed scenes; hiding the document pauses progress
+ok 40 - Space never skips timed scenes; hiding the document pauses progress
+  ---
+  duration_ms: 8.3277
+  ...
+# Subtest: refusal plays authorities, disables and removes evidence, saves arrest, then resumes Overworld without any card or menu
+ok 41 - refusal plays authorities, disables and removes evidence, saves arrest, then resumes Overworld without any card or menu
+  ---
+  duration_ms: 22.5013
+  ...
+# Subtest: failed arrest save holds the final scene, preserves the campaign and allows retry
+ok 42 - failed arrest save holds the final scene, preserves the campaign and allows retry
+  ---
+  duration_ms: 40.9671
+  ...
+# Subtest: refusal requires separate Space presses for every line; timed shots and hidden tabs cannot be skipped
+ok 43 - refusal requires separate Space presses for every line; timed shots and hidden tabs cannot be skipped
+  ---
+  duration_ms: 4.8779
+  ...
+# Subtest: acceptance card persists before completion, and reload resumes that card instead of Earth
+ok 44 - acceptance card persists before completion, and reload resumes that card instead of Earth
+  ---
+  duration_ms: 93.62
+  ...
+# Subtest: acceptance cannot complete before the card, and a failed card-dismiss save cannot return to the world/menu
+ok 45 - acceptance cannot complete before the card, and a failed card-dismiss save cannot return to the world/menu
+  ---
+  duration_ms: 96.3637
+  ...
+# Subtest: old completed acceptance restores the new card without setting its new seen flag early
+ok 46 - old completed acceptance restores the new card without setting its new seen flag early
+  ---
+  duration_ms: 86.3178
+  ...
+# Subtest: every acceptance shot draws with both original hulls; the damaged planet is always a distant abstraction
+ok 47 - every acceptance shot draws with both original hulls; the damaged planet is always a distant abstraction
+  ---
+  duration_ms: 49.1063
+  ...
+# Subtest: all arrest shots render, officer text fits and the eight actual medal icons can be drawn
+ok 48 - all arrest shots render, officer text fits and the eight actual medal icons can be drawn
+  ---
+  duration_ms: 24.249
+  ...
+# Subtest: official acceptance portrait crops the entire frontal head with one uniform scale and one cached surface
+ok 49 - official acceptance portrait crops the entire frontal head with one uniform scale and one cached surface
+  ---
+  duration_ms: 13.0557
+  ...
+# Subtest: failed official card load cannot close the card or award completion; Space retries the same real file
+ok 50 - failed official card load cannot close the card or award completion; Space retries the same real file
+  ---
+  duration_ms: 238.9705
+  ...
+# Subtest: a loaded image and elapsed clock cannot complete a card that has never been drawn
+ok 51 - a loaded image and elapsed clock cannot complete a card that has never been drawn
+  ---
+  duration_ms: 10.9342
+  ...
+# Subtest: held Space, repeats and hidden tabs cannot dismiss the reveal; a fresh press fades before returning once
+ok 52 - held Space, repeats and hidden tabs cannot dismiss the reveal; a fresh press fades before returning once
+  ---
+  duration_ms: 145.6321
+  ...
+# Subtest: card typography and narrative have their own compact identity with no dependency on external fonts
+ok 53 - card typography and narrative have their own compact identity with no dependency on external fonts
+  ---
+  duration_ms: 12.7189
+  ...
+1..53
+# tests 53
+# suites 0
+# pass 53
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1353.1276

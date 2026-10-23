@@ -1,0 +1,102 @@
+{
+  "cases": 44,
+  "full": {
+    "drawMeanMs": 1.18,
+    "presentation": {
+      "stage": "finish",
+      "stageAge": 1.174733333428701,
+      "megaStarted": true,
+      "landedMega": true,
+      "finished": true,
+      "clock": 105.34973333345754,
+      "landingAge": 1.4414000000953675,
+      "lastLanding": {
+        "x": 25776.5171872537,
+        "y": 250,
+        "impact": 704.938132484753,
+        "strong": true
+      },
+      "particles": 320,
+      "particleLimit": 384,
+      "averageParticles": 94.4024064171123,
+      "averageFireworks": 4.7272727272727275,
+      "activePeak": 329,
+      "launched": 15,
+      "bursts": 17
+    },
+    "daylight": "night",
+    "neon": 1,
+    "megaState": "",
+    "controlledMs": 3400,
+    "phase": "COMPLETED",
+    "paused": false,
+    "acceleratedReplay": false,
+    "x": 25849,
+    "y": 250,
+    "mode": "GROUND",
+    "jumpTier": "",
+    "held": false,
+    "forwardSpeed": 279.4,
+    "verticalVelocity": 0,
+    "captureBlend": 0,
+    "rail": "",
+    "time": 104.18,
+    "score": 19551,
+    "peakCombo": 7222,
+    "fps": 60,
+    "zoom": 0.696,
+    "timeScale": 1,
+    "checkpoints": [
+      "checkpoint-1",
+      "checkpoint-2"
+    ],
+    "failure": "",
+    "hit": "",
+    "enteredRails": [
+      "first-rail",
+      "first-link",
+      "transfer-b",
+      "three-a",
+      "three-c",
+      "street-ledge",
+      "bench-exit",
+      "stair-handrail",
+      "danger-a",
+      "danger-b",
+      "danger-c",
+      "huge-exit-rail",
+      "void-a",
+      "void-b",
+      "void-c",
+      "void-d",
+      "void-e",
+      "grand-stair-handrail",
+      "advanced-ledge-edge",
+      "high-rail",
+      "advanced-handrail",
+      "final-descending",
+      "final-transfer",
+      "final-high",
+      "final-curved",
+      "final-bench-edge",
+      "finish-rail"
+    ]
+  },
+  "official": {
+    "scene": "JOGO_SKATE",
+    "ramps": 22,
+    "phase": "PLAYING",
+    "loaded": true
+  },
+  "errors": [],
+  "http": [],
+  "failed": [
+    {
+      "requestId": "34088.420",
+      "timestamp": 793971.900494,
+      "type": "Image",
+      "errorText": "net::ERR_CONNECTION_FAILED",
+      "canceled": false
+    }
+  ]
+}

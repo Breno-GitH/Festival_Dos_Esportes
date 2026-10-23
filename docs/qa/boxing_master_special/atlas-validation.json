@@ -1,0 +1,182 @@
+{
+  "frames": {
+    "charge_stance": {
+      "sourceRect": [
+        27,
+        120,
+        252,
+        300
+      ],
+      "sourceAnchor": [
+        153.0,
+        420
+      ],
+      "scale": 0.47,
+      "sourcePose": [
+        1,
+        1
+      ]
+    },
+    "charge_low": {
+      "sourceRect": [
+        607,
+        176,
+        305,
+        244
+      ],
+      "sourceAnchor": [
+        758.5,
+        420
+      ],
+      "scale": 0.47,
+      "sourcePose": [
+        1,
+        3
+      ]
+    },
+    "charge_arm": {
+      "sourceRect": [
+        934,
+        105,
+        293,
+        315
+      ],
+      "sourceAnchor": [
+        1080.0,
+        420
+      ],
+      "scale": 0.47,
+      "sourcePose": [
+        1,
+        4
+      ]
+    },
+    "dash_drive": {
+      "sourceRect": [
+        224,
+        541,
+        287,
+        252
+      ],
+      "sourceAnchor": [
+        258.5,
+        793
+      ],
+      "scale": 0.47,
+      "sourcePose": [
+        2,
+        2
+      ]
+    },
+    "dash_punch": {
+      "sourceRect": [
+        468,
+        526,
+        373,
+        267
+      ],
+      "sourceAnchor": [
+        606.0,
+        793
+      ],
+      "scale": 0.47,
+      "sourcePose": [
+        2,
+        3
+      ]
+    },
+    "recover_low": {
+      "sourceRect": [
+        368,
+        967,
+        298,
+        210
+      ],
+      "sourceAnchor": [
+        474.0,
+        1176
+      ],
+      "scale": 0.47,
+      "sourcePose": [
+        3,
+        2
+      ]
+    },
+    "recover_knee": {
+      "sourceRect": [
+        685,
+        929,
+        280,
+        254
+      ],
+      "sourceAnchor": [
+        822.0,
+        1183
+      ],
+      "scale": 0.47,
+      "sourcePose": [
+        3,
+        3
+      ]
+    },
+    "recover_ready": {
+      "sourceRect": [
+        991,
+        889,
+        235,
+        294
+      ],
+      "sourceAnchor": [
+        1108.5,
+        1183
+      ],
+      "scale": 0.47,
+      "sourcePose": [
+        3,
+        4
+      ]
+    }
+  },
+  "seams": [
+    {
+      "frame": "charge_stance",
+      "leftSolidCrossings": 0,
+      "rightSolidCrossings": 0
+    },
+    {
+      "frame": "charge_low",
+      "leftSolidCrossings": 0,
+      "rightSolidCrossings": 0
+    },
+    {
+      "frame": "charge_arm",
+      "leftSolidCrossings": 0,
+      "rightSolidCrossings": 0
+    },
+    {
+      "frame": "dash_drive",
+      "leftSolidCrossings": 0,
+      "rightSolidCrossings": 0
+    },
+    {
+      "frame": "dash_punch",
+      "leftSolidCrossings": 0,
+      "rightSolidCrossings": 0
+    },
+    {
+      "frame": "recover_low",
+      "leftSolidCrossings": 0,
+      "rightSolidCrossings": 0
+    },
+    {
+      "frame": "recover_knee",
+      "leftSolidCrossings": 0,
+      "rightSolidCrossings": 0
+    },
+    {
+      "frame": "recover_ready",
+      "leftSolidCrossings": 0,
+      "rightSolidCrossings": 0
+    }
+  ]
+}

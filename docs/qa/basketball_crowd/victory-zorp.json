@@ -1,0 +1,3680 @@
+{
+  "case": {
+    "name": "victory-zorp",
+    "frames": [
+      {
+        "time": 0.007899999976158142,
+        "state": "IDLE",
+        "tension": 0.02340964984180142,
+        "counts": {},
+        "confetti": 0,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "PLAYING"
+      },
+      {
+        "time": 0.024600000023841856,
+        "state": "VICTORY",
+        "tension": 0.07112628398405495,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.04120000004768372,
+        "state": "VICTORY",
+        "tension": 0.06767094701226144,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.05810000002384186,
+        "state": "VICTORY",
+        "tension": 0.06432555233642216,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.0745,
+        "state": "VICTORY",
+        "tension": 0.06123732840604623,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.09129999995231627,
+        "state": "VICTORY",
+        "tension": 0.05822745302594964,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.10799999999999998,
+        "state": "VICTORY",
+        "tension": 0.05538212813435986,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.12449999999999999,
+        "state": "VICTORY",
+        "tension": 0.05270745701404476,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.14129999995231626,
+        "state": "VICTORY",
+        "tension": 0.05011683326635022,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.15829999995231625,
+        "state": "VICTORY",
+        "tension": 0.04762495768764259,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.17460000002384182,
+        "state": "VICTORY",
+        "tension": 0.04535212098847828,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.19129999995231625,
+        "state": "VICTORY",
+        "tension": 0.04313595814551232,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.20799999999999996,
+        "state": "VICTORY",
+        "tension": 0.04102808962206338,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.22470000004768367,
+        "state": "VICTORY",
+        "tension": 0.03902322355649792,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.24120000004768366,
+        "state": "VICTORY",
+        "tension": 0.03713860314583137,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.25799999999999995,
+        "state": "VICTORY",
+        "tension": 0.03531320399519208,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.2747000000476837,
+        "state": "VICTORY",
+        "tension": 0.03358759978089597,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.2915,
+        "state": "VICTORY",
+        "tension": 0.031936735964846884,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.30839999997615813,
+        "state": "VICTORY",
+        "tension": 0.030357905001521888,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.32470000004768373,
+        "state": "VICTORY",
+        "tension": 0.02890911504038968,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.3412999999523163,
+        "state": "VICTORY",
+        "tension": 0.027504701260757193,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.35800000000000004,
+        "state": "VICTORY",
+        "tension": 0.02616066495028873,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.3746000000238419,
+        "state": "VICTORY",
+        "tension": 0.024889771720021003,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.39129999995231635,
+        "state": "VICTORY",
+        "tension": 0.023673515764322063,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.40810000002384195,
+        "state": "VICTORY",
+        "tension": 0.02250993899493939,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.42460000002384196,
+        "state": "VICTORY",
+        "tension": 0.02142282505082091,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.44120000004768384,
+        "state": "VICTORY",
+        "tension": 0.020382097554710467,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.45800000000000013,
+        "state": "VICTORY",
+        "tension": 0.019380297260323476,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.47470000004768387,
+        "state": "VICTORY",
+        "tension": 0.01843326558822488,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.49129999995231644,
+        "state": "VICTORY",
+        "tension": 0.017537771825805668,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.5078999999761583,
+        "state": "VICTORY",
+        "tension": 0.016685781422283816,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.5247000000476839,
+        "state": "VICTORY",
+        "tension": 0.01586565872334669,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.5427999999523165,
+        "state": "VICTORY",
+        "tension": 0.015027125655614605,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.5580000000000003,
+        "state": "VICTORY",
+        "tension": 0.014357277332675611,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.5746000000238422,
+        "state": "VICTORY",
+        "tension": 0.013659796339671557,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.5913999999761584,
+        "state": "VICTORY",
+        "tension": 0.01298840381210578,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.6081000000238421,
+        "state": "VICTORY",
+        "tension": 0.012353716448189412,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.6247999999523165,
+        "state": "VICTORY",
+        "tension": 0.011750043526872894,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.641200000047684,
+        "state": "VICTORY",
+        "tension": 0.011185932306028708,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.6581000000238421,
+        "state": "VICTORY",
+        "tension": 0.01063294228545006,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.6747000000476839,
+        "state": "VICTORY",
+        "tension": 0.010116390646029412,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.6915000000000002,
+        "state": "VICTORY",
+        "tension": 0.009619160019980137,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.7080000000000002,
+        "state": "VICTORY",
+        "tension": 0.00915460420795513,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.7247000000476839,
+        "state": "VICTORY",
+        "tension": 0.008707258121669358,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.7415000000000002,
+        "state": "VICTORY",
+        "tension": 0.008279287755705921,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.7578999999761583,
+        "state": "VICTORY",
+        "tension": 0.007881805050234269,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.774600000023842,
+        "state": "VICTORY",
+        "tension": 0.007496655177886339,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.7912000000476839,
+        "state": "VICTORY",
+        "tension": 0.007132465340459363,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.8080000000000002,
+        "state": "VICTORY",
+        "tension": 0.0067818976003826865,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.8247000000476838,
+        "state": "VICTORY",
+        "tension": 0.00645049546871153,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.8413999999761582,
+        "state": "VICTORY",
+        "tension": 0.00613528753433266,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.8580000000000001,
+        "state": "VICTORY",
+        "tension": 0.005837233359947337,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.874600000023842,
+        "state": "VICTORY",
+        "tension": 0.005553658749946145,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.8913999999761583,
+        "state": "VICTORY",
+        "tension": 0.005280690918461345,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.9080000000000001,
+        "state": "VICTORY",
+        "tension": 0.005024153313161113,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.9247999999523164,
+        "state": "VICTORY",
+        "tension": 0.004777211198657939,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.9413999999761583,
+        "state": "VICTORY",
+        "tension": 0.0045451327945550445,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.9580000000000002,
+        "state": "VICTORY",
+        "tension": 0.004324328831420151,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.9746000000238421,
+        "state": "VICTORY",
+        "tension": 0.004114251593408555,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 0.9913999999761584,
+        "state": "VICTORY",
+        "tension": 0.00391203205018464,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.008100000023842,
+        "state": "VICTORY",
+        "tension": 0.003720867889799216,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.0247000000476838,
+        "state": "VICTORY",
+        "tension": 0.0035401069718006776,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.0413999999761583,
+        "state": "VICTORY",
+        "tension": 0.003367117189624392,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.0578999999761582,
+        "state": "VICTORY",
+        "tension": 0.003204502797415482,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.0747000000476838,
+        "state": "VICTORY",
+        "tension": 0.0030469983080268007,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.0915000000000001,
+        "state": "VICTORY",
+        "tension": 0.0028972353214752784,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.108100000023842,
+        "state": "VICTORY",
+        "tension": 0.0027564867295127933,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.1247000000476837,
+        "state": "VICTORY",
+        "tension": 0.002622575747872322,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.1413999999761582,
+        "state": "VICTORY",
+        "tension": 0.002494421765244368,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.1578999999761581,
+        "state": "VICTORY",
+        "tension": 0.0023739540605509243,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.174600000023842,
+        "state": "VICTORY",
+        "tension": 0.002257949148281004,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.1913999999761582,
+        "state": "VICTORY",
+        "tension": 0.0021469687099141006,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.208100000023842,
+        "state": "VICTORY",
+        "tension": 0.0020420555942904355,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.225,
+        "state": "VICTORY",
+        "tension": 0.0019411041193292647,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.2413999999761582,
+        "state": "VICTORY",
+        "tension": 0.0018479130937580828,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.2583999999761581,
+        "state": "VICTORY",
+        "tension": 0.0017560323979958947,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.274899999976158,
+        "state": "VICTORY",
+        "tension": 0.0016712250910274338,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.2914999999999999,
+        "state": "VICTORY",
+        "tension": 0.00159003645692825,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.3079999999999998,
+        "state": "VICTORY",
+        "tension": 0.0015132458976836402,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.3247999999523161,
+        "state": "VICTORY",
+        "tension": 0.0014388683621179238,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.3413999999761579,
+        "state": "VICTORY",
+        "tension": 0.0013689676900923108,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.3581000000238417,
+        "state": "VICTORY",
+        "tension": 0.0013020721340963118,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.3747999999523162,
+        "state": "VICTORY",
+        "tension": 0.0012384454763005555,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.3912999999523161,
+        "state": "VICTORY",
+        "tension": 0.0011786349478660064,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.4081000000238417,
+        "state": "VICTORY",
+        "tension": 0.001120703871697493,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.4247000000476835,
+        "state": "VICTORY",
+        "tension": 0.001066259729456397,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.441399999976158,
+        "state": "VICTORY",
+        "tension": 0.001014156208344947,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.4579999999999997,
+        "state": "VICTORY",
+        "tension": 0.0009648881846892503,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.474799999952316,
+        "state": "VICTORY",
+        "tension": 0.0009174629741643,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.4913999999761578,
+        "state": "VICTORY",
+        "tension": 0.0008728923378634886,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.5081000000238416,
+        "state": "VICTORY",
+        "tension": 0.0008302378481420489,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.5247000000476834,
+        "state": "VICTORY",
+        "tension": 0.0007899046355604578,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.5414999999999996,
+        "state": "VICTORY",
+        "tension": 0.0007510800398917341,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.5581000000238414,
+        "state": "VICTORY",
+        "tension": 0.0007145923382258373,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.574799999952316,
+        "state": "VICTORY",
+        "tension": 0.0006796732880617536,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.5914999999999997,
+        "state": "VICTORY",
+        "tension": 0.0006464605812684663,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.6081000000238415,
+        "state": "VICTORY",
+        "tension": 0.000615055325403211,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.6247000000476832,
+        "state": "VICTORY",
+        "tension": 0.0005851757466241392,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.6413999999761577,
+        "state": "VICTORY",
+        "tension": 0.0005565807279567048,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.6581000000238415,
+        "state": "VICTORY",
+        "tension": 0.0005293830245172533,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.6747000000476833,
+        "state": "VICTORY",
+        "tension": 0.0005036654327298853,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.6913999999761578,
+        "state": "VICTORY",
+        "tension": 0.000479053472076801,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.7079999999999995,
+        "state": "VICTORY",
+        "tension": 0.0004557809055821968,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.7247000000476833,
+        "state": "VICTORY",
+        "tension": 0.0004335088554001907,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.7414999999999996,
+        "state": "VICTORY",
+        "tension": 0.0004122014655305494,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.7582000000476834,
+        "state": "VICTORY",
+        "tension": 0.00039205895492303293,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.7748999999761579,
+        "state": "VICTORY",
+        "tension": 0.00037290072220502556,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.7913999999761578,
+        "state": "VICTORY",
+        "tension": 0.0003548915407953348,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.8081000000238416,
+        "state": "VICTORY",
+        "tension": 0.00033754951942288017,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.8247000000476834,
+        "state": "VICTORY",
+        "tension": 0.0003211512589073374,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.8413999999761579,
+        "state": "VICTORY",
+        "tension": 0.00030545797992832346,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.8581000000238417,
+        "state": "VICTORY",
+        "tension": 0.00029053156380571795,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.8747000000476834,
+        "state": "VICTORY",
+        "tension": 0.0002764174501804942,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.891399999976158,
+        "state": "VICTORY",
+        "tension": 0.00026291011978699325,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.9079999999999997,
+        "state": "VICTORY",
+        "tension": 0.0002501378644929825,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.9247000000476835,
+        "state": "VICTORY",
+        "tension": 0.00023791470419342746,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.941399999976158,
+        "state": "VICTORY",
+        "tension": 0.00022628883718353254,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.9579999999999997,
+        "state": "VICTORY",
+        "tension": 0.0002152956551750403,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.9746000000238415,
+        "state": "VICTORY",
+        "tension": 0.00020483652536362496,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 1.9913999999761578,
+        "state": "VICTORY",
+        "tension": 0.00019476860713981764,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.0081000000238416,
+        "state": "VICTORY",
+        "tension": 0.00018525110401722327,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.024899999976158,
+        "state": "VICTORY",
+        "tension": 0.0001761458286626227,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.0414999999999996,
+        "state": "VICTORY",
+        "tension": 0.00016758860958533182,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.058,
+        "state": "VICTORY",
+        "tension": 0.00015949494418727805,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.0749999999999997,
+        "state": "VICTORY",
+        "tension": 0.0001515646435189302,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.0917000000476835,
+        "state": "VICTORY",
+        "tension": 0.00014415833205452263,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.108299999952316,
+        "state": "VICTORY",
+        "tension": 0.00013715507554863,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.1247999999523164,
+        "state": "VICTORY",
+        "tension": 0.00013053119286422733,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.141399999976158,
+        "state": "VICTORY",
+        "tension": 0.00012418994696450922,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.1585,
+        "state": "VICTORY",
+        "tension": 0.00011797965847932596,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.1747000000476837,
+        "state": "VICTORY",
+        "tension": 0.00011238294866624754,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.191399999976158,
+        "state": "VICTORY",
+        "tension": 0.00010689127794415798,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.2081000000238418,
+        "state": "VICTORY",
+        "tension": 0.00010166796148391695,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.2247000000476835,
+        "state": "VICTORY",
+        "tension": 0.00009672890033120708,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.241399999976158,
+        "state": "VICTORY",
+        "tension": 0.00009200217553680465,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.2581000000238416,
+        "state": "VICTORY",
+        "tension": 0.00008750642539608289,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.274799999952316,
+        "state": "VICTORY",
+        "tension": 0.00008323036323500249,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.2914999999999996,
+        "state": "VICTORY",
+        "tension": 0.00007916325378848297,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.3081000000238414,
+        "state": "VICTORY",
+        "tension": 0.0000753174783268528,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.3247999999523157,
+        "state": "VICTORY",
+        "tension": 0.00007163703751712154,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.3413999999761574,
+        "state": "VICTORY",
+        "tension": 0.0000681568879800227,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.358600000023841,
+        "state": "VICTORY",
+        "tension": 0.00006472918772180091,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.374499999999999,
+        "state": "VICTORY",
+        "tension": 0.00006171408728147184,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.391499999999999,
+        "state": "VICTORY",
+        "tension": 0.000058645580814959216,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.4082000000476826,
+        "state": "VICTORY",
+        "tension": 0.00005577982381885331,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.4247999999523153,
+        "state": "VICTORY",
+        "tension": 0.000053070022668343445,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.441399999976157,
+        "state": "VICTORY",
+        "tension": 0.000050491864480563585,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.458100000023841,
+        "state": "VICTORY",
+        "tension": 0.00004802454449036413,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.474899999976157,
+        "state": "VICTORY",
+        "tension": 0.000045664090534184874,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.491499999999999,
+        "state": "VICTORY",
+        "tension": 0.000043445714830183986,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.5081000000238407,
+        "state": "VICTORY",
+        "tension": 0.00004133510850703647,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.524600000023841,
+        "state": "VICTORY",
+        "tension": 0.00003933883597827697,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.541600000023841,
+        "state": "VICTORY",
+        "tension": 0.00003738285675373024,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.558100000023841,
+        "state": "VICTORY",
+        "tension": 0.00003557745759840155,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.5747000000476827,
+        "state": "VICTORY",
+        "tension": 0.000033849093655899903,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.591399999976157,
+        "state": "VICTORY",
+        "tension": 0.00003219503422067883,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.608100000023841,
+        "state": "VICTORY",
+        "tension": 0.0000306218015358685,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.624899999976157,
+        "state": "VICTORY",
+        "tension": 0.000029116709642801614,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.6412999999523152,
+        "state": "VICTORY",
+        "tension": 0.000027718837160923305,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.6582000000476826,
+        "state": "VICTORY",
+        "tension": 0.000026348523089812882,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.6747999999523153,
+        "state": "VICTORY",
+        "tension": 0.000025068503661732903,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.6916000000238407,
+        "state": "VICTORY",
+        "tension": 0.00002383636185422254,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.708299999952315,
+        "state": "VICTORY",
+        "tension": 0.000022671581502136262,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.7252000000476824,
+        "state": "VICTORY",
+        "tension": 0.000021550784588241868,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.7414999999999985,
+        "state": "VICTORY",
+        "tension": 0.000020522302545703193,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.7582000000476823,
+        "state": "VICTORY",
+        "tension": 0.000019519465992986342,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.774799999952315,
+        "state": "VICTORY",
+        "tension": 0.000018571204277838103,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.7914999999999988,
+        "state": "VICTORY",
+        "tension": 0.00001766370949569501,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.8082000000476826,
+        "state": "VICTORY",
+        "tension": 0.000016800560075721012,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.825299999952315,
+        "state": "VICTORY",
+        "tension": 0.000015960425051717547,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.8419999999999987,
+        "state": "VICTORY",
+        "tension": 0.0000151805078078744,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.858100000023841,
+        "state": "VICTORY",
+        "tension": 0.000014464714830217721,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.874899999976157,
+        "state": "VICTORY",
+        "tension": 0.000013753759761131268,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.891499999999999,
+        "state": "VICTORY",
+        "tension": 0.000013085597839239543,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.908299999952315,
+        "state": "VICTORY",
+        "tension": 0.000012442427737026471,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.9251000000238405,
+        "state": "VICTORY",
+        "tension": 0.000011830870078516546,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.9413999999761566,
+        "state": "VICTORY",
+        "tension": 0.000011266257807740976,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.9581000000238404,
+        "state": "VICTORY",
+        "tension": 0.000010715724303190348,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.9747999999523147,
+        "state": "VICTORY",
+        "tension": 0.000010192093003956716,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 2.9913999999761565,
+        "state": "VICTORY",
+        "tension": 0.000009696957959583744,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.0081000000238403,
+        "state": "VICTORY",
+        "tension": 0.000009223109380927778,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.024700000047682,
+        "state": "VICTORY",
+        "tension": 0.000008775047861982691,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.0414999999999983,
+        "state": "VICTORY",
+        "tension": 0.00000834374556310018,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.058200000047682,
+        "state": "VICTORY",
+        "tension": 0.000007936022647086656,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.0747000000476823,
+        "state": "VICTORY",
+        "tension": 0.000007552753688320151,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.0914999999999986,
+        "state": "VICTORY",
+        "tension": 0.0000071815283594215105,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.1082000000476824,
+        "state": "VICTORY",
+        "tension": 0.000006830597993437386,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.124799999952315,
+        "state": "VICTORY",
+        "tension": 0.000006498765423270126,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.141499999999999,
+        "state": "VICTORY",
+        "tension": 0.000006181198741876854,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.1581000000238406,
+        "state": "VICTORY",
+        "tension": 0.000005880914186766416,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.174899999976157,
+        "state": "VICTORY",
+        "tension": 0.000005591861426237083,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.1916000000238407,
+        "state": "VICTORY",
+        "tension": 0.000005318611237888601,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.208100000023841,
+        "state": "VICTORY",
+        "tension": 0.000005061749749221136,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.224799999952315,
+        "state": "VICTORY",
+        "tension": 0.000004814403837494846,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.2416000000238405,
+        "state": "VICTORY",
+        "tension": 0.0000045777711159546705,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.258399999976157,
+        "state": "VICTORY",
+        "tension": 0.000004352769128828974,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.275200000047682,
+        "state": "VICTORY",
+        "tension": 0.0000041388262108774085,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.2914999999999983,
+        "state": "VICTORY",
+        "tension": 0.0000039413063285897695,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.308200000047682,
+        "state": "VICTORY",
+        "tension": 0.0000037487116602789467,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.3248999999761564,
+        "state": "VICTORY",
+        "tension": 0.0000035655282653366456,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.34160000002384,
+        "state": "VICTORY",
+        "tension": 0.0000033912962528097017,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.3582999999523144,
+        "state": "VICTORY",
+        "tension": 0.0000032255782096144137,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.3747999999523146,
+        "state": "VICTORY",
+        "tension": 0.000003069799420062612,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.3913999999761564,
+        "state": "VICTORY",
+        "tension": 0.0000029206676105825815,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.4082000000476818,
+        "state": "VICTORY",
+        "tension": 0.000002777113902016658,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.424999999999998,
+        "state": "VICTORY",
+        "tension": 0.000002640616001488087,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.4414999999999982,
+        "state": "VICTORY",
+        "tension": 0.0000025130878692738924,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.458200000047682,
+        "state": "VICTORY",
+        "tension": 0.0000023902840869066538,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.4748999999761563,
+        "state": "VICTORY",
+        "tension": 0.0000022734811973817927,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      },
+      {
+        "time": 3.49160000002384,
+        "state": "VICTORY",
+        "tension": 0.000002162385961280896,
+        "counts": {
+          "VICTORY": 1
+        },
+        "confetti": 28,
+        "score": {
+          "zorp": 6,
+          "master": 4
+        },
+        "phase": "RESULT"
+      }
+    ],
+    "frameTimes": [
+      16.69999999999709,
+      16.700000000004366,
+      16.599999999998545,
+      16.69999999999709,
+      16.700000000004366,
+      16.69999999999709,
+      16.599999999998545,
+      16.700000000004366,
+      16.69999999999709,
+      16.69999999999709,
+      16.700000000004366,
+      16.599999999998545,
+      16.69999999999709,
+      16.60000000000582,
+      16.69999999999709,
+      16.69999999999709,
+      16.700000000004366,
+      16.599999999998545,
+      16.599999999998545,
+      16.700000000004366,
+      16.69999999999709,
+      16.69999999999709,
+      16.60000000000582,
+      16.69999999999709,
+      16.599999999998545,
+      16.700000000004366,
+      16.799999999995634,
+      16.599999999998545,
+      16.60000000000582,
+      16.69999999999709,
+      16.69999999999709,
+      16.60000000000582,
+      16.69999999999709,
+      16.69999999999709,
+      16.700000000004366,
+      16.69999999999709,
+      16.599999999998545,
+      16.700000000004366,
+      16.69999999999709,
+      16.599999999998545,
+      16.60000000000582,
+      16.69999999999709,
+      16.69999999999709,
+      16.700000000004366,
+      16.599999999998545,
+      16.599999999998545,
+      16.599999999998545,
+      16.80000000000291,
+      16.69999999999709,
+      16.60000000000582,
+      16.69999999999709,
+      16.5,
+      16.900000000001455,
+      16.599999999998545,
+      16.69999999999709,
+      16.700000000004366,
+      16.5,
+      16.799999999995634,
+      16.60000000000582,
+      16.799999999995634,
+      16.599999999998545,
+      16.700000000004366,
+      16.5,
+      16.69999999999709,
+      16.700000000004366,
+      16.69999999999709,
+      16.69999999999709,
+      16.700000000004366,
+      16.5,
+      16.799999999995634,
+      16.700000000004366,
+      16.599999999998545,
+      16.80000000000291,
+      16.599999999998545,
+      16.799999999995634,
+      16.60000000000582,
+      16.599999999998545,
+      16.69999999999709,
+      16.599999999998545,
+      16.700000000004366,
+      16.69999999999709,
+      16.599999999998545,
+      16.700000000004366,
+      16.69999999999709,
+      16.5,
+      16.80000000000291,
+      16.69999999999709,
+      16.700000000004366,
+      16.599999999998545,
+      16.69999999999709,
+      16.599999999998545,
+      16.700000000004366,
+      16.599999999998545,
+      16.69999999999709,
+      16.80000000000291,
+      16.599999999998545,
+      16.700000000004366,
+      16.599999999998545,
+      16.69999999999709,
+      16.599999999998545,
+      16.80000000000291,
+      16.599999999998545,
+      16.700000000004366,
+      16.69999999999709,
+      16.69999999999709,
+      16.700000000004366,
+      16.5,
+      16.69999999999709,
+      16.700000000004366,
+      16.69999999999709,
+      16.599999999998545,
+      16.700000000004366,
+      16.599999999998545,
+      16.69999999999709,
+      16.700000000004366,
+      16.69999999999709,
+      16.599999999998545,
+      16.5,
+      16.900000000001455,
+      16.599999999998545,
+      16.599999999998545,
+      16.80000000000291,
+      16.5,
+      16.80000000000291,
+      16.599999999998545,
+      16.69999999999709,
+      16.700000000004366,
+      16.599999999998545,
+      16.799999999995634,
+      16.60000000000582,
+      16.69999999999709,
+      16.599999999998545,
+      16.700000000004366,
+      16.599999999998545,
+      16.69999999999709,
+      16.700000000004366,
+      16.69999999999709,
+      16.599999999998545,
+      16.700000000004366,
+      16.69999999999709,
+      16.599999999998545,
+      16.5,
+      16.900000000001455,
+      16.599999999998545,
+      16.700000000004366,
+      16.599999999998545,
+      16.799999999995634,
+      16.700000000004366,
+      16.599999999998545,
+      16.599999999998545,
+      16.5,
+      16.900000000001455,
+      16.69999999999709,
+      16.60000000000582,
+      16.69999999999709,
+      16.599999999998545,
+      16.700000000004366,
+      16.69999999999709,
+      16.69999999999709,
+      16.60000000000582,
+      16.799999999995634,
+      16.700000000004366,
+      16.69999999999709,
+      16.5,
+      16.69999999999709,
+      16.60000000000582,
+      16.69999999999709,
+      16.599999999998545,
+      16.80000000000291,
+      16.69999999999709,
+      16.5,
+      16.700000000004366,
+      16.69999999999709,
+      16.69999999999709,
+      16.60000000000582,
+      16.599999999998545,
+      16.799999999995634,
+      16.60000000000582,
+      16.599999999998545,
+      16.799999999995634,
+      16.5,
+      16.80000000000291,
+      16.69999999999709,
+      16.60000000000582,
+      16.69999999999709,
+      16.599999999998545,
+      16.700000000004366,
+      16.69999999999709,
+      16.69999999999709,
+      16.700000000004366,
+      16.5,
+      16.599999999998545,
+      16.80000000000291,
+      16.69999999999709,
+      16.69999999999709,
+      16.60000000000582,
+      16.69999999999709,
+      16.69999999999709,
+      16.60000000000582,
+      16.799999999995634,
+      16.599999999998545,
+      16.60000000000582,
+      16.69999999999709,
+      16.599999999998545,
+      16.700000000004366,
+      16.799999999995634,
+      16.599999999998545,
+      16.700000000004366,
+      16.599999999998545
+    ],
+    "drawTimes": [
+      1.4000000953674316,
+      0.6999999284744263,
+      1.899999976158142,
+      1.3000000715255737,
+      1.5999999046325684,
+      1.399999976158142,
+      0.5999999046325684,
+      1.5,
+      1.600000023841858,
+      1,
+      1.5,
+      1.399999976158142,
+      1.5,
+      0.8999999761581421,
+      1.5999999046325684,
+      1.5,
+      1.5,
+      1.2000000476837158,
+      1.5,
+      1.399999976158142,
+      1.5,
+      1.100000023841858,
+      1.600000023841858,
+      1.5,
+      1.5,
+      1,
+      0.7000000476837158,
+      1.5,
+      1.399999976158142,
+      1,
+      1.5,
+      1.5,
+      2.100000023841858,
+      1.1999999284744263,
+      0.9000000953674316,
+      1.5,
+      1.5,
+      1.2000000476837158,
+      1.399999976158142,
+      1.600000023841858,
+      1.399999976158142,
+      0.5999999046325684,
+      1.2999999523162842,
+      1.2999999523162842,
+      1.2999999523162842,
+      0.8999999761581421,
+      1.5,
+      1.5,
+      1.4000000953674316,
+      1.2000000476837158,
+      1.2999999523162842,
+      1.5,
+      1.5,
+      1.2999999523162842,
+      1.600000023841858,
+      1.399999976158142,
+      1.2999999523162842,
+      1.3000000715255737,
+      1.2000000476837158,
+      1.399999976158142,
+      1.4000000953674316,
+      1.2000000476837158,
+      1.5,
+      1.399999976158142,
+      1.600000023841858,
+      1.5,
+      1.5,
+      1.2999999523162842,
+      1.399999976158142,
+      1.1999999284744263,
+      1.399999976158142,
+      1.399999976158142,
+      1.5,
+      1.600000023841858,
+      1.100000023841858,
+      1.399999976158142,
+      1.399999976158142,
+      1.7000000476837158,
+      1.600000023841858,
+      1.0999999046325684,
+      0.7999999523162842,
+      1.3000000715255737,
+      1.2000000476837158,
+      1.5,
+      5.600000023841858,
+      1.100000023841858,
+      1,
+      1.5,
+      0.8999999761581421,
+      1.5,
+      1.399999976158142,
+      1.100000023841858,
+      1.2999999523162842,
+      1.600000023841858,
+      0.8999999761581421,
+      1.8000000715255737,
+      1.6999999284744263,
+      1.8000000715255737,
+      2.8000000715255737,
+      1,
+      1.7999999523162842,
+      0.8999999761581421,
+      3.4000000953674316,
+      1.399999976158142,
+      1.600000023841858,
+      1.3000000715255737,
+      2.600000023841858,
+      3.5,
+      1.6999999284744263,
+      0.7000000476837158,
+      1.5999999046325684,
+      1.7999999523162842,
+      2.799999952316284,
+      0.7999999523162842,
+      1.1999999284744263,
+      1.399999976158142,
+      3,
+      0.7000000476837158,
+      1.7000000476837158,
+      1.5,
+      1.399999976158142,
+      1.1999999284744263,
+      1.100000023841858,
+      1.3000000715255737,
+      1.2999999523162842,
+      0.9000000953674316,
+      1.399999976158142,
+      1.5,
+      1.5,
+      1,
+      0.6000000238418579,
+      1.2999999523162842,
+      1.5,
+      0.7000000476837158,
+      3.399999976158142,
+      3.3000000715255737,
+      1.4000000953674316,
+      0.6000000238418579,
+      1,
+      1.399999976158142,
+      1.600000023841858,
+      0.8999999761581421,
+      1.399999976158142,
+      1.5,
+      1.5,
+      1.100000023841858,
+      0.6000000238418579,
+      1.5,
+      1.600000023841858,
+      0.6999999284744263,
+      1.5,
+      1.600000023841858,
+      1.3000000715255737,
+      1.1999999284744263,
+      0.7000000476837158,
+      1.2999999523162842,
+      1.5,
+      1.100000023841858,
+      1.600000023841858,
+      1.5,
+      1.2999999523162842,
+      1.5,
+      6.300000071525574,
+      1.899999976158142,
+      1.3000000715255737,
+      1.3000000715255737,
+      1.7999999523162842,
+      1.5,
+      1.5,
+      1.6999999284744263,
+      2.3000000715255737,
+      1.5,
+      1.6999999284744263,
+      1.600000023841858,
+      1.600000023841858,
+      1.2999999523162842,
+      1.2999999523162842,
+      1.399999976158142,
+      1.600000023841858,
+      1.5,
+      1.5,
+      1.399999976158142,
+      1.600000023841858,
+      1.2000000476837158,
+      1,
+      1.4000000953674316,
+      2.299999952316284,
+      1.100000023841858,
+      1.5,
+      1.600000023841858,
+      1.6999999284744263,
+      1.2000000476837158,
+      1,
+      1.600000023841858,
+      1.5,
+      1.399999976158142,
+      0.9000000953674316,
+      1.600000023841858,
+      1.5,
+      1.5,
+      1.6999999284744263,
+      0.6999999284744263,
+      1,
+      1.5,
+      1.5,
+      0.9000000953674316,
+      1.3000000715255737,
+      1.5,
+      1.600000023841858,
+      1.2999999523162842
+    ],
+    "powers": {
+      "zorp": 1.0792211060587602,
+      "master": 0.3672656219687196,
+      "neutral": 0.8119379867652665
+    }
+  },
+  "final": {
+    "phase": "RESULT",
+    "assetsReady": true,
+    "assetFailures": 0,
+    "invalidDrawCalls": 0,
+    "manifestEntries": 91,
+    "score": {
+      "zorp": 6,
+      "master": 4
+    },
+    "clock": 0,
+    "overtime": false,
+    "winner": "zorp",
+    "recovery": {
+      "stage": "NORMAL",
+      "suspect": 0,
+      "blocked": 0,
+      "blink": 0,
+      "nudges": 0,
+      "neutralResets": 0,
+      "lastAction": null
+    },
+    "crowd": {
+      "spectators": 66,
+      "rows": 3,
+      "time": 3.49160000002384,
+      "tension": 0.000002162385961280896,
+      "state": "VICTORY",
+      "lastReaction": {
+        "kind": "VICTORY",
+        "side": "zorp",
+        "at": 0.024600000023841856
+      },
+      "counts": {
+        "VICTORY": 1
+      },
+      "activeEvents": 1,
+      "confetti": 28,
+      "band": {
+        "top": 95,
+        "bottom": 186
+      }
+    },
+    "player": {
+      "state": "VICTORY",
+      "x": 142,
+      "z": 0,
+      "vx": 0,
+      "facing": 1,
+      "special": 0,
+      "frame": 1
+    },
+    "master": {
+      "state": "DEFEATED",
+      "x": 308,
+      "z": 0,
+      "vx": 0,
+      "facing": -1,
+      "special": 0,
+      "frame": 1
+    },
+    "ball": {
+      "state": "POSSESSED_ZORP",
+      "owner": "zorp",
+      "x": 157,
+      "y": 220,
+      "vx": 0,
+      "vy": 0,
+      "shotId": 0,
+      "scoredShotId": -1,
+      "previousX": 157,
+      "previousY": 220,
+      "radius": 8.8,
+      "wasAboveRim": false,
+      "crossedRimPlane": false,
+      "basketScored": false,
+      "enteredRimFromBelow": false,
+      "rimTouched": false,
+      "backboardTouched": false,
+      "scoreKind": null,
+      "scoreCrossing": null,
+      "pendingBasket": null,
+      "recoveryScoringBlocked": false
+    },
+    "stats": {
+      "shots": 0,
+      "misses": 0,
+      "twoPointers": 0,
+      "threePointers": 0,
+      "dunks": 0,
+      "pumpFakes": 0,
+      "steals": 0,
+      "blocks": 0,
+      "rebounds": 0,
+      "dashes": 0,
+      "specials": 0,
+      "overtimes": 0,
+      "rimHits": 0,
+      "backboardHits": 0,
+      "floorBounces": 0,
+      "swooshes": 0,
+      "normalBaskets": 0,
+      "baskets": [],
+      "possessions": 1,
+      "nonFinitePhysics": 0,
+      "actionsSeen": [
+        "IDLE"
+      ],
+      "ballStatesSeen": [
+        "POSSESSED_ZORP"
+      ],
+      "resultsSeen": [
+        "zorp"
+      ]
+    },
+    "colliders": {
+      "left": {
+        "side": "left",
+        "x": 60,
+        "rimX": 95.6,
+        "rimY": 188.39999999999998,
+        "netTimer": 0,
+        "rimLeft": {
+          "x": 81.2,
+          "y": 188.39999999999998,
+          "radius": 1.6,
+          "id": "left-rim-left"
+        },
+        "rimRight": {
+          "x": 110,
+          "y": 188.39999999999998,
+          "radius": 1.6,
+          "id": "left-rim-right"
+        },
+        "opening": {
+          "left": 82.8,
+          "right": 108.4
+        },
+        "backboard": {
+          "a": {
+            "x": 69.6,
+            "y": 150.39999999999998
+          },
+          "b": {
+            "x": 83.2,
+            "y": 196.4
+          },
+          "radius": 1.3,
+          "id": "left-backboard"
+        }
+      },
+      "right": {
+        "side": "right",
+        "x": 390,
+        "rimX": 351.4,
+        "rimY": 188.39999999999998,
+        "netTimer": 0,
+        "rimLeft": {
+          "x": 336.8,
+          "y": 188.39999999999998,
+          "radius": 1.6,
+          "id": "right-rim-left"
+        },
+        "rimRight": {
+          "x": 366,
+          "y": 188.39999999999998,
+          "radius": 1.6,
+          "id": "right-rim-right"
+        },
+        "opening": {
+          "left": 338.40000000000003,
+          "right": 364.4
+        },
+        "backboard": {
+          "a": {
+            "x": 376.4,
+            "y": 150.39999999999998
+          },
+          "b": {
+            "x": 363.2,
+            "y": 196.4
+          },
+          "radius": 1.3,
+          "id": "right-backboard"
+        }
+      }
+    }
+  },
+  "samples": [
+    [
+      0,
+      0,
+      1672,
+      297.98333333333335,
+      0,
+      0,
+      450,
+      95
+    ],
+    [
+      0,
+      583.42,
+      1672,
+      357.58,
+      0,
+      186,
+      450,
+      114
+    ],
+    [
+      0,
+      0,
+      1672,
+      297.98333333333335,
+      0,
+      0,
+      450,
+      95
+    ],
+    [
+      0,
+      583.42,
+      1672,
+      357.58,
+      0,
+      186,
+      450,
+      114
+    ],
+    [
+      0,
+      0,
+      1672,
+      297.98333333333335,
+      0,
+      0,
+      450,
+      95
+    ],
+    [
+      0,
+      583.42,
+      1672,
+      357.58,
+      0,
+      186,
+      450,
+      114
+    ],
+    [
+      0,
+      0,
+      1672,
+      297.98333333333335,
+      0,
+      0,
+      450,
+      95
+    ],
+    [
+      0,
+      583.42,
+      1672,
+      357.58,
+      0,
+      186,
+      450,
+      114
+    ],
+    [
+      0,
+      0,
+      1672,
+      297.98333333333335,
+      0,
+      0,
+      450,
+      95
+    ],
+    [
+      0,
+      583.42,
+      1672,
+      357.58,
+      0,
+      186,
+      450,
+      114
+    ]
+  ],
+  "performance": {
+    "fps": 59.996521940757106,
+    "frameMs": {
+      "samples": 207,
+      "mean": 16.66763285024153,
+      "median": 16.69999999999709,
+      "p95": 16.80000000000291,
+      "max": 16.900000000001455
+    },
+    "crowdDrawMs": {
+      "samples": 208,
+      "mean": 1.464423077610823,
+      "median": 1.4000000953674316,
+      "p95": 2.3000000715255737,
+      "max": 6.300000071525574
+    }
+  }
+}

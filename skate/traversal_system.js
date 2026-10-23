@@ -187,6 +187,14 @@
                 const transitions = [];
                 const emit = (type, details) => transitions.push(this.transition(type, details));
 
+                const rampOwnsInput = player.grounded && !player.grindingRailId
+                    && (simulation?.config?.ramps || []).some(r =>
+                        player.x >= (r.zones?.APPROACH.startX ?? r.startX - 70) && player.x <= r.endX);
+                if (rampOwnsInput && this.mode === "MANUAL") {
+                    this.mode = "GROUND";
+                    this.manualElapsedMs = 0;
+                }
+
                 if (this.mode === "GROUND" && !player.grounded) this.mode = "AIR";
 
                 if (this.mode === "GRIND") {
@@ -301,7 +309,7 @@
 
                 if (this.mode === "AIR" && player.grounded && !previousGrounded) {
                     this.pendingCaptureMs = 0;
-                    if (input.held) {
+                    if (input.held && !rampOwnsInput) {
                         this.mode = "MANUAL";
                         this.manualElapsedMs = 0;
                         player.y = groundY;
@@ -317,6 +325,7 @@
                 }
 
                 if (this.mode === "AIR" && !player.grounded) {
+                    if (player.specialRampAir?.active) return transitions;
                     if (player.x > this.lastExitedRailMaxX + SETTINGS.grindCaptureRadiusPx) {
                         this.lastExitedRailId = null;
                         this.lastExitedRailMaxX = -Infinity;

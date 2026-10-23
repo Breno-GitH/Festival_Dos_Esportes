@@ -1,0 +1,726 @@
+{
+  "results": [
+    {
+      "name": "idle",
+      "passed": true,
+      "score": {
+        "zorp": 0,
+        "master": 0
+      },
+      "crowd": {
+        "spectators": 66,
+        "rows": 3,
+        "time": 7.005200000047671,
+        "tension": 0,
+        "humans": 30,
+        "aliens": 36,
+        "standing": 16,
+        "rimStreak": 0,
+        "state": "IDLE",
+        "lastReaction": null,
+        "counts": {},
+        "activeEvents": 0,
+        "confetti": 0,
+        "band": {
+          "top": 95,
+          "bottom": 186
+        }
+      },
+      "sidePower": null,
+      "performance": {
+        "fps": 59.99626817470676,
+        "frameMs": {
+          "samples": 418,
+          "mean": 16.667703349282316,
+          "median": 16.699999999999818,
+          "p95": 16.800000000000182,
+          "max": 16.90000000000009
+        },
+        "crowdDrawMs": {
+          "samples": 419,
+          "mean": 0.7150358058387738,
+          "median": 0.6999999284744263,
+          "p95": 1.100000023841858,
+          "max": 2.399999976158142
+        }
+      }
+    },
+    {
+      "name": "normal-two",
+      "passed": true,
+      "score": {
+        "zorp": 2,
+        "master": 0
+      },
+      "crowd": {
+        "spectators": 66,
+        "rows": 3,
+        "time": 3.0042999999523183,
+        "tension": 0,
+        "humans": 30,
+        "aliens": 36,
+        "standing": 16,
+        "rimStreak": 0,
+        "state": "IDLE",
+        "lastReaction": {
+          "kind": "BASKET",
+          "side": "zorp",
+          "at": 0.5040999999046327,
+          "points": 2,
+          "swoosh": false,
+          "late": false,
+          "comeback": false
+        },
+        "counts": {
+          "BASKET": 1
+        },
+        "activeEvents": 0,
+        "confetti": 0,
+        "band": {
+          "top": 95,
+          "bottom": 186
+        }
+      },
+      "sidePower": {
+        "zorp": 0.5803720143417139,
+        "master": 0.12522032489037763,
+        "neutral": 0.16869447212893285
+      },
+      "performance": {
+        "fps": 59.99528127001244,
+        "frameMs": {
+          "samples": 178,
+          "mean": 16.667977528089896,
+          "median": 16.69999999999891,
+          "p95": 16.799999999999272,
+          "max": 16.80000000000109
+        },
+        "crowdDrawMs": {
+          "samples": 179,
+          "mean": 0.6877094973398986,
+          "median": 0.6999999284744263,
+          "p95": 1,
+          "max": 1.3000000715255737
+        }
+      }
+    },
+    {
+      "name": "three",
+      "passed": true,
+      "score": {
+        "zorp": 3,
+        "master": 0
+      },
+      "crowd": {
+        "spectators": 66,
+        "rows": 3,
+        "time": 3.6066999999284737,
+        "tension": 0,
+        "humans": 30,
+        "aliens": 36,
+        "standing": 16,
+        "rimStreak": 0,
+        "state": "IDLE",
+        "lastReaction": {
+          "kind": "THREE",
+          "side": "zorp",
+          "at": 1.1065999999046325,
+          "points": 3,
+          "swoosh": false,
+          "late": false,
+          "comeback": false
+        },
+        "counts": {
+          "THREE": 1
+        },
+        "activeEvents": 0,
+        "confetti": 0,
+        "band": {
+          "top": 95,
+          "bottom": 186
+        }
+      },
+      "sidePower": {
+        "zorp": 0.7931750862670089,
+        "master": 0.17113444401684938,
+        "neutral": 0.7070172765225939
+      },
+      "performance": {
+        "fps": 59.9960750231293,
+        "frameMs": {
+          "samples": 214,
+          "mean": 16.667757009345802,
+          "median": 16.69999999999891,
+          "p95": 16.80000000000109,
+          "max": 16.899999999999636
+        },
+        "crowdDrawMs": {
+          "samples": 215,
+          "mean": 0.6813953466193621,
+          "median": 0.6999999284744263,
+          "p95": 0.8999999761581421,
+          "max": 2
+        }
+      }
+    },
+    {
+      "name": "swoosh",
+      "passed": true,
+      "score": {
+        "zorp": 2,
+        "master": 0
+      },
+      "crowd": {
+        "spectators": 66,
+        "rows": 3,
+        "time": 2.9972999999523124,
+        "tension": 0,
+        "humans": 30,
+        "aliens": 36,
+        "standing": 16,
+        "rimStreak": 0,
+        "state": "IDLE",
+        "lastReaction": {
+          "kind": "SWOOSH",
+          "side": "zorp",
+          "at": 0.29719999992847446,
+          "points": 2,
+          "swoosh": true,
+          "late": false,
+          "comeback": false
+        },
+        "counts": {
+          "SWOOSH": 1
+        },
+        "activeEvents": 0,
+        "confetti": 0,
+        "band": {
+          "top": 95,
+          "bottom": 186
+        }
+      },
+      "sidePower": {
+        "zorp": 0.9285952229467422,
+        "master": 0.2003525198246042,
+        "neutral": 0.8277275432459636
+      },
+      "performance": {
+        "fps": 59.995932479153936,
+        "frameMs": {
+          "samples": 177,
+          "mean": 16.667796610169496,
+          "median": 16.700000000000728,
+          "p95": 16.799999999999272,
+          "max": 16.900000000001455
+        },
+        "crowdDrawMs": {
+          "samples": 178,
+          "mean": 0.6814606752288476,
+          "median": 0.6999999284744263,
+          "p95": 0.8000000715255737,
+          "max": 1.5
+        }
+      }
+    },
+    {
+      "name": "master-score",
+      "passed": true,
+      "score": {
+        "zorp": 0,
+        "master": 2
+      },
+      "crowd": {
+        "spectators": 66,
+        "rows": 3,
+        "time": 3.0057999999523153,
+        "tension": 0,
+        "humans": 30,
+        "aliens": 36,
+        "standing": 16,
+        "rimStreak": 0,
+        "state": "IDLE",
+        "lastReaction": {
+          "kind": "BASKET",
+          "side": "master",
+          "at": 0.48929999995231643,
+          "points": 2,
+          "swoosh": false,
+          "late": false,
+          "comeback": false
+        },
+        "counts": {
+          "BASKET": 1
+        },
+        "activeEvents": 0,
+        "confetti": 0,
+        "band": {
+          "top": 95,
+          "bottom": 186
+        }
+      },
+      "sidePower": {
+        "zorp": 0.12768184315517708,
+        "master": 0.569183294956262,
+        "neutral": 0.16869447212893285
+      },
+      "performance": {
+        "fps": 59.999325850271404,
+        "frameMs": {
+          "samples": 178,
+          "mean": 16.666853932584253,
+          "median": 16.700000000000728,
+          "p95": 16.799999999999272,
+          "max": 16.80000000000291
+        },
+        "crowdDrawMs": {
+          "samples": 179,
+          "mean": 0.6770949696695339,
+          "median": 0.6999999284744263,
+          "p95": 0.8999999761581421,
+          "max": 2.200000047683716
+        }
+      }
+    },
+    {
+      "name": "close-game",
+      "passed": true,
+      "score": {
+        "zorp": 14,
+        "master": 13
+      },
+      "crowd": {
+        "spectators": 66,
+        "rows": 3,
+        "time": 5.012999999999994,
+        "tension": 0.7843963897105465,
+        "humans": 30,
+        "aliens": 36,
+        "standing": 60,
+        "rimStreak": 0,
+        "state": "TENSION",
+        "lastReaction": null,
+        "counts": {},
+        "activeEvents": 0,
+        "confetti": 0,
+        "band": {
+          "top": 95,
+          "bottom": 186
+        }
+      },
+      "sidePower": null,
+      "performance": {
+        "fps": 59.997181340473915,
+        "frameMs": {
+          "samples": 298,
+          "mean": 16.667449664429537,
+          "median": 16.700000000000728,
+          "p95": 16.80000000000291,
+          "max": 17
+        },
+        "crowdDrawMs": {
+          "samples": 299,
+          "mean": 0.6598662229684683,
+          "median": 0.6000000238418579,
+          "p95": 0.8000000715255737,
+          "max": 1.399999976158142
+        }
+      }
+    },
+    {
+      "name": "late-score",
+      "passed": true,
+      "score": {
+        "zorp": 13,
+        "master": 11
+      },
+      "crowd": {
+        "spectators": 66,
+        "rows": 3,
+        "time": 2.9960999999046307,
+        "tension": 0.7834724729899607,
+        "humans": 30,
+        "aliens": 36,
+        "standing": 60,
+        "rimStreak": 0,
+        "state": "CLUTCH",
+        "lastReaction": {
+          "kind": "CLUTCH",
+          "side": "zorp",
+          "at": 0.2958999999761581,
+          "points": 2,
+          "swoosh": true,
+          "late": true,
+          "comeback": false
+        },
+        "counts": {
+          "CLUTCH": 1
+        },
+        "activeEvents": 1,
+        "confetti": 0,
+        "band": {
+          "top": 95,
+          "bottom": 186
+        }
+      },
+      "sidePower": {
+        "zorp": 1.0446696258150852,
+        "master": 0.22539658480267974,
+        "neutral": 0.9311934861517095
+      },
+      "performance": {
+        "fps": 59.995932479153936,
+        "frameMs": {
+          "samples": 177,
+          "mean": 16.667796610169496,
+          "median": 16.69999999999709,
+          "p95": 16.799999999999272,
+          "max": 17
+        },
+        "crowdDrawMs": {
+          "samples": 178,
+          "mean": 0.6887640410594726,
+          "median": 0.6999999284744263,
+          "p95": 0.8999999761581421,
+          "max": 1.4000000953674316
+        }
+      }
+    },
+    {
+      "name": "comeback",
+      "passed": true,
+      "score": {
+        "zorp": 6,
+        "master": 5
+      },
+      "crowd": {
+        "spectators": 66,
+        "rows": 3,
+        "time": 3.0051000000238415,
+        "tension": 0,
+        "humans": 30,
+        "aliens": 36,
+        "standing": 20,
+        "rimStreak": 0,
+        "state": "COMEBACK",
+        "lastReaction": {
+          "kind": "COMEBACK",
+          "side": "zorp",
+          "at": 0.5048999999761583,
+          "points": 2,
+          "swoosh": false,
+          "late": false,
+          "comeback": true
+        },
+        "counts": {
+          "COMEBACK": 1
+        },
+        "activeEvents": 1,
+        "confetti": 0,
+        "band": {
+          "top": 95,
+          "bottom": 186
+        }
+      },
+      "sidePower": {
+        "zorp": 0.9866324243809138,
+        "master": 0.21287455231364194,
+        "neutral": 0.8794605146988363
+      },
+      "performance": {
+        "fps": 59.99528127001252,
+        "frameMs": {
+          "samples": 178,
+          "mean": 16.667977528089875,
+          "median": 16.700000000000728,
+          "p95": 16.80000000000291,
+          "max": 16.900000000001455
+        },
+        "crowdDrawMs": {
+          "samples": 179,
+          "mean": 0.7162011169188516,
+          "median": 0.6999999284744263,
+          "p95": 1.100000023841858,
+          "max": 1.899999976158142
+        }
+      }
+    },
+    {
+      "name": "rim-out",
+      "passed": true,
+      "score": {
+        "zorp": 0,
+        "master": 0
+      },
+      "crowd": {
+        "spectators": 66,
+        "rows": 3,
+        "time": 3.0023000000715228,
+        "tension": 0,
+        "humans": 30,
+        "aliens": 36,
+        "standing": 16,
+        "rimStreak": 1,
+        "state": "IDLE",
+        "lastReaction": {
+          "kind": "RIM",
+          "side": "zorp",
+          "at": 0.6521000000238417
+        },
+        "counts": {
+          "RIM": 1
+        },
+        "activeEvents": 0,
+        "confetti": 0,
+        "band": {
+          "top": 95,
+          "bottom": 186
+        }
+      },
+      "sidePower": {
+        "zorp": 0.25197674187220825,
+        "master": 0.053689424710926914,
+        "neutral": 0.16121043598218093
+      },
+      "performance": {
+        "fps": 59.99730349197783,
+        "frameMs": {
+          "samples": 178,
+          "mean": 16.667415730337094,
+          "median": 16.69999999999709,
+          "p95": 16.80000000000291,
+          "max": 16.900000000001455
+        },
+        "crowdDrawMs": {
+          "samples": 179,
+          "mean": 0.6843575372376256,
+          "median": 0.6999999284744263,
+          "p95": 0.8999999761581421,
+          "max": 1.2000000476837158
+        }
+      }
+    },
+    {
+      "name": "steal",
+      "passed": true,
+      "score": {
+        "zorp": 0,
+        "master": 0
+      },
+      "crowd": {
+        "spectators": 66,
+        "rows": 3,
+        "time": 2.0047999999523163,
+        "tension": 0,
+        "humans": 30,
+        "aliens": 36,
+        "standing": 16,
+        "rimStreak": 0,
+        "state": "IDLE",
+        "lastReaction": {
+          "kind": "STEAL",
+          "side": "zorp",
+          "at": 0
+        },
+        "counts": {
+          "STEAL": 1
+        },
+        "activeEvents": 0,
+        "confetti": 0,
+        "band": {
+          "top": 95,
+          "bottom": 186
+        }
+      },
+      "sidePower": {
+        "zorp": 0.5029890790961521,
+        "master": 0.10852428157166062,
+        "neutral": 0.14620187584507516
+      },
+      "performance": {
+        "fps": 59.99288220041685,
+        "frameMs": {
+          "samples": 118,
+          "mean": 16.668644067796624,
+          "median": 16.69999999999709,
+          "p95": 16.80000000000291,
+          "max": 17
+        },
+        "crowdDrawMs": {
+          "samples": 119,
+          "mean": 0.7016806692636314,
+          "median": 0.6999999284744263,
+          "p95": 0.8999999761581421,
+          "max": 1.3000000715255737
+        }
+      }
+    },
+    {
+      "name": "block",
+      "passed": true,
+      "score": {
+        "zorp": 0,
+        "master": 0
+      },
+      "crowd": {
+        "spectators": 66,
+        "rows": 3,
+        "time": 1.9949999999999994,
+        "tension": 0,
+        "humans": 30,
+        "aliens": 36,
+        "standing": 16,
+        "rimStreak": 0,
+        "state": "BLOCK",
+        "lastReaction": {
+          "kind": "BLOCK",
+          "side": "master",
+          "at": 0
+        },
+        "counts": {
+          "BLOCK": 1
+        },
+        "activeEvents": 1,
+        "confetti": 0,
+        "band": {
+          "top": 95,
+          "bottom": 186
+        }
+      },
+      "sidePower": {
+        "zorp": 0.1447060889092007,
+        "master": 0.6450744009504303,
+        "neutral": 0.5863070097992245
+      },
+      "performance": {
+        "fps": 59.993846784945,
+        "frameMs": {
+          "samples": 117,
+          "mean": 16.668376068376105,
+          "median": 16.69999999999709,
+          "p95": 16.80000000000291,
+          "max": 16.900000000001455
+        },
+        "crowdDrawMs": {
+          "samples": 118,
+          "mean": 0.6957627120664565,
+          "median": 0.6999999284744263,
+          "p95": 1,
+          "max": 1.3000000715255737
+        }
+      }
+    },
+    {
+      "name": "victory-zorp",
+      "passed": true,
+      "score": {
+        "zorp": 6,
+        "master": 4
+      },
+      "crowd": {
+        "spectators": 66,
+        "rows": 3,
+        "time": 3.493799999952315,
+        "tension": 0,
+        "humans": 30,
+        "aliens": 36,
+        "standing": 46,
+        "rimStreak": 0,
+        "state": "VICTORY",
+        "lastReaction": {
+          "kind": "VICTORY",
+          "side": "zorp",
+          "at": 0
+        },
+        "counts": {
+          "VICTORY": 1
+        },
+        "activeEvents": 1,
+        "confetti": 28,
+        "band": {
+          "top": 95,
+          "bottom": 186
+        }
+      },
+      "sidePower": {
+        "zorp": 1.1123796941549515,
+        "master": 0.24000562270655712,
+        "neutral": 0.9915486195133941
+      },
+      "performance": {
+        "fps": 59.996521940757106,
+        "frameMs": {
+          "samples": 207,
+          "mean": 16.66763285024153,
+          "median": 16.69999999999709,
+          "p95": 16.80000000000291,
+          "max": 17
+        },
+        "crowdDrawMs": {
+          "samples": 208,
+          "mean": 0.6841346214597042,
+          "median": 0.6999999284744263,
+          "p95": 0.8000000715255737,
+          "max": 1.600000023841858
+        }
+      }
+    },
+    {
+      "name": "victory-master",
+      "passed": true,
+      "score": {
+        "zorp": 2,
+        "master": 6
+      },
+      "crowd": {
+        "spectators": 66,
+        "rows": 3,
+        "time": 3.5124000000953632,
+        "tension": 0,
+        "humans": 30,
+        "aliens": 36,
+        "standing": 48,
+        "rimStreak": 0,
+        "state": "VICTORY",
+        "lastReaction": {
+          "kind": "VICTORY",
+          "side": "master",
+          "at": 0
+        },
+        "counts": {
+          "VICTORY": 1
+        },
+        "activeEvents": 1,
+        "confetti": 28,
+        "band": {
+          "top": 95,
+          "bottom": 186
+        }
+      },
+      "sidePower": {
+        "zorp": 0.24472353271408942,
+        "master": 1.0909346486661686,
+        "neutral": 0.9915486195133941
+      },
+      "performance": {
+        "fps": 59.99769239644624,
+        "frameMs": {
+          "samples": 208,
+          "mean": 16.667307692307705,
+          "median": 16.69999999999709,
+          "p95": 16.80000000000291,
+          "max": 17.19999999999709
+        },
+        "crowdDrawMs": {
+          "samples": 209,
+          "mean": 0.6899521464936471,
+          "median": 0.6999999284744263,
+          "p95": 0.8000000715255737,
+          "max": 1.3000000715255737
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "http": [],
+  "failed": []
+}

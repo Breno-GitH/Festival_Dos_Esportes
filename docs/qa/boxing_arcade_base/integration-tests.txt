@@ -1,0 +1,210 @@
+TAP version 13
+# Subtest: both fighters start at 100 HP and use the existing mat bounds
+ok 1 - both fighters start at 100 HP and use the existing mat bounds
+  ---
+  duration_ms: 49.945
+  ...
+# Subtest: movement and depth have identical speed at 30, 60 and 144 FPS
+ok 2 - movement and depth have identical speed at 30, 60 and 144 FPS
+  ---
+  duration_ms: 13.6088
+  ...
+# Subtest: all four rope corners constrain body colliders; overlapping bodies separate even at a wall
+ok 3 - all four rope corners constrain body colliders; overlapping bodies separate even at a wall
+  ---
+  duration_ms: 4.0181
+  ...
+# Subtest: light and heavy require real horizontal reach and matching depth
+ok 4 - light and heavy require real horizontal reach and matching depth
+  ---
+  duration_ms: 19.915
+  ...
+# Subtest: walking to another depth line avoids a committed straight punch
+ok 5 - walking to another depth line avoids a committed straight punch
+  ---
+  duration_ms: 3.2872
+  ...
+# Subtest: guard reduces damage, still permits chip and pushback, and breaks under sustained pressure
+ok 6 - guard reduces damage, still permits chip and pushback, and breaks under sustained pressure
+  ---
+  duration_ms: 5.7401
+  ...
+# Subtest: well-timed dodge avoids a real hit and opens a counter; an early dodge can be punished
+ok 7 - well-timed dodge avoids a real hit and opens a counter; an early dodge can be punished
+  ---
+  duration_ms: 5.6017
+  ...
+# Subtest: dodge cannot be restarted or spammed while active
+ok 8 - dodge cannot be restarted or spammed while active
+  ---
+  duration_ms: 2.5368
+  ...
+# Subtest: J J K links only connected lights and finishes a three-hit combo with heavier damage
+ok 9 - J J K links only connected lights and finishes a three-hit combo with heavier damage
+  ---
+  duration_ms: 4.2015
+  ...
+# Subtest: missed heavy has a longer committed recovery and cannot be canceled into another hit
+ok 10 - missed heavy has a longer committed recovery and cannot be canceled into another hit
+  ---
+  duration_ms: 8.659
+  ...
+# Subtest: fighters turn toward each other after changing sides, including during recovery
+ok 11 - fighters turn toward each other after changing sides, including during recovery
+  ---
+  duration_ms: 2.3827
+  ...
+# Subtest: O has no installed special, produces no attack or damage, and only supplies a future hook
+ok 12 - O has no installed special, produces no attack or damage, and only supplies a future hook
+  ---
+  duration_ms: 2.9816
+  ...
+# Subtest: zero HP leads to KO once, no HP recovery, and the existing winner reward
+ok 13 - zero HP leads to KO once, no HP recovery, and the existing winner reward
+  ---
+  duration_ms: 5.3447
+  ...
+# Subtest: master KO awards no medal; restarting restores both fighters to 100 HP
+ok 14 - master KO awards no medal; restarting restores both fighters to 100 HP
+  ---
+  duration_ms: 2.7657
+  ...
+# Subtest: simultaneous lethal contacts produce a double KO without choosing an arbitrary winner
+ok 15 - simultaneous lethal contacts produce a double KO without choosing an arbitrary winner
+  ---
+  duration_ms: 2.4933
+  ...
+# Subtest: briefing and hidden documents freeze combat; blur releases movement and guard
+ok 16 - briefing and hidden documents freeze combat; blur releases movement and guard
+  ---
+  duration_ms: 1.8981
+  ...
+# Subtest: all eight sports share one short configuration contract
+ok 17 - all eight sports share one short configuration contract
+  ---
+  duration_ms: 7.0275
+  ...
+# Subtest: inactive controller does not intercept normal gameplay
+ok 18 - inactive controller does not intercept normal gameplay
+  ---
+  duration_ms: 0.6597
+  ...
+# Subtest: briefing remains open indefinitely and never starts from its animation clock
+ok 19 - briefing remains open indefinitely and never starts from its animation clock
+  ---
+  duration_ms: 1.0671
+  ...
+# Subtest: Space confirms once after the short exit transition
+ok 20 - Space confirms once after the short exit transition
+  ---
+  duration_ms: 1.0027
+  ...
+# Subtest: Enter confirms once after the short exit transition
+ok 21 - Enter confirms once after the short exit transition
+  ---
+  duration_ms: 0.8243
+  ...
+# Subtest: Escape cancels without triggering the start callback
+ok 22 - Escape cancels without triggering the start callback
+  ---
+  duration_ms: 0.4817
+  ...
+# Subtest: opening with the NPC interaction key held cannot confirm until release and a fresh press
+ok 23 - opening with the NPC interaction key held cannot confirm until release and a fresh press
+  ---
+  duration_ms: 0.5841
+  ...
+# Subtest: repeated keydown never confirms
+ok 24 - repeated keydown never confirms
+  ---
+  duration_ms: 0.3828
+  ...
+# Subtest: confirming and movement keys do not leak into gameplay while held
+ok 25 - confirming and movement keys do not leak into gameplay while held
+  ---
+  duration_ms: 0.9786
+  ...
+# Subtest: lost focus releases stale held-key guards
+ok 26 - lost focus releases stale held-key guards
+  ---
+  duration_ms: 1.0528
+  ...
+# Subtest: all inputs are consumed while a briefing is open
+ok 27 - all inputs are consumed while a briefing is open
+  ---
+  duration_ms: 0.6019
+  ...
+# Subtest: active briefing stops propagation to minigame-specific listeners
+ok 28 - active briefing stops propagation to minigame-specific listeners
+  ---
+  duration_ms: 0.4764
+  ...
+# Subtest: opening another briefing cannot silently replace an active one
+ok 29 - opening another briefing cannot silently replace an active one
+  ---
+  duration_ms: 0.2038
+  ...
+# Subtest: cancel is optional for sports without a return route
+ok 30 - cancel is optional for sports without a return route
+  ---
+  duration_ms: 0.3514
+  ...
+# Subtest: fade, layout, essential controls and icon render through the same Canvas component
+ok 31 - fade, layout, essential controls and icon render through the same Canvas component
+  ---
+  duration_ms: 10.5025
+  ...
+# Subtest: every sport renders inside the same fixed card without truncated instructional text
+ok 32 - every sport renders inside the same fixed card without truncated instructional text
+  ---
+  duration_ms: 6.9117
+  ...
+# Subtest: configuration validates essentials and bounds tutorial size
+ok 33 - configuration validates essentials and bounds tutorial size
+  ---
+  duration_ms: 0.9814
+  ...
+# Subtest: animation uses deltaTime at 30 Hz
+ok 34 - animation uses deltaTime at 30 Hz
+  ---
+  duration_ms: 0.2676
+  ...
+# Subtest: animation uses deltaTime at 60 Hz
+ok 35 - animation uses deltaTime at 60 Hz
+  ---
+  duration_ms: 0.2394
+  ...
+# Subtest: animation uses deltaTime at 144 Hz
+ok 36 - animation uses deltaTime at 144 Hz
+  ---
+  duration_ms: 0.1751
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 30 Hz
+ok 37 - countdown keeps simulation/input gated until VAI finishes at 30 Hz
+  ---
+  duration_ms: 1.4837
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 60 Hz
+ok 38 - countdown keeps simulation/input gated until VAI finishes at 60 Hz
+  ---
+  duration_ms: 0.9128
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 144 Hz
+ok 39 - countdown keeps simulation/input gated until VAI finishes at 144 Hz
+  ---
+  duration_ms: 2.7063
+  ...
+# Subtest: countdown is optional so Marathon can retain its own native countdown
+ok 40 - countdown is optional so Marathon can retain its own native countdown
+  ---
+  duration_ms: 0.6558
+  ...
+1..40
+# tests 40
+# suites 0
+# pass 40
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 359.2188

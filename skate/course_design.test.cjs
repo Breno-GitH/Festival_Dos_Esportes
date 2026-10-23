@@ -49,7 +49,7 @@ test('sobrevivência e Grind atravessam a primeira metade e entram na continuaç
         assert.ok(r.timeSeconds > 60 && r.timeSeconds < 65);
         for (const id of ['stair-handrail', 'danger-a', 'danger-b', 'danger-c', 'huge-exit-rail'])
             assert.ok(r.enteredRails.includes(id), profile + ' perdeu ' + id);
-        assert.ok(r.inputs.some(i => i.action === 'ollie' && i.x > 12700));
+        assert.ok(r.rampLaunches.some(i => i.rampId === 'huge-launch' && i.held));
         assert.ok(r.inputs.some(i => i.action === 'release-super-out' && i.rail === 'huge-exit-rail'));
     }
 });

@@ -1,0 +1,55 @@
+{
+  "report": {
+    "card": {
+      "active": true,
+      "id": "true_ending",
+      "title": "DE VOLTA PARA CASA",
+      "text": "Zorpzin conquistou as oito medalhas da Ilha dos Campeões.\nCom sua missão concluída, chegou a hora de voltar para casa.",
+      "state": "READY",
+      "elapsed": 0.7000999999046326,
+      "totalTime": 2.8245999999046294,
+      "presented": true,
+      "error": null,
+      "titleFont": "LOCAL_BITMAP_5x7",
+      "portrait": {
+        "source": "zorp_finalpadrao.png?v=1.1.0_transparent_mission_card",
+        "sourceRect": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "status": "ready",
+        "cached": true,
+        "destination": {
+          "x": 139,
+          "y": 57.999999999999986,
+          "width": 172.00000000000003,
+          "height": 172.00000000000003,
+          "scale": 0.1371610845295056
+        }
+      },
+      "inputLock": 0.7,
+      "fadeOutDuration": 0.8,
+      "layout": {
+        "width": 450,
+        "height": 300,
+        "titleY": 35,
+        "portrait": {
+          "x": 139,
+          "y": 66,
+          "width": 172,
+          "height": 156
+        },
+        "textY": 236,
+        "textWidth": 374,
+        "lineHeight": 11,
+        "promptY": 280
+      }
+    },
+    "scene": "FINAL_CUTSCENE"
+  },
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": []
+}

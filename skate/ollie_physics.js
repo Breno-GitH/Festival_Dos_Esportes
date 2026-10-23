@@ -12,8 +12,6 @@
         jumpVelocities: Object.freeze({ normal: -350, ollie: -485 }),
         // Duration is retained for input telemetry/manual context, never for jump power.
         holdThresholdsMs: Object.freeze({ maximum: 420 }),
-        rampNaturalScale: 0.85,
-        rampOllieScale: 1.0,
         terrainSpeedSlopeScale: 0.035,
         terrainSpeedMinScale: 0.92,
         terrainSpeedMaxScale: 1.08,
@@ -61,6 +59,13 @@
         return found;
     }
 
+    // Input and physics share one approach/surface/lip contract.
+    function rampIntentAt(x, config) {
+        return (config.ramps || []).find(ramp => ramp.collisionEnabled !== false
+            && x >= (ramp.zones?.APPROACH.startX ?? ramp.startX - 70)
+            && x <= ramp.endX) || null;
+    }
+
     function createSimulation(overrides = {}) {
         const config = {
             ...DEFAULTS,
@@ -82,9 +87,12 @@
             config,
             state: null,
             reset() {
+                const spawnGround = groundHeightAt(config.startX, config);
+                const spawnPlatform = safePlatformSurfaceAt(config.collisionObjects, config.startX);
                 const player = {
                     x: config.startX,
-                    y: groundHeightAt(config.startX, config),
+                    y: spawnPlatform && (!Number.isFinite(spawnGround) || spawnPlatform.y < spawnGround)
+                        ? spawnPlatform.y : spawnGround,
                     verticalVelocity: 0,
                     grounded: true,
                     charging: false,
@@ -99,6 +107,7 @@
                     airTrick: "",
                     airTrickRemainingMs: 0,
                     specialRampAir: null,
+                    rampRide: null,
                     forwardSpeed: config.forwardSpeed
                 };
                 for (const alias of ["groundContactY", "boardY", "feetY"]) {
@@ -113,6 +122,7 @@
                     elapsed: 0,
                     distance: 0,
                     player,
+                    rampLaunches: [],
                     lastEvent: ""
                 };
                 return this.state;
@@ -128,11 +138,11 @@
                     p.airTrickRemainingMs = Math.max(0, p.airTrickRemainingMs - dt * 1000);
                     if (!p.airTrickRemainingMs) p.airTrick = "";
                 }
-                if (action.spacePressed && p.grounded) this.launchImmediate("normal");
-                if (action.ollieUpgrade) this.upgradeJump("ollie");
+                const rampIntent = p.grounded && !p.grindingRailId && rampIntentAt(p.x, config);
+                if (action.spacePressed && p.grounded && !rampIntent) this.launchImmediate("normal");
+                if (action.ollieUpgrade && !p.rampRide) this.upgradeJump("ollie");
 
-                // Releases never initiate or buffer a jump. SPACE presses start
-                // immediately; only a second press can upgrade that takeoff.
+                // Ordinary ground uses presses; ramps own held SPACE until the lip.
                 p.charging = false;
                 if (action.spaceHeld) p.holdMs = Math.min(config.holdThresholdsMs.maximum, p.holdMs + dt * 1000);
 
@@ -142,6 +152,15 @@
                 const previousPlatform = wasGrounded ? safePlatformSurfaceAt(config.collisionObjects, previousX) : null;
                 const previousGroundY = previousPlatform?.y ?? groundHeightAt(previousX, config);
                 const previousRamp = geometry && geometry.rampSurfaceAt(config.ramps, previousX);
+                if (wasGrounded && previousRamp && !p.grindingRailId) {
+                    if (!p.rampRide || p.rampRide.rampId !== previousRamp.ramp.id) p.rampRide = {
+                        rampId: previousRamp.ramp.id, phase: "RAMP_SURFACE",
+                        entrySpeed: p.forwardSpeed, heldDistance: 0, distance: 0,
+                        prepared: false, releasedEarly: false
+                    };
+                    p.rampRide.prepared = action.spaceHeld === true;
+                    p.rampRide.releasedEarly ||= !action.spaceHeld && p.rampRide.heldDistance > 0;
+                } else if (!wasGrounded || !rampIntent) p.rampRide = null;
                 const terrainSlope = previousRamp?.slope || 0;
                 const speedScale = clamp(
                     1 + terrainSlope * config.terrainSpeedSlopeScale,
@@ -153,11 +172,20 @@
                 p.momentumOffset = (p.momentumOffset || 0) * Math.exp(-dt*2);
                 p.forwardSpeed = forwardSpeed;
                 p.x += forwardSpeed * dt;
-                const takeoffRamp = wasGrounded && config.ramps.find(item => item.autoLaunch === true && (() => {
-                    const takeoffX = Number.isFinite(item.takeoffX) ? item.takeoffX : item.endX;
-                    return previousX < takeoffX && p.x >= takeoffX;
-                })());
-                if (takeoffRamp) this.launchFromRamp(takeoffRamp);
+                if (p.rampRide && previousRamp) {
+                    const traveled = Math.max(0, Math.min(p.x, previousRamp.ramp.endX) - previousX);
+                    p.rampRide.distance += traveled;
+                    if (action.spaceHeld) p.rampRide.heldDistance += traveled;
+                }
+                const takeoffRamp = wasGrounded && !p.grindingRailId && previousRamp
+                    && previousX <= previousRamp.ramp.endX && p.x >= previousRamp.ramp.endX
+                    ? previousRamp.ramp : null;
+                let flightDt = dt;
+                if (takeoffRamp) {
+                    p.y = takeoffRamp.surfacePoints.at(-1).y;
+                    flightDt = Math.max(0, (p.x - takeoffRamp.endX) / forwardSpeed);
+                    this.launchFromRamp(takeoffRamp, action.spaceHeld === true);
+                }
                 const followingGround = wasGrounded && p.grounded && !takeoffRamp;
                 let gravityScale = 1;
                 if (p.specialRampAir?.active) {
@@ -176,8 +204,8 @@
                     }
                     if (special.controlledMs >= special.maxControlledMs) special.limitReached = true;
                 }
-                if (!p.grindingRailId) p.verticalVelocity += config.gravity * gravityScale * dt;
-                p.y += p.verticalVelocity * dt;
+                if (!p.grindingRailId) p.verticalVelocity += config.gravity * gravityScale * flightDt;
+                p.y += p.verticalVelocity * flightDt;
                 s.distance = p.x - (Number.isFinite(config.distanceOriginX) ? config.distanceOriginX : config.startX);
 
                 // Traversal owns rail contact; never register repeated floor landings
@@ -208,15 +236,7 @@
                 const approachedGroundFromAbove = Number.isFinite(groundY)
                     && Number.isFinite(previousGroundY)
                     && previousY <= previousGroundY + 2;
-                const leavingRamp = wasGrounded && previousRamp && !currentRamp && !takeoffRamp;
-                if (leavingRamp) {
-                    const surfaceY = previousGroundY + previousRamp.slope * (p.x - previousX);
-                    p.y = surfaceY;
-                    const rampLift = this.rampImpulse(previousRamp.ramp) * config.rampNaturalScale;
-                    p.verticalVelocity = previousRamp.slope * forwardSpeed - rampLift;
-                    p.grounded = false;
-                    s.lastEvent = "RAMP_TAKEOFF";
-                } else if (ridingContinuousSurface) {
+                if (ridingContinuousSurface) {
                     // Ground follows authored slopes each fixed step; this prevents
                     // downhill terrain from turning into repeated fake landings.
                     p.y = groundY;
@@ -324,19 +344,16 @@
                 const s = this.state;
                 const p = s.player;
                 if (!p.grounded || s.phase !== "PLAYING") return false;
+                if (rampIntentAt(p.x, config)) return false;
                 const tier = ["normal", "ollie"].includes(kind) ? kind : "normal";
-                const rampSample = geometry && geometry.rampSurfaceAt(config.ramps, p.x);
-                const activeRamp = ramp || rampSample?.ramp || null;
-                const rampTangent = rampSample?.slope ? rampSample.slope * p.forwardSpeed : 0;
-                const rampAssist = activeRamp ? this.rampImpulse(activeRamp) * config.rampOllieScale : 0;
                 p.jumpTier = tier;
                 p.holdMs = 0;
                 p.jumpUpgradeCount = 0;
-                p.verticalVelocity = config.jumpVelocities[tier] + rampTangent - rampAssist;
+                p.verticalVelocity = config.jumpVelocities[tier];
                 p.grounded = false;
                 p.charging = false;
                 p.takeoffs++;
-                s.lastEvent = activeRamp ? `${tier.toUpperCase()}_RAMP_JUMP` : `${tier.toUpperCase()}_JUMP`;
+                s.lastEvent = `${tier.toUpperCase()}_JUMP`;
                 return true;
             },
             upgradeJump(kind) {
@@ -356,22 +373,24 @@
                 return true;
             },
             rampImpulse(ramp) {
-                const speedScale = clamp(config.forwardSpeed / DEFAULTS.forwardSpeed, 0.75, 1.35);
+                const speedScale = Math.max(0, this.state.player.forwardSpeed) / DEFAULTS.forwardSpeed;
                 const strength = Number(ramp && (ramp.launchStrength ?? ramp.launchImpulse)) || 0;
-                return Math.max(0, strength) * speedScale;
+                return Math.max(0, strength) * speedScale * (ramp.launchMultiplier ?? 1);
             },
-            launchFromRamp(ramp) {
+            launchFromRamp(ramp, held = false) {
                 const p = this.state.player;
                 if (Number.isFinite(ramp)) ramp = { launchImpulse: ramp };
-                if (!p.grounded || !ramp || this.rampImpulse(ramp) <= 0) return false;
+                if (!p.grounded || !ramp || p.grindingRailId || this.state.phase !== "PLAYING") return false;
+                if (ramp.surfacePoints?.length && p.x < ramp.endX) return false;
                 const impulse = this.rampImpulse(ramp);
-                const rampSample = geometry && geometry.rampSurfaceAt([ramp], p.x);
+                const rampSample = geometry && geometry.rampSurfaceAt([ramp], ramp.endX ?? p.x);
                 const tangent = rampSample ? rampSample.slope * p.forwardSpeed : 0;
-                p.verticalVelocity = tangent - impulse;
+                const quality = held ? 1 : p.rampRide?.heldDistance > 0 ? 0.40 : 0.18;
+                p.verticalVelocity = tangent - impulse * quality;
                 p.grounded = false;
                 p.charging = false;
                 p.jumpTier = "ramp";
-                if (ramp.specialAir) {
+                if (ramp.specialAir && held) {
                     p.specialRampAir = {
                         state: "MEGA_AIR",
                         active: true,
@@ -390,7 +409,15 @@
                     p.jumpTier = "mega-air";
                 }
                 p.takeoffs++;
-                this.state.lastEvent = ramp.specialAir ? "SPECIAL_RAMP_LAUNCH" : "RAMP_LAUNCH";
+                const launches = this.state.rampLaunches;
+                launches.push({ rampId: ramp.id, x: ramp.endX ?? p.x, y: p.y,
+                    entrySpeed: p.rampRide?.entrySpeed ?? p.forwardSpeed, speed: p.forwardSpeed,
+                    angle: Math.atan(rampSample?.slope || 0) * 180 / Math.PI,
+                    impulse: impulse * quality, vy: p.verticalVelocity, held, quality,
+                    releasedEarly: p.rampRide?.releasedEarly || false, at: this.state.elapsed });
+                if (launches.length > 64) launches.shift();
+                p.rampRide = null;
+                this.state.lastEvent = ramp.specialAir && held ? "SPECIAL_RAMP_LAUNCH" : "RAMP_LAUNCH";
                 // Launch energy comes from the surface tangent and speed-scaled lip.
                 return true;
             },
@@ -462,6 +489,7 @@
         RIDER_COLLIDER: DEFAULTS.riderCollider,
         clamp,
         groundHeightAt,
+        rampIntentAt,
         rampSurfaceAt: geometry ? geometry.rampSurfaceAt : () => null,
         riderColliderBounds: geometry && geometry.riderColliderBounds,
         createSimulation,

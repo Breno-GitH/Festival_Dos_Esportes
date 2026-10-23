@@ -23,7 +23,10 @@
             keyDown(nowMs, mode, context = {}) {
                 if (this.down) return [];
                 const events = [];
-                if (mode === "MEGA_AIR") {
+                if (mode === "RAMP") {
+                    this.lastGroundJumpAt = null;
+                    events.push({ type: "RAMP_HOLD", at: nowMs });
+                } else if (mode === "MEGA_AIR") {
                     this.lastGroundJumpAt = null;
                     events.push({type:"MEGA_HOLD",at:nowMs});
                 } else if (mode === "GROUND") {
@@ -53,13 +56,14 @@
                 const { mode, at } = this.down;
                 this.down = null;
                 const holdMs = Math.max(0, nowMs - at);
+                if (mode === "RAMP") return [{ type: "RAMP_RELEASE", holdMs }];
                 if (mode === "GROUND") return [{ type: "GROUND_RELEASE", holdMs }];
                 if (mode === "AIR" || mode === "MEGA_AIR") return [{ type: "AIR_RELEASE", holdMs }];
                 if (mode === "MANUAL") return [{ type: "MANUAL_RELEASE", holdMs }];
                 if (mode === "GRIND") return [{ type: "GRIND_RELEASE", holdMs }];
                 return [];
             },
-            // Holding means rail intent only. Momentum launches belong to ramps/traversal.
+            // Held SPACE commits to the current ramp/rail/Mega Air, never a charge bar.
             update() { return []; }
         };
     }

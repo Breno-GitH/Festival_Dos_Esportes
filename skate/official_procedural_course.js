@@ -59,26 +59,51 @@
         ["start-kicker","SMALL KICKER","SMALL_KICKER",288.389,78,false,[[618.745,250],[778.073,199.065]]],
         ["first-rail-kicker","FIRST RAIL SETUP","MEDIUM_KICKER",278.872,92,false,[[904.5,250],[1042.5,199.888]]],
         ["transfer-bank","TRANSFER BANK","LONG_BANK",273.04,45,false,[[1625.6,250],[1795.25,208.96]]],
-        ["chain-kicker","THREE RAIL SETUP","SMALL_KICKER",286.72,85,false,[[3128.821,250],[3278.493,201.28]]],
+        ["chain-kicker","THREE RAIL SETUP","MEDIUM_KICKER",286.72,280,false,[[3128.821,250],[3278.493,201.28]]],
         ["street-kicker","STREET FLOW","SMALL_KICKER",287.972,70,false,[[4778.669,250],[4947.653,199.619]]],
         ["bench-bank","BENCH SETUP","LONG_BANK",280.08,62,false,[[6294.4,250],[6451,196.42]]],
-        ["bench-exit-kicker","BENCH EXIT","SMALL_KICKER",279.209,72,false,[[7098.898,250],[7238.912,211.245]]],
-        ["stair-kicker","STAIR HANDRAIL","MEDIUM_KICKER",286.09,130,false,[[7806,250],[7990,187.36]]],
+        ["bench-exit-kicker","BENCH EXIT","MEDIUM_KICKER",279.209,500,false,[[7098.898,250],[7238.912,211.245]]],
+        ["stair-kicker","STAIR HANDRAIL","MEDIUM_KICKER",286.09,480,false,[[7806,250],[7990,187.36]]],
         ["danger-chain-kicker","NO FLOOR SETUP","MEDIUM_KICKER",279.173,115,false,[[8794.95,250],[8946.75,199.366]]],
         ["speed-kicker-first","SPEED RELEASE","SMALL_KICKER",286.72,72,false,[[10598.707,250],[10762.863,201.28]]],
-        ["ascent-bank-1","CONCRETE ASCENT","LONG_BANK",317.2,0,false,[[11115.6,250],[11394,130.3]]],
-        ["ascent-bank-2","PLAZA BANK","LONG_BANK",197.2,0,false,[[11465.6,130],[11744,10.3]]],
-        ["ascent-bank-3","ROOFTOP BANK","LONG_BANK",77.2,0,false,[[11815.6,10],[12094,-179.7]]],
-        ["huge-launch","ROOFTOP LAUNCH","BIG_LAUNCH",-37.378,450,true,kit.launchSurface(12405,-110,465,110)],
+        ["ascent-bank-1","CONCRETE ASCENT","LONG_BANK",317.2,12,false,[[11115.6,250],[11394,130.3]]],
+        ["ascent-bank-2","PLAZA BANK","LONG_BANK",197.2,12,false,[[11465.6,130],[11744,10.3]]],
+        ["ascent-bank-3","ROOFTOP BANK","LONG_BANK",77.2,12,false,[[11815.6,10],[12094,-179.7]]],
+        ["huge-launch","ROOFTOP LAUNCH","BIG_LAUNCH",-37.378,630,true,kit.launchSurface(12405,-110,465,110)],
         ["void-entry-kicker","VOID RAIL SETUP","MEDIUM_KICKER",-150,82,false,[[14010,-170],[14075,-178],[14125,-220]]],
-        ["advanced-launch","LEDGE SETUP","MEDIUM_KICKER",252.88,130,false,[[18156.3,250],[18202.5,242.8],[18250.8,227.68],[18301.2,208.24],[18355.8,185.2]]],
+        ["advanced-launch","LEDGE SETUP","MEDIUM_KICKER",252.88,400,false,[[18156.3,250],[18202.5,242.8],[18250.8,227.68],[18301.2,208.24],[18355.8,185.2]]],
         ["release-small","DOWNHILL KICKER","SMALL_KICKER",285,48,false,[[20250,276],[20310,270],[20380,245]]],
         ["release-medium","DOWNHILL KICKER","MEDIUM_KICKER",310,70,false,[[20535,302],[20590,291],[20650,266]]],
         ["release-curve","CURVED TRANSITION","CURVED_RAMP",338,85,false,[[20734.5,320],[20778,316],[20830,301],[20885,275]]],
-        ["final-medium-kicker","FINAL HANDRAIL SETUP","MEDIUM_KICKER",338.681,125,false,[[20915.7,336.481],[20957.5,333.731],[20999.3,326.581],[21039.2,312.281],[21067.7,294.681],[21092.4,285.606]]],
+        ["final-medium-kicker","FINAL HANDRAIL SETUP","MEDIUM_KICKER",338.681,375,false,[[20915.7,336.481],[20957.5,333.731],[20999.3,326.581],[21039.2,312.281],[21067.7,294.681],[21092.4,285.606]]],
         ["final-big-ramp","MEGA LAUNCH","BIG_LAUNCH",262,620,true,kit.launchSurface(23636,250,420,110)],
-        ["finish-landing-bank","FINISH LANDING","LONG_BANK",290,0,false,[[25519,250],[25559,250],[25604,250],[25649,250]]]
+        ["finish-landing-bank","FINISH LANDING","LONG_BANK",290,18,false,[[25519,250],[25559,250],[25604,250],[25649,250]]]
     ];
+    // Deliberate receiving surfaces, also used by the camera and QA validator.
+    const rampDestinations = {
+        "start-kicker": [800,900,"ground", "Salto curto de introdução"],
+        "first-rail-kicker": [1089,1470,"first-rail", "Entrada no primeiro grind"],
+        "transfer-bank": [1810,1910,"ground", "Bank suave entre transfers"],
+        "chain-kicker": [3370,3930,"three-c", "Entrada no rail sobre o gap"],
+        "street-kicker": [4970,5140,"ground", "Salto curto de street"],
+        "bench-bank": [6470,6710,"ground", "Preparação da área de bancos"],
+        "bench-exit-kicker": [7358,7653,"bench-exit", "Saída curva para grind"],
+        "stair-kicker": [8073,8608,"stair-handrail", "Lançamento alto para corrimão da escada"],
+        "danger-chain-kicker": [8889,9269,"danger-a", "Primeiro rail da cadeia sem chão"],
+        "speed-kicker-first": [10780,11100,"ground", "Salto de entrada na subida"],
+        "ascent-bank-1": [11394,11465,"ground", "Subida longa e suave ao primeiro patamar"],
+        "ascent-bank-2": [11744,11815,"ground", "Segundo patamar da praça"],
+        "ascent-bank-3": [12094,12400,"ground", "Acesso ao rooftop"],
+        "huge-launch": [13140,13900,"ground", "Grande gap entre rooftops"],
+        "void-entry-kicker": [14165,14515,"void-a", "Entrada na cadeia de cinco rails"],
+        "advanced-launch": [18395,18921,"advanced-ledge-edge", "Banco elevado e ledge"],
+        "release-small": [20390,20530,"ground", "Kicker curto no downhill"],
+        "release-medium": [20660,20885,"ground", "Transfer médio para transição curva"],
+        "release-curve": [20890,21092,"ground", "Curva de conexão ao lançamento final"],
+        "final-medium-kicker": [21201,21558,"final-descending", "Corrimão do gauntlet final"],
+        "final-big-ramp": [25179,25519,"ground", "Mega Air sustentado sobre o grande vazio"],
+        "finish-landing-bank": [25649,25849,"ground", "Pequena saída e estabilização antes do finish"]
+    };
     rampRows.forEach(([id,name,type,baseY,launchStrength,autoLaunch,authoredSurface]) => {
         // Low timber kickers retain their exit positions but use a compact human-scale silhouette.
         const surfacePoints = type === "SMALL_KICKER" && authoredSurface.length === 2
@@ -87,6 +112,8 @@
             : authoredSurface;
         level.addRamp({
         id, name, type, baseY: Math.max(...surfacePoints.map(p => Array.isArray(p) ? p[1] : p.y)) + 12, launchStrength, autoLaunch, surfacePoints,
+        landingZone: Object.freeze({ startX: rampDestinations[id][0], endX: rampDestinations[id][1],
+            surfaceId: rampDestinations[id][2] }), purpose: rampDestinations[id][3],
         specialAir: id === "final-big-ramp" ? { maxControlledMs: 3400,
             sustainVelocityFloor: 120, sustainGravityScale: 0.58,
             fallGravityScale: 1.75, slowMotionMs: 800, graceMs: 100 } : null
@@ -169,7 +196,7 @@
         bottomY: 430, width: 150 });
     level.addPlatform({ id: "grand-stair-landing", x: 17820, y: 250, width: 160,
         baseY: 430, dangerousSide: false, name: "EXIT LANDING" });
-    level.addBench({ id: "advanced-bench", x: 18360, groundY: 250, width: 95,
+    level.addBench({ id: "advanced-bench", x: 18395, groundY: 250, width: 95,
         height: 85, grindable: true, name: "RAMP TO BENCH" });
     level.addLedge({ id: "advanced-ledge", x: 18518.4, groundY: 250, width: 403.2,
         height: 114.2, grindable: false, name: "ADVANCED LEDGE" });
@@ -209,11 +236,12 @@
     transferRows.forEach(([from,to,jump,required]) => level.addTransfer(from, to, {
         jump, required, exitOffset: 14
     }));
-    [[395,"normal"],[860,"normal"],[2245,"ollie"],[3260,"normal"],[4690,"normal"],
+    // Ordinary-ground tricks only. Every ramp setup is held SPACE, derived from
+    // its physical approach zone instead of an authored tap/Ollie combination.
+    [[395,"normal"],[2245,"ollie"],[4690,"normal"],
         [5150,"ollie"],[5500,"normal"],[5650,"ollie"],[6040,"ollie"],[6610,"ollie"],
-        [7940,"ollie"],[8760,"ollie"],[12860,"ollie"],[13280,"normal"],[14105,"normal"],
-        [16570,"grind"],[18320,"grind"],
-        [18900,"ollie"],[21040,"ollie"],[22955,"normal"],[23410,"normal"],
+        [13280,"normal"],[16570,"grind"],
+        [18900,"ollie"],[22955,"normal"],[23410,"normal"],
         [25234,"normal"]].forEach(([x,action]) => level.addPlayInput(x, action));
 
     level.addCheckpoint(8750, "CHECKPOINT 1", "checkpoint-1");

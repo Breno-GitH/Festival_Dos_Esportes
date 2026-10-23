@@ -1,0 +1,105 @@
+TAP version 13
+# Subtest: sandbox uses the same procedural geometry vocabulary as the official course
+ok 1 - sandbox uses the same procedural geometry vocabulary as the official course
+  ---
+  duration_ms: 1.9417
+  ...
+# Subtest: ramp drawing, collision and physics all share the same sampled surface
+ok 2 - ramp drawing, collision and physics all share the same sampled surface
+  ---
+  duration_ms: 1.8535
+  ...
+# Subtest: every rail uses its visual path for Grind and has grounded supports
+ok 3 - every rail uses its visual path for Grind and has grounded supports
+  ---
+  duration_ms: 0.5917
+  ...
+# Subtest: bench and ledge separate safe top, grind edge and dangerous side
+ok 4 - bench and ledge separate safe top, grind edge and dangerous side
+  ---
+  duration_ms: 0.3782
+  ...
+# Subtest: stairs are generated step by step and their handrail follows the structure
+ok 5 - stairs are generated step by step and their handrail follows the structure
+  ---
+  duration_ms: 0.3597
+  ...
+# Subtest: gaps are real breaks in ground with visible shores
+ok 6 - gaps are real breaks in ground with visible shores
+  ---
+  duration_ms: 0.4241
+  ...
+# Subtest: builder exposes the complete reusable authoring vocabulary
+ok 7 - builder exposes the complete reusable authoring vocabulary
+  ---
+  duration_ms: 0.3476
+  ...
+# Subtest: the short sandbox can be played from spawn to finish with the current physics
+ok 8 - the short sandbox can be played from spawn to finish with the current physics
+  ---
+  duration_ms: 224.4603
+  ...
+# Subtest: SPACE inicia Normal Jump imediatamente, sem esperar o double tap
+ok 9 - SPACE inicia Normal Jump imediatamente, sem esperar o double tap
+  ---
+  duration_ms: 3.7658
+  ...
+# Subtest: Ollie atualiza o salto; a antiga ação de Super Jump é ignorada
+ok 10 - Ollie atualiza o salto; a antiga ação de Super Jump é ignorada
+  ---
+  duration_ms: 2.3565
+  ...
+# Subtest: Normal < Ollie < lançamento de Grind com momentum
+ok 11 - Normal < Ollie < lançamento de Grind com momentum
+  ---
+  duration_ms: 1.6113
+  ...
+# Subtest: sem input avança até o obstáculo de teste e causa crash previsível
+ok 12 - sem input avança até o obstáculo de teste e causa crash previsível
+  ---
+  duration_ms: 3.2296
+  ...
+# Subtest: hold longo faz somente um salto, depois deixa Zorp aterrissar
+ok 13 - hold longo faz somente um salto, depois deixa Zorp aterrissar
+  ---
+  duration_ms: 2.5909
+  ...
+# Subtest: câmera mantém Zorp perto de 32% e acompanha mudanças verticais com smoothing
+ok 14 - câmera mantém Zorp perto de 32% e acompanha mudanças verticais com smoothing
+  ---
+  duration_ms: 0.6413
+  ...
+# Subtest: descidas contínuas mantêm Zorp na superfície sem pousos repetidos
+ok 15 - descidas contínuas mantêm Zorp na superfície sem pousos repetidos
+  ---
+  duration_ms: 2.2158
+  ...
+# Subtest: topo do banco é SAFE_TOP; impacto na lateral causa crash
+ok 16 - topo do banco é SAFE_TOP; impacto na lateral causa crash
+  ---
+  duration_ms: 0.5947
+  ...
+# Subtest: passar acima do banco é seguro e o topo permite um novo salto
+ok 17 - passar acima do banco é seguro e o topo permite um novo salto
+  ---
+  duration_ms: 0.9381
+  ...
+# Subtest: escada não cria chão plano; colisão é classificada como stair fall
+ok 18 - escada não cria chão plano; colisão é classificada como stair fall
+  ---
+  duration_ms: 0.7964
+  ...
+# Subtest: impulso de rampa mantém avanço e superfície inclinada é amostrada
+ok 19 - impulso de rampa mantém avanço e superfície inclinada é amostrada
+  ---
+  duration_ms: 1.715
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 418.6095

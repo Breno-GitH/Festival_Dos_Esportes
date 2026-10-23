@@ -1,0 +1,449 @@
+{
+  "results": [
+    {
+      "name": "Space na interação abre o briefing sem iniciar",
+      "passed": true,
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "pingpong",
+        "progress": 1,
+        "outcome": null
+      }
+    },
+    {
+      "name": "Bola, IA, multiball, pontuação e jogador congelados por 1,8 s",
+      "passed": true
+    },
+    {
+      "name": "Enter inicia após a saída; W segurado no briefing não vaza",
+      "passed": true,
+      "state": "PLAYING",
+      "aiTicks": 46
+    },
+    {
+      "name": "Novo W funciona no gameplay",
+      "passed": true
+    },
+    {
+      "name": "ESC cancela; E ainda segurado não reabre",
+      "passed": true
+    },
+    {
+      "name": "Espaço inicia e permanecer segurando não dispara o especial",
+      "passed": true
+    },
+    {
+      "name": "Após soltar, novo Espaço usa o especial normal",
+      "passed": true,
+      "cooldown": 144
+    },
+    {
+      "name": "Componente inativo não altera a entrada do Basquete",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "http": [],
+  "failed": [],
+  "pausedSnapshot": {
+    "scene": "JOGO_PINGPONG",
+    "brief": {
+      "active": true,
+      "state": "READY",
+      "id": "pingpong",
+      "progress": 1,
+      "outcome": null
+    },
+    "game": {
+      "playerX": 44,
+      "playerY": 137.35483870967744,
+      "opponentX": 366,
+      "opponentY": 137.35483870967744,
+      "speed": 4,
+      "opponentSpeed": 2.75,
+      "masterAI": {
+        "tick": 0,
+        "fatigue": 0,
+        "work": 0,
+        "fastTicks": 0,
+        "pressure": 0,
+        "velocityY": 0,
+        "reads": {},
+        "targetKey": null,
+        "targetY": null,
+        "lockUntil": 0,
+        "switchUntil": 0,
+        "mode": "RECOVER",
+        "reactionDelay": 0,
+        "struggling": false
+      },
+      "balls": [],
+      "ballRadius": 4,
+      "playerScore": 0,
+      "opponentScore": 0,
+      "maxScore": 50,
+      "playerAction": "IDLE",
+      "opponentAction": "IDLE",
+      "playerHitTimer": 0,
+      "opponentHitTimer": 0,
+      "power": 0,
+      "maxPower": 100,
+      "isPowerActive": false,
+      "rallyHits": 0,
+      "gameState": "PRE_GAME",
+      "win": false,
+      "bounceEffects": [],
+      "specialEffects": [],
+      "server": "PLAYER",
+      "nextBallId": 1,
+      "serveCooldown": 0,
+      "pointFreeze": 0,
+      "pendingPoints": [],
+      "pointFeedback": [],
+      "multiball": {
+        "phase": "NORMAL",
+        "age": 0,
+        "cooldown": 1203,
+        "total": 1,
+        "remaining": 0,
+        "emitted": 0,
+        "interval": 0,
+        "banner": 0,
+        "flash": 0
+      },
+      "scoreCooldown": 0,
+      "globalReturnCooldown": 0,
+      "playerVelocityY": 0,
+      "mestreReaction": null
+    },
+    "keys": {
+      "w": false,
+      "a": false,
+      "s": false,
+      "d": false,
+      "e": false,
+      "space": false,
+      "j": false,
+      "k": false,
+      "u": false,
+      "i": false,
+      "l": false,
+      "r": false,
+      "z": false,
+      "x": false,
+      "c": false,
+      "v": false,
+      "arrowleft": false,
+      "arrowright": false,
+      "arrowup": false,
+      "arrowdown": false,
+      "escape": false
+    },
+    "islandPlayer": {
+      "x": 292,
+      "y": 191
+    }
+  },
+  "startedSnapshot": {
+    "scene": "JOGO_PINGPONG",
+    "brief": {
+      "active": false,
+      "state": "CLOSED",
+      "id": "pingpong",
+      "progress": 0,
+      "outcome": "start"
+    },
+    "game": {
+      "playerX": 44,
+      "playerY": 137.35483870967744,
+      "opponentX": 366,
+      "opponentY": 137.35483870967744,
+      "speed": 4,
+      "opponentSpeed": 2.75,
+      "masterAI": {
+        "tick": 15,
+        "fatigue": 0,
+        "work": 0,
+        "fastTicks": 0,
+        "pressure": 0,
+        "velocityY": 0,
+        "reads": {},
+        "targetKey": null,
+        "targetY": null,
+        "lockUntil": 0,
+        "switchUntil": 0,
+        "mode": "RECOVER",
+        "reactionDelay": 0,
+        "struggling": false
+      },
+      "balls": [
+        {
+          "id": 1,
+          "x": 123.3,
+          "y": 157.35483870967744,
+          "z": 20.32,
+          "radius": 4,
+          "isSuper": false,
+          "trail": [
+            {
+              "x": 102.78,
+              "y": 132.21563870967742,
+              "alpha": 0.21189264998252788,
+              "speed": 3.42
+            },
+            {
+              "x": 106.2,
+              "y": 132.63483870967744,
+              "alpha": 0.2584056707103999,
+              "speed": 3.42
+            },
+            {
+              "x": 109.62,
+              "y": 133.20763870967744,
+              "alpha": 0.3151288667199999,
+              "speed": 3.42
+            },
+            {
+              "x": 113.03999999999999,
+              "y": 133.93403870967745,
+              "alpha": 0.3843034959999999,
+              "speed": 3.42
+            },
+            {
+              "x": 116.46000000000001,
+              "y": 134.81403870967745,
+              "alpha": 0.46866279999999993,
+              "speed": 3.42
+            },
+            {
+              "x": 119.88,
+              "y": 135.84763870967743,
+              "alpha": 0.5715399999999999,
+              "speed": 3.42
+            },
+            {
+              "x": 123.3,
+              "y": 137.03483870967744,
+              "alpha": 0.697,
+              "speed": 3.42
+            }
+          ],
+          "state": "SERVE_OWN_FLIGHT",
+          "lastHitter": "PLAYER",
+          "receiver": "OPPONENT",
+          "isServe": true,
+          "ownBounceCount": 0,
+          "bounceCount": 0,
+          "tableContacts": 0,
+          "shotId": 1,
+          "age": 15,
+          "bounceTicks": 0,
+          "attackTicks": 0,
+          "origin": {
+            "x": 72,
+            "y": 157.35483870967744,
+            "z": 22
+          },
+          "target": {
+            "x": 157.5,
+            "y": 157.35483870967744
+          },
+          "receive": {
+            "x": 364,
+            "y": 157.35483870967744
+          },
+          "flightTicks": 25,
+          "arcHeight": 12,
+          "attackSpeed": 5.4,
+          "flightSpeed": 3.42,
+          "direction": 1,
+          "style": "straight",
+          "reactionTicks": 12,
+          "defenseFrontX": 358,
+          "rallyAtLaunch": 0,
+          "specialPace": 0,
+          "curve": null,
+          "speedX": 3.42,
+          "speedY": 0,
+          "speedZ": -1.1871999999999971,
+          "serveReceiverTarget": {
+            "x": 270,
+            "y": 157.35483870967744
+          },
+          "serveNet": {
+            "x": 225,
+            "height": 20.322580645161292
+          },
+          "serveCrossTicks": 33,
+          "prevX": 119.88,
+          "prevY": 157.35483870967744,
+          "prevZ": 21.507199999999997
+        }
+      ],
+      "ballRadius": 4,
+      "playerScore": 0,
+      "opponentScore": 0,
+      "maxScore": 50,
+      "playerAction": "IDLE",
+      "opponentAction": "IDLE",
+      "playerHitTimer": 0,
+      "opponentHitTimer": 0,
+      "power": 0,
+      "maxPower": 100,
+      "isPowerActive": false,
+      "rallyHits": 0,
+      "gameState": "PLAYING",
+      "win": false,
+      "bounceEffects": [],
+      "specialEffects": [],
+      "server": "OPPONENT",
+      "nextBallId": 2,
+      "serveCooldown": 0,
+      "pointFreeze": 0,
+      "pendingPoints": [],
+      "pointFeedback": [],
+      "multiball": {
+        "phase": "NORMAL",
+        "age": 0,
+        "cooldown": 1188,
+        "total": 1,
+        "remaining": 0,
+        "emitted": 0,
+        "interval": 0,
+        "banner": 0,
+        "flash": 0
+      },
+      "scoreCooldown": 0,
+      "globalReturnCooldown": 0,
+      "playerVelocityY": 0,
+      "mestreReaction": null
+    },
+    "keys": {
+      "w": false,
+      "a": false,
+      "s": false,
+      "d": false,
+      "e": false,
+      "space": false,
+      "j": false,
+      "k": false,
+      "u": false,
+      "i": false,
+      "l": false,
+      "r": false,
+      "z": false,
+      "x": false,
+      "c": false,
+      "v": false,
+      "arrowleft": false,
+      "arrowright": false,
+      "arrowup": false,
+      "arrowdown": false,
+      "escape": false
+    },
+    "islandPlayer": {
+      "x": 292,
+      "y": 191
+    }
+  },
+  "canceledSnapshot": {
+    "scene": "ILHA_PINGPONG",
+    "brief": {
+      "active": false,
+      "state": "CLOSED",
+      "id": "pingpong",
+      "progress": 0,
+      "outcome": "cancel"
+    },
+    "game": {
+      "playerX": 44,
+      "playerY": 137.35483870967744,
+      "opponentX": 366,
+      "opponentY": 137.35483870967744,
+      "speed": 4,
+      "opponentSpeed": 2.75,
+      "masterAI": {
+        "tick": 0,
+        "fatigue": 0,
+        "work": 0,
+        "fastTicks": 0,
+        "pressure": 0,
+        "velocityY": 0,
+        "reads": {},
+        "targetKey": null,
+        "targetY": null,
+        "lockUntil": 0,
+        "switchUntil": 0,
+        "mode": "RECOVER",
+        "reactionDelay": 0,
+        "struggling": false
+      },
+      "balls": [],
+      "ballRadius": 4,
+      "playerScore": 0,
+      "opponentScore": 0,
+      "maxScore": 50,
+      "playerAction": "IDLE",
+      "opponentAction": "IDLE",
+      "playerHitTimer": 0,
+      "opponentHitTimer": 0,
+      "power": 0,
+      "maxPower": 100,
+      "isPowerActive": false,
+      "rallyHits": 0,
+      "gameState": "PRE_GAME",
+      "win": false,
+      "bounceEffects": [],
+      "specialEffects": [],
+      "server": "PLAYER",
+      "nextBallId": 1,
+      "serveCooldown": 0,
+      "pointFreeze": 0,
+      "pendingPoints": [],
+      "pointFeedback": [],
+      "multiball": {
+        "phase": "NORMAL",
+        "age": 0,
+        "cooldown": 1254,
+        "total": 1,
+        "remaining": 0,
+        "emitted": 0,
+        "interval": 0,
+        "banner": 0,
+        "flash": 0
+      },
+      "scoreCooldown": 0,
+      "globalReturnCooldown": 0,
+      "playerVelocityY": 0,
+      "mestreReaction": null
+    },
+    "keys": {
+      "w": false,
+      "a": false,
+      "s": false,
+      "d": false,
+      "e": false,
+      "space": false,
+      "j": false,
+      "k": false,
+      "u": false,
+      "i": false,
+      "l": false,
+      "r": false,
+      "z": false,
+      "x": false,
+      "c": false,
+      "v": false,
+      "arrowleft": false,
+      "arrowright": false,
+      "arrowup": false,
+      "arrowdown": false,
+      "escape": false
+    },
+    "islandPlayer": {
+      "x": 292,
+      "y": 191
+    }
+  }
+}

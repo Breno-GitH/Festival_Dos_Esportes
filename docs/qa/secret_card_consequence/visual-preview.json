@@ -1,0 +1,94 @@
+{
+  "report": {
+    "card": {
+      "active": true,
+      "id": "ravok_maior_conquista",
+      "title": "A MAIOR CONQUISTA",
+      "text": "Zorpzin conquistou todas as medalhas da Terra.\nMas, ao lado de Ravok, decidiu buscar algo que nenhuma medalha poderia representar.\nDepois disso, os dois desapareceram no espaço.",
+      "state": "READY",
+      "elapsed": 0.7409999999999999,
+      "totalTime": 2.8579000000953667,
+      "presented": true,
+      "error": null,
+      "titleFont": "LOCAL_BITMAP_5x7",
+      "portrait": {
+        "source": "card_zorp_MaiorConquista.png?v=1.0.0_official_secret_card",
+        "sourceRect": [
+          892,
+          141,
+          179,
+          217
+        ],
+        "status": "ready",
+        "cached": true,
+        "destination": {
+          "x": 157.35944700460828,
+          "y": 57,
+          "width": 135.2811059907834,
+          "height": 164,
+          "scale": 0.7557603686635944
+        }
+      },
+      "inputLock": 0.7,
+      "fadeOutDuration": 0.8,
+      "layout": {
+        "width": 450,
+        "height": 300,
+        "titleY": 35,
+        "portrait": {
+          "x": 139,
+          "y": 66,
+          "width": 172,
+          "height": 156
+        },
+        "textY": 236,
+        "textWidth": 374,
+        "lineHeight": 11,
+        "promptY": 280
+      }
+    },
+    "scene": "RAVOK_SECRET_CUTSCENE",
+    "text": [
+      {
+        "value": "ILHA DOS CAMPEÕES / FINAL SECRETO",
+        "x": 225,
+        "y": 24,
+        "width": 132
+      },
+      {
+        "value": "Zorpzin conquistou todas as medalhas da Terra.",
+        "x": 225,
+        "y": 230,
+        "width": 230
+      },
+      {
+        "value": "Mas, ao lado de Ravok, decidiu buscar algo que",
+        "x": 225,
+        "y": 241,
+        "width": 230
+      },
+      {
+        "value": "nenhuma medalha poderia representar.",
+        "x": 225,
+        "y": 252,
+        "width": 180
+      },
+      {
+        "value": "Depois disso, os dois desapareceram no espaço.",
+        "x": 225,
+        "y": 263,
+        "width": 230
+      },
+      {
+        "value": "[SPACE] CONTINUAR",
+        "x": 225,
+        "y": 280,
+        "width": 68
+      }
+    ],
+    "audio": 0
+  },
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": []
+}

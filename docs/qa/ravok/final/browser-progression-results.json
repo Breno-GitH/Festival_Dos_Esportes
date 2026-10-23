@@ -1,0 +1,1124 @@
+{
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": [],
+  "early": [
+    {
+      "event": {
+        "state": "DORMANT",
+        "medals": 0,
+        "arrived": false,
+        "ravokArrivalSeen": false,
+        "ravokArrivalPending": false,
+        "ravokAvailable": false,
+        "ravokExited": false,
+        "ravokProposalSeen": false,
+        "ravokChoice": null,
+        "ravokChoicePosition": null,
+        "ravokEndingCompleted": false,
+        "ravokBadEndingCardReady": false,
+        "ravokBadEndingSeen": false,
+        "ravokArrested": false,
+        "exit": null,
+        "metK7": false,
+        "metRavok": false,
+        "k7Line": 0,
+        "preludeSeen": false,
+        "conversation": null,
+        "npcs": [],
+        "assetErrors": []
+      },
+      "arrival": {
+        "active": false,
+        "pending": false,
+        "seen": false,
+        "phase": "INACTIVE",
+        "time": 0,
+        "elapsed": 0,
+        "line": 0,
+        "dialogue": null,
+        "readyScene": null,
+        "completedRuns": 0,
+        "saveFailed": false,
+        "duration": 28.85,
+        "k7Outside": false,
+        "ravokOutside": false,
+        "returnPoint": null
+      },
+      "blocks": false
+    },
+    {
+      "event": {
+        "state": "DORMANT",
+        "medals": 1,
+        "arrived": false,
+        "ravokArrivalSeen": false,
+        "ravokArrivalPending": false,
+        "ravokAvailable": false,
+        "ravokExited": false,
+        "ravokProposalSeen": false,
+        "ravokChoice": null,
+        "ravokChoicePosition": null,
+        "ravokEndingCompleted": false,
+        "ravokBadEndingCardReady": false,
+        "ravokBadEndingSeen": false,
+        "ravokArrested": false,
+        "exit": null,
+        "metK7": false,
+        "metRavok": false,
+        "k7Line": 0,
+        "preludeSeen": false,
+        "conversation": null,
+        "npcs": [],
+        "assetErrors": []
+      },
+      "arrival": {
+        "active": false,
+        "pending": false,
+        "seen": false,
+        "phase": "INACTIVE",
+        "time": 0,
+        "elapsed": 0,
+        "line": 0,
+        "dialogue": null,
+        "readyScene": null,
+        "completedRuns": 0,
+        "saveFailed": false,
+        "duration": 28.85,
+        "k7Outside": false,
+        "ravokOutside": false,
+        "returnPoint": null
+      },
+      "blocks": false
+    },
+    {
+      "event": {
+        "state": "DORMANT",
+        "medals": 2,
+        "arrived": false,
+        "ravokArrivalSeen": false,
+        "ravokArrivalPending": false,
+        "ravokAvailable": false,
+        "ravokExited": false,
+        "ravokProposalSeen": false,
+        "ravokChoice": null,
+        "ravokChoicePosition": null,
+        "ravokEndingCompleted": false,
+        "ravokBadEndingCardReady": false,
+        "ravokBadEndingSeen": false,
+        "ravokArrested": false,
+        "exit": null,
+        "metK7": false,
+        "metRavok": false,
+        "k7Line": 0,
+        "preludeSeen": false,
+        "conversation": null,
+        "npcs": [],
+        "assetErrors": []
+      },
+      "arrival": {
+        "active": false,
+        "pending": false,
+        "seen": false,
+        "phase": "INACTIVE",
+        "time": 0,
+        "elapsed": 0,
+        "line": 0,
+        "dialogue": null,
+        "readyScene": null,
+        "completedRuns": 0,
+        "saveFailed": false,
+        "duration": 28.85,
+        "k7Outside": false,
+        "ravokOutside": false,
+        "returnPoint": null
+      },
+      "blocks": false
+    },
+    {
+      "event": {
+        "state": "DORMANT",
+        "medals": 3,
+        "arrived": false,
+        "ravokArrivalSeen": false,
+        "ravokArrivalPending": false,
+        "ravokAvailable": false,
+        "ravokExited": false,
+        "ravokProposalSeen": false,
+        "ravokChoice": null,
+        "ravokChoicePosition": null,
+        "ravokEndingCompleted": false,
+        "ravokBadEndingCardReady": false,
+        "ravokBadEndingSeen": false,
+        "ravokArrested": false,
+        "exit": null,
+        "metK7": false,
+        "metRavok": false,
+        "k7Line": 0,
+        "preludeSeen": false,
+        "conversation": null,
+        "npcs": [],
+        "assetErrors": []
+      },
+      "arrival": {
+        "active": false,
+        "pending": false,
+        "seen": false,
+        "phase": "INACTIVE",
+        "time": 0,
+        "elapsed": 0,
+        "line": 0,
+        "dialogue": null,
+        "readyScene": null,
+        "completedRuns": 0,
+        "saveFailed": false,
+        "duration": 28.85,
+        "k7Outside": false,
+        "ravokOutside": false,
+        "returnPoint": null
+      },
+      "blocks": false
+    }
+  ],
+  "arrivalPhases": [
+    "FADE_OUT",
+    "SILENCE",
+    "SPACE",
+    "FLYBY",
+    "SKY",
+    "ARCHIPELAGO",
+    "LANDING",
+    "DOOR",
+    "K7_EXIT",
+    "DIALOGUE"
+  ],
+  "arrivalLines": [
+    {
+      "speaker": "RAVOK",
+      "text": "Então é verdade..."
+    },
+    {
+      "speaker": "K7",
+      "text": "QUATRO ASSINATURAS CONFIRMADAS."
+    },
+    {
+      "speaker": "RAVOK",
+      "text": "Vamos ver até onde ele consegue chegar."
+    }
+  ],
+  "proposalLines": [
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Então você conseguiu.",
+      "index": 0,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Todas as oito.",
+      "index": 1,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "ZORPZIN",
+      "text": "Era para isso que eu vim.",
+      "index": 2,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Eu também vim à Terra por esse motivo.",
+      "index": 3,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Há muito tempo.",
+      "index": 4,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Mesmo planeta.",
+      "index": 5,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Mesmos Mestres.",
+      "index": 6,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Mesmo objetivo.",
+      "index": 7,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Mas eu falhei.",
+      "index": 8,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Eu voltei para casa sem nada.",
+      "index": 9,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Enquanto eles ficaram aqui...",
+      "index": 10,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "...como se nunca tivesse acontecido.",
+      "index": 11,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "ZORPZIN",
+      "text": "Você perdeu competições.",
+      "index": 12,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "ZORPZIN",
+      "text": "Isso acontece.",
+      "index": 13,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Eu não voltei para tentar de novo.",
+      "index": 14,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Voltei para terminar isso de outra maneira.",
+      "index": 15,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "ZORPZIN",
+      "text": "Não.",
+      "index": 16,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Nem ouviu minha proposta.",
+      "index": 17,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "ZORPZIN",
+      "text": "Não preciso.",
+      "index": 18,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "ZORPZIN",
+      "text": "Usar nossa tecnologia para atacar uma civilização que não pode se defender dela é proibido por uma das leis fundamentais da nossa espécie.",
+      "index": 19,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "ZORPZIN",
+      "text": "Não é competição.",
+      "index": 20,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "ZORPZIN",
+      "text": "É abuso.",
+      "index": 21,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Leis.",
+      "index": 22,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Você venceu todos eles.",
+      "index": 23,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Provou que é melhor que este planeta.",
+      "index": 24,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Você realmente quer voltar para casa carregando apenas oito pedaços de metal?",
+      "index": 25,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Eu tenho algo maior.",
+      "index": 26,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "RAVOK",
+      "text": "Algo que ninguém do nosso planeta esqueceria.",
+      "index": 27,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    },
+    {
+      "type": "DIALOGUE",
+      "speaker": "K7",
+      "text": "PROTOCOLO DISPONÍVEL.",
+      "index": 28,
+      "total": 29,
+      "selected": 1,
+      "error": null
+    }
+  ],
+  "fourth": {
+    "arrival": {
+      "active": false,
+      "pending": true,
+      "seen": false,
+      "phase": "INACTIVE",
+      "time": 0,
+      "elapsed": 0,
+      "line": 0,
+      "dialogue": null,
+      "readyScene": "JOGO_ARCO",
+      "completedRuns": 0,
+      "saveFailed": false,
+      "duration": 28.85,
+      "k7Outside": false,
+      "ravokOutside": false,
+      "returnPoint": null
+    },
+    "event": {
+      "state": "DORMANT",
+      "medals": 4,
+      "arrived": false,
+      "ravokArrivalSeen": false,
+      "ravokArrivalPending": true,
+      "ravokAvailable": false,
+      "ravokExited": false,
+      "ravokProposalSeen": false,
+      "ravokChoice": null,
+      "ravokChoicePosition": null,
+      "ravokEndingCompleted": false,
+      "ravokBadEndingCardReady": false,
+      "ravokBadEndingSeen": false,
+      "ravokArrested": false,
+      "exit": null,
+      "metK7": false,
+      "metRavok": false,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [],
+      "assetErrors": []
+    },
+    "saved": {
+      "pingpong": true,
+      "basquete": true,
+      "corrida": true,
+      "skate": false,
+      "arco": true,
+      "escalada": false,
+      "boxe": false,
+      "surf": false
+    },
+    "frame": 5,
+    "x": 225,
+    "y": 150
+  },
+  "frozenArrival": {
+    "x": 225,
+    "y": 150,
+    "frame": 5
+  },
+  "saveFailure": {
+    "arrival": {
+      "active": true,
+      "pending": true,
+      "seen": false,
+      "phase": "FADE_BACK",
+      "time": 1.1006000000238414,
+      "elapsed": 31.390100000023764,
+      "line": 3,
+      "dialogue": null,
+      "readyScene": null,
+      "completedRuns": 0,
+      "saveFailed": true,
+      "duration": 28.85,
+      "k7Outside": true,
+      "ravokOutside": false,
+      "returnPoint": [
+        "ILHA_ARCO",
+        225,
+        150
+      ]
+    },
+    "event": {
+      "state": "DORMANT",
+      "medals": 4,
+      "arrived": false,
+      "ravokArrivalSeen": false,
+      "ravokArrivalPending": true,
+      "ravokAvailable": false,
+      "ravokExited": false,
+      "ravokProposalSeen": false,
+      "ravokChoice": null,
+      "ravokChoicePosition": null,
+      "ravokEndingCompleted": false,
+      "ravokBadEndingCardReady": false,
+      "ravokBadEndingSeen": false,
+      "ravokArrested": false,
+      "exit": null,
+      "metK7": false,
+      "metRavok": false,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [],
+      "assetErrors": []
+    },
+    "saved": {
+      "version": 7,
+      "arrived": true,
+      "metK7": false,
+      "metRavok": false,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "ravokArrivalSeen": false,
+      "ravokArrivalPending": true,
+      "ravokExited": false,
+      "ravokProposalSeen": false,
+      "ravokChoice": null,
+      "ravokChoicePosition": null,
+      "ravokEndingCompleted": false,
+      "ravokBadEndingCardReady": false,
+      "ravokBadEndingSeen": false,
+      "ravokArrested": false
+    }
+  },
+  "afterArrival": {
+    "arrival": {
+      "active": false,
+      "pending": false,
+      "seen": true,
+      "phase": "INACTIVE",
+      "time": 1.1006000000238414,
+      "elapsed": 31.390100000023764,
+      "line": 3,
+      "dialogue": null,
+      "readyScene": null,
+      "completedRuns": 1,
+      "saveFailed": false,
+      "duration": 28.85,
+      "k7Outside": false,
+      "ravokOutside": false,
+      "returnPoint": [
+        "ILHA_ARCO",
+        225,
+        150
+      ]
+    },
+    "event": {
+      "state": "LANDED",
+      "medals": 4,
+      "arrived": true,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokAvailable": false,
+      "ravokExited": false,
+      "ravokProposalSeen": false,
+      "ravokChoice": null,
+      "ravokChoicePosition": null,
+      "ravokEndingCompleted": false,
+      "ravokBadEndingCardReady": false,
+      "ravokBadEndingSeen": false,
+      "ravokArrested": false,
+      "exit": null,
+      "metK7": false,
+      "metRavok": false,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [
+        {
+          "id": "k7",
+          "x": 396,
+          "y": 113,
+          "height": 44,
+          "source": "K7.png",
+          "crop": [
+            37,
+            66,
+            99,
+            172
+          ],
+          "scale": 0.2619047619047619,
+          "footprint": {
+            "width": 18,
+            "height": 8
+          }
+        }
+      ],
+      "assetErrors": []
+    },
+    "scene": "ILHA_ARCO",
+    "saved": {
+      "version": 7,
+      "arrived": true,
+      "metK7": false,
+      "metRavok": false,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokExited": false,
+      "ravokProposalSeen": false,
+      "ravokChoice": null,
+      "ravokChoicePosition": null,
+      "ravokEndingCompleted": false,
+      "ravokBadEndingCardReady": false,
+      "ravokBadEndingSeen": false,
+      "ravokArrested": false
+    }
+  },
+  "pathToK7": {
+    "steps": 294,
+    "turns": [
+      {
+        "k": "w",
+        "x": 225,
+        "y": 188
+      },
+      {
+        "k": "d",
+        "x": 386,
+        "y": 188
+      },
+      {
+        "k": "w",
+        "x": 386,
+        "y": 131
+      },
+      {
+        "k": "a",
+        "x": 384,
+        "y": 131
+      }
+    ]
+  },
+  "k7Lines": [
+    "> K7: Não me atrapalhe.",
+    "> K7: Ainda não é hora.",
+    "> K7: Volte para o nosso planeta.",
+    "> K7: Você não vai querer ver o que vem."
+  ],
+  "fourReload": {
+    "event": {
+      "state": "LANDED",
+      "medals": 4,
+      "arrived": true,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokAvailable": false,
+      "ravokExited": false,
+      "ravokProposalSeen": false,
+      "ravokChoice": null,
+      "ravokChoicePosition": null,
+      "ravokEndingCompleted": false,
+      "ravokBadEndingCardReady": false,
+      "ravokBadEndingSeen": false,
+      "ravokArrested": false,
+      "exit": null,
+      "metK7": true,
+      "metRavok": false,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [
+        {
+          "id": "k7",
+          "x": 396,
+          "y": 113,
+          "height": 44,
+          "source": "K7.png",
+          "crop": [
+            37,
+            66,
+            99,
+            172
+          ],
+          "scale": 0.2619047619047619,
+          "footprint": {
+            "width": 18,
+            "height": 8
+          }
+        }
+      ],
+      "assetErrors": []
+    },
+    "arrival": {
+      "active": false,
+      "pending": false,
+      "seen": true,
+      "phase": "INACTIVE",
+      "time": 0,
+      "elapsed": 0,
+      "line": 0,
+      "dialogue": null,
+      "readyScene": null,
+      "completedRuns": 0,
+      "saveFailed": false,
+      "duration": 28.85,
+      "k7Outside": false,
+      "ravokOutside": false,
+      "returnPoint": null
+    }
+  },
+  "seven": {
+    "event": {
+      "state": "LANDED",
+      "medals": 7,
+      "arrived": true,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokAvailable": false,
+      "ravokExited": false,
+      "ravokProposalSeen": false,
+      "ravokChoice": null,
+      "ravokChoicePosition": null,
+      "ravokEndingCompleted": false,
+      "ravokBadEndingCardReady": false,
+      "ravokBadEndingSeen": false,
+      "ravokArrested": false,
+      "exit": null,
+      "metK7": true,
+      "metRavok": false,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [
+        {
+          "id": "k7",
+          "x": 396,
+          "y": 113,
+          "height": 44,
+          "source": "K7.png",
+          "crop": [
+            37,
+            66,
+            99,
+            172
+          ],
+          "scale": 0.2619047619047619,
+          "footprint": {
+            "width": 18,
+            "height": 8
+          }
+        }
+      ],
+      "assetErrors": []
+    },
+    "arrival": {
+      "active": false,
+      "pending": false,
+      "seen": true,
+      "phase": "INACTIVE",
+      "time": 0,
+      "elapsed": 0,
+      "line": 0,
+      "dialogue": null,
+      "readyScene": null,
+      "completedRuns": 0,
+      "saveFailed": false,
+      "duration": 28.85,
+      "k7Outside": false,
+      "ravokOutside": false,
+      "returnPoint": null
+    }
+  },
+  "pathToExit": {
+    "steps": 260,
+    "turns": [
+      {
+        "k": "w",
+        "x": 225,
+        "y": 188
+      },
+      {
+        "k": "d",
+        "x": 386,
+        "y": 188
+      },
+      {
+        "k": "w",
+        "x": 386,
+        "y": 165
+      },
+      {
+        "k": "a",
+        "x": 384,
+        "y": 165
+      }
+    ]
+  },
+  "exitPoses": [
+    {
+      "x": 367.9910159718726,
+      "y": 89.01247781684354,
+      "scale": 0.5502246007031837,
+      "p": 0.0004991126737415477
+    },
+    {
+      "x": 367.89052903148314,
+      "y": 89.15204301182901,
+      "scale": 0.5527367742129222,
+      "p": 0.0060817204731604384
+    },
+    {
+      "x": 367.6463331678574,
+      "y": 89.49120393353144,
+      "scale": 0.5588416708035658,
+      "p": 0.01964815734125737
+    },
+    {
+      "x": 367.3545235091825,
+      "y": 89.89649512613536,
+      "scale": 0.5661369122704365,
+      "p": 0.035859805045414375
+    },
+    {
+      "x": 366.88891338946956,
+      "y": 90.54317584795895,
+      "scale": 0.5777771652632613,
+      "p": 0.061727033918358196
+    },
+    {
+      "x": 366.3103476462393,
+      "y": 91.34673938022321,
+      "scale": 0.5922413088440178,
+      "p": 0.0938695752089285
+    },
+    {
+      "x": 365.77982779653155,
+      "y": 92.08357250481733,
+      "scale": 0.6055043050867119,
+      "p": 0.12334290019269317
+    },
+    {
+      "x": 365.03130518741557,
+      "y": 93.12318723970057,
+      "scale": 0.6242173703146103,
+      "p": 0.16492748958802284
+    },
+    {
+      "x": 364.3870255195342,
+      "y": 94.01802011175808,
+      "scale": 0.6403243620116454,
+      "p": 0.20072080447032312
+    },
+    {
+      "x": 363.3380599076984,
+      "y": 95.47491679486332,
+      "scale": 0.6665485023075398,
+      "p": 0.2589966717945329
+    },
+    {
+      "x": 362.40571919545374,
+      "y": 96.7698344507587,
+      "scale": 0.6898570201136565,
+      "p": 0.3107933780303477
+    },
+    {
+      "x": 361.6274550202744,
+      "y": 97.8507569162856,
+      "scale": 0.7093136244931408,
+      "p": 0.3540302766514239
+    },
+    {
+      "x": 360.631574159002,
+      "y": 99.23392477916383,
+      "scale": 0.7342106460249491,
+      "p": 0.4093569911665534
+    },
+    {
+      "x": 359.60831472026797,
+      "y": 100.65511844407226,
+      "scale": 0.7597921319933008,
+      "p": 0.46620473776289045
+    },
+    {
+      "x": 358.7926072284221,
+      "y": 101.78804551608036,
+      "scale": 0.7801848192894466,
+      "p": 0.5115218206432145
+    },
+    {
+      "x": 357.783411333895,
+      "y": 103.18970648070135,
+      "scale": 0.8054147166526243,
+      "p": 0.5675882592280539
+    },
+    {
+      "x": 356.76168670027494,
+      "y": 104.60876847184034,
+      "scale": 0.8309578324931262,
+      "p": 0.6243507388736137
+    },
+    {
+      "x": 355.9846450037566,
+      "y": 105.68799305033808,
+      "scale": 0.8503838749060855,
+      "p": 0.667519722013523
+    },
+    {
+      "x": 355.0302237198958,
+      "y": 107.01357816681141,
+      "scale": 0.8742444070026056,
+      "p": 0.7205431266724568
+    },
+    {
+      "x": 354.3051579379115,
+      "y": 108.02061397512293,
+      "scale": 0.8923710515522127,
+      "p": 0.760824559004917
+    },
+    {
+      "x": 353.44629745943666,
+      "y": 109.21347575078241,
+      "scale": 0.9138425635140832,
+      "p": 0.808539030031296
+    },
+    {
+      "x": 352.6549484613966,
+      "y": 110.31257158139358,
+      "scale": 0.9336262884650846,
+      "p": 0.8525028632557434
+    },
+    {
+      "x": 352.07822588989603,
+      "y": 111.11357515292215,
+      "scale": 0.9480443527525988,
+      "p": 0.8845430061168862
+    },
+    {
+      "x": 351.4424340832219,
+      "y": 111.99661932885851,
+      "scale": 0.9639391479194535,
+      "p": 0.9198647731543408
+    },
+    {
+      "x": 350.9088045027628,
+      "y": 112.73777152394054,
+      "scale": 0.9772798874309296,
+      "p": 0.9495108609576214
+    },
+    {
+      "x": 350.48733998024784,
+      "y": 113.32313891632245,
+      "scale": 0.9878165004938042,
+      "p": 0.972925556652898
+    },
+    {
+      "x": 350.23620334270566,
+      "y": 113.67193980179772,
+      "scale": 0.994094916432359,
+      "p": 0.9868775920719088
+    },
+    {
+      "x": 350.04863311948094,
+      "y": 113.93245400072094,
+      "scale": 0.998784172012977,
+      "p": 0.9972981600288376
+    },
+    {
+      "x": 350,
+      "y": 114,
+      "scale": 1,
+      "p": 1
+    },
+    {
+      "x": 350,
+      "y": 114,
+      "scale": 1,
+      "p": 1
+    },
+    {
+      "x": 350,
+      "y": 114,
+      "scale": 1,
+      "p": 1
+    },
+    {
+      "x": 350,
+      "y": 114,
+      "scale": 1,
+      "p": 1
+    },
+    {
+      "x": 350,
+      "y": 114,
+      "scale": 1,
+      "p": 1
+    },
+    {
+      "x": 350,
+      "y": 114,
+      "scale": 1,
+      "p": 1
+    },
+    {
+      "x": 350,
+      "y": 114,
+      "scale": 1,
+      "p": 1
+    },
+    {
+      "x": 350,
+      "y": 114,
+      "scale": 1,
+      "p": 1
+    },
+    {
+      "x": 350,
+      "y": 114,
+      "scale": 1,
+      "p": 1
+    },
+    {
+      "x": 350,
+      "y": 114,
+      "scale": 1,
+      "p": 1
+    },
+    {
+      "x": 350,
+      "y": 114,
+      "scale": 1,
+      "p": 1
+    }
+  ],
+  "inputBoundaries": {
+    "lastDialogueDidNotChoose": true,
+    "duplicateKeydownIgnored": true,
+    "heldSpaceCannotConfirmYes": true,
+    "extraConfirmationDefaultNo": true
+  },
+  "beforeChoiceSave": {
+    "version": 7,
+    "arrived": true,
+    "metK7": true,
+    "metRavok": true,
+    "k7Line": 0,
+    "preludeSeen": true,
+    "ravokArrivalSeen": true,
+    "ravokArrivalPending": false,
+    "ravokExited": true,
+    "ravokProposalSeen": true,
+    "ravokChoice": null,
+    "ravokChoicePosition": null,
+    "ravokEndingCompleted": false,
+    "ravokBadEndingCardReady": false,
+    "ravokBadEndingSeen": false,
+    "ravokArrested": false
+  },
+  "renderIssues": []
+}

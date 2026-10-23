@@ -101,7 +101,10 @@ window.addEventListener("keydown", event => {
         skateOllieInput.pressSerial++;
         skateOllieInput.pressStartedAt = skateClockNow();
         const player = skateOllieSimulation.state.player;
-        skateOllieInput.pressMode = skateTraversal.mode === "GRIND" || skateTraversal.mode === "MANUAL"
+        const rampIntent = player?.grounded && skateTraversal.mode !== "GRIND"
+            && skateOlliePhysics.rampIntentAt(player.x, skateOllieSimulation.config);
+        skateOllieInput.pressMode = rampIntent ? "RAMP"
+            : skateTraversal.mode === "GRIND" || skateTraversal.mode === "MANUAL"
             ? skateTraversal.mode
             : player?.specialRampAir?.active ? "MEGA_AIR"
             : player && !player.grounded ? "AIR" : "GROUND";
@@ -121,7 +124,7 @@ window.addEventListener("keydown", event => {
             grindCapturable: Boolean(captureCandidate)
         });
         for (const inputEvent of events) {
-            if (inputEvent.type === "MEGA_HOLD") {
+            if (inputEvent.type === "RAMP_HOLD" || inputEvent.type === "MEGA_HOLD") {
                 skateTrickSystem.cancelInput();
                 skateOllieInput.airTrickInputActive = false;
             } else if (inputEvent.type === "NORMAL_JUMP") {
@@ -158,7 +161,7 @@ window.addEventListener("keyup", event => {
         if (inputEvent.type === "GROUND_RELEASE" || inputEvent.type === "MANUAL_RELEASE"
             || inputEvent.type === "GRIND_RELEASE"
             || ((releaseMode === "MANUAL" || releaseMode === "GRIND")
-                && inputEvent.type === "AIR_RELEASE")) {
+                && ["AIR_RELEASE", "RAMP_RELEASE"].includes(inputEvent.type))) {
             skateOllieInput.released = true;
             skateOllieInput.airTrickInputActive = false;
         } else if (inputEvent.type === "AIR_RELEASE" && skateOllieInput.airTrickInputActive) {
@@ -212,6 +215,21 @@ function resetSkateGame(restartFromCheckpoint = false) {
     skateOllieLastTime = skateClockNow();
     skateOllieAccumulator = 0;
     skateTimeScale = 1;
+}
+
+function clearSkateBriefingInput() {
+    Object.assign(skateOllieInput, {
+        held:false,released:false,restart:false,grindPressed:false,
+        normalJump:false,ollieUpgrade:false,airTrickInputActive:false,
+        pressMode:'',releaseHoldMs:null
+    });
+    skateSpaceParser.reset();
+}
+
+function startSkateFromBrief() {
+    clearSkateBriefingInput();
+    skateOllieLastTime = skateClockNow();
+    skateOllieAccumulator = 0;
 }
 
 function updateSkateGame() {
@@ -385,6 +403,8 @@ function updateSkateGame() {
     // the whole view skyward; zoom fits rider AND the upcoming contact surface.
     const mega = skateCourse.gaps.find(g => g.id === "final-launch-gap"
         && p.x > g.startX - 600 && p.x < g.endX + 180);
+    const largeRamp = skateCourse.ramps.find(r => r.landingZone && r.launchStrength >= 400
+        && p.x > r.startX - 300 && p.x < r.landingZone.startX);
     const stair = skateCourse.rails.find(r => r.id === "grand-stair-handrail"
         && p.x > r.grindPath[0].x - 250 && p.x < r.grindPath.at(-1).x + 200);
     const stairExit = stair && skateCourse.gaps.find(g => g.id === "grand-stair-exit");
@@ -399,6 +419,7 @@ function updateSkateGame() {
     const terrainY = contacts.length ? Math.max(...contacts) : skateCourse.groundHeightForAir(p.x);
     const verticalSpan = Math.max(80, terrainY - (p.y - 90));
     const landingFit = mega ? canvas.width * 0.80 / Math.max(1, mega.endX + 140 - p.x)
+        : largeRamp ? canvas.width * 0.68 / Math.max(1, largeRamp.landingZone.startX + 100 - p.x)
         : stairExit ? canvas.width * 0.68 / Math.max(1, stairExit.endX + 160 - p.x) : 1;
     const desiredZoom = Math.min(mega ? 0.32 : stair ? 0.42 : p.jumpTier === "super" && !p.grounded ? 0.62 : 0.72,
         (canvas.height - (mega ? 138 : 112)) / verticalSpan, landingFit);
@@ -629,9 +650,9 @@ function drawSkateOllieRider(p) {
     drawPose(frame,grinding && contact<1 && skateAirPose ? contact : 1);
     ctx.restore();
     if(!grinding) skateAirPose=frame;
-    if(grinding && contact>.85){
-        ctx.save();ctx.strokeStyle="#96f4ff";ctx.lineWidth=1.5;
-        for(let i=0;i<feedback.sparks;i++){
+    if((grinding && contact>.85) || p.rampRide?.prepared){
+        ctx.save();ctx.strokeStyle=grinding?"#96f4ff":"#ffce8a";ctx.lineWidth=1.5;
+        for(let i=0;i<(grinding?feedback.sparks:2);i++){
             const life=((now*.005+i*.31)%1),back=4+life*17*feedback.trail;
             ctx.globalAlpha=(1-life)*.6;ctx.beginPath();
             ctx.moveTo(p.x-back,p.y+2+life*5);
@@ -771,7 +792,7 @@ function drawSkateOllieHud(state) {
     ctx.fillText("SKATE · AUTO-RIDE", 10, 13);
     ctx.font = "8px monospace";
     ctx.fillStyle = "#bfe7ed";
-    ctx.fillText("SPACE: JUMP / DOUBLE OLLIE · GRIND: HOLD → RELEASE", 10, 26);
+    ctx.fillText("SPACE: HOLD RAMPA/GRIND · RELEASE RAIL · DOUBLE OLLIE", 10, 26);
     if (p.specialRampAir?.active) {
         ctx.textAlign = "right";
         ctx.fillStyle = p.specialRampAir.releasedEarly ? "#ffb29e" : "#9cf5ff";
@@ -881,6 +902,8 @@ window.skateOllieRuntime = Object.freeze({
     rails: skateCourseRails,
     camera: skateOllieCamera,
     input: skateOllieInput,
-    physics: skateOlliePhysics
+    physics: skateOlliePhysics,
+    clearBriefingInput: clearSkateBriefingInput
 });
+window.startSkateFromBrief = startSkateFromBrief;
 resetSkateGame();

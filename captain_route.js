@@ -42,9 +42,7 @@
             this.state = 'ENDING_CARD';wallet.completeVacation();this.config.clearInput();
             this.transitionFrame=null;this.scene='ENDING_CARD';this.sceneTime=0;
             global.EndingCard.show({
-                id:'ferias_merecidas',theme:'vacation',label:'FINAL SECRETO',title:'FÉRIAS MERECIDAS',
-                text:'Depois de conquistar todas as medalhas, Zorpzin decidiu aproveitar a Terra por mais um tempo antes de voltar para casa.',
-                portrait:() => this.preparePose(),
+                id:'ferias_merecidas',
                 onClose:() => {
                     this.active=false;this.state='COMPLETE';this.scene='COMPLETE';
                     this.config.clearInput();this.config.returnToMenu();
@@ -75,6 +73,7 @@
             return true;
         },
         update() {
+            if(this.state==='ENDING_CARD'){global.EndingCard.update();return;}
             const now = performance.now();
             if (this.state === 'FERIAS_MERECIDAS' && !document.hidden){
                 const dt=Math.max(0,Math.min(.1,(now-this.lastTime)/1000));this.elapsed+=dt;this.sceneTime+=dt;

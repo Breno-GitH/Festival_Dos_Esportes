@@ -1,0 +1,1916 @@
+[
+  {
+    "id": "start-kicker",
+    "hold": {
+      "id": "start-kicker",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "start-kicker",
+        "x": 778.073,
+        "y": 216,
+        "entrySpeed": 230,
+        "speed": 227.55625,
+        "angle": -16.886791123944043,
+        "impulse": 77.17125,
+        "vy": -146.25082589285714,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.6250000000000002
+      },
+      "landing": {
+        "x": 849.5381562499991,
+        "y": 250,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 0.9333333333333325
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 849.5381562499991,
+      "planned": {
+        "startX": 800,
+        "endX": 900,
+        "surfaceId": "ground"
+      },
+      "purpose": "Salto curto de introdução",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    },
+    "early": {
+      "id": "start-kicker",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "start-kicker",
+        "x": 778.073,
+        "y": 216,
+        "entrySpeed": 230,
+        "speed": 227.55625,
+        "angle": -16.886791123944043,
+        "impulse": 30.8685,
+        "vy": -99.94807589285713,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.6250000000000002
+      },
+      "landing": {
+        "x": 839.954822916666,
+        "y": 250,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 0.8916666666666659
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 839.954822916666,
+      "planned": {
+        "startX": 800,
+        "endX": 900,
+        "surfaceId": "ground"
+      },
+      "purpose": "Salto curto de introdução",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "first-rail-kicker",
+    "hold": {
+      "id": "first-rail-kicker",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "first-rail-kicker",
+        "x": 1042.5,
+        "y": 199.888,
+        "entrySpeed": 230,
+        "speed": 227.0768,
+        "angle": -19.95750018656925,
+        "impulse": 90.83072,
+        "vy": -173.28921711304346,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.7416666666666665
+      },
+      "landing": {
+        "x": 1075.8883866666645,
+        "y": 193.10503430675266,
+        "mode": "GRIND",
+        "surface": "first-rail",
+        "at": 0.8833333333333326
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 1075.8883866666645,
+      "planned": {
+        "startX": 1089,
+        "endX": 1470,
+        "surfaceId": "first-rail"
+      },
+      "purpose": "Entrada no primeiro grind",
+      "transitions": [
+        {
+          "type": "GRIND_ENTER",
+          "railId": "first-rail",
+          "snapPx": 22.524081776742953,
+          "railLength": 380.433
+        }
+      ]
+    },
+    "early": {
+      "id": "first-rail-kicker",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "first-rail-kicker",
+        "x": 1042.5,
+        "y": 199.888,
+        "entrySpeed": 230,
+        "speed": 227.0768,
+        "angle": -19.95750018656925,
+        "impulse": 36.332288,
+        "vy": -118.79078511304346,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.7416666666666665
+      },
+      "landing": {
+        "x": 1118.0550533333328,
+        "y": 250,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 1.0666666666666653
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 1118.0550533333328,
+      "planned": {
+        "startX": 1089,
+        "endX": 1470,
+        "surfaceId": "first-rail"
+      },
+      "purpose": "Entrada no primeiro grind",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "transfer-bank",
+    "hold": {
+      "id": "transfer-bank",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "transfer-bank",
+        "x": 1795.25,
+        "y": 208.96,
+        "entrySpeed": 230,
+        "speed": 228.05262599469498,
+        "angle": -13.599153078953574,
+        "impulse": 44.61899204244032,
+        "vy": -99.78716045282803,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.8749999999999993
+      },
+      "landing": {
+        "x": 1862.489030946077,
+        "y": 250,
+        "mode": "MANUAL",
+        "surface": "ground",
+        "at": 1.166666666666665
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 1862.489030946077,
+      "planned": {
+        "startX": 1810,
+        "endX": 1910,
+        "surfaceId": "ground"
+      },
+      "purpose": "Bank suave entre transfers",
+      "transitions": [
+        {
+          "type": "MANUAL_ENTER"
+        }
+      ]
+    },
+    "early": {
+      "id": "transfer-bank",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "transfer-bank",
+        "x": 1795.25,
+        "y": 208.96,
+        "entrySpeed": 230,
+        "speed": 228.05262599469498,
+        "angle": -13.599153078953574,
+        "impulse": 17.84759681697613,
+        "vy": -73.01576522736383,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.8749999999999993
+      },
+      "landing": {
+        "x": 1856.7390309460768,
+        "y": 250,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 1.141666666666665
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 1856.7390309460768,
+      "planned": {
+        "startX": 1810,
+        "endX": 1910,
+        "surfaceId": "ground"
+      },
+      "purpose": "Bank suave entre transfers",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "chain-kicker",
+    "hold": {
+      "id": "chain-kicker",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "chain-kicker",
+        "x": 3278.493,
+        "y": 201.28,
+        "entrySpeed": 230,
+        "speed": 227.379630124539,
+        "angle": -18.030679414315067,
+        "impulse": 276.80998449943877,
+        "vy": -350.82473394935283,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.7916666666666663
+      },
+      "landing": {
+        "x": 3353.9292564986604,
+        "y": 177.2116249428471,
+        "mode": "GRIND",
+        "surface": "three-c",
+        "at": 1.1166666666666651
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 3353.9292564986604,
+      "planned": {
+        "startX": 3370,
+        "endX": 3930,
+        "surfaceId": "three-c"
+      },
+      "purpose": "Entrada no rail sobre o gap",
+      "transitions": [
+        {
+          "type": "GRIND_ENTER",
+          "railId": "three-c",
+          "snapPx": 23.972798832422328,
+          "railLength": 562.5731332105996
+        }
+      ]
+    },
+    "early": {
+      "id": "chain-kicker",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "chain-kicker",
+        "x": 3278.493,
+        "y": 201.28,
+        "entrySpeed": 230,
+        "speed": 227.379630124539,
+        "angle": -18.030679414315067,
+        "impulse": 110.72399379977551,
+        "vy": -184.73874324968958,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.7916666666666663
+      },
+      "landing": {
+        "x": 3365.4292564986595,
+        "y": 250,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 1.166666666666665
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 3365.4292564986595,
+      "planned": {
+        "startX": 3370,
+        "endX": 3930,
+        "surfaceId": "three-c"
+      },
+      "purpose": "Entrada no rail sobre o gap",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "street-kicker",
+    "hold": {
+      "id": "street-kicker",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "street-kicker",
+        "x": 4947.653,
+        "y": 216,
+        "entrySpeed": 230,
+        "speed": 227.55625,
+        "angle": -16.886791123944043,
+        "impulse": 69.25625,
+        "vy": -138.33582589285714,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.6250000000000002
+      },
+      "landing": {
+        "x": 5017.201489583357,
+        "y": 250,
+        "mode": "MANUAL",
+        "surface": "ground",
+        "at": 0.9249999999999992
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 5017.201489583357,
+      "planned": {
+        "startX": 4970,
+        "endX": 5140,
+        "surfaceId": "ground"
+      },
+      "purpose": "Salto curto de street",
+      "transitions": [
+        {
+          "type": "MANUAL_ENTER"
+        }
+      ]
+    },
+    "early": {
+      "id": "street-kicker",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "street-kicker",
+        "x": 4947.653,
+        "y": 216,
+        "entrySpeed": 230,
+        "speed": 227.55625,
+        "angle": -16.886791123944043,
+        "impulse": 27.7025,
+        "vy": -96.78207589285714,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.6250000000000002
+      },
+      "landing": {
+        "x": 5009.534822916689,
+        "y": 250,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 0.8916666666666659
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 5009.534822916689,
+      "planned": {
+        "startX": 4970,
+        "endX": 5140,
+        "surfaceId": "ground"
+      },
+      "purpose": "Salto curto de street",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "bench-bank",
+    "hold": {
+      "id": "bench-bank",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "bench-bank",
+        "x": 6451,
+        "y": 196.42,
+        "entrySpeed": 230,
+        "speed": 227.24572796934868,
+        "angle": -18.888156014772868,
+        "impulse": 61.25754406130269,
+        "vy": -139.00866861173486,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.8249999999999995
+      },
+      "landing": {
+        "x": 6532.744961845483,
+        "y": 250,
+        "mode": "MANUAL",
+        "surface": "ground",
+        "at": 1.1749999999999983
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 6532.744961845483,
+      "planned": {
+        "startX": 6470,
+        "endX": 6710,
+        "surfaceId": "ground"
+      },
+      "purpose": "Preparação da área de bancos",
+      "transitions": [
+        {
+          "type": "MANUAL_ENTER"
+        }
+      ]
+    },
+    "early": {
+      "id": "bench-bank",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "bench-bank",
+        "x": 6451,
+        "y": 196.42,
+        "entrySpeed": 230,
+        "speed": 227.24572796934868,
+        "angle": -18.888156014772868,
+        "impulse": 24.50301762452108,
+        "vy": -102.25414217495324,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.8249999999999995
+      },
+      "landing": {
+        "x": 6525.078295178815,
+        "y": 250,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 1.141666666666665
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 6525.078295178815,
+      "planned": {
+        "startX": 6470,
+        "endX": 6710,
+        "surfaceId": "ground"
+      },
+      "purpose": "Preparação da área de bancos",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "bench-exit-kicker",
+    "hold": {
+      "id": "bench-exit-kicker",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "bench-exit-kicker",
+        "x": 7238.912,
+        "y": 211.245,
+        "entrySpeed": 230,
+        "speed": 227.7718103189681,
+        "angle": -15.471755771974186,
+        "impulse": 495.1561093890611,
+        "vy": -558.2019227285243,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.7499999999999998
+      },
+      "landing": {
+        "x": 7339.6906163633985,
+        "y": 128.05812316646728,
+        "mode": "GRIND",
+        "surface": "bench-exit",
+        "at": 1.1833333333333316
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 7339.6906163633985,
+      "planned": {
+        "startX": 7358,
+        "endX": 7653,
+        "surfaceId": "bench-exit"
+      },
+      "purpose": "Saída curva para grind",
+      "transitions": [
+        {
+          "type": "GRIND_ENTER",
+          "railId": "bench-exit",
+          "snapPx": 23.701057766697787,
+          "railLength": 304.17000600784417
+        }
+      ]
+    },
+    "early": {
+      "id": "bench-exit-kicker",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "bench-exit-kicker",
+        "x": 7238.912,
+        "y": 211.245,
+        "entrySpeed": 230,
+        "speed": 227.7718103189681,
+        "angle": -15.471755771974186,
+        "impulse": 198.06244375562446,
+        "vy": -261.10825709508765,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.7499999999999998
+      },
+      "landing": {
+        "x": 7335.8572830300645,
+        "y": 250,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 1.166666666666665
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 7335.8572830300645,
+      "planned": {
+        "startX": 7358,
+        "endX": 7653,
+        "surfaceId": "bench-exit"
+      },
+      "purpose": "Saída curva para grind",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "stair-kicker",
+    "hold": {
+      "id": "stair-kicker",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "stair-kicker",
+        "x": 7990,
+        "y": 187.36,
+        "entrySpeed": 230,
+        "speed": 227.2595,
+        "angle": -18.800360137757934,
+        "impulse": 474.28069565217396,
+        "vy": -551.6477341304349,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.9416666666666658
+      },
+      "landing": {
+        "x": 8049.784762499985,
+        "y": 101.4855553830923,
+        "mode": "GRIND",
+        "surface": "stair-handrail",
+        "at": 1.1999999999999982
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 8049.784762499985,
+      "planned": {
+        "startX": 8073,
+        "endX": 8608,
+        "surfaceId": "stair-handrail"
+      },
+      "purpose": "Lançamento alto para corrimão da escada",
+      "transitions": [
+        {
+          "type": "GRIND_ENTER",
+          "railId": "stair-handrail",
+          "snapPx": 23.89345912677941,
+          "railLength": 544.6395845777272
+        }
+      ]
+    },
+    "early": {
+      "id": "stair-kicker",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "stair-kicker",
+        "x": 7990,
+        "y": 187.36,
+        "entrySpeed": 230,
+        "speed": 227.2595,
+        "angle": -18.800360137757934,
+        "impulse": 189.7122782608696,
+        "vy": -267.07931673913043,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.9416666666666658
+      },
+      "landing": {
+        "x": 8099.618095833326,
+        "y": 250,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 1.416666666666664
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 8099.618095833326,
+      "planned": {
+        "startX": 8073,
+        "endX": 8608,
+        "surfaceId": "stair-handrail"
+      },
+      "purpose": "Lançamento alto para corrimão da escada",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "danger-chain-kicker",
+    "hold": {
+      "id": "danger-chain-kicker",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "danger-chain-kicker",
+        "x": 8946.75,
+        "y": 199.366,
+        "entrySpeed": 230,
+        "speed": 227.31486363636364,
+        "angle": -18.44649778886348,
+        "impulse": 113.65743181818182,
+        "vy": -189.47996676787673,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.7999999999999996
+      },
+      "landing": {
+        "x": 8947.15990909089,
+        "y": 199.02968269563308,
+        "mode": "GRIND",
+        "surface": "danger-a",
+        "at": 0.7999999999999996
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 8947.15990909089,
+      "planned": {
+        "startX": 8889,
+        "endX": 9269,
+        "surfaceId": "danger-a"
+      },
+      "purpose": "Primeiro rail da cadeia sem chão",
+      "transitions": [
+        {
+          "type": "GRIND_ENTER",
+          "railId": "danger-a",
+          "snapPx": 19.461682695633073,
+          "railLength": 379.4800000000014
+        }
+      ]
+    },
+    "early": {
+      "id": "danger-chain-kicker",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "danger-chain-kicker",
+        "x": 8946.75,
+        "y": 199.366,
+        "entrySpeed": 230,
+        "speed": 227.31486363636364,
+        "angle": -18.44649778886348,
+        "impulse": 45.46297272727273,
+        "vy": -121.28550767696764,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.7999999999999996
+      },
+      "landing": {
+        "x": 9021.909909090866,
+        "y": 250,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 1.1249999999999984
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 9021.909909090866,
+      "planned": {
+        "startX": 8889,
+        "endX": 9269,
+        "surfaceId": "danger-a"
+      },
+      "purpose": "Primeiro rail da cadeia sem chão",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "speed-kicker-first",
+    "hold": {
+      "id": "speed-kicker-first",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "speed-kicker-first",
+        "x": 10762.863,
+        "y": 216,
+        "entrySpeed": 230,
+        "speed": 227.55625,
+        "angle": -16.886791123944043,
+        "impulse": 71.235,
+        "vy": -140.31457589285714,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.6250000000000002
+      },
+      "landing": {
+        "x": 10832.411489583255,
+        "y": 250,
+        "mode": "MANUAL",
+        "surface": "ground",
+        "at": 0.9249999999999992
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 10832.411489583255,
+      "planned": {
+        "startX": 10780,
+        "endX": 11100,
+        "surfaceId": "ground"
+      },
+      "purpose": "Salto de entrada na subida",
+      "transitions": [
+        {
+          "type": "MANUAL_ENTER"
+        }
+      ]
+    },
+    "early": {
+      "id": "speed-kicker-first",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "speed-kicker-first",
+        "x": 10762.863,
+        "y": 216,
+        "entrySpeed": 230,
+        "speed": 227.55625,
+        "angle": -16.886791123944043,
+        "impulse": 28.494,
+        "vy": -97.57357589285714,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.6250000000000002
+      },
+      "landing": {
+        "x": 10824.744822916591,
+        "y": 250,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 0.8916666666666659
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 10824.744822916591,
+      "planned": {
+        "startX": 10780,
+        "endX": 11100,
+        "surfaceId": "ground"
+      },
+      "purpose": "Salto de entrada na subida",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ascent-bank-1",
+    "hold": {
+      "id": "ascent-bank-1",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "ascent-bank-1",
+        "x": 11394,
+        "y": 130.3,
+        "entrySpeed": 233.94543436099516,
+        "speed": 239.8439841485252,
+        "angle": -23.26562051239561,
+        "impulse": 12.513599172966533,
+        "vy": -115.63617425406747,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 1.3166666666666644
+      },
+      "landing": {
+        "x": 11427.517691871704,
+        "y": 130,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 1.4499999999999973
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 11427.517691871704,
+      "planned": {
+        "startX": 11394,
+        "endX": 11465,
+        "surfaceId": "ground"
+      },
+      "purpose": "Subida longa e suave ao primeiro patamar",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    },
+    "early": {
+      "id": "ascent-bank-1",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "ascent-bank-1",
+        "x": 11394,
+        "y": 130.3,
+        "entrySpeed": 233.94543436099516,
+        "speed": 239.8439841485252,
+        "angle": -23.26562051239561,
+        "impulse": 5.005439669186614,
+        "vy": -108.12801475028755,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 1.3166666666666644
+      },
+      "landing": {
+        "x": 11423.44117823797,
+        "y": 130,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 1.4333333333333307
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 11423.44117823797,
+      "planned": {
+        "startX": 11394,
+        "endX": 11465,
+        "surfaceId": "ground"
+      },
+      "purpose": "Subida longa e suave ao primeiro patamar",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ascent-bank-2",
+    "hold": {
+      "id": "ascent-bank-2",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "ascent-bank-2",
+        "x": 11744,
+        "y": 10.3,
+        "entrySpeed": 245.95802820310809,
+        "speed": 251.66199415842382,
+        "angle": -23.26562051239561,
+        "impulse": 13.13019099956994,
+        "vy": -121.33400098794411,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 1.249999999999998
+      },
+      "landing": {
+        "x": 11780.4088076057,
+        "y": 10,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 1.3916666666666642
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 11780.4088076057,
+      "planned": {
+        "startX": 11744,
+        "endX": 11815,
+        "surfaceId": "ground"
+      },
+      "purpose": "Segundo patamar da praça",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    },
+    "early": {
+      "id": "ascent-bank-2",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "ascent-bank-2",
+        "x": 11744,
+        "y": 10.3,
+        "entrySpeed": 245.95802820310809,
+        "speed": 251.66199415842382,
+        "angle": -23.26562051239561,
+        "impulse": 5.252076399827977,
+        "vy": -113.45588638820215,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 1.249999999999998
+      },
+      "landing": {
+        "x": 11778.269199241333,
+        "y": 10,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 1.3833333333333309
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 11778.269199241333,
+      "planned": {
+        "startX": 11744,
+        "endX": 11815,
+        "surfaceId": "ground"
+      },
+      "purpose": "Segundo patamar da praça",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ascent-bank-3",
+    "hold": {
+      "id": "ascent-bank-3",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "ascent-bank-3",
+        "x": 12094,
+        "y": -179.7,
+        "entrySpeed": 257.9637226147133,
+        "speed": 261.20721012108424,
+        "angle": -34.2702700607667,
+        "impulse": 13.628202267187003,
+        "vy": -191.61314393374496,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 1.2083333333333315
+      },
+      "landing": {
+        "x": 12165.115756094707,
+        "y": -171.56758829348212,
+        "mode": "MANUAL",
+        "surface": "ground",
+        "at": 1.466666666666664
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 12165.115756094707,
+      "planned": {
+        "startX": 12094,
+        "endX": 12400,
+        "surfaceId": "ground"
+      },
+      "purpose": "Acesso ao rooftop",
+      "transitions": [
+        {
+          "type": "MANUAL_ENTER"
+        }
+      ]
+    },
+    "early": {
+      "id": "ascent-bank-3",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "ascent-bank-3",
+        "x": 12094,
+        "y": -179.7,
+        "entrySpeed": 257.9637226147133,
+        "speed": 261.20721012108424,
+        "angle": -34.2702700607667,
+        "impulse": 5.451280906874802,
+        "vy": -183.4362225734328,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 1.2083333333333315
+      },
+      "landing": {
+        "x": 12160.616841745652,
+        "y": -172.82728431121745,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 1.4499999999999973
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 12160.616841745652,
+      "planned": {
+        "startX": 12094,
+        "endX": 12400,
+        "surfaceId": "ground"
+      },
+      "purpose": "Acesso ao rooftop",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "huge-launch",
+    "hold": {
+      "id": "huge-launch",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "huge-launch",
+        "x": 12870,
+        "y": -220,
+        "entrySpeed": 278.22022865053947,
+        "speed": 267.0793757560197,
+        "angle": -25.042183671340226,
+        "impulse": 731.565246636054,
+        "vy": -856.3458797177644,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 1.7916666666666627
+      },
+      "landing": {
+        "x": 13158.10171721181,
+        "y": -170,
+        "mode": "MANUAL",
+        "surface": "ground",
+        "at": 2.8749999999999925
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 13158.10171721181,
+      "planned": {
+        "startX": 13140,
+        "endX": 13900,
+        "surfaceId": "ground"
+      },
+      "purpose": "Grande gap entre rooftops",
+      "transitions": [
+        {
+          "type": "MANUAL_ENTER"
+        }
+      ]
+    },
+    "early": {
+      "id": "huge-launch",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "huge-launch",
+        "x": 12870,
+        "y": -220,
+        "entrySpeed": 278.22022865053947,
+        "speed": 267.0793757560197,
+        "angle": -25.042183671340226,
+        "impulse": 292.6260986544216,
+        "vy": -417.406731736132,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 1.7916666666666627
+      },
+      "landing": null,
+      "surfaceError": 0,
+      "phase": "FAILED",
+      "failure": "FELL_IN_GAP",
+      "x": 13194.40234334379,
+      "planned": {
+        "startX": 13140,
+        "endX": 13900,
+        "surfaceId": "ground"
+      },
+      "purpose": "Grande gap entre rooftops",
+      "transitions": []
+    }
+  },
+  {
+    "id": "void-entry-kicker",
+    "hold": {
+      "id": "void-entry-kicker",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "void-entry-kicker",
+        "x": 14125,
+        "y": -220,
+        "entrySpeed": 230.8692372885966,
+        "speed": 224.79991784882986,
+        "angle": -40.0302592718897,
+        "impulse": 80.14605766784369,
+        "vy": -268.9779886608608,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.6416666666666668
+      },
+      "landing": {
+        "x": 14145.808537064006,
+        "y": -236.9172015336896,
+        "mode": "GRIND",
+        "surface": "void-a",
+        "at": 0.7249999999999999
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 14145.808537064006,
+      "planned": {
+        "startX": 14165,
+        "endX": 14515,
+        "surfaceId": "void-a"
+      },
+      "purpose": "Entrada na cadeia de cinco rails",
+      "transitions": [
+        {
+          "type": "GRIND_ENTER",
+          "railId": "void-a",
+          "snapPx": 23.80414800547086,
+          "railLength": 350
+        }
+      ]
+    },
+    "early": {
+      "id": "void-entry-kicker",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "void-entry-kicker",
+        "x": 14125,
+        "y": -220,
+        "entrySpeed": 230.8692372885966,
+        "speed": 224.79991784882986,
+        "angle": -40.0302592718897,
+        "impulse": 32.058423067137475,
+        "vy": -220.89035406015455,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.6416666666666668
+      },
+      "landing": {
+        "x": 14221.227914429532,
+        "y": -170,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 1.0499999999999987
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 14221.227914429532,
+      "planned": {
+        "startX": 14165,
+        "endX": 14515,
+        "surfaceId": "void-a"
+      },
+      "purpose": "Entrada na cadeia de cinco rails",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "advanced-launch",
+    "hold": {
+      "id": "advanced-launch",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "advanced-launch",
+        "x": 18355.8,
+        "y": 185.2,
+        "entrySpeed": 280,
+        "speed": 275.86461538461526,
+        "angle": -22.878675898944124,
+        "impulse": 479.76454849498305,
+        "vy": -596.173353228714,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.8333333333333328
+      },
+      "landing": {
+        "x": 18513.65517472375,
+        "y": 115.20091813410613,
+        "mode": "GRIND",
+        "surface": "advanced-ledge-edge",
+        "at": 1.3916666666666642
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 18513.65517472375,
+      "planned": {
+        "startX": 18395,
+        "endX": 18921,
+        "surfaceId": "advanced-ledge-edge"
+      },
+      "purpose": "Banco elevado e ledge",
+      "transitions": [
+        {
+          "type": "GRIND_ENTER",
+          "railId": "advanced-ledge-edge",
+          "snapPx": 21.138484823183358,
+          "railLength": 403.1999999999971
+        }
+      ]
+    },
+    "early": {
+      "id": "advanced-launch",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "advanced-launch",
+        "x": 18355.8,
+        "y": 185.2,
+        "entrySpeed": 280,
+        "speed": 275.86461538461526,
+        "angle": -22.878675898944124,
+        "impulse": 191.90581939799324,
+        "vy": -308.3146241317242,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.8333333333333328
+      },
+      "landing": {
+        "x": 18434.321841390458,
+        "y": 165,
+        "mode": "GROUND",
+        "surface": "advanced-bench",
+        "at": 1.1083333333333318
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 18434.321841390458,
+      "planned": {
+        "startX": 18395,
+        "endX": 18921,
+        "surfaceId": "advanced-ledge-edge"
+      },
+      "purpose": "Banco elevado e ledge",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "release-small",
+    "hold": {
+      "id": "release-small",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "release-small",
+        "x": 20380,
+        "y": 245,
+        "entrySpeed": 279.02000000000004,
+        "speed": 276.5,
+        "angle": -19.653824058053306,
+        "impulse": 57.70434782608696,
+        "vy": -156.45434782608697,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.5833333333333337
+      },
+      "landing": {
+        "x": 20480.216833333187,
+        "y": 297.10320972220876,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 0.9333333333333325
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 20480.216833333187,
+      "planned": {
+        "startX": 20390,
+        "endX": 20530,
+        "surfaceId": "ground"
+      },
+      "purpose": "Kicker curto no downhill",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        },
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    },
+    "early": {
+      "id": "release-small",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "release-small",
+        "x": 20380,
+        "y": 245,
+        "entrySpeed": 279.02000000000004,
+        "speed": 276.5,
+        "angle": -19.653824058053306,
+        "impulse": 23.081739130434784,
+        "vy": -121.83173913043478,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.5833333333333337
+      },
+      "landing": {
+        "x": 20473.21683333319,
+        "y": 296.46154305554245,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 0.9083333333333325
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 20473.21683333319,
+      "planned": {
+        "startX": 20390,
+        "endX": 20530,
+        "surfaceId": "ground"
+      },
+      "purpose": "Kicker curto no downhill",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        },
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "release-medium",
+    "hold": {
+      "id": "release-medium",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "release-medium",
+        "x": 20650,
+        "y": 266,
+        "entrySpeed": 280,
+        "speed": 275.9166666666667,
+        "angle": -22.619864948040426,
+        "impulse": 83.97463768115942,
+        "vy": -198.9399154589372,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.5250000000000006
+      },
+      "landing": {
+        "x": 20760.317340011257,
+        "y": 317.9174776591481,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 0.9166666666666659
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 20760.317340011257,
+      "planned": {
+        "startX": 20660,
+        "endX": 20885,
+        "surfaceId": "ground"
+      },
+      "purpose": "Transfer médio para transição curva",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    },
+    "early": {
+      "id": "release-medium",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "release-medium",
+        "x": 20650,
+        "y": 266,
+        "entrySpeed": 280,
+        "speed": 275.9166666666667,
+        "angle": -22.619864948040426,
+        "impulse": 33.58985507246377,
+        "vy": -148.55513285024156,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.5250000000000006
+      },
+      "landing": {
+        "x": 20751.009923396352,
+        "y": 318.66623326414077,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 0.8833333333333326
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 20751.009923396352,
+      "planned": {
+        "startX": 20660,
+        "endX": 20885,
+        "surfaceId": "ground"
+      },
+      "purpose": "Transfer médio para transição curva",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "release-curve",
+    "hold": {
+      "id": "release-curve",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "release-curve",
+        "x": 20885,
+        "y": 275,
+        "entrySpeed": 280,
+        "speed": 275.24461159017835,
+        "angle": -25.884688852030006,
+        "impulse": 101.7208347181094,
+        "vy": -235.2815526591093,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.6583333333333334
+      },
+      "landing": {
+        "x": 21003.50925892688,
+        "y": 325.0724184798402,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 1.0749999999999986
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 21003.50925892688,
+      "planned": {
+        "startX": 20890,
+        "endX": 21092,
+        "surfaceId": "ground"
+      },
+      "purpose": "Curva de conexão ao lançamento final",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    },
+    "early": {
+      "id": "release-curve",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "release-curve",
+        "x": 20885,
+        "y": 275,
+        "entrySpeed": 280,
+        "speed": 275.24461159017835,
+        "angle": -25.884688852030006,
+        "impulse": 40.688333887243765,
+        "vy": -174.2490518282437,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.6583333333333334
+      },
+      "landing": {
+        "x": 20991.927738459042,
+        "y": 327.84204473726896,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 1.033333333333332
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 20991.927738459042,
+      "planned": {
+        "startX": 20890,
+        "endX": 21092,
+        "surfaceId": "ground"
+      },
+      "purpose": "Curva de conexão ao lançamento final",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  },
+  {
+    "id": "final-medium-kicker",
+    "hold": {
+      "id": "final-medium-kicker",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "final-medium-kicker",
+        "x": 21092.4,
+        "y": 285.606,
+        "entrySpeed": 280,
+        "speed": 276.3993927125507,
+        "angle": -20.17378170760145,
+        "impulse": 450.65118377046315,
+        "vy": -552.2027825099904,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.7499999999999998
+      },
+      "landing": {
+        "x": 21182.556418016153,
+        "y": 195.53587528961262,
+        "mode": "GRIND",
+        "surface": "final-descending",
+        "at": 1.0666666666666653
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 21182.556418016153,
+      "planned": {
+        "startX": 21201,
+        "endX": 21558,
+        "surfaceId": "final-descending"
+      },
+      "purpose": "Corrimão do gauntlet final",
+      "transitions": [
+        {
+          "type": "GRIND_ENTER",
+          "railId": "final-descending",
+          "snapPx": 21.08673133787673,
+          "railLength": 368.98334082018357
+        }
+      ]
+    },
+    "early": {
+      "id": "final-medium-kicker",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "final-medium-kicker",
+        "x": 21092.4,
+        "y": 285.606,
+        "entrySpeed": 280,
+        "speed": 276.3993927125507,
+        "angle": -20.17378170760145,
+        "impulse": 180.26047350818527,
+        "vy": -281.8120722477124,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.7499999999999998
+      },
+      "landing": null,
+      "surfaceError": 0,
+      "phase": "FAILED",
+      "failure": "DANGEROUS_STAIR_FALL",
+      "x": 21219.889751349467,
+      "planned": {
+        "startX": 21201,
+        "endX": 21558,
+        "surfaceId": "final-descending"
+      },
+      "purpose": "Corrimão do gauntlet final",
+      "transitions": []
+    }
+  },
+  {
+    "id": "final-big-ramp",
+    "hold": {
+      "id": "final-big-ramp",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "final-big-ramp",
+        "x": 24056,
+        "y": 140,
+        "entrySpeed": 280,
+        "speed": 274.93083333333334,
+        "angle": -27.35080357181969,
+        "impulse": 741.1178985507246,
+        "vy": -883.3291450785025,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 1.6249999999999967
+      },
+      "landing": {
+        "x": 25226.102944443825,
+        "y": 250,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 5.800000000000078
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 25226.102944443825,
+      "planned": {
+        "startX": 25179,
+        "endX": 25519,
+        "surfaceId": "ground"
+      },
+      "purpose": "Mega Air sustentado sobre o grande vazio",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    },
+    "early": {
+      "id": "final-big-ramp",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "final-big-ramp",
+        "x": 24056,
+        "y": 140,
+        "entrySpeed": 280,
+        "speed": 274.93083333333334,
+        "angle": -27.35080357181969,
+        "impulse": 296.44715942028984,
+        "vy": -438.65840594806775,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 1.6249999999999967
+      },
+      "landing": null,
+      "surfaceError": 0,
+      "phase": "FAILED",
+      "failure": "FELL_IN_GAP",
+      "x": 24334.769611110954,
+      "planned": {
+        "startX": 25179,
+        "endX": 25519,
+        "surfaceId": "ground"
+      },
+      "purpose": "Mega Air sustentado sobre o grande vazio",
+      "transitions": []
+    }
+  },
+  {
+    "id": "finish-landing-bank",
+    "hold": {
+      "id": "finish-landing-bank",
+      "early": false,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "finish-landing-bank",
+        "x": 25649,
+        "y": 250,
+        "entrySpeed": 280,
+        "speed": 280,
+        "angle": 0,
+        "impulse": 21.91304347826087,
+        "vy": -21.91304347826087,
+        "held": true,
+        "quality": 1,
+        "releasedEarly": false,
+        "at": 0.5750000000000004
+      },
+      "landing": {
+        "x": 25654.66666666658,
+        "y": 250,
+        "mode": "MANUAL",
+        "surface": "ground",
+        "at": 0.591666666666667
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 25654.66666666658,
+      "planned": {
+        "startX": 25649,
+        "endX": 25849,
+        "surfaceId": "ground"
+      },
+      "purpose": "Pequena saída e estabilização antes do finish",
+      "transitions": [
+        {
+          "type": "MANUAL_ENTER"
+        }
+      ]
+    },
+    "early": {
+      "id": "finish-landing-bank",
+      "early": true,
+      "frameRate": 60,
+      "speedScale": 1,
+      "launch": {
+        "rampId": "finish-landing-bank",
+        "x": 25649,
+        "y": 250,
+        "entrySpeed": 280,
+        "speed": 280,
+        "angle": 0,
+        "impulse": 8.765217391304349,
+        "vy": -8.765217391304349,
+        "held": false,
+        "quality": 0.4,
+        "releasedEarly": true,
+        "at": 0.5750000000000004
+      },
+      "landing": {
+        "x": 25652.33333333325,
+        "y": 250,
+        "mode": "GROUND",
+        "surface": "ground",
+        "at": 0.5833333333333337
+      },
+      "surfaceError": 0,
+      "phase": "PLAYING",
+      "failure": "",
+      "x": 25652.33333333325,
+      "planned": {
+        "startX": 25649,
+        "endX": 25849,
+        "surfaceId": "ground"
+      },
+      "purpose": "Pequena saída e estabilização antes do finish",
+      "transitions": [
+        {
+          "type": "NORMAL_LANDING"
+        }
+      ]
+    }
+  }
+]

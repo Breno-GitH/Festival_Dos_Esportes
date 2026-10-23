@@ -1,0 +1,94 @@
+{
+  "report": {
+    "card": {
+      "active": true,
+      "id": "ferias_merecidas",
+      "title": "FÉRIAS MERECIDAS",
+      "text": "Depois de tantos desafios, Zorpzin decidiu\nque a Terra ainda tinha algo a oferecer.",
+      "state": "READY",
+      "elapsed": 0.7262999999523163,
+      "totalTime": 2.8481999999284726,
+      "presented": true,
+      "error": null,
+      "titleFont": "LOCAL_BITMAP_5x7",
+      "portrait": {
+        "source": "zorp_feriasmerecidas.png?v=1.0.0_official_ending_card",
+        "sourceRect": [
+          256,
+          42,
+          1007,
+          1007
+        ],
+        "status": "ready",
+        "cached": true,
+        "destination": {
+          "x": 147,
+          "y": 57,
+          "width": 156,
+          "height": 156,
+          "scale": 0.15491559086395235
+        }
+      },
+      "inputLock": 0.7,
+      "fadeOutDuration": 0.8,
+      "layout": {
+        "width": 450,
+        "height": 300,
+        "titleY": 35,
+        "portrait": {
+          "x": 139,
+          "y": 66,
+          "width": 172,
+          "height": 156
+        },
+        "textY": 236,
+        "textWidth": 374,
+        "lineHeight": 11,
+        "promptY": 280
+      }
+    },
+    "quote": "Acho que vou ficar aqui por mais um tempo... eles não vão se importar hahaha",
+    "scene": "FERIAS_MERECIDAS",
+    "text": [
+      {
+        "value": "ILHA DOS CAMPEÕES / FINAL SECRETO",
+        "x": 225,
+        "y": 24,
+        "width": 132
+      },
+      {
+        "value": "Depois de tantos desafios, Zorpzin decidiu",
+        "x": 225,
+        "y": 228,
+        "width": 210
+      },
+      {
+        "value": "que a Terra ainda tinha algo a oferecer.",
+        "x": 225,
+        "y": 239,
+        "width": 200
+      },
+      {
+        "value": "“Acho que vou ficar aqui por mais um tempo...",
+        "x": 225,
+        "y": 254,
+        "width": 225
+      },
+      {
+        "value": "eles não vão se importar hahaha”",
+        "x": 225,
+        "y": 265,
+        "width": 160
+      },
+      {
+        "value": "[SPACE] CONTINUAR",
+        "x": 225,
+        "y": 280,
+        "width": 68
+      }
+    ]
+  },
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": []
+}

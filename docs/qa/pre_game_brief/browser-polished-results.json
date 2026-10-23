@@ -1,0 +1,199 @@
+{
+  "results": [
+    {
+      "sport": "pingpong",
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "pingpong",
+        "progress": 1,
+        "outcome": null,
+        "countdown": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "PLAYING",
+        "score": [
+          0,
+          0
+        ],
+        "balls": 1,
+        "rally": 0,
+        "tick": 19,
+        "x": 44,
+        "y": 137.35483870967744
+      }
+    },
+    {
+      "sport": "basketball",
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "basketball",
+        "progress": 1,
+        "outcome": null,
+        "countdown": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "PLAYING",
+        "clock": 59.833399999976145,
+        "frame": 9.996000001430511,
+        "score": {
+          "zorp": 0,
+          "master": 0
+        },
+        "ball": [
+          157,
+          220,
+          "POSSESSED_ZORP"
+        ],
+        "master": [
+          280.46498887456767,
+          null
+        ]
+      }
+    },
+    {
+      "sport": "marathon",
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "marathon",
+        "progress": 1,
+        "outcome": null,
+        "countdown": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "COUNTDOWN",
+        "clock": 0.38289999997615815,
+        "countdown": 2.617100000023842,
+        "player": [
+          -912,
+          470,
+          38
+        ],
+        "gates": 0
+      }
+    },
+    {
+      "sport": "skate",
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "skate",
+        "progress": 1,
+        "outcome": null,
+        "countdown": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "PLAYING",
+        "elapsed": 0.15833333333333333,
+        "x": 186.4166666666665,
+        "y": 250,
+        "bank": 0
+      }
+    },
+    {
+      "sport": "archery",
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "archery",
+        "progress": 1,
+        "outcome": null,
+        "countdown": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "PLAYING",
+        "frame": 9,
+        "score": [
+          0,
+          0
+        ],
+        "targets": 1,
+        "arrows": 0,
+        "master": [
+          315,
+          252
+        ]
+      }
+    },
+    {
+      "sport": "climbing",
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "climbing",
+        "progress": 1,
+        "outcome": null,
+        "countdown": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "PLAYING",
+        "motion": 0.18333333333333332,
+        "step": 0,
+        "x": 3220.459192103578,
+        "y": 220,
+        "hazards": 0
+      }
+    },
+    {
+      "sport": "boxing",
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "boxing",
+        "progress": 1,
+        "outcome": null,
+        "countdown": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "FIGHTING",
+        "frames": 17,
+        "intro": 0,
+        "player": [
+          145,
+          218,
+          100
+        ],
+        "master": [
+          276.34381166268065,
+          208.05839201860823,
+          100
+        ]
+      }
+    },
+    {
+      "sport": "surf",
+      "brief": {
+        "active": true,
+        "state": "READY",
+        "id": "surf",
+        "progress": 1,
+        "outcome": null,
+        "countdown": null
+      },
+      "paused": true,
+      "gameplay": {
+        "state": "PLAYING",
+        "time": 0.15,
+        "distance": 33.605215753135965,
+        "score": 27.55627691757149,
+        "player": [
+          0.6150839576293251,
+          0
+        ],
+        "generated": 5
+      }
+    }
+  ],
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": []
+}

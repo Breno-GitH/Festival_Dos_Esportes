@@ -1,0 +1,461 @@
+{
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": [],
+  "duration": 46.425,
+  "phases": [
+    {
+      "id": "REFUSAL",
+      "at": 0.075
+    },
+    {
+      "id": "MISUNDERSTANDING",
+      "at": 0.664
+    },
+    {
+      "id": "UNDERSTOOD",
+      "at": 1.486
+    },
+    {
+      "id": "TRUTH_ONE",
+      "at": 2.307
+    },
+    {
+      "id": "TRUTH_TWO",
+      "at": 3.126
+    },
+    {
+      "id": "ANGER",
+      "at": 3.951
+    },
+    {
+      "id": "FURY",
+      "at": 4.899
+    },
+    {
+      "id": "TURN_TO_SHIP",
+      "at": 5.954
+    },
+    {
+      "id": "K7_ALERT",
+      "at": 7.277
+    },
+    {
+      "id": "TRANSMIT",
+      "at": 8.319
+    },
+    {
+      "id": "WHAT_DID_YOU_DO",
+      "at": 10.877
+    },
+    {
+      "id": "COORDINATES_SENT",
+      "at": 11.844
+    },
+    {
+      "id": "SKY_REVEAL",
+      "at": 12.653
+    },
+    {
+      "id": "AUTHORITY_LIGHTS",
+      "at": 14.889
+    },
+    {
+      "id": "AUTHORITY_ARRIVAL",
+      "at": 16.751
+    },
+    {
+      "id": "ENCIRCLEMENT",
+      "at": 19.45
+    },
+    {
+      "id": "ESCAPE_BLOCKED",
+      "at": 22.254
+    },
+    {
+      "id": "REMOTE_DISABLE",
+      "at": 23.299
+    },
+    {
+      "id": "HOLOGRAM",
+      "at": 25.539
+    },
+    {
+      "id": "OFFICER_NAME",
+      "at": 26.861
+    },
+    {
+      "id": "OFFICER_CHARGES",
+      "at": 27.826
+    },
+    {
+      "id": "REMEMBERED",
+      "at": 28.639
+    },
+    {
+      "id": "EIGHT_MEMORIES",
+      "at": 29.458
+    },
+    {
+      "id": "MEDALS",
+      "at": 30.274
+    },
+    {
+      "id": "PROTOCOL_CLOSED",
+      "at": 32.912
+    },
+    {
+      "id": "K7_EVIDENCE",
+      "at": 33.954
+    },
+    {
+      "id": "RAVOK_ESCORT",
+      "at": 36.278
+    },
+    {
+      "id": "AUTHORITIES_DEPART",
+      "at": 39.142
+    },
+    {
+      "id": "AFTERMATH",
+      "at": 43.625
+    },
+    {
+      "id": "FADE",
+      "at": 45.414
+    },
+    {
+      "id": "INACTIVE",
+      "at": 46.425
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "ZORPZIN",
+      "text": "Não.",
+      "phase": "REFUSAL"
+    },
+    {
+      "speaker": "RAVOK",
+      "text": "Você não entendeu.",
+      "phase": "MISUNDERSTANDING"
+    },
+    {
+      "speaker": "ZORPZIN",
+      "text": "Entendi perfeitamente.",
+      "phase": "UNDERSTOOD"
+    },
+    {
+      "speaker": "ZORPZIN",
+      "text": "Você não voltou porque queria vencer.",
+      "phase": "TRUTH_ONE"
+    },
+    {
+      "speaker": "ZORPZIN",
+      "text": "Voltou porque nunca conseguiu aceitar que perdeu.",
+      "phase": "TRUTH_TWO"
+    },
+    {
+      "speaker": "RAVOK",
+      "text": "Você não sabe nada sobre mim.",
+      "phase": "FURY"
+    },
+    {
+      "speaker": "K7",
+      "text": "PARTIDA IMEDIATA RECOMENDADA.",
+      "phase": "K7_ALERT"
+    },
+    {
+      "speaker": "RAVOK",
+      "text": "O que você fez?",
+      "phase": "WHAT_DID_YOU_DO"
+    },
+    {
+      "speaker": "ZORPZIN",
+      "text": "Chamei quem deveria ter sido chamado há muito tempo.",
+      "phase": "COORDINATES_SENT"
+    },
+    {
+      "speaker": "K7",
+      "text": "ROTA DE FUGA BLOQUEADA.",
+      "phase": "ESCAPE_BLOCKED"
+    },
+    {
+      "speaker": "OFICIAL",
+      "text": "Ravok Noxaris.",
+      "phase": "OFFICER_NAME"
+    },
+    {
+      "speaker": "OFICIAL",
+      "text": "Você está detido por desenvolvimento de armamento planetário proibido, violação do código de não intervenção e tentativa de ataque contra uma civilização protegida.",
+      "phase": "OFFICER_CHARGES"
+    },
+    {
+      "speaker": "RAVOK",
+      "text": "Você poderia ter sido lembrado para sempre.",
+      "phase": "REMEMBERED"
+    },
+    {
+      "speaker": "ZORPZIN",
+      "text": "Eu já tenho oito coisas para lembrar desta viagem.",
+      "phase": "EIGHT_MEMORIES"
+    },
+    {
+      "speaker": "K7",
+      "text": "PROTOCOLO ENCERRADO.",
+      "phase": "PROTOCOL_CLOSED"
+    }
+  ],
+  "frames": {
+    "count": 2786,
+    "medianMs": 16.69999999999709,
+    "p95Ms": 16.700000000004366,
+    "averageFps": 60.016328922351846
+  },
+  "refusalCardCache": false,
+  "returned": {
+    "event": {
+      "state": "ARRESTED",
+      "medals": 8,
+      "arrived": false,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokAvailable": false,
+      "ravokExited": true,
+      "ravokProposalSeen": true,
+      "ravokChoice": "refuse",
+      "ravokChoicePosition": [
+        368,
+        132
+      ],
+      "ravokEndingCompleted": false,
+      "ravokBadEndingCardReady": false,
+      "ravokBadEndingSeen": false,
+      "ravokArrested": true,
+      "exit": null,
+      "metK7": false,
+      "metRavok": true,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [],
+      "assetErrors": []
+    },
+    "scene": "ILHA_ESCALADA",
+    "player": {
+      "x": 368,
+      "y": 132
+    },
+    "coins": 100,
+    "allMedals": true,
+    "blocks": false,
+    "saved": {
+      "version": 7,
+      "arrived": true,
+      "metK7": false,
+      "metRavok": true,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokExited": true,
+      "ravokProposalSeen": true,
+      "ravokChoice": "refuse",
+      "ravokChoicePosition": [
+        368,
+        132
+      ],
+      "ravokEndingCompleted": false,
+      "ravokBadEndingCardReady": false,
+      "ravokBadEndingSeen": false,
+      "ravokArrested": true
+    }
+  },
+  "controlRestored": true,
+  "reloaded": {
+    "event": {
+      "state": "ARRESTED",
+      "medals": 8,
+      "arrived": false,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokAvailable": false,
+      "ravokExited": true,
+      "ravokProposalSeen": true,
+      "ravokChoice": "refuse",
+      "ravokChoicePosition": [
+        368,
+        132
+      ],
+      "ravokEndingCompleted": false,
+      "ravokBadEndingCardReady": false,
+      "ravokBadEndingSeen": false,
+      "ravokArrested": true,
+      "exit": null,
+      "metK7": false,
+      "metRavok": true,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [],
+      "assetErrors": []
+    },
+    "outcome": {
+      "active": false,
+      "route": null,
+      "phase": "INACTIVE",
+      "time": 0,
+      "completed": false,
+      "arrested": true,
+      "badEndingSeen": false,
+      "cardReady": false,
+      "saveFailed": false,
+      "pendingSave": null,
+      "dialogue": null,
+      "waitingForSpace": false,
+      "origin": null,
+      "duration": 0
+    },
+    "focus": "geologa_escalada",
+    "scene": "ILHA_ESCALADA"
+  },
+  "standardOffer": {
+    "farewell": {
+      "active": true,
+      "state": "MASTERS_FAREWELL",
+      "line": 0,
+      "selected": 1,
+      "walking": false,
+      "message": [
+        "MESTRE DO PING-PONG",
+        "Foi divertido, garoto. Continue treinando esse reflexo."
+      ],
+      "canStartStandardEnding": true,
+      "mastersFarewellStarted": true,
+      "mastersFarewellSeen": false,
+      "masters": [
+        {
+          "scene": "ILHA_PINGPONG",
+          "name": "MESTRE DO PING-PONG",
+          "x": 100,
+          "y": 120,
+          "height": 50,
+          "source": "http://127.0.0.1:8815/npc_mestre_ping_pong.png"
+        },
+        {
+          "scene": "ILHA_BASQUETE",
+          "name": "MESTRE DO BASQUETE",
+          "x": 150,
+          "y": 112,
+          "height": 54,
+          "source": "http://127.0.0.1:8815/basketball_assets/exported/master_basket/idle/master_basket_idle_01.png?v=1.0.1_visual_fix"
+        },
+        {
+          "scene": "ILHA_CORRIDA",
+          "name": "MESTRE DA CORRIDA",
+          "x": 310,
+          "y": 112,
+          "height": 50,
+          "source": "http://127.0.0.1:8815/skate_sprites/mestre_corrida_npc.png"
+        },
+        {
+          "scene": "ILHA_SKATE",
+          "name": "MESTRE DO SKATE",
+          "x": 350,
+          "y": 120,
+          "height": 50,
+          "source": "http://127.0.0.1:8815/mestre_skate.png?v=5_cropped_pixel_perfect"
+        },
+        {
+          "scene": "ILHA_ARCO",
+          "name": "MESTRE DO ARCO",
+          "x": 100,
+          "y": 194,
+          "height": 50,
+          "source": "http://127.0.0.1:8815/mestre_arquearia2.0_overworld.png?v=2.0.0_frontal"
+        },
+        {
+          "scene": "ILHA_ESCALADA",
+          "name": "MESTRE DA ESCALADA",
+          "x": 150,
+          "y": 210,
+          "height": 50,
+          "source": "http://127.0.0.1:8815/npcs_escalada2.0.png?v=1"
+        },
+        {
+          "scene": "ILHA_ESQUI",
+          "name": "MESTRE DO BOXE",
+          "x": 300,
+          "y": 210,
+          "height": 50,
+          "source": "http://127.0.0.1:8815/npc_mestre_novo.png?v=4"
+        },
+        {
+          "scene": "ILHA_SURF",
+          "name": "MESTRE DO SURF",
+          "x": 350,
+          "y": 194,
+          "height": 50,
+          "source": "http://127.0.0.1:8815/surf_assets/mestre_surfing_overworld.png?v=1.0"
+        }
+      ]
+    },
+    "story": {
+      "active": false,
+      "state": "INACTIVE",
+      "introSeen": true,
+      "line": 0,
+      "elapsed": 0,
+      "stageTime": 0,
+      "controlEnabled": true,
+      "canStartStandardEnding": true,
+      "mastersFarewellStarted": true,
+      "message": null,
+      "automaticDuration": 28,
+      "ship": {
+        "x": 225,
+        "y": 150
+      }
+    },
+    "ravok": {
+      "state": "ARRESTED",
+      "medals": 8,
+      "arrived": false,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokAvailable": false,
+      "ravokExited": true,
+      "ravokProposalSeen": true,
+      "ravokChoice": "refuse",
+      "ravokChoicePosition": [
+        368,
+        132
+      ],
+      "ravokEndingCompleted": false,
+      "ravokBadEndingCardReady": false,
+      "ravokBadEndingSeen": false,
+      "ravokArrested": true,
+      "exit": null,
+      "metK7": false,
+      "metRavok": true,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [],
+      "assetErrors": []
+    }
+  },
+  "standardCardCache": false,
+  "standardStarted": {
+    "active": true,
+    "scene": "FINAL_CUTSCENE",
+    "arrested": true
+  },
+  "vacationStarted": {
+    "active": true,
+    "state": "FERIAS_MERECIDAS",
+    "scene": "FERIAS_MERECIDAS",
+    "arrested": true
+  },
+  "vacationCardCache": false
+}

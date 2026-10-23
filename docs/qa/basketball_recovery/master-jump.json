@@ -1,0 +1,7395 @@
+{
+  "case": {
+    "name": "master-jump",
+    "frames": [
+      {
+        "clock": 59.99,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "FREE",
+          "owner": null,
+          "x": 300,
+          "y": 170.01,
+          "vx": 0,
+          "vy": 0.07,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 300,
+          "previousY": 170,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 1.86,
+          "vx": 0,
+          "facing": -1,
+          "special": 28,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.98,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "FREE",
+          "owner": null,
+          "x": 300,
+          "y": 170.19,
+          "vx": 0,
+          "vy": 0.28,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 300,
+          "previousY": 170.01102247990266,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 7.53,
+          "vx": 0,
+          "facing": -1,
+          "special": 28,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.96,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "FREE",
+          "owner": null,
+          "x": 300,
+          "y": 170.57,
+          "vx": 0,
+          "vy": 0.49,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 300,
+          "previousY": 170.18629351879952,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 12.76,
+          "vx": 0,
+          "facing": -1,
+          "special": 28,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.94,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "FREE",
+          "owner": null,
+          "x": 300,
+          "y": 171.16,
+          "vx": 0,
+          "vy": 0.7,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 300,
+          "previousY": 170.5690563186012,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 17.63,
+          "vx": 0,
+          "facing": -1,
+          "special": 28,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.92,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 300,
+          "y": 172.26,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 300,
+          "previousY": 172.2586596172134,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 23.5,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.91,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 193.77,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 193.7738017774324,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 26.23,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.89,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 189.99,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 189.99397479444906,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 30.01,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.88,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 186.69,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 186.6850779949872,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 33.31,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.86,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 183.7,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 183.6952290440213,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 36.3,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.84,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 181.06,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 181.0604874434668,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 38.94,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.83,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 178.91,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 178.9133080092165,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 41.09,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.81,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 177.11,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 177.10770640760202,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 42.89,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.79,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 175.66,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 175.65717112182625,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 44.34,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 59.78,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 174.58,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 174.58175608433066,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 45.42,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 59.76,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 173.9,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 173.90065144172814,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 46.1,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 59.74,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 173.59,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 173.5928485593218,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 46.41,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 59.73,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 173.67,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 173.67021783941874,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 46.33,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 59.71,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 174.12,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 174.12455319844702,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 45.88,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 59.69,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 174.96,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 174.95585463855815,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 45.04,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.68,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 176.18,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 176.17867959453943,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 43.82,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.66,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 177.76,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 177.75887799292497,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 42.24,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.64,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 179.74,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 179.73518271693388,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 40.26,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.63,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 182.09,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 182.09300896312152,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 37.91,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.61,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 184.85,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 184.84875999584776,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 35.15,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.59,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 187.95,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 187.95321231976513,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 32.05,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.58,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 191.46,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 191.45560310476452,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 28.54,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.56,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 195.34,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 195.33951543422023,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 24.66,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.54,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 285,
+          "y": 199.6,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 285,
+          "previousY": 199.6049492858547,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 300,
+          "z": 20.4,
+          "vx": 0,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.53,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 284.72,
+          "y": 204.25,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 284.7188788824081,
+          "previousY": 204.2519046264966,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 299.72,
+          "z": 15.75,
+          "vx": -0.28,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.51,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 284.16,
+          "y": 209.28,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 284.15663664120405,
+          "previousY": 209.28038151976511,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 299.16,
+          "z": 10.72,
+          "vx": -0.56,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.49,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 283.33,
+          "y": 214.63,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 283.3266998416006,
+          "previousY": 214.62558951976513,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 298.33,
+          "z": 5.37,
+          "vx": -0.84,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.48,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 281.21,
+          "y": 217.67,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 281.2139686400024,
+          "previousY": 217.6705315664328,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 297.21,
+          "z": 0,
+          "vx": -1.12,
+          "facing": -1,
+          "special": 32,
+          "frame": 5
+        }
+      },
+      {
+        "clock": 59.46,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 279.47,
+          "y": 219.04,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 279.47205177012904,
+          "previousY": 219.0392496780767,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 295.47,
+          "z": 0,
+          "vx": -1.74,
+          "facing": -1,
+          "special": 32,
+          "frame": 5
+        }
+      },
+      {
+        "clock": 59.44,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 277.13,
+          "y": 221.07,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 277.1255156085256,
+          "previousY": 221.072259098647,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 293.13,
+          "z": 0,
+          "vx": -2.36,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.43,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 274.12,
+          "y": 223.72,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 274.1207482606301,
+          "previousY": 223.72207364253757,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 290.12,
+          "z": 0,
+          "vx": -2.98,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.41,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 270.51,
+          "y": 226.83,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 270.5113839321016,
+          "previousY": 226.83070116940786,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 286.51,
+          "z": 0,
+          "vx": -3.6,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.39,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 266.88,
+          "y": 230.25,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 266.8759839268802,
+          "previousY": 230.2545134610804,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 282.88,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.38,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 263.22,
+          "y": 233.88,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 263.2186839425443,
+          "previousY": 233.8843748709388,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 279.22,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.36,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 259.56,
+          "y": 237.54,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 259.5613839321016,
+          "previousY": 237.54124941366877,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 275.56,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 59.34,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 255.9,
+          "y": 241.06,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 255.90408392165887,
+          "previousY": 241.0646765169056,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 271.9,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 59.33,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 252.29,
+          "y": 244.26,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 252.29058392165888,
+          "previousY": 244.26358135131446,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 268.29,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 59.31,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 248.63,
+          "y": 247.07,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 248.63328393732297,
+          "previousY": 247.07485968324443,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 264.63,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 59.29,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 245,
+          "y": 249.32,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 244.99788393210162,
+          "previousY": 249.32268561875483,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 261,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 59.28,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 241.3,
+          "y": 250.95,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 241.29678393732297,
+          "previousY": 250.95046299469217,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 257.3,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 59.26,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 237.66,
+          "y": 251.83,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 237.66138393210161,
+          "previousY": 251.83003109735967,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 253.66,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.24,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 234.03,
+          "y": 251.96,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 234.02598392688026,
+          "previousY": 251.95821886132143,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 250.03,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.23,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 230.37,
+          "y": 251.32,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 230.36868394254435,
+          "previousY": 251.32342604555637,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 246.37,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.21,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 226.71,
+          "y": 249.95,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 226.71138393210163,
+          "previousY": 249.95043559144668,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 242.71,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.19,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 223.08,
+          "y": 247.91,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 223.07598392688027,
+          "previousY": 247.9136276191636,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 239.08,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.18,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 219.4,
+          "y": 245.26,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 219.396783937323,
+          "previousY": 245.26059236793637,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 235.4,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 59.16,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 215.76,
+          "y": 242.17,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 215.76138393210164,
+          "previousY": 242.16929883059217,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 231.76,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 59.14,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 212.13,
+          "y": 238.75,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 212.12598392688028,
+          "previousY": 238.74548653891964,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 228.13,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 59.13,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 208.49,
+          "y": 235.14,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 208.49058392165892,
+          "previousY": 235.13760215322358,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 224.49,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 59.11,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 204.79,
+          "y": 231.44,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 204.78948392688028,
+          "previousY": 231.4370964679327,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 220.79,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 59.09,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 201.15,
+          "y": 227.94,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 201.15408392165892,
+          "previousY": 227.93532348309444,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 217.15,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 59.08,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 197.52,
+          "y": 224.72,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 197.51868394254438,
+          "previousY": 224.71817602568717,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 213.52,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 4
+        }
+      },
+      {
+        "clock": 59.06,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 193.86,
+          "y": 221.91,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 193.86138393210166,
+          "previousY": 221.90985624982616,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 209.86,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 4
+        }
+      },
+      {
+        "clock": 59.04,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 190.18,
+          "y": 219.64,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 190.18218394254438,
+          "previousY": 219.6423499017888,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 206.18,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 4
+        }
+      },
+      {
+        "clock": 59.03,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 186.55,
+          "y": 218.05,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 186.54678393732303,
+          "previousY": 218.04953700530785,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 202.55,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 4
+        }
+      },
+      {
+        "clock": 59.01,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 182.89,
+          "y": 217.17,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 182.8894839268803,
+          "previousY": 217.1669250503086,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 198.89,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 4
+        }
+      },
+      {
+        "clock": 58.99,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 179.28,
+          "y": 217.04,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 179.27598392688031,
+          "previousY": 217.04178113867854,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "DRIBBLE",
+          "x": 195.28,
+          "z": 0,
+          "vx": -3.65,
+          "facing": -1,
+          "special": 32,
+          "frame": 4
+        }
+      },
+      {
+        "clock": 58.98,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 176.06,
+          "y": 216,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 176.0583826776998,
+          "previousY": 216,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 192.06,
+          "z": 0,
+          "vx": -3.21,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 58.96,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 179.49,
+          "y": 220.84,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 179.4928500518488,
+          "previousY": 220.84,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 189.21,
+          "z": 0,
+          "vx": -2.82,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 58.94,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 177,
+          "y": 220.84,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 177.00432284687446,
+          "previousY": 220.84,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 186.72,
+          "z": 0,
+          "vx": -2.48,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 58.93,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 174.84,
+          "y": 220.84,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 174.83787762113184,
+          "previousY": 220.84,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 184.56,
+          "z": 0,
+          "vx": -2.19,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 58.91,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 172.91,
+          "y": 220.84,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 172.90879033511655,
+          "previousY": 220.84,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 150,
+          "z": 0,
+          "vx": 0,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 182.63,
+          "z": 0,
+          "vx": -1.93,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 58.89,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 171.24,
+          "y": 220.84,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 171.24307884331168,
+          "previousY": 220.84,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 149.97,
+          "z": 0,
+          "vx": -0.3,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 180.96,
+          "z": 0,
+          "vx": -1.39,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 58.88,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 170.47,
+          "y": 220.84,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 170.47378873101948,
+          "previousY": 220.84,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 149.27,
+          "z": 0,
+          "vx": -0.41,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 180.19,
+          "z": 0,
+          "vx": -1.04,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 58.86,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 169.87,
+          "y": 220.84,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 169.87419099303082,
+          "previousY": 220.84,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 148.65,
+          "z": 0,
+          "vx": -0.42,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 179.59,
+          "z": 0,
+          "vx": -0.81,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 58.84,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 171.53,
+          "y": 217.96,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 171.5270241456279,
+          "previousY": 217.96,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 148.12,
+          "z": 0,
+          "vx": -0.39,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 179.09,
+          "z": 0,
+          "vx": -0.64,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 58.83,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 171.1,
+          "y": 217.96,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 171.1039242005116,
+          "previousY": 217.96,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 147.69,
+          "z": 0,
+          "vx": -0.34,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 178.66,
+          "z": 0,
+          "vx": -0.52,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 58.81,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 170.75,
+          "y": 217.96,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 170.75031389743197,
+          "previousY": 217.96,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 147.33,
+          "z": 0,
+          "vx": -0.3,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 178.31,
+          "z": 0,
+          "vx": -0.42,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 58.79,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 170.46,
+          "y": 217.96,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 170.45581558493762,
+          "previousY": 217.96,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 147.03,
+          "z": 0,
+          "vx": -0.25,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 178.02,
+          "z": 0,
+          "vx": -0.34,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 58.78,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 170.21,
+          "y": 217.96,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 170.2098266206047,
+          "previousY": 217.96,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 146.78,
+          "z": 0,
+          "vx": -0.21,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 177.77,
+          "z": 0,
+          "vx": -0.28,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 58.76,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 170.01,
+          "y": 217.96,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 170.00693616342826,
+          "previousY": 217.96,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 146.57,
+          "z": 0,
+          "vx": -0.18,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 177.57,
+          "z": 0,
+          "vx": -0.23,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 58.74,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 169.83,
+          "y": 217.96,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 169.83359455999584,
+          "previousY": 217.96,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 146.4,
+          "z": 0,
+          "vx": -0.15,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 177.39,
+          "z": 0,
+          "vx": -0.19,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 58.73,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 169.7,
+          "y": 217.96,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 1,
+          "scoredShotId": -1,
+          "previousX": 169.69652793202167,
+          "previousY": 217.96,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 146.26,
+          "z": 0,
+          "vx": -0.12,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 177.26,
+          "z": 0,
+          "vx": -0.16,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 58.71,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 163.25,
+          "y": 197.45,
+          "vx": -1.64,
+          "vy": -4.58,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 164.87762408494316,
+          "previousY": 202.12,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 146.15,
+          "z": 0,
+          "vx": -0.1,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 177.14,
+          "z": 0,
+          "vx": -0.13,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 58.69,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 161.62,
+          "y": 192.99,
+          "vx": -1.64,
+          "vy": -4.37,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 163.24696513876816,
+          "previousY": 197.45024762401445,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 146.05,
+          "z": 0,
+          "vx": -0.08,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 177.05,
+          "z": 0,
+          "vx": -0.11,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 58.68,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 159.98,
+          "y": 188.71,
+          "vx": -1.64,
+          "vy": -4.16,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 161.61630619259316,
+          "previousY": 192.9888186086273,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 145.97,
+          "z": 0,
+          "vx": -0.07,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 176.97,
+          "z": 0,
+          "vx": -0.09,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 58.66,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 158.35,
+          "y": 184.69,
+          "vx": -1.64,
+          "vy": -3.96,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 159.97582400913674,
+          "previousY": 188.7107231193026,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 145.9,
+          "z": 0,
+          "vx": -0.06,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 176.9,
+          "z": 0,
+          "vx": -0.07,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 58.64,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 156.7,
+          "y": 180.81,
+          "vx": -1.64,
+          "vy": -3.74,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 158.3549883119534,
+          "previousY": 184.690930687947,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 145.85,
+          "z": 0,
+          "vx": -0.05,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 176.85,
+          "z": 0,
+          "vx": -0.06,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 58.63,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 155.08,
+          "y": 177.21,
+          "vx": -1.64,
+          "vy": -3.54,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 156.70468286779513,
+          "previousY": 180.8095194254051,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 145.8,
+          "z": 0,
+          "vx": -0.04,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 176.8,
+          "z": 0,
+          "vx": -0.05,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 58.61,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 153.42,
+          "y": 173.73,
+          "vx": -1.64,
+          "vy": -3.32,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 155.0838471706118,
+          "previousY": 177.2051111949418,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 145.77,
+          "z": 0,
+          "vx": -0.03,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 176.76,
+          "z": 0,
+          "vx": -0.04,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 58.59,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 151.79,
+          "y": 170.52,
+          "vx": -1.64,
+          "vy": -3.11,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 153.42371848917213,
+          "previousY": 173.72668925576758,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 145.74,
+          "z": 0,
+          "vx": -0.03,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 176.73,
+          "z": 0,
+          "vx": -0.03,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 58.58,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 150.13,
+          "y": 167.47,
+          "vx": -1.64,
+          "vy": -2.9,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 151.79305954299713,
+          "previousY": 170.52022024218286,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 145.71,
+          "z": 0,
+          "vx": -0.02,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 176.71,
+          "z": 0,
+          "vx": -0.03,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 58.56,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 148.53,
+          "y": 164.73,
+          "vx": -1.64,
+          "vy": -2.7,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 150.13293086155747,
+          "previousY": 167.46980770240486,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 145.69,
+          "z": 0,
+          "vx": -0.02,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 176.69,
+          "z": 0,
+          "vx": -0.02,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 58.54,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 146.87,
+          "y": 162.11,
+          "vx": -1.64,
+          "vy": -2.48,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 148.53174166235735,
+          "previousY": 164.73225231609524,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 145.67,
+          "z": 0,
+          "vx": -0.02,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 176.67,
+          "z": 0,
+          "vx": -0.02,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 58.53,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 145.23,
+          "y": 159.72,
+          "vx": -1.64,
+          "vy": -2.27,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 146.8716129809177,
+          "previousY": 162.10601625480498,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 145.66,
+          "z": 0,
+          "vx": -0.01,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 176.66,
+          "z": 0,
+          "vx": -0.02,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 58.51,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 143.6,
+          "y": 157.56,
+          "vx": -1.64,
+          "vy": -2.06,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 145.2311307857511,
+          "previousY": 159.72296325990143,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 145.64,
+          "z": 0,
+          "vx": -0.01,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 176.64,
+          "z": 0,
+          "vx": -0.01,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 58.49,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 141.96,
+          "y": 155.6,
+          "vx": -1.64,
+          "vy": -1.85,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 143.6004718395761,
+          "previousY": 157.56313088752074,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 145.63,
+          "z": 0,
+          "vx": -0.01,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "SHOOT",
+          "x": 176.63,
+          "z": 0,
+          "vx": -0.01,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 58.48,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 140.34,
+          "y": 153.87,
+          "vx": -1.64,
+          "vy": -1.65,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 141.9599896561197,
+          "previousY": 155.60049706797795,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 145.63,
+          "z": 0,
+          "vx": -0.01,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "IDLE",
+          "x": 176.63,
+          "z": 0,
+          "vx": -0.01,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 58.46,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 138.7,
+          "y": 152.32,
+          "vx": -1.64,
+          "vy": -1.44,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 140.33915395893635,
+          "previousY": 153.86843623632498,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 145.33,
+          "z": 0,
+          "vx": -0.12,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "RUN",
+          "x": 176.28,
+          "z": 0,
+          "vx": -0.52,
+          "facing": -1,
+          "special": 32,
+          "frame": 4
+        }
+      },
+      {
+        "clock": 58.44,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 137.07,
+          "y": 151,
+          "vx": -1.64,
+          "vy": -1.23,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 138.69867176376977,
+          "previousY": 152.32495904381867,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 144.74,
+          "z": 0,
+          "vx": -0.28,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "RUN",
+          "x": 175.65,
+          "z": 0,
+          "vx": -0.95,
+          "facing": -1,
+          "special": 32,
+          "frame": 4
+        }
+      },
+      {
+        "clock": 58.43,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 135.42,
+          "y": 149.87,
+          "vx": -1.64,
+          "vy": -1.01,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 137.06801281759476,
+          "previousY": 150.99967507263665,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "IDLE",
+          "x": 143.86,
+          "z": 0,
+          "vx": -0.46,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "RUN",
+          "x": 174.74,
+          "z": 0,
+          "vx": -1.33,
+          "facing": -1,
+          "special": 32,
+          "frame": 5
+        }
+      },
+      {
+        "clock": 58.41,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 133.77,
+          "y": 148.95,
+          "vx": -1.64,
+          "vy": -0.8,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 135.41770738514666,
+          "previousY": 149.87052718967323,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 142.71,
+          "z": 0,
+          "vx": -0.63,
+          "facing": 1,
+          "special": 63,
+          "frame": 5
+        },
+        "master": {
+          "state": "RUN",
+          "x": 173.57,
+          "z": 0,
+          "vx": -1.66,
+          "facing": -1,
+          "special": 32,
+          "frame": 5
+        }
+      },
+      {
+        "clock": 58.39,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 132.14,
+          "y": 148.26,
+          "vx": -1.64,
+          "vy": -0.59,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 133.76740194098838,
+          "previousY": 148.95475273975745,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 141.34,
+          "z": 0,
+          "vx": -0.81,
+          "facing": 1,
+          "special": 63,
+          "frame": 5
+        },
+        "master": {
+          "state": "RUN",
+          "x": 172.19,
+          "z": 0,
+          "vx": -1.96,
+          "facing": -1,
+          "special": 32,
+          "frame": 5
+        }
+      },
+      {
+        "clock": 58.38,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 130.5,
+          "y": 147.77,
+          "vx": -1.64,
+          "vy": -0.38,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 132.13674300652357,
+          "previousY": 148.25945869432383,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 139.75,
+          "z": 0,
+          "vx": -0.97,
+          "facing": 1,
+          "special": 63,
+          "frame": 5
+        },
+        "master": {
+          "state": "RUN",
+          "x": 170.58,
+          "z": 0,
+          "vx": -2.22,
+          "facing": -1,
+          "special": 32,
+          "frame": 5
+        }
+      },
+      {
+        "clock": 58.36,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 128.88,
+          "y": 147.49,
+          "vx": -1.64,
+          "vy": -0.18,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 130.496260811357,
+          "previousY": 147.77018570482758,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 137.99,
+          "z": 0,
+          "vx": -1.11,
+          "facing": 1,
+          "special": 63,
+          "frame": 5
+        },
+        "master": {
+          "state": "RUN",
+          "x": 168.81,
+          "z": 0,
+          "vx": -2.46,
+          "facing": -1,
+          "special": 32,
+          "frame": 5
+        }
+      },
+      {
+        "clock": 58.34,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 127.23,
+          "y": 147.42,
+          "vx": -1.64,
+          "vy": 0.04,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 128.87542511417365,
+          "previousY": 147.49384067376943,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 136.01,
+          "z": 0,
+          "vx": -1.25,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "RUN",
+          "x": 166.82,
+          "z": 0,
+          "vx": -2.68,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 58.33,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 125.6,
+          "y": 147.56,
+          "vx": -1.64,
+          "vy": 0.24,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 127.22511968172559,
+          "previousY": 147.4239395074967,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 133.91,
+          "z": 0,
+          "vx": -1.37,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "RUN",
+          "x": 164.71,
+          "z": 0,
+          "vx": -2.87,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 58.31,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 123.96,
+          "y": 147.91,
+          "vx": -1.64,
+          "vy": 0.45,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 125.60428398454225,
+          "previousY": 147.56297867584368,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 131.65,
+          "z": 0,
+          "vx": -1.48,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "RUN",
+          "x": 162.43,
+          "z": 0,
+          "vx": -3.05,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 58.29,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 122.32,
+          "y": 148.47,
+          "vx": -1.64,
+          "vy": 0.67,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 123.9638017893756,
+          "previousY": 147.9132814887447,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 129.26,
+          "z": 0,
+          "vx": -1.58,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "RUN",
+          "x": 160.04,
+          "z": 0,
+          "vx": -3.2,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 58.28,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 120.67,
+          "y": 149.25,
+          "vx": -1.64,
+          "vy": 0.88,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 122.32331959420894,
+          "previousY": 148.47442514284975,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 126.81,
+          "z": 0,
+          "vx": -1.64,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "RUN",
+          "x": 157.59,
+          "z": 0,
+          "vx": -3.21,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 58.26,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 119.04,
+          "y": 150.23,
+          "vx": -1.64,
+          "vy": 1.09,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 120.6730141617609,
+          "previousY": 149.2516673347782,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 124.37,
+          "z": 0,
+          "vx": -1.68,
+          "facing": 1,
+          "special": 63,
+          "frame": 0
+        },
+        "master": {
+          "state": "RUN",
+          "x": 155.16,
+          "z": 0,
+          "vx": -3.22,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 58.24,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 117.41,
+          "y": 151.42,
+          "vx": -1.64,
+          "vy": 1.3,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 119.0423552155859,
+          "previousY": 150.22923496690365,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 121.91,
+          "z": 0,
+          "vx": -1.71,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "RUN",
+          "x": 152.7,
+          "z": 0,
+          "vx": -3.22,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 58.23,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 115.77,
+          "y": 152.82,
+          "vx": -1.64,
+          "vy": 1.51,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 117.4116962694109,
+          "previousY": 151.41512595962752,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 119.43,
+          "z": 0,
+          "vx": -1.72,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "RUN",
+          "x": 150.23,
+          "z": 0,
+          "vx": -3.23,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 58.21,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 114.12,
+          "y": 154.44,
+          "vx": -1.64,
+          "vy": 1.72,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 115.77121408595448,
+          "previousY": 152.8183704459698,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 116.94,
+          "z": 0,
+          "vx": -1.73,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "RUN",
+          "x": 147.73,
+          "z": 0,
+          "vx": -3.23,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 58.19,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 112.51,
+          "y": 156.23,
+          "vx": -1.64,
+          "vy": 1.92,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 114.1209086417962,
+          "previousY": 154.4427560068687,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 114.49,
+          "z": 0,
+          "vx": -1.74,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "RUN",
+          "x": 145.29,
+          "z": 0,
+          "vx": -3.23,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 58.18,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 110.86,
+          "y": 158.28,
+          "vx": -1.64,
+          "vy": 2.14,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 112.50989619360448,
+          "previousY": 156.23427915201952,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 111.99,
+          "z": 0,
+          "vx": -1.74,
+          "facing": 1,
+          "special": 63,
+          "frame": 1
+        },
+        "master": {
+          "state": "RUN",
+          "x": 142.78,
+          "z": 0,
+          "vx": -3.23,
+          "facing": -1,
+          "special": 32,
+          "frame": 1
+        }
+      },
+      {
+        "clock": 58.16,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 109.22,
+          "y": 160.53,
+          "vx": -1.64,
+          "vy": 2.35,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 110.85959076115644,
+          "previousY": 158.28033126004388,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 109.5,
+          "z": 0,
+          "vx": -1.74,
+          "facing": 1,
+          "special": 63,
+          "frame": 2
+        },
+        "master": {
+          "state": "RUN",
+          "x": 140.29,
+          "z": 0,
+          "vx": -3.23,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 58.14,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 107.59,
+          "y": 162.97,
+          "vx": -1.64,
+          "vy": 2.56,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 109.21910856598979,
+          "previousY": 160.52567659865684,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 107.02,
+          "z": 0,
+          "vx": -1.74,
+          "facing": 1,
+          "special": 63,
+          "frame": 2
+        },
+        "master": {
+          "state": "RUN",
+          "x": 137.82,
+          "z": 0,
+          "vx": -3.23,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 58.13,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 105.95,
+          "y": 165.63,
+          "vx": -1.64,
+          "vy": 2.77,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 107.58844961981478,
+          "previousY": 162.96652759318314,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 104.53,
+          "z": 0,
+          "vx": -1.74,
+          "facing": 1,
+          "special": 63,
+          "frame": 2
+        },
+        "master": {
+          "state": "RUN",
+          "x": 135.33,
+          "z": 0,
+          "vx": -3.23,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 58.11,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 104.31,
+          "y": 168.51,
+          "vx": -1.64,
+          "vy": 2.98,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 105.94796743635837,
+          "previousY": 165.63229207411806,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 102.04,
+          "z": 0,
+          "vx": -1.74,
+          "facing": 1,
+          "special": 63,
+          "frame": 2
+        },
+        "master": {
+          "state": "RUN",
+          "x": 132.83,
+          "z": 0,
+          "vx": -3.23,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 58.09,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 102.67,
+          "y": 171.6,
+          "vx": -1.64,
+          "vy": 3.19,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 104.30748524119171,
+          "previousY": 168.50889741453346,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 99.55,
+          "z": 0,
+          "vx": -1.74,
+          "facing": 1,
+          "special": 63,
+          "frame": 2
+        },
+        "master": {
+          "state": "RUN",
+          "x": 130.34,
+          "z": 0,
+          "vx": -3.23,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 58.08,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 101.03,
+          "y": 174.89,
+          "vx": -1.64,
+          "vy": 3.4,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 102.6670030577353,
+          "previousY": 171.59634357336137,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 97.05,
+          "z": 0,
+          "vx": -1.74,
+          "facing": 1,
+          "special": 63,
+          "frame": 2
+        },
+        "master": {
+          "state": "RUN",
+          "x": 127.85,
+          "z": 0,
+          "vx": -3.23,
+          "facing": -1,
+          "special": 32,
+          "frame": 2
+        }
+      },
+      {
+        "clock": 58.06,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 99.41,
+          "y": 178.36,
+          "vx": -1.64,
+          "vy": 3.6,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 101.02652086256865,
+          "previousY": 174.8946305946798,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 94.59,
+          "z": 0,
+          "vx": -1.75,
+          "facing": 1,
+          "special": 63,
+          "frame": 3
+        },
+        "master": {
+          "state": "RUN",
+          "x": 125.39,
+          "z": 0,
+          "vx": -3.23,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 58.04,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 97.76,
+          "y": 182.1,
+          "vx": -1.64,
+          "vy": 3.82,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 99.40568516538531,
+          "previousY": 178.36048556362167,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 92.08,
+          "z": 0,
+          "vx": -1.74,
+          "facing": 1,
+          "special": 63,
+          "frame": 3
+        },
+        "master": {
+          "state": "RUN",
+          "x": 122.88,
+          "z": 0,
+          "vx": -3.23,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 58.03,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 96.11,
+          "y": 186.03,
+          "vx": -1.64,
+          "vy": 4.03,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 97.75537973293727,
+          "previousY": 182.1008243865343,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 89.59,
+          "z": 0,
+          "vx": -1.74,
+          "facing": 1,
+          "special": 63,
+          "frame": 3
+        },
+        "master": {
+          "state": "RUN",
+          "x": 120.39,
+          "z": 0,
+          "vx": -3.23,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 58.01,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "SHOT",
+          "owner": null,
+          "x": 94.49,
+          "y": 190.12,
+          "vx": -1.64,
+          "vy": 4.23,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 96.11489753777062,
+          "previousY": 186.03037140965517,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": true,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": {
+            "x": 95.16583135418577,
+            "y": 188.39999999999998,
+            "vy": 4.148647633869736,
+            "hoop": "left",
+            "shotId": 2
+          },
+          "pendingBasket": {
+            "x": 95.16583135418577,
+            "y": 188.39999999999998,
+            "vy": 4.148647633869736,
+            "hoop": "left",
+            "shotId": 2
+          },
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 87.13,
+          "z": 0,
+          "vx": -1.75,
+          "facing": 1,
+          "special": 63,
+          "frame": 3
+        },
+        "master": {
+          "state": "RUN",
+          "x": 117.93,
+          "z": 0,
+          "vx": -3.23,
+          "facing": -1,
+          "special": 32,
+          "frame": 3
+        }
+      },
+      {
+        "clock": 57.99,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "REBOUND",
+          "owner": null,
+          "x": 93.3,
+          "y": 194.36,
+          "vx": 2.81,
+          "vy": 3.35,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 94.49406184058728,
+          "previousY": 190.11992637859703,
+          "radius": 8.8,
+          "wasAboveRim": true,
+          "crossedRimPlane": true,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": true,
+          "scoreKind": null,
+          "scoreCrossing": {
+            "x": 95.16583135418577,
+            "y": 188.39999999999998,
+            "vy": 4.148647633869736,
+            "hoop": "left",
+            "shotId": 2
+          },
+          "pendingBasket": {
+            "x": 95.16583135418577,
+            "y": 188.39999999999998,
+            "vy": 4.148647633869736,
+            "hoop": "left",
+            "shotId": 2
+          },
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 84.7,
+          "z": 0,
+          "vx": -1.72,
+          "facing": 1,
+          "special": 63,
+          "frame": 3
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 115.51,
+          "z": 5.76,
+          "vx": -3.12,
+          "facing": -1,
+          "special": 32,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 57.98,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 96.11,
+          "y": 197.82,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 96.11144351792163,
+          "previousY": 197.82173760923354,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 82.34,
+          "z": 0,
+          "vx": -1.68,
+          "facing": 1,
+          "special": 63,
+          "frame": 4
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 113.15,
+          "z": 11.14,
+          "vx": -3.02,
+          "facing": -1,
+          "special": 36,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 57.96,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 95.86,
+          "y": 203.86,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 95.86077697680616,
+          "previousY": 203.86006455286392,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 80.04,
+          "z": 0,
+          "vx": -1.64,
+          "facing": 1,
+          "special": 63,
+          "frame": 4
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 110.86,
+          "z": 16.14,
+          "vx": -2.94,
+          "facing": -1,
+          "special": 36,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 57.94,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 93.63,
+          "y": 199.24,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 93.62505164643123,
+          "previousY": 199.2431291331828,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 77.8,
+          "z": 0,
+          "vx": -1.6,
+          "facing": 1,
+          "special": 63,
+          "frame": 4
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 108.63,
+          "z": 20.76,
+          "vx": -2.86,
+          "facing": -1,
+          "special": 36,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 57.93,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 91.47,
+          "y": 195.06,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 91.4684462602936,
+          "previousY": 195.05843873210648,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 75.63,
+          "z": 0,
+          "vx": -1.57,
+          "facing": 1,
+          "special": 63,
+          "frame": 4
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 106.47,
+          "z": 24.94,
+          "vx": -2.8,
+          "facing": -1,
+          "special": 36,
+          "frame": 0
+        }
+      },
+      {
+        "clock": 57.91,
+        "score": {
+          "zorp": 11,
+          "master": 7
+        },
+        "ball": {
+          "state": "POSSESSED_MASTER",
+          "owner": "master",
+          "x": 89.3,
+          "y": 191.15,
+          "vx": 0,
+          "vy": 0,
+          "shotId": 2,
+          "scoredShotId": -1,
+          "previousX": 89.30486311176246,
+          "previousY": 191.15376806896984,
+          "radius": 8.8,
+          "wasAboveRim": false,
+          "crossedRimPlane": false,
+          "basketScored": false,
+          "enteredRimFromBelow": false,
+          "rimTouched": false,
+          "backboardTouched": false,
+          "scoreKind": null,
+          "scoreCrossing": null,
+          "pendingBasket": null,
+          "recoveryScoringBlocked": false
+        },
+        "recovery": {
+          "stage": "NORMAL",
+          "suspect": 0,
+          "blocked": 0,
+          "blink": 0,
+          "nudges": 0,
+          "neutralResets": 0,
+          "lastAction": null
+        },
+        "player": {
+          "state": "RUN",
+          "x": 73.47,
+          "z": 0,
+          "vx": -1.53,
+          "facing": 1,
+          "special": 63,
+          "frame": 4
+        },
+        "master": {
+          "state": "JUMP",
+          "x": 104.3,
+          "z": 28.85,
+          "vx": -2.74,
+          "facing": -1,
+          "special": 36,
+          "frame": 0
+        }
+      }
+    ],
+    "stages": [
+      "NORMAL"
+    ],
+    "owners": [
+      "master"
+    ],
+    "resetSnapshot": null,
+    "nudgeSnapshot": null
+  },
+  "final": {
+    "phase": "PLAYING",
+    "assetsReady": true,
+    "assetFailures": 0,
+    "invalidDrawCalls": 0,
+    "manifestEntries": 91,
+    "score": {
+      "zorp": 11,
+      "master": 7
+    },
+    "clock": 57.91,
+    "overtime": false,
+    "winner": null,
+    "recovery": {
+      "stage": "NORMAL",
+      "suspect": 0,
+      "blocked": 0,
+      "blink": 0,
+      "nudges": 0,
+      "neutralResets": 0,
+      "lastAction": null
+    },
+    "player": {
+      "state": "RUN",
+      "x": 73.47,
+      "z": 0,
+      "vx": -1.53,
+      "facing": 1,
+      "special": 63,
+      "frame": 4
+    },
+    "master": {
+      "state": "JUMP",
+      "x": 104.3,
+      "z": 28.85,
+      "vx": -2.74,
+      "facing": -1,
+      "special": 36,
+      "frame": 0
+    },
+    "ball": {
+      "state": "POSSESSED_MASTER",
+      "owner": "master",
+      "x": 89.3,
+      "y": 191.15,
+      "vx": 0,
+      "vy": 0,
+      "shotId": 2,
+      "scoredShotId": -1,
+      "previousX": 89.30486311176246,
+      "previousY": 191.15376806896984,
+      "radius": 8.8,
+      "wasAboveRim": false,
+      "crossedRimPlane": false,
+      "basketScored": false,
+      "enteredRimFromBelow": false,
+      "rimTouched": false,
+      "backboardTouched": false,
+      "scoreKind": null,
+      "scoreCrossing": null,
+      "pendingBasket": null,
+      "recoveryScoringBlocked": false
+    },
+    "stats": {
+      "shots": 1,
+      "misses": 0,
+      "twoPointers": 0,
+      "threePointers": 0,
+      "dunks": 0,
+      "pumpFakes": 0,
+      "steals": 0,
+      "blocks": 0,
+      "rebounds": 2,
+      "dashes": 0,
+      "specials": 0,
+      "overtimes": 0,
+      "rimHits": 0,
+      "backboardHits": 1,
+      "floorBounces": 0,
+      "swooshes": 0,
+      "normalBaskets": 0,
+      "baskets": [],
+      "possessions": 3,
+      "nonFinitePhysics": 0,
+      "actionsSeen": [
+        "IDLE",
+        "JUMP",
+        "DRIBBLE",
+        "SHOOT",
+        "RUN"
+      ],
+      "ballStatesSeen": [
+        "POSSESSED_ZORP",
+        "FREE",
+        "POSSESSED_MASTER",
+        "SHOT",
+        "REBOUND"
+      ],
+      "resultsSeen": []
+    },
+    "colliders": {
+      "left": {
+        "side": "left",
+        "x": 60,
+        "rimX": 95.6,
+        "rimY": 188.39999999999998,
+        "netTimer": 0,
+        "rimLeft": {
+          "x": 81.2,
+          "y": 188.39999999999998,
+          "radius": 1.6,
+          "id": "left-rim-left"
+        },
+        "rimRight": {
+          "x": 110,
+          "y": 188.39999999999998,
+          "radius": 1.6,
+          "id": "left-rim-right"
+        },
+        "opening": {
+          "left": 82.8,
+          "right": 108.4
+        },
+        "backboard": {
+          "a": {
+            "x": 69.6,
+            "y": 150.39999999999998
+          },
+          "b": {
+            "x": 83.2,
+            "y": 196.4
+          },
+          "radius": 1.3,
+          "id": "left-backboard"
+        }
+      },
+      "right": {
+        "side": "right",
+        "x": 390,
+        "rimX": 351.4,
+        "rimY": 188.39999999999998,
+        "netTimer": 0,
+        "rimLeft": {
+          "x": 336.8,
+          "y": 188.39999999999998,
+          "radius": 1.6,
+          "id": "right-rim-left"
+        },
+        "rimRight": {
+          "x": 366,
+          "y": 188.39999999999998,
+          "radius": 1.6,
+          "id": "right-rim-right"
+        },
+        "opening": {
+          "left": 338.40000000000003,
+          "right": 364.4
+        },
+        "backboard": {
+          "a": {
+            "x": 376.4,
+            "y": 150.39999999999998
+          },
+          "b": {
+            "x": 363.2,
+            "y": 196.4
+          },
+          "radius": 1.3,
+          "id": "right-backboard"
+        }
+      }
+    }
+  },
+  "reachable": true
+}

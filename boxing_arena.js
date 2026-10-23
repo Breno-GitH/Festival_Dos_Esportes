@@ -1,717 +1,530 @@
 "use strict";
 
-// Boxe arcade 2.5D: deslocamento em X e profundidade, ataques direcionais e leitura visual.
+// Fixed 60 Hz simulation; positions are mat coordinates, Y is depth, never jump height.
 const BOXING_CONFIG = Object.freeze({
-    ring: Object.freeze({ top: 166, bottom: 252, backLeft: 62, backRight: 388, frontLeft: 31, frontRight: 419 }),
-    body: Object.freeze({ radiusX: 14, radiusY: 7, depthScale: 1.65, minSeparation: 30 }),
-    movement: Object.freeze({ playerX: 2.35, playerY: 1.52, masterX: 1.76, masterY: 1.15 }),
-    maxHp: 100,
-    knockdown: Object.freeze({ countFrames: 42, riseCount: 5, getupFrames: 44,
-        recoveryHp: 30, heavyHpThreshold: 28, maxRecoveries: 1 }),
-    guardDamageScale: 0.3,
-    counter: Object.freeze({ window: 42, stun: 105, damageBonus: 3 }),
-    guard: Object.freeze({ max: 100, decay: 0.55, breakFrames: 95, pressure: Object.freeze({ jab: 16, cross: 30, hook: 37, dash: 105, charged: 105 }) }),
-    specials: Object.freeze({ dashCooldown: 480, chargedCooldown: 510, burstCooldown: 570, burstPressure: 3, burstWindow: 150 }),
-    dodge: Object.freeze({ duration: 14, invulnerableFrom: 3, invulnerableTo: 11, cooldown: 30, speedX: 4, speedY: 2.55 }),
-    attacks: Object.freeze({
-        jab: Object.freeze({ damage: 6, range: 54, depthTolerance: 13, startup: 4, active: 3, recovery: 9, hitstun: 9, push: 5 }),
-        cross: Object.freeze({ damage: 12, range: 68, depthTolerance: 10, startup: 8, active: 4, recovery: 15, hitstun: 14, push: 9 }),
-        hook: Object.freeze({ damage: 17, range: 48, depthTolerance: 19, startup: 11, active: 5, recovery: 19, hitstun: 18, push: 12 }),
-        dash: Object.freeze({ damage: 24, range: 51, depthTolerance: 14, startup: 13, active: 5, recovery: 22, hitstun: 24, push: 25 }),
-        charged: Object.freeze({ damage: 27, range: 65, depthTolerance: 13, startup: 30, active: 6, recovery: 26, hitstun: 26, push: 19 })
+    ring: Object.freeze({ top:166, bottom:252, backLeft:62, backRight:388, frontLeft:31, frontRight:419 }),
+    body: Object.freeze({ radiusX:14, radiusY:7, depthScale:1.65, minSeparation:30 }),
+    movement: Object.freeze({ playerX:2.65, playerY:1.8, masterX:1.95, masterY:1.35 }),
+    maxHp:100, step:1/60, koFrames:48,
+    guardDamageScale:.25,
+    guard:Object.freeze({ max:100, decay:.75, holdPressure:.28, breakFrames:30, breakResidual:40,
+        pressure:Object.freeze({jab:18,cross:34,special:72}) }),
+    dodge:Object.freeze({duration:18, moveFrames:8, invulnerableFrom:3, invulnerableTo:10, cooldown:40, speedX:3.2, speedY:2.3}),
+    combo:Object.freeze({buffer:12, window:42, maxHits:3, cancelRecovery:0, heavyLinkStartup:8}),
+    counter:Object.freeze({window:32, cancelAge:10, damageBonus:3, hitstunBonus:4}),
+    impact:Object.freeze({lightPause:1,heavyPause:2,counterPause:3,blockPause:1,breakPause:3}),
+    attacks:Object.freeze({
+        jab:Object.freeze({damage:6,range:52,depthTolerance:11,startup:6,active:3,recovery:10,whiff:4,hitstun:12,push:4}),
+        cross:Object.freeze({damage:14,range:63,depthTolerance:12,startup:12,active:4,recovery:18,whiff:8,hitstun:18,push:11}),
+        dash_punch:Object.freeze({damage:28,range:54,depthTolerance:11,startup:36,active:24,recovery:20,whiff:36,hitstun:24,push:24,guardPressure:110,guardDamageScale:.5,guardPushScale:.85}),
+        weave_finish:Object.freeze({damage:26,range:64,depthTolerance:12,startup:10,active:4,recovery:18,whiff:12,hitstun:22,push:18,guardPressure:72}),
+        weave_rush:Object.freeze({damage:5,range:60,depthTolerance:12,startup:2,active:2,recovery:4,whiff:12,hitstun:11,push:2,guardPressure:72})
     })
 });
-const BOXING_RING_BOUNDS = BOXING_CONFIG.ring;
-const boxingInputPress = { start: false, jab: false, cross: false, hook: false, special: false, dodge: false, guard: false, restart: false };
-const boxingTapMovement = { x: 0, y: 0, frames: 0 };
+const BOXING_RING_BOUNDS=BOXING_CONFIG.ring;
+const boxingInputPress={start:false,jab:false,cross:false,special:false,dodge:false,guard:false,restart:false};
+const boxingTapMovement={x:0,y:0,frames:0};
+// Contextual specials install through the same activation and cooldown gate.
+const boxingSpecialSlots={zorp:null,master:null};
+let boxingAccumulator=0,boxingLastUpdate=null;
 
-function makeBoxingFighter(role, x, y) {
-    return {
-        role, x, y, facing: role === "zorp" ? 1 : -1,
-        state: "idle", animation: "idle", stateFrame: 0,
-        lastMoveX: 0, lastMoveY: 0,
-        hp: BOXING_CONFIG.maxHp, maxHp: BOXING_CONFIG.maxHp,
-        attack: null, hitstun: 0, whiffFrames: 0, guard: false, guardFlash: 0,
-        dodgeFrames: 0, dodgeAge: 0, dodgeCooldown: 0, dodgeX: 0, dodgeY: 0,
-        counterWindow: 0, counterTarget: null, counterStun: 0,
-        guardPressure: 0, guardBreakTimer: 0, pressureHits: 0, pressureWindow: 0,
-        dashCooldown: 0, chargedCooldown: 0, burstCooldown: 0, burstFrames: 0,
-        knockdowns: 0, damageFlash: 0,
-        aiAttackCooldown: 0, aiAttackCount: 0, aiDecisionTimer: 0,
-        aiGuardFrames: 0, aiCircleSign: 1
-    };
+function makeBoxingFighter(role,x,y){
+    return {role,x,y,facing:role==='zorp'?1:-1,state:'idle',animation:'idle',stateFrame:0,
+        lastMoveX:0,lastMoveY:0,hp:BOXING_CONFIG.maxHp,maxHp:BOXING_CONFIG.maxHp,attack:null,hitstun:0,whiffFrames:0,
+        guard:false,guardFlash:0,guardPressure:0,guardBreakTimer:0,guardHoldFrames:0,
+        dodgeFrames:0,dodgeAge:0,dodgeCooldown:0,dodgeX:0,dodgeY:0,dodgeOriginX:x,dodgeOriginY:y,
+        counterWindow:0,counterTarget:null,counterStun:0,damageFlash:0,knockdowns:0,
+        comboCount:0,comboTimer:0,bufferedAttack:null,bufferFrames:0,lastHitBy:null,
+        specialCooldown:0,specialCharge:0,special:null,lastSpecial:null,ai:null,aiAttackCooldown:22,aiDecisionTimer:0,aiGuardFrames:0,
+        aiTargetX:x,aiTargetY:y,aiCircleSign:1,aiDodge:false};
 }
-const boxeGame = {
-    phase: "READY",
-    player: makeBoxingFighter("zorp", 145, 218),
-    mestre: makeBoxingFighter("master", 302, 198),
-    // Observador: sem HP, hurtbox, colisão de corpo ou entrada na lista de alvos.
-    juiz: { role: "judge", x: 76, y: 172, animation: "idle", stateFrame: 0, facing: 1 },
-    fightFrames: 0, effects: [], winner: null, qaFreezeAi: false,
-    introFrames: 0, knockdown: null, getupFrames: 0,
-    finisher: null, impactBursts: [], cameraShake: 0
-};
-
-function boxingClamp(value, lo, hi) { return Math.max(lo, Math.min(hi, value)); }
-function boxingRingSides(y) {
-    const ring = BOXING_CONFIG.ring;
-    const t = boxingClamp((y - ring.top) / (ring.bottom - ring.top), 0, 1);
-    return {
-        left: ring.backLeft + (ring.frontLeft - ring.backLeft) * t,
-        right: ring.backRight + (ring.frontRight - ring.backRight) * t
-    };
+const boxeGame={phase:'READY',player:makeBoxingFighter('zorp',145,218),mestre:makeBoxingFighter('master',302,198),
+    juiz:{role:'judge',x:76,y:172,animation:'idle',stateFrame:0,facing:1},
+    fightFrames:0,effects:[],impactBursts:[],winner:null,qaFreezeAi:false,
+    introFrames:0,knockdown:null,finisher:null,cameraShake:0,hitPauseFrames:0};
+function boxingClamp(n,min,max){return Math.max(min,Math.min(max,n));}
+function boxingRingSides(y){
+    const r=BOXING_CONFIG.ring,t=boxingClamp((y-r.top)/(r.bottom-r.top),0,1);
+    return {left:r.backLeft+(r.frontLeft-r.backLeft)*t,right:r.backRight+(r.frontRight-r.backRight)*t};
 }
-function boxingConstrain(fighter) {
-    const ring = BOXING_CONFIG.ring, body = BOXING_CONFIG.body;
-    fighter.y = boxingClamp(fighter.y, ring.top + body.radiusY, ring.bottom - body.radiusY);
-    const sides = boxingRingSides(fighter.y);
-    fighter.x = boxingClamp(fighter.x, sides.left + body.radiusX, sides.right - body.radiusX);
+function boxingConstrain(f){
+    const body=BOXING_CONFIG.body;
+    f.y=boxingClamp(f.y,BOXING_CONFIG.ring.top+body.radiusY,BOXING_CONFIG.ring.bottom-body.radiusY);
+    const sides=boxingRingSides(f.y);f.x=boxingClamp(f.x,sides.left+body.radiusX,sides.right-body.radiusX);
 }
-function queueBoxingMoveTap(key) {
-    const directions = { a: [-1, 0], d: [1, 0], w: [0, -1], s: [0, 1] };
-    if (!directions[key]) return;
-    boxingTapMovement.x = directions[key][0];
-    boxingTapMovement.y = directions[key][1];
-    boxingTapMovement.frames = 2;
+function boxingFaceOpponent(f,target){if(Math.abs(target.x-f.x)>.5)f.facing=target.x>f.x?1:-1;}
+function boxingMove(f,x,y,speedX,speedY){
+    const oldX=f.x,oldY=f.y,length=Math.hypot(x,y);
+    if(length){f.x+=x/length*speedX;f.y+=y/length*speedY;}
+    boxingConstrain(f);f.lastMoveX=f.x-oldX;f.lastMoveY=f.y-oldY;
+    return Math.abs(f.lastMoveX)+Math.abs(f.lastMoveY)>.08;
 }
-function boxingClearPresses() {
-    boxingInputPress.jab = false;
-    boxingInputPress.cross = false;
-    boxingInputPress.hook = false;
-    boxingInputPress.special = false;
-    boxingInputPress.dodge = false;
-    boxingInputPress.restart = false;
+function boxingDistance(a,b){return Math.hypot(b.x-a.x,(b.y-a.y)*BOXING_CONFIG.body.depthScale);}
+function boxingSeparateFighters(a,b){
+    // Re-project against ropes each iteration, so a boxer pinned to a corner does not absorb separation.
+    for(let i=0;i<10;i++){
+        const dx=b.x-a.x,dy=(b.y-a.y)*BOXING_CONFIG.body.depthScale,d=Math.hypot(dx,dy);
+        if(d>=BOXING_CONFIG.body.minSeparation-.02)return;
+        const nx=d>.001?dx/d:1,ny=d>.001?dy/d:0,push=(BOXING_CONFIG.body.minSeparation-d)/2;
+        a.x-=nx*push;b.x+=nx*push;a.y-=ny*push/BOXING_CONFIG.body.depthScale;b.y+=ny*push/BOXING_CONFIG.body.depthScale;
+        boxingConstrain(a);boxingConstrain(b);
+    }
 }
-function resetBoxe(startImmediately = false) {
-    boxeGame.phase = startImmediately ? "FIGHTING" : "READY";
-    boxeGame.player = makeBoxingFighter("zorp", 145, 218);
-    boxeGame.mestre = makeBoxingFighter("master", 302, 198);
+function queueBoxingMoveTap(key){
+    const v={a:[-1,0],d:[1,0],w:[0,-1],s:[0,1]}[key];
+    if(v){boxingTapMovement.x=v[0];boxingTapMovement.y=v[1];boxingTapMovement.frames=2;}
+}
+function boxingClearPresses(){for(const k of ['jab','cross','special','dodge','restart'])boxingInputPress[k]=false;}
+function boxingReleaseInput(){
+    boxingClearPresses();boxingInputPress.guard=false;boxingInputPress.start=false;boxingTapMovement.frames=0;
+    if(typeof keys!=='undefined'&&typeof currentScene!=='undefined'&&currentScene==='JOGO_BOXE')
+        for(const k of ['w','a','s','d','j','k','l','i','space'])keys[k]=false;
+}
+window.addEventListener('blur',boxingReleaseInput);
+function resetBoxe(startImmediately=false){
+    boxeGame.phase=startImmediately?'FIGHTING':'READY';
+    boxeGame.player=makeBoxingFighter('zorp',145,218);boxeGame.mestre=makeBoxingFighter('master',302,198);
+    boxeGame.juiz={role:'judge',x:76,y:172,animation:'idle',stateFrame:0,facing:1};
+    boxeGame.fightFrames=0;boxeGame.effects.length=0;boxeGame.impactBursts.length=0;
+    boxeGame.winner=null;boxeGame.knockdown=null;boxeGame.finisher=null;boxeGame.cameraShake=0;boxeGame.hitPauseFrames=0;
+    boxeGame.introFrames=0;boxeGame.qaFreezeAi=false;
+    boxingAccumulator=0;boxingLastUpdate=performance.now();boxingReleaseInput();resetBoxingPresentation();
     window.FestivalChallenges.onBoxingStart();
-    boxeGame.juiz = { role: "judge", x: 76, y: 172, animation: "idle", stateFrame: 0, facing: 1 };
-    boxeGame.fightFrames = 0;
-    boxeGame.effects.length = 0;
-    boxeGame.winner = null;
-    boxeGame.introFrames = 0;
-    boxeGame.knockdown = null;
-    boxeGame.getupFrames = 0;
-    boxeGame.finisher = null;
-    boxeGame.impactBursts.length = 0;
-    boxeGame.cameraShake = 0;
-    resetBoxingPresentation();
-    boxeGame.qaFreezeAi = false;
-    boxingInputPress.start = false;
-    boxingInputPress.guard = false;
-    boxingClearPresses();
-    boxingTapMovement.frames = 0;
-    if (typeof dialogBox !== "undefined") dialogBox.classList.remove("show");
+    if(typeof dialogBox!=='undefined')dialogBox.classList.remove('show');
 }
-function startBoxingFight() {
-    boxingShowEvent("intro");
-    boxeGame.phase = "INTRO";
-    boxeGame.introFrames = 48;
-    boxeGame.juiz.animation = "start";
-    boxeGame.juiz.stateFrame = 0;
-    boxingInputPress.start = false;
-    boxingInputPress.dodge = false;
+function startBoxingFight(){
+    boxingReleaseInput();boxingAccumulator=0;boxingLastUpdate=performance.now();
+    boxeGame.phase='INTRO';boxeGame.introFrames=48;boxeGame.juiz.animation='start';boxeGame.juiz.stateFrame=0;
+    boxingShowEvent('intro');
 }
-function boxingSetAnimation(fighter, animation) {
-    if (fighter.animation !== animation) {
-        fighter.animation = animation;
-        fighter.stateFrame = 0;
-    } else fighter.stateFrame++;
-    fighter.state = animation;
+function boxingSetAnimation(f,name){
+    if(f.animation!==name){f.animation=name;f.stateFrame=0;}else f.stateFrame++;
+    f.state=name;
 }
-function boxingMove(fighter, inputX, inputY, speedX, speedY) {
-    const magnitude = Math.hypot(inputX, inputY);
-    const oldX = fighter.x, oldY = fighter.y;
-    if (magnitude > 0) {
-        fighter.x += inputX / magnitude * speedX;
-        fighter.y += inputY / magnitude * speedY;
+function boxingAddEffect(x,y,text,color){
+    boxeGame.effects.push({x,y,text,color,life:24});if(boxeGame.effects.length>14)boxeGame.effects.shift();
+}
+function boxingImpact(x,y,strength,color){
+    boxeGame.impactBursts.push({x,y,strength,color,life:13});if(boxeGame.impactBursts.length>8)boxeGame.impactBursts.shift();
+    boxeGame.cameraShake=Math.max(boxeGame.cameraShake,Math.min(2,strength*strength*.012));
+}
+function boxingCanAct(f){return boxeGame.phase==='FIGHTING'&&f.hp>0&&!f.hitstun&&!f.guardBreakTimer&&!f.whiffFrames&&!f.dodgeFrames;}
+function boxingAttackStartup(attack,spec){return attack.startup??spec.startup;}
+function boxingCanChain(f,target){
+    const a=f.attack;if(!a)return false;const spec=BOXING_CONFIG.attacks[a.kind];
+    return a.kind==='jab'&&a.landed&&!a.blocked&&a.stage<BOXING_CONFIG.combo.maxHits&&
+        a.frame>=boxingAttackStartup(a,spec)+spec.active+BOXING_CONFIG.combo.cancelRecovery&&
+        target.hitstun>0&&target.lastHitBy===f.role;
+}
+function boxingStartAttack(f,kind,chain=false){
+    if(!BOXING_CONFIG.attacks[kind]||!boxingCanAct(f)||(f.attack&&!chain))return false;
+    const target=f.role==='zorp'?boxeGame.mestre:boxeGame.player;
+    if(chain&&!boxingCanChain(f,target))return false;
+    if(!chain)f.comboCount=0;
+    boxingFaceOpponent(f,target);
+    const stage=chain?f.comboCount+1:1,counter=f.counterWindow>0&&f.counterTarget===target.role;
+    const startup=chain&&kind==='cross'?BOXING_CONFIG.combo.heavyLinkStartup:BOXING_CONFIG.attacks[kind].startup;
+    f.attack={kind,frame:0,startup,facing:f.facing,originY:f.y,landed:false,dodged:false,blocked:false,counter,stage,linked:chain};
+    f.guard=false;f.bufferedAttack=null;f.bufferFrames=0;if(counter)f.counterWindow=0;
+    f.animation=kind;f.state=kind;f.stateFrame=0;return true;
+}
+function boxingStartDodge(f,x,y,target){
+    if(!boxingCanAct(f)||f.dodgeCooldown||f.attack)return false;
+    if(Math.hypot(x,y)<.1){x=-f.facing*.3;y=f.y>209?-1:1;}
+    const length=Math.hypot(x,y);f.dodgeX=x/length;f.dodgeY=y/length;
+    f.dodgeOriginX=f.x;f.dodgeOriginY=f.y;
+    f.dodgeFrames=BOXING_CONFIG.dodge.duration;f.dodgeAge=0;f.dodgeCooldown=BOXING_CONFIG.dodge.cooldown;
+    f.guard=false;f.bufferedAttack=null;boxingSetAnimation(f,'dodge');return true;
+}
+function boxingRequestSpecial(f,target){
+    const slot=boxingSpecialSlots[f.role];
+    if(!slot||!boxingCanAct(f)||f.attack||f.specialCooldown)return false;
+    if(slot.activate(f,target)!==true)return false;
+    f.specialCooldown=slot.cooldown;return true;
+}
+function boxingApplyGuardPressure(target,amount){
+    if(boxeGame.phase!=='FIGHTING'||!target.guard||target.guardBreakTimer||!Number.isFinite(amount)||amount<=0)return false;
+    target.guardPressure=Math.min(BOXING_CONFIG.guard.max,target.guardPressure+amount);
+    if(target.guardPressure<BOXING_CONFIG.guard.max)return false;
+    target.guard=false;target.guardPressure=BOXING_CONFIG.guard.breakResidual;target.guardHoldFrames=0;
+    target.guardBreakTimer=BOXING_CONFIG.guard.breakFrames;target.attack=null;target.bufferedAttack=null;target.bufferFrames=0;
+    target.comboCount=0;target.comboTimer=0;boxingSetAnimation(target,'hurt');
+    // The persistent stun label already says "GUARDA QUEBRADA" above this fighter.
+    boxingShowEvent('guardBreak',target,-target.facing);
+    boxeGame.hitPauseFrames=Math.max(boxeGame.hitPauseFrames,BOXING_CONFIG.impact.breakPause);return true;
+}
+window.BoxingSpecials=Object.freeze({
+    register(role,activate,cooldownSeconds=8){
+        if(!Object.hasOwn(boxingSpecialSlots,role)||typeof activate!=='function'||!Number.isFinite(cooldownSeconds)||cooldownSeconds<=0)return false;
+        boxingSpecialSlots[role]={activate,cooldown:Math.ceil(cooldownSeconds*60)};return true;
+    },
+    available:role=>!!boxingSpecialSlots[role],
+    // Returns whether the guard broke; a smaller pressure increase is still applied.
+    onBlocked(target){
+        if(target!==boxeGame.player&&target!==boxeGame.mestre)return false;
+        return boxingApplyGuardPressure(target,BOXING_CONFIG.guard.pressure.special);
     }
-    boxingConstrain(fighter);
-    fighter.lastMoveX = fighter.x - oldX;
-    fighter.lastMoveY = fighter.y - oldY;
-    return Math.abs(fighter.lastMoveX) + Math.abs(fighter.lastMoveY) > 0.08;
-}
-function boxingSeparateFighters(a, b) {
-    const body = BOXING_CONFIG.body;
-    const dx = b.x - a.x, dy = (b.y - a.y) * body.depthScale;
-    const distance = Math.hypot(dx, dy);
-    if (distance >= body.minSeparation) return;
-    const angleX = distance > 0.001 ? dx / distance : 1;
-    const angleY = distance > 0.001 ? dy / distance : 0;
-    const correction = (body.minSeparation - distance) * 0.5;
-    a.x -= angleX * correction; b.x += angleX * correction;
-    a.y -= angleY * correction / body.depthScale;
-    b.y += angleY * correction / body.depthScale;
-    boxingConstrain(a); boxingConstrain(b);
-}
-function boxingDistance(a, b) {
-    return Math.hypot(b.x - a.x, (b.y - a.y) * BOXING_CONFIG.body.depthScale);
-}
-function boxingStartAttack(fighter, kind) {
-    if (boxeGame.phase !== "FIGHTING" || !BOXING_CONFIG.attacks[kind] ||
-        fighter.attack || fighter.hitstun > 0 || fighter.counterStun > 0 ||
-        fighter.guardBreakTimer > 0 || fighter.burstFrames > 0 ||
-        fighter.dodgeFrames > 0 || fighter.whiffFrames > 0 ||
-        (kind === "dash" && (fighter.role !== "zorp" || fighter.dashCooldown > 0)) ||
-        (kind === "charged" && (fighter.role !== "master" || fighter.chargedCooldown > 0))) return false;
-    fighter.guard = false;
-    const counter = kind === "jab" && fighter.counterWindow > 0 &&
-        fighter.counterTarget === (fighter.role === "zorp" ? "master" : "zorp");
-    fighter.attack = { kind, frame: 0, facing: fighter.facing, landed: false, dodged: false, counter };
-    if (counter) fighter.counterWindow = 0;
-    if (kind === "dash") fighter.dashCooldown = BOXING_CONFIG.specials.dashCooldown;
-    if (kind === "charged") {
-        fighter.chargedCooldown = BOXING_CONFIG.specials.chargedCooldown;
-        fighter.aiAttackCount = 0;
-    } else if (fighter.role === "master") fighter.aiAttackCount++;
-    boxingSetAnimation(fighter, kind);
-    return true;
-}
-function boxingStartDodge(fighter, inputX, inputY, opponent) {
-    if (fighter.dodgeCooldown > 0 || fighter.attack || fighter.hitstun > 0 ||
-        fighter.counterStun > 0 || fighter.guardBreakTimer > 0 || fighter.burstFrames > 0) return false;
-    let dx = inputX, dy = inputY;
-    if (Math.hypot(dx, dy) < 0.1) {
-        dx = fighter.x < opponent.x ? -1 : 1;
-        dy = fighter.y > (BOXING_CONFIG.ring.top + BOXING_CONFIG.ring.bottom) / 2 ? -0.5 : 0.5;
+});
+function boxingSpecialController(f){return f.role==='zorp'?window.BoxingZorpSpecial:f.role==='master'?window.BoxingMasterSpecial:null;}
+function boxingAttackCanHit(a,b,attack,spec){
+    if(attack.kind==='dash_punch'){
+        // Sweep the committed glove reach over this physical step; do not skip a fast contact.
+        const from=attack.sweepFromX??a.x,forward=(b.x-from)*attack.facing;
+        const reach=Math.max(spec.range,(a.x-from)*attack.facing+spec.range);
+        return forward>=3&&forward<=reach&&Math.abs(b.y-attack.originY)<=spec.depthTolerance;
     }
-    const length = Math.hypot(dx, dy);
-    fighter.dodgeX = dx / length; fighter.dodgeY = dy / length;
-    fighter.dodgeFrames = BOXING_CONFIG.dodge.duration;
-    fighter.dodgeAge = 0;
-    fighter.dodgeCooldown = BOXING_CONFIG.dodge.cooldown;
-    fighter.guard = false;
-    boxingSetAnimation(fighter, "dodge");
-    return true;
+    const forward=(b.x-a.x)*attack.facing;
+    return forward>=3&&forward<=spec.range&&Math.abs(b.y-attack.originY)<=spec.depthTolerance;
 }
-function boxingAddEffect(x, y, text, color) {
-    boxeGame.effects.push({ x, y, text, color, life: 16 });
-    if (boxeGame.effects.length > 14) boxeGame.effects.shift();
+function boxingAttackOutcome(a,b){
+    const attack=a.attack;if(!attack||attack.landed||attack.dodged)return null;
+    const spec=BOXING_CONFIG.attacks[attack.kind];
+    const startup=boxingAttackStartup(attack,spec);
+    if(attack.frame<startup||attack.frame>=startup+spec.active)return null;
+    const onLine=boxingAttackCanHit(a,b,attack,spec);
+    if(window.BoxingZorpSpecial?.evades(b,a,attack,spec))return {a,b,attack,spec,dodged:true,specialDodge:true};
+    const d=BOXING_CONFIG.dodge;
+    const evading=b.dodgeFrames&&b.dodgeAge>=d.invulnerableFrom&&b.dodgeAge<=d.invulnerableTo;
+    // A short sidestep can leave the line before contact; reward only a strike that covered its origin.
+    const leftLine=evading&&boxingAttackCanHit(a,{x:b.dodgeOriginX,y:b.dodgeOriginY},attack,spec);
+    if(evading&&(onLine||leftLine))return {a,b,attack,spec,dodged:true};
+    if(!onLine)return null;
+    const blocked=b.guard&&!b.hitstun&&!b.guardBreakTimer&&(a.x-b.x)*b.facing>=0;
+    const stage=attack.linked&&b.hitstun>0&&b.lastHitBy===a.role?attack.stage:1;
+    const damage=attack.damageOverride??spec.damage;
+    return {a,b,attack,spec,blocked,stage,damage:blocked?Math.max(1,Math.round(damage*(spec.guardDamageScale??BOXING_CONFIG.guardDamageScale))):
+        damage+(stage-1)+(attack.counter?BOXING_CONFIG.counter.damageBonus:0)};
 }
-function boxingImpact(x, y, strength, color) {
-    boxeGame.impactBursts.push({ x, y, strength, color, life: 13 });
-    if (boxeGame.impactBursts.length > 8) boxeGame.impactBursts.shift();
-    // Short, graded shake; the HUD remains steady and the ring stays readable.
-    boxeGame.cameraShake = Math.max(boxeGame.cameraShake,
-        Math.min(BOXING_SHOW_CONFIG.shakeLimit, strength * strength * .014));
-}
-function boxingEnterKnockdown(target, attacker, cause) {
-    if (boxeGame.phase !== "FIGHTING") return;
-    target.knockdowns++;
-    target.guard = false;
-    target.attack = null;
-    target.hitstun = 0;
-    target.counterStun = 0;
-    target.guardBreakTimer = 0;
-    target.dodgeFrames = 0;
-    attacker.attack = null;
-    boxeGame.phase = "KNOCKDOWN";
-    boxeGame.knockdown = { role: target.role, attacker: attacker.role,
-        cause, frames: 0, count: 0 };
-    boxeGame.juiz.animation = "step";
-    boxeGame.juiz.stateFrame = 0;
-    boxingSetAnimation(target, "knockdown");
-    boxingSetAnimation(attacker, "idle");
-    boxingAddEffect(target.x, target.y - 53, "DOWN!", "#ffe178");
-    boxingShowEvent("knockdown", target, attacker.facing);
-    boxeGame.cameraShake = Math.max(boxeGame.cameraShake, 3);
-}
-function boxingFinishKo() {
-    const down = boxeGame.knockdown;
-    if (!down) return;
-    if (down.attacker === "zorp") {
-        boxingStartFinisher();
-        return;
+function boxingResolveContact(hit){
+    if(!hit)return;const {a,b,attack,spec}=hit;
+    if(hit.dodged){
+        if(hit.specialDodge){attack.dodged=true;window.BoxingZorpSpecial.onEvaded(b);boxingSpecialController(a)?.onDodged?.(a);return;}
+        attack.dodged=true;boxingSpecialController(a)?.onDodged?.(a);b.counterWindow=BOXING_CONFIG.counter.window;b.counterTarget=a.role;
+        boxingAddEffect(b.x,b.y-52,'ESQUIVA!','#9eeaff');boxingShowEvent('dodge',b,attack.facing);return;
     }
-    boxingCompleteKo();
-}
-function boxingCompleteKo() {
-    const down = boxeGame.knockdown;
-    if (!down || boxeGame.phase === "RESULT") return;
-    boxeGame.phase = "RESULT";
-    boxeGame.winner = down.attacker;
-    window.FestivalChallenges.onBoxingResult(boxeGame.winner, boxeGame.player.knockdowns);
-    boxeGame.finisher = null;
-    boxeGame.juiz.animation = "ko";
-    boxeGame.juiz.stateFrame = 0;
-    const loser = down.role === "zorp" ? boxeGame.player : boxeGame.mestre;
-    const winner = down.attacker === "zorp" ? boxeGame.player : boxeGame.mestre;
-    boxingSetAnimation(loser, "defeat");
-    boxingSetAnimation(winner, "victory");
-    boxingAddEffect(loser.x, loser.y - 60, "KO!", "#ff8196");
-    boxingShowEvent("victory");
-    if (down.attacker === "zorp" && typeof window.desbloquearMedalha === "function")
-        window.desbloquearMedalha("boxe");
-}
-function boxingStartFinisher() {
-    const master = boxeGame.mestre;
-    boxeGame.phase = "FINISHER";
-    boxeGame.winner = "zorp";
-    boxeGame.finisher = {
-        frame: 0, centerX: boxingClamp(master.x, 145, 285),
-        floorY: boxingClamp(master.y, 186, 236),
-        startZorpX: boxeGame.player.x, startMasterX: master.x,
-        startZorpY: boxeGame.player.y, startMasterY: master.y
-    };
-    boxeGame.juiz.animation = "step";
-    boxeGame.juiz.stateFrame = 0;
-    boxingAddEffect(master.x, master.y - 63, "10!", "#ffe178");
-}
-function boxingUpdateFinisher() {
-    const scene = boxeGame.finisher;
-    if (!scene) return;
-    const f = ++scene.frame, zorp = boxeGame.player, master = boxeGame.mestre;
-    const approach = boxingClamp(f / 25, 0, 1);
-    const ease = approach * approach * (3 - 2 * approach);
-    const zx = scene.startZorpX + (scene.centerX - 48 - scene.startZorpX) * ease;
-    const mx = scene.startMasterX + (scene.centerX + 29 - scene.startMasterX) * ease;
-    const zy = scene.startZorpY + (scene.floorY - scene.startZorpY) * ease;
-    const my = scene.startMasterY + (scene.floorY - scene.startMasterY) * ease;
-    zorp.cinematicPose = { x: zx, y: zy, rotation: 0 };
-    master.cinematicPose = { x: mx, y: my, rotation: 0 };
-    zorp.facing = 1;
-    master.facing = -1;
-    const judge = boxeGame.juiz;
-    judge.x += boxingClamp(76 - judge.x, -7.5, 7.5);
-    judge.y += boxingClamp(173 - judge.y, -3, 3);
-    if (f < 19) {
-        boxingSetAnimation(master, "getup");
-        boxingSetAnimation(zorp, "walk");
-    } else if (f < 30) {
-        boxingSetAnimation(master, "hurt");
-        boxingSetAnimation(zorp, "idle");
-    } else if (f < 53) {
-        boxingSetAnimation(master, "hurt");
-        boxingSetAnimation(zorp, "hook");
-    } else if (f < 81) {
-        boxingSetAnimation(master, "hurt");
-        boxingSetAnimation(zorp, "idle");
-    } else if (f < 95) {
-        boxingSetAnimation(master, "hurt");
-        boxingSetAnimation(zorp, "walk");
-    } else if (f < 118) {
-        boxingSetAnimation(master, "hurt");
-        boxingSetAnimation(zorp, "cross");
-    } else {
-        boxingSetAnimation(master, "defeat");
-        boxingSetAnimation(zorp, "victory");
+    attack.landed=true;attack.blocked=hit.blocked;attack.stage=hit.stage;b.hp=Math.max(0,b.hp-hit.damage);
+    b.damageFlash=10;b.guardFlash=hit.blocked?9:0;
+    if(hit.blocked){
+        boxingApplyGuardPressure(b,spec.guardPressure??BOXING_CONFIG.guard.pressure[attack.kind]);a.comboCount=0;a.comboTimer=0;
+    }else{
+        boxingSpecialController(b)?.stop(b);
+        b.attack=null;b.guard=false;b.dodgeFrames=0;b.hitstun=spec.hitstun+(attack.counter?BOXING_CONFIG.counter.hitstunBonus:0);b.lastHitBy=a.role;
+        b.comboCount=0;b.comboTimer=0;b.bufferedAttack=null;b.bufferFrames=0;
+        a.comboCount=attack.stage;a.comboTimer=BOXING_CONFIG.combo.window;
+        boxingSetAnimation(b,'hurt');
+        if(attack.stage>1)boxingAddEffect(a.x,a.y-73,attack.stage+' HITS','#ffe178');
     }
-    if (f === 46) {
-        boxingImpact(mx - 12, my - 57, 13, "#ffe178");
-        boxingAddEffect(mx, my - 86, "GANCHO!", "#ffe178");
-    }
-    if (f > 46 && f < 105) {
-        const lift = Math.min(1, (f - 46) / 20) * 60;
-        master.cinematicPose.y -= lift - Math.max(0, f - 78) * 0.53;
-        master.cinematicPose.rotation = boxingClamp((f - 46) * 0.008, 0, 0.27);
-    }
-    if (f >= 81 && f < 118) {
-        zorp.cinematicPose.x += boxingClamp((f - 81) / 17, 0, 1) * 59;
-        zorp.cinematicPose.rotation = -0.09;
-    }
-    if (f === 104) {
-        boxingShowEvent("finisher");
-        boxingImpact(mx + 8, my - 48, 19, "#84efff");
-        boxingAddEffect(mx + 12, my - 82, "SUPER SOCO!", "#84efff");
-        boxeGame.juiz.animation = "ko";
-        boxeGame.juiz.stateFrame = 0;
-    }
-    if (f >= 105) {
-        const fly = f - 104;
-        master.cinematicPose.x += fly * 8.3;
-        master.cinematicPose.y -= 45 + fly * 1.55 - fly * fly * 0.038;
-        master.cinematicPose.rotation = boxingClamp(fly * 0.07, 0, 1.5);
-    }
-    boxeGame.juiz.stateFrame++;
-    if (f >= 155) boxingCompleteKo();
+    b.x+=attack.facing*(attack.pushOverride??spec.push)*(hit.blocked?(spec.guardPushScale??.38):1);boxingConstrain(b);
+    if(attack.counter)boxeGame.effects=boxeGame.effects.filter(effect=>effect.text!=='ESQUIVA!');
+    if(attack.kind!=='weave_rush'||hit.blocked||attack.specialHit===6)
+        boxingAddEffect(b.x,b.y-54,hit.blocked?'DEFESA':attack.counter?'CONTRA!':'-'+hit.damage,hit.blocked?'#9eeaff':'#ffbd82');
+    const specialFinal=attack.kind==='dash_punch'||attack.kind==='weave_finish'||attack.kind==='weave_rush'&&attack.specialHit===6;
+    boxingImpact(b.x-attack.facing*8,b.y-48,hit.blocked?3:specialFinal?12:attack.counter?11:attack.kind==='jab'||attack.kind==='weave_rush'?5:9,hit.blocked?'#9eeaff':'#ffab72');
+    boxingShowEvent(hit.blocked?'block':specialFinal?'special':attack.counter?'counter':attack.kind==='weave_rush'?'jab':attack.kind,b,attack.facing);
+    const pause=hit.blocked?BOXING_CONFIG.impact.blockPause:attack.counter?BOXING_CONFIG.impact.counterPause:
+        attack.kind==='jab'?BOXING_CONFIG.impact.lightPause:BOXING_CONFIG.impact.heavyPause;
+    boxeGame.hitPauseFrames=Math.max(boxeGame.hitPauseFrames,specialFinal?3:attack.kind==='weave_rush'?1:pause);
+    window.BoxingZorpSpecial?.exchange(a,b,attack,hit);
+    window.BoxingMasterSpecial?.exchange(a,b,attack,hit);
+    boxingSpecialController(a)?.onContact(a,b,attack,hit);
 }
-function boxingUpdateKnockdown() {
-    const down = boxeGame.knockdown;
-    if (!down) return;
-    const fighter = down.role === "zorp" ? boxeGame.player : boxeGame.mestre;
-    const opponent = down.attacker === "zorp" ? boxeGame.player : boxeGame.mestre;
-    down.frames++;
-    down.count = Math.min(10, Math.floor(down.frames / BOXING_CONFIG.knockdown.countFrames));
-    boxingSetAnimation(fighter, "knockdown");
-    boxingSetAnimation(opponent, "idle");
-    const judge = boxeGame.juiz;
-    const destinationX = boxingClamp(fighter.x + (fighter.x < 225 ? -38 : 38), 65, 385);
-    const destinationY = boxingClamp(fighter.y - 12, 174, 235);
-    judge.x += boxingClamp(destinationX - judge.x, -5.5, 5.5);
-    judge.y += boxingClamp(destinationY - judge.y, -2.5, 2.5);
-    judge.countNumber = down.count;
-    boxingSetAnimation(judge, Math.abs(destinationX - judge.x) > 5 ? "step" : "count");
-    if (down.count >= BOXING_CONFIG.knockdown.riseCount &&
-        fighter.knockdowns <= BOXING_CONFIG.knockdown.maxRecoveries) {
-        boxeGame.phase = "GETUP";
-        boxeGame.getupFrames = 0;
-        boxingSetAnimation(fighter, "getup");
-        judge.animation = "continue";
-        judge.stateFrame = 0;
-    } else if (down.count >= 10) boxingFinishKo();
-}
-function boxingUpdateGetup() {
-    const down = boxeGame.knockdown;
-    const fighter = down.role === "zorp" ? boxeGame.player : boxeGame.mestre;
-    boxeGame.getupFrames++;
-    boxingSetAnimation(fighter, "getup");
-    boxeGame.juiz.stateFrame++;
-    if (boxeGame.getupFrames < BOXING_CONFIG.knockdown.getupFrames) return;
-    fighter.hp = Math.max(fighter.hp, BOXING_CONFIG.knockdown.recoveryHp);
-    fighter.hitstun = 0;
-    fighter.pressureHits = 0;
-    fighter.pressureWindow = 0;
-    boxeGame.knockdown = null;
-    boxeGame.phase = "FIGHTING";
-    boxingSetAnimation(fighter, "idle");
-    boxeGame.juiz.animation = "idle";
-    boxeGame.juiz.stateFrame = 0;
-    boxingAddEffect(fighter.x, fighter.y - 64, "FIGHT!", "#9eeaff");
-}
-function boxingAttackCanHit(attacker, target, attack, spec) {
-    const forward = (target.x - attacker.x) * attack.facing;
-    return forward >= 3 && forward <= spec.range &&
-        Math.abs(target.y - attacker.y) <= spec.depthTolerance;
-}
-function boxingBreakGuard(target) {
-    target.guard = false;
-    target.guardPressure = 0;
-    target.guardBreakTimer = BOXING_CONFIG.guard.breakFrames;
-    target.attack = null;
-    target.hitstun = 0;
-    boxingSetAnimation(target, "hurt");
-    boxingAddEffect(target.x, target.y - 68, "BREAK!", "#ffe178");
-    boxingShowEvent("guardBreak", target, -target.facing);
-}
-function boxingStartBurst(master, zorp) {
-    if (master.role !== "master" || master.burstCooldown > 0 || master.hp <= 0) return false;
-    master.burstCooldown = BOXING_CONFIG.specials.burstCooldown;
-    master.burstFrames = 24;
-    master.pressureHits = 0;
-    master.pressureWindow = 0;
-    master.hitstun = 0;
-    master.counterStun = 0;
-    master.attack = null;
-    master.guard = false;
-    master.guardBreakTimer = 0;
-    zorp.attack = null;
-    zorp.whiffFrames = Math.max(zorp.whiffFrames, 9);
-    const direction = Math.sign(zorp.x - master.x) || master.facing;
-    zorp.x += direction * 24;
-    zorp.y += Math.sign(zorp.y - master.y) * 4;
-    boxingConstrain(zorp);
-    boxingSetAnimation(master, "burst");
-    boxingAddEffect(master.x, master.y - 61, "BURST!", "#b5a0ff");
-    return true;
-}
-function boxingResolveAttack(attacker, target) {
-    const attack = attacker.attack, spec = BOXING_CONFIG.attacks[attack.kind];
-    if (attack.frame < spec.startup || attack.frame >= spec.startup + spec.active ||
-        attack.landed || attack.dodged) return;
-    // A esquiva só habilita counter quando um golpe teria passado perto do corpo.
-    if (target.dodgeFrames > 0 &&
-        target.dodgeAge >= BOXING_CONFIG.dodge.invulnerableFrom &&
-        target.dodgeAge <= BOXING_CONFIG.dodge.invulnerableTo &&
-        (target.x - attacker.x) * attack.facing >= 0 &&
-        (target.x - attacker.x) * attack.facing <= spec.range + 16 &&
-        Math.abs(target.y - attacker.y) <= spec.depthTolerance + 12) {
-        attack.dodged = true;
-        target.counterWindow = BOXING_CONFIG.counter.window;
-        target.counterTarget = attacker.role;
-        boxingAddEffect(target.x, target.y - 49, "DODGE", "#9eeaff");
-        boxingShowEvent("dodge", target, attack.facing);
-        return;
+function boxingUpdateAttack(f){
+    const a=f.attack,spec=BOXING_CONFIG.attacks[a.kind];a.frame++;boxingSetAnimation(f,a.kind);
+    const target=f.role==='zorp'?boxeGame.mestre:boxeGame.player,canChain=boxingCanChain(f,target);
+    if(canChain&&f.bufferedAttack&&boxingStartAttack(f,f.bufferedAttack,true))return;
+    if(a.frame>=boxingAttackStartup(a,spec)+spec.active+spec.recovery){
+        f.attack=null;if(!a.landed){f.whiffFrames=spec.whiff;f.comboCount=0;f.comboTimer=0;window.BoxingZorpSpecial?.whiff(f,f.role==='zorp'?boxeGame.mestre:boxeGame.player);}
     }
-    if (!boxingAttackCanHit(attacker, target, attack, spec) || target.burstFrames > 0) return;
-    const blocked = target.guard && target.hitstun <= 0 &&
-        target.counterStun <= 0 && target.guardBreakTimer <= 0 &&
-        (attacker.x - target.x) * target.facing >= 0;
-    const damage = blocked ? Math.max(1, Math.round(spec.damage * BOXING_CONFIG.guardDamageScale)) :
-        spec.damage + (attack.counter ? BOXING_CONFIG.counter.damageBonus : 0);
-    target.hp = Math.max(0, target.hp - damage);
-    target.damageFlash = 10;
-    target.guardFlash = blocked ? 9 : 0;
-    if (blocked) {
-        target.guardPressure += BOXING_CONFIG.guard.pressure[attack.kind];
-        if (target.guardPressure >= BOXING_CONFIG.guard.max) boxingBreakGuard(target);
-    } else {
-        target.attack = null;
-        target.hitstun = attack.counter ? 0 : spec.hitstun;
-        if (attack.counter) target.counterStun = BOXING_CONFIG.counter.stun;
-        target.dodgeFrames = 0;
-        target.guard = false;
-        boxingSetAnimation(target, "hurt");
-        if (target.role === "master" && target.hp > 0 && target.counterStun === 0) {
-            if (target.pressureWindow === 0) target.pressureHits = 0;
-            target.pressureHits++;
-            target.pressureWindow = BOXING_CONFIG.specials.burstWindow;
-            if (target.pressureHits === 2 && target.burstCooldown === 0)
-                boxingAddEffect(target.x, target.y - 68, "ESCAPE!", "#b5a0ff");
+}
+function boxingUpdateFighter(f,target,intent,speedX,speedY){
+    for(const timer of ['dodgeCooldown','guardFlash','counterWindow','specialCooldown','comboTimer'])if(f[timer]>0)f[timer]--;
+    if(!f.comboTimer&&!f.attack)f.comboCount=0;
+    if(f.bufferFrames>0){if(--f.bufferFrames===0)f.bufferedAttack=null;}
+    if(intent.attack){f.bufferedAttack=intent.attack;f.bufferFrames=BOXING_CONFIG.combo.buffer;}
+    if(!f.guard){f.guardPressure=Math.max(0,f.guardPressure-BOXING_CONFIG.guard.decay);f.guardHoldFrames=0;}
+    if(f.hitstun||f.guardBreakTimer){
+        if(f.hitstun)f.hitstun--;if(f.guardBreakTimer)f.guardBreakTimer--;
+        f.guard=false;f.bufferedAttack=null;f.bufferFrames=0;boxingSetAnimation(f,'hurt');return;
+    }
+    if(f.special&&boxingSpecialController(f)?.update(f,target))return;
+    if(f.dodgeFrames){
+        f.dodgeAge++;f.dodgeFrames--;
+        const moving=f.dodgeAge<=BOXING_CONFIG.dodge.moveFrames;
+        if(moving)boxingMove(f,f.dodgeX,f.dodgeY,BOXING_CONFIG.dodge.speedX,BOXING_CONFIG.dodge.speedY);
+        if(f.counterWindow>0&&f.dodgeAge>=BOXING_CONFIG.counter.cancelAge&&f.bufferedAttack){
+            f.dodgeFrames=0;
+            if(boxingStartAttack(f,f.bufferedAttack))return;
         }
+        boxingSetAnimation(f,'dodge');return;
     }
-    target.x += attack.facing * spec.push * (blocked ? 0.4 : 1);
-    target.y += Math.sign(target.y - attacker.y) * (blocked ? 0.7 : 1.8);
-    boxingConstrain(target);
-    const guardCollapsed = blocked && target.guardBreakTimer > 0;
-    if (!guardCollapsed) boxingAddEffect(target.x, target.y - 54,
-        blocked ? "BLOCK" : attack.counter ? "COUNTER!" : "-" + damage,
-        blocked ? "#9eeaff" : attack.counter ? "#ffe178" :
-            attack.kind === "hook" || attack.kind === "dash" ? "#ffb256" : "#ff6972");
-    boxingImpact(target.x - attack.facing * 8, target.y - 48,
-        blocked ? 3 : attack.counter ? 13 : attack.kind === "jab" ? 5 : attack.kind === "cross" ? 8 : 11,
-        blocked ? "#9eeaff" : attack.counter ? "#ffe178" : "#ffab72");
-    if (!guardCollapsed)
-        boxingShowEvent(blocked ? "block" : attack.counter ? "counter" : attack.kind, target, attack.facing);
-    attack.landed = true;
-    if (target.hp === 0 || (!blocked &&
-        (attack.kind === "dash" || attack.kind === "charged") &&
-        target.hp <= BOXING_CONFIG.knockdown.heavyHpThreshold))
-        boxingEnterKnockdown(target, attacker, attack.kind);
+    if(f.attack){boxingUpdateAttack(f);return;}
+    if(f.whiffFrames){f.whiffFrames--;f.guard=false;boxingSetAnimation(f,'idle');return;}
+    if(intent.dodge&&boxingStartDodge(f,intent.x,intent.y,target))return;
+    if(intent.special&&boxingRequestSpecial(f,target))return;
+    f.guard=!!intent.guard;
+    if(f.guard){
+        f.bufferedAttack=null;f.bufferFrames=0;
+        f.guardHoldFrames++;
+        if(boxingApplyGuardPressure(f,BOXING_CONFIG.guard.holdPressure))return;
+        boxingMove(f,intent.x,intent.y,speedX*.42,speedY*.42);boxingSetAnimation(f,'guard');return;
+    }
+    if(f.bufferedAttack&&boxingStartAttack(f,f.bufferedAttack))return;
+    const moved=boxingMove(f,intent.x,intent.y,speedX,speedY);boxingSetAnimation(f,moved?'walk':'idle');
 }
-function boxingUpdateAttack(fighter, target) {
-    const attack = fighter.attack;
-    attack.frame++;
-    if (attack.kind === "dash" && attack.frame >= 4 && attack.frame <= 19 &&
-        (target.x - fighter.x) * attack.facing > 27) {
-        const previousX = fighter.x;
-        fighter.x += attack.facing * 8.3;
-        boxingConstrain(fighter);
-        if (Math.abs(fighter.x - previousX) > 0.1 && attack.frame % 3 === 0)
-            boxingAddEffect(fighter.x - attack.facing * 16, fighter.y - 40, "•", "#85f6ff");
-    }
-    if (attack.kind === "charged" && attack.frame === 1)
-        boxingAddEffect(fighter.x, fighter.y - 68, "CHARGE!", "#ffc56b");
-    boxingSetAnimation(fighter, attack.kind);
-    boxingResolveAttack(fighter, target);
-    const spec = BOXING_CONFIG.attacks[attack.kind];
-    if (attack.frame >= spec.startup + spec.active + spec.recovery) {
-        if (!attack.landed) fighter.whiffFrames = 5;
-        fighter.attack = null;
-    }
+// Decisions use delayed visible poses/positions. No key state or future player trajectory is read.
+const BOXING_MASTER_AI_CONFIG=Object.freeze({reactionMin:12,reactionMax:21,decisionMin:6,decisionMax:10,
+    memoryFrames:48,modeMin:36,modeMax:68,pressureDecay:.012,guardMin:22,guardMax:34});
+function boxingAiRange(min,max){return min+Math.floor(Math.random()*(max-min+1));}
+function boxingAiIdle(){return {x:0,y:0,guard:false,attack:null,dodge:false};}
+function boxingCreateMasterAI(m){
+    return {history:[],view:null,reactionFrames:boxingAiRange(BOXING_MASTER_AI_CONFIG.reactionMin,BOXING_MASTER_AI_CONFIG.reactionMax),
+        decisionIn:0,mode:'OBSERVE',modeUntil:0,side:1,pressure:0,previousHp:m.hp,
+        attackRef:null,attackSerial:0,lastThreat:0,lastOwnAttack:null,lastGuard:false,lastDodge:false,lastSpecialId:0,
+        followUp:null,followUpSent:false,preferredAttack:'jab',dodgePending:false,attackReady:0,
+        lastGuardFlash:0,blockCounterAt:0,blockCounterUntil:0,defenseReady:0,dodgeCounterSent:false,
+        decisions:[],stats:{jab:0,cross:0,guard:0,dodge:0,special:0,hits:0,blocked:0,whiffs:0,dodged:0,interrupted:0,
+            damageTaken:0,approach:0,pressure:0,cautious:0,reposition:0,defensivePlans:0,comboFollowUps:0}};
 }
-function boxingUpdateFighter(fighter, target, intent, speedX, speedY) {
-    if (fighter.dodgeCooldown > 0) fighter.dodgeCooldown--;
-    if (fighter.guardFlash > 0) fighter.guardFlash--;
-    if (fighter.counterWindow > 0) fighter.counterWindow--;
-    if (fighter.pressureWindow > 0) fighter.pressureWindow--;
-    else fighter.pressureHits = 0;
-    if (fighter.dashCooldown > 0) fighter.dashCooldown--;
-    if (fighter.chargedCooldown > 0) fighter.chargedCooldown--;
-    if (fighter.burstCooldown > 0) fighter.burstCooldown--;
-    if (!fighter.guard) fighter.guardPressure = Math.max(0,
-        fighter.guardPressure - BOXING_CONFIG.guard.decay);
-    if (fighter.role === "master" && fighter.counterStun === 0 &&
-        fighter.guardBreakTimer === 0 &&
-        fighter.pressureHits >= BOXING_CONFIG.specials.burstPressure &&
-        boxingDistance(fighter, target) < 85 && boxingStartBurst(fighter, target)) return;
-    if (fighter.burstFrames > 0) {
-        fighter.burstFrames--;
-        boxingSetAnimation(fighter, "burst");
-        return;
-    }
-    if (fighter.counterStun > 0) {
-        fighter.counterStun--;
-        fighter.guard = false;
-        boxingSetAnimation(fighter, "hurt");
-        return;
-    }
-    if (fighter.guardBreakTimer > 0) {
-        fighter.guardBreakTimer--;
-        fighter.guard = false;
-        boxingSetAnimation(fighter, "hurt");
-        return;
-    }
-    if (fighter.hitstun > 0) {
-        fighter.hitstun--;
-        fighter.guard = false;
-        boxingSetAnimation(fighter, "hurt");
-        return;
-    }
-    if (fighter.dodgeFrames > 0) {
-        fighter.dodgeAge++;
-        fighter.dodgeFrames--;
-        boxingMove(fighter, fighter.dodgeX, fighter.dodgeY,
-            BOXING_CONFIG.dodge.speedX, BOXING_CONFIG.dodge.speedY);
-        boxingSetAnimation(fighter, "dodge");
-        return;
-    }
-    if (fighter.attack) {
-        boxingUpdateAttack(fighter, target);
-        return;
-    }
-    if (fighter.whiffFrames > 0) {
-        fighter.whiffFrames--;
-        fighter.guard = false;
-        boxingSetAnimation(fighter, "idle");
-        return;
-    }
-    if (intent.dodge && boxingStartDodge(fighter, intent.x, intent.y, target)) return;
-    if (intent.attack === "dash" || intent.attack === "charged") {
-        if (boxingStartAttack(fighter, intent.attack)) return;
-    }
-    fighter.guard = !!intent.guard;
-    if (fighter.guard) {
-        boxingMove(fighter, intent.x, intent.y, speedX * 0.4, speedY * 0.4);
-        boxingSetAnimation(fighter, "guard");
-        return;
-    }
-    if (intent.attack && boxingStartAttack(fighter, intent.attack)) return;
-    const moved = boxingMove(fighter, intent.x, intent.y, speedX, speedY);
-    boxingSetAnimation(fighter, moved ? "walk" : "idle");
+function boxingAiObserve(b,p,now){
+    if(b.attackRef!==p.attack){b.attackRef=p.attack;if(p.attack)b.attackSerial++;}
+    const a=p.attack;
+    b.history.push({frame:now,x:p.x,y:p.y,hp:p.hp,guard:p.guard,dodgeFrames:p.dodgeFrames,
+        hitstun:p.hitstun,whiffFrames:p.whiffFrames,
+        attack:a?{token:b.attackSerial,kind:a.kind,frame:a.frame,startup:boxingAttackStartup(a,BOXING_CONFIG.attacks[a.kind]),
+            facing:a.facing,originY:a.originY,landed:a.landed,dodged:a.dodged}:null});
+    while(b.history.length>BOXING_MASTER_AI_CONFIG.memoryFrames)b.history.shift();
+    const cutoff=now-b.reactionFrames;
+    // Keep the last *reacted-to* observation until the next decision; never expose today's sample to planning.
+    const delayed=b.history.findLast(sample=>sample.frame<=cutoff)||null;
+    return delayed&&b.view&&delayed.frame<b.view.frame?b.view:delayed;
 }
-function boxingMasterIntent() {
-    const master = boxeGame.mestre, zorp = boxeGame.player;
-    const dx = zorp.x - master.x, dy = zorp.y - master.y;
-    const distance = boxingDistance(master, zorp);
-    if (master.aiAttackCooldown > 0) master.aiAttackCooldown--;
-    if (master.aiGuardFrames > 0) master.aiGuardFrames--;
-    if (--master.aiDecisionTimer <= 0) {
-        master.aiDecisionTimer = 12 + Math.floor(Math.random() * 14);
-        master.aiCircleSign = Math.random() < 0.5 ? -1 : 1;
-        if (zorp.attack && distance < 80 && Math.abs(dy) < 19 && Math.random() < 0.42)
-            master.aiGuardFrames = 17;
+function boxingAiTrackOwnState(b,m,now){
+    const damage=Math.max(0,b.previousHp-m.hp);b.previousHp=m.hp;
+    if(damage){b.pressure=Math.min(4,b.pressure+Math.min(1.6,damage/(m.guardFlash?18:6)));b.stats.damageTaken+=damage;
+        if(!m.guardFlash){b.blockCounterAt=0;b.blockCounterUntil=0;}}
+    if(m.guardFlash>b.lastGuardFlash){
+        b.blockCounterAt=now+boxingAiRange(6,10);b.blockCounterUntil=now+30;
+    }b.lastGuardFlash=m.guardFlash;
+    if(!m.dodgeFrames)b.dodgeCounterSent=false;
+    b.pressure=Math.max(0,b.pressure-BOXING_MASTER_AI_CONFIG.pressureDecay);
+    if(b.lastOwnAttack!==m.attack){
+        const old=b.lastOwnAttack;
+        if(old){
+            if(old.landed){if(old.blocked)b.stats.blocked++;else b.stats.hits++;}
+            else if(old.dodged)b.stats.dodged++;
+            else if(old.frame>=boxingAttackStartup(old,BOXING_CONFIG.attacks[old.kind]))b.stats.whiffs++;
+            else b.stats.interrupted++;
+        }
+        b.lastOwnAttack=m.attack;
+        if(m.attack&&Object.hasOwn(b.stats,m.attack.kind))b.stats[m.attack.kind]++;
     }
-    let x = 0, y = 0;
-    if (distance > 72) {
-        x = Math.sign(dx); y = Math.sign(dy) * 0.6;
-    } else if (distance < 39) {
-        x = -Math.sign(dx) * 0.85; y = master.aiCircleSign * 0.72;
-    } else {
-        x = Math.sign(dx) * 0.18; y = master.aiCircleSign * 0.85;
+    if(m.guard&&!b.lastGuard)b.stats.guard++;b.lastGuard=m.guard;
+    if(m.dodgeFrames&&!b.lastDodge)b.stats.dodge++;b.lastDodge=!!m.dodgeFrames;
+    if(m.special&&m.special.id!==b.lastSpecialId){b.lastSpecialId=m.special.id;b.stats.special++;}
+}
+function boxingAiSetMode(b,mode,now,duration){
+    b.mode=mode;b.modeUntil=now+duration;
+    if(mode!=='SPECIAL')b.specialPending=false;
+    if(mode==='APPROACH')b.stats.approach++;if(mode==='PRESSURE')b.stats.pressure++;
+    if(mode==='CAUTIOUS')b.stats.cautious++;if(mode==='REPOSITION')b.stats.reposition++;
+}
+function boxingAiSide(m,view){
+    // Prefer room to leave the last observed attack line; only the boxer knows its own rope clearance immediately.
+    const top=m.y-BOXING_CONFIG.ring.top-8,bottom=BOXING_CONFIG.ring.bottom-8-m.y;
+    if(top<14)return 1;if(bottom<14)return -1;
+    if(view.attack&&Math.abs(m.y-view.attack.originY)>3)return Math.sign(m.y-view.attack.originY);
+    return Math.random()<.5?-1:1;
+}
+function boxingAiPlan(b,m,view,now){
+    const dx=view.x-m.x,dy=view.y-m.y,ax=Math.abs(dx),ay=Math.abs(dy),a=view.attack;
+    const spec=a&&BOXING_CONFIG.attacks[a.kind];
+    const threat=a&&!a.landed&&!a.dodged&&(m.x-view.x)*a.facing>0&&ax<=spec.range+14&&
+        Math.abs(m.y-a.originY)<=spec.depthTolerance+5;
+    const freshThreat=threat&&a.token!==b.lastThreat;
+    if(freshThreat)b.lastThreat=a.token;
+    const busy=m.attack||m.special||m.dodgeFrames;
+    // Pressure is remembered while stunned, so a defensive plan can be ready at the end of a real combo.
+    if(!busy&&!m.hitstun&&!m.guardBreakTimer&&b.blockCounterAt&&now>=b.blockCounterAt&&now<b.blockCounterUntil){
+        b.blockCounterAt=0;b.blockCounterUntil=0;
+        boxingAiSetMode(b,'PRESSURE',now,28);b.preferredAttack='jab';
+        b.attackReady=now;m.aiAttackCooldown=0;b.defenseReady=now+18;
+    }else if(!busy&&now>=b.defenseReady&&(freshThreat||b.pressure>=1.05&&now>=b.modeUntil)){
+        b.side=boxingAiSide(m,view);b.stats.defensivePlans++;
+        const choice=Math.random(),stressed=m.guardPressure>65;
+        if(!m.dodgeCooldown&&(choice<(stressed?.55:.32))){
+            b.dodgePending=true;boxingAiSetMode(b,'EVADE',now,24);
+        }else if(!stressed&&choice<.76){
+            boxingAiSetMode(b,'DEFEND',now,boxingAiRange(BOXING_MASTER_AI_CONFIG.guardMin,BOXING_MASTER_AI_CONFIG.guardMax));
+        }else boxingAiSetMode(b,'REPOSITION',now,boxingAiRange(18,28));
+        // It takes time to recover the initiative after responding; no guaranteed instant counter.
+        b.attackReady=Math.max(b.attackReady,now+boxingAiRange(9,16));
+        b.defenseReady=now+boxingAiRange(18,26);
+    }else if(!busy&&now>=b.modeUntil){
+        b.side=boxingAiSide(m,view);
+        const aggressive=m.hp<=35,leading=m.hp-view.hp>=18;
+        const cautiousChance=aggressive?.14:leading?.46:.28;
+        const mode=ax>85||ay>23?'APPROACH':Math.random()<cautiousChance?'CAUTIOUS':'PRESSURE';
+        boxingAiSetMode(b,mode,now,boxingAiRange(BOXING_MASTER_AI_CONFIG.modeMin,BOXING_MASTER_AI_CONFIG.modeMax));
+        b.preferredAttack=Math.random()<(mode==='PRESSURE'?(aggressive?.58:.68):mode==='CAUTIOUS'?.3:.45)?'jab':'cross';
     }
-    const intent = { x, y, guard: master.aiGuardFrames > 0, attack: null, dodge: false };
-    // A IA esquiva golpes comprometidos ocasionalmente para poder responder com jab.
-    if (zorp.attack && zorp.attack.frame < BOXING_CONFIG.attacks[zorp.attack.kind].startup &&
-        distance < 67 && Math.abs(dy) < 15 && master.dodgeCooldown === 0 &&
-        !master.hitstun && !master.attack && Math.random() < 0.035) {
-        intent.dodge = true;
-        intent.x = -Math.sign(dx) * 0.35;
-        intent.y = dy >= 0 ? -1 : 1;
-        intent.guard = false;
+    // The special module sees the delayed visible opponent, never the live player object.
+    const reversal=m.hp<=35&&m.specialCharge>=100&&(b.mode==='PRESSURE'||now>=b.modeUntil);
+    if(!busy&&!m.hitstun&&!m.guardBreakTimer&&!m.whiffFrames&&(!freshThreat||reversal)&&(b.pressure<1.8||reversal)&&
+        (!['DEFEND','EVADE','REPOSITION'].includes(b.mode)||reversal)){
+        if(window.BoxingMasterSpecial?.shouldUse(m,view)){
+            boxingAiSetMode(b,'SPECIAL',now,60);b.specialPending=true;
+        }else if(window.BoxingMasterSpecial?.positionIntent(m,view))boxingAiSetMode(b,'SPECIAL_SETUP',now,54);
     }
-    if (master.counterWindow > 0 && !master.attack && !master.hitstun && distance < 57 &&
-        Math.abs(dy) < 14) {
-        intent.attack = "jab";
-        intent.guard = false;
-        return intent;
+    b.decisions.push({frame:now,observedFrame:view.frame,lag:now-view.frame,mode:b.mode,pressure:+b.pressure.toFixed(2)});
+    if(b.decisions.length>24)b.decisions.shift();
+}
+function boxingMasterIntent(){
+    const m=boxeGame.mestre,p=boxeGame.player,now=boxeGame.fightFrames;
+    const b=m.ai||(m.ai=boxingCreateMasterAI(m));
+    boxingAiTrackOwnState(b,m,now);
+    const observed=boxingAiObserve(b,p,now),intent=boxingAiIdle();
+    if(m.aiAttackCooldown)m.aiAttackCooldown--;
+    if(!observed)return intent;
+    if(--b.decisionIn<=0){
+        b.decisionIn=boxingAiRange(BOXING_MASTER_AI_CONFIG.decisionMin,BOXING_MASTER_AI_CONFIG.decisionMax);
+        b.view=observed;m.aiTargetX=observed.x;m.aiTargetY=observed.y;
+        boxingAiPlan(b,m,observed,now);
+        b.reactionFrames=boxingAiRange(BOXING_MASTER_AI_CONFIG.reactionMin,BOXING_MASTER_AI_CONFIG.reactionMax);
     }
-    // Golpe carregado exige distância e linha de ataque; o cooldown impede repetição.
-    if (!intent.guard && !intent.dodge && !master.attack && !master.hitstun &&
-        master.chargedCooldown === 0 && master.aiAttackCooldown === 0 &&
-        distance > 30 && distance < 75 && Math.abs(dy) < 14 &&
-        (zorp.whiffFrames > 0 || zorp.guard || master.aiAttackCount >= 3)) {
-        intent.attack = "charged";
-        master.aiAttackCooldown = 74;
-        return intent;
+    const view=b.view;if(!view)return intent;
+    const dx=view.x-m.x,dy=view.y-m.y,ax=Math.abs(dx),ay=Math.abs(dy);
+    if(m.special)return intent;
+    if(m.attack){
+        // A boxer can feel its own connected punch. This permits at most one planned follow-up, never a stun escape.
+        const a=m.attack,spec=BOXING_CONFIG.attacks[a.kind];
+        if(b.followUp&&!b.followUpSent&&a.kind==='jab'&&a.landed&&!a.blocked&&a.stage===1&&
+            a.frame>=boxingAttackStartup(a,spec)+spec.active){
+            intent.attack=b.followUp;b.followUpSent=true;b.stats.comboFollowUps++;
+        }return intent;
     }
-    if (!intent.guard && !intent.dodge && !master.attack && !master.hitstun && !master.dodgeFrames &&
-        master.aiAttackCooldown === 0 && distance < 67 && Math.abs(dy) < 17) {
-        intent.attack = distance < 42 && Math.random() < 0.35 ? "hook" :
-            distance > 50 && Math.random() < 0.5 ? "cross" : "jab";
-        master.aiAttackCooldown = 35 + Math.floor(Math.random() * 29);
+    if(m.dodgeFrames&&m.counterWindow&&m.dodgeAge>=BOXING_CONFIG.counter.cancelAge&&!b.dodgeCounterSent&&ax<=58&&ay<=12){
+        b.dodgeCounterSent=true;intent.attack=ax<=49?'jab':'cross';return intent;
+    }
+    if(m.hitstun||m.guardBreakTimer||m.whiffFrames||m.dodgeFrames)return intent;
+    if(b.specialPending){
+        b.specialPending=false;intent.special=true;return intent;
+    }
+    if(b.mode==='EVADE'&&b.dodgePending&&!m.dodgeCooldown){
+        b.dodgePending=false;intent.dodge=true;intent.y=b.side;return intent;
+    }
+    if(b.mode==='DEFEND'&&now<b.modeUntil){
+        intent.guard=true;intent.x=ax<38?-Math.sign(dx)*.45:0;return intent;
+    }
+    if((b.mode==='REPOSITION'||b.mode==='EVADE')&&now<b.modeUntil){
+        intent.y=b.side;intent.x=ax<65?-Math.sign(dx)*.25:0;return intent;
+    }
+    if(b.mode==='SPECIAL_SETUP'){
+        const setup=window.BoxingMasterSpecial?.positionIntent(m,view);if(setup)return setup;
+    }
+    const cautious=b.mode==='CAUTIOUS',desired=cautious?67:b.mode==='PRESSURE'?40:51;
+    intent.x=ax>desired+5?Math.sign(dx):ax<desired-10?-Math.sign(dx)*.7:0;
+    intent.y=ay>6?Math.sign(dy):cautious?b.side*.28:0;
+    if(ay>17)intent.x*=.5;
+    // Requests are based on perceived reach; the unchanged physical contact test decides whether a punch actually lands.
+    const opening=view.whiffFrames>0||view.hitstun>0;
+    const choice=opening?'cross':b.preferredAttack;
+    const perceivedReach=BOXING_CONFIG.attacks[choice].range-2;
+    if(now>=b.attackReady&&!m.aiAttackCooldown&&ax>=24&&ax<=perceivedReach&&ay<=10.5){
+        const aggressive=m.hp<=35;
+        intent.attack=choice;
+        b.followUp=intent.attack==='jab'&&b.mode==='PRESSURE'&&Math.random()<(aggressive?.58:.42)?
+            (Math.random()<.6?'cross':'jab'):null;
+        b.followUpSent=false;
+        m.aiAttackCooldown=boxingAiRange(aggressive?20:cautious?34:26,aggressive?30:cautious?48:38);
+        b.attackReady=now+m.aiAttackCooldown;intent.x=0;intent.y=0;
     }
     return intent;
 }
-function updateBoxeGame() {
-    updateBoxingPresentation();
-    hintText.innerText = boxeGame.phase === "READY"
-        ? "ESPAÇO OU WASD: ENTRAR NO RINGUE"
-        : boxeGame.phase === "INTRO" ? "O JUIZ VAI INICIAR A LUTA"
-        : boxeGame.phase === "KNOCKDOWN" ? "CONTAGEM DO JUIZ"
-        : boxeGame.phase === "GETUP" ? "LUTADOR SE LEVANTANDO"
-        : boxeGame.phase === "FINISHER" ? "FINALIZAÇÃO DE ZORP!"
-        : boxeGame.phase === "RESULT"
-            ? "R: REINICIAR | ESC: SAIR"
-            : "WASD MOVER | J/K/L GOLPES | Q DASH | SHIFT DEFESA | ESPAÇO ESQUIVA";
-    if (boxeGame.phase === "READY") {
-        boxeGame.player.stateFrame++;
-        boxeGame.mestre.stateFrame++;
-        boxeGame.juiz.stateFrame++;
-        if (boxingInputPress.start || keys.space || keys.w || keys.a || keys.s || keys.d) startBoxingFight();
-        else return;
+window.BoxingMasterAI=Object.freeze({config:BOXING_MASTER_AI_CONFIG,snapshot:()=>{
+    const b=boxeGame.mestre.ai;
+    return b?{mode:b.mode,reactionFrames:b.reactionFrames,pressure:b.pressure,
+        observedFrame:b.view?.frame??null,observedX:b.view?.x??null,observedY:b.view?.y??null,
+        stats:{...b.stats},decisions:b.decisions.map(d=>({...d}))}:null;
+}});
+
+function boxingEnterKnockdown(){
+    if(boxeGame.phase!=='FIGHTING')return;
+    const p=boxeGame.player,m=boxeGame.mestre;
+    boxeGame.winner=p.hp<=0?(m.hp<=0?'draw':'master'):'zorp';
+    const loser=p.hp<=0?p:m;loser.knockdowns++;
+    boxeGame.knockdown={role:loser.role,attacker:boxeGame.winner,frames:0,count:0};boxeGame.phase='KNOCKDOWN';boxeGame.hitPauseFrames=0;
+    for(const f of [p,m]){
+        boxingSpecialController(f)?.stop(f);
+        f.attack=null;f.guard=false;f.dodgeFrames=0;f.bufferedAttack=null;f.hitstun=0;
+        f.counterWindow=0;f.guardBreakTimer=0;f.comboTimer=0;f.comboCount=0;f.guardFlash=0;
+        boxingSetAnimation(f,f.hp<=0?'knockdown':'idle');
     }
-    for (const effect of boxeGame.effects) effect.life--;
-    boxeGame.effects = boxeGame.effects.filter(effect => effect.life > 0);
-    for (const burst of boxeGame.impactBursts) burst.life--;
-    boxeGame.impactBursts = boxeGame.impactBursts.filter(burst => burst.life > 0);
-    boxeGame.cameraShake *= 0.78;
-    if (boxeGame.cameraShake < 0.15) boxeGame.cameraShake = 0;
-    if (boxeGame.player.damageFlash > 0) boxeGame.player.damageFlash--;
-    if (boxeGame.mestre.damageFlash > 0) boxeGame.mestre.damageFlash--;
-    if (boxeGame.phase === "INTRO") {
-        boxeGame.introFrames--;
-        boxeGame.juiz.stateFrame++;
-        boxeGame.player.stateFrame++;
-        boxeGame.mestre.stateFrame++;
-        if (boxeGame.introFrames <= 0) {
-            boxeGame.phase = "FIGHTING";
-            boxeGame.juiz.animation = "idle";
-            boxeGame.juiz.stateFrame = 0;
-            boxingAddEffect(225, 118, "FIGHT!", "#ffe178");
-        }
-        boxingClearPresses();
-        return;
-    }
-    if (boxeGame.phase === "KNOCKDOWN") {
-        boxingUpdateKnockdown();
-        boxingClearPresses();
-        return;
-    }
-    if (boxeGame.phase === "GETUP") {
-        boxingUpdateGetup();
-        boxingClearPresses();
-        return;
-    }
-    if (boxeGame.phase === "FINISHER") {
-        boxingUpdateFinisher();
-        boxingClearPresses();
-        return;
-    }
-    if (boxeGame.phase === "RESULT") {
-        if (boxingInputPress.restart) resetBoxe(true);
-        boxeGame.player.stateFrame++;
-        boxeGame.mestre.stateFrame++;
-        boxeGame.juiz.stateFrame++;
-        boxingClearPresses();
-        return;
-    }
-    boxeGame.fightFrames++;
-    const tapX = boxingTapMovement.frames > 0 ? boxingTapMovement.x : 0;
-    const tapY = boxingTapMovement.frames > 0 ? boxingTapMovement.y : 0;
-    const inputX = (keys.d ? 1 : 0) - (keys.a ? 1 : 0) || tapX;
-    const inputY = (keys.s ? 1 : 0) - (keys.w ? 1 : 0) || tapY;
-    const playerIntent = {
-        x: inputX, y: inputY, guard: boxingInputPress.guard,
-        dodge: boxingInputPress.dodge,
-        attack: boxingInputPress.special ? "dash" : boxingInputPress.jab ? "jab" : boxingInputPress.cross ? "cross" :
-            boxingInputPress.hook ? "hook" : null
-    };
-    // Primeiro o jogador, depois a IA; quem receber hitstun perde a ação pendente.
-    boxingUpdateFighter(boxeGame.player, boxeGame.mestre, playerIntent,
-        BOXING_CONFIG.movement.playerX, BOXING_CONFIG.movement.playerY);
-    if (boxeGame.phase === "FIGHTING") {
-        const masterIntent = boxeGame.qaFreezeAi
-            ? { x: 0, y: 0, guard: false, attack: null, dodge: false }
-            : boxingMasterIntent();
-        boxingUpdateFighter(boxeGame.mestre, boxeGame.player, masterIntent,
-            BOXING_CONFIG.movement.masterX, BOXING_CONFIG.movement.masterY);
-    }
-    if (boxeGame.phase === "FIGHTING") {
-        boxingSeparateFighters(boxeGame.player, boxeGame.mestre);
-        if (!boxeGame.player.attack)
-            boxeGame.player.facing = boxeGame.mestre.x >= boxeGame.player.x ? 1 : -1;
-        if (!boxeGame.mestre.attack)
-            boxeGame.mestre.facing = boxeGame.player.x >= boxeGame.mestre.x ? 1 : -1;
-        const judge = boxeGame.juiz;
-        judge.x += boxingClamp(76 - judge.x, -2.2, 2.2);
-        judge.y += boxingClamp(172 - judge.y, -1.5, 1.5);
-        boxingSetAnimation(judge, Math.abs(76 - judge.x) > 3 ? "step" : "idle");
-    }
-    if (boxingTapMovement.frames > 0) boxingTapMovement.frames--;
-    boxingClearPresses();
+    if(m.ai)boxingAiTrackOwnState(m.ai,m,boxeGame.fightFrames);
+    boxeGame.juiz.animation='ko';boxeGame.juiz.stateFrame=0;boxingShowEvent('knockdown',loser);
 }
+function boxingCompleteKo(){
+    if(boxeGame.phase==='RESULT')return;boxeGame.phase='RESULT';
+    for(const f of [boxeGame.player,boxeGame.mestre])boxingSetAnimation(f,f.hp<=0?'defeat':'victory');
+    window.FestivalChallenges.onBoxingResult(boxeGame.winner,boxeGame.player.knockdowns);
+    boxingShowEvent('victory');
+    if(boxeGame.winner==='zorp'&&typeof window.desbloquearMedalha==='function')window.desbloquearMedalha('boxe');
+}
+function boxingStep(){
+    // Consume real time, not input: a fresh press during contact waits for the next simulation step.
+    if(boxeGame.phase==='FIGHTING'&&boxeGame.hitPauseFrames>0){boxeGame.hitPauseFrames--;return;}
+    updateBoxingPresentation();
+    for(const f of [boxeGame.player,boxeGame.mestre])if(f.damageFlash>0)f.damageFlash--;
+    for(const e of boxeGame.effects)e.life--;boxeGame.effects=boxeGame.effects.filter(e=>e.life>0);
+    for(const e of boxeGame.impactBursts)e.life--;boxeGame.impactBursts=boxeGame.impactBursts.filter(e=>e.life>0);
+    boxeGame.cameraShake*=.78;if(boxeGame.cameraShake<.15)boxeGame.cameraShake=0;
+    if(boxeGame.phase==='READY'){
+        if(boxingInputPress.start||keys.space||keys.w||keys.a||keys.s||keys.d)startBoxingFight();else return;
+    }
+    if(boxeGame.phase==='INTRO'){
+        boxeGame.juiz.stateFrame++;boxeGame.player.stateFrame++;boxeGame.mestre.stateFrame++;
+        if(--boxeGame.introFrames<=0){boxeGame.phase='FIGHTING';boxeGame.juiz.animation='idle';boxingAddEffect(225,118,'LUTEM!','#ffe178');}
+        boxingClearPresses();return;
+    }
+    if(boxeGame.phase==='KNOCKDOWN'){
+        boxeGame.player.stateFrame++;boxeGame.mestre.stateFrame++;boxeGame.juiz.stateFrame++;
+        if(++boxeGame.knockdown.frames>=BOXING_CONFIG.koFrames)boxingCompleteKo();boxingClearPresses();return;
+    }
+    if(boxeGame.phase==='RESULT'){
+        if(boxingInputPress.restart)resetBoxe(true);
+        boxeGame.player.stateFrame++;boxeGame.mestre.stateFrame++;boxingClearPresses();return;
+    }
+    if(boxeGame.phase!=='FIGHTING')return;
+    boxeGame.fightFrames++;
+    window.BoxingZorpSpecial?.tick();
+    window.BoxingMasterSpecial?.tick();
+    const p=boxeGame.player,m=boxeGame.mestre;boxingFaceOpponent(p,m);boxingFaceOpponent(m,p);
+    const x=(keys.d?1:0)-(keys.a?1:0)||(boxingTapMovement.frames?boxingTapMovement.x:0);
+    const y=(keys.s?1:0)-(keys.w?1:0)||(boxingTapMovement.frames?boxingTapMovement.y:0);
+    const playerIntent={x,y,guard:boxingInputPress.guard,dodge:boxingInputPress.dodge,special:boxingInputPress.special,
+        attack:boxingInputPress.cross?'cross':boxingInputPress.jab?'jab':null};
+    const masterIntent=boxeGame.qaFreezeAi?{x:0,y:0,guard:false,attack:null,dodge:false}:boxingMasterIntent();
+    boxingUpdateFighter(p,m,playerIntent,BOXING_CONFIG.movement.playerX,BOXING_CONFIG.movement.playerY);
+    boxingUpdateFighter(m,p,masterIntent,BOXING_CONFIG.movement.masterX,BOXING_CONFIG.movement.masterY);
+    boxingSeparateFighters(p,m);boxingFaceOpponent(p,m);boxingFaceOpponent(m,p);
+    // Sample both contacts before knockback/damage, allowing fair simultaneous trades.
+    const contacts=[boxingAttackOutcome(p,m),boxingAttackOutcome(m,p)];contacts.forEach(boxingResolveContact);
+    boxingSeparateFighters(p,m);boxingFaceOpponent(p,m);boxingFaceOpponent(m,p);
+    if(p.hp<=0||m.hp<=0)boxingEnterKnockdown();
+    boxeGame.juiz.stateFrame++;
+    if(boxingTapMovement.frames)boxingTapMovement.frames--;boxingClearPresses();
+}
+function updateBoxeGame(deltaSeconds){
+    const now=performance.now();
+    const dt=typeof deltaSeconds==='number'?deltaSeconds:boxingLastUpdate===null?BOXING_CONFIG.step:(now-boxingLastUpdate)/1000;
+    boxingLastUpdate=now;
+    hintText.innerText=boxeGame.phase==='RESULT'?'R: REINICIAR | ESC: SAIR':
+        boxeGame.phase==='INTRO'?'PREPARE-SE!':boxeGame.phase==='KNOCKDOWN'?'NOCAUTE!':
+        'WASD MOVER | J LEVE | K PESADO | L DEFESA | I ESQUIVA | O ESPECIAL';
+    if(document.hidden||boxeGame.phase==='PRE_GAME'){boxingAccumulator=0;return;}
+    boxingAccumulator+=boxingClamp(Number.isFinite(dt)?dt:0,0,.1);
+    while(boxingAccumulator+1e-9>=BOXING_CONFIG.step){boxingAccumulator-=BOXING_CONFIG.step;boxingStep();}
+}
+
 function drawBoxingArenaCover() {
     drawBoxingOfficialArena();
     drawBoxingCrowd();
@@ -724,8 +537,7 @@ function boxingPresentationAnimation(actor) {
         if (actor.animation === "ko" && boxeGame.phase === "RESULT" && boxeGame.winner === "zorp" && actor.stateFrame > 28) return "victory";
         return actor.animation;
     }
-    if (actor.animation === "hurt" && (actor.counterStun > 0 || actor.guardBreakTimer > 0 ||
-        (actor.role === "master" && boxeGame.phase === "FINISHER" && boxeGame.finisher.frame < 46))) return "stun";
+    if (actor.animation === "hurt" && (actor.counterStun > 0 || actor.guardBreakTimer > 0)) return "stun";
     if (actor.animation === "idle") {
         const health = actor.hp / actor.maxHp;
         if (health <= .34) return "idle_heavy";
@@ -736,7 +548,8 @@ function boxingPresentationAnimation(actor) {
 function drawBoxingActor(actor) {
     const role = actor.role, spriteSet = BOXING_SPRITES[role];
     const animation = boxingPresentationAnimation(actor);
-    const frames = spriteSet && spriteSet[animation];
+    const specialSprite=boxingSpecialController(actor)?.visual(actor)||null;
+    const frames = specialSprite?[specialSprite]:spriteSet && spriteSet[animation];
     if (!frames || !frames.length) return;
     const duration = BOXING_FRAME_DURATIONS[animation] || 7;
     const recoil = boxingShow.recoil[role];
@@ -753,22 +566,7 @@ function drawBoxingActor(actor) {
     ctx.fillStyle = "rgba(4,7,17,.4)";
     ctx.beginPath(); ctx.ellipse(actor.x, actor.y + 2, role === "judge" ? 13 : 19, 4, 0, 0, Math.PI * 2); ctx.fill();
     if (!sprite.complete || !sprite.naturalWidth) return;
-    if (actor.attack?.kind === "charged") {
-        const charge = boxingClamp(actor.attack.frame / BOXING_CONFIG.attacks.charged.startup, 0, 1);
-        ctx.strokeStyle = `rgba(255,187,90,${0.25 + charge * 0.65})`;
-        ctx.lineWidth = 2 + charge * 2;
-        ctx.beginPath(); ctx.arc(actor.x, actor.y - 42, 17 + charge * 10, 0, Math.PI * 2); ctx.stroke();
-    }
-    if (actor.burstFrames > 0) {
-        ctx.strokeStyle = `rgba(179,149,255,${actor.burstFrames / 24})`;
-        ctx.lineWidth = 3;
-        ctx.beginPath(); ctx.arc(actor.x, actor.y - 38, 52 - actor.burstFrames, 0, Math.PI * 2); ctx.stroke();
-    }
-    if (actor.role === "master" && actor.pressureHits >= 2 && actor.burstCooldown === 0) {
-        ctx.strokeStyle = "rgba(181,160,255,.78)";
-        ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.arc(actor.x, actor.y - 42, 22, -1.2, 1.2); ctx.stroke();
-    }
+    if(specialSprite)boxingSpecialController(actor).drawGhosts(ctx,actor,scale);
     ctx.save(); ctx.translate(Math.round(actor.x), Math.round(actor.y));
     if (recoil?.life > 0 && !actor.cinematicPose && actor.animation !== "knockdown") {
         const weight = recoil.life / recoil.maxLife * recoil.strength;
@@ -778,7 +576,7 @@ function drawBoxingActor(actor) {
     if (actor.cinematicPose?.rotation) ctx.rotate(actor.cinematicPose.rotation);
     if (role !== "judge" && actor.hp < actor.maxHp * 0.35 && animation === "idle")
         ctx.rotate(actor.facing * 0.035);
-    let visualFacing = actor.facing;
+    let visualFacing = role==='master'&&actor.special?actor.special.facing:actor.facing;
     if (role === "judge") {
         const observed = boxeGame.knockdown && (boxeGame.phase === "KNOCKDOWN" || boxeGame.phase === "GETUP")
             ? (boxeGame.knockdown.role === "zorp" ? boxeGame.player : boxeGame.mestre).x
@@ -791,35 +589,7 @@ function drawBoxingActor(actor) {
         -(sprite.boxingFootY + 1) * scale,
         BOXING_FRAME_CANVAS.width * scale, BOXING_FRAME_CANVAS.height * scale);
     ctx.restore();
-    if (actor.attack) {
-        const spec = BOXING_CONFIG.attacks[actor.attack.kind];
-        const age = actor.attack.frame - spec.startup;
-        if (age >= -2 && age < spec.active + 2) {
-            const power = boxingClamp(1 - Math.abs(age - 1) / (spec.active + 2), 0, 1);
-            const direction = actor.attack.facing;
-            const reach = actor.attack.kind === "jab" ? 28 : actor.attack.kind === "hook" ? 22 : 34;
-            ctx.save();
-            ctx.globalAlpha = power * 0.78;
-            ctx.strokeStyle = actor.attack.kind === "jab" ? "#9eeaff" :
-                actor.attack.kind === "hook" ? "#ffb256" : "#ffe178";
-            ctx.lineWidth = actor.attack.kind === "jab" ? 2 : 3;
-            ctx.beginPath();
-            if (actor.attack.kind === "hook") {
-                ctx.arc(actor.x + direction * 11, actor.y - 49, 18,
-                    direction > 0 ? -1.2 : 1.9, direction > 0 ? 0.9 : 4.1);
-            } else {
-                ctx.moveTo(actor.x + direction * 13, actor.y - 52);
-                ctx.lineTo(actor.x + direction * reach, actor.y - 51);
-            }
-            ctx.stroke();
-            ctx.restore();
-        }
-    }
-    if (role !== "judge" && actor.damageFlash > 0) {
-        ctx.strokeStyle = `rgba(255,102,125,${actor.damageFlash / 15})`;
-        ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.ellipse(actor.x, actor.y - 37, 19, 31, 0, 0, Math.PI * 2); ctx.stroke();
-    }
+    drawBoxingPunchTrace(actor);
     if (role !== "judge") {
         const wear = 1 - actor.hp / actor.maxHp;
         if (wear > 0.32 && animation !== "knockdown" && animation !== "defeat") {
@@ -834,112 +604,21 @@ function drawBoxingActor(actor) {
             }
         }
     }
-    if (actor.guardFlash > 0) {
-        ctx.strokeStyle = "rgba(142,236,255,.8)"; ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.arc(actor.x, actor.y - 45, 19, -1.3, 1.3); ctx.stroke();
-    }
-    if (actor.counterStun > 0 || actor.guardBreakTimer > 0) {
-        ctx.strokeStyle = actor.counterStun > 0 ? "#ffe178" : "#ff879e";
-        ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.ellipse(actor.x, actor.y - 88, 17, 5, 0, 0, Math.PI * 2); ctx.stroke();
-        ctx.fillStyle = ctx.strokeStyle;
-        ctx.font = "bold 8px Arial"; ctx.textAlign = "center";
-        ctx.fillText(actor.counterStun > 0 ? "COUNTER" : "GUARDA QUEBRADA", actor.x, actor.y - 99);
-    }
-    if (actor.counterWindow > 0) {
-        ctx.fillStyle = "#ffe178"; ctx.font = "bold 8px Arial"; ctx.textAlign = "center";
-        ctx.fillText("JAB COUNTER", actor.x, actor.y - 90);
-    }
+    drawBoxingFighterState(actor);
 }
+
 function drawBoxingFrontRopes() {
     drawBoxingOfficialFrontRopes();
 }
-function drawBoxingHud() {
-    for (const [fighter, x, color] of [
-        [boxeGame.player, 18, "#8bf266"], [boxeGame.mestre, 272, "#ff696a"]
-    ]) {
-        ctx.fillStyle = "rgba(6,11,28,.8)"; ctx.fillRect(x - 3, 33, 163, 28);
-        ctx.strokeStyle = "#d5e1eb"; ctx.lineWidth = 1; ctx.strokeRect(x, 46, 156, 9);
-        ctx.fillStyle = "#171b2b"; ctx.fillRect(x + 1, 47, 154, 7);
-        ctx.fillStyle = color; ctx.fillRect(x + 1, 47, 154 * fighter.hp / fighter.maxHp, 7);
-        ctx.fillStyle = "#22283b"; ctx.fillRect(x, 57, 156, 3);
-        ctx.fillStyle = fighter.guardPressure > 70 ? "#ff8d75" : "#a6dbff";
-        ctx.fillRect(x, 57, 156 * fighter.guardPressure / BOXING_CONFIG.guard.max, 3);
-        ctx.fillStyle = "#fff"; ctx.font = "bold 9px Arial"; ctx.textAlign = "left";
-        ctx.fillText(fighter.role === "zorp" ? "ZORP" : "MESTRE", x, 42);
-        ctx.textAlign = "right"; ctx.fillText(String(fighter.hp), x + 155, 42);
-    }
-    ctx.textAlign = "left"; ctx.font = "bold 8px Arial";
-    ctx.fillStyle = boxeGame.player.dashCooldown === 0 ? "#8df5ff" : "#8996a3";
-    ctx.fillText(boxeGame.player.dashCooldown === 0 ? "Q DASH PRONTO" :
-        `Q DASH ${(boxeGame.player.dashCooldown / 60).toFixed(1)}s`, 18, 72);
-}
-function drawBoxingEffects() {
-    for (const burst of boxeGame.impactBursts) {
-        const t = 1 - burst.life / 13;
-        ctx.save();
-        ctx.globalAlpha = (1 - t) * 0.9;
-        ctx.strokeStyle = burst.color;
-        ctx.lineWidth = Math.max(1, burst.strength / 5 * (1 - t));
-        ctx.beginPath();
-        ctx.arc(burst.x, burst.y, 5 + t * burst.strength * 2.3, 0, Math.PI * 2);
-        ctx.stroke();
-        for (let i = 0; i < 8; i++) {
-            const angle = i * Math.PI / 4 + burst.strength * 0.1;
-            const inner = 8 + t * burst.strength;
-            const outer = inner + burst.strength * (1 - t);
-            ctx.beginPath();
-            ctx.moveTo(burst.x + Math.cos(angle) * inner, burst.y + Math.sin(angle) * inner);
-            ctx.lineTo(burst.x + Math.cos(angle) * outer, burst.y + Math.sin(angle) * outer);
-            ctx.stroke();
-        }
-        ctx.restore();
-    }
-    for (const effect of boxeGame.effects) {
-        const opacity = effect.life / 16;
-        ctx.globalAlpha = opacity;
-        ctx.fillStyle = effect.color;
-        // Keep feedback above the contact: opaque bubbles used to hide the face/gloves.
-        ctx.font = "bold 9px Arial"; ctx.textAlign = "center";
-        const textY = effect.y - 15 - 8 * (1 - opacity);
-        ctx.strokeStyle = "rgba(8,12,22,.9)"; ctx.lineWidth = 2;
-        ctx.strokeText(effect.text, effect.x, textY);
-        ctx.fillText(effect.text, effect.x, textY);
-    }
-    ctx.globalAlpha = 1;
-}
-function drawBoxingFinisherStreaks() {
-    const scene = boxeGame.finisher;
-    if (!scene || scene.frame < 81 || scene.frame > 139) return;
-    const f = scene.frame;
-    ctx.save();
-    ctx.globalAlpha = f < 98 ? 0.22 : Math.max(0, (139 - f) / 41) * 0.4;
-    ctx.strokeStyle = f < 98 ? "#84efff" : "#ffe178";
-    for (let i = 0; i < 7; i++) {
-        const y = 112 + i * 19;
-        const x = (f * 19 + i * 63) % 480 - 80;
-        ctx.lineWidth = i % 2 ? 1 : 2;
-        ctx.beginPath(); ctx.moveTo(x - 65, y); ctx.lineTo(x, y - 3); ctx.stroke();
-    }
-    ctx.restore();
-}
+function drawBoxingHud(){drawBoxingFightHud(ctx);}
+function drawBoxingEffects(){drawBoxingReadableEffects();}
 function drawBoxeGame() {
-    ctx.save();
-    if (boxeGame.cameraShake > 0) {
-        const n = boxeGame.fightFrames + (boxeGame.finisher?.frame || 0);
-        ctx.translate(Math.sin(n * 2.4) * boxeGame.cameraShake,
-            Math.cos(n * 3.1) * boxeGame.cameraShake * 0.55);
-    }
+    ctx.fillStyle='#0b1019';ctx.fillRect(0,0,450,300);
+    ctx.save();ctx.beginPath();ctx.rect(0,0,450,300);ctx.clip();
+    const camera=boxingShow.camera,n=boxeGame.fightFrames;
+    const shake=Math.min(1.5,Math.max(0,boxeGame.cameraShake));
+    ctx.translate(Math.round(camera.x+Math.sin(n*2.4)*shake),Math.round(camera.y+Math.cos(n*3.1)*shake*.55));
     drawBoxingArenaCover();
-    drawBoxingFinisherStreaks();
-    if (boxeGame.finisher) {
-        const pose = boxeGame.mestre.cinematicPose;
-        if (pose && boxeGame.finisher.frame > 46) {
-            ctx.fillStyle = "rgba(5,8,22,.44)";
-            ctx.beginPath(); ctx.ellipse(pose.x, boxeGame.finisher.floorY + 2,
-                18, 4, 0, 0, Math.PI * 2); ctx.fill();
-        }
-    }
     [boxeGame.juiz, boxeGame.player, boxeGame.mestre]
         .map(actor => actor.cinematicPose
             ? { ...actor, x: actor.cinematicPose.x, y: actor.cinematicPose.y }
@@ -950,22 +629,16 @@ function drawBoxeGame() {
     drawBoxingFrontRopes();
     ctx.restore();
     drawBoxingHud();
-    if (boxeGame.phase === "FINISHER") {
-        ctx.fillStyle = "rgba(6,11,28,.76)"; ctx.fillRect(135, 76, 180, 22);
-        ctx.strokeStyle = "#ffe178"; ctx.strokeRect(135, 76, 180, 22);
-        ctx.fillStyle = "#fff6d1"; ctx.textAlign = "center";
-        ctx.font = "bold 11px Arial"; ctx.fillText("FINALIZAÇÃO!", 225, 91);
-    }
     if (boxeGame.phase === "KNOCKDOWN" || boxeGame.phase === "GETUP") {
         const count = boxeGame.knockdown?.count || 0;
         ctx.fillStyle = "rgba(8,12,30,.88)"; ctx.fillRect(187, 80, 76, 45);
         ctx.strokeStyle = "#ffe178"; ctx.lineWidth = 2; ctx.strokeRect(187, 80, 76, 45);
         ctx.textAlign = "center"; ctx.fillStyle = "#ffe178";
-        ctx.font = "bold 25px Arial"; ctx.fillText(count ? String(count) : "↓", 225, 112);
+        ctx.font = "bold 25px Arial"; ctx.fillText("KO", 225, 112);
     }
     if (boxeGame.phase === "READY" || boxeGame.phase === "RESULT") {
         const result = boxeGame.phase === "RESULT";
-        const panelX = result ? 76 : 66, panelY = result ? 77 : 104;
+        const panelX = result ? 76 : 66, panelY = result ? 94 : 104;
         const panelWidth = result ? 298 : 318, panelHeight = result ? 38 : 54;
         ctx.fillStyle = "rgba(5,10,25,.83)";
         ctx.fillRect(panelX, panelY, panelWidth, panelHeight);
@@ -974,11 +647,11 @@ function drawBoxeGame() {
         ctx.textAlign = "center"; ctx.fillStyle = "#fff";
         ctx.font = "bold 11px Arial";
         ctx.fillText(boxeGame.phase === "READY" ? "ENTRE NO RINGUE" :
-            boxeGame.winner === "zorp" ? "ZORP VENCE POR KO!" : "MESTRE VENCE POR KO!",
-            225, result ? 94 : 124);
+            boxeGame.winner === "draw" ? "EMPATE — KO DUPLO!" : boxeGame.winner === "zorp" ? "ZORP VENCE POR KO!" : "MESTRE VENCE POR KO!",
+            225, result ? 111 : 124);
         ctx.font = "9px Arial";
         ctx.fillText(boxeGame.phase === "READY" ? "ESPAÇO OU WASD" : "R PARA REINICIAR",
-            225, result ? 108 : 142);
+            225, result ? 125 : 142);
     }
     if (new URLSearchParams(location.search).has("boxeDebug")) {
         ctx.fillStyle = "rgba(0,0,0,.75)"; ctx.fillRect(4, 269, 442, 26);
@@ -989,21 +662,23 @@ function drawBoxeGame() {
     }
 }
 window.getBoxeQaSnapshot = () => ({
-    phase: boxeGame.phase, winner: boxeGame.winner,
+    phase: boxeGame.phase, winner: boxeGame.winner, hitPauseFrames:boxeGame.hitPauseFrames,
     finisherFrame: boxeGame.finisher?.frame ?? null,
     knockdown: boxeGame.knockdown ? { ...boxeGame.knockdown } : null,
     player: { x: boxeGame.player.x, y: boxeGame.player.y, hp: boxeGame.player.hp,
         animation: boxeGame.player.animation, attack: boxeGame.player.attack?.kind || null,
         guard: boxeGame.player.guard, dodgeAge: boxeGame.player.dodgeAge,
-        knockdowns: boxeGame.player.knockdowns },
+        knockdowns: boxeGame.player.knockdowns, facing:boxeGame.player.facing, combo:boxeGame.player.comboCount, hitstun:boxeGame.player.hitstun, whiffFrames:boxeGame.player.whiffFrames,
+        guardPressure:boxeGame.player.guardPressure,guardBreakTimer:boxeGame.player.guardBreakTimer,counterWindow:boxeGame.player.counterWindow,dodgeFrames:boxeGame.player.dodgeFrames },
     mestre: { x: boxeGame.mestre.x, y: boxeGame.mestre.y, hp: boxeGame.mestre.hp,
         animation: boxeGame.mestre.animation, attack: boxeGame.mestre.attack?.kind || null,
         guard: boxeGame.mestre.guard, dodgeAge: boxeGame.mestre.dodgeAge,
-        knockdowns: boxeGame.mestre.knockdowns },
+        knockdowns: boxeGame.mestre.knockdowns, facing:boxeGame.mestre.facing, combo:boxeGame.mestre.comboCount, hitstun:boxeGame.mestre.hitstun, whiffFrames:boxeGame.mestre.whiffFrames,
+        guardPressure:boxeGame.mestre.guardPressure,guardBreakTimer:boxeGame.mestre.guardBreakTimer,counterWindow:boxeGame.mestre.counterWindow,dodgeFrames:boxeGame.mestre.dodgeFrames },
     juiz: { x: boxeGame.juiz.x, y: boxeGame.juiz.y,
         animation: boxeGame.juiz.animation, count: boxeGame.juiz.countNumber || 0 },
     distance: boxingDistance(boxeGame.player, boxeGame.mestre),
     assets: { ...boxingAssetStatus },
-    presentation: boxingPresentationSnapshot()
+    presentation: boxingPresentationSnapshot(),special:window.BoxingZorpSpecial?.snapshot()||null,masterSpecial:window.BoxingMasterSpecial?.snapshot()||null,masterAI:window.BoxingMasterAI?.snapshot()||null
 });
 

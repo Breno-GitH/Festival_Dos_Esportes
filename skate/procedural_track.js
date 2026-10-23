@@ -93,7 +93,8 @@
 
         function addRamp({ id, type = "SMALL_KICKER", x, length, startY = defaultGroundY,
             height, baseY = startY, launchStrength, autoLaunch = false, samples = 12, name,
-            surfacePoints: authoredSurface, specialAir = null }) {
+            surfacePoints: authoredSurface, specialAir = null, launchMultiplier = 1,
+            landingZone = null, purpose = "" }) {
             const profile = RAMP_PROFILES[type];
             if (!profile && !authoredSurface) throw new Error(`Unknown procedural ramp type: ${type}`);
             const surfacePoints = authoredSurface ? (type === "CURVED_RAMP" && authoredSurface.length > 2
@@ -109,6 +110,12 @@
                 startX, endX, takeoffX: endX,
                 surfacePoints, collisionSurface: surfacePoints, baseY: actualBaseY,
                 launchStrength: strength, launchImpulse: strength, autoLaunch,
+                launchMultiplier, landingZone, purpose,
+                zones: Object.freeze({
+                    APPROACH: Object.freeze({ startX: startX - 70, endX: startX }),
+                    RAMP_SURFACE: Object.freeze({ startX, endX }),
+                    LAUNCH_POINT: Object.freeze({ x: endX, y: surfacePoints.at(-1).y })
+                }),
                 ...(specialAir ? { specialAir: Object.freeze({ ...specialAir }) } : {}),
                 collisionEnabled: true,
                 collisionRegions: Object.freeze({

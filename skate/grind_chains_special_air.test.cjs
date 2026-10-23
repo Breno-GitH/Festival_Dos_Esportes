@@ -102,6 +102,7 @@ test("Rail → Jump → Rail → Jump → Rail chain reaches all four rails befo
                 stage = "await-grind";
             }
         } else if (stage === "approach") {
+            if (player.grounded && physics.rampIntentAt(player.x, simulation.config)) held = true;
             const candidate = traversal.findCaptureCandidate(player, course.rails,
                 player.forwardSpeed || 230, { lookAheadMs: traversal.SETTINGS.grindInputBufferMs, gravity: simulation.config.gravity,
                     excludeRailIds: controller.lastExitedRailId ? [controller.lastExitedRailId] : [] });
@@ -221,11 +222,12 @@ test("Mega Air launches from ramp and SPACE alone carries Zorp to landing", () =
     const dOnly = runSpecialAir(false, true);
     const correct = runSpecialAir(true, true);
 
-    for (const result of [noInput, spaceOnly, dOnly, correct]) {
-        assert.equal(result.launched, true, "the special ramp launches automatically");
+    for (const result of [spaceOnly, correct]) {
+        assert.equal(result.launched, true, "held SPACE uses the special ramp at its lip");
         assert.equal(result.slowMotionWindowObserved, true, "the launch starts a short slow-motion window");
     }
     for (const result of [noInput, dOnly]) {
+        assert.equal(result.launched, false, "no Mega Air without held SPACE");
         assert.equal(result.simulation.state.phase, "FAILED", "incomplete controls do not cross the special gap");
         assert.equal(result.simulation.state.player.landings, 0);
     }

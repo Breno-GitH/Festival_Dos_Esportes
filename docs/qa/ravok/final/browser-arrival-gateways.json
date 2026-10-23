@@ -1,0 +1,103 @@
+{
+  "cases": [
+    {
+      "sport": "pingpong",
+      "ready": "JOGO_PINGPONG",
+      "started": "FADE_OUT",
+      "destination": [
+        "ILHA_PINGPONG",
+        225,
+        150
+      ],
+      "resultPreserved": true,
+      "returnAccessible": true
+    },
+    {
+      "sport": "basquete",
+      "ready": "JOGO_BASQUETE",
+      "started": "FADE_OUT",
+      "destination": [
+        "ILHA_BASQUETE",
+        225,
+        150
+      ],
+      "resultPreserved": true,
+      "returnAccessible": true
+    },
+    {
+      "sport": "corrida",
+      "ready": "JOGO_CORRIDA",
+      "started": "FADE_OUT",
+      "destination": [
+        "ILHA_CORRIDA",
+        225,
+        150
+      ],
+      "resultPreserved": true,
+      "returnAccessible": true
+    },
+    {
+      "sport": "skate",
+      "ready": "JOGO_SKATE",
+      "started": "FADE_OUT",
+      "destination": [
+        "ILHA_SKATE",
+        225,
+        150
+      ],
+      "resultPreserved": true,
+      "returnAccessible": true
+    },
+    {
+      "sport": "arco",
+      "ready": "JOGO_ARCO",
+      "started": "FADE_OUT",
+      "destination": [
+        "ILHA_ARCO",
+        225,
+        150
+      ],
+      "resultPreserved": true,
+      "returnAccessible": true
+    },
+    {
+      "sport": "escalada",
+      "ready": "JOGO_ESCALADA",
+      "started": "FADE_OUT",
+      "destination": [
+        "ILHA_ESCALADA",
+        225,
+        194
+      ],
+      "resultPreserved": true,
+      "returnAccessible": true
+    },
+    {
+      "sport": "boxe",
+      "ready": "JOGO_BOXE",
+      "started": "FADE_OUT",
+      "destination": [
+        "ILHA_ESQUI",
+        225,
+        150
+      ],
+      "resultPreserved": true,
+      "returnAccessible": true
+    },
+    {
+      "sport": "surf",
+      "ready": "JOGO_SURF",
+      "started": "FADE_OUT",
+      "destination": [
+        "ILHA_SURF",
+        225,
+        150
+      ],
+      "resultPreserved": true,
+      "returnAccessible": true
+    }
+  ],
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": []
+}

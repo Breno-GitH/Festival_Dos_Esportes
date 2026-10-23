@@ -1,0 +1,555 @@
+TAP version 13
+# Subtest: lower-left escapes physically at 30 Hz
+ok 1 - lower-left escapes physically at 30 Hz
+  ---
+  duration_ms: 33.5712
+  ...
+# Subtest: lower-right escapes physically at 30 Hz
+ok 2 - lower-right escapes physically at 30 Hz
+  ---
+  duration_ms: 16.3933
+  ...
+# Subtest: upper-left escapes physically at 30 Hz
+ok 3 - upper-left escapes physically at 30 Hz
+  ---
+  duration_ms: 32.7726
+  ...
+# Subtest: upper-right escapes physically at 30 Hz
+ok 4 - upper-right escapes physically at 30 Hz
+  ---
+  duration_ms: 13.8568
+  ...
+# Subtest: legacy-left-pocket escapes physically at 30 Hz
+ok 5 - legacy-left-pocket escapes physically at 30 Hz
+  ---
+  duration_ms: 14.8364
+  ...
+# Subtest: legacy-right-pocket escapes physically at 30 Hz
+ok 6 - legacy-right-pocket escapes physically at 30 Hz
+  ---
+  duration_ms: 11.4042
+  ...
+# Subtest: behind-left escapes physically at 30 Hz
+ok 7 - behind-left escapes physically at 30 Hz
+  ---
+  duration_ms: 17.3634
+  ...
+# Subtest: behind-right escapes physically at 30 Hz
+ok 8 - behind-right escapes physically at 30 Hz
+  ---
+  duration_ms: 15.4587
+  ...
+# Subtest: left balanced board cap gets a nudge after 2 s at 30 Hz
+ok 9 - left balanced board cap gets a nudge after 2 s at 30 Hz
+  ---
+  duration_ms: 32.0995
+  ...
+# Subtest: right balanced board cap gets a nudge after 2 s at 30 Hz
+ok 10 - right balanced board cap gets a nudge after 2 s at 30 Hz
+  ---
+  duration_ms: 11.6241
+  ...
+# Subtest: lower-left escapes physically at 60 Hz
+ok 11 - lower-left escapes physically at 60 Hz
+  ---
+  duration_ms: 6.4578
+  ...
+# Subtest: lower-right escapes physically at 60 Hz
+ok 12 - lower-right escapes physically at 60 Hz
+  ---
+  duration_ms: 7.6376
+  ...
+# Subtest: upper-left escapes physically at 60 Hz
+ok 13 - upper-left escapes physically at 60 Hz
+  ---
+  duration_ms: 7.3095
+  ...
+# Subtest: upper-right escapes physically at 60 Hz
+ok 14 - upper-right escapes physically at 60 Hz
+  ---
+  duration_ms: 7.8807
+  ...
+# Subtest: legacy-left-pocket escapes physically at 60 Hz
+ok 15 - legacy-left-pocket escapes physically at 60 Hz
+  ---
+  duration_ms: 4.3161
+  ...
+# Subtest: legacy-right-pocket escapes physically at 60 Hz
+ok 16 - legacy-right-pocket escapes physically at 60 Hz
+  ---
+  duration_ms: 3.8158
+  ...
+# Subtest: behind-left escapes physically at 60 Hz
+ok 17 - behind-left escapes physically at 60 Hz
+  ---
+  duration_ms: 3.6032
+  ...
+# Subtest: behind-right escapes physically at 60 Hz
+ok 18 - behind-right escapes physically at 60 Hz
+  ---
+  duration_ms: 5.3063
+  ...
+# Subtest: left balanced board cap gets a nudge after 2 s at 60 Hz
+ok 19 - left balanced board cap gets a nudge after 2 s at 60 Hz
+  ---
+  duration_ms: 7.2337
+  ...
+# Subtest: right balanced board cap gets a nudge after 2 s at 60 Hz
+ok 20 - right balanced board cap gets a nudge after 2 s at 60 Hz
+  ---
+  duration_ms: 9.4236
+  ...
+# Subtest: lower-left escapes physically at 120 Hz
+ok 21 - lower-left escapes physically at 120 Hz
+  ---
+  duration_ms: 10.6733
+  ...
+# Subtest: lower-right escapes physically at 120 Hz
+ok 22 - lower-right escapes physically at 120 Hz
+  ---
+  duration_ms: 13.034
+  ...
+# Subtest: upper-left escapes physically at 120 Hz
+ok 23 - upper-left escapes physically at 120 Hz
+  ---
+  duration_ms: 11.7785
+  ...
+# Subtest: upper-right escapes physically at 120 Hz
+ok 24 - upper-right escapes physically at 120 Hz
+  ---
+  duration_ms: 16.9563
+  ...
+# Subtest: legacy-left-pocket escapes physically at 120 Hz
+ok 25 - legacy-left-pocket escapes physically at 120 Hz
+  ---
+  duration_ms: 17.5252
+  ...
+# Subtest: legacy-right-pocket escapes physically at 120 Hz
+ok 26 - legacy-right-pocket escapes physically at 120 Hz
+  ---
+  duration_ms: 4.1217
+  ...
+# Subtest: behind-left escapes physically at 120 Hz
+ok 27 - behind-left escapes physically at 120 Hz
+  ---
+  duration_ms: 4.0275
+  ...
+# Subtest: behind-right escapes physically at 120 Hz
+ok 28 - behind-right escapes physically at 120 Hz
+  ---
+  duration_ms: 5.1156
+  ...
+# Subtest: left balanced board cap gets a nudge after 2 s at 120 Hz
+ok 29 - left balanced board cap gets a nudge after 2 s at 120 Hz
+  ---
+  duration_ms: 8.3824
+  ...
+# Subtest: right balanced board cap gets a nudge after 2 s at 120 Hz
+ok 30 - right balanced board cap gets a nudge after 2 s at 120 Hz
+  ---
+  duration_ms: 8.7068
+  ...
+# Subtest: lower-left escapes physically at 144 Hz
+ok 31 - lower-left escapes physically at 144 Hz
+  ---
+  duration_ms: 5.6012
+  ...
+# Subtest: lower-right escapes physically at 144 Hz
+ok 32 - lower-right escapes physically at 144 Hz
+  ---
+  duration_ms: 5.4683
+  ...
+# Subtest: upper-left escapes physically at 144 Hz
+ok 33 - upper-left escapes physically at 144 Hz
+  ---
+  duration_ms: 9.4182
+  ...
+# Subtest: upper-right escapes physically at 144 Hz
+ok 34 - upper-right escapes physically at 144 Hz
+  ---
+  duration_ms: 5.3802
+  ...
+# Subtest: legacy-left-pocket escapes physically at 144 Hz
+ok 35 - legacy-left-pocket escapes physically at 144 Hz
+  ---
+  duration_ms: 5.3925
+  ...
+# Subtest: legacy-right-pocket escapes physically at 144 Hz
+ok 36 - legacy-right-pocket escapes physically at 144 Hz
+  ---
+  duration_ms: 4.9733
+  ...
+# Subtest: behind-left escapes physically at 144 Hz
+ok 37 - behind-left escapes physically at 144 Hz
+  ---
+  duration_ms: 4.7555
+  ...
+# Subtest: behind-right escapes physically at 144 Hz
+ok 38 - behind-right escapes physically at 144 Hz
+  ---
+  duration_ms: 5.677
+  ...
+# Subtest: left balanced board cap gets a nudge after 2 s at 144 Hz
+ok 39 - left balanced board cap gets a nudge after 2 s at 144 Hz
+  ---
+  duration_ms: 9.2024
+  ...
+# Subtest: right balanced board cap gets a nudge after 2 s at 144 Hz
+ok 40 - right balanced board cap gets a nudge after 2 s at 144 Hz
+  ---
+  duration_ms: 10.648
+  ...
+# Subtest: a normal resting floor ball remains still: distance from current players is not a trap
+ok 41 - a normal resting floor ball remains still: distance from current players is not a trap
+  ---
+  duration_ms: 5.401
+  ...
+# Subtest: wall minimum restitution acts only on contact, not proximity
+ok 42 - wall minimum restitution acts only on contact, not proximity
+  ---
+  duration_ms: 0.6364
+  ...
+# Subtest: failsafe requires failed nudge, another 3 s stalled and blink, and restores a neutral loose ball
+ok 43 - failsafe requires failed nudge, another 3 s stalled and blink, and restores a neutral loose ball
+  ---
+  duration_ms: 32.2271
+  ...
+# Subtest: moving/possessed balls and post-basket reset never trigger recovery
+ok 44 - moving/possessed balls and post-basket reset never trigger recovery
+  ---
+  duration_ms: 0.9849
+  ...
+# Subtest: rescue cannot manufacture a basket; a real new play clears the safety scoring block
+ok 45 - rescue cannot manufacture a basket; a real new play clears the safety scoring block
+  ---
+  duration_ms: 0.7384
+  ...
+# Subtest: actual runtime: player retrieves the ball at the outermost playable floor
+ok 46 - actual runtime: player retrieves the ball at the outermost playable floor
+  ---
+  duration_ms: 56.0213
+  ...
+# Subtest: actual runtime: master retrieves the ball at the outermost playable floor
+ok 47 - actual runtime: master retrieves the ball at the outermost playable floor
+  ---
+  duration_ms: 6.8553
+  ...
+# Subtest: actual runtime: safety does not reset score, clock, positions or special
+ok 48 - actual runtime: safety does not reset score, clock, positions or special
+  ---
+  duration_ms: 55.8592
+  ...
+# Subtest: actual runtime: master uses an ordinary jump to retrieve a reachable high loose ball
+ok 49 - actual runtime: master uses an ordinary jump to retrieve a reachable high loose ball
+  ---
+  duration_ms: 8.0747
+  ...
+# Subtest: 286 resting initial positions around the court and both baskets all become reachable without a reset
+ok 50 - 286 resting initial positions around the court and both baskets all become reachable without a reset
+  ---
+  duration_ms: 1216.2267
+  ...
+# Subtest: 66 varied spectators in three rows, with independent phase and delay
+ok 51 - 66 varied spectators in three rows, with independent phase and delay
+  ---
+  duration_ms: 9.7694
+  ...
+# Subtest: layout is deterministic without consuming gameplay randomness
+ok 52 - layout is deterministic without consuming gameplay randomness
+  ---
+  duration_ms: 5.1171
+  ...
+# Subtest: ordinary basket, three and Swoosh have increasing physical celebration amplitude
+ok 53 - ordinary basket, three and Swoosh have increasing physical celebration amplitude
+  ---
+  duration_ms: 5.0188
+  ...
+# Subtest: both sides celebrate their own scorer more strongly
+ok 54 - both sides celebrate their own scorer more strongly
+  ---
+  duration_ms: 2.0596
+  ...
+# Subtest: all visual events are recognized; late baskets and lead changes carry stronger reactions
+ok 55 - all visual events are recognized; late baskets and lead changes carry stronger reactions
+  ---
+  duration_ms: 2.1023
+  ...
+# Subtest: rim anticipation is throttled instead of retriggering every contact substep
+ok 56 - rim anticipation is throttled instead of retriggering every contact substep
+  ---
+  duration_ms: 0.6571
+  ...
+# Subtest: tension and reactions use seconds at 30 Hz
+ok 57 - tension and reactions use seconds at 30 Hz
+  ---
+  duration_ms: 1.063
+  ...
+# Subtest: tension and reactions use seconds at 60 Hz
+ok 58 - tension and reactions use seconds at 60 Hz
+  ---
+  duration_ms: 0.8669
+  ...
+# Subtest: tension and reactions use seconds at 120 Hz
+ok 59 - tension and reactions use seconds at 120 Hz
+  ---
+  duration_ms: 1.8108
+  ...
+# Subtest: tension and reactions use seconds at 144 Hz
+ok 60 - tension and reactions use seconds at 144 Hz
+  ---
+  duration_ms: 1.3387
+  ...
+# Subtest: only close late games build tension
+ok 61 - only close late games build tension
+  ---
+  duration_ms: 2.1688
+  ...
+# Subtest: idle animation is subtle, varied, and changes without events
+ok 62 - idle animation is subtle, varied, and changes without events
+  ---
+  duration_ms: 1.7912
+  ...
+# Subtest: events and confetti are bounded and expire, including while on the result screen
+ok 63 - events and confetti are bounded and expire, including while on the result screen
+  ---
+  duration_ms: 2.6256
+  ...
+# Subtest: reset clears the celebration without changing the spectator appearance
+ok 64 - reset clears the celebration without changing the spectator appearance
+  ---
+  duration_ms: 1.7733
+  ...
+# Subtest: the old PNG audience band is never sampled; remaining court geometry keeps the original mapping
+ok 65 - the old PNG audience band is never sampled; remaining court geometry keeps the original mapping
+  ---
+  duration_ms: 0.6308
+  ...
+# Subtest: spectators use integer rectangles under a stand-only clip, without images or changes to physics
+ok 66 - spectators use integer rectangles under a stand-only clip, without images or changes to physics
+  ---
+  duration_ms: 3.6134
+  ...
+# Subtest: only humans and aliens, with distinct fixed visual identities and no animal/robot category
+ok 67 - only humans and aliens, with distinct fixed visual identities and no animal/robot category
+  ---
+  duration_ms: 1.0462
+  ...
+# Subtest: appearance, seats and geometry persist throughout a complete match simulation
+ok 68 - appearance, seats and geometry persist throughout a complete match simulation
+  ---
+  duration_ms: 117.9368
+  ...
+# Subtest: repeated rim contacts increase apprehension, not a premature celebration
+ok 69 - repeated rim contacts increase apprehension, not a premature celebration
+  ---
+  duration_ms: 0.546
+  ...
+# Subtest: close final seconds make more fans stand; neutral fans favor spectacular plays
+ok 70 - close final seconds make more fans stand; neutral fans favor spectacular plays
+  ---
+  duration_ms: 2.8748
+  ...
+# Subtest: a comfortable lead still makes more spectators stand near the end, with less agitation than a close match
+ok 71 - a comfortable lead still makes more spectators stand near the end, with less agitation than a close match
+  ---
+  duration_ms: 1.2895
+  ...
+# Subtest: left: real downward Swoosh at 30 Hz, with no double score
+ok 72 - left: real downward Swoosh at 30 Hz, with no double score
+  ---
+  duration_ms: 14.7747
+  ...
+# Subtest: left: real downward Swoosh at 60 Hz, with no double score
+ok 73 - left: real downward Swoosh at 60 Hz, with no double score
+  ---
+  duration_ms: 7.1107
+  ...
+# Subtest: left: real downward Swoosh at 120 Hz, with no double score
+ok 74 - left: real downward Swoosh at 120 Hz, with no double score
+  ---
+  duration_ms: 5.8014
+  ...
+# Subtest: left: real downward Swoosh at 144 Hz, with no double score
+ok 75 - left: real downward Swoosh at 144 Hz, with no double score
+  ---
+  duration_ms: 2.962
+  ...
+# Subtest: right: real downward Swoosh at 30 Hz, with no double score
+ok 76 - right: real downward Swoosh at 30 Hz, with no double score
+  ---
+  duration_ms: 2.7243
+  ...
+# Subtest: right: real downward Swoosh at 60 Hz, with no double score
+ok 77 - right: real downward Swoosh at 60 Hz, with no double score
+  ---
+  duration_ms: 4.3723
+  ...
+# Subtest: right: real downward Swoosh at 120 Hz, with no double score
+ok 78 - right: real downward Swoosh at 120 Hz, with no double score
+  ---
+  duration_ms: 3.1158
+  ...
+# Subtest: right: real downward Swoosh at 144 Hz, with no double score
+ok 79 - right: real downward Swoosh at 144 Hz, with no double score
+  ---
+  duration_ms: 3.2853
+  ...
+# Subtest: left hoop: rim contact can still produce a normal basket
+ok 80 - left hoop: rim contact can still produce a normal basket
+  ---
+  duration_ms: 2.6692
+  ...
+# Subtest: left hoop: board contact can still produce a normal basket
+ok 81 - left hoop: board contact can still produce a normal basket
+  ---
+  duration_ms: 2.9623
+  ...
+# Subtest: rim-in and bank-in remain normal baskets at 30 Hz
+ok 82 - rim-in and bank-in remain normal baskets at 30 Hz
+  ---
+  duration_ms: 6.5172
+  ...
+# Subtest: rim-in and bank-in remain normal baskets at 60 Hz
+ok 83 - rim-in and bank-in remain normal baskets at 60 Hz
+  ---
+  duration_ms: 3.4452
+  ...
+# Subtest: rim-in and bank-in remain normal baskets at 120 Hz
+ok 84 - rim-in and bank-in remain normal baskets at 120 Hz
+  ---
+  duration_ms: 2.5954
+  ...
+# Subtest: rim-in and bank-in remain normal baskets at 144 Hz
+ok 85 - rim-in and bank-in remain normal baskets at 144 Hz
+  ---
+  duration_ms: 4.6619
+  ...
+# Subtest: rim out: no score
+ok 86 - rim out: no score
+  ---
+  duration_ms: 9.8959
+  ...
+# Subtest: wide of hoop: no score
+ok 87 - wide of hoop: no score
+  ---
+  duration_ms: 6.4404
+  ...
+# Subtest: up through hoop then down: no score
+ok 88 - up through hoop then down: no score
+  ---
+  duration_ms: 5.1049
+  ...
+# Subtest: net only: no score
+ok 89 - net only: no score
+  ---
+  duration_ms: 4.3804
+  ...
+# Subtest: external side: no score
+ok 90 - external side: no score
+  ---
+  duration_ms: 6.9903
+  ...
+# Subtest: starts at plane with no above history: no score
+ok 91 - starts at plane with no above history: no score
+  ---
+  duration_ms: 6.5477
+  ...
+# Subtest: crossing X, not the frame-end X, decides a fast diagonal shot
+ok 92 - crossing X, not the frame-end X, decides a fast diagonal shot
+  ---
+  duration_ms: 0.558
+  ...
+# Subtest: continuous circles/capsule collide even at high speed
+ok 93 - continuous circles/capsule collide even at high speed
+  ---
+  duration_ms: 0.214
+  ...
+# Subtest: overlap at the metal center resolves to a finite physical position
+ok 94 - overlap at the metal center resolves to a finite physical position
+  ---
+  duration_ms: 2.4042
+  ...
+# Subtest: repeated rim/board bounces can score only once; reset requires a new play
+ok 95 - repeated rim/board bounces can score only once; reset requires a new play
+  ---
+  duration_ms: 18.4123
+  ...
+# Subtest: a score sensor does not alter physical velocity or angular velocity
+ok 96 - a score sensor does not alter physical velocity or angular velocity
+  ---
+  duration_ms: 1.4614
+  ...
+# Subtest: possession, unowned loose balls and the wrong basket cannot manufacture points
+ok 97 - possession, unowned loose balls and the wrong basket cannot manufacture points
+  ---
+  duration_ms: 21.558
+  ...
+# Subtest: restitution reflects the normal velocity without generating kinetic energy
+ok 98 - restitution reflects the normal velocity without generating kinetic energy
+  ---
+  duration_ms: 0.7642
+  ...
+# Subtest: 500 varied physical flights: finite results and every score has a valid downward crossing
+ok 99 - 500 varied physical flights: finite results and every score has a valid downward crossing
+  ---
+  duration_ms: 393.6871
+  ...
+# Subtest: panel reads the actual match values, rounding only the displayed seconds
+ok 100 - panel reads the actual match values, rounding only the displayed seconds
+  ---
+  duration_ms: 5.3839
+  ...
+# Subtest: presentation timers cannot run a second clock, change score or mutate the match
+ok 101 - presentation timers cannot run a second clock, change score or mutate the match
+  ---
+  duration_ms: 2.522
+  ...
+# Subtest: timer freezes at 00 after the real match reaches RESULT
+ok 102 - timer freezes at 00 after the real match reaches RESULT
+  ---
+  duration_ms: 0.9543
+  ...
+# Subtest: 10–6 pulse, 5–1 attention flash and result state are separated
+ok 103 - 10–6 pulse, 5–1 attention flash and result state are separated
+  ---
+  duration_ms: 0.3459
+  ...
+# Subtest: event message expires while the actual score/time remain available
+ok 104 - event message expires while the actual score/time remain available
+  ---
+  duration_ms: 0.3814
+  ...
+# Subtest: each crowd event is consumed once, and lower priority messages cannot hide a basket
+ok 105 - each crowd event is consumed once, and lower priority messages cannot hide a basket
+  ---
+  duration_ms: 0.2943
+  ...
+# Subtest: scores briefly pop on the correct side without modifying the other side
+ok 106 - scores briefly pop on the correct side without modifying the other side
+  ---
+  duration_ms: 0.3026
+  ...
+# Subtest: overtime uses the existing new match-clock value and can warn again
+ok 107 - overtime uses the existing new match-clock value and can warn again
+  ---
+  duration_ms: 0.9228
+  ...
+# Subtest: reset clears visual timers and notifications only
+ok 108 - reset clears visual timers and notifications only
+  ---
+  duration_ms: 1.204
+  ...
+# Subtest: all scoreboard drawing is integer pixel geometry and timer digits never blink off
+ok 109 - all scoreboard drawing is integer pixel geometry and timer digits never blink off
+  ---
+  duration_ms: 6.3352
+  ...
+1..109
+# tests 109
+# suites 0
+# pass 109
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2106.0546

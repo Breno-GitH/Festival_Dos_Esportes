@@ -29,7 +29,7 @@ function run(options = {}) {
     const entries = [], transitions = [], trace = [], keysUsed = new Set();
     let previousMode = "GROUND", previousRail = "", maximumCombo = 0, maxMultiplier = 1, frames = 0;
     let view;
-    for (; frames < 15000; frames++) {
+    for (; frames < (options.frameRate || 60) * 250; frames++) {
         view = vm.runInContext(`({ player: skateOllieSimulation.state.player, phase: skateOllieSimulation.state.phase,
             mode: skateTraversal.mode, rail: skateTraversal.activeRail, held: skateOllieInput.held,
             excludedRail: skateTraversal.lastExitedRailId, combo: skateCombo.snapshot(), camera: skateOllieCamera })`, context);
@@ -65,7 +65,7 @@ function run(options = {}) {
         physicsSeconds: +state.elapsed.toFixed(2), failureReason: state.failureReason || "", hit: state.player.hitObstacleId,
         x: +state.player.x.toFixed(1), y: +state.player.y.toFixed(1), score: combo.bankedScore,
         maximumCombo: Math.round(maximumCombo), maxMultiplier, enteredRails: entries,
-        presentation, keysUsed: [...keysUsed], jumps: state.player.takeoffs, landings: state.player.landings, inputs: pilot.log, transitions, trace };
+        presentation, rampLaunches:state.rampLaunches, keysUsed: [...keysUsed], jumps: state.player.takeoffs, landings: state.player.landings, inputs: pilot.log, transitions, trace };
 }
 if (require.main === module) {
     const result = run({ profile: process.argv[2] || "full", captureDelayMs: Number(process.argv[3]) || 0 });

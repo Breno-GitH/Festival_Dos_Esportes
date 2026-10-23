@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><base href="../">
-<title>Skate — revisão da pista</title>
+<title>Skate — revisão da pista</title><link rel="icon" href="data:,">
 <style>body{background:#101a2c;color:#e6f7fa;font:16px system-ui;margin:20px}main{max-width:1100px;margin:auto}canvas{width:900px;height:auto;aspect-ratio:3/2;max-width:100%;image-rendering:pixelated;border:1px solid #5cddea}button,select,input{font:inherit;margin:5px;padding:7px;background:#203754;color:#fff;border:1px solid #678b9f}pre{white-space:pre-wrap;font-size:13px}label{display:inline-block;margin:6px}h1{font-size:22px}.note{color:#a5bccd}</style></head>
 <body><main><h1>Skate — revisão da pista</h1>
 <p class="note">Área de QA separada. Mesma pista, física, sprites e parser do jogo. Replay envia pressionamentos reais ao runtime; SPACE também funciona no teclado.</p>
@@ -14,14 +14,14 @@
 <pre id="status">Carregando</pre><details><summary>Registro da run</summary><pre id="record"></pre></details>
 </main>
 <script>const canvas=document.getElementById('gameCanvas'),ctx=canvas.getContext('2d');let currentScene='JOGO_SKATE';window.desbloquearMedalha=()=>{};</script>
-<script src="skate_new/collision_geometry.js"></script>
-<script src="skate/space_input_parser.js?v=5.6_journey"></script><script src="skate/ollie_physics.js?v=5.6_journey"></script>
-<script src="skate/trick_system.js"></script><script src="skate/combo_system.js"></script><script src="skate/traversal_system.js?v=5.6_journey"></script>
+<script src="skate_new/collision_geometry.js?v=1.3_universal_ramp_zones"></script>
+<script src="skate/space_input_parser.js?v=5.7_universal_ramps"></script><script src="skate/ollie_physics.js?v=5.7_universal_ramps"></script>
+<script src="skate/trick_system.js"></script><script src="skate/combo_system.js"></script><script src="skate/traversal_system.js?v=5.7_universal_ramps"></script>
 <script src="skate_v2/catalog.js?v=2.0_rider"></script>
-<script src="skate/procedural_track.js?v=5.6_journey"></script><script src="skate/official_procedural_course.js?v=5.6_journey"></script><script src="skate/course.js?v=3.0_procedural_official"></script>
-<script src="skate/procedural_sandbox.js?v=5.6_journey"></script><script src="skate/procedural_gameplay_course.js?v=5.6_journey"></script>
-<script src="skate/rider_presentation.js?v=5.6_journey"></script><script src="skate/journey_presentation.js?v=5.6_journey"></script>
-<script src="skate/skate_ollie_runtime.js?v=5.6_journey"></script><script src="skate/level_pilot.js?v=5.6_journey"></script>
+<script src="skate/procedural_track.js?v=5.7_universal_ramps"></script><script src="skate/official_procedural_course.js?v=5.7_universal_ramps"></script><script src="skate/course.js?v=3.0_procedural_official"></script>
+<script src="skate/procedural_sandbox.js?v=5.7_universal_ramps"></script><script src="skate/procedural_gameplay_course.js?v=5.7_universal_ramps"></script>
+<script src="skate/rider_presentation.js?v=5.7_universal_ramps"></script><script src="skate/journey_presentation.js?v=5.7_universal_ramps"></script>
+<script src="skate/skate_ollie_runtime.js?v=5.7_universal_ramps"></script><script src="skate/level_pilot.js?v=5.7_universal_ramps"></script>
 <script>
 // QA only. No source-game input or physical state is overridden during a run.
 if (/(?:\?|&)skateMechanicsTest=1(?:&|$)/.test(location.search)) {

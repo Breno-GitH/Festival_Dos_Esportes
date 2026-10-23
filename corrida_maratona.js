@@ -718,6 +718,7 @@
             this.runnerContacts = 0;
             this.jumps = 0;
             this.restartCount = 0;
+            this.pendingBriefStart = false;
             this.assetsReported = false;
             this.setupInput();
             this.reset();
@@ -822,6 +823,7 @@
             this.finalRanking = [];
             this.directionHistory = new Set();
             this.inputKeys.clear();
+            this.pendingBriefStart = false;
             this.gatesPassed = 0;
             this.runnerContacts = 0;
             this.jumps = 0;
@@ -844,6 +846,19 @@
             this.countdown = 3;
             this.countdownGoTimer = 0;
             for (const runner of this.runners) runner.state = 'READY';
+        }
+
+        clearBriefingInput() {
+            this.inputKeys.clear();
+        }
+
+        startFromBriefing() {
+            this.clearBriefingInput();
+            this.pendingBriefStart = true;
+            if (this.atlas.ready && this.atlas.failed === 0) {
+                this.pendingBriefStart = false;
+                this.startCountdown();
+            }
         }
 
         updateAI(runner, dt) {
@@ -1006,6 +1021,10 @@
 
             if (this.phase === 'LOADING' && this.atlas.ready) {
                 this.phase = this.atlas.failed ? 'ASSET_ERROR' : 'READY';
+            }
+            if (this.pendingBriefStart && this.phase === 'READY') {
+                this.pendingBriefStart = false;
+                this.startCountdown();
             }
 
             if (typeof hintText !== 'undefined') {
@@ -1244,7 +1263,7 @@
                 ctx.fillStyle = '#ff9b9b';
                 ctx.font = 'bold 13px monospace';
                 ctx.fillText('ERRO AO CARREGAR SPRITES DA CORRIDA', canvas.width / 2, 140);
-            } else if (this.phase === 'READY') {
+            } else if (this.phase === 'READY' && !window.PreGameBrief?.active) {
                 ctx.fillStyle = 'rgba(2,8,18,.72)';
                 ctx.fillRect(32, 72, canvas.width - 64, 152);
                 ctx.strokeStyle = '#65e7ff';
@@ -1412,6 +1431,7 @@
     const corridaMaratona = new CorridaMaratonaGame();
     window.corridaMaratona = corridaMaratona;
     window.resetCorridaMaratona = function () { corridaMaratona.reset(); corridaMaratona.setPresentation(true); };
+    window.startCorridaMaratonaFromBrief = function () { corridaMaratona.startFromBriefing(); };
     window.updateCorridaMaratona = function () { corridaMaratona.update(); };
     window.drawCorridaMaratona = function () { corridaMaratona.draw(); };
     window.getCorridaMaratonaDiagnostics = function () { return corridaMaratona.diagnostics(); };

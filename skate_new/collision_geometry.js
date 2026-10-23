@@ -36,6 +36,7 @@
     function createRampGeometry(asset, placement) {
         if (!asset) return null;
         const surfacePoints = transformNormalizedPath(asset.surfacePointsNormalized, placement);
+        const startX = surfacePoints[0].x, endX = surfacePoints.at(-1).x;
         return {
             id: placement.id || asset.id,
             type: asset.type,
@@ -43,6 +44,13 @@
             width: placement.width,
             height: placement.height,
             surfacePoints,
+            startX, endX, takeoffX:endX,
+            launchMultiplier:Number(placement.launchMultiplier ?? 1),
+            zones: {
+                APPROACH:{startX:startX-70,endX:startX},
+                RAMP_SURFACE:{startX,endX},
+                LAUNCH_POINT:{x:endX,y:surfacePoints.at(-1).y}
+            },
             collisionRegions: {
                 [COLLISION_REGION.SAFE_TOP]: surfacePoints,
                 [COLLISION_REGION.DANGEROUS_SIDE]: {

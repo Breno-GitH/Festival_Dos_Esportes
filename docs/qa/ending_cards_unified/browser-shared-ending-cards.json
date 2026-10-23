@@ -1,0 +1,3548 @@
+{
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": [],
+  "cards": [
+    {
+      "id": "true_ending",
+      "state": {
+        "active": true,
+        "id": "true_ending",
+        "title": "DE VOLTA PARA CASA",
+        "text": "Com as oito medalhas, Zorpzin voltou para casa.\nLevou da Terra muito mais que vitórias.",
+        "state": "READY",
+        "elapsed": 0.22189999997615817,
+        "totalTime": 2.3399999999999985,
+        "presented": true,
+        "error": null,
+        "titleFont": "LOCAL_BITMAP_5x7",
+        "portrait": {
+          "source": "zorp_finalpadrao.png?v=1.0.0_official_ending_card",
+          "sourceRect": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "status": "ready",
+          "cached": true,
+          "destination": {
+            "x": 147,
+            "y": 66,
+            "width": 156,
+            "height": 156,
+            "scale": 0.12440191387559808
+          }
+        },
+        "inputLock": 0.7,
+        "fadeOutDuration": 0.8,
+        "layout": {
+          "width": 450,
+          "height": 300,
+          "titleY": 35,
+          "portrait": {
+            "x": 139,
+            "y": 66,
+            "width": 172,
+            "height": 156
+          },
+          "textY": 236,
+          "textWidth": 374,
+          "lineHeight": 11,
+          "promptY": 280
+        }
+      },
+      "sources": [
+        {
+          "name": "zorp_finalpadrao.png",
+          "source": "http://127.0.0.1:8818/zorp_finalpadrao.png?v=1.0.0_official_ending_card",
+          "args": [
+            0,
+            0,
+            1254,
+            1254,
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "smooth": false
+        }
+      ],
+      "renders": [
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            72,
+            156,
+            156
+          ],
+          "alpha": 1.4812627090120045e-7,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            72,
+            156,
+            156
+          ],
+          "alpha": 0.046456909643687545,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            72,
+            156,
+            156
+          ],
+          "alpha": 0.059565089130154916,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            71,
+            156,
+            156
+          ],
+          "alpha": 0.09011229014111352,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            71,
+            156,
+            156
+          ],
+          "alpha": 0.1262002743484225,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            71,
+            156,
+            156
+          ],
+          "alpha": 0.16662300591013482,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            71,
+            156,
+            156
+          ],
+          "alpha": 0.21125723395464682,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            70,
+            156,
+            156
+          ],
+          "alpha": 0.2592592592592593,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            70,
+            156,
+            156
+          ],
+          "alpha": 0.3100157540467655,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            70,
+            156,
+            156
+          ],
+          "alpha": 0.36323535528120715,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            69,
+            156,
+            156
+          ],
+          "alpha": 0.416680400492161,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            69,
+            156,
+            156
+          ],
+          "alpha": 0.47267876826004984,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            69,
+            156,
+            156
+          ],
+          "alpha": 0.528652706669206,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            68,
+            156,
+            156
+          ],
+          "alpha": 0.5954757122345127,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            68,
+            156,
+            156
+          ],
+          "alpha": 0.6374085222275606,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            68,
+            156,
+            156
+          ],
+          "alpha": 0.6902951614293107,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            68,
+            156,
+            156
+          ],
+          "alpha": 0.740740740740741,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            67,
+            156,
+            156
+          ],
+          "alpha": 0.788742766376715,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            67,
+            156,
+            156
+          ],
+          "alpha": 0.8328647821688285,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            67,
+            156,
+            156
+          ],
+          "alpha": 0.8740300960549052,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            67,
+            156,
+            156
+          ],
+          "alpha": 0.9096864901220711,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 0.9409396076817561,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 0.9655746447092893,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 0.9842909564882358,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 0.9960180256896662,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_finalpadrao.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FINAL_CUTSCENE",
+          "state": "READY"
+        }
+      ],
+      "cache": [
+        1254,
+        1254
+      ],
+      "whiteEdgePixels": 0,
+      "text": [
+        {
+          "value": "ILHA DOS CAMPEÕES / FINAL PADRÃO",
+          "x": 225,
+          "y": 24,
+          "width": 128,
+          "alpha": 1
+        },
+        {
+          "value": "Com as oito medalhas, Zorpzin voltou para casa.",
+          "x": 225,
+          "y": 236,
+          "width": 235,
+          "alpha": 1
+        },
+        {
+          "value": "Levou da Terra muito mais que vitórias.",
+          "x": 225,
+          "y": 247,
+          "width": 195,
+          "alpha": 1
+        },
+        {
+          "value": "[SPACE] CONTINUAR",
+          "x": 225,
+          "y": 280,
+          "width": 68,
+          "alpha": 1
+        }
+      ],
+      "flags": {
+        "standard": true,
+        "vacation": false,
+        "secret": false
+      },
+      "stages": [
+        "FADE_TO_BLACK",
+        "BLACK_PAUSE",
+        "BACKGROUND",
+        "REVEAL",
+        "READY"
+      ],
+      "carriedSpaceIgnored": true,
+      "menu": true,
+      "after": {
+        "standard": true,
+        "vacation": false,
+        "secret": false,
+        "savedStory": {
+          "version": 5,
+          "introSeen": true,
+          "allMedalsComplete": true,
+          "homeCallSeen": true,
+          "mastersFarewellStarted": false,
+          "mastersFarewellSeen": false,
+          "endingSeen": true
+        },
+        "savedWallet": {
+          "version": 3,
+          "coins": 100,
+          "challenges": {},
+          "pagouCapitao": true,
+          "feriasDesbloqueadas": true,
+          "feriasVistas": false
+        },
+        "savedRavok": {
+          "version": 7,
+          "arrived": true,
+          "ravokArrivalSeen": true,
+          "ravokExited": true,
+          "ravokProposalSeen": true,
+          "ravokChoice": null,
+          "ravokBadEndingCardReady": false,
+          "ravokBadEndingSeen": false,
+          "ravokEndingCompleted": false
+        }
+      }
+    },
+    {
+      "id": "ferias_merecidas",
+      "state": {
+        "active": true,
+        "id": "ferias_merecidas",
+        "title": "FÉRIAS MERECIDAS",
+        "text": "Depois das oito medalhas, Zorpzin ficou mais um pouco.\nDesta vez, sem pressa de partir.",
+        "state": "READY",
+        "elapsed": 0.16749999999999998,
+        "totalTime": 2.287600000023839,
+        "presented": true,
+        "error": null,
+        "titleFont": "LOCAL_BITMAP_5x7",
+        "portrait": {
+          "source": "zorp_feriasmerecidas.png?v=1.0.0_official_ending_card",
+          "sourceRect": [
+            256,
+            42,
+            1007,
+            1007
+          ],
+          "status": "ready",
+          "cached": true,
+          "destination": {
+            "x": 147,
+            "y": 66,
+            "width": 156,
+            "height": 156,
+            "scale": 0.15491559086395235
+          }
+        },
+        "inputLock": 0.7,
+        "fadeOutDuration": 0.8,
+        "layout": {
+          "width": 450,
+          "height": 300,
+          "titleY": 35,
+          "portrait": {
+            "x": 139,
+            "y": 66,
+            "width": 172,
+            "height": 156
+          },
+          "textY": 236,
+          "textWidth": 374,
+          "lineHeight": 11,
+          "promptY": 280
+        }
+      },
+      "sources": [
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "source": "http://127.0.0.1:8818/zorp_feriasmerecidas.png?v=1.0.0_official_ending_card",
+          "args": [
+            256,
+            42,
+            1007,
+            1007,
+            0,
+            0,
+            1007,
+            1007
+          ],
+          "smooth": false
+        }
+      ],
+      "renders": [
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            72,
+            156,
+            156
+          ],
+          "alpha": 0,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            72,
+            156,
+            156
+          ],
+          "alpha": 0.021869056025512694,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            72,
+            156,
+            156
+          ],
+          "alpha": 0.03442535529071086,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            72,
+            156,
+            156
+          ],
+          "alpha": 0.05973373803384017,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            71,
+            156,
+            156
+          ],
+          "alpha": 0.09071650910707058,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            71,
+            156,
+            156
+          ],
+          "alpha": 0.12758594867520653,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            71,
+            156,
+            156
+          ],
+          "alpha": 0.1671352181366441,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            71,
+            156,
+            156
+          ],
+          "alpha": 0.21153526020256044,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            70,
+            156,
+            156
+          ],
+          "alpha": 0.2595556049869899,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            70,
+            156,
+            156
+          ],
+          "alpha": 0.3100157540467655,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            70,
+            156,
+            156
+          ],
+          "alpha": 0.3629133891358639,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            69,
+            156,
+            156
+          ],
+          "alpha": 0.41733883681924033,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            69,
+            156,
+            156
+          ],
+          "alpha": 0.472345883000979,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            69,
+            156,
+            156
+          ],
+          "alpha": 0.5273212321367867,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            69,
+            156,
+            156
+          ],
+          "alpha": 0.5833195995078391,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            68,
+            156,
+            156
+          ],
+          "alpha": 0.6370866108641362,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            68,
+            156,
+            156
+          ],
+          "alpha": 0.6902951614293107,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            68,
+            156,
+            156
+          ],
+          "alpha": 0.7404443950130104,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            67,
+            156,
+            156
+          ],
+          "alpha": 0.7887427663767148,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            67,
+            156,
+            156
+          ],
+          "alpha": 0.8333769940898653,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            67,
+            156,
+            156
+          ],
+          "alpha": 0.8737997256515777,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            67,
+            156,
+            156
+          ],
+          "alpha": 0.9102895898780629,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 0.940939607681756,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 0.9655746447092892,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 0.9843824480435664,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 0.9959227354302572,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 0.9999998518737291,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "REVEAL"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "READY"
+        },
+        {
+          "name": "zorp_feriasmerecidas.png",
+          "args": [
+            147,
+            66,
+            156,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "FERIAS_MERECIDAS",
+          "state": "READY"
+        }
+      ],
+      "cache": [
+        1007,
+        1007
+      ],
+      "whiteEdgePixels": 0,
+      "text": [
+        {
+          "value": "ILHA DOS CAMPEÕES / FINAL SECRETO",
+          "x": 225,
+          "y": 24,
+          "width": 132,
+          "alpha": 1
+        },
+        {
+          "value": "Depois das oito medalhas, Zorpzin ficou mais um pouco.",
+          "x": 225,
+          "y": 236,
+          "width": 270,
+          "alpha": 1
+        },
+        {
+          "value": "Desta vez, sem pressa de partir.",
+          "x": 225,
+          "y": 247,
+          "width": 160,
+          "alpha": 1
+        },
+        {
+          "value": "[SPACE] CONTINUAR",
+          "x": 225,
+          "y": 280,
+          "width": 68,
+          "alpha": 1
+        }
+      ],
+      "flags": {
+        "standard": false,
+        "vacation": true,
+        "secret": false
+      },
+      "stages": [
+        "FADE_TO_BLACK",
+        "BLACK_PAUSE",
+        "BACKGROUND",
+        "REVEAL",
+        "READY"
+      ],
+      "carriedSpaceIgnored": true,
+      "menu": true,
+      "after": {
+        "standard": false,
+        "vacation": true,
+        "secret": false,
+        "savedStory": {
+          "introSeen": true,
+          "homeCallSeen": true,
+          "allMedalsComplete": true,
+          "endingSeen": false
+        },
+        "savedWallet": {
+          "version": 3,
+          "coins": 100,
+          "challenges": {},
+          "pagouCapitao": true,
+          "feriasDesbloqueadas": true,
+          "feriasVistas": true
+        },
+        "savedRavok": {
+          "version": 7,
+          "arrived": true,
+          "ravokArrivalSeen": true,
+          "ravokExited": true,
+          "ravokProposalSeen": true,
+          "ravokChoice": null,
+          "ravokBadEndingCardReady": false,
+          "ravokBadEndingSeen": false,
+          "ravokEndingCompleted": false
+        }
+      }
+    },
+    {
+      "id": "ravok_maior_conquista",
+      "state": {
+        "active": true,
+        "id": "ravok_maior_conquista",
+        "title": "A MAIOR CONQUISTA",
+        "text": "Zorpzin conquistou as oito medalhas da Terra.\nMas decidiu seguir Ravok em busca de algo muito maior.\nDepois disso, os dois desapareceram no espaço.",
+        "state": "READY",
+        "elapsed": 0.18320000004768375,
+        "totalTime": 2.315499999999999,
+        "presented": true,
+        "error": null,
+        "titleFont": "LOCAL_BITMAP_5x7",
+        "portrait": {
+          "source": "card_zorp_MaiorConquista.png?v=1.0.0_official_secret_card",
+          "sourceRect": [
+            892,
+            141,
+            179,
+            217
+          ],
+          "status": "ready",
+          "cached": true,
+          "destination": {
+            "x": 160.65898617511522,
+            "y": 66,
+            "width": 128.6820276497696,
+            "height": 156,
+            "scale": 0.7188940092165899
+          }
+        },
+        "inputLock": 0.7,
+        "fadeOutDuration": 0.8,
+        "layout": {
+          "width": 450,
+          "height": 300,
+          "titleY": 35,
+          "portrait": {
+            "x": 139,
+            "y": 66,
+            "width": 172,
+            "height": 156
+          },
+          "textY": 236,
+          "textWidth": 374,
+          "lineHeight": 11,
+          "promptY": 280
+        }
+      },
+      "sources": [
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "source": "http://127.0.0.1:8818/card_zorp_MaiorConquista.png?v=1.0.0_official_secret_card",
+          "args": [
+            892,
+            141,
+            179,
+            217,
+            0,
+            0,
+            179,
+            217
+          ],
+          "smooth": false
+        }
+      ],
+      "renders": [
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            72,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            71,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.1262002743484225,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            71,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.12897752048393962,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            71,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.220777018230488,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            70,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.2637147407407408,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            70,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.31437657091664006,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            70,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.366458,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            69,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.4226109595427009,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            69,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.4773402346059885,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            69,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.5336440538296556,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            68,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.5987525139900662,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            68,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.6419094543207269,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            68,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.6943300155551632,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            68,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.7457633984834111,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            67,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.7920696279399673,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            67,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.8366924078468144,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            67,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.8770098714054957,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            67,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.9122877568096924,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.9429395737853187,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.9676557558299042,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.9859860000000001,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 0.9965666779583805,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "REVEAL"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "READY"
+        },
+        {
+          "name": "card_zorp_MaiorConquista.png",
+          "args": [
+            160.65898617511522,
+            66,
+            128.6820276497696,
+            156
+          ],
+          "alpha": 1,
+          "smooth": false,
+          "scene": "RAVOK_SECRET_CUTSCENE",
+          "state": "READY"
+        }
+      ],
+      "cache": [
+        179,
+        217
+      ],
+      "whiteEdgePixels": 0,
+      "text": [
+        {
+          "value": "ILHA DOS CAMPEÕES / FINAL SECRETO",
+          "x": 225,
+          "y": 24,
+          "width": 132,
+          "alpha": 1
+        },
+        {
+          "value": "Zorpzin conquistou as oito medalhas da Terra.",
+          "x": 225,
+          "y": 236,
+          "width": 225,
+          "alpha": 1
+        },
+        {
+          "value": "Mas decidiu seguir Ravok em busca de algo muito maior.",
+          "x": 225,
+          "y": 247,
+          "width": 270,
+          "alpha": 1
+        },
+        {
+          "value": "Depois disso, os dois desapareceram no espaço.",
+          "x": 225,
+          "y": 258,
+          "width": 230,
+          "alpha": 1
+        },
+        {
+          "value": "[SPACE] CONTINUAR",
+          "x": 225,
+          "y": 280,
+          "width": 68,
+          "alpha": 1
+        }
+      ],
+      "flags": {
+        "standard": false,
+        "vacation": false,
+        "secret": false
+      },
+      "stages": [
+        "FADE_TO_BLACK",
+        "BLACK_PAUSE",
+        "BACKGROUND",
+        "REVEAL",
+        "READY"
+      ],
+      "carriedSpaceIgnored": true,
+      "saveRetry": true,
+      "menu": true,
+      "after": {
+        "standard": false,
+        "vacation": false,
+        "secret": true,
+        "savedStory": {
+          "introSeen": true,
+          "homeCallSeen": true,
+          "allMedalsComplete": true,
+          "endingSeen": false
+        },
+        "savedWallet": {
+          "version": 3,
+          "coins": 100,
+          "challenges": {},
+          "pagouCapitao": true,
+          "feriasDesbloqueadas": true,
+          "feriasVistas": false
+        },
+        "savedRavok": {
+          "version": 7,
+          "arrived": true,
+          "metK7": false,
+          "metRavok": false,
+          "k7Line": 0,
+          "preludeSeen": false,
+          "ravokArrivalSeen": true,
+          "ravokArrivalPending": false,
+          "ravokExited": true,
+          "ravokProposalSeen": true,
+          "ravokChoice": "accept",
+          "ravokChoicePosition": null,
+          "ravokEndingCompleted": true,
+          "ravokBadEndingCardReady": true,
+          "ravokBadEndingSeen": true,
+          "ravokArrested": false
+        }
+      }
+    }
+  ],
+  "secretFilm": {
+    "phases": [
+      "SILENT_ACCEPTANCE",
+      "ACCEPTANCE",
+      "AUTHORIZATION",
+      "RAVOK_BOARD",
+      "RETURN_TO_SHIP",
+      "ISLAND_DEPARTURE",
+      "CLOUDS",
+      "ATMOSPHERE",
+      "SPACE_ESTABLISH",
+      "WEAPON_DEPLOY",
+      "TRANSMISSION",
+      "CHARGE",
+      "FIRE",
+      "PLANET_FLASH",
+      "SILENT_AFTERMATH",
+      "LAST_WORDS",
+      "DEPARTURE",
+      "FADE",
+      "BLACK_INTERVAL",
+      "CARD"
+    ],
+    "duration": 52.682
+  },
+  "secretReload": {
+    "card": {
+      "active": true,
+      "id": "ravok_maior_conquista",
+      "title": "A MAIOR CONQUISTA",
+      "text": "Zorpzin conquistou as oito medalhas da Terra.\nMas decidiu seguir Ravok em busca de algo muito maior.\nDepois disso, os dois desapareceram no espaço.",
+      "state": "READY",
+      "elapsed": 0.4501999999284746,
+      "totalTime": 2.5708999999761555,
+      "presented": true,
+      "error": null,
+      "titleFont": "LOCAL_BITMAP_5x7",
+      "portrait": {
+        "source": "card_zorp_MaiorConquista.png?v=1.0.0_official_secret_card",
+        "sourceRect": [
+          892,
+          141,
+          179,
+          217
+        ],
+        "status": "ready",
+        "cached": true,
+        "destination": {
+          "x": 160.65898617511522,
+          "y": 66,
+          "width": 128.6820276497696,
+          "height": 156,
+          "scale": 0.7188940092165899
+        }
+      },
+      "inputLock": 0.7,
+      "fadeOutDuration": 0.8,
+      "layout": {
+        "width": 450,
+        "height": 300,
+        "titleY": 35,
+        "portrait": {
+          "x": 139,
+          "y": 66,
+          "width": 172,
+          "height": 156
+        },
+        "textY": 236,
+        "textWidth": 374,
+        "lineHeight": 11,
+        "promptY": 280
+      }
+    },
+    "scene": "RAVOK_SECRET_CUTSCENE",
+    "seen": true
+  }
+}

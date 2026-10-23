@@ -1,0 +1,138 @@
+{
+  "before": {
+    "card": {
+      "active": true,
+      "id": "true_ending",
+      "title": "DE VOLTA PARA CASA",
+      "text": "Zorpzin conquistou as oito medalhas da Ilha dos Campeões.\nCom sua missão concluída, chegou a hora de voltar para casa.",
+      "state": "READY",
+      "elapsed": 0.8827999999523157,
+      "totalTime": 3.0271999999284733,
+      "presented": true,
+      "error": null,
+      "titleFont": "LOCAL_BITMAP_5x7",
+      "portrait": {
+        "source": "zorp_finalpadrao.png?v=1.1.0_transparent_mission_card",
+        "sourceRect": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "status": "ready",
+        "cached": true,
+        "destination": {
+          "x": 139,
+          "y": 57.999999999999986,
+          "width": 172.00000000000003,
+          "height": 172.00000000000003,
+          "scale": 0.1371610845295056
+        }
+      },
+      "inputLock": 0.7,
+      "fadeOutDuration": 0.8,
+      "layout": {
+        "width": 450,
+        "height": 300,
+        "titleY": 35,
+        "portrait": {
+          "x": 139,
+          "y": 66,
+          "width": 172,
+          "height": 156
+        },
+        "textY": 236,
+        "textWidth": 374,
+        "lineHeight": 11,
+        "promptY": 280
+      }
+    },
+    "scene": "TITLE_SCREEN",
+    "text": [
+      {
+        "value": "ILHA DOS CAMPEÕES / FINAL PADRÃO",
+        "x": 225,
+        "y": 24,
+        "width": 128
+      },
+      {
+        "value": "Zorpzin conquistou as oito medalhas da Ilha dos Campeões.",
+        "x": 225,
+        "y": 236,
+        "width": 285
+      },
+      {
+        "value": "Com sua missão concluída, chegou a hora de voltar para casa.",
+        "x": 225,
+        "y": 247,
+        "width": 300
+      },
+      {
+        "value": "[SPACE] CONTINUAR",
+        "x": 225,
+        "y": 280,
+        "width": 68
+      }
+    ]
+  },
+  "unchangedOtherThemes": {
+    "ferias_merecidas": true,
+    "ravok_maior_conquista": true
+  },
+  "after": {
+    "card": {
+      "active": false,
+      "id": null,
+      "title": null,
+      "text": null,
+      "state": "INACTIVE",
+      "elapsed": 0.8166000000238413,
+      "totalTime": 8.062099999904646,
+      "presented": true,
+      "error": null,
+      "titleFont": "LOCAL_BITMAP_5x7",
+      "portrait": null,
+      "inputLock": 0.7,
+      "fadeOutDuration": 0.8,
+      "layout": {
+        "width": 450,
+        "height": 300,
+        "titleY": 35,
+        "portrait": {
+          "x": 139,
+          "y": 66,
+          "width": 172,
+          "height": 156
+        },
+        "textY": 236,
+        "textWidth": 374,
+        "lineHeight": 11,
+        "promptY": 280
+      }
+    },
+    "ending": {
+      "active": false,
+      "state": "COMPLETE",
+      "elapsed": 0,
+      "localTime": 0,
+      "totalDuration": 35.5,
+      "replay": false,
+      "sceneBeat": 0.55,
+      "sceneIndex": 0,
+      "sceneCount": 6,
+      "waitingForText": false,
+      "dialogueLine": 0,
+      "message": null,
+      "flight": null,
+      "averageFps": 0,
+      "endingSeen": true
+    },
+    "menu": {
+      "active": true,
+      "state": "TITLE"
+    }
+  },
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": []
+}

@@ -1,0 +1,170 @@
+TAP version 13
+# Subtest: preload loads exactly the three official assets, with no old fallback
+ok 1 - preload loads exactly the three official assets, with no old fallback
+  ---
+  duration_ms: 9.8809
+  ...
+# Subtest: standard backdrop caches a pixel Earth and departing ship in the side gutters without changing the central card
+ok 2 - standard backdrop caches a pixel Earth and departing ship in the side gutters without changing the central card
+  ---
+  duration_ms: 451.4112
+  ...
+# Subtest: vacation and secret backdrops never draw the standard Earth or ship
+ok 3 - vacation and secret backdrops never draw the standard Earth or ship
+  ---
+  duration_ms: 79.6865
+  ...
+# Subtest: true_ending: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+ok 4 - true_ending: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+  ---
+  duration_ms: 70.7325
+  ...
+# Subtest: ferias_merecidas: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+ok 5 - ferias_merecidas: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+  ---
+  duration_ms: 41.0389
+  ...
+# Subtest: ravok_maior_conquista: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+ok 6 - ravok_maior_conquista: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+  ---
+  duration_ms: 31.8849
+  ...
+# Subtest: fade to black, black pause, background, portrait/title/text reveal and ready are distinct paced states
+ok 7 - fade to black, black pause, background, portrait/title/text reveal and ready are distinct paced states
+  ---
+  duration_ms: 97.2818
+  ...
+# Subtest: a held press from the last dialogue and repeats cannot skip any ending; fresh Space fades before closing once
+ok 8 - a held press from the last dialogue and repeats cannot skip any ending; fresh Space fades before closing once
+  ---
+  duration_ms: 57.6897
+  ...
+# Subtest: unrendered cards never become eligible to continue, even after their clock reaches READY
+ok 9 - unrendered cards never become eligible to continue, even after their clock reaches READY
+  ---
+  duration_ms: 70.8377
+  ...
+# Subtest: missing assets hold the reveal and failed official PNGs retry without a substituted sprite
+ok 10 - missing assets hold the reveal and failed official PNGs retry without a substituted sprite
+  ---
+  duration_ms: 118.874
+  ...
+# Subtest: hidden tabs pause reveal and exit fade and cannot confirm
+ok 11 - hidden tabs pause reveal and exit fade and cannot confirm
+  ---
+  duration_ms: 250.3213
+  ...
+# Subtest: failed completion save retains the visible card and permits a fresh retry before the shared fade
+ok 12 - failed completion save retains the visible card and permits a fresh retry before the shared fade
+  ---
+  duration_ms: 92.303
+  ...
+# Subtest: sequential endings have exclusive cached images and cannot replace an active card
+ok 13 - sequential endings have exclusive cached images and cannot replace an active card
+  ---
+  duration_ms: 393.7318
+  ...
+# Subtest: standard and vacation controllers use shared presets while retaining their own completion callbacks
+ok 14 - standard and vacation controllers use shared presets while retaining their own completion callbacks
+  ---
+  duration_ms: 158.5734
+  ...
+# Subtest: preview uses the same renderer but cannot mark a live card presented
+ok 15 - preview uses the same renderer but cannot mark a live card presented
+  ---
+  duration_ms: 111.784
+  ...
+# Subtest: browser modifier shortcuts cannot confirm the card and are not prevented by its input gate
+ok 16 - browser modifier shortcuts cannot confirm the card and are not prevented by its input gate
+  ---
+  duration_ms: 115.5406
+  ...
+# Subtest: accept: saved choice resumes the correct cutscene; completion waits for its last fade
+ok 17 - accept: saved choice resumes the correct cutscene; completion waits for its last fade
+  ---
+  duration_ms: 101.4514
+  ...
+# Subtest: completed saved ending does not replay; seven medals and missing choices cannot start
+ok 18 - completed saved ending does not replay; seven medals and missing choices cannot start
+  ---
+  duration_ms: 24.2782
+  ...
+# Subtest: Space never skips timed scenes; hiding the document pauses progress
+ok 19 - Space never skips timed scenes; hiding the document pauses progress
+  ---
+  duration_ms: 5.5023
+  ...
+# Subtest: refusal plays authorities, disables and removes evidence, saves arrest, then resumes Overworld without any card or menu
+ok 20 - refusal plays authorities, disables and removes evidence, saves arrest, then resumes Overworld without any card or menu
+  ---
+  duration_ms: 21.3445
+  ...
+# Subtest: failed arrest save holds the final scene, preserves the campaign and allows retry
+ok 21 - failed arrest save holds the final scene, preserves the campaign and allows retry
+  ---
+  duration_ms: 30.738
+  ...
+# Subtest: refusal requires separate Space presses for every line; timed shots and hidden tabs cannot be skipped
+ok 22 - refusal requires separate Space presses for every line; timed shots and hidden tabs cannot be skipped
+  ---
+  duration_ms: 9.3517
+  ...
+# Subtest: acceptance card persists before completion, and reload resumes that card instead of Earth
+ok 23 - acceptance card persists before completion, and reload resumes that card instead of Earth
+  ---
+  duration_ms: 83.202
+  ...
+# Subtest: acceptance cannot complete before the card, and a failed card-dismiss save cannot return to the world/menu
+ok 24 - acceptance cannot complete before the card, and a failed card-dismiss save cannot return to the world/menu
+  ---
+  duration_ms: 92.3921
+  ...
+# Subtest: old completed acceptance restores the new card without setting its new seen flag early
+ok 25 - old completed acceptance restores the new card without setting its new seen flag early
+  ---
+  duration_ms: 54.0901
+  ...
+# Subtest: every acceptance shot draws with both original hulls; the damaged planet is always a distant abstraction
+ok 26 - every acceptance shot draws with both original hulls; the damaged planet is always a distant abstraction
+  ---
+  duration_ms: 42.0053
+  ...
+# Subtest: all arrest shots render, officer text fits and the eight actual medal icons can be drawn
+ok 27 - all arrest shots render, officer text fits and the eight actual medal icons can be drawn
+  ---
+  duration_ms: 31.3187
+  ...
+# Subtest: official acceptance portrait crops the entire frontal head with one uniform scale and one cached surface
+ok 28 - official acceptance portrait crops the entire frontal head with one uniform scale and one cached surface
+  ---
+  duration_ms: 8.8668
+  ...
+# Subtest: failed official card load cannot close the card or award completion; Space retries the same real file
+ok 29 - failed official card load cannot close the card or award completion; Space retries the same real file
+  ---
+  duration_ms: 118.6127
+  ...
+# Subtest: a loaded image and elapsed clock cannot complete a card that has never been drawn
+ok 30 - a loaded image and elapsed clock cannot complete a card that has never been drawn
+  ---
+  duration_ms: 7.8257
+  ...
+# Subtest: held Space, repeats and hidden tabs cannot dismiss the reveal; a fresh press fades before returning once
+ok 31 - held Space, repeats and hidden tabs cannot dismiss the reveal; a fresh press fades before returning once
+  ---
+  duration_ms: 97.8933
+  ...
+# Subtest: card typography and narrative have their own compact identity with no dependency on external fonts
+ok 32 - card typography and narrative have their own compact identity with no dependency on external fonts
+  ---
+  duration_ms: 10.1949
+  ...
+1..32
+# tests 32
+# suites 0
+# pass 32
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2382.035
