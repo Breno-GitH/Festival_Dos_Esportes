@@ -1,0 +1,108 @@
+--- before/script.js
++++ script.js
+@@ -306,6 +306,7 @@
+     rallyHits: 0,
+     gameState: 'PRE_GAME',
+     win: false,
++    resultTicks: 0, resultInputArmed: false, medalAwarded: false,
+     bounceEffects: [],
+     specialEffects: [], // Arcos curtos da raquetada global
+     server: 'PLAYER',
+@@ -3323,6 +3324,7 @@
+     showPreGameBrief(config, {
+         // Marathon keeps its own existing start countdown; the other sports share this one.
+         countdown: id !== 'marathon' && id !== 'boxing',
++        drawCountdown: id === 'pingpong' ? (context, screen, elapsed) => PingPongArenaArt.intro(context, elapsed) : undefined,
+         heldKeys: Object.keys(keys).filter(key => keys[key]),
+         onConfirm: () => {
+             if (id === 'pingpong') PingPongBall.unlockAudio();
+@@ -3368,6 +3370,7 @@
+         pingPong.gameState = 'PRE_GAME';
+         pingPong.playerAction = pingPong.opponentAction = 'IDLE';
+         pingPong.win = false;
++        pingPong.resultTicks = 0; pingPong.resultInputArmed = false; pingPong.medalAwarded = false;
+         pingPong.server = 'PLAYER';
+         pingPong.nextBallId = 1;
+     }
+@@ -3401,11 +3404,14 @@
+ }
+ 
+ function finishPingPongMatch() {
++    if (pingPong.gameState !== 'PLAYING') return;
+     if (pingPong.playerScore >= pingPong.maxScore) {
+-        insignias.pingpong = true;
+         pingPong.gameState = 'GAMEOVER'; pingPong.win = true;
+     } else if (pingPong.opponentScore >= pingPong.maxScore) {
+         pingPong.gameState = 'GAMEOVER'; pingPong.win = false;
++    }
++    if (pingPong.gameState === 'GAMEOVER') {
++        pingPong.resultTicks = 0; pingPong.resultInputArmed = false; pingPong.medalAwarded = false;
+     }
+ }
+ 
+@@ -3428,9 +3434,17 @@
+     if (pingPong.gameState === 'PRE_GAME' || PreGameBrief.active) return;
+     
+     if (pingPong.gameState === 'GAMEOVER') {
+-        if (keys.space) { 
+-            currentScene = "ILHA_PINGPONG"; 
+-            keys.space = false; 
++        // The match is decided. This short celebration never advances ball physics.
++        pingPong.resultTicks = (pingPong.resultTicks || 0) + 1;
++        if (pingPong.resultTicks < 90) return;
++        if (pingPong.win && !pingPong.medalAwarded) {
++            insignias.pingpong = true;
++            pingPong.medalAwarded = true;
++        }
++        if (!keys.space) pingPong.resultInputArmed = true;
++        if (keys.space && pingPong.resultInputArmed) {
++            currentScene = "ILHA_PINGPONG";
++            keys.space = false;
+             dialogText.innerHTML = pingPong.win ? "> MESTRE: Reflexo Lendário! Você superou o ritmo frenético e ganhou a Insígnia do Ping-Pong!" : "> MESTRE: Foi um belo confronto de 50 pontos! Respire fundo e tente novamente!";
+             dialogBox.classList.add("show");
+         }
+@@ -4636,12 +4650,14 @@
+         PingPongPresentation.drawArena(ctx, PINGPONG_COURT, now, PingPongFeedback.crowd(pingPong, now));
+         ctx.save(); PingPongPresentation.applyView(ctx);
+ 
++        const resultPose = pingPong.gameState === 'GAMEOVER';
++        const playerAction = resultPose ? (pingPong.win && Math.floor((pingPong.resultTicks || 0) / 15) % 2 === 0 ? 'HIT' : 'IDLE') : pingPong.playerAction;
+         let zorpSpriteImg = imgZorpIdle;
+-        if (pingPong.playerAction === 'MOVE_UP') zorpSpriteImg = imgZorpMU;
+-        else if (pingPong.playerAction === 'MOVE_DOWN') zorpSpriteImg = imgZorpMD;
+-        else if (pingPong.playerAction === 'HIT') zorpSpriteImg = imgZorpHit;
+-
+-        const masterAction = pingPong.multiball.phase === 'PREPARING_MULTIBALL' ? 'HIT' :
++        if (playerAction === 'MOVE_UP') zorpSpriteImg = imgZorpMU;
++        else if (playerAction === 'MOVE_DOWN') zorpSpriteImg = imgZorpMD;
++        else if (playerAction === 'HIT') zorpSpriteImg = imgZorpHit;
++
++        const masterAction = resultPose ? (pingPong.win ? 'IDLE' : 'HIT') : pingPong.multiball.phase === 'PREPARING_MULTIBALL' ? 'HIT' :
+             PingPongFeedback.masterAction(pingPong, pingPong.opponentAction, now);
+         let mestreSpriteImg = imgMestreIdle;
+         if (masterAction === 'MOVE_UP') mestreSpriteImg = imgMestreMU;
+@@ -4650,7 +4666,7 @@
+ 
+         for (const ball of pingPong.balls) PingPongPresentation.drawBallShadow(ctx, ball, PINGPONG_COURT);
+         PingPongFeedback.afterimages(ctx, imgZorpHit, pingPong, now, PingPongPresentation);
+-        PingPongPresentation.drawFighter(ctx, zorpSpriteImg, 'PLAYER', pingPong.playerAction, pingPong.playerX, pingPong.playerY);
++        PingPongPresentation.drawFighter(ctx, zorpSpriteImg, 'PLAYER', playerAction, pingPong.playerX, pingPong.playerY);
+         PingPongPresentation.drawFighter(ctx, mestreSpriteImg, 'OPPONENT', masterAction, pingPong.opponentX, pingPong.opponentY);
+ 
+         for (const ball of pingPong.balls) if (ball.state !== 'MISSED') PingPongBall.drawTelegraph(ctx, ball);
+@@ -4663,14 +4679,7 @@
+     PingPongPresentation.drawHUD(ctx, pingPong, now);
+     PingPongFeedback.screen(ctx, pingPong, now);
+ 
+-    // OVERLAYS (Telas)
+-    if (pingPong.gameState === 'GAMEOVER') {
+-        if (pingPong.win) {
+-            drawOverlayScreen("VITÓRIA LENDÁRIA!", ["Você atingiu 50 pontos e", "conquistou a Insígnia do Ping-Pong!"], "#2ecc71");
+-        } else {
+-            drawOverlayScreen("DERROTA...", ["O Mestre atingiu 50 pontos primeiro.", "Aperte ESPAÇO para tentar novamente!"], "#e74c3c");
+-        }
+-    }
++    if (pingPong.gameState === 'GAMEOVER') PingPongArenaArt.result(ctx, pingPong);
+ }
+ 
+ // -------------------------------------------------------------

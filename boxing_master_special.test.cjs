@@ -6,7 +6,7 @@ function setup(load=true){
  const env={console,Image,performance:{now:()=>clock},document:{hidden:false,createElement:()=>({getContext:()=>({drawImage(){}})})},keys:{},currentScene:'JOGO_BOXE',hintText:{},location:{search:''},URLSearchParams,
   FestivalChallenges:{onBoxingStart(){},onBoxingResult(){}},resetBoxingPresentation(){},updateBoxingPresentation(){},boxingShowEvent:k=>events.push(k),addEventListener(){}};
  env.window=env;vm.createContext(env);
- for(const name of ['boxing_arena.js','boxing_zorp_special_atlas.js','boxing_zorp_special.js','boxing_master_special_atlas.js','boxing_master_special.js']){
+ for(const name of ['boxing_controls.js','boxing_resources.js','boxing_rounds.js','boxing_arena.js','boxing_zorp_special_atlas.js','boxing_zorp_special.js','boxing_master_special_atlas.js','boxing_master_special.js']){
   const file=fs.existsSync(path.join(__dirname,name))?path.join(__dirname,name):path.join(live,name);
   vm.runInContext(fs.readFileSync(file,'utf8'),env);
  }
@@ -33,14 +33,14 @@ test('charge lasts 36 steps with no physical advance or premature damage',()=>{
 test('dash physically advances, lands once, pushes and never causes repeated damage',()=>{
  const g=setup();g.activate();g.until(()=>g.a.game.player.hp<100);assert.ok(g.a.game.mestre.x<265);assert.ok(g.a.game.player.x<130);assert.equal(g.a.game.player.hitstun,24);g.until(()=>!g.a.game.mestre.special);g.step(80);assert.equal(g.a.game.player.hp,72);assert.equal(g.a.game.mestre.lastSpecial.connected,true);
 });
-test('guard is unsafe: 14 chip damage, immediate guard break and substantial push',()=>{
- const g=setup();g.a.input.guard=true;g.activate();g.until(()=>g.a.game.player.hp<100);assert.equal(g.a.game.player.hp,86);assert.ok(g.a.game.player.guardBreakTimer>0);assert.equal(g.a.game.player.guard,false);assert.ok(g.a.game.player.x<111);
+test('master dash is unblockable: full damage and substantial push through guard',()=>{
+ const g=setup();g.a.input.guard=true;g.activate();g.until(()=>g.a.game.player.hp<100);assert.equal(g.a.game.player.hp,72);assert.equal(g.a.game.player.guard,false);assert.ok(g.a.game.player.hitstun>0);assert.ok(g.a.game.player.x<111);
 });
 test('leaving depth line during charge defeats committed attack and exposes 36-step whiff recovery',()=>{
  const g=setup();g.activate();g.env.keys.w=true;g.step(15);g.env.keys.w=false;g.until(()=>g.a.game.mestre.special?.phase==='RECOVERY');assert.equal(g.a.game.player.hp,100);assert.equal(g.a.game.mestre.special.lineY,210);
  const x=g.a.game.mestre.x;g.step(35);assert.equal(g.a.game.mestre.x,x);assert.ok(g.a.game.mestre.special);g.step();assert.equal(g.a.game.mestre.special,null);assert.equal(g.a.game.mestre.lastSpecial.connected,false);
 });
-test('timed I dodge avoids an otherwise aligned hit and grants counter window',()=>{
+test('timed Space dodge avoids an otherwise aligned hit and grants counter window',()=>{
  const g=setup();g.activate();g.step(40);g.a.input.dodge=true;g.step();g.until(()=>g.a.game.mestre.attack?.dodged||g.a.game.mestre.lastSpecial?.dodged);
  assert.equal(g.a.game.player.hp,100);assert.ok(g.a.game.player.counterWindow>0);g.until(()=>!g.a.game.mestre.special);assert.equal(g.a.game.player.hp,100);assert.equal(g.a.game.mestre.lastSpecial.dodged,true);
 });
@@ -48,10 +48,10 @@ test('whiff recovery remains hittable; a real punch interrupts it and punishes',
  const g=setup();g.place(135,30);g.activate();g.until(()=>g.a.game.mestre.special?.phase==='RECOVERY');
  // Move a test opponent alongside the resting boxer, then use the ordinary hit path.
  g.a.game.player.x=g.a.game.mestre.x+40;g.a.game.player.y=210;assert.ok(g.a.start(g.a.game.player,'cross'));
- g.until(()=>g.a.game.mestre.hp<100);assert.equal(g.a.game.mestre.hp,86);assert.equal(g.a.game.mestre.special,null);assert.equal(g.a.game.mestre.lastSpecial.interrupted,true);
+ g.until(()=>g.a.game.mestre.hp<100);assert.equal(g.a.game.mestre.hp,84);assert.equal(g.a.game.mestre.special,null);assert.equal(g.a.game.mestre.lastSpecial.interrupted,true);
 });
 test('charge is interruptible by a normal punch, with no hidden invulnerability',()=>{
- const g=setup();g.place(40);g.activate();g.a.start(g.a.game.player,'jab');g.until(()=>g.a.game.mestre.hp<100);assert.equal(g.a.game.mestre.hp,94);assert.equal(g.a.game.mestre.special,null);assert.equal(g.a.game.player.hp,100);
+ const g=setup();g.place(40);g.activate();g.a.start(g.a.game.player,'jab');g.until(()=>g.a.game.mestre.hp<100);assert.equal(g.a.game.mestre.hp,92);assert.equal(g.a.game.mestre.special,null);assert.equal(g.a.game.player.hp,100);
 });
 test('dash never homes after Zorp crosses behind; facing and original line stay committed',()=>{
  const g=setup();g.activate();g.step(20);g.a.game.player.x=350;g.a.game.player.y=240;g.step(20);assert.equal(g.a.game.mestre.special.facing,-1);assert.equal(g.a.game.mestre.special.lineY,210);assert.ok(g.a.game.mestre.x<265);g.until(()=>!g.a.game.mestre.special);assert.equal(g.a.game.player.hp,100);
@@ -104,10 +104,10 @@ test('cooldown is meaningful even after artificially refilling the meter',()=>{
 test('30, 60 and 144 FPS produce the same dash result and cooldown',()=>{
  const results=[30,60,144].map(fps=>{const g=setup();g.activate();g.step(fps*2,fps);return [g.a.game.player.hp,g.a.game.mestre.x,g.a.game.mestre.specialCooldown];});for(const r of results)assert.deepEqual(r,results[0]);
 });
-test('Zorp counter can evade a committed close dash and punish with all six punches',()=>{
- const g=setup();g.place(40);g.activate();g.step(30);g.a.game.player.specialCharge=100;assert.ok(g.a.request(g.a.game.player,g.a.game.mestre));assert.equal(g.a.game.player.special.mode,'counter');
- g.until(()=>!g.a.game.player.special);assert.equal(g.a.game.player.hp,100);assert.equal(g.a.game.player.lastSpecial.hits,6);assert.equal(g.a.game.mestre.hp,66);assert.equal(g.a.game.mestre.special,null);
+test('Overdrive activation alone does not evade the Master dash or launch automatic counters',()=>{
+ const g=setup();g.place(40);g.activate();g.step(30);g.a.game.player.specialCharge=100;assert.ok(g.a.request(g.a.game.player,g.a.game.mestre));assert.equal(g.a.game.player.special.mode,'RUSH_OVERDRIVE');
+ g.until(()=>g.a.game.player.hp<100);assert.equal(g.a.game.player.hp,72);assert.equal(g.a.game.player.special.charges,4);assert.equal(g.a.game.player.attack,null);assert.equal(g.a.game.mestre.hp,100);
 });
-test('KO cleans charge/dash state and never hits again after the result',()=>{
- const g=setup();g.a.game.player.hp=20;g.activate();g.until(()=>g.a.game.phase==='RESULT');assert.equal(g.a.game.player.hp,0);assert.equal(g.a.game.mestre.special,null);assert.equal(g.a.game.winner,'master');g.step(100);assert.equal(g.a.game.phase,'RESULT');
+test('round KO cleans charge/dash state and never hits again in the interval',()=>{
+ const g=setup();g.a.game.player.hp=20;g.activate();g.until(()=>g.a.game.phase==='ROUND_RESULT');assert.equal(g.a.game.player.hp,0);assert.equal(g.a.game.mestre.special,null);assert.equal(g.a.game.rounds.wins.master,1);g.step(80);assert.equal(g.a.game.phase,'ROUND_RESULT');assert.equal(g.a.game.player.hp,0);
 });

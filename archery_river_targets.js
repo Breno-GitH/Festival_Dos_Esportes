@@ -1,8 +1,9 @@
 (function () {
     'use strict';
-    const WIDTH = 450, SOURCE_LIP = 118;
+    const {WIDTH,SOURCE_LIP,SOURCE_BOTTOM}=window.ArcheryField;
+    const routeCache=new Map();
     const PATHS = Object.freeze(['STRAIGHT','DIAGONAL','CURVE','S_CURVE','WAVE','ARC','ELLIPSE']);
-    const SPEEDS = Object.freeze({SLOW:0.58, MEDIUM:0.90, FAST:1.30}); // world pixels per 60 Hz step
+    const SPEEDS = Object.freeze({SLOW:0.85, MEDIUM:1.35, FAST:1.95}); // world pixels per 60 Hz step
     const speedBonus = Object.freeze({SLOW:0,MEDIUM:3,FAST:7});
     const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
     let context = null, mix = null, limiter = null, noise = null, peakVoices = 0;
@@ -85,15 +86,19 @@
         const t2=t*t,t3=t2*t;
         return (2*t3-3*t2+1)*y0+(t3-2*t2+t)*m0+(-2*t3+3*t2)*y1+(t3-t2)*m1;
     }
-    function makeRoute(entry, exit, kind, radius) {
-        const margin=radius*1.3+20, right=exit==='RIGHT', mirror=right?1:-1;
+    function makeRoute(entry, exit, kind, radius, band='MID',laneOffset=0) {
+        const key=[entry,exit,kind,radius,band,laneOffset].join(':');
+        if(routeCache.has(key))return routeCache.get(key);
+        const margin=radius*1.3+20,right=exit==='RIGHT',mirror=right?1:-1;
+        const waterY=(window.ArcheryField.bands[band]||window.ArcheryField.bands.MID).waterY;
         let points;
-        if (entry==='TOP') {
-            // The raft is initially hidden behind the waterfall's foam lip.
-            points=[[225,82],[225,122],[221,145],[201,161],[182,178],[149,191],[92,201],[-margin,205]];
+        if(entry==='TOP'){
+            points=[[WIDTH/2,108],[WIDTH/2,137],[WIDTH/2-25,155],
+                [WIDTH*.39,waterY-5],[WIDTH*.23,waterY],[WIDTH*.10,waterY+3],[-margin,waterY+4]];
             if(right)points=points.map(([x,y])=>[WIDTH-x,y]);
-        } else {
-            points=[[-margin,141],[65,141],[130,143],[182,151],[222,166],[269,183],[334,198],[WIDTH+margin,205]];
+        }else{
+            points=[[-margin,waterY],[WIDTH*.12,waterY],[WIDTH*.30,waterY],
+                [WIDTH*.50,waterY],[WIDTH*.70,waterY],[WIDTH*.88,waterY],[WIDTH+margin,waterY]];
             if(entry==='RIGHT')points=points.map(([x,y])=>[WIDTH-x,y]);
         }
         const slopes=points.map((p,i)=>{
@@ -116,10 +121,19 @@
             if(kind==='WAVE')x+=Math.sin(Math.PI*u*3)*5*envelope;
             if(kind==='ARC')x+=mirror*Math.sin(Math.PI*u)*12*envelope;
             if(kind==='ELLIPSE'){x+=Math.sin(Math.PI*u*2)*6*envelope;y+=(1-Math.cos(Math.PI*u*2))*1.1*envelope;}
+            if(entry!=='TOP'){
+                y+=laneOffset*Math.cos(Math.PI*u);
+                if(kind==='DIAGONAL')y+=(u-.5)*20;
+                if(kind==='CURVE'||kind==='ARC')y-=Math.sin(Math.PI*u)*11;
+                if(kind==='S_CURVE')y+=Math.sin(Math.PI*u*2)*8;
+                if(kind==='WAVE')y+=Math.sin(Math.PI*u*3)*6;
+                if(kind==='ELLIPSE')y+=(1-Math.cos(Math.PI*u*2))*4;
+            }
             if(previous)length+=Math.hypot(x-previous.x,y-previous.y);
             const point={x,y,d:length};samples.push(point);previous=point;
         }
-        return {samples,length,entry,exit:entry==='TOP'?exit:(entry==='LEFT'?'RIGHT':'LEFT'),kind,margin};
+        const route={samples,length,entry,exit:entry==='TOP'?exit:(entry==='LEFT'?'RIGHT':'LEFT'),kind,margin,band};
+        routeCache.set(key,route);return route;
     }
     function at(route, progress) {
         const distance=clamp(progress,0,1)*route.length,a=route.samples;
@@ -149,8 +163,9 @@
         const exit=descriptor.exit==='LEFT'?'LEFT':'RIGHT';
         const path=PATHS.includes(descriptor.path)?descriptor.path:'STRAIGHT';
         const tier=SPEEDS[descriptor.speed]?descriptor.speed:'MEDIUM';
-        const route=makeRoute(entry,exit,path,spec.radius);
-        const target={carrier:'RIVER',route,pathType:path,entry,entryPoint:entry,exitPoint:route.exit,
+        const band=descriptor.band||(spec.golden?'FAR':spec.sizeTier==='LARGE'?'NEAR':spec.sizeTier==='SMALL'?'FAR':'MID');
+        const route=makeRoute(entry,exit,path,spec.radius,band,descriptor.laneOffset||0);
+        const target={carrier:'RIVER',route,band,waveId:descriptor.waveId||null,pathType:path,entry,entryPoint:entry,exitPoint:route.exit,
             radius:spec.radius,basePoints:spec.basePoints+(spec.golden?0:speedBonus[tier]),speedTier:spec.golden?'GOLD':tier,speed:spec.travelSpeed||SPEEDS[tier],
             sizeTier:spec.sizeTier,isGolden:spec.golden,goldenVariant:descriptor.goldenVariant||null,isExplosive:!!spec.explosive,detonated:false,pathLength:route.length,margin:route.margin,
             progress:0,age:0,hit:false,hitBy:null,hitAge:0,hitOffsetX:0,hitOffsetY:0,speedX:0,speedY:0,retireAfterCollision:false,qaStatic:!!descriptor.qaStatic};
@@ -181,7 +196,7 @@
         if(!target.visible)return;
         const r=target.radius,x=target.x,y=target.y,w=target.waterY;
         ctx.save();ctx.imageSmoothingEnabled=false;
-        if(target.entry==='TOP'){ctx.beginPath();ctx.rect(0,SOURCE_LIP,WIDTH,96);ctx.clip();}
+        if(target.entry==='TOP'){ctx.beginPath();ctx.rect(0,SOURCE_LIP,WIDTH,SOURCE_BOTTOM-SOURCE_LIP);ctx.clip();}
         ctx.lineWidth=1;ctx.strokeStyle='rgba(187,231,220,.50)';
         ctx.beginPath();ctx.ellipse(x,w+2,r*1.25,3,0,0,Math.PI);ctx.stroke();
         ctx.fillStyle='rgba(17,72,76,.35)';ctx.beginPath();ctx.ellipse(x,w+1,r*1.18,4,0,0,Math.PI*2);ctx.fill();
@@ -260,7 +275,7 @@
     }
     window.ArcheryRiverTargets=Object.freeze({PATHS,SPEEDS,speedBonus,create,position,step,sweep,markHit,draw,drawArrow,drawImpact,
         unlockAudio,bowSound,releaseSound,sound,explosionSound,comboSound,
-        diagnostics:()=>({paths:PATHS,speeds:SPEEDS,sourceLip:SOURCE_LIP,audio:context?context.state:'LOCKED',
+        diagnostics:()=>({paths:PATHS,speeds:SPEEDS,sourceLip:SOURCE_LIP,routeCache:routeCache.size,audio:context?context.state:'LOCKED',
             voices:activeVoices.size,voiceStarts,voiceEnds,ignoredEndEvents,peakVoices,maxVoices:MAX_VOICES,
             audioCounts:{...audioCounts},mixGain:mix?mix.gain.value:0,
             limiter:!!limiter,explosionSounds,geometry:'MOVING_CIRCLE_VS_ARROW_TIP'})});

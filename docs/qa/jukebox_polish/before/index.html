@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:,">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festival Galáctico - 16 Bits</title>
+    <!-- Fonte 16-Bits inspirada em jogos clássicos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=2.5_npc_polish">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Interface Superior -->
+        <div id="header-ui">
+            <h1 id="game-title">ILHA DOS CAMPEOES</h1>
+            <div id="coin-counter" role="status" aria-live="polite" aria-atomic="true" aria-label="Moedas: 0">
+                <canvas id="coin-icon" width="32" height="32" aria-hidden="true"></canvas>
+                <span id="coin-value">0</span>
+                <span id="coin-feedback" role="status" aria-live="polite"></span>
+            </div>
+        </div>
+        
+        <!-- Tela de Jogo -->
+        <div id="canvas-wrapper">
+            <!-- Resolução interna menor (450x300) para criar efeito Pixel Art natural -->
+            <canvas id="gameCanvas" width="450" height="300" tabindex="0" aria-label="Área jogável do Festival Galáctico"></canvas>
+            
+            <!-- Caixa de Diálogo (Estilo RPG) -->
+            <div id="dialog-box">
+                <p id="dialog-text"></p>
+            </div>
+        </div>
+
+        <div id="controls-hint">
+            <p id="hint-text">Use [W A S D] PARA MOVER | [E] PARA INTERAGIR</p>
+        </div>
+    </div>
+
+    <script src="merchant_config.js?v=1.1.0_safe_spawns"></script>
+    <script src="festival_economy.js?v=1.4.0_canonical_inventory"></script>
+    <script src="local_asset_manifests.js?v=1.0.0"></script>
+    <script src="archery_assets/archery_assets_manifest.js?v=2.1.0_shared_assets"></script>
+    <script src="archery_asset_registry.js?v=2.4.0_canvas_valley"></script>
+    <script src="archery_assets/v2/characters_manifest.js?v=2.0.0"></script>
+    <script src="archery_characters_v2.js?v=2.4.0_master_dynamic_timing"></script>
+    <script src="archery_field.js?v=1.0.1_transition_fit"></script>
+    <script src="archery_valley.js?v=2.0.0_wide_valley"></script>
+    <script src="archery_collision.js?v=1.1.0_wide_bounds"></script>
+    <script src="archery_river_targets.js?v=2.0.0_depth_routes"></script>
+    <script src="archery_match_pacing.js?v=2.0.0_authored_waves"></script>
+    <script src="archery_bird_targets.js?v=1.5.0_wide_sky"></script>
+    <script src="archery_explosive_targets.js?v=1.1.0_wide_mask"></script>
+    <script src="archery_golden_targets.js?v=1.2.0_wide_notice"></script>
+    <script src="archery_master_ai.js?v=2.2.0_normal_difficulty"></script>
+    <script src="archery_player_control.js?v=1.1.0_wide_positioning"></script>
+    <script src="medalhas_registry.js?v=1.3_confirmed_medal_event"></script>
+    <script src="festival_challenges.js?v=2.0.0_island_quests"></script>
+    <script src="festival_progress.js?v=1.0.0_geography"></script>
+    <script src="normal_npc_geometry.js?v=1.0.0_measured_fronts"></script>
+    <script src="normal_island_npcs.js?v=1.0.0_approved_npcs"></script>
+    <script src="boxe_assets/v3/boxing_v3_manifest.js?v=3.0.1"></script>
+    <script src="boxing_presentation.js?v=4.0_definitive_show"></script>
+    <script src="boxing_controls.js?v=1.2_fresh_edges"></script>
+    <script src="boxing_resources.js?v=1.4_iron_costs"></script>
+    <script src="boxing_rounds.js?v=2.0_knockdown_adaptation"></script>
+    <script src="boxing_arena.js?v=15.0_integrated_boxing"></script>
+    <script src="boxing_zorp_special_atlas.js?v=2.0_rush_overdrive"></script>
+    <script src="boxing_zorp_special.js?v=2.0_rush_overdrive"></script>
+    <script src="boxing_master_special_atlas.js?v=1.0.0_clean_masks"></script>
+    <script src="boxing_master_special.js?v=2.1_titan_feedback"></script>
+    <script src="overworld_assets/npc_geometry.js?v=1.3.1_climb_feet_alignment"></script>
+    <script src="overworld_assets/zorp_walk.js?v=1.0.0"></script>
+    <script src="overworld_visuals.js?v=1.7.0_central_shop"></script>
+    <script src="archery_island.js?v=1.1.0_consistency"></script>
+    <script src="climb_island.js?v=1.2.0_ground_layers"></script>
+    <script src="ravok_npc_geometry.js?v=1.0.0_frontal_poses"></script>
+    <script src="ravok_walk_atlas.js?v=1.0.0_measured_frames"></script>
+    <script src="ravok_k7_animation.js?v=1.0.0_fixed_scale_walk"></script>
+    <script src="ravok_event.js?v=2.3.0_fixed_scale_walk"></script>
+    <script src="ravok_arrival.js?v=1.1.0_real_walk"></script>
+    <script src="ending_card.js?v=2.5.0_dark_earth_aftermath"></script>
+    <script src="ravok_bad_ending.js?v=2.1.0_real_walk"></script>
+    <script src="ravok_arrest.js?v=1.1.0_real_walk"></script>
+    <script src="ravok_outcome.js?v=3.0.0_shared_card_flow"></script>
+    <script src="title_screen.js?v=1.2.0_ending"></script>
+    <script src="adventure_intro.js?v=2.1.0_ship_trigger"></script>
+    <script src="medal_completion.js?v=1.2.0_ship_trigger"></script>
+    <script src="masters_farewell.js?v=1.4.0_farewell_spotlight"></script>
+    <script src="ending_cinematic.js?v=3.1.0_shared_card_flow"></script>
+    <script src="vacation_sprite.js?v=1.0.0"></script>
+    <script src="captain_route.js?v=2.3.0_shared_card_flow"></script>
+    <script src="climb_assets/zorp_v2/manifest.js?v=2.2.0_character_victory"></script>
+    <script src="climb_checkpoints.js?v=1.0.0_safe_platforms"></script>
+    <script src="climb_sprites.js?v=2.4.0_summit_victory"></script>
+    <script src="climb_course.js?v=2.0.0_connected_wall_routes"></script>
+    <script src="climb_presentation.js?v=1.3_mountain_silhouette"></script>
+    <script src="climb_summit.js?v=1.1.0_summit_medal_victory"></script>
+    <script src="pingpong_pixel_font.js?v=1.0.0_crisp_letters"></script>
+    <script src="merchant_atlas.js?v=1.0.0"></script>
+    <script src="merchant_animation.js?v=1.0.0"></script>
+    <script src="merchant_music.js?v=1.0.0"></script>
+    <script src="festival_map_art.js?v=1.0.0_sport_icons"></script>
+    <script src="merchant_ui.js?v=1.1.0_geographic_map"></script>
+    <script src="merchant_campaign.js?v=1.1.0_geography"></script>
+    <script src="pingpong_crowd.js?v=1.0.0_fixed_spectators"></script>
+    <script src="pingpong_arena_art.js?v=1.0.0_wood_final"></script>
+    <script src="pingpong_feedback.js?v=1.1.0_crowd_events"></script>
+    <script src="pingpong_presentation.js?v=1.2.0_final_wood_arena"></script>
+    <script src="pingpong_ball.js?v=1.5.0_global_racket_return"></script>
+    <script src="pingpong_master_ai.js?v=1.2.0_impulse_reaction"></script>
+    <script src="pingpong_multiball.js?v=1.1.0_racket_special"></script>
+    <script src="pre_game_brief.js?v=2.2.0_optional_intro"></script>
+    <script src="pre_game_brief_configs.js?v=3.6_official_boxing"></script>
+    <script src="script.js?v=10.65.1_climb_result_no_image"></script>
+    <script src="basketball_court_physics.js?v=1.0.0_corner_recovery"></script>
+    <script src="basketball_hoop_physics.js?v=1.1.0_court_boundaries"></script>
+    <script src="basketball_crowd.js?v=1.1.0_human_alien_fans"></script>
+    <script src="basketball_scoreboard.js?v=1.0.0_arena_panel"></script>
+    <script src="basketball_1v1.js?v=1.4.2_photo_quest"></script>
+    <script src="skate_new/collision_geometry.js?v=1.3_universal_ramp_zones"></script>
+    <script src="skate/space_input_parser.js?v=5.7_universal_ramps"></script>
+    <script src="skate/ollie_physics.js?v=5.7_universal_ramps"></script>
+    <script src="skate/trick_system.js?v=1.0_air_sequences"></script>
+    <script src="skate/combo_system.js?v=1.0_combo"></script>
+    <script src="skate/traversal_system.js?v=5.7_universal_ramps"></script>
+    <script src="skate_v2/catalog.js?v=2.0_rider"></script>
+    <script src="skate/procedural_track.js?v=5.7_universal_ramps"></script>
+    <script src="skate/official_procedural_course.js?v=5.7_universal_ramps"></script>
+    <script src="skate/course.js?v=3.0_procedural_official"></script>
+    <script src="skate/rider_presentation.js?v=5.7_universal_ramps"></script>
+    <script src="skate/journey_presentation.js?v=5.7_universal_ramps"></script>
+    <script src="skate/skate_ollie_runtime.js?v=5.9_one_take_quest"></script>
+    <script src="corrida_sprites/runtime/corrida_runners_manifest.js?v=3"></script>
+    <script src="race_lap_system.js?v=1.0.0_physical_gates"></script>
+    <script src="race_event_presentation.js?v=1.0.0_athletics_festival"></script>
+    <script src="race_rival_events.js?v=1.0.0_physical_objects"></script>
+    <script src="corrida_maratona.js?v=3.0.1_clean_lap_quest"></script>
+    <script src="surf_asset_registry.js?v=1.2.1_local_manifest"></script>
+    <script src="surf_endless.js?v=9.6.1_current_quest"></script>
+</body>
+</html>
+
+
+
+
+

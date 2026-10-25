@@ -1,0 +1,11 @@
+--- before/overworld_visuals.js
++++ overworld_visuals.js
+@@ -251,7 +251,7 @@
+             const role=npc.msg.replace(/^>\s*/, '').split(':')[0].normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+             npc.id=(npc.scene+'_'+role).toLowerCase().replace(/[^a-z0-9]+/g,'_');
+         }
+-        if(npc.scene==='ILHA_BASQUETE')continue;
++        if(npc.scene==='ILHA_BASQUETE'&&!npc.normalIslandNpc)continue;
+         npc.tamanho=npc.isMaster?OVERWORLD_STYLE.masterHeight:OVERWORLD_STYLE.npcHeight;
+         npc.interactionWidth=npc.isMaster?58:44;
+         npc.interactionHeight=npc.isMaster?62:48;

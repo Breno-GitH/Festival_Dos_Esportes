@@ -157,3 +157,48 @@ html, body {
     font-size: clamp(10px, 1.6vw, 13px);
     line-height: 1.65;
 }
+
+/* Compact pixel radio beside the existing wallet. */
+#header-ui { flex-wrap: wrap; gap: 10px 16px; }
+#header-tools { display: flex; align-items: flex-start; gap: 8px; margin-left: auto; max-width: 100%; min-width: 0; pointer-events: none; }
+#jukebox-mini[hidden] { display: none !important; }
+#jukebox-mini {
+    box-sizing: border-box; width: 286px; min-height: 48px; display: flex; align-items: center; gap: 8px;
+    padding: 6px 7px; border: 2px solid #8fbaaa; background: #10232ff5;
+    box-shadow: inset 0 0 0 2px #233d46, 3px 3px 0 #07121c;
+    color: #e6d7a8; pointer-events: auto; font-family: Consolas, 'Courier New', monospace;
+}
+.jukebox-copy { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 3px; }
+#jukebox-state { font-size: 9px; line-height: 1; font-weight: 700; letter-spacing: 1px; color: #97c3b2; white-space: nowrap; }
+#jukebox-track { font-size: 12px; line-height: 1.2; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color: #fff0c7; }
+#jukebox-mini button {
+    display: grid; place-items: center; flex-shrink: 0; width: 29px; height: 29px; padding: 5px;
+    border: 1px solid #6f9a8f; border-radius: 0; color: #d8e7cb; background: #294650; cursor: pointer;
+}
+#jukebox-mini button:hover { background: #3a5a60; color: #fff1bc; }
+#jukebox-mini button:focus-visible { outline: 2px solid #f1ce7d; outline-offset: 2px; }
+#jukebox-mini button:active { transform: translateY(1px); }
+#jukebox-mini svg { width: 16px; height: 16px; }
+.sound-off { display: none; }
+#jukebox-mini[data-muted="true"] .sound-off { display: block; }
+#jukebox-mini[data-muted="true"] .sound-waves { display: none; }
+#jukebox-mini[data-muted="true"] #jukebox-state { color: #c0ad88; }
+.jukebox-disc { display: flex; align-items: center; gap: 2px; width: 18px; height: 21px; flex-shrink: 0; }
+.jukebox-disc i { display: block; width: 3px; height: 9px; background: #8ec6ac; animation: jukebox-level .8s steps(3, end) infinite alternate; }
+.jukebox-disc i:nth-child(2) { height: 17px; animation-delay: -.3s; }
+.jukebox-disc i:nth-child(3) { height: 12px; animation-delay: -.6s; }
+.jukebox-disc i:nth-child(4) { height: 7px; animation-delay: -.15s; }
+#jukebox-mini[data-muted="true"] .jukebox-disc i { animation: none; height: 3px; background: #9e947d; }
+@keyframes jukebox-level { from { transform: scaleY(.45); } to { transform: scaleY(1); } }
+@media (max-width: 600px) {
+    #game-title { max-width: 100%; }
+    #header-ui { gap: 7px; }
+    #header-tools { gap: 6px; }
+    #jukebox-mini { width: min(268px, calc(100vw - 120px)); min-height: 39px; gap: 5px; padding: 4px; }
+    #jukebox-state { font-size: 8px; letter-spacing: 0; }
+    #jukebox-track { font-size: 11px; }
+    #jukebox-mini button { width: 26px; height: 27px; padding: 4px; }
+    .jukebox-disc { width: 13px; gap: 1px; }
+    .jukebox-disc i { width: 2px; }
+}
+@media (prefers-reduced-motion: reduce) { .jukebox-disc i { animation: none; } }

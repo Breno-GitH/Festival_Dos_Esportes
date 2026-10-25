@@ -8,7 +8,7 @@ function setup(route,completed=false,n=8,extra={}){
   localStorage:{getItem:k=>store.get(k)||null,setItem:(k,v)=>{if(fail)throw Error('quota');store.set(k,v);}},
   MEDALHAS_REGISTRY:Array.from({length:8},(_,i)=>({id:'m'+i})),isMedalhaDesbloqueada:id=>Number(id.slice(1))<n,
   addEventListener:(type,fn)=>{if(!listeners.has(type))listeners.set(type,[]);listeners.get(type).push(fn);}};
- env.window=env;vm.createContext(env);for(const f of ['ravok_npc_geometry.js','ravok_event.js','ending_card.js','ravok_bad_ending.js','ravok_arrest.js','ravok_outcome.js'])vm.runInContext(fs.readFileSync(__dirname+'/'+f,'utf8'),env);
+ env.window=env;vm.createContext(env);for(const f of ['ravok_npc_geometry.js','ravok_walk_atlas.js','ravok_k7_animation.js','ravok_event.js','ending_card.js','ravok_bad_ending.js','ravok_arrest.js','ravok_outcome.js'])vm.runInContext(fs.readFileSync(__dirname+'/'+f,'utf8'),env);
  env.RavokEvent.sync();env.RavokOutcome.init({player:{x:373,y:137},busy:()=>false,captureIsland:()=>({}),captureHome:()=>({}),clearInput(){},enter:()=>scene='RAVOK_SECRET_CUTSCENE',returnMenu:()=>{menus++;scene='TITLE_SCREEN';},resumeOverworld:()=>{returns++;scene='ILHA_ESCALADA';}});
  const gradient={addColorStop(){}},ctx=new Proxy({createRadialGradient:()=>gradient,measureText:t=>({width:t.length*5.4})},{get:(o,k)=>k in o?o[k]:(()=>{})});
  const tick=(ms=100,render=true)=>{clock+=ms;env.RavokOutcome.update(scene);if(render&&['CARD','CARD_FADE_OUT'].includes(env.RavokOutcome.snapshot().phase))env.RavokOutcome.draw(ctx);};

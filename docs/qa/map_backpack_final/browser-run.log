@@ -1,0 +1,22 @@
+PASS Fresh campaign: Central alone, seven false inventory flags, no merchant or hidden shop icon
+PASS Physical east crossing immediately persists Ping-Pong, without medal, quest or conversation
+PASS Exploration alone does not grant the purchasable map; M gives a discreet message
+PASS B opens persistent backpack; movement and world interaction are suspended; Esc closes
+PASS First real medal -> return -> merchant arrival once, walk/build/sign/speech; visited survives cutscene
+PASS Map purchase/M: nine nodes, connections, actual-location marker, visited/medal distinction, hidden nodes, shop icon
+PASS Map is consultation only without teleporter; selecting does not travel
+PASS Second physical discovery updates map immediately; marker follows Zorp rather than menu selection
+PASS Scanner uses real quest states only for visited islands, independent of medals and rewards
+PASS Unknown island is blocked both through map selection and travel API
+PASS Travel needs explicit confirmation, defaults to cancel, fades and lands safely
+PASS All nine regions have independent persistent visits, recorded by physical traversal
+PASS Nine safe dedicated travel spawns: ground, no collider, no NPC interaction, no automatic minigame entry
+PASS Separate Letter opens with three vague clues; all seven purchases leave 100 coins for Captain
+PASS Records show played Ping-Pong score, not merely explored sports
+PASS Backpack intercepts interaction without opening NPC dialogue or starting a minigame
+PASS M/B blocked during all eight minigames and an important cinematic
+PASS An important cinematic closes an already open map and receives its own input
+PASS Scene changes + reload retain inventory, nine visits, coins, quest, medal and merchant without replay
+PASS Actual v4 save migration preserves purchases, visited Surf, 73 coins, claimed quest and record
+PASS Zero 404, network failures, runtime exceptions, console errors/warnings, TypeError or ReferenceError
+COMPLETE {"checks":21,"fps":60.00300015000749}

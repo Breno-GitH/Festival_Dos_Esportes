@@ -1,0 +1,85 @@
+TAP version 13
+# Subtest: Zero medals means no merchant, store, sign or body collider
+ok 1 - Zero medals means no merchant, store, sign or body collider
+  ---
+  duration_ms: 18.3299
+  ...
+# Subtest: First medal defers until safe Overworld; never interrupts a match or existing scene
+ok 2 - First medal defers until safe Overworld; never interrupts a match or existing scene
+  ---
+  duration_ms: 8.6286
+  ...
+# Subtest: Arrival walks, stages build, ship surprise, sign, satisfaction and speech; saves only at end
+ok 3 - Arrival walks, stages build, ship surprise, sign, satisfaction and speech; saves only at end
+  ---
+  duration_ms: 31.027
+  ...
+# Subtest: Legacy save with medal but no merchant replays arrival once; zero-medal corrupt flags remain invisible
+ok 4 - Legacy save with medal but no merchant replays arrival once; zero-medal corrupt flags remain invisible
+  ---
+  duration_ms: 33.2174
+  ...
+# Subtest: Space cannot skip essential timed shots or same-key speech
+ok 5 - Space cannot skip essential timed shots or same-key speech
+  ---
+  duration_ms: 14.6365
+  ...
+# Subtest: Failed arrival save stays pending and retries without silently unlocking
+ok 6 - Failed arrival save stays pending and retries without silently unlocking
+  ---
+  duration_ms: 20.5253
+  ...
+# Subtest: Seven centralized prices, optional goods and exact purchase accounting
+ok 7 - Seven centralized prices, optional goods and exact purchase accounting
+  ---
+  duration_ms: 20.4294
+  ...
+# Subtest: Insufficient funds, duplicate input, locked shop and failed saves cannot debit money
+ok 8 - Insufficient funds, duplicate input, locked shop and failed saves cannot debit money
+  ---
+  duration_ms: 18.0466
+  ...
+# Subtest: Purchases, visits, unlocks and style persist together; old quests and Captain payment survive
+ok 9 - Purchases, visits, unlocks and style persist together; old quests and Captain payment survive
+  ---
+  duration_ms: 27.9015
+  ...
+# Subtest: Backpack and map are Overworld-only; M without map gives an honest message
+ok 10 - Backpack and map are Overworld-only; M without map gives an honest message
+  ---
+  duration_ms: 13.3538
+  ...
+# Subtest: Teleportation needs ownership, a proven visit, a valid landing and confirmation
+ok 11 - Teleportation needs ownership, a proven visit, a valid landing and confirmation
+  ---
+  duration_ms: 16.7878
+  ...
+# Subtest: Record module observes only actually started games and retains best direction
+ok 12 - Record module observes only actually started games and retains best direction
+  ---
+  duration_ms: 9.1565
+  ...
+# Subtest: All fifty frames use fixed uniform scale, immutable atlas anchor and positional walking
+ok 13 - All fifty frames use fixed uniform scale, immutable atlas anchor and positional walking
+  ---
+  duration_ms: 8.1942
+  ...
+# Subtest: Readable exact sign and mysterious letter do not leak route identities
+ok 14 - Readable exact sign and mysterious letter do not leak route identities
+  ---
+  duration_ms: 24.7672
+  ...
+# Subtest: Five campaign dialogue tiers, first/large/letter sales and global backpack are distinct
+ok 15 - Five campaign dialogue tiers, first/large/letter sales and global backpack are distinct
+  ---
+  duration_ms: 17.6977
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 447.1546

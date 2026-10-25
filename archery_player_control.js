@@ -17,7 +17,7 @@
     function aim(x,y,area) {
         const centre=(area.left+area.right)/2,half=(area.right-area.left)/2;
         const depth=Math.max(0,Math.min(1,(y-area.front)/(area.back-area.front)));
-        const slope=Math.max(-.075,Math.min(.075,(centre-x)/half*(.05+depth*.025)));
+        const slope=Math.max(-.12,Math.min(.12,(centre-x)/half*(.08+depth*.04)));
         const length=Math.hypot(1,slope);
         return {x:slope/length,y:-1/length,angle:Math.atan(slope)};
     }
@@ -57,5 +57,5 @@
         ctx.restore();
     }
     window.ArcheryPlayerControl=Object.freeze({CONFIG,create,aim,press,step,drawGuide,
-        diagnostics:control=>({...control,config:CONFIG,held,model:'POSITIONAL_UPWARD_SHOT',maxAngleDegrees:Math.atan(.075)*180/Math.PI})});
+        diagnostics:control=>({...control,config:CONFIG,held,model:'POSITIONAL_UPWARD_SHOT',maxAngleDegrees:Math.atan(.12)*180/Math.PI})});
 })();

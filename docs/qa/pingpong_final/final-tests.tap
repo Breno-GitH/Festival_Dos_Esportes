@@ -1,0 +1,80 @@
+TAP version 13
+# Subtest: crowd contains 36 humans and 24 aliens with fixed, varied identities and no other species
+ok 1 - crowd contains 36 humans and 24 aliens with fixed, varied identities and no other species
+  ---
+  duration_ms: 24.5956
+  ...
+# Subtest: six poses are baked once; 600 frames preserve identities and consume no game RNG
+ok 2 - six poses are baked once; 600 frames preserve identities and consume no game RNG
+  ---
+  duration_ms: 78.5094
+  ...
+# Subtest: audience poses are asynchronous and galleries remain outside table and player travel
+ok 3 - audience poses are asynchronous and galleries remain outside table and player travel
+  ---
+  duration_ms: 10.9212
+  ...
+# Subtest: bitmap lettering uses integer rectangles, supports Portuguese normalization and needs no font rendering
+ok 4 - bitmap lettering uses integer rectangles, supports Portuguese normalization and needs no font rendering
+  ---
+  duration_ms: 14.6993
+  ...
+# Subtest: board uses real scores; match point is exactly one point from the current win target
+ok 5 - board uses real scores; match point is exactly one point from the current win target
+  ---
+  duration_ms: 14.6841
+  ...
+# Subtest: all live arena text is bitmap based, leaving the table free of permanent labels
+ok 6 - all live arena text is bitmap based, leaving the table free of permanent labels
+  ---
+  duration_ms: 39.8145
+  ...
+# Subtest: optional sport intro reuses the existing countdown and does not start physics early
+ok 7 - optional sport intro reuses the existing countdown and does not start physics early
+  ---
+  duration_ms: 1.5457
+  ...
+# Subtest: establishing shot stays clear, then names and START render in the short countdown window
+ok 8 - establishing shot stays clear, then names and START render in the short countdown window
+  ---
+  duration_ms: 14.48
+  ...
+# Subtest: victory is decided at 50, but medal waits for celebration and held Space cannot dismiss it
+ok 9 - victory is decided at 50, but medal waits for celebration and held Space cannot dismiss it
+  ---
+  duration_ms: 12.9383
+  ...
+# Subtest: defeat never grants a medal and match resources stay stopped during its presentation
+ok 10 - defeat never grants a medal and match resources stay stopped during its presentation
+  ---
+  duration_ms: 9.0532
+  ...
+# Subtest: fresh match clears result presentation and passes the intro callback only to ping-pong
+ok 11 - fresh match clears result presentation and passes the intro callback only to ping-pong
+  ---
+  duration_ms: 9.6083
+  ...
+# Subtest: match-point and comeback reactions follow actual score changes and do not repeat each frame
+ok 12 - match-point and comeback reactions follow actual score changes and do not repeat each frame
+  ---
+  duration_ms: 10.3131
+  ...
+# Subtest: ordinary fast contacts do not shake; only extreme contact, global return or final point can
+ok 13 - ordinary fast contacts do not shake; only extreme contact, global return or final point can
+  ---
+  duration_ms: 15.7325
+  ...
+# Subtest: difficult-defense reaction requires a real returned shot at high speed and an edge contact
+ok 14 - difficult-defense reaction requires a real returned shot at high speed and an edge contact
+  ---
+  duration_ms: 13.0023
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 454.0987

@@ -1,0 +1,55 @@
+TAP version 13
+# Subtest: Four original arrangements differ in tempo, meter, melody, instrumentation and beat pattern
+ok 1 - Four original arrangements differ in tempo, meter, melody, instrumentation and beat pattern
+  ---
+  duration_ms: 5.5982
+  ...
+# Subtest: Playback requires purchased jukebox and a heard/unlocked theme
+ok 2 - Playback requires purchased jukebox and a heard/unlocked theme
+  ---
+  duration_ms: 5.0779
+  ...
+# Subtest: Skip cycles only unlocked music and keeps one scheduler/context
+ok 3 - Skip cycles only unlocked music and keeps one scheduler/context
+  ---
+  duration_ms: 2.8695
+  ...
+# Subtest: Each score actually schedules pitched instruments and percussion, with bounded voices
+ok 4 - Each score actually schedules pitched instruments and percussion, with bounded voices
+  ---
+  duration_ms: 70.2343
+  ...
+# Subtest: Mute controls master output without replacing track or restarting it
+ok 5 - Mute controls master output without replacing track or restarting it
+  ---
+  duration_ms: 3.9025
+  ...
+# Subtest: Minigames/cinematics pause and release voices; Overworld return resumes selected music
+ok 6 - Minigames/cinematics pause and release voices; Overworld return resumes selected music
+  ---
+  duration_ms: 2.9792
+  ...
+# Subtest: Menu/stop removes selection, scheduled voices and timer; no automatic song on reload
+ok 7 - Menu/stop removes selection, scheduled voices and timer; no automatic song on reload
+  ---
+  duration_ms: 2.4378
+  ...
+# Subtest: Long delays do not queue an audio avalanche; repeated context updates do not duplicate timers
+ok 8 - Long delays do not queue an audio avalanche; repeated context updates do not duplicate timers
+  ---
+  duration_ms: 2.7644
+  ...
+# Subtest: Unsupported audio exits cleanly without a fake playing state
+ok 9 - Unsupported audio exits cleanly without a fake playing state
+  ---
+  duration_ms: 2.1767
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 243.4209

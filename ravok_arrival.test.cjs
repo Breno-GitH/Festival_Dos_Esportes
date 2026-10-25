@@ -9,7 +9,7 @@ function setup(saved={},failStorage=false){
   addEventListener:(type,fn)=>{if(!listeners.has(type))listeners.set(type,[]);listeners.get(type).push(fn);},
   dispatchEvent:e=>{events.push(e);for(const fn of listeners.get(e.type)||[])fn(e);}};
  env.window=env;env.insignias={};vm.createContext(env);
- for(const file of ['medalhas_registry.js','ravok_npc_geometry.js','ravok_event.js','ravok_arrival.js'])vm.runInContext(fs.readFileSync(__dirname+'/'+file,'utf8'),env);
+ for(const file of ['medalhas_registry.js','ravok_npc_geometry.js','ravok_walk_atlas.js','ravok_k7_animation.js','ravok_event.js','ravok_arrival.js'])vm.runInContext(fs.readFileSync(__dirname+'/'+file,'utf8'),env);
  env.carregarMedalhas(env.insignias);env.RavokEvent.sync();
  const calls={enter:0,resume:0,clear:0};env.RavokArrival.init({canvas:{},busy:()=>false,scene:()=>scene,
   destination:s=>[s.startsWith('ILHA_')?s:'ILHA_ARCO',225,150],isOverworld:s=>s.startsWith('ILHA_'),resultReady:()=>result,

@@ -1,0 +1,1030 @@
+TAP version 13
+# Subtest: native 900x480 field restores 450x300 outside Archery; no scene scaling
+ok 1 - native 900x480 field restores 450x300 outside Archery; no scene scaling
+  ---
+  duration_ms: 43.6682
+  ...
+# Subtest: both competitors stay in separate broad shooting bounds, including held directions
+ok 2 - both competitors stay in separate broad shooting bounds, including held directions
+  ---
+  duration_ms: 136.3144
+  ...
+# Subtest: three depth bands retain original target sizes and point values
+ok 3 - three depth bands retain original target sizes and point values
+  ---
+  duration_ms: 25.3991
+  ...
+# Subtest: all paths enter, move continuously and retire only outside the wide field
+ok 4 - all paths enter, move continuously and retire only outside the wide field
+  ---
+  duration_ms: 791.9458
+  ...
+# Subtest: river route geometry is cached and reused without retaining target state
+ok 5 - river route geometry is cached and reused without retaining target state
+  ---
+  duration_ms: 42.5909
+  ...
+# Subtest: authored waves have varied depth, speed, side and purposeful explosive groups
+ok 6 - authored waves have varied depth, speed, side and purposeful explosive groups
+  ---
+  duration_ms: 17.0311
+  ...
+# Subtest: explosive confluence offers a real combo and chain wave detonates twice
+ok 7 - explosive confluence offers a real combo and chain wave detonates twice
+  ---
+  duration_ms: 186.2459
+  ...
+# Subtest: swept collision catches a small moving target at x820 at 30 FPS
+ok 8 - swept collision catches a small moving target at x820 at 30 FPS
+  ---
+  duration_ms: 38.1518
+  ...
+# Subtest: swept collision catches a small moving target at x820 at 60 FPS
+ok 9 - swept collision catches a small moving target at x820 at 60 FPS
+  ---
+  duration_ms: 43.0226
+  ...
+# Subtest: swept collision catches a small moving target at x820 at 144 FPS
+ok 10 - swept collision catches a small moving target at x820 at 144 FPS
+  ---
+  duration_ms: 25.4507
+  ...
+# Subtest: first contact wins and a normal arrow cannot hit twice or award an extra point
+ok 11 - first contact wins and a normal arrow cannot hit twice or award an extra point
+  ---
+  duration_ms: 21.2321
+  ...
+# Subtest: bird body remains outside collision; only hanging disk registers
+ok 12 - bird body remains outside collision; only hanging disk registers
+  ---
+  duration_ms: 15.2168
+  ...
+# Subtest: gold stays rare, retains reward and uses the same continuous geometry
+ok 13 - gold stays rare, retains reward and uses the same continuous geometry
+  ---
+  duration_ms: 28.042
+  ...
+# Subtest: full 60-second match uses all phases, respects caps and resolves arrows at buzzer
+ok 14 - full 60-second match uses all phases, respects caps and resolves arrows at buzzer
+  ---
+  duration_ms: 1277.2607
+  ...
+# Subtest: character atlas, scoring rules and relative sweep maths are preserved
+ok 15 - character atlas, scoring rules and relative sweep maths are preserved
+  ---
+  duration_ms: 7.8035
+  ...
+# Subtest: all spawners enforce the active cap, including bird and rare gold opportunities
+ok 16 - all spawners enforce the active cap, including bird and rare gold opportunities
+  ---
+  duration_ms: 23.8014
+  ...
+# Subtest: a missed long-distance arrow remains physical until it exits the full field
+ok 17 - a missed long-distance arrow remains physical until it exits the full field
+  ---
+  duration_ms: 12.6181
+  ...
+# Subtest: entire matches and moving collisions remain deterministic at 30, 60 and 144 FPS
+ok 18 - entire matches and moving collisions remain deterministic at 30, 60 and 144 FPS
+  ---
+  duration_ms: 2788.0486
+  ...
+# Subtest: wide result captures preserve aspect ratio when a 450x300 cutscene begins
+ok 19 - wide result captures preserve aspect ratio when a 450x300 cutscene begins
+  ---
+  duration_ms: 9.5397
+  ...
+# Subtest: a cutscene starting during draw restores its resolution in the same frame
+ok 20 - a cutscene starting during draw restores its resolution in the same frame
+  ---
+  duration_ms: 9.3432
+  ...
+# Subtest: normal KO enters a real judge count before awarding the round; counts exactly 1 to 10
+ok 21 - normal KO enters a real judge count before awarding the round; counts exactly 1 to 10
+  ---
+  duration_ms: 99.5645
+  ...
+# Subtest: knockdown blocks attacks, specials, guard/dodge input and AI; no damage continues
+ok 22 - knockdown blocks attacks, specials, guard/dodge input and AI; no damage continues
+  ---
+  duration_ms: 41.1241
+  ...
+# Subtest: a KO round cannot be confirmed early or twice
+ok 23 - a KO round cannot be confirmed early or twice
+  ---
+  duration_ms: 67.3455
+  ...
+# Subtest: judge announces either winner and advances the official victory frames while combat stays blocked
+ok 24 - judge announces either winner and advances the official victory frames while combat stays blocked
+  ---
+  duration_ms: 146.2886
+  ...
+# Subtest: new round resets every combat resource, position and temporary state, while keeping score and learned tendencies
+ok 25 - new round resets every combat resource, position and temporary state, while keeping score and learned tendencies
+  ---
+  duration_ms: 39.5069
+  ...
+# Subtest: J, K, finta and Rush are learned only from delayed visible poses and withdrawal, then inherited by round two
+ok 26 - J, K, finta and Rush are learned only from delayed visible poses and withdrawal, then inherited by round two
+  ---
+  duration_ms: 51.323
+  ...
+# Subtest: hit-confirm transition to another visible attack is not mistaken for a feint
+ok 27 - hit-confirm transition to another visible attack is not mistaken for a feint
+  ---
+  duration_ms: 22.96
+  ...
+# Subtest: interrupted or fully completed punches are not secretly classified as feints
+ok 28 - interrupted or fully completed punches are not secretly classified as feints
+  ---
+  duration_ms: 66.9395
+  ...
+# Subtest: Rush is not revealed to perception before the visible drive pose
+ok 29 - Rush is not revealed to perception before the visible drive pose
+  ---
+  duration_ms: 19.9914
+  ...
+# Subtest: round one has neutral prior memory; round three keeps the same movement and damage attributes
+ok 30 - round one has neutral prior memory; round three keeps the same movement and damage attributes
+  ---
+  duration_ms: 83.5266
+  ...
+# Subtest: duplicate keydown without release does not restart attack or consume Rush charges
+ok 31 - duplicate keydown without release does not restart attack or consume Rush charges
+  ---
+  duration_ms: 90.788
+  ...
+# Subtest: holding Space never retriggers after cooldown; a new keydown after release does
+ok 32 - holding Space never retriggers after cooldown; a new keydown after release does
+  ---
+  duration_ms: 30.3668
+  ...
+# Subtest: focus reset drops guard/movement and ignores orphaned repeats
+ok 33 - focus reset drops guard/movement and ignores orphaned repeats
+  ---
+  duration_ms: 35.3175
+  ...
+# Subtest: camera tiers keep J almost still, K small, counter medium and specials short/strong
+ok 34 - camera tiers keep J almost still, K small, counter medium and specials short/strong
+  ---
+  duration_ms: 26.4229
+  ...
+# Subtest: hitstop hierarchy remains one step for J, two for K, three for counter and four for Meteor/Titan
+ok 35 - hitstop hierarchy remains one step for J, two for K, three for counter and four for Meteor/Titan
+  ---
+  duration_ms: 182.3594
+  ...
+# Subtest: shared presentation reacts to decisive events more strongly than an ordinary jab
+ok 36 - shared presentation reacts to decisive events more strongly than an ordinary jab
+  ---
+  duration_ms: 40.963
+  ...
+# Subtest: official judge asset and all lifecycle poses exist, using the curated manifest
+ok 37 - official judge asset and all lifecycle poses exist, using the curated manifest
+  ---
+  duration_ms: 53.9606
+  ...
+# Subtest: KO count resolves once and freezes the combat clock at 30 FPS
+ok 38 - KO count resolves once and freezes the combat clock at 30 FPS
+  ---
+  duration_ms: 39.5826
+  ...
+# Subtest: KO count resolves once and freezes the combat clock at 60 FPS
+ok 39 - KO count resolves once and freezes the combat clock at 60 FPS
+  ---
+  duration_ms: 36.0894
+  ...
+# Subtest: KO count resolves once and freezes the combat clock at 144 FPS
+ok 40 - KO count resolves once and freezes the combat clock at 144 FPS
+  ---
+  duration_ms: 53.255
+  ...
+# Subtest: Zorp 2–0 only finishes the match after two round wins
+ok 41 - Zorp 2–0 only finishes the match after two round wins
+  ---
+  duration_ms: 136.1156
+  ...
+# Subtest: Zorp 2–1 only finishes the match after two round wins
+ok 42 - Zorp 2–1 only finishes the match after two round wins
+  ---
+  duration_ms: 77.0361
+  ...
+# Subtest: Mestre 2–0 only finishes the match after two round wins
+ok 43 - Mestre 2–0 only finishes the match after two round wins
+  ---
+  duration_ms: 99.9575
+  ...
+# Subtest: Mestre 2–1 only finishes the match after two round wins
+ok 44 - Mestre 2–1 only finishes the match after two round wins
+  ---
+  duration_ms: 82.6855
+  ...
+# Subtest: official keys: J weak, K strong, L feint, Shift guard, Space dodge; I has no action
+ok 45 - official keys: J weak, K strong, L feint, Shift guard, Space dodge; I has no action
+  ---
+  duration_ms: 262.3716
+  ...
+# Subtest: A/D move horizontally; W/S physically change depth
+ok 46 - A/D move horizontally; W/S physically change depth
+  ---
+  duration_ms: 135.1788
+  ...
+# Subtest: Space repeat cannot spam dodge or scroll, and an intro-held Space never leaks into gameplay
+ok 47 - Space repeat cannot spam dodge or scroll, and an intro-held Space never leaks into gameplay
+  ---
+  duration_ms: 43.944
+  ...
+# Subtest: an active round runs for exactly 40 simulation seconds, even through hitstop; transitions pause clock and damage
+ok 48 - an active round runs for exactly 40 simulation seconds, even through hitstop; transitions pause clock and damage
+  ---
+  duration_ms: 27.0898
+  ...
+# Subtest: tied HP uses damage in the prescribed order
+ok 49 - tied HP uses damage in the prescribed order
+  ---
+  duration_ms: 28.7169
+  ...
+# Subtest: tied HP uses counters in the prescribed order
+ok 50 - tied HP uses counters in the prescribed order
+  ---
+  duration_ms: 44.6703
+  ...
+# Subtest: tied HP uses clean hits in the prescribed order
+ok 51 - tied HP uses clean hits in the prescribed order
+  ---
+  duration_ms: 23.6416
+  ...
+# Subtest: an absolute tie enters sudden death; only a clean strike wins, with no random tiebreak
+ok 52 - an absolute tie enters sudden death; only a clean strike wins, with no random tiebreak
+  ---
+  duration_ms: 33.8726
+  ...
+# Subtest: simultaneous lethal strikes do not pick a winner by contact order
+ok 53 - simultaneous lethal strikes do not pick a winner by contact order
+  ---
+  duration_ms: 51.5162
+  ...
+# Subtest: next round restores HP/stamina, clears combat and buffered input, and resets special meters and cooldowns
+ok 54 - next round restores HP/stamina, clears combat and buffered input, and resets special meters and cooldowns
+  ---
+  duration_ms: 63.4688
+  ...
+# Subtest: feint creates only a visible windup and never hits; it can cancel a normal startup but not its impact
+ok 55 - feint creates only a visible windup and never hits; it can cancel a normal startup but not its impact
+  ---
+  duration_ms: 83.39
+  ...
+# Subtest: weak-heavy combos remain connected, with the strong finisher costing more stamina
+ok 56 - weak-heavy combos remain connected, with the strong finisher costing more stamina
+  ---
+  duration_ms: 31.8765
+  ...
+# Subtest: guard still breaks under pressure and cannot erase chip damage
+ok 57 - guard still breaks under pressure and cannot erase chip damage
+  ---
+  duration_ms: 36.5404
+  ...
+# Subtest: Space within the narrow impact window produces Perfect Dodge, hitstop and a counter
+ok 58 - Space within the narrow impact window produces Perfect Dodge, hitstop and a counter
+  ---
+  duration_ms: 45.8098
+  ...
+# Subtest: a W/S sidestep changes the actual line of defense rather than granting permanent invulnerability
+ok 59 - a W/S sidestep changes the actual line of defense rather than granting permanent invulnerability
+  ---
+  duration_ms: 33.3482
+  ...
+# Subtest: player-requested Rush and the Master linear dash respect the round lifecycle
+ok 60 - player-requested Rush and the Master linear dash respect the round lifecycle
+  ---
+  duration_ms: 68.2648
+  ...
+# Subtest: round transition stops attacks/charge and the match awards no medal for round one
+ok 61 - round transition stops attacks/charge and the match awards no medal for round one
+  ---
+  duration_ms: 26.4124
+  ...
+# Subtest: resources cannot be spammed; regeneration happens during active rest, not the interval
+ok 62 - resources cannot be spammed; regeneration happens during active rest, not the interval
+  ---
+  duration_ms: 37.4173
+  ...
+# Subtest: AI adaptation between rounds uses observed guard/dodge/distance history only
+ok 63 - AI adaptation between rounds uses observed guard/dodge/distance history only
+  ---
+  duration_ms: 57.3387
+  ...
+# Subtest: round clocks and outcomes are consistent at 30, 60 and 144 FPS
+ok 64 - round clocks and outcomes are consistent at 30, 60 and 144 FPS
+  ---
+  duration_ms: 116.4576
+  ...
+# Subtest: a feint cannot erase an impact that has already connected
+ok 65 - a feint cannot erase an impact that has already connected
+  ---
+  duration_ms: 25.7633
+  ...
+# Subtest: blocked chip at one HP cannot decide sudden death
+ok 66 - blocked chip at one HP cannot decide sudden death
+  ---
+  duration_ms: 20.2541
+  ...
+# Subtest: briefing and a hidden document freeze the round clock as well as combat
+ok 67 - briefing and a hidden document freeze the round clock as well as combat
+  ---
+  duration_ms: 44.3147
+  ...
+# Subtest: R after the final result starts a fresh best-of-three with no carried score
+ok 68 - R after the final result starts a fresh best-of-three with no carried score
+  ---
+  duration_ms: 33.8587
+  ...
+# Subtest: preload loads exactly the three official assets, with no old fallback
+ok 69 - preload loads exactly the three official assets, with no old fallback
+  ---
+  duration_ms: 33.4924
+  ...
+# Subtest: standard backdrop caches a pixel Earth and departing ship in the side gutters without changing the central card
+ok 70 - standard backdrop caches a pixel Earth and departing ship in the side gutters without changing the central card
+  ---
+  duration_ms: 1218.5758
+  ...
+# Subtest: vacation backdrop never draws the space endings Earth or ships
+ok 71 - vacation backdrop never draws the space endings Earth or ships
+  ---
+  duration_ms: 109.0559
+  ...
+# Subtest: secret aftermath caches four separated Earth pieces and both departing hulls clear of the portrait and text
+ok 72 - secret aftermath caches four separated Earth pieces and both departing hulls clear of the portrait and text
+  ---
+  duration_ms: 963.1933
+  ...
+# Subtest: true_ending: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+ok 73 - true_ending: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+  ---
+  duration_ms: 123.8275
+  ...
+# Subtest: ferias_merecidas: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+ok 74 - ferias_merecidas: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+  ---
+  duration_ms: 68.0197
+  ...
+# Subtest: ravok_maior_conquista: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+ok 75 - ravok_maior_conquista: same layout, larger portrait, uniform scale, complete crop and nearest-neighbor drawing
+  ---
+  duration_ms: 185.7213
+  ...
+# Subtest: fade to black, black pause, background, portrait/title/text reveal and ready are distinct paced states
+ok 76 - fade to black, black pause, background, portrait/title/text reveal and ready are distinct paced states
+  ---
+  duration_ms: 142.9078
+  ...
+# Subtest: a held press from the last dialogue and repeats cannot skip any ending; fresh Space fades before closing once
+ok 77 - a held press from the last dialogue and repeats cannot skip any ending; fresh Space fades before closing once
+  ---
+  duration_ms: 104.9936
+  ...
+# Subtest: unrendered cards never become eligible to continue, even after their clock reaches READY
+ok 78 - unrendered cards never become eligible to continue, even after their clock reaches READY
+  ---
+  duration_ms: 103.0406
+  ...
+# Subtest: missing assets hold the reveal and failed official PNGs retry without a substituted sprite
+ok 79 - missing assets hold the reveal and failed official PNGs retry without a substituted sprite
+  ---
+  duration_ms: 278.9441
+  ...
+# Subtest: hidden tabs pause reveal and exit fade and cannot confirm
+ok 80 - hidden tabs pause reveal and exit fade and cannot confirm
+  ---
+  duration_ms: 226.7684
+  ...
+# Subtest: failed completion save retains the visible card and permits a fresh retry before the shared fade
+ok 81 - failed completion save retains the visible card and permits a fresh retry before the shared fade
+  ---
+  duration_ms: 175.9383
+  ...
+# Subtest: sequential endings have exclusive cached images and cannot replace an active card
+ok 82 - sequential endings have exclusive cached images and cannot replace an active card
+  ---
+  duration_ms: 298.0653
+  ...
+# Subtest: standard and vacation controllers use shared presets while retaining their own completion callbacks
+ok 83 - standard and vacation controllers use shared presets while retaining their own completion callbacks
+  ---
+  duration_ms: 115.4759
+  ...
+# Subtest: preview uses the same renderer but cannot mark a live card presented
+ok 84 - preview uses the same renderer but cannot mark a live card presented
+  ---
+  duration_ms: 33.5462
+  ...
+# Subtest: browser modifier shortcuts cannot confirm the card and are not prevented by its input gate
+ok 85 - browser modifier shortcuts cannot confirm the card and are not prevented by its input gate
+  ---
+  duration_ms: 78.566
+  ...
+# Subtest: One principal quest per sport, preserving existing owners/rewards
+ok 86 - One principal quest per sport, preserving existing owners/rewards
+  ---
+  duration_ms: 47.6025
+  ...
+# Subtest: 11 approved NPCs, no replacement, static fronts, 44px and separate collider
+ok 87 - 11 approved NPCs, no replacement, static fronts, 44px and separate collider
+  ---
+  duration_ms: 13.297
+  ...
+# Subtest: Photo: accepted + valid Zorp 3-pointer inside final ten; no automatic payment
+ok 88 - Photo: accepted + valid Zorp 3-pointer inside final ten; no automatic payment
+  ---
+  duration_ms: 24.7943
+  ...
+# Subtest: Clean lap: no starting-line fake lap, obstacle dirties only current physical lap
+ok 89 - Clean lap: no starting-line fake lap, obstacle dirties only current physical lap
+  ---
+  duration_ms: 21.2722
+  ...
+# Subtest: Clean lap reset cannot carry a clean partial lap into a new run
+ok 90 - Clean lap reset cannot carry a clean partial lap into a new run
+  ---
+  duration_ms: 20.4712
+  ...
+# Subtest: Skate requires actual grind distance, then airborne completed trick, then good landing
+ok 91 - Skate requires actual grind distance, then airborne completed trick, then good landing
+  ---
+  duration_ms: 39.4465
+  ...
+# Subtest: Skate fall or restart breaks the one-take sequence
+ok 92 - Skate fall or restart breaks the one-take sequence
+  ---
+  duration_ms: 37.7824
+  ...
+# Subtest: Archery three direct hanging disks; unrelated misses do not break streak
+ok 93 - Archery three direct hanging disks; unrelated misses do not break streak
+  ---
+  duration_ms: 8.5259
+  ...
+# Subtest: Archery aimed bird miss breaks streak, restart resets, no duplicate resolution
+ok 94 - Archery aimed bird miss breaks streak, restart resets, no duplicate resolution
+  ---
+  duration_ms: 9.6553
+  ...
+# Subtest: Archery release order wins over impact order; normal hits and explosion collateral cannot fake birds
+ok 95 - Archery release order wins over impact order; normal hits and explosion collateral cannot fake birds
+  ---
+  duration_ms: 12.8272
+  ...
+# Subtest: Surf 60%, capture permanently dirties that run; retry is fresh
+ok 96 - Surf 60%, capture permanently dirties that run; retry is fresh
+  ---
+  duration_ms: 8.1684
+  ...
+# Subtest: All new rewards persist pending and paid; reload cannot duplicate coins
+ok 97 - All new rewards persist pending and paid; reload cannot duplicate coins
+  ---
+  duration_ms: 216.742
+  ...
+# Subtest: Existing boxing and medal quests remain single-return rewards
+ok 98 - Existing boxing and medal quests remain single-return rewards
+  ---
+  duration_ms: 9.5589
+  ...
+# Subtest: Public completion flags derive from canonical persisted wallet state
+ok 99 - Public completion flags derive from canonical persisted wallet state
+  ---
+  duration_ms: 42.4938
+  ...
+# Subtest: Ambient NPCs never create a quest, provide specific lore and react to medals
+ok 100 - Ambient NPCs never create a quest, provide specific lore and react to medals
+  ---
+  duration_ms: 16.5673
+  ...
+# Subtest: A rough skate landing cannot carry a completed trick into a later touchdown
+ok 101 - A rough skate landing cannot carry a completed trick into a later touchdown
+  ---
+  duration_ms: 23.3932
+  ...
+# Subtest: Unaccepted objectives never grant retroactive completion
+ok 102 - Unaccepted objectives never grant retroactive completion
+  ---
+  duration_ms: 13.3189
+  ...
+# Subtest: Zero medals means no merchant, store, sign or body collider
+ok 103 - Zero medals means no merchant, store, sign or body collider
+  ---
+  duration_ms: 40.4653
+  ...
+# Subtest: First medal defers until safe Overworld; never interrupts a match or existing scene
+ok 104 - First medal defers until safe Overworld; never interrupts a match or existing scene
+  ---
+  duration_ms: 29.273
+  ...
+# Subtest: Arrival walks, stages build, ship surprise, sign, satisfaction and speech; saves only at end
+ok 105 - Arrival walks, stages build, ship surprise, sign, satisfaction and speech; saves only at end
+  ---
+  duration_ms: 89.3745
+  ...
+# Subtest: Legacy save with medal but no merchant replays arrival once; zero-medal corrupt flags remain invisible
+ok 106 - Legacy save with medal but no merchant replays arrival once; zero-medal corrupt flags remain invisible
+  ---
+  duration_ms: 84.5414
+  ...
+# Subtest: Space cannot skip essential timed shots or same-key speech
+ok 107 - Space cannot skip essential timed shots or same-key speech
+  ---
+  duration_ms: 43.0131
+  ...
+# Subtest: Failed arrival save stays pending and retries without silently unlocking
+ok 108 - Failed arrival save stays pending and retries without silently unlocking
+  ---
+  duration_ms: 52.3221
+  ...
+# Subtest: Seven centralized prices, optional goods and exact purchase accounting
+ok 109 - Seven centralized prices, optional goods and exact purchase accounting
+  ---
+  duration_ms: 141.2182
+  ...
+# Subtest: Insufficient funds, duplicate input, locked shop and failed saves cannot debit money
+ok 110 - Insufficient funds, duplicate input, locked shop and failed saves cannot debit money
+  ---
+  duration_ms: 153.0101
+  ...
+# Subtest: Purchases, visits, unlocks and style persist together; old quests and Captain payment survive
+ok 111 - Purchases, visits, unlocks and style persist together; old quests and Captain payment survive
+  ---
+  duration_ms: 82.2876
+  ...
+# Subtest: Backpack and map are Overworld-only; M without map gives an honest message
+ok 112 - Backpack and map are Overworld-only; M without map gives an honest message
+  ---
+  duration_ms: 14.7673
+  ...
+# Subtest: Teleportation needs ownership, a proven visit, a valid landing and confirmation
+ok 113 - Teleportation needs ownership, a proven visit, a valid landing and confirmation
+  ---
+  duration_ms: 51.3071
+  ...
+# Subtest: Record module observes only actually started games and retains best direction
+ok 114 - Record module observes only actually started games and retains best direction
+  ---
+  duration_ms: 36.0315
+  ...
+# Subtest: All fifty frames use fixed uniform scale, immutable atlas anchor and positional walking
+ok 115 - All fifty frames use fixed uniform scale, immutable atlas anchor and positional walking
+  ---
+  duration_ms: 19.8526
+  ...
+# Subtest: Readable exact sign and mysterious letter do not leak route identities
+ok 116 - Readable exact sign and mysterious letter do not leak route identities
+  ---
+  duration_ms: 57.5685
+  ...
+# Subtest: Five campaign dialogue tiers, first/large/letter sales and global backpack are distinct
+ok 117 - Five campaign dialogue tiers, first/large/letter sales and global backpack are distinct
+  ---
+  duration_ms: 82.7868
+  ...
+# Subtest: crowd contains 36 humans and 24 aliens with fixed, varied identities and no other species
+ok 118 - crowd contains 36 humans and 24 aliens with fixed, varied identities and no other species
+  ---
+  duration_ms: 37.0443
+  ...
+# Subtest: six poses are baked once; 600 frames preserve identities and consume no game RNG
+ok 119 - six poses are baked once; 600 frames preserve identities and consume no game RNG
+  ---
+  duration_ms: 232.098
+  ...
+# Subtest: audience poses are asynchronous and galleries remain outside table and player travel
+ok 120 - audience poses are asynchronous and galleries remain outside table and player travel
+  ---
+  duration_ms: 23.1128
+  ...
+# Subtest: bitmap lettering uses integer rectangles, supports Portuguese normalization and needs no font rendering
+ok 121 - bitmap lettering uses integer rectangles, supports Portuguese normalization and needs no font rendering
+  ---
+  duration_ms: 38.3863
+  ...
+# Subtest: board uses real scores; match point is exactly one point from the current win target
+ok 122 - board uses real scores; match point is exactly one point from the current win target
+  ---
+  duration_ms: 16.1568
+  ...
+# Subtest: all live arena text is bitmap based, leaving the table free of permanent labels
+ok 123 - all live arena text is bitmap based, leaving the table free of permanent labels
+  ---
+  duration_ms: 136.5529
+  ...
+# Subtest: optional sport intro reuses the existing countdown and does not start physics early
+ok 124 - optional sport intro reuses the existing countdown and does not start physics early
+  ---
+  duration_ms: 2.9022
+  ...
+# Subtest: establishing shot stays clear, then names and START render in the short countdown window
+ok 125 - establishing shot stays clear, then names and START render in the short countdown window
+  ---
+  duration_ms: 23.1483
+  ...
+# Subtest: victory is decided at 50, but medal waits for celebration and held Space cannot dismiss it
+ok 126 - victory is decided at 50, but medal waits for celebration and held Space cannot dismiss it
+  ---
+  duration_ms: 42.7136
+  ...
+# Subtest: defeat never grants a medal and match resources stay stopped during its presentation
+ok 127 - defeat never grants a medal and match resources stay stopped during its presentation
+  ---
+  duration_ms: 56.3078
+  ...
+# Subtest: fresh match clears result presentation and passes the intro callback only to ping-pong
+ok 128 - fresh match clears result presentation and passes the intro callback only to ping-pong
+  ---
+  duration_ms: 57.8494
+  ...
+# Subtest: match-point and comeback reactions follow actual score changes and do not repeat each frame
+ok 129 - match-point and comeback reactions follow actual score changes and do not repeat each frame
+  ---
+  duration_ms: 16.1459
+  ...
+# Subtest: ordinary fast contacts do not shake; only extreme contact, global return or final point can
+ok 130 - ordinary fast contacts do not shake; only extreme contact, global return or final point can
+  ---
+  duration_ms: 32.3963
+  ...
+# Subtest: difficult-defense reaction requires a real returned shot at high speed and an edge contact
+ok 131 - difficult-defense reaction requires a real returned shot at high speed and an edge contact
+  ---
+  duration_ms: 27.0732
+  ...
+# Subtest: all eight sports share one short configuration contract
+ok 132 - all eight sports share one short configuration contract
+  ---
+  duration_ms: 21.0545
+  ...
+# Subtest: inactive controller does not intercept normal gameplay
+ok 133 - inactive controller does not intercept normal gameplay
+  ---
+  duration_ms: 2.2713
+  ...
+# Subtest: briefing remains open indefinitely and never starts from its animation clock
+ok 134 - briefing remains open indefinitely and never starts from its animation clock
+  ---
+  duration_ms: 7.2721
+  ...
+# Subtest: Space confirms once after the short exit transition
+ok 135 - Space confirms once after the short exit transition
+  ---
+  duration_ms: 5.5157
+  ...
+# Subtest: Enter confirms once after the short exit transition
+ok 136 - Enter confirms once after the short exit transition
+  ---
+  duration_ms: 0.8482
+  ...
+# Subtest: Escape cancels without triggering the start callback
+ok 137 - Escape cancels without triggering the start callback
+  ---
+  duration_ms: 0.5671
+  ...
+# Subtest: opening with the NPC interaction key held cannot confirm until release and a fresh press
+ok 138 - opening with the NPC interaction key held cannot confirm until release and a fresh press
+  ---
+  duration_ms: 0.8964
+  ...
+# Subtest: repeated keydown never confirms
+ok 139 - repeated keydown never confirms
+  ---
+  duration_ms: 0.7756
+  ...
+# Subtest: confirming and movement keys do not leak into gameplay while held
+ok 140 - confirming and movement keys do not leak into gameplay while held
+  ---
+  duration_ms: 4.4975
+  ...
+# Subtest: lost focus releases stale held-key guards
+ok 141 - lost focus releases stale held-key guards
+  ---
+  duration_ms: 3.6764
+  ...
+# Subtest: all inputs are consumed while a briefing is open
+ok 142 - all inputs are consumed while a briefing is open
+  ---
+  duration_ms: 1.3177
+  ...
+# Subtest: active briefing stops propagation to minigame-specific listeners
+ok 143 - active briefing stops propagation to minigame-specific listeners
+  ---
+  duration_ms: 0.7089
+  ...
+# Subtest: opening another briefing cannot silently replace an active one
+ok 144 - opening another briefing cannot silently replace an active one
+  ---
+  duration_ms: 3.0822
+  ...
+# Subtest: cancel is optional for sports without a return route
+ok 145 - cancel is optional for sports without a return route
+  ---
+  duration_ms: 0.9204
+  ...
+# Subtest: fade, layout, essential controls and icon render through the same Canvas component
+ok 146 - fade, layout, essential controls and icon render through the same Canvas component
+  ---
+  duration_ms: 8.7555
+  ...
+# Subtest: every sport renders inside the same fixed card without truncated instructional text
+ok 147 - every sport renders inside the same fixed card without truncated instructional text
+  ---
+  duration_ms: 11.405
+  ...
+# Subtest: configuration validates essentials and bounds tutorial size
+ok 148 - configuration validates essentials and bounds tutorial size
+  ---
+  duration_ms: 1.572
+  ...
+# Subtest: animation uses deltaTime at 30 Hz
+ok 149 - animation uses deltaTime at 30 Hz
+  ---
+  duration_ms: 1.2864
+  ...
+# Subtest: animation uses deltaTime at 60 Hz
+ok 150 - animation uses deltaTime at 60 Hz
+  ---
+  duration_ms: 0.8277
+  ...
+# Subtest: animation uses deltaTime at 144 Hz
+ok 151 - animation uses deltaTime at 144 Hz
+  ---
+  duration_ms: 0.9574
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 30 Hz
+ok 152 - countdown keeps simulation/input gated until VAI finishes at 30 Hz
+  ---
+  duration_ms: 2.1659
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 60 Hz
+ok 153 - countdown keeps simulation/input gated until VAI finishes at 60 Hz
+  ---
+  duration_ms: 1.4885
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 144 Hz
+ok 154 - countdown keeps simulation/input gated until VAI finishes at 144 Hz
+  ---
+  duration_ms: 1.335
+  ...
+# Subtest: countdown is optional so Marathon can retain its own native countdown
+ok 155 - countdown is optional so Marathon can retain its own native countdown
+  ---
+  duration_ms: 0.4226
+  ...
+# Subtest: official field is eight runners and exactly three laps, with three intermediate gates
+ok 156 - official field is eight runners and exactly three laps, with three intermediate gates
+  ---
+  duration_ms: 113.1138
+  ...
+# Subtest: analytic projection is continuous at every straight/curve seam and lateral offset
+ok 157 - analytic projection is continuous at every straight/curve seam and lateral offset
+  ---
+  duration_ms: 106.9044
+  ...
+# Subtest: initial start crossing is not a completed lap
+ok 158 - initial start crossing is not a completed lap
+  ---
+  duration_ms: 31.5045
+  ...
+# Subtest: A/B: repeated forward/backward line crossings and loitering do not award laps
+ok 159 - A/B: repeated forward/backward line crossings and loitering do not award laps
+  ---
+  duration_ms: 83.1485
+  ...
+# Subtest: wrong direction is rejected, including at the physical finish sensor
+ok 160 - wrong direction is rejected, including at the physical finish sensor
+  ---
+  duration_ms: 48.4477
+  ...
+# Subtest: C: cutting through half the oval cannot award a checkpoint or a lap
+ok 161 - C: cutting through half the oval cannot award a checkpoint or a lap
+  ---
+  duration_ms: 65.8681
+  ...
+# Subtest: D: CP1 then return towards start cannot count a lap
+ok 162 - D: CP1 then return towards start cannot count a lap
+  ---
+  duration_ms: 102.7028
+  ...
+# Subtest: CP3 then finish cannot substitute CP1 and CP2
+ok 163 - CP3 then finish cannot substitute CP1 and CP2
+  ---
+  duration_ms: 47.9818
+  ...
+# Subtest: E: ordered physical crossings count exactly one lap, and never count twice
+ok 164 - E: ordered physical crossings count exactly one lap, and never count twice
+  ---
+  duration_ms: 99.6102
+  ...
+# Subtest: each of all eight runners uses the same three physical lap sequences
+ok 165 - each of all eight runners uses the same three physical lap sequences
+  ---
+  duration_ms: 769.2589
+  ...
+# Subtest: a wide step detects the exact forward crossing fraction inside the painted opening
+ok 166 - a wide step detects the exact forward crossing fraction inside the painted opening
+  ---
+  duration_ms: 26.829
+  ...
+# Subtest: ranking is lexicographic by laps, checkpoint and sector before finish time
+ok 167 - ranking is lexicographic by laps, checkpoint and sector before finish time
+  ---
+  duration_ms: 22.3833
+  ...
+# Subtest: photo finish processes every runner before ordering; array order does not award victory
+ok 168 - photo finish processes every runner before ordering; array order does not award victory
+  ---
+  duration_ms: 29.8633
+  ...
+# Subtest: all three obstacle patterns have four districts, patrol bounds and clear final stretch
+ok 169 - all three obstacle patterns have four districts, patrol bounds and clear final stretch
+  ---
+  duration_ms: 42.4933
+  ...
+# Subtest: pigeons are non-colliding ambience and fly away near every runner
+ok 170 - pigeons are non-colliding ambience and fly away near every runner
+  ---
+  duration_ms: 26.4811
+  ...
+# Subtest: crowd keeps fixed human/alien identities in four rows and reacts locally
+ok 171 - crowd keeps fixed human/alien identities in four rows and reacts locally
+  ---
+  duration_ms: 31.7992
+  ...
+# Subtest: grass preserves the existing slowdown and cannot boost a shortcut
+ok 172 - grass preserves the existing slowdown and cannot boost a shortcut
+  ---
+  duration_ms: 24.3104
+  ...
+# Subtest: master throws and bumps target other rivals as well, with real cooldowns
+ok 173 - master throws and bumps target other rivals as well, with real cooldowns
+  ---
+  duration_ms: 3579.4457
+  ...
+# Subtest: complete physical race stays consistent with 30 FPS updates
+ok 174 - complete physical race stays consistent with 30 FPS updates
+  ---
+  duration_ms: 5335.1427
+  ...
+# Subtest: complete physical race stays consistent with 60 FPS updates
+ok 175 - complete physical race stays consistent with 60 FPS updates
+  ---
+  duration_ms: 2507.5558
+  ...
+# Subtest: complete physical race stays consistent with 144 FPS updates
+ok 176 - complete physical race stays consistent with 144 FPS updates
+  ---
+  duration_ms: 2432.9688
+  ...
+# Subtest: drawing uses cached ground and a single, uniform camera zoom
+ok 177 - drawing uses cached ground and a single, uniform camera zoom
+  ---
+  duration_ms: 29.5807
+  ...
+# Subtest: return to the marked track point unlocks validation without granting a gate on that frame
+ok 178 - return to the marked track point unlocks validation without granting a gate on that frame
+  ---
+  duration_ms: 28.9256
+  ...
+# Subtest: every AI can physically complete all three laps using the shared validator
+ok 179 - every AI can physically complete all three laps using the shared validator
+  ---
+  duration_ms: 2795.2903
+  ...
+# Subtest: a master projectile physically hits another rival, not only Zorp
+ok 180 - a master projectile physically hits another rival, not only Zorp
+  ---
+  duration_ms: 13.2407
+  ...
+# Subtest: only the saved 3→4 award queues arrival, never earlier awards or duplicates
+ok 181 - only the saved 3→4 award queues arrival, never earlier awards or duplicates
+  ---
+  duration_ms: 37.3533
+  ...
+# Subtest: a failed medal save does not queue the cutscene
+ok 182 - a failed medal save does not queue the cutscene
+  ---
+  duration_ms: 10.2531
+  ...
+# Subtest: minigame celebration finishes first; held or repeated result input cannot start or skip arrival
+ok 183 - minigame celebration finishes first; held or repeated result input cannot start or skip arrival
+  ---
+  duration_ms: 25.2516
+  ...
+# Subtest: all essential shots precede three paced lines; only the final fade commits completion
+ok 184 - all essential shots precede three paced lines; only the final fade commits completion
+  ---
+  duration_ms: 24.7118
+  ...
+# Subtest: unfinished pending save remains unfinished and can resume before Overworld movement
+ok 185 - unfinished pending save remains unfinished and can resume before Overworld movement
+  ---
+  duration_ms: 22.9104
+  ...
+# Subtest: a victory starts arrival automatically after its short result hold, without an extra command
+ok 186 - a victory starts arrival automatically after its short result hold, without an extra command
+  ---
+  duration_ms: 9.9813
+  ...
+# Subtest: legacy saves already at four medals are not given a retroactive arrival cutscene
+ok 187 - legacy saves already at four medals are not given a retroactive arrival cutscene
+  ---
+  duration_ms: 8.8827
+  ...
+# Subtest: arrival completion waits for a successful save and a failed write can be retried without replay
+ok 188 - arrival completion waits for a successful save and a failed write can be retried without replay
+  ---
+  duration_ms: 39.028
+  ...
+# Subtest: accept: saved choice resumes the correct cutscene; completion waits for its last fade
+ok 189 - accept: saved choice resumes the correct cutscene; completion waits for its last fade
+  ---
+  duration_ms: 461.3936
+  ...
+# Subtest: completed saved ending does not replay; seven medals and missing choices cannot start
+ok 190 - completed saved ending does not replay; seven medals and missing choices cannot start
+  ---
+  duration_ms: 36.8246
+  ...
+# Subtest: Space never skips timed scenes; hiding the document pauses progress
+ok 191 - Space never skips timed scenes; hiding the document pauses progress
+  ---
+  duration_ms: 46.6519
+  ...
+# Subtest: refusal plays authorities, disables and removes evidence, saves arrest, then resumes Overworld without any card or menu
+ok 192 - refusal plays authorities, disables and removes evidence, saves arrest, then resumes Overworld without any card or menu
+  ---
+  duration_ms: 52.8751
+  ...
+# Subtest: failed arrest save holds the final scene, preserves the campaign and allows retry
+ok 193 - failed arrest save holds the final scene, preserves the campaign and allows retry
+  ---
+  duration_ms: 139.5489
+  ...
+# Subtest: refusal requires separate Space presses for every line; timed shots and hidden tabs cannot be skipped
+ok 194 - refusal requires separate Space presses for every line; timed shots and hidden tabs cannot be skipped
+  ---
+  duration_ms: 8.9944
+  ...
+# Subtest: acceptance card persists before completion, and reload resumes that card instead of Earth
+ok 195 - acceptance card persists before completion, and reload resumes that card instead of Earth
+  ---
+  duration_ms: 401.4329
+  ...
+# Subtest: acceptance cannot complete before the card, and a failed card-dismiss save cannot return to the world/menu
+ok 196 - acceptance cannot complete before the card, and a failed card-dismiss save cannot return to the world/menu
+  ---
+  duration_ms: 306.1667
+  ...
+# Subtest: old completed acceptance restores the new card without setting its new seen flag early
+ok 197 - old completed acceptance restores the new card without setting its new seen flag early
+  ---
+  duration_ms: 264.8393
+  ...
+# Subtest: every acceptance shot draws with both original hulls; the damaged planet is always a distant abstraction
+ok 198 - every acceptance shot draws with both original hulls; the damaged planet is always a distant abstraction
+  ---
+  duration_ms: 191.7571
+  ...
+# Subtest: all arrest shots render, officer text fits and the eight actual medal icons can be drawn
+ok 199 - all arrest shots render, officer text fits and the eight actual medal icons can be drawn
+  ---
+  duration_ms: 37.404
+  ...
+# Subtest: official acceptance portrait crops the entire frontal head with one uniform scale and one cached surface
+ok 200 - official acceptance portrait crops the entire frontal head with one uniform scale and one cached surface
+  ---
+  duration_ms: 163.1918
+  ...
+# Subtest: failed official card load cannot close the card or award completion; Space retries the same real file
+ok 201 - failed official card load cannot close the card or award completion; Space retries the same real file
+  ---
+  duration_ms: 359.0216
+  ...
+# Subtest: a loaded image and elapsed clock cannot complete a card that has never been drawn
+ok 202 - a loaded image and elapsed clock cannot complete a card that has never been drawn
+  ---
+  duration_ms: 123.4632
+  ...
+# Subtest: held Space, repeats and hidden tabs cannot dismiss the reveal; a fresh press fades before returning once
+ok 203 - held Space, repeats and hidden tabs cannot dismiss the reveal; a fresh press fades before returning once
+  ---
+  duration_ms: 320.0843
+  ...
+# Subtest: card typography and narrative have their own compact identity with no dependency on external fonts
+ok 204 - card typography and narrative have their own compact identity with no dependency on external fonts
+  ---
+  duration_ms: 147.0731
+  ...
+1..204
+# tests 204
+# suites 0
+# pass 204
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 18956.1339

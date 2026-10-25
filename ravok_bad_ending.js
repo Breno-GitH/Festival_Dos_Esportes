@@ -83,10 +83,12 @@
             const fade=p<.13?1-p/.13:p>.9?(p-.9)/.1:0;rect(g,'rgba(0,0,0,'+fade+')',0,0,450,300);return;
         }
         g.save();g.translate(225,135);g.scale(1.7,1.7);g.translate(-369,-99);g.drawImage(island,0,0);
-        const board=id==='RAVOK_BOARD',q=board?ease(p):0,kr=board?ease((p-.2)/.8):0;
+        const board=id==='RAVOK_BOARD',time=p*3.4;
         ravokShip(g,321,40,1,board?1-ease((p-.82)/.18):1);
-        if(q<.96)config.drawNpc(g,'ravok',mix(350,368,q),mix(114,89,q),mix(1,.5,q));
-        if(kr<.96)config.drawNpc(g,'k7',mix(396,368,kr),mix(113,89,kr),mix(1,.5,kr));
+        const ravok=board?global.RavokK7Animation.path('ravok',[350,114],[368,89],2,time-.6):global.RavokK7Animation.idle('ravok',350,114);
+        const robot=board?global.RavokK7Animation.path('k7',[396,113],[368,89],2.1,time):global.RavokK7Animation.idle('k7',396,113,'right');
+        if(!board||time<=2.68)config.drawNpc(g,'ravok',ravok);
+        if(!board||time<=2.18)config.drawNpc(g,'k7',robot);
         config.drawZorp(g,origin.x,origin.y,1,false,0);g.restore();
         if(id==='ACCEPTANCE')config.caption(g,'RAVOK','Sabia que você entenderia.');
         if(id==='AUTHORIZATION')config.caption(g,'K7','PROTOCOLO AUTORIZADO.');

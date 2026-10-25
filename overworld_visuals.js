@@ -116,12 +116,12 @@ function drawOverworldHub() {
     ctx.beginPath();ctx.moveTo(225,132);ctx.lineTo(230,145);ctx.lineTo(244,145);
     ctx.lineTo(233,154);ctx.lineTo(237,167);ctx.lineTo(225,159);ctx.lineTo(213,167);
     ctx.lineTo(217,154);ctx.lineTo(206,145);ctx.lineTo(220,145);ctx.closePath();ctx.stroke();
-    for(const x of [46,366]) {
+    for(const x of [46]) {
         ctx.fillStyle="#26445c";ctx.fillRect(x,65,38,25);
         ctx.fillStyle="#66805a";ctx.fillRect(x+3,68,32,18);
         ctx.fillStyle="#dfc06d";ctx.fillRect(x+8,73,4,4);ctx.fillRect(x+25,78,4,4);
     }
-    drawOverworldBench(68,211);drawOverworldBench(336,211);
+    drawOverworldBench(68,211);drawOverworldBench(336,240);
     ctx.restore();finishOverworldIsland("HUB");
 }
 function overworldNpcGeometry(npc) {
@@ -251,7 +251,7 @@ function configureOverworldPresentation() {
             const role=npc.msg.replace(/^>\s*/, '').split(':')[0].normalize('NFD').replace(/[\u0300-\u036f]/g,'');
             npc.id=(npc.scene+'_'+role).toLowerCase().replace(/[^a-z0-9]+/g,'_');
         }
-        if(npc.scene==='ILHA_BASQUETE')continue;
+        if(npc.scene==='ILHA_BASQUETE'&&!npc.normalIslandNpc)continue;
         npc.tamanho=npc.isMaster?OVERWORLD_STYLE.masterHeight:OVERWORLD_STYLE.npcHeight;
         npc.interactionWidth=npc.isMaster?58:44;
         npc.interactionHeight=npc.isMaster?62:48;
@@ -266,7 +266,7 @@ function configureOverworldPresentation() {
 }
 function getOverworldDiagnostics() {
     return {scene:currentScene,reference:'ILHA_BASQUETE',bounds:[16,18,418,264],bridgeWidth:40,
-        npcs:npcs.filter(n=>n.scene===currentScene&&RavokEvent.isNpcVisible(n)).map(n=>({id:n.id||n.img.src.split('/').pop(),
+        npcs:npcs.filter(n=>n.scene===currentScene&&(RavokEvent.isNpcVisible(n)&&MerchantCampaign.isNpcVisible(n))).map(n=>({id:n.id||n.img.src.split('/').pop(),
             position:[n.x,n.y],height:n.tamanho,anchor:'bottom-center',
             source:overworldNpcGeometry(n)?.source||n.img.src,
             crop:overworldNpcGeometry(n)?.crop||null,footprint:n.footprint||null,

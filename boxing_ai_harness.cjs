@@ -7,7 +7,7 @@ function setup(seed=1){
  const env={console,Math:math,Image,performance:{now:()=>clock},document:{hidden:false,createElement:()=>({getContext:()=>({drawImage(){}})})},keys:{},currentScene:'JOGO_BOXE',hintText:{},location:{search:''},URLSearchParams,
  FestivalChallenges:{onBoxingStart(){},onBoxingResult(){}},desbloquearMedalha(){},resetBoxingPresentation(){},updateBoxingPresentation(){},boxingShowEvent(){},addEventListener(){}};
  env.window=env;vm.createContext(env);
- for(const name of ['boxing_arena.js','boxing_zorp_special_atlas.js','boxing_zorp_special.js','boxing_master_special_atlas.js','boxing_master_special.js']){
+ for(const name of ['boxing_controls.js','boxing_resources.js','boxing_rounds.js','boxing_arena.js','boxing_zorp_special_atlas.js','boxing_zorp_special.js','boxing_master_special_atlas.js','boxing_master_special.js']){
   const file=fs.existsSync(path.join(__dirname,name))?path.join(__dirname,name):path.join(root,name);vm.runInContext(fs.readFileSync(file,'utf8'),env);
  }
  vm.runInContext('globalThis.api={game:boxeGame,input:boxingInputPress,reset:resetBoxe,update:updateBoxeGame,start:boxingStartAttack,intent:boxingMasterIntent,request:boxingRequestSpecial,canHit:boxingAttackCanHit,plan:boxingAiPlan,makeBrain:boxingCreateMasterAI,mode:boxingAiSetMode};',env);
@@ -16,7 +16,7 @@ function setup(seed=1){
  const place=(d=45,dy=0)=>{a.game.player.x=180;a.game.player.y=210;a.game.mestre.x=180+d;a.game.mestre.y=210+dy;};place();
  return {a,env,step,place,random};
 }
-function simulate(seed,policy,maxSeconds=100){
+function simulate(seed,policy,maxSeconds=180){
  const g=setup(seed),{a,env,step}=g;g.place(90,5);let attackAt=0,decisionAt=0,view=null,playerHistory=[],playerStarts=0,playerHits=0,lastAttack=null,playerDodges=0,playerSpecials=0;
  for(let frame=0;frame<60*maxSeconds&&a.game.phase!=='RESULT';frame++){
   const p=a.game.player,m=a.game.mestre,now=a.game.fightFrames;
@@ -28,7 +28,7 @@ function simulate(seed,policy,maxSeconds=100){
   env.keys.w=env.keys.a=env.keys.s=env.keys.d=false;a.input.guard=false;
   if(policy==='guard')a.input.guard=true;
   if(view&&policy!=='idle'&&policy!=='guard'&&a.game.phase==='FIGHTING'){
-   const dx=view.x-p.x,dy=view.y-p.y,ax=Math.abs(dx),ay=Math.abs(dy),busy=p.attack||p.special||p.hitstun||p.guardBreakTimer||p.dodgeFrames||p.whiffFrames;
+   const dx=view.x-p.x,dy=view.y-p.y,ax=Math.abs(dx),ay=Math.abs(dy),busy=p.attack||(p.special&&p.special.mode!=='RUSH_OVERDRIVE')||p.hitstun||p.guardBreakTimer||p.dodgeFrames||p.whiffFrames;
    const careful=policy==='skilled',ordinary=policy==='competent';
    if(careful&&view.special?.phase==='CHARGE'){
     env.keys.w=p.y>180;env.keys.s=p.y<=180&&p.y<view.special.lineY+22;

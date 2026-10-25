@@ -1,0 +1,165 @@
+TAP version 13
+# Subtest: NORMAL profile has mild progress and permanent imperfection floors
+ok 1 - NORMAL profile has mild progress and permanent imperfection floors
+  ---
+  duration_ms: 32.3332
+  ...
+# Subtest: new targets require delayed observation and decision, then the full animation
+ok 2 - new targets require delayed observation and decision, then the full animation
+  ---
+  duration_ms: 20.6952
+  ...
+# Subtest: reaction, decision and cooldown vary between attempts and stay within human bounds
+ok 3 - reaction, decision and cooldown vary between attempts and stay within human bounds
+  ---
+  duration_ms: 63.9533
+  ...
+# Subtest: no route oracle: only visible delayed samples are retained
+ok 4 - no route oracle: only visible delayed samples are retained
+  ---
+  duration_ms: 18.2742
+  ...
+# Subtest: committed aim never follows a target or switches on the release frame
+ok 5 - committed aim never follows a target or switches on the release frame
+  ---
+  duration_ms: 18.4472
+  ...
+# Subtest: lost targets cancel with a fresh decision instead of an instant replacement
+ok 6 - lost targets cancel with a fresh decision instead of an instant replacement
+  ---
+  duration_ms: 14.5271
+  ...
+# Subtest: small, fast, curved, distant, bird and gold targets increase physical dispersion
+ok 7 - small, fast, curved, distant, bird and gold targets increase physical dispersion
+  ---
+  duration_ms: 11.956
+  ...
+# Subtest: selection considers only observed explosive neighbours and soft player contention
+ok 8 - selection considers only observed explosive neighbours and soft player contention
+  ---
+  duration_ms: 9.0432
+  ...
+# Subtest: score and player HP/medals never rubber-band the AI
+ok 9 - score and player HP/medals never rubber-band the AI
+  ---
+  duration_ms: 8.7025
+  ...
+# Subtest: ordinary arrows retain fixed physical velocities after firing
+ok 10 - ordinary arrows retain fixed physical velocities after firing
+  ---
+  duration_ms: 19.181
+  ...
+# Subtest: two readable candidates can both be chosen; there is no always-best solver
+ok 11 - two readable candidates can both be chosen; there is no always-best solver
+  ---
+  duration_ms: 431.6787
+  ...
+# Subtest: native 900x480 field restores 450x300 outside Archery; no scene scaling
+ok 12 - native 900x480 field restores 450x300 outside Archery; no scene scaling
+  ---
+  duration_ms: 28.1664
+  ...
+# Subtest: both competitors stay in separate broad shooting bounds, including held directions
+ok 13 - both competitors stay in separate broad shooting bounds, including held directions
+  ---
+  duration_ms: 51.3416
+  ...
+# Subtest: three depth bands retain original target sizes and point values
+ok 14 - three depth bands retain original target sizes and point values
+  ---
+  duration_ms: 13.5247
+  ...
+# Subtest: all paths enter, move continuously and retire only outside the wide field
+ok 15 - all paths enter, move continuously and retire only outside the wide field
+  ---
+  duration_ms: 307.7831
+  ...
+# Subtest: river route geometry is cached and reused without retaining target state
+ok 16 - river route geometry is cached and reused without retaining target state
+  ---
+  duration_ms: 16.7234
+  ...
+# Subtest: authored waves have varied depth, speed, side and purposeful explosive groups
+ok 17 - authored waves have varied depth, speed, side and purposeful explosive groups
+  ---
+  duration_ms: 12.1558
+  ...
+# Subtest: explosive confluence offers a real combo and chain wave detonates twice
+ok 18 - explosive confluence offers a real combo and chain wave detonates twice
+  ---
+  duration_ms: 58.221
+  ...
+# Subtest: swept collision catches a small moving target at x820 at 30 FPS
+ok 19 - swept collision catches a small moving target at x820 at 30 FPS
+  ---
+  duration_ms: 21.3255
+  ...
+# Subtest: swept collision catches a small moving target at x820 at 60 FPS
+ok 20 - swept collision catches a small moving target at x820 at 60 FPS
+  ---
+  duration_ms: 15.8212
+  ...
+# Subtest: swept collision catches a small moving target at x820 at 144 FPS
+ok 21 - swept collision catches a small moving target at x820 at 144 FPS
+  ---
+  duration_ms: 18.593
+  ...
+# Subtest: first contact wins and a normal arrow cannot hit twice or award an extra point
+ok 22 - first contact wins and a normal arrow cannot hit twice or award an extra point
+  ---
+  duration_ms: 12.8443
+  ...
+# Subtest: bird body remains outside collision; only hanging disk registers
+ok 23 - bird body remains outside collision; only hanging disk registers
+  ---
+  duration_ms: 7.954
+  ...
+# Subtest: gold stays rare, retains reward and uses the same continuous geometry
+ok 24 - gold stays rare, retains reward and uses the same continuous geometry
+  ---
+  duration_ms: 10.7282
+  ...
+# Subtest: full 60-second match uses all phases, respects caps and resolves arrows at buzzer
+ok 25 - full 60-second match uses all phases, respects caps and resolves arrows at buzzer
+  ---
+  duration_ms: 670.0495
+  ...
+# Subtest: character atlas, scoring rules and relative sweep maths are preserved
+ok 26 - character atlas, scoring rules and relative sweep maths are preserved
+  ---
+  duration_ms: 2.7124
+  ...
+# Subtest: all spawners enforce the active cap, including bird and rare gold opportunities
+ok 27 - all spawners enforce the active cap, including bird and rare gold opportunities
+  ---
+  duration_ms: 15.1042
+  ...
+# Subtest: a missed long-distance arrow remains physical until it exits the full field
+ok 28 - a missed long-distance arrow remains physical until it exits the full field
+  ---
+  duration_ms: 8.1393
+  ...
+# Subtest: entire matches and moving collisions remain deterministic at 30, 60 and 144 FPS
+ok 29 - entire matches and moving collisions remain deterministic at 30, 60 and 144 FPS
+  ---
+  duration_ms: 1759.85
+  ...
+# Subtest: wide result captures preserve aspect ratio when a 450x300 cutscene begins
+ok 30 - wide result captures preserve aspect ratio when a 450x300 cutscene begins
+  ---
+  duration_ms: 8.6207
+  ...
+# Subtest: a cutscene starting during draw restores its resolution in the same frame
+ok 31 - a cutscene starting during draw restores its resolution in the same frame
+  ---
+  duration_ms: 9.9124
+  ...
+1..31
+# tests 31
+# suites 0
+# pass 31
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3229.1679

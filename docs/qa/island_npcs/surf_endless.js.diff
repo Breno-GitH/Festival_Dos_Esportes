@@ -1,0 +1,32 @@
+--- before/surf_endless.js
++++ surf_endless.js
+@@ -519,6 +519,7 @@
+             this.seed=Number(query.get('surfSeed'))||0x5a17c0de;this.renderer=new EndlessRenderer(assets);this.previous={};this.reset(true);
+         }
+         reset(showIntro=true){
++            window.FestivalChallenges?.start('surf');
+             this.director=new EndlessDirector(this.seed,this.slice);this.state=showIntro&&!this.cleanWaveQa&&!this.runnerQa&&!this.qaProgress&&!this.finaleQa?'INTRO':'PLAYING';this.time=this.qaStartTime;this.frame=0;this.distance=this.qaProgress?SURF_FINISH_DISTANCE*(this.qaProgress/100):0;this.score=0;this.combo=1;this.bestDistance=Number(localStorage.getItem('zorpSurfBestDistance')||0);this.bestScore=Number(localStorage.getItem('zorpSurfBestScore')||0);this.forwardSpeed=this.runnerSpeedAt(this.time);this.failure='';this.storyMilestone=false;this.storyBanner=0;this.waveBanner=110;this.lastSegment=0;this.tubePressure=0;this.energyTimer=0;this.energyShield=0;this.result=null;this.resultDelay=0;this.resultShownAt=0;this.finaleTime=0;this.finalePhase='';this.finaleLandingDone=false;this.finaleImpact=0;this.finaleCelebration=0;this.playerControlEnabled=true;
+             this.chaseGap=72;this.chaserState='SAFE';this.playerProgress=0;this.chaserProgress=-360;this.lastMinorHit=-999;this.stumble=0;this.speedBoost=0;this.hitFeedback=0;this.hitLabel='';this.tubeRescueAvailable=true;this.tubeCapture=false;this.tubeCaptureTime=0;this.tubeDangerTimer=0;this.tubeSafeCenter=.52;this.tubeSafeWidth=.36;this.tubeWarning='SAFE';this.tubeExitFlash=0;this.qaHitStage=0;
+             this.player={verticalPosition:.58,verticalVelocity:.002,lastVerticalVelocity:.002,momentum:5.3,lastMomentum:5.3,boardAngle:0,air:0,airVelocity:0,rotation:0,state:'SURF',visualState:'glide',visualTimer:0,trickKind:'',trickCooldown:0,airEntryMomentum:0,landingTimer:0,takeoffTimer:0,contactFrames:90,weakHop:false};
+@@ -576,6 +577,7 @@
+             if(['tube_success','tube_failure','tube_second'].includes(this.qaScenario)&&this.time>.75&&this.qaHitStage===0){this.qaHitStage=1;this.startLastChanceTube();}
+             if(this.qaScenario==='tube_second'&&this.qaHitStage===2&&!this.tubeCapture){this.qaHitStage=3;this.chaseGap=0;this.handleChaserCatch('QA SECOND CAPTURE');}
+             if(this.qaScenario==='checkpoint'&&this.time>.25&&this.qaHitStage===0&&this.qaProgress<100){this.qaHitStage=1;this.wipeout(`QA ${this.qaProgress}%`);this.resultDelay=0;this.resultShownAt=this.frame;this.syncKeys();return;}
++            window.FestivalChallenges?.onSurf({progress:this.distance/SURF_FINISH_DISTANCE,state:this.chaserState,tubeCapture:this.tubeCapture});
+             if(this.distance>=SURF_FINISH_DISTANCE&&!this.longQa&&!this.tubeCapture){this.startFinale();this.syncKeys();return;}
+             if(this.storyBanner>0)this.storyBanner--;if(this.energyTimer>0)this.energyTimer--;if(this.stumble>0)this.stumble--;if(this.hitFeedback>0)this.hitFeedback--;this.tubeExitFlash=Math.max(0,this.tubeExitFlash-.025);this.speedBoost=lerp(this.speedBoost,0,.025);
+             const point=this.playerPoint(current);this.renderer.addTrail(point,p.momentum,p.verticalVelocity);if(this.frame%2===0)this.renderer.addSpray(point,1+Math.round(Math.abs(p.verticalVelocity)*95),-1,this.energyTimer>0?'#ffe86b':null);this.renderer.update(this.forwardSpeed);
+@@ -659,10 +661,12 @@
+         handleChaserCatch(reason){
+             if(this.tubeCapture||this.state!=='PLAYING')return;
+             if(this.tubeRescueAvailable){this.startLastChanceTube();return;}
++            window.FestivalChallenges?.onSurf({progress:this.distance/SURF_FINISH_DISTANCE,state:'CAUGHT'});
+             this.chaserState='CAUGHT';this.wipeout(reason==='WHITEWATER ALCANÇOU ZORP'?'WHITEWATER PEGOU ZORP NOVAMENTE':reason);
+         }
+         startLastChanceTube(){
+-            if(!this.tubeRescueAvailable||this.tubeCapture)return;this.tubeRescueAvailable=false;this.tubeCapture=true;this.tubeCaptureTime=0;this.tubeDangerTimer=0;this.tubeSafeCenter=clamp(this.player.verticalPosition,.34,.68);this.tubeSafeWidth=.40;this.tubeWarning='SAFE';this.chaserState='TUBE_CAPTURE';this.chaseGap=4;this.player.state='TUBE_CAPTURE';this.stats.tubeCaptures++;this.hitFeedback=55;this.hitLabel='LAST CHANCE TUBE!';this.renderer.addSpray(this.playerPoint(),10,-1,'#ffffff');
++            if(!this.tubeRescueAvailable||this.tubeCapture)return;
++            window.FestivalChallenges?.onSurf({progress:this.distance/SURF_FINISH_DISTANCE,state:'TUBE_CAPTURE'});this.tubeRescueAvailable=false;this.tubeCapture=true;this.tubeCaptureTime=0;this.tubeDangerTimer=0;this.tubeSafeCenter=clamp(this.player.verticalPosition,.34,.68);this.tubeSafeWidth=.40;this.tubeWarning='SAFE';this.chaserState='TUBE_CAPTURE';this.chaseGap=4;this.player.state='TUBE_CAPTURE';this.stats.tubeCaptures++;this.hitFeedback=55;this.hitLabel='LAST CHANCE TUBE!';this.renderer.addSpray(this.playerPoint(),10,-1,'#ffffff');
+         }
+         updateLastChanceTube(){
+             const p=this.player;this.tubeCaptureTime+=1/60;const t=this.tubeCaptureTime,phase=clamp(t/LAST_CHANCE_TUBE_DURATION,0,1),wave=Math.sin(t*1.72)*.14+Math.sin(t*.69+1.2)*.045;

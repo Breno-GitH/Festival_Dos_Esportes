@@ -1,37 +1,47 @@
 (function () {
     'use strict';
     // Only delayed visual samples: no routes, future spawn queues or projectile corrections.
-    const CONFIG=Object.freeze({reactionDelay:30,decisionTime:17,accuracy:.71,sampleInterval:6,
-        ready:9,raise:11,draw:12,aim:14,release:8,recovery:20,cooldown:54,
+    // All durations use the existing fixed 60 Hz simulation, not display frames.
+    // Accuracy is aim consistency, never a probability that awards a hit.
+    const CONFIG=Object.freeze({difficulty:'NORMAL',reactionDelay:30,decisionDelay:18,decisionTime:18,
+        accuracy:.70,predictionError:.065,shotCooldown:48,sampleInterval:6,
+        ready:9,raise:11,draw:13,aim:15,release:8,recovery:21,cooldown:48,
         moveSpeed:3.20,maxPrediction:100,maxRaiseWait:72,scanInterval:10,
-        minSkill:.30,maxSkill:.88,minAimError:3.5,minReactionDelay:15,maxAccuracy:.84});
+        minSkill:.50,maxSkill:.60,minAimError:3.5,minReactionDelay:21,maxReactionDelay:39,maxAccuracy:.74});
     const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),lerp=(a,b,t)=>a+(b-a)*t;
     function profileAt(frame,totalFrames=3600) {
         const progress=clamp(frame/Math.max(1,totalFrames),0,1);
-        return {masterSkill:Math.min(CONFIG.maxSkill,lerp(CONFIG.minSkill,CONFIG.maxSkill,progress)),progress,
-            reactionDelay:Math.round(lerp(42,18,progress)),decisionTime:Math.round(lerp(24,10,progress)),
-            accuracy:Math.min(CONFIG.maxAccuracy,lerp(.58,.84,progress)),
-            aimError:Math.max(CONFIG.minAimError,lerp(4.5,3.5,progress)),prediction:lerp(.82,.95,progress),
-            selectionError:lerp(.24,.08,progress),comboAwareness:lerp(.35,.82,progress),
-            ready:Math.round(lerp(10,7,progress)),raise:Math.round(lerp(12,9,progress)),
-            draw:Math.round(lerp(14,10,progress)),aim:Math.round(lerp(18,9,progress)),release:8,
-            recovery:Math.round(lerp(24,15,progress)),cooldown:Math.round(lerp(66,42,progress)),
-            moveSpeed:lerp(3.0,3.4,progress)};
+        const decisionDelay=lerp(18,16,progress),shotCooldown=lerp(50,46,progress);
+        return {masterSkill:lerp(CONFIG.minSkill,CONFIG.maxSkill,progress),progress,
+            reactionDelay:lerp(31,28,progress),reactionBase:lerp(31,28,progress),decisionDelay,decisionTime:decisionDelay,
+            accuracy:lerp(CONFIG.accuracy,CONFIG.maxAccuracy,progress),
+            aimError:lerp(4,CONFIG.minAimError,progress),prediction:lerp(.88,.91,progress),
+            predictionError:lerp(.075,.055,progress),selectionError:.24,comboAwareness:lerp(.42,.52,progress),
+            ready:9,raise:11,draw:13,aim:Math.round(lerp(16,14,progress)),release:8,
+            recovery:21,shotCooldown,cooldown:shotCooldown,moveSpeed:3.20};
+    }
+    function varyTiming(ai,p) {
+        // One stable human tempo per attempt. Never resample perception each frame.
+        const reactionDelay=clamp(Math.round(p.reactionBase+(ai.random()*2-1)*8),CONFIG.minReactionDelay,CONFIG.maxReactionDelay);
+        const decisionDelay=Math.round(p.decisionDelay+(ai.random()*2-1)*4);
+        const shotCooldown=Math.round(p.shotCooldown+(ai.random()*2-1)*6);
+        return {...p,reactionDelay,decisionDelay,decisionTime:decisionDelay,shotCooldown,cooldown:shotCooldown};
     }
     function create(options={}) {
         const random=options.random||Math.random;
+        const timing=varyTiming({random},profileAt(0));
         return {state:'OBSERVE',age:0,targetId:null,memory:new Map(),nextSample:0,nextScan:0,
             cooldown:0,lockedAim:null,selection:null,shots:0,decisions:0,cancellations:0,
             observedCount:0,lastCandidates:[],events:[],lastFrame:0,opponentHistory:[],opponent:null,
-            random,tempoBias:(random()-.5)*6,aimNoise:null,masterSkill:CONFIG.minSkill,
-            profile:profileAt(0),timing:profileAt(0),
+            random,aimNoise:null,masterSkill:CONFIG.minSkill,
+            profile:{...timing},timing,perceptionDelay:timing.reactionDelay,
             attempts:{NORMAL:0,FAST:0,BIRD:0,GOLDEN:0,EXPLOSIVE:0}};
     }
     function normal(random) {
         return Math.sqrt(-2*Math.log(Math.max(1e-9,random())))*Math.cos(2*Math.PI*random());
     }
     function event(ai,frame,type,data={}) {
-        ai.events.push({frame,type,...data});if(ai.events.length>240)ai.events.shift();
+        ai.events.push({frame,type,...data});if(ai.events.length>600)ai.events.shift();
     }
     function enter(ai,state,frame) {ai.state=state;ai.age=0;event(ai,frame,'STATE',{state,targetId:ai.targetId});}
     function sense(ai,context) {
@@ -72,8 +82,8 @@
     }
     function lifetime(t) {
         const times=[];
-        if(Math.abs(t.vx)>.2)times.push((t.vx>0?450+t.radius-t.x:t.x+t.radius)/Math.abs(t.vx));
-        if(t.vy>.2)times.push((210+t.radius-t.y)/t.vy);
+        if(Math.abs(t.vx)>.2)times.push((t.vx>0?window.ArcheryField.WIDTH+t.radius-t.x:t.x+t.radius)/Math.abs(t.vx));
+        if(t.vy>.2)times.push((window.ArcheryField.SOURCE_BOTTOM+t.radius-t.y)/t.vy);
         if(t.vy<-.2)times.push((t.y+t.radius-35)/-t.vy);
         return clamp(times.length?Math.min(...times):600,1,600);
     }
@@ -88,14 +98,16 @@
         if(t.explosive){
             const neighbours=observations.filter(o=>o.id!==t.id&&Math.hypot(o.x-t.x,o.y-t.y)<=context.explosionRadius+o.radius)
                 .sort((a,b)=>Math.hypot(a.x-t.x,a.y-t.y)-Math.hypot(b.x-t.x,b.y-t.y));
-            const understood=neighbours.slice(0,Math.round(lerp(2,5,p.progress)));
+            const understood=neighbours.slice(0,2);
             nearbyCount=understood.length;
-            if(nearbyCount>=2||p.progress>.35)nearbyValue=understood.reduce((sum,o)=>sum+o.value,0);
+            if(nearbyCount>=2)nearbyValue=understood.reduce((sum,o)=>sum+o.value,0);
         }
         const expected=t.value+(t.golden?35:14)+nearbyValue*p.comboAwareness+(nearbyCount>=2?15:0);
         let score=expected*chance/(.9+required/60);
-        if(t.golden)score*=lerp(1.25,1.55,p.progress);
-        if(context.opponent?.shooting){const d=Math.abs(t.x-context.opponent.x);score*=.35+.65*clamp((d+20)/(distance+60),.08,1.35);}
+        if(t.golden)score*=lerp(1.10,1.20,p.progress);
+        // Do not spend an entire preparation crossing an unreachable shooting lane.
+        if(distance>p.moveSpeed*(CONFIG.maxRaiseWait+p.ready)+28)score*=.60;
+        if(context.opponent?.shooting){const d=Math.abs(t.x-context.opponent.x);score*=.72+.28*clamp((d+20)/(distance+60),.08,1.35);}
         if(remaining<18||t.y-t.radius>=context.area.back-73)score*=.12;
         return {id:t.id,score,chance,distance,remaining,required,nearbyCount,nearbyValue,
             bird:t.bird,golden:t.golden,explosive:t.explosive,speed:t.speed,observedFrame:t.frame};
@@ -103,7 +115,7 @@
     function choose(observations,context) {
         const p=context.profile||profileAt(context.frame,context.totalFrames);
         return observations.map(t=>evaluate(t,observations,context))
-            .filter(t=>t.chance>=(t.golden?.10:lerp(.27,.17,p.progress))&&t.score>7)
+            .filter(t=>t.chance>=(t.golden?.18:.24)&&t.score>5.5)
             .sort((a,b)=>b.score-a.score||a.id-b.id);
     }
     function project(t,context,releaseIn,shotIndex=0,noise=null) {
@@ -113,29 +125,32 @@
         const flight=Math.max(1,(context.y-73-t.y)/Math.max(1,context.arrowSpeed+t.vy));
         const horizon=clamp(context.frame-t.frame+releaseIn+flight,0,CONFIG.maxPrediction);
         const distance=Math.abs(t.x-context.x),complexity=clamp(t.turn*12,0,2);
-        const difficulty=t.speed*.9+Math.max(0,14-t.radius)*.10+(t.bird?.8:0)+(t.golden?.35:0)+complexity;
-        const spread=p.aimError+(1-p.accuracy)*(7+difficulty*9+distance*.045);
+        const difficulty=t.speed*.9+Math.max(0,14-t.radius)*.10+(t.bird?.8:0)+(t.golden?.55:0)+complexity+Math.max(0,context.y-73-t.y)/180;
+        const spread=p.aimError+(1-p.accuracy)*(8+difficulty*6.5+distance*.02);
         // Continuous hand dispersion with occasional wider offsets, never a forced miss.
         const hand=clamp(n.x*(.85+.12*n.x*n.x),-3.6,3.6);
-        const confidence=clamp(p.prediction+n.velocity*lerp(.075,.025,p.progress),.60,.985);
-        const quantum=lerp(2.2,1,p.progress);
-        return {x:Math.round((t.x+t.vx*horizon*confidence+hand*spread)/quantum)*quantum,
+        // Pick a broad part of the visible face, not a guaranteed centre shot.
+        const faceOffset=(n.face||0)*t.radius;
+        const aimErrorX=hand*spread+faceOffset;
+        const confidence=clamp(p.prediction+n.velocity*p.predictionError,.65,.97);
+        const quantum=lerp(2,1.6,p.progress);
+        return {x:Math.round((t.x+t.vx*horizon*confidence+aimErrorX)/quantum)*quantum,
             y:t.y+t.vy*horizon*confidence+n.y*spread*.28,observedFrame:t.frame,horizon,spread,
-            aimErrorX:hand*spread,aimErrorY:n.y*spread*.28,masterSkill:p.masterSkill,accuracy:p.accuracy};
+            aimErrorX,aimErrorY:n.y*spread*.28,predictionError:p.predictionError,masterSkill:p.masterSkill,accuracy:p.accuracy};
     }
     function cancel(ai,frame,reason) {
         ai.cancellations++;event(ai,frame,'CANCEL',{targetId:ai.targetId,reason});
-        ai.targetId=null;ai.lockedAim=null;ai.aimNoise=null;ai.nextScan=frame+CONFIG.scanInterval;enter(ai,'OBSERVE',frame);
+        ai.targetId=null;ai.lockedAim=null;ai.aimNoise=null;ai.nextScan=frame+CONFIG.scanInterval;ai.perceptionDelay=varyTiming(ai,ai.profile).reactionDelay;enter(ai,'OBSERVE',frame);
     }
     function step(ai,context) {
         const {frame,area}=context;ai.lastFrame=frame;ai.age++;if(ai.cooldown>0)ai.cooldown--;
         ai.profile=profileAt(frame,context.totalFrames);
-        ai.profile.reactionDelay=Math.max(CONFIG.minReactionDelay,Math.round(ai.profile.reactionDelay+ai.tempoBias));
+        ai.profile.reactionDelay=ai.perceptionDelay;
         ai.masterSkill=ai.profile.masterSkill;
         sense(ai,context);const observations=perceive(ai,frame);
         let x=context.x,y=context.y,fire=null;
         if(ai.state==='OBSERVE'&&frame>=ai.nextScan&&ai.cooldown===0&&observations.length){
-            ai.timing={...ai.profile};enter(ai,'DECIDING',frame);
+            ai.timing={...varyTiming(ai,ai.profile),reactionDelay:ai.perceptionDelay};enter(ai,'DECIDING',frame);
         }
         const timing=ai.timing;
         if(ai.state==='DECIDING'&&ai.age>=timing.decisionTime){
@@ -144,14 +159,20 @@
                 .sort((a,b)=>b.decisionScore-a.decisionScore);
             ai.lastCandidates=choices.slice(0,6);ai.decisions++;
             if(choices.length){
-                ai.selection=choices[0];ai.targetId=ai.selection.id;
-                ai.aimNoise={x:normal(ai.random),y:normal(ai.random),velocity:normal(ai.random)};
+                // A small weighted shortlist represents imperfect judgement, not an optimal solver.
+                // The weighting only selects a target; the arrow must still hit it physically.
+                const shortlist=choices.filter(c=>c.decisionScore>=choices[0].decisionScore*.60).slice(0,2);
+                const weights=shortlist.map(c=>Math.pow(c.decisionScore,1.6));
+                let pick=ai.random()*weights.reduce((sum,w)=>sum+w,0),index=0;
+                while(index<weights.length-1&&pick>=weights[index])pick-=weights[index++];
+                ai.selection=shortlist[index];ai.targetId=ai.selection.id;
+                ai.aimNoise={x:normal(ai.random),y:normal(ai.random),velocity:normal(ai.random),face:(ai.random()*2-1)*.45};
                 if(ai.selection.golden)ai.attempts.GOLDEN++;
                 if(ai.selection.bird)ai.attempts.BIRD++;
                 if(ai.selection.explosive)ai.attempts.EXPLOSIVE++;
                 if(ai.selection.speed>1.15)ai.attempts.FAST++;
                 if(!ai.selection.golden&&!ai.selection.bird&&!ai.selection.explosive)ai.attempts.NORMAL++;
-                event(ai,frame,'SELECT',{...ai.selection,masterSkill:ai.masterSkill});enter(ai,'READY',frame);
+                event(ai,frame,'SELECT',{...ai.selection,masterSkill:ai.masterSkill,reactionDelay:timing.reactionDelay,decisionDelay:timing.decisionDelay,shotCooldown:timing.shotCooldown});enter(ai,'READY',frame);
             }else cancel(ai,frame,'NO_READABLE_SHOT');
         }
         const target=observations.find(t=>t.id===ai.targetId);
@@ -160,7 +181,7 @@
             const remain=(ai.state==='READY'?Math.max(0,timing.ready-ai.age)+timing.raise:Math.max(0,timing.raise-ai.age))+timing.draw+timing.aim;
             const aim=project(target,{...context,x,y,profile:ai.profile},remain,ai.shots,ai.aimNoise);
             x+=clamp(clamp(aim.x,area.left,area.right)-x,-timing.moveSpeed,timing.moveSpeed);
-            const stanceY=clamp(Math.max(y,aim.y+73+22),area.front+28,area.back-2);
+            const stanceY=clamp(Math.max(y,aim.y+73+22),Math.min(area.front+28,area.back-3),area.back-2);
             y+=clamp(stanceY-y,-1.35,1.35);
             if(ai.state==='READY'&&ai.age>=timing.ready)enter(ai,'RAISE_BOW',frame);
             else if(ai.state==='RAISE_BOW'&&ai.age>=timing.raise){
@@ -179,7 +200,7 @@
             fire={...ai.lockedAim};ai.shots++;ai.cooldown=timing.cooldown;
             event(ai,frame,'SHOT',{targetId:ai.targetId,...fire});enter(ai,'RELEASE_SHOT',frame);
         }else if(ai.state==='RELEASE_SHOT'&&ai.age>=timing.release)enter(ai,'RECOVERY',frame);
-        else if(ai.state==='RECOVERY'&&ai.age>=timing.recovery){ai.targetId=null;ai.lockedAim=null;ai.aimNoise=null;enter(ai,'OBSERVE',frame);}
+        else if(ai.state==='RECOVERY'&&ai.age>=timing.recovery){ai.targetId=null;ai.lockedAim=null;ai.aimNoise=null;ai.perceptionDelay=varyTiming(ai,ai.profile).reactionDelay;enter(ai,'OBSERVE',frame);}
         return {x:clamp(x,area.left,area.right),y:clamp(y,area.front,area.back),state:ai.state,targetId:ai.targetId,fire,cooldown:ai.cooldown};
     }
     function diagnostics(ai) {

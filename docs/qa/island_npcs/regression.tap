@@ -1,0 +1,1320 @@
+TAP version 13
+# Subtest: NORMAL profile has mild progress and permanent imperfection floors
+ok 1 - NORMAL profile has mild progress and permanent imperfection floors
+  ---
+  duration_ms: 45.4444
+  ...
+# Subtest: new targets require delayed observation and decision, then the full animation
+ok 2 - new targets require delayed observation and decision, then the full animation
+  ---
+  duration_ms: 26.8148
+  ...
+# Subtest: reaction, decision and cooldown vary between attempts and stay within human bounds
+ok 3 - reaction, decision and cooldown vary between attempts and stay within human bounds
+  ---
+  duration_ms: 101.2958
+  ...
+# Subtest: no route oracle: only visible delayed samples are retained
+ok 4 - no route oracle: only visible delayed samples are retained
+  ---
+  duration_ms: 16.7855
+  ...
+# Subtest: committed aim never follows a target or switches on the release frame
+ok 5 - committed aim never follows a target or switches on the release frame
+  ---
+  duration_ms: 29.8925
+  ...
+# Subtest: lost targets cancel with a fresh decision instead of an instant replacement
+ok 6 - lost targets cancel with a fresh decision instead of an instant replacement
+  ---
+  duration_ms: 17.0761
+  ...
+# Subtest: small, fast, curved, distant, bird and gold targets increase physical dispersion
+ok 7 - small, fast, curved, distant, bird and gold targets increase physical dispersion
+  ---
+  duration_ms: 26.3102
+  ...
+# Subtest: selection considers only observed explosive neighbours and soft player contention
+ok 8 - selection considers only observed explosive neighbours and soft player contention
+  ---
+  duration_ms: 13.2459
+  ...
+# Subtest: score and player HP/medals never rubber-band the AI
+ok 9 - score and player HP/medals never rubber-band the AI
+  ---
+  duration_ms: 15.2977
+  ...
+# Subtest: ordinary arrows retain fixed physical velocities after firing
+ok 10 - ordinary arrows retain fixed physical velocities after firing
+  ---
+  duration_ms: 52.6697
+  ...
+# Subtest: two readable candidates can both be chosen; there is no always-best solver
+ok 11 - two readable candidates can both be chosen; there is no always-best solver
+  ---
+  duration_ms: 788.3027
+  ...
+# Subtest: native 900x480 field restores 450x300 outside Archery; no scene scaling
+ok 12 - native 900x480 field restores 450x300 outside Archery; no scene scaling
+  ---
+  duration_ms: 40.0558
+  ...
+# Subtest: both competitors stay in separate broad shooting bounds, including held directions
+ok 13 - both competitors stay in separate broad shooting bounds, including held directions
+  ---
+  duration_ms: 77.6998
+  ...
+# Subtest: three depth bands retain original target sizes and point values
+ok 14 - three depth bands retain original target sizes and point values
+  ---
+  duration_ms: 13.1897
+  ...
+# Subtest: all paths enter, move continuously and retire only outside the wide field
+ok 15 - all paths enter, move continuously and retire only outside the wide field
+  ---
+  duration_ms: 675.8117
+  ...
+# Subtest: river route geometry is cached and reused without retaining target state
+ok 16 - river route geometry is cached and reused without retaining target state
+  ---
+  duration_ms: 41.8379
+  ...
+# Subtest: authored waves have varied depth, speed, side and purposeful explosive groups
+ok 17 - authored waves have varied depth, speed, side and purposeful explosive groups
+  ---
+  duration_ms: 21.5749
+  ...
+# Subtest: explosive confluence offers a real combo and chain wave detonates twice
+ok 18 - explosive confluence offers a real combo and chain wave detonates twice
+  ---
+  duration_ms: 144.4259
+  ...
+# Subtest: swept collision catches a small moving target at x820 at 30 FPS
+ok 19 - swept collision catches a small moving target at x820 at 30 FPS
+  ---
+  duration_ms: 28.2895
+  ...
+# Subtest: swept collision catches a small moving target at x820 at 60 FPS
+ok 20 - swept collision catches a small moving target at x820 at 60 FPS
+  ---
+  duration_ms: 25.1724
+  ...
+# Subtest: swept collision catches a small moving target at x820 at 144 FPS
+ok 21 - swept collision catches a small moving target at x820 at 144 FPS
+  ---
+  duration_ms: 34.1954
+  ...
+# Subtest: first contact wins and a normal arrow cannot hit twice or award an extra point
+ok 22 - first contact wins and a normal arrow cannot hit twice or award an extra point
+  ---
+  duration_ms: 32.1574
+  ...
+# Subtest: bird body remains outside collision; only hanging disk registers
+ok 23 - bird body remains outside collision; only hanging disk registers
+  ---
+  duration_ms: 18.055
+  ...
+# Subtest: gold stays rare, retains reward and uses the same continuous geometry
+ok 24 - gold stays rare, retains reward and uses the same continuous geometry
+  ---
+  duration_ms: 24.7359
+  ...
+# Subtest: full 60-second match uses all phases, respects caps and resolves arrows at buzzer
+ok 25 - full 60-second match uses all phases, respects caps and resolves arrows at buzzer
+  ---
+  duration_ms: 1207.3663
+  ...
+# Subtest: character atlas, scoring rules and relative sweep maths are preserved
+ok 26 - character atlas, scoring rules and relative sweep maths are preserved
+  ---
+  duration_ms: 2.5471
+  ...
+# Subtest: all spawners enforce the active cap, including bird and rare gold opportunities
+ok 27 - all spawners enforce the active cap, including bird and rare gold opportunities
+  ---
+  duration_ms: 26.5582
+  ...
+# Subtest: a missed long-distance arrow remains physical until it exits the full field
+ok 28 - a missed long-distance arrow remains physical until it exits the full field
+  ---
+  duration_ms: 14.5276
+  ...
+# Subtest: entire matches and moving collisions remain deterministic at 30, 60 and 144 FPS
+ok 29 - entire matches and moving collisions remain deterministic at 30, 60 and 144 FPS
+  ---
+  duration_ms: 2709.3231
+  ...
+# Subtest: wide result captures preserve aspect ratio when a 450x300 cutscene begins
+ok 30 - wide result captures preserve aspect ratio when a 450x300 cutscene begins
+  ---
+  duration_ms: 11.4486
+  ...
+# Subtest: a cutscene starting during draw restores its resolution in the same frame
+ok 31 - a cutscene starting during draw restores its resolution in the same frame
+  ---
+  duration_ms: 13.7666
+  ...
+# Subtest: lower-left escapes physically at 30 Hz
+ok 32 - lower-left escapes physically at 30 Hz
+  ---
+  duration_ms: 56.2207
+  ...
+# Subtest: lower-right escapes physically at 30 Hz
+ok 33 - lower-right escapes physically at 30 Hz
+  ---
+  duration_ms: 27.2458
+  ...
+# Subtest: upper-left escapes physically at 30 Hz
+ok 34 - upper-left escapes physically at 30 Hz
+  ---
+  duration_ms: 47.9543
+  ...
+# Subtest: upper-right escapes physically at 30 Hz
+ok 35 - upper-right escapes physically at 30 Hz
+  ---
+  duration_ms: 49.037
+  ...
+# Subtest: legacy-left-pocket escapes physically at 30 Hz
+ok 36 - legacy-left-pocket escapes physically at 30 Hz
+  ---
+  duration_ms: 27.7395
+  ...
+# Subtest: legacy-right-pocket escapes physically at 30 Hz
+ok 37 - legacy-right-pocket escapes physically at 30 Hz
+  ---
+  duration_ms: 30.8191
+  ...
+# Subtest: behind-left escapes physically at 30 Hz
+ok 38 - behind-left escapes physically at 30 Hz
+  ---
+  duration_ms: 46.4112
+  ...
+# Subtest: behind-right escapes physically at 30 Hz
+ok 39 - behind-right escapes physically at 30 Hz
+  ---
+  duration_ms: 32.8889
+  ...
+# Subtest: left balanced board cap gets a nudge after 2 s at 30 Hz
+ok 40 - left balanced board cap gets a nudge after 2 s at 30 Hz
+  ---
+  duration_ms: 27.9878
+  ...
+# Subtest: right balanced board cap gets a nudge after 2 s at 30 Hz
+ok 41 - right balanced board cap gets a nudge after 2 s at 30 Hz
+  ---
+  duration_ms: 24.691
+  ...
+# Subtest: lower-left escapes physically at 60 Hz
+ok 42 - lower-left escapes physically at 60 Hz
+  ---
+  duration_ms: 11.0572
+  ...
+# Subtest: lower-right escapes physically at 60 Hz
+ok 43 - lower-right escapes physically at 60 Hz
+  ---
+  duration_ms: 18.3506
+  ...
+# Subtest: upper-left escapes physically at 60 Hz
+ok 44 - upper-left escapes physically at 60 Hz
+  ---
+  duration_ms: 11.8193
+  ...
+# Subtest: upper-right escapes physically at 60 Hz
+ok 45 - upper-right escapes physically at 60 Hz
+  ---
+  duration_ms: 17.1351
+  ...
+# Subtest: legacy-left-pocket escapes physically at 60 Hz
+ok 46 - legacy-left-pocket escapes physically at 60 Hz
+  ---
+  duration_ms: 10.7209
+  ...
+# Subtest: legacy-right-pocket escapes physically at 60 Hz
+ok 47 - legacy-right-pocket escapes physically at 60 Hz
+  ---
+  duration_ms: 38.7044
+  ...
+# Subtest: behind-left escapes physically at 60 Hz
+ok 48 - behind-left escapes physically at 60 Hz
+  ---
+  duration_ms: 9.7141
+  ...
+# Subtest: behind-right escapes physically at 60 Hz
+ok 49 - behind-right escapes physically at 60 Hz
+  ---
+  duration_ms: 10.4385
+  ...
+# Subtest: left balanced board cap gets a nudge after 2 s at 60 Hz
+ok 50 - left balanced board cap gets a nudge after 2 s at 60 Hz
+  ---
+  duration_ms: 43.0611
+  ...
+# Subtest: right balanced board cap gets a nudge after 2 s at 60 Hz
+ok 51 - right balanced board cap gets a nudge after 2 s at 60 Hz
+  ---
+  duration_ms: 18.3469
+  ...
+# Subtest: lower-left escapes physically at 120 Hz
+ok 52 - lower-left escapes physically at 120 Hz
+  ---
+  duration_ms: 28.9401
+  ...
+# Subtest: lower-right escapes physically at 120 Hz
+ok 53 - lower-right escapes physically at 120 Hz
+  ---
+  duration_ms: 25.5391
+  ...
+# Subtest: upper-left escapes physically at 120 Hz
+ok 54 - upper-left escapes physically at 120 Hz
+  ---
+  duration_ms: 25.6013
+  ...
+# Subtest: upper-right escapes physically at 120 Hz
+ok 55 - upper-right escapes physically at 120 Hz
+  ---
+  duration_ms: 26.1149
+  ...
+# Subtest: legacy-left-pocket escapes physically at 120 Hz
+ok 56 - legacy-left-pocket escapes physically at 120 Hz
+  ---
+  duration_ms: 48.6275
+  ...
+# Subtest: legacy-right-pocket escapes physically at 120 Hz
+ok 57 - legacy-right-pocket escapes physically at 120 Hz
+  ---
+  duration_ms: 8.4645
+  ...
+# Subtest: behind-left escapes physically at 120 Hz
+ok 58 - behind-left escapes physically at 120 Hz
+  ---
+  duration_ms: 11.4186
+  ...
+# Subtest: behind-right escapes physically at 120 Hz
+ok 59 - behind-right escapes physically at 120 Hz
+  ---
+  duration_ms: 19.3859
+  ...
+# Subtest: left balanced board cap gets a nudge after 2 s at 120 Hz
+ok 60 - left balanced board cap gets a nudge after 2 s at 120 Hz
+  ---
+  duration_ms: 19.7147
+  ...
+# Subtest: right balanced board cap gets a nudge after 2 s at 120 Hz
+ok 61 - right balanced board cap gets a nudge after 2 s at 120 Hz
+  ---
+  duration_ms: 22.2359
+  ...
+# Subtest: lower-left escapes physically at 144 Hz
+ok 62 - lower-left escapes physically at 144 Hz
+  ---
+  duration_ms: 16.0343
+  ...
+# Subtest: lower-right escapes physically at 144 Hz
+ok 63 - lower-right escapes physically at 144 Hz
+  ---
+  duration_ms: 11.5469
+  ...
+# Subtest: upper-left escapes physically at 144 Hz
+ok 64 - upper-left escapes physically at 144 Hz
+  ---
+  duration_ms: 14.3721
+  ...
+# Subtest: upper-right escapes physically at 144 Hz
+ok 65 - upper-right escapes physically at 144 Hz
+  ---
+  duration_ms: 12.0799
+  ...
+# Subtest: legacy-left-pocket escapes physically at 144 Hz
+ok 66 - legacy-left-pocket escapes physically at 144 Hz
+  ---
+  duration_ms: 10.4129
+  ...
+# Subtest: legacy-right-pocket escapes physically at 144 Hz
+ok 67 - legacy-right-pocket escapes physically at 144 Hz
+  ---
+  duration_ms: 15.751
+  ...
+# Subtest: behind-left escapes physically at 144 Hz
+ok 68 - behind-left escapes physically at 144 Hz
+  ---
+  duration_ms: 10.1681
+  ...
+# Subtest: behind-right escapes physically at 144 Hz
+ok 69 - behind-right escapes physically at 144 Hz
+  ---
+  duration_ms: 11.9698
+  ...
+# Subtest: left balanced board cap gets a nudge after 2 s at 144 Hz
+ok 70 - left balanced board cap gets a nudge after 2 s at 144 Hz
+  ---
+  duration_ms: 18.6917
+  ...
+# Subtest: right balanced board cap gets a nudge after 2 s at 144 Hz
+ok 71 - right balanced board cap gets a nudge after 2 s at 144 Hz
+  ---
+  duration_ms: 17.8347
+  ...
+# Subtest: a normal resting floor ball remains still: distance from current players is not a trap
+ok 72 - a normal resting floor ball remains still: distance from current players is not a trap
+  ---
+  duration_ms: 13.3164
+  ...
+# Subtest: wall minimum restitution acts only on contact, not proximity
+ok 73 - wall minimum restitution acts only on contact, not proximity
+  ---
+  duration_ms: 1.0704
+  ...
+# Subtest: failsafe requires failed nudge, another 3 s stalled and blink, and restores a neutral loose ball
+ok 74 - failsafe requires failed nudge, another 3 s stalled and blink, and restores a neutral loose ball
+  ---
+  duration_ms: 65.5531
+  ...
+# Subtest: moving/possessed balls and post-basket reset never trigger recovery
+ok 75 - moving/possessed balls and post-basket reset never trigger recovery
+  ---
+  duration_ms: 2.3711
+  ...
+# Subtest: rescue cannot manufacture a basket; a real new play clears the safety scoring block
+ok 76 - rescue cannot manufacture a basket; a real new play clears the safety scoring block
+  ---
+  duration_ms: 2.2728
+  ...
+# Subtest: actual runtime: player retrieves the ball at the outermost playable floor
+ok 77 - actual runtime: player retrieves the ball at the outermost playable floor
+  ---
+  duration_ms: 42.6921
+  ...
+# Subtest: actual runtime: master retrieves the ball at the outermost playable floor
+ok 78 - actual runtime: master retrieves the ball at the outermost playable floor
+  ---
+  duration_ms: 22.588
+  ...
+# Subtest: actual runtime: safety does not reset score, clock, positions or special
+ok 79 - actual runtime: safety does not reset score, clock, positions or special
+  ---
+  duration_ms: 100.4953
+  ...
+# Subtest: actual runtime: master uses an ordinary jump to retrieve a reachable high loose ball
+ok 80 - actual runtime: master uses an ordinary jump to retrieve a reachable high loose ball
+  ---
+  duration_ms: 16.8032
+  ...
+# Subtest: 286 resting initial positions around the court and both baskets all become reachable without a reset
+ok 81 - 286 resting initial positions around the court and both baskets all become reachable without a reset
+  ---
+  duration_ms: 1983.7631
+  ...
+# Subtest: left: real downward Swoosh at 30 Hz, with no double score
+ok 82 - left: real downward Swoosh at 30 Hz, with no double score
+  ---
+  duration_ms: 34.805
+  ...
+# Subtest: left: real downward Swoosh at 60 Hz, with no double score
+ok 83 - left: real downward Swoosh at 60 Hz, with no double score
+  ---
+  duration_ms: 10.431
+  ...
+# Subtest: left: real downward Swoosh at 120 Hz, with no double score
+ok 84 - left: real downward Swoosh at 120 Hz, with no double score
+  ---
+  duration_ms: 8.7446
+  ...
+# Subtest: left: real downward Swoosh at 144 Hz, with no double score
+ok 85 - left: real downward Swoosh at 144 Hz, with no double score
+  ---
+  duration_ms: 10.5796
+  ...
+# Subtest: right: real downward Swoosh at 30 Hz, with no double score
+ok 86 - right: real downward Swoosh at 30 Hz, with no double score
+  ---
+  duration_ms: 6.248
+  ...
+# Subtest: right: real downward Swoosh at 60 Hz, with no double score
+ok 87 - right: real downward Swoosh at 60 Hz, with no double score
+  ---
+  duration_ms: 4.8795
+  ...
+# Subtest: right: real downward Swoosh at 120 Hz, with no double score
+ok 88 - right: real downward Swoosh at 120 Hz, with no double score
+  ---
+  duration_ms: 5.914
+  ...
+# Subtest: right: real downward Swoosh at 144 Hz, with no double score
+ok 89 - right: real downward Swoosh at 144 Hz, with no double score
+  ---
+  duration_ms: 7.0577
+  ...
+# Subtest: left hoop: rim contact can still produce a normal basket
+ok 90 - left hoop: rim contact can still produce a normal basket
+  ---
+  duration_ms: 5.677
+  ...
+# Subtest: left hoop: board contact can still produce a normal basket
+ok 91 - left hoop: board contact can still produce a normal basket
+  ---
+  duration_ms: 4.6629
+  ...
+# Subtest: rim-in and bank-in remain normal baskets at 30 Hz
+ok 92 - rim-in and bank-in remain normal baskets at 30 Hz
+  ---
+  duration_ms: 17.6539
+  ...
+# Subtest: rim-in and bank-in remain normal baskets at 60 Hz
+ok 93 - rim-in and bank-in remain normal baskets at 60 Hz
+  ---
+  duration_ms: 8.7077
+  ...
+# Subtest: rim-in and bank-in remain normal baskets at 120 Hz
+ok 94 - rim-in and bank-in remain normal baskets at 120 Hz
+  ---
+  duration_ms: 4.8209
+  ...
+# Subtest: rim-in and bank-in remain normal baskets at 144 Hz
+ok 95 - rim-in and bank-in remain normal baskets at 144 Hz
+  ---
+  duration_ms: 4.9395
+  ...
+# Subtest: rim out: no score
+ok 96 - rim out: no score
+  ---
+  duration_ms: 10.5783
+  ...
+# Subtest: wide of hoop: no score
+ok 97 - wide of hoop: no score
+  ---
+  duration_ms: 38.2516
+  ...
+# Subtest: up through hoop then down: no score
+ok 98 - up through hoop then down: no score
+  ---
+  duration_ms: 14.5676
+  ...
+# Subtest: net only: no score
+ok 99 - net only: no score
+  ---
+  duration_ms: 2.9846
+  ...
+# Subtest: external side: no score
+ok 100 - external side: no score
+  ---
+  duration_ms: 9.7145
+  ...
+# Subtest: starts at plane with no above history: no score
+ok 101 - starts at plane with no above history: no score
+  ---
+  duration_ms: 11.0088
+  ...
+# Subtest: crossing X, not the frame-end X, decides a fast diagonal shot
+ok 102 - crossing X, not the frame-end X, decides a fast diagonal shot
+  ---
+  duration_ms: 0.7066
+  ...
+# Subtest: continuous circles/capsule collide even at high speed
+ok 103 - continuous circles/capsule collide even at high speed
+  ---
+  duration_ms: 0.3324
+  ...
+# Subtest: overlap at the metal center resolves to a finite physical position
+ok 104 - overlap at the metal center resolves to a finite physical position
+  ---
+  duration_ms: 3.3468
+  ...
+# Subtest: repeated rim/board bounces can score only once; reset requires a new play
+ok 105 - repeated rim/board bounces can score only once; reset requires a new play
+  ---
+  duration_ms: 38.3965
+  ...
+# Subtest: a score sensor does not alter physical velocity or angular velocity
+ok 106 - a score sensor does not alter physical velocity or angular velocity
+  ---
+  duration_ms: 2.3822
+  ...
+# Subtest: possession, unowned loose balls and the wrong basket cannot manufacture points
+ok 107 - possession, unowned loose balls and the wrong basket cannot manufacture points
+  ---
+  duration_ms: 45.5499
+  ...
+# Subtest: restitution reflects the normal velocity without generating kinetic energy
+ok 108 - restitution reflects the normal velocity without generating kinetic energy
+  ---
+  duration_ms: 0.7194
+  ...
+# Subtest: 500 varied physical flights: finite results and every score has a valid downward crossing
+ok 109 - 500 varied physical flights: finite results and every score has a valid downward crossing
+  ---
+  duration_ms: 917.1084
+  ...
+# Subtest: normal KO enters a real judge count before awarding the round; counts exactly 1 to 10
+ok 110 - normal KO enters a real judge count before awarding the round; counts exactly 1 to 10
+  ---
+  duration_ms: 73.0223
+  ...
+# Subtest: knockdown blocks attacks, specials, guard/dodge input and AI; no damage continues
+ok 111 - knockdown blocks attacks, specials, guard/dodge input and AI; no damage continues
+  ---
+  duration_ms: 57.6376
+  ...
+# Subtest: a KO round cannot be confirmed early or twice
+ok 112 - a KO round cannot be confirmed early or twice
+  ---
+  duration_ms: 42.3355
+  ...
+# Subtest: judge announces either winner and advances the official victory frames while combat stays blocked
+ok 113 - judge announces either winner and advances the official victory frames while combat stays blocked
+  ---
+  duration_ms: 144.5593
+  ...
+# Subtest: new round resets every combat resource, position and temporary state, while keeping score and learned tendencies
+ok 114 - new round resets every combat resource, position and temporary state, while keeping score and learned tendencies
+  ---
+  duration_ms: 32.4042
+  ...
+# Subtest: J, K, finta and Rush are learned only from delayed visible poses and withdrawal, then inherited by round two
+ok 115 - J, K, finta and Rush are learned only from delayed visible poses and withdrawal, then inherited by round two
+  ---
+  duration_ms: 36.046
+  ...
+# Subtest: hit-confirm transition to another visible attack is not mistaken for a feint
+ok 116 - hit-confirm transition to another visible attack is not mistaken for a feint
+  ---
+  duration_ms: 24.7722
+  ...
+# Subtest: interrupted or fully completed punches are not secretly classified as feints
+ok 117 - interrupted or fully completed punches are not secretly classified as feints
+  ---
+  duration_ms: 50.957
+  ...
+# Subtest: Rush is not revealed to perception before the visible drive pose
+ok 118 - Rush is not revealed to perception before the visible drive pose
+  ---
+  duration_ms: 20.8561
+  ...
+# Subtest: round one has neutral prior memory; round three keeps the same movement and damage attributes
+ok 119 - round one has neutral prior memory; round three keeps the same movement and damage attributes
+  ---
+  duration_ms: 54.504
+  ...
+# Subtest: duplicate keydown without release does not restart attack or consume Rush charges
+ok 120 - duplicate keydown without release does not restart attack or consume Rush charges
+  ---
+  duration_ms: 29.9954
+  ...
+# Subtest: holding Space never retriggers after cooldown; a new keydown after release does
+ok 121 - holding Space never retriggers after cooldown; a new keydown after release does
+  ---
+  duration_ms: 28.8728
+  ...
+# Subtest: focus reset drops guard/movement and ignores orphaned repeats
+ok 122 - focus reset drops guard/movement and ignores orphaned repeats
+  ---
+  duration_ms: 33.9785
+  ...
+# Subtest: camera tiers keep J almost still, K small, counter medium and specials short/strong
+ok 123 - camera tiers keep J almost still, K small, counter medium and specials short/strong
+  ---
+  duration_ms: 27.9433
+  ...
+# Subtest: hitstop hierarchy remains one step for J, two for K, three for counter and four for Meteor/Titan
+ok 124 - hitstop hierarchy remains one step for J, two for K, three for counter and four for Meteor/Titan
+  ---
+  duration_ms: 155.8267
+  ...
+# Subtest: shared presentation reacts to decisive events more strongly than an ordinary jab
+ok 125 - shared presentation reacts to decisive events more strongly than an ordinary jab
+  ---
+  duration_ms: 32.4534
+  ...
+# Subtest: official judge asset and all lifecycle poses exist, using the curated manifest
+ok 126 - official judge asset and all lifecycle poses exist, using the curated manifest
+  ---
+  duration_ms: 9.8976
+  ...
+# Subtest: KO count resolves once and freezes the combat clock at 30 FPS
+ok 127 - KO count resolves once and freezes the combat clock at 30 FPS
+  ---
+  duration_ms: 34.4917
+  ...
+# Subtest: KO count resolves once and freezes the combat clock at 60 FPS
+ok 128 - KO count resolves once and freezes the combat clock at 60 FPS
+  ---
+  duration_ms: 44.263
+  ...
+# Subtest: KO count resolves once and freezes the combat clock at 144 FPS
+ok 129 - KO count resolves once and freezes the combat clock at 144 FPS
+  ---
+  duration_ms: 31.593
+  ...
+# Subtest: Zorp 2–0 only finishes the match after two round wins
+ok 130 - Zorp 2–0 only finishes the match after two round wins
+  ---
+  duration_ms: 109.0858
+  ...
+# Subtest: Zorp 2–1 only finishes the match after two round wins
+ok 131 - Zorp 2–1 only finishes the match after two round wins
+  ---
+  duration_ms: 67.6657
+  ...
+# Subtest: Mestre 2–0 only finishes the match after two round wins
+ok 132 - Mestre 2–0 only finishes the match after two round wins
+  ---
+  duration_ms: 94.7657
+  ...
+# Subtest: Mestre 2–1 only finishes the match after two round wins
+ok 133 - Mestre 2–1 only finishes the match after two round wins
+  ---
+  duration_ms: 52.7353
+  ...
+# Subtest: official keys: J weak, K strong, L feint, Shift guard, Space dodge; I has no action
+ok 134 - official keys: J weak, K strong, L feint, Shift guard, Space dodge; I has no action
+  ---
+  duration_ms: 150.156
+  ...
+# Subtest: A/D move horizontally; W/S physically change depth
+ok 135 - A/D move horizontally; W/S physically change depth
+  ---
+  duration_ms: 91.3412
+  ...
+# Subtest: Space repeat cannot spam dodge or scroll, and an intro-held Space never leaks into gameplay
+ok 136 - Space repeat cannot spam dodge or scroll, and an intro-held Space never leaks into gameplay
+  ---
+  duration_ms: 29.4201
+  ...
+# Subtest: an active round runs for exactly 40 simulation seconds, even through hitstop; transitions pause clock and damage
+ok 137 - an active round runs for exactly 40 simulation seconds, even through hitstop; transitions pause clock and damage
+  ---
+  duration_ms: 32.2131
+  ...
+# Subtest: tied HP uses damage in the prescribed order
+ok 138 - tied HP uses damage in the prescribed order
+  ---
+  duration_ms: 21.6454
+  ...
+# Subtest: tied HP uses counters in the prescribed order
+ok 139 - tied HP uses counters in the prescribed order
+  ---
+  duration_ms: 21.0302
+  ...
+# Subtest: tied HP uses clean hits in the prescribed order
+ok 140 - tied HP uses clean hits in the prescribed order
+  ---
+  duration_ms: 54.7561
+  ...
+# Subtest: an absolute tie enters sudden death; only a clean strike wins, with no random tiebreak
+ok 141 - an absolute tie enters sudden death; only a clean strike wins, with no random tiebreak
+  ---
+  duration_ms: 37.3017
+  ...
+# Subtest: simultaneous lethal strikes do not pick a winner by contact order
+ok 142 - simultaneous lethal strikes do not pick a winner by contact order
+  ---
+  duration_ms: 36.4887
+  ...
+# Subtest: next round restores HP/stamina, clears combat and buffered input, and resets special meters and cooldowns
+ok 143 - next round restores HP/stamina, clears combat and buffered input, and resets special meters and cooldowns
+  ---
+  duration_ms: 35.2884
+  ...
+# Subtest: feint creates only a visible windup and never hits; it can cancel a normal startup but not its impact
+ok 144 - feint creates only a visible windup and never hits; it can cancel a normal startup but not its impact
+  ---
+  duration_ms: 59.9376
+  ...
+# Subtest: weak-heavy combos remain connected, with the strong finisher costing more stamina
+ok 145 - weak-heavy combos remain connected, with the strong finisher costing more stamina
+  ---
+  duration_ms: 31.6122
+  ...
+# Subtest: guard still breaks under pressure and cannot erase chip damage
+ok 146 - guard still breaks under pressure and cannot erase chip damage
+  ---
+  duration_ms: 24.7146
+  ...
+# Subtest: Space within the narrow impact window produces Perfect Dodge, hitstop and a counter
+ok 147 - Space within the narrow impact window produces Perfect Dodge, hitstop and a counter
+  ---
+  duration_ms: 53.66
+  ...
+# Subtest: a W/S sidestep changes the actual line of defense rather than granting permanent invulnerability
+ok 148 - a W/S sidestep changes the actual line of defense rather than granting permanent invulnerability
+  ---
+  duration_ms: 28.6837
+  ...
+# Subtest: player-requested Rush and the Master linear dash respect the round lifecycle
+ok 149 - player-requested Rush and the Master linear dash respect the round lifecycle
+  ---
+  duration_ms: 45.7301
+  ...
+# Subtest: round transition stops attacks/charge and the match awards no medal for round one
+ok 150 - round transition stops attacks/charge and the match awards no medal for round one
+  ---
+  duration_ms: 28.445
+  ...
+# Subtest: resources cannot be spammed; regeneration happens during active rest, not the interval
+ok 151 - resources cannot be spammed; regeneration happens during active rest, not the interval
+  ---
+  duration_ms: 30.5764
+  ...
+# Subtest: AI adaptation between rounds uses observed guard/dodge/distance history only
+ok 152 - AI adaptation between rounds uses observed guard/dodge/distance history only
+  ---
+  duration_ms: 43.249
+  ...
+# Subtest: round clocks and outcomes are consistent at 30, 60 and 144 FPS
+ok 153 - round clocks and outcomes are consistent at 30, 60 and 144 FPS
+  ---
+  duration_ms: 124.0367
+  ...
+# Subtest: a feint cannot erase an impact that has already connected
+ok 154 - a feint cannot erase an impact that has already connected
+  ---
+  duration_ms: 26.5806
+  ...
+# Subtest: blocked chip at one HP cannot decide sudden death
+ok 155 - blocked chip at one HP cannot decide sudden death
+  ---
+  duration_ms: 24.1263
+  ...
+# Subtest: briefing and a hidden document freeze the round clock as well as combat
+ok 156 - briefing and a hidden document freeze the round clock as well as combat
+  ---
+  duration_ms: 17.6983
+  ...
+# Subtest: R after the final result starts a fresh best-of-three with no carried score
+ok 157 - R after the final result starts a fresh best-of-three with no carried score
+  ---
+  duration_ms: 37.8603
+  ...
+# Subtest: One principal quest per sport, preserving existing owners/rewards
+ok 158 - One principal quest per sport, preserving existing owners/rewards
+  ---
+  duration_ms: 41.1071
+  ...
+# Subtest: 11 approved NPCs, no replacement, static fronts, 44px and separate collider
+ok 159 - 11 approved NPCs, no replacement, static fronts, 44px and separate collider
+  ---
+  duration_ms: 10.7159
+  ...
+# Subtest: Photo: accepted + valid Zorp 3-pointer inside final ten; no automatic payment
+ok 160 - Photo: accepted + valid Zorp 3-pointer inside final ten; no automatic payment
+  ---
+  duration_ms: 15.2823
+  ...
+# Subtest: Clean lap: no starting-line fake lap, obstacle dirties only current physical lap
+ok 161 - Clean lap: no starting-line fake lap, obstacle dirties only current physical lap
+  ---
+  duration_ms: 34.3243
+  ...
+# Subtest: Clean lap reset cannot carry a clean partial lap into a new run
+ok 162 - Clean lap reset cannot carry a clean partial lap into a new run
+  ---
+  duration_ms: 8.5165
+  ...
+# Subtest: Skate requires actual grind distance, then airborne completed trick, then good landing
+ok 163 - Skate requires actual grind distance, then airborne completed trick, then good landing
+  ---
+  duration_ms: 11.5286
+  ...
+# Subtest: Skate fall or restart breaks the one-take sequence
+ok 164 - Skate fall or restart breaks the one-take sequence
+  ---
+  duration_ms: 17.0336
+  ...
+# Subtest: Archery three direct hanging disks; unrelated misses do not break streak
+ok 165 - Archery three direct hanging disks; unrelated misses do not break streak
+  ---
+  duration_ms: 8.6787
+  ...
+# Subtest: Archery aimed bird miss breaks streak, restart resets, no duplicate resolution
+ok 166 - Archery aimed bird miss breaks streak, restart resets, no duplicate resolution
+  ---
+  duration_ms: 7.7042
+  ...
+# Subtest: Archery release order wins over impact order; normal hits and explosion collateral cannot fake birds
+ok 167 - Archery release order wins over impact order; normal hits and explosion collateral cannot fake birds
+  ---
+  duration_ms: 7.9064
+  ...
+# Subtest: Surf 60%, capture permanently dirties that run; retry is fresh
+ok 168 - Surf 60%, capture permanently dirties that run; retry is fresh
+  ---
+  duration_ms: 38.2107
+  ...
+# Subtest: All new rewards persist pending and paid; reload cannot duplicate coins
+ok 169 - All new rewards persist pending and paid; reload cannot duplicate coins
+  ---
+  duration_ms: 152.638
+  ...
+# Subtest: Existing boxing and medal quests remain single-return rewards
+ok 170 - Existing boxing and medal quests remain single-return rewards
+  ---
+  duration_ms: 12.0635
+  ...
+# Subtest: Public completion flags derive from canonical persisted wallet state
+ok 171 - Public completion flags derive from canonical persisted wallet state
+  ---
+  duration_ms: 16.0638
+  ...
+# Subtest: Ambient NPCs never create a quest, provide specific lore and react to medals
+ok 172 - Ambient NPCs never create a quest, provide specific lore and react to medals
+  ---
+  duration_ms: 9.1923
+  ...
+# Subtest: A rough skate landing cannot carry a completed trick into a later touchdown
+ok 173 - A rough skate landing cannot carry a completed trick into a later touchdown
+  ---
+  duration_ms: 8.5298
+  ...
+# Subtest: Unaccepted objectives never grant retroactive completion
+ok 174 - Unaccepted objectives never grant retroactive completion
+  ---
+  duration_ms: 19.7795
+  ...
+# Subtest: crowd contains 36 humans and 24 aliens with fixed, varied identities and no other species
+ok 175 - crowd contains 36 humans and 24 aliens with fixed, varied identities and no other species
+  ---
+  duration_ms: 36.1096
+  ...
+# Subtest: six poses are baked once; 600 frames preserve identities and consume no game RNG
+ok 176 - six poses are baked once; 600 frames preserve identities and consume no game RNG
+  ---
+  duration_ms: 233.5725
+  ...
+# Subtest: audience poses are asynchronous and galleries remain outside table and player travel
+ok 177 - audience poses are asynchronous and galleries remain outside table and player travel
+  ---
+  duration_ms: 33.0496
+  ...
+# Subtest: bitmap lettering uses integer rectangles, supports Portuguese normalization and needs no font rendering
+ok 178 - bitmap lettering uses integer rectangles, supports Portuguese normalization and needs no font rendering
+  ---
+  duration_ms: 16.487
+  ...
+# Subtest: board uses real scores; match point is exactly one point from the current win target
+ok 179 - board uses real scores; match point is exactly one point from the current win target
+  ---
+  duration_ms: 20.435
+  ...
+# Subtest: all live arena text is bitmap based, leaving the table free of permanent labels
+ok 180 - all live arena text is bitmap based, leaving the table free of permanent labels
+  ---
+  duration_ms: 81.0356
+  ...
+# Subtest: optional sport intro reuses the existing countdown and does not start physics early
+ok 181 - optional sport intro reuses the existing countdown and does not start physics early
+  ---
+  duration_ms: 3.1114
+  ...
+# Subtest: establishing shot stays clear, then names and START render in the short countdown window
+ok 182 - establishing shot stays clear, then names and START render in the short countdown window
+  ---
+  duration_ms: 15.6462
+  ...
+# Subtest: victory is decided at 50, but medal waits for celebration and held Space cannot dismiss it
+ok 183 - victory is decided at 50, but medal waits for celebration and held Space cannot dismiss it
+  ---
+  duration_ms: 41.3068
+  ...
+# Subtest: defeat never grants a medal and match resources stay stopped during its presentation
+ok 184 - defeat never grants a medal and match resources stay stopped during its presentation
+  ---
+  duration_ms: 14.4544
+  ...
+# Subtest: fresh match clears result presentation and passes the intro callback only to ping-pong
+ok 185 - fresh match clears result presentation and passes the intro callback only to ping-pong
+  ---
+  duration_ms: 16.365
+  ...
+# Subtest: match-point and comeback reactions follow actual score changes and do not repeat each frame
+ok 186 - match-point and comeback reactions follow actual score changes and do not repeat each frame
+  ---
+  duration_ms: 20.0751
+  ...
+# Subtest: ordinary fast contacts do not shake; only extreme contact, global return or final point can
+ok 187 - ordinary fast contacts do not shake; only extreme contact, global return or final point can
+  ---
+  duration_ms: 33.9471
+  ...
+# Subtest: difficult-defense reaction requires a real returned shot at high speed and an edge contact
+ok 188 - difficult-defense reaction requires a real returned shot at high speed and an edge contact
+  ---
+  duration_ms: 17.0509
+  ...
+# Subtest: official field is eight runners and exactly three laps, with three intermediate gates
+ok 189 - official field is eight runners and exactly three laps, with three intermediate gates
+  ---
+  duration_ms: 69.7472
+  ...
+# Subtest: analytic projection is continuous at every straight/curve seam and lateral offset
+ok 190 - analytic projection is continuous at every straight/curve seam and lateral offset
+  ---
+  duration_ms: 83.4278
+  ...
+# Subtest: initial start crossing is not a completed lap
+ok 191 - initial start crossing is not a completed lap
+  ---
+  duration_ms: 25.7898
+  ...
+# Subtest: A/B: repeated forward/backward line crossings and loitering do not award laps
+ok 192 - A/B: repeated forward/backward line crossings and loitering do not award laps
+  ---
+  duration_ms: 75.6096
+  ...
+# Subtest: wrong direction is rejected, including at the physical finish sensor
+ok 193 - wrong direction is rejected, including at the physical finish sensor
+  ---
+  duration_ms: 38.7132
+  ...
+# Subtest: C: cutting through half the oval cannot award a checkpoint or a lap
+ok 194 - C: cutting through half the oval cannot award a checkpoint or a lap
+  ---
+  duration_ms: 33.8837
+  ...
+# Subtest: D: CP1 then return towards start cannot count a lap
+ok 195 - D: CP1 then return towards start cannot count a lap
+  ---
+  duration_ms: 90.0549
+  ...
+# Subtest: CP3 then finish cannot substitute CP1 and CP2
+ok 196 - CP3 then finish cannot substitute CP1 and CP2
+  ---
+  duration_ms: 41.4086
+  ...
+# Subtest: E: ordered physical crossings count exactly one lap, and never count twice
+ok 197 - E: ordered physical crossings count exactly one lap, and never count twice
+  ---
+  duration_ms: 66.0923
+  ...
+# Subtest: each of all eight runners uses the same three physical lap sequences
+ok 198 - each of all eight runners uses the same three physical lap sequences
+  ---
+  duration_ms: 691.4401
+  ...
+# Subtest: a wide step detects the exact forward crossing fraction inside the painted opening
+ok 199 - a wide step detects the exact forward crossing fraction inside the painted opening
+  ---
+  duration_ms: 34.6131
+  ...
+# Subtest: ranking is lexicographic by laps, checkpoint and sector before finish time
+ok 200 - ranking is lexicographic by laps, checkpoint and sector before finish time
+  ---
+  duration_ms: 25.1362
+  ...
+# Subtest: photo finish processes every runner before ordering; array order does not award victory
+ok 201 - photo finish processes every runner before ordering; array order does not award victory
+  ---
+  duration_ms: 34.6386
+  ...
+# Subtest: all three obstacle patterns have four districts, patrol bounds and clear final stretch
+ok 202 - all three obstacle patterns have four districts, patrol bounds and clear final stretch
+  ---
+  duration_ms: 45.0558
+  ...
+# Subtest: pigeons are non-colliding ambience and fly away near every runner
+ok 203 - pigeons are non-colliding ambience and fly away near every runner
+  ---
+  duration_ms: 21.0597
+  ...
+# Subtest: crowd keeps fixed human/alien identities in four rows and reacts locally
+ok 204 - crowd keeps fixed human/alien identities in four rows and reacts locally
+  ---
+  duration_ms: 31.0091
+  ...
+# Subtest: grass preserves the existing slowdown and cannot boost a shortcut
+ok 205 - grass preserves the existing slowdown and cannot boost a shortcut
+  ---
+  duration_ms: 26.5111
+  ...
+# Subtest: master throws and bumps target other rivals as well, with real cooldowns
+ok 206 - master throws and bumps target other rivals as well, with real cooldowns
+  ---
+  duration_ms: 3541.6077
+  ...
+# Subtest: complete physical race stays consistent with 30 FPS updates
+ok 207 - complete physical race stays consistent with 30 FPS updates
+  ---
+  duration_ms: 5527.114
+  ...
+# Subtest: complete physical race stays consistent with 60 FPS updates
+ok 208 - complete physical race stays consistent with 60 FPS updates
+  ---
+  duration_ms: 2486.2398
+  ...
+# Subtest: complete physical race stays consistent with 144 FPS updates
+ok 209 - complete physical race stays consistent with 144 FPS updates
+  ---
+  duration_ms: 2504.1448
+  ...
+# Subtest: drawing uses cached ground and a single, uniform camera zoom
+ok 210 - drawing uses cached ground and a single, uniform camera zoom
+  ---
+  duration_ms: 32.238
+  ...
+# Subtest: return to the marked track point unlocks validation without granting a gate on that frame
+ok 211 - return to the marked track point unlocks validation without granting a gate on that frame
+  ---
+  duration_ms: 33.1416
+  ...
+# Subtest: every AI can physically complete all three laps using the shared validator
+ok 212 - every AI can physically complete all three laps using the shared validator
+  ---
+  duration_ms: 2679.6911
+  ...
+# Subtest: a master projectile physically hits another rival, not only Zorp
+ok 213 - a master projectile physically hits another rival, not only Zorp
+  ---
+  duration_ms: 13.0101
+  ...
+# Subtest: assets novos classificam topo, lateral, escadas e borda grindável por região
+ok 214 - assets novos classificam topo, lateral, escadas e borda grindável por região
+  ---
+  duration_ms: 8.8074
+  ...
+# Subtest: runtime executa Normal Jump no primeiro keydown e double Space eleva o mesmo salto
+ok 215 - runtime executa Normal Jump no primeiro keydown e double Space eleva o mesmo salto
+  ---
+  duration_ms: 40.7641
+  ...
+# Subtest: runtime prioriza Grind Capture sobre Double Space perto de um rail válido
+ok 216 - runtime prioriza Grind Capture sobre Double Space perto de um rail válido
+  ---
+  duration_ms: 13.4993
+  ...
+# Subtest: runtime mantém o primeiro Space pendente até a física consumir o input
+ok 217 - runtime mantém o primeiro Space pendente até a física consumir o input
+  ---
+  duration_ms: 11.2827
+  ...
+# Subtest: soltar Space depois de aterrissar em Manual não fica preso como soltura aérea
+ok 218 - soltar Space depois de aterrissar em Manual não fica preso como soltura aérea
+  ---
+  duration_ms: 5.1127
+  ...
+# Subtest: finish conclui a linha, banca combo e concede a medalha skate uma vez
+ok 219 - finish conclui a linha, banca combo e concede a medalha skate uma vez
+  ---
+  duration_ms: 31.9623
+  ...
+# Subtest: trick → grind inicia blend sem snap e soma pontos por distância
+ok 220 - trick → grind inicia blend sem snap e soma pontos por distância
+  ---
+  duration_ms: 10.4261
+  ...
+# Subtest: snap não captura Zorp que esteja longe do rail
+ok 221 - snap não captura Zorp que esteja longe do rail
+  ---
+  duration_ms: 0.9569
+  ...
+# Subtest: Grind exige SPACE segurado; aproximação sem hold não captura
+ok 222 - Grind exige SPACE segurado; aproximação sem hold não captura
+  ---
+  duration_ms: 1.2041
+  ...
+# Subtest: buffer de 130 ms captura um rail logo após um Space antecipado
+ok 223 - buffer de 130 ms captura um rail logo após um Space antecipado
+  ---
+  duration_ms: 20.7486
+  ...
+# Subtest: SPACE segurado cedo continua válido ao entrar na zona depois do buffer
+ok 224 - SPACE segurado cedo continua válido ao entrar na zona depois do buffer
+  ---
+  duration_ms: 1.3411
+  ...
+# Subtest: release lança no primeiro frame, sem repressão
+ok 225 - release lança no primeiro frame, sem repressão
+  ---
+  duration_ms: 1.9431
+  ...
+# Subtest: Space depois do fim do grindPath não captura rail tarde demais
+ok 226 - Space depois do fim do grindPath não captura rail tarde demais
+  ---
+  duration_ms: 0.6406
+  ...
+# Subtest: trick → manual preserva o combo ao tocar o chão segurando SPACE
+ok 227 - trick → manual preserva o combo ao tocar o chão segurando SPACE
+  ---
+  duration_ms: 2.7372
+  ...
+# Subtest: grind → manual conecta no pouso seguinte
+ok 228 - grind → manual conecta no pouso seguinte
+  ---
+  duration_ms: 3.643
+  ...
+# Subtest: manual → Ollie usa a soltura para lançar sem input ambíguo
+ok 229 - manual → Ollie usa a soltura para lançar sem input ambíguo
+  ---
+  duration_ms: 1.9278
+  ...
+# Subtest: trick → grind → manual → Ollie → trick mantém a linha ativa
+ok 230 - trick → grind → manual → Ollie → trick mantém a linha ativa
+  ---
+  duration_ms: 1.2107
+  ...
+# Subtest: pouso normal abre janela e faz bank quando nada conecta
+ok 231 - pouso normal abre janela e faz bank quando nada conecta
+  ---
+  duration_ms: 0.6761
+  ...
+# Subtest: crash descarta combo ativo e conserva score já banked
+ok 232 - crash descarta combo ativo e conserva score já banked
+  ---
+  duration_ms: 0.3893
+  ...
+# Subtest: bônus de execução são centralizados para high rail, bench trick e Special Air
+ok 233 - bônus de execução são centralizados para high rail, bench trick e Special Air
+  ---
+  duration_ms: 0.5754
+  ...
+# Subtest: manual tem duração máxima e rail aceita geometria inclinada
+ok 234 - manual tem duração máxima e rail aceita geometria inclinada
+  ---
+  duration_ms: 0.4088
+  ...
+# Subtest: a pista provisória permite alcançar o rail com Ollie e manter Grind até a saída
+ok 235 - a pista provisória permite alcançar o rail com Ollie e manter Grind até a saída
+  ---
+  duration_ms: 33.6323
+  ...
+# Subtest: RAMP input holds without jumping, charging or leaving a double-tap pending
+ok 236 - RAMP input holds without jumping, charging or leaving a double-tap pending
+  ---
+  duration_ms: 7.4297
+  ...
+# Subtest: start-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 237 - start-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 114.8142
+  ...
+# Subtest: first-rail-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 238 - first-rail-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 53.9307
+  ...
+# Subtest: transfer-bank: follow surface, lip launch, planned landing, weaker early release
+ok 239 - transfer-bank: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 93.4631
+  ...
+# Subtest: chain-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 240 - chain-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 53.7388
+  ...
+# Subtest: street-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 241 - street-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 41.4405
+  ...
+# Subtest: bench-bank: follow surface, lip launch, planned landing, weaker early release
+ok 242 - bench-bank: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 86.5634
+  ...
+# Subtest: bench-exit-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 243 - bench-exit-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 83.651
+  ...
+# Subtest: stair-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 244 - stair-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 82.3355
+  ...
+# Subtest: danger-chain-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 245 - danger-chain-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 34.6722
+  ...
+# Subtest: speed-kicker-first: follow surface, lip launch, planned landing, weaker early release
+ok 246 - speed-kicker-first: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 45.7474
+  ...
+# Subtest: ascent-bank-1: follow surface, lip launch, planned landing, weaker early release
+ok 247 - ascent-bank-1: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 67.6849
+  ...
+# Subtest: ascent-bank-2: follow surface, lip launch, planned landing, weaker early release
+ok 248 - ascent-bank-2: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 50.6899
+  ...
+# Subtest: ascent-bank-3: follow surface, lip launch, planned landing, weaker early release
+ok 249 - ascent-bank-3: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 55.8723
+  ...
+# Subtest: huge-launch: follow surface, lip launch, planned landing, weaker early release
+ok 250 - huge-launch: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 186.2147
+  ...
+# Subtest: void-entry-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 251 - void-entry-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 49.8122
+  ...
+# Subtest: advanced-launch: follow surface, lip launch, planned landing, weaker early release
+ok 252 - advanced-launch: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 84.4158
+  ...
+# Subtest: release-small: follow surface, lip launch, planned landing, weaker early release
+ok 253 - release-small: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 58.6664
+  ...
+# Subtest: release-medium: follow surface, lip launch, planned landing, weaker early release
+ok 254 - release-medium: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 49.1892
+  ...
+# Subtest: release-curve: follow surface, lip launch, planned landing, weaker early release
+ok 255 - release-curve: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 44.3016
+  ...
+# Subtest: final-medium-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 256 - final-medium-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 43.4462
+  ...
+# Subtest: final-big-ramp: follow surface, lip launch, planned landing, weaker early release
+ok 257 - final-big-ramp: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 213.5467
+  ...
+# Subtest: finish-landing-bank: follow surface, lip launch, planned landing, weaker early release
+ok 258 - finish-landing-bank: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 22.9483
+  ...
+# Subtest: press/double press on a ramp cannot bypass riding to its physical lip
+ok 259 - press/double press on a ramp cannot bypass riding to its physical lip
+  ---
+  duration_ms: 2.2027
+  ...
+# Subtest: ramp impulse uses current rider speed and multiplier, not configured cruise speed
+ok 260 - ramp impulse uses current rider speed and multiplier, not configured cruise speed
+  ---
+  duration_ms: 0.7819
+  ...
+# Subtest: authored quarter-pipe uses the same surface/hold/lip pipeline
+ok 261 - authored quarter-pipe uses the same surface/hold/lip pipeline
+  ---
+  duration_ms: 1.4958
+  ...
+# Subtest: complete keyboard line preserves grind, Super Jump Out, Mega Air and finish at 30/60/144 Hz
+ok 262 - complete keyboard line preserves grind, Super Jump Out, Mega Air and finish at 30/60/144 Hz
+  ---
+  duration_ms: 6442.5371
+  ...
+1..262
+# tests 262
+# suites 0
+# pass 262
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 18667.6134

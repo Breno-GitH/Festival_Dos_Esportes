@@ -6,7 +6,7 @@ function setup(saved=null,n=0){
   addEventListener:(name,fn)=>listeners.set(name,fn),localStorage:{getItem:k=>store.get(k)||null,setItem:(k,v)=>{if(fail)throw Error('quota');writes.push(k);store.set(k,v);}},
   MEDALHAS_REGISTRY:Array.from({length:8},(_,i)=>({id:'m'+i})),isMedalhaDesbloqueada:id=>owned.has(id)};
  env.window=env;vm.createContext(env);
- for(const file of ['ravok_npc_geometry.js','ravok_event.js'])vm.runInContext(fs.readFileSync(__dirname+'/'+file,'utf8'),env);
+ for(const file of ['ravok_npc_geometry.js','ravok_walk_atlas.js','ravok_k7_animation.js','ravok_event.js'])vm.runInContext(fs.readFileSync(__dirname+'/'+file,'utf8'),env);
  const event=env.RavokEvent,medals=n=>{owned.clear();for(let i=0;i<n;i++)owned.add('m'+i);event.sync();};
  event.init({player,scene:()=>scene,busy:()=>false,heldKeys:()=>heldKeys,clearInput(){},showDialogue:d=>shown.push(d),closeDialogue(){},startOutcome:r=>outcomes.push(r)});medals(n);
  const tick=(ms=100)=>{clock+=ms;return event.updateConversation(scene);};

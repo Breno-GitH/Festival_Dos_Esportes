@@ -31,7 +31,7 @@
         if(!target.isExplosive||target.hit||!target.visible)return;
         const {x,y,radius:r}=target,pulse=(Math.sin(target.age*.13)+1)*.5;
         ctx.save();ctx.imageSmoothingEnabled=false;
-        if(target.entry==='TOP'){ctx.beginPath();ctx.rect(0,118,450,96);ctx.clip();}
+        if(target.entry==='TOP'){ctx.beginPath();ctx.rect(0,window.ArcheryField.SOURCE_LIP,window.ArcheryField.WIDTH,window.ArcheryField.SOURCE_BOTTOM-window.ArcheryField.SOURCE_LIP);ctx.clip();}
         ctx.strokeStyle=`rgba(255,171,74,${.35+pulse*.4})`;ctx.lineWidth=1;
         ctx.beginPath();ctx.arc(x,y,r+3+pulse*1.5,0,Math.PI*2);ctx.stroke();
         ctx.fillStyle='#ef8344';ctx.beginPath();ctx.arc(x,y,r+.7,0,Math.PI*2);ctx.fill();

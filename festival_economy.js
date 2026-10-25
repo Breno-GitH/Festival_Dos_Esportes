@@ -17,10 +17,31 @@
     let coins = 0;
     let pagouCapitao = false, feriasVistas = false;
     const challenges = Object.create(null);
+    const blankVisited=()=>({central:true,pingpong:false,basketball:false,running:false,skate:false,archery:false,climbing:false,boxing:false,surf:false});
+    const blankInventory=()=>({islandMap:false,teleporter:false,questScanner:false,recordsModule:false,finalDestinationsChart:false,jukebox:false,shipCustomizer:false});
+    const blankCommerce=()=>({merchantArrivalSeen:false,merchantUnlocked:false,islandVisited:blankVisited(),inventory:blankInventory(),playedSports:{},records:{},heardTracks:{},shipStyle:'ORIGINAL',firstPurchaseSeen:false});
+    let commerce=blankCommerce();
+    function cleanCommerce(raw) {
+        const out=blankCommerce();if(!raw||typeof raw!=='object')return out;
+        out.merchantArrivalSeen=raw.merchantArrivalSeen===true;
+        out.merchantUnlocked=out.merchantArrivalSeen;
+        out.firstPurchaseSeen=raw.firstPurchaseSeen===true;
+        for(const item of global.MerchantCatalog?.items||[])if(raw.inventory?.[item.inventoryKey]===true||raw.purchasedItems?.[item.id]===true)out.inventory[item.inventoryKey]=true;
+        for(const region of global.MerchantCatalog?.regions||[])if(raw.islandVisited?.[region.visitKey]===true||raw.visitedIslands?.[region.id]===true)out.islandVisited[region.visitKey]=true;
+        for(const id of Object.values(global.MerchantCatalog?.sports||{})){
+            if(raw.playedSports?.[id]===true)out.playedSports[id]=true;
+            const r=raw.records?.[id];if(r&&typeof r==='object'&&Number.isFinite(r.best)&&r.best>=0)
+                out.records[id]={best:r.best,label:String(r.label||'').slice(0,48),unit:String(r.unit||'').slice(0,12),lowerIsBetter:r.lowerIsBetter===true};
+        }
+        for(const id of ['festival','market','ocean','mountain'])if(raw.heardTracks?.[id]===true)out.heardTracks[id]=true;
+        if((global.MerchantCatalog?.styles||[]).includes(raw.shipStyle))out.shipStyle=raw.shipStyle;
+        return out;
+    }
     const validId = id => typeof id === 'string' && /^[a-z][a-z0-9_]{0,79}$/.test(id);
     try {
         const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
         if (saved && valid(saved.coins)) coins = saved.coins;
+        commerce=cleanCommerce(saved?.commerce);
         pagouCapitao = saved?.pagouCapitao === true;
         feriasVistas = pagouCapitao && saved?.feriasVistas === true;
         for (const [id, state] of Object.entries(saved?.challenges || {})) {
@@ -32,9 +53,9 @@
     } catch (_) { /* Sem armazenamento, a carteira continua disponível nesta sessão. */ }
 
     function persist() {
-        try { localStorage.setItem(STORAGE_KEY, JSON.stringify({version:3, coins, challenges,
-            pagouCapitao, feriasDesbloqueadas:pagouCapitao, feriasVistas})); }
-        catch (_) { /* Mantém o saldo da sessão sem interromper o jogo. */ }
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify({version:5, coins, challenges, commerce,
+            pagouCapitao, feriasDesbloqueadas:pagouCapitao, feriasVistas})); return true; }
+        catch (_) { return false; /* Purchases roll back if this atomic save fails. */ }
     }
 
     function render() {
@@ -57,6 +78,46 @@
     global.FestivalWallet = Object.freeze({
         storageKey:STORAGE_KEY,
         get coins() { return coins; },
+        get commerce(){
+            const copy=JSON.parse(JSON.stringify(commerce));
+            // Compatibility views are derived only; they are never a second saved authority.
+            copy.purchasedItems={};copy.visitedIslands={};
+            for(const item of global.MerchantCatalog?.items||[])if(copy.inventory[item.inventoryKey])copy.purchasedItems[item.id]=true;
+            for(const region of global.MerchantCatalog?.regions||[])if(copy.islandVisited[region.visitKey])copy.visitedIslands[region.id]=true;
+            return copy;
+        },
+        get islandVisited(){return {...commerce.islandVisited};},
+        get inventory(){return {...commerce.inventory};},
+        campaignState(){return JSON.parse(JSON.stringify({version:5,coins,challenges,commerce,pagouCapitao,feriasVistas}));},
+        updateCommerce(patch){
+            patch=patch&&typeof patch==='object'?patch:{};
+            const old=commerce,merged={...commerce,...patch};
+            merged.islandVisited={...commerce.islandVisited};merged.inventory={...commerce.inventory};
+            for(const [key,value]of Object.entries(patch.islandVisited||{}))if(value===true)merged.islandVisited[key]=true;
+            for(const [key,value]of Object.entries(patch.inventory||{}))if(value===true)merged.inventory[key]=true;
+            for(const key of ['playedSports','records','heardTracks'])merged[key]={...commerce[key],...(patch[key]||{})};
+            merged.merchantArrivalSeen=commerce.merchantArrivalSeen||patch.merchantArrivalSeen===true;
+            merged.firstPurchaseSeen=commerce.firstPurchaseSeen||patch.firstPurchaseSeen===true;
+            commerce=cleanCommerce(merged);
+            if(!persist()){commerce=old;return false;}return true;
+        },
+        unlockMerchant(){
+            const count=(global.MEDALHAS_REGISTRY||[]).filter(m=>global.isMedalhaDesbloqueada(m.id)).length;
+            if(count<1)return false;
+            const old=commerce;commerce=cleanCommerce({...commerce,merchantArrivalSeen:true,merchantUnlocked:true});
+            if(!persist()){commerce=old;return false;}return true;
+        },
+        purchaseItem(id){
+            const item=global.MerchantCatalog?.items.find(item=>item.id===id);
+            if(!item||!valid(item.price)||item.price===0)return 'invalid_item';
+            if(!commerce.merchantUnlocked)return 'locked';
+            if(commerce.inventory[item.inventoryKey])return 'already_owned';
+            if(coins<item.price)return 'insufficient_coins';
+            const old=commerce,oldCoins=coins;
+            coins-=item.price;commerce=cleanCommerce({...commerce,firstPurchaseSeen:true,inventory:{...commerce.inventory,[item.inventoryKey]:true}});
+            if(!persist()){coins=oldCoins;commerce=old;return 'save_failed';}
+            render();return 'purchased';
+        },
         get pagouCapitao() { return pagouCapitao; },
         get feriasDesbloqueadas() { return pagouCapitao; },
         get feriasVistas() { return feriasVistas; },

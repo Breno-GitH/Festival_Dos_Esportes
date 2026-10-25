@@ -1,0 +1,36 @@
+--- before/corrida_maratona.js
++++ corrida_maratona.js
+@@ -561,6 +561,7 @@
+                     if (runner.isPlayer) game.score += 120;
+                     continue;
+                 }
++                if (runner.isPlayer) window.FestivalChallenges?.onRunning({type:'OBSTACLE',obstacle:item.type});
+                 if (item.type === 'tape' && runner.isPlayer) game.distractionTimer = 24;
+                 if (item.lightHazard) runner.lightSlip(item.strength);
+                 else runner.stumble(item.strength);
+@@ -717,6 +718,7 @@
+         }
+ 
+         reset() {
++            window.FestivalChallenges?.start('running');
+             this.makeRunners();
+             this.lapSystem=new window.RaceLapSystem(this.track);
+             for(const runner of this.runners)this.lapSystem.attach(runner);
+@@ -866,6 +868,7 @@
+         updateRunnerProgress(runner,startTime=0,dt=1/60) {
+             const events=this.lapSystem.step(runner,{x:runner.prevX,y:runner.prevY},runner,startTime,dt);
+             for(const event of events){
++                if(runner.isPlayer)window.FestivalChallenges?.onRunning(event);
+                 if(runner.isPlayer&&(event.type==='CHECKPOINT'||event.type==='LAP'))this.gatesPassed++;
+                 if(event.type==='LAP'&&runner.isPlayer&&event.lap<3){
+                     const last=event.lap===2;
+@@ -976,7 +979,9 @@
+                     this.obstacles.collideRunner(runner, this);
+                 }
+                 this.resolveRunnerContacts();
++                const questObstacleHits=this.obstacles.playerHitCount;
+                 this.rivalEvents.update(dt,this);
++                if(this.obstacles.playerHitCount>questObstacleHits)window.FestivalChallenges?.onRunning({type:'OBSTACLE',obstacle:'thrown_object'});
+                 for (const runner of this.runners) this.updateRunnerProgress(runner,startTime,dt);
+                 // Sort sub-frame finish times after processing everyone: array order cannot decide a photo finish.
+                 this.finishers.sort((a,b)=>a.finishTime-b.finishTime);

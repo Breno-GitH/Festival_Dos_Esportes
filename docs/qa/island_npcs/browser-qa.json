@@ -1,0 +1,812 @@
+{
+  "checks": [
+    "ILHA_PINGPONG NPCs, approach, collision and dialogue",
+    "ILHA_BASQUETE NPCs, approach, collision and dialogue",
+    "ILHA_CORRIDA NPCs, approach, collision and dialogue",
+    "ILHA_SKATE NPCs, approach, collision and dialogue",
+    "ILHA_ARCO NPCs, approach, collision and dialogue",
+    "ILHA_SURF NPCs, approach, collision and dialogue",
+    "ILHA_ESCALADA NPCs, approach, collision and dialogue",
+    "ILHA_ESQUI NPCs, approach, collision and dialogue",
+    "ILHA_PINGPONG Master briefing and return",
+    "ILHA_BASQUETE Master briefing and return",
+    "ILHA_CORRIDA Master briefing and return",
+    "ILHA_SKATE Master briefing and return",
+    "ILHA_ARCO Master briefing and return",
+    "ILHA_SURF Master briefing and return",
+    "ILHA_ESCALADA Master briefing and return",
+    "ILHA_ESQUI Master briefing and return",
+    "Photo completed by real scored 3-pointer, no auto coins",
+    "Clean lap completed through START, CP1/CP2/CP3 and physical FINISH",
+    "Three direct disk hits use real swept collision; birds remain unharmed",
+    "Surf real update at 60% without capture",
+    "Skate actual capture, grind travel, Super Jump Out, trick and safe physical landing",
+    "All five objectives survive reload, unpaid; public completion flags match save",
+    "basket return to owner pays exactly once",
+    "running return to owner pays exactly once",
+    "skate return to owner pays exactly once",
+    "archery return to owner pays exactly once",
+    "surf return to owner pays exactly once",
+    "aprendiz_pingpong original quest preserved and reward paid once",
+    "geologa_escalada original quest preserved and reward paid once",
+    "pugilista_apostador original quest preserved and reward paid once",
+    "Eight island quests: accepted/completed/claimed and 235 coins persist after reload",
+    "Overworld with NPCs remains fluid",
+    "All 11 NPCs: uniform scale, fixed feet anchor and 44px visible height",
+    "Zero console warnings/errors, HTTP errors/404 and network failures"
+  ],
+  "islands": [
+    {
+      "scene": "ILHA_PINGPONG",
+      "npcs": [
+        {
+          "id": "aprendiz_pingpong",
+          "master": false,
+          "normal": false
+        },
+        {
+          "id": "ilha_pingpong_mestre_do_ping_pong",
+          "master": true,
+          "normal": false
+        },
+        {
+          "id": "tecnico_pingpong",
+          "master": false,
+          "normal": true
+        }
+      ],
+      "walks": [
+        {
+          "ok": true,
+          "id": "aprendiz_pingpong",
+          "focus": "aprendiz_pingpong",
+          "steps": 32,
+          "x": 110.8000000000001,
+          "y": 198.59999999999974,
+          "prompt": "> APRENDIZ · [E] / [ESPAÇO] CONVERSAR"
+        },
+        {
+          "ok": true,
+          "id": "ilha_pingpong_mestre_do_ping_pong",
+          "focus": "ilha_pingpong_mestre_do_ping_pong",
+          "steps": 77,
+          "x": 286.79999999999933,
+          "y": 202.99999999999972,
+          "prompt": "> MESTRE DO PING-PONG · [E] / [ESPAÇO] INICIAR"
+        },
+        {
+          "ok": true,
+          "id": "tecnico_pingpong",
+          "focus": "tecnico_pingpong",
+          "steps": 12,
+          "x": 66.80000000000004,
+          "y": 132.60000000000008,
+          "prompt": "> TÉCNICO APOSENTADO · [E] / [ESPAÇO] CONVERSAR"
+        }
+      ]
+    },
+    {
+      "scene": "ILHA_BASQUETE",
+      "npcs": [
+        {
+          "id": "entrada_basquete",
+          "master": true,
+          "normal": false
+        },
+        {
+          "id": "fa_basquete",
+          "master": false,
+          "normal": true
+        },
+        {
+          "id": "fotografa_basquete",
+          "master": false,
+          "normal": true
+        }
+      ],
+      "walks": [
+        {
+          "ok": true,
+          "id": "entrada_basquete",
+          "focus": "entrada_basquete",
+          "steps": 54,
+          "x": 198.79999999999976,
+          "y": 97.40000000000006,
+          "prompt": "> (Pressione [E] ou [ESPAÇO] para iniciar)"
+        },
+        {
+          "ok": true,
+          "id": "fa_basquete",
+          "focus": "fa_basquete",
+          "steps": 27,
+          "x": 82.20000000000006,
+          "y": 207.3999999999997,
+          "prompt": "> (Pressione [E] para conversar)"
+        },
+        {
+          "ok": true,
+          "id": "fotografa_basquete",
+          "focus": "fotografa_basquete",
+          "steps": 87,
+          "x": 319.79999999999916,
+          "y": 211.79999999999967,
+          "prompt": "> (Pressione [E] para conversar)"
+        }
+      ]
+    },
+    {
+      "scene": "ILHA_CORRIDA",
+      "npcs": [
+        {
+          "id": "mestre_corrida",
+          "master": true,
+          "normal": false
+        },
+        {
+          "id": "fa_corrida",
+          "master": false,
+          "normal": true
+        },
+        {
+          "id": "treinador_corrida",
+          "master": false,
+          "normal": true
+        }
+      ],
+      "walks": [
+        {
+          "ok": true,
+          "id": "mestre_corrida",
+          "focus": "mestre_corrida",
+          "steps": 46,
+          "x": 245.20000000000084,
+          "y": 128.2000000000001,
+          "prompt": "> MESTRE DA CORRIDA · [E] / [ESPAÇO] INICIAR"
+        },
+        {
+          "ok": true,
+          "id": "fa_corrida",
+          "focus": "fa_corrida",
+          "steps": 101,
+          "x": 108.80000000000142,
+          "y": 251.39999999999947,
+          "prompt": "> FÃ DE ATLETISMO · [E] / [ESPAÇO] CONVERSAR"
+        },
+        {
+          "ok": true,
+          "id": "treinador_corrida",
+          "focus": "treinador_corrida",
+          "steps": 32,
+          "x": 366.2000000000002,
+          "y": 231.59999999999957,
+          "prompt": "> TREINADOR · [E] / [ESPAÇO] CONVERSAR"
+        }
+      ]
+    },
+    {
+      "scene": "ILHA_SKATE",
+      "npcs": [
+        {
+          "id": "ilha_skate_mestre_do_skate",
+          "master": true,
+          "normal": false
+        },
+        {
+          "id": "cinegrafista_skate",
+          "master": false,
+          "normal": true
+        },
+        {
+          "id": "shapeiro_skate",
+          "master": false,
+          "normal": true
+        }
+      ],
+      "walks": [
+        {
+          "ok": true,
+          "id": "ilha_skate_mestre_do_skate",
+          "focus": "ilha_skate_mestre_do_skate",
+          "steps": 26,
+          "x": 245.9999999999999,
+          "y": 119.2000000000001,
+          "prompt": "> MESTRE DO SKATE · [E] / [ESPAÇO] INICIAR"
+        },
+        {
+          "ok": true,
+          "id": "cinegrafista_skate",
+          "focus": "cinegrafista_skate",
+          "steps": 81,
+          "x": 353.79999999999933,
+          "y": 231.39999999999958,
+          "prompt": "> CINEGRAFISTA · [E] / [ESPAÇO] CONVERSAR"
+        },
+        {
+          "ok": true,
+          "id": "shapeiro_skate",
+          "focus": "shapeiro_skate",
+          "steps": 53,
+          "x": 138.20000000000044,
+          "y": 163.19999999999993,
+          "prompt": "> SHAPEIRO · [E] / [ESPAÇO] CONVERSAR"
+        }
+      ]
+    },
+    {
+      "scene": "ILHA_ARCO",
+      "npcs": [
+        {
+          "id": "mestre_arco_overworld",
+          "master": true,
+          "normal": false
+        },
+        {
+          "id": "aprendiz_arco",
+          "master": false,
+          "normal": true
+        },
+        {
+          "id": "naturalista_arco",
+          "master": false,
+          "normal": true
+        }
+      ],
+      "walks": [
+        {
+          "ok": true,
+          "id": "mestre_arco_overworld",
+          "focus": "mestre_arco_overworld",
+          "steps": 43,
+          "x": 245.20000000000084,
+          "y": 141.40000000000003,
+          "prompt": "> MESTRE DO ARCO · [E] / [ESPAÇO] INICIAR"
+        },
+        {
+          "ok": true,
+          "id": "aprendiz_arco",
+          "focus": "aprendiz_arco",
+          "steps": 28,
+          "x": 368.4000000000002,
+          "y": 218.39999999999964,
+          "prompt": "> APRENDIZ DE ARQUEIRA · [E] / [ESPAÇO] CONVERSAR"
+        },
+        {
+          "ok": true,
+          "id": "naturalista_arco",
+          "focus": "naturalista_arco",
+          "steps": 79,
+          "x": 181.40000000000117,
+          "y": 233.79999999999956,
+          "prompt": "> NATURALISTA · [E] / [ESPAÇO] CONVERSAR"
+        }
+      ]
+    },
+    {
+      "scene": "ILHA_SURF",
+      "npcs": [
+        {
+          "id": "entrada_surf",
+          "master": true,
+          "normal": false
+        },
+        {
+          "id": "capitao",
+          "master": false,
+          "normal": false
+        },
+        {
+          "id": "salva_vidas_surf",
+          "master": false,
+          "normal": true
+        },
+        {
+          "id": "pescador_surf",
+          "master": false,
+          "normal": true
+        }
+      ],
+      "walks": [
+        {
+          "ok": true,
+          "id": "entrada_surf",
+          "focus": "entrada_surf",
+          "steps": 29,
+          "x": 224,
+          "y": 141.6000000000006,
+          "prompt": "> MESTRE DO SURF · [E] / [ESPAÇO] INICIAR"
+        },
+        {
+          "ok": true,
+          "id": "capitao",
+          "focus": "capitao",
+          "steps": 30,
+          "x": 287.79999999999967,
+          "y": 201.00000000000028,
+          "prompt": "> CAPITÃO · [E] / [ESPAÇO] CONVERSAR"
+        },
+        {
+          "ok": true,
+          "id": "salva_vidas_surf",
+          "focus": "salva_vidas_surf",
+          "steps": 42,
+          "x": 129.4000000000005,
+          "y": 185.60000000000036,
+          "prompt": "> SALVA-VIDAS · [E] / [ESPAÇO] CONVERSAR"
+        },
+        {
+          "ok": true,
+          "id": "pescador_surf",
+          "focus": "pescador_surf",
+          "steps": 53,
+          "x": 358.1999999999993,
+          "y": 181.2000000000004,
+          "prompt": "> PESCADOR / METEOROLOGISTA · [E] / [ESPAÇO] CONVERSAR"
+        }
+      ]
+    },
+    {
+      "scene": "ILHA_ESCALADA",
+      "npcs": [
+        {
+          "id": "ilha_escalada_mestre_da_escalada",
+          "master": true,
+          "normal": false
+        },
+        {
+          "id": "ilha_escalada_guia_de_trilha",
+          "master": false,
+          "normal": false
+        },
+        {
+          "id": "geologa_escalada",
+          "master": false,
+          "normal": false
+        },
+        {
+          "id": "ilha_escalada_chef_de_acampamento",
+          "master": false,
+          "normal": false
+        }
+      ],
+      "walks": [
+        {
+          "ok": true,
+          "id": "ilha_escalada_mestre_da_escalada",
+          "focus": "ilha_escalada_mestre_da_escalada",
+          "steps": 15,
+          "x": 224,
+          "y": 196.6000000000003,
+          "prompt": "> MESTRE DA ESCALADA · [E] / [ESPAÇO] INICIAR"
+        },
+        {
+          "ok": true,
+          "id": "ilha_escalada_guia_de_trilha",
+          "focus": "ilha_escalada_guia_de_trilha",
+          "steps": 47,
+          "x": 100.80000000000045,
+          "y": 192.20000000000033,
+          "prompt": "> GUIA DE TRILHA · [E] / [ESPAÇO] CONVERSAR"
+        },
+        {
+          "ok": true,
+          "id": "geologa_escalada",
+          "focus": "geologa_escalada",
+          "steps": 45,
+          "x": 347.19999999999936,
+          "y": 201.00000000000028,
+          "prompt": "> GEÓLOGA · [E] / [ESPAÇO] CONVERSAR"
+        },
+        {
+          "ok": true,
+          "id": "ilha_escalada_chef_de_acampamento",
+          "focus": "ilha_escalada_chef_de_acampamento",
+          "steps": 26,
+          "x": 129.4000000000005,
+          "y": 249.40000000000003,
+          "prompt": "> CHEF DE ACAMPAMENTO · [E] / [ESPAÇO] CONVERSAR"
+        }
+      ]
+    },
+    {
+      "scene": "ILHA_ESQUI",
+      "npcs": [
+        {
+          "id": "ilha_esqui_mestre_do_boxe",
+          "master": true,
+          "normal": false
+        },
+        {
+          "id": "ilha_esqui_treinador",
+          "master": false,
+          "normal": false
+        },
+        {
+          "id": "ilha_esqui_arbitro",
+          "master": false,
+          "normal": false
+        },
+        {
+          "id": "pugilista_apostador",
+          "master": false,
+          "normal": false
+        }
+      ],
+      "walks": [
+        {
+          "ok": true,
+          "id": "ilha_esqui_mestre_do_boxe",
+          "focus": "ilha_esqui_mestre_do_boxe",
+          "steps": 30,
+          "x": 224,
+          "y": 137.2000000000006,
+          "prompt": "> MESTRE DO BOXE · [E] / [ESPAÇO] INICIAR"
+        },
+        {
+          "ok": true,
+          "id": "ilha_esqui_treinador",
+          "focus": "ilha_esqui_treinador",
+          "steps": 30,
+          "x": 144.8000000000004,
+          "y": 216.4000000000002,
+          "prompt": "> TREINADOR · [E] / [ESPAÇO] CONVERSAR"
+        },
+        {
+          "ok": true,
+          "id": "ilha_esqui_arbitro",
+          "focus": "ilha_esqui_arbitro",
+          "steps": 53,
+          "x": 333.99999999999943,
+          "y": 157.0000000000005,
+          "prompt": "> ÁRBITRO · [E] / [ESPAÇO] CONVERSAR"
+        },
+        {
+          "ok": true,
+          "id": "pugilista_apostador",
+          "focus": "pugilista_apostador",
+          "steps": 40,
+          "x": 109.60000000000046,
+          "y": 214.20000000000022,
+          "prompt": "> PUGILISTA/APOSTADOR · [E] / [ESPAÇO] CONVERSAR"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "http": [],
+  "failed": [],
+  "basket": {
+    "state": {
+      "accepted": true,
+      "completed": true,
+      "claimed": false,
+      "evidence": {
+        "type": "valid_basket",
+        "points": 3,
+        "remaining": 8
+      }
+    },
+    "score": {
+      "zorp": 3,
+      "master": 0
+    }
+  },
+  "running": {
+    "state": {
+      "accepted": true,
+      "completed": true,
+      "claimed": false,
+      "evidence": {
+        "type": "validated_clean_lap",
+        "lap": 1,
+        "time": 33.338181781112546
+      }
+    },
+    "lap": 1
+  },
+  "archery": {
+    "state": {
+      "accepted": true,
+      "completed": true,
+      "claimed": false,
+      "evidence": {
+        "type": "three_direct_bird_disks",
+        "hits": 3
+      }
+    },
+    "hits": 3
+  },
+  "surf": {
+    "state": {
+      "accepted": true,
+      "completed": true,
+      "claimed": false,
+      "evidence": {
+        "type": "clean_current",
+        "progress": 0.6001165710013259
+      }
+    },
+    "target": 32000,
+    "distance": 19203.730272042427
+  },
+  "skate": {
+    "quest": {
+      "accepted": true,
+      "completed": true,
+      "claimed": false,
+      "evidence": {
+        "type": "one_take",
+        "quality": "PERFECT",
+        "grindDistance": 24.916666666667652
+      }
+    },
+    "trace": [
+      {
+        "i": 0,
+        "x": 1121.9166666666667,
+        "y": 190.69791666666666,
+        "phase": "PLAYING",
+        "ground": false,
+        "mode": "GRIND",
+        "trick": null
+      },
+      {
+        "i": 10,
+        "x": 1162.1666666666683,
+        "y": 176.29166666666666,
+        "phase": "PLAYING",
+        "ground": false,
+        "mode": "AIR",
+        "trick": {
+          "status": "STARTED",
+          "trick": "KICKFLIP",
+          "sequence": "T"
+        }
+      },
+      {
+        "i": 20,
+        "x": 1200.5000000000032,
+        "y": 108.06249999999999,
+        "phase": "PLAYING",
+        "ground": false,
+        "mode": "AIR",
+        "trick": {
+          "status": "COMPLETED",
+          "trick": "KICKFLIP",
+          "baseScore": 320,
+          "repetitionPenalty": 1,
+          "varietyBonus": 0,
+          "score": 320,
+          "totalScore": 320
+        }
+      },
+      {
+        "i": 30,
+        "x": 1238.833333333338,
+        "y": 85.66666666666666,
+        "phase": "PLAYING",
+        "ground": false,
+        "mode": "AIR",
+        "trick": {
+          "status": "COMPLETED",
+          "trick": "KICKFLIP",
+          "baseScore": 320,
+          "repetitionPenalty": 1,
+          "varietyBonus": 0,
+          "score": 320,
+          "totalScore": 320
+        }
+      },
+      {
+        "i": 40,
+        "x": 1277.1666666666729,
+        "y": 109.10416666666666,
+        "phase": "PLAYING",
+        "ground": false,
+        "mode": "AIR",
+        "trick": {
+          "status": "COMPLETED",
+          "trick": "KICKFLIP",
+          "baseScore": 320,
+          "repetitionPenalty": 1,
+          "varietyBonus": 0,
+          "score": 320,
+          "totalScore": 320
+        }
+      },
+      {
+        "i": 50,
+        "x": 1315.5000000000077,
+        "y": 178.375,
+        "phase": "PLAYING",
+        "ground": false,
+        "mode": "AIR",
+        "trick": {
+          "status": "COMPLETED",
+          "trick": "KICKFLIP",
+          "baseScore": 320,
+          "repetitionPenalty": 1,
+          "varietyBonus": 0,
+          "score": 320,
+          "totalScore": 320
+        }
+      }
+    ]
+  },
+  "finalCoins": 235,
+  "saved": {
+    "version": 3,
+    "coins": 235,
+    "challenges": {
+      "pingpong_medalha": {
+        "accepted": true,
+        "completed": true,
+        "claimed": true,
+        "evidence": {
+          "type": "medal",
+          "medal": "pingpong"
+        }
+      },
+      "basquete_foto_ano": {
+        "accepted": true,
+        "completed": true,
+        "claimed": true,
+        "evidence": {
+          "type": "valid_basket",
+          "points": 3,
+          "remaining": 8
+        }
+      },
+      "corrida_volta_limpa": {
+        "accepted": true,
+        "completed": true,
+        "claimed": true,
+        "evidence": {
+          "type": "validated_clean_lap",
+          "lap": 1,
+          "time": 33.338181781112546
+        }
+      },
+      "skate_uma_tomada": {
+        "accepted": true,
+        "completed": true,
+        "claimed": true,
+        "evidence": {
+          "type": "one_take",
+          "quality": "PERFECT",
+          "grindDistance": 24.916666666667652
+        }
+      },
+      "arco_tres_vento": {
+        "accepted": true,
+        "completed": true,
+        "claimed": true,
+        "evidence": {
+          "type": "three_direct_bird_disks",
+          "hits": 3
+        }
+      },
+      "surf_contra_corrente": {
+        "accepted": true,
+        "completed": true,
+        "claimed": true,
+        "evidence": {
+          "type": "clean_current",
+          "progress": 0.6001165710013259
+        }
+      },
+      "escalada_medalha": {
+        "accepted": true,
+        "completed": true,
+        "claimed": true,
+        "evidence": {
+          "type": "medal",
+          "medal": "escalada"
+        }
+      },
+      "boxe_sem_quedas": {
+        "accepted": true,
+        "completed": true,
+        "claimed": true,
+        "evidence": {
+          "type": "boxing_result",
+          "winner": "zorp",
+          "knockdowns": 0
+        }
+      }
+    },
+    "pagouCapitao": false,
+    "feriasDesbloqueadas": false,
+    "feriasVistas": false
+  },
+  "fps": 59.020263623844194,
+  "geometry": [
+    {
+      "id": "tecnico_pingpong",
+      "scaleX": 0.05945945945945947,
+      "scaleY": 0.059459459459459456,
+      "visibleHeight": 44,
+      "feetY": 108,
+      "logicalY": 108
+    },
+    {
+      "id": "fa_basquete",
+      "scaleX": 0.05307599517490953,
+      "scaleY": 0.05307599517490953,
+      "visibleHeight": 44,
+      "feetY": 194,
+      "logicalY": 194
+    },
+    {
+      "id": "fotografa_basquete",
+      "scaleX": 0.052568697729988054,
+      "scaleY": 0.052568697729988054,
+      "visibleHeight": 44,
+      "feetY": 197,
+      "logicalY": 197
+    },
+    {
+      "id": "fa_corrida",
+      "scaleX": 0.05057471264367816,
+      "scaleY": 0.05057471264367816,
+      "visibleHeight": 44,
+      "feetY": 240,
+      "logicalY": 240
+    },
+    {
+      "id": "treinador_corrida",
+      "scaleX": 0.05213270142180094,
+      "scaleY": 0.052132701421800945,
+      "visibleHeight": 44,
+      "feetY": 219,
+      "logicalY": 219
+    },
+    {
+      "id": "cinegrafista_skate",
+      "scaleX": 0.052884615384615384,
+      "scaleY": 0.052884615384615384,
+      "visibleHeight": 44,
+      "feetY": 218,
+      "logicalY": 218
+    },
+    {
+      "id": "shapeiro_skate",
+      "scaleX": 0.050343249427917625,
+      "scaleY": 0.05034324942791762,
+      "visibleHeight": 44,
+      "feetY": 151,
+      "logicalY": 151
+    },
+    {
+      "id": "aprendiz_arco",
+      "scaleX": 0.04772234273318872,
+      "scaleY": 0.04772234273318872,
+      "visibleHeight": 44,
+      "feetY": 207,
+      "logicalY": 207
+    },
+    {
+      "id": "naturalista_arco",
+      "scaleX": 0.05057471264367816,
+      "scaleY": 0.05057471264367816,
+      "visibleHeight": 44,
+      "feetY": 222,
+      "logicalY": 222
+    },
+    {
+      "id": "salva_vidas_surf",
+      "scaleX": 0.05098493626882966,
+      "scaleY": 0.05098493626882966,
+      "visibleHeight": 44,
+      "feetY": 160,
+      "logicalY": 160
+    },
+    {
+      "id": "pescador_surf",
+      "scaleX": 0.0535931790499391,
+      "scaleY": 0.0535931790499391,
+      "visibleHeight": 44,
+      "feetY": 155,
+      "logicalY": 155
+    }
+  ]
+}

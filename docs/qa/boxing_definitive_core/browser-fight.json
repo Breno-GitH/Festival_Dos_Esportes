@@ -1,0 +1,654 @@
+{
+  "result": {
+    "snapshot": {
+      "phase": "RESULT",
+      "winner": "zorp",
+      "rounds": {
+        "number": 2,
+        "wins": {
+          "zorp": 2,
+          "master": 0
+        },
+        "remaining": 1947,
+        "elapsed": 453,
+        "stats": {
+          "zorp": {
+            "damage": 100,
+            "counters": 2,
+            "cleanHits": 12
+          },
+          "master": {
+            "damage": 32,
+            "counters": 2,
+            "cleanHits": 2
+          }
+        },
+        "history": [
+          {
+            "number": 1,
+            "winner": "zorp",
+            "reason": "KO",
+            "criterion": "KO",
+            "hp": {
+              "zorp": 74,
+              "master": 0
+            },
+            "stats": {
+              "zorp": {
+                "damage": 100,
+                "counters": 2,
+                "cleanHits": 12
+              },
+              "master": {
+                "damage": 26,
+                "counters": 1,
+                "cleanHits": 4
+              }
+            },
+            "suddenDeath": false
+          },
+          {
+            "number": 2,
+            "winner": "zorp",
+            "reason": "KO",
+            "criterion": "KO",
+            "hp": {
+              "zorp": 68,
+              "master": 0
+            },
+            "stats": {
+              "zorp": {
+                "damage": 100,
+                "counters": 2,
+                "cleanHits": 12
+              },
+              "master": {
+                "damage": 32,
+                "counters": 2,
+                "cleanHits": 2
+              }
+            },
+            "suddenDeath": false
+          }
+        ],
+        "result": {
+          "number": 2,
+          "winner": "zorp",
+          "reason": "KO",
+          "criterion": "KO",
+          "hp": {
+            "zorp": 68,
+            "master": 0
+          },
+          "stats": {
+            "zorp": {
+              "damage": 100,
+              "counters": 2,
+              "cleanHits": 12
+            },
+            "master": {
+              "damage": 32,
+              "counters": 2,
+              "cleanHits": 2
+            }
+          },
+          "suddenDeath": false
+        },
+        "transition": 0,
+        "suddenDeath": false,
+        "matchReported": true,
+        "adaptation": {
+          "guard": 0,
+          "dodge": 0,
+          "distant": 0.04745651533018868
+        },
+        "introTotal": 132
+      },
+      "hitPauseFrames": 0,
+      "finisherFrame": null,
+      "knockdown": {
+        "role": "master",
+        "attacker": "zorp",
+        "frames": 0,
+        "count": 0
+      },
+      "player": {
+        "x": 284.3777945243483,
+        "y": 224.1455844122716,
+        "hp": 68,
+        "stamina": 8.000000000000018,
+        "feint": null,
+        "perfectDodgeFrames": 0,
+        "animation": "victory",
+        "attack": null,
+        "variant": null,
+        "bodyShot": false,
+        "counterSource": null,
+        "guard": false,
+        "dodgeAge": 0,
+        "knockdowns": 0,
+        "facing": 1,
+        "combo": 0,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "mestre": {
+        "x": 322.74752079531635,
+        "y": 219.84999999999994,
+        "hp": 0,
+        "stamina": 62.11999999999966,
+        "feint": null,
+        "animation": "defeat",
+        "attack": null,
+        "variant": null,
+        "bodyShot": false,
+        "counterSource": null,
+        "guard": false,
+        "dodgeAge": 18,
+        "knockdowns": 2,
+        "facing": -1,
+        "combo": 0,
+        "hitstun": 0,
+        "whiffFrames": 0,
+        "guardPressure": 0,
+        "guardBreakTimer": 0,
+        "counterWindow": 0,
+        "dodgeFrames": 0
+      },
+      "juiz": {
+        "x": 76,
+        "y": 172,
+        "animation": "ko",
+        "count": 0
+      },
+      "distance": 39.01886194941429,
+      "assets": {
+        "version": "3.0",
+        "requested": 92,
+        "loaded": 92,
+        "failed": 0,
+        "failedPaths": []
+      },
+      "presentation": {
+        "arena": "arena_boxe3.0.png",
+        "uniformScale": 0.344,
+        "crowd": 52,
+        "energy": 0.9268593749999999,
+        "activeParticles": 36,
+        "peakParticles": 36,
+        "particleLimit": 128,
+        "camera": {
+          "x": -2.7496564289362007,
+          "y": -0.38994318451372495
+        },
+        "visualStates": {
+          "zorp": {
+            "label": "VENCEDOR",
+            "color": "#ffe093",
+            "kind": "winner"
+          },
+          "master": {
+            "label": "NOCAUTE",
+            "color": "#ff8799",
+            "kind": "ko"
+          }
+        },
+        "celebrationFrames": 267,
+        "events": {
+          "roundStart": 1,
+          "jab": 9,
+          "counter": 4,
+          "dodge": 2,
+          "special": 1,
+          "knockdown": 1,
+          "roundEnd": 1,
+          "victory": 1
+        },
+        "audio": {
+          "state": "running",
+          "activeVoices": 0,
+          "peakVoices": 1,
+          "played": 37
+        }
+      },
+      "special": {
+        "status": "ready",
+        "failed": false,
+        "frames": 7,
+        "source": "zorp_boxe3.0_especial.png?v=1.0.0_curated_special",
+        "charge": 66.39999999999952,
+        "active": null,
+        "last": {
+          "mode": "normal",
+          "hits": 1,
+          "confirmed": false,
+          "connected": true,
+          "history": []
+        }
+      },
+      "masterSpecial": {
+        "status": "ready",
+        "failed": false,
+        "frames": 8,
+        "source": "mestre_boxe3.0_especial.png?v=1.0.0_curated_special",
+        "charge": 100,
+        "cooldown": 0,
+        "active": null,
+        "last": null
+      },
+      "masterAI": {
+        "mode": "PRESSURE",
+        "reactionFrames": 13,
+        "pressure": 3.4399999999999986,
+        "observedFrame": 957,
+        "observedX": 277.0301285840596,
+        "observedY": 219.8,
+        "stats": {
+          "jab": 0,
+          "cross": 4,
+          "guard": 4,
+          "dodge": 2,
+          "special": 0,
+          "hits": 2,
+          "blocked": 0,
+          "whiffs": 0,
+          "dodged": 0,
+          "interrupted": 2,
+          "damageTaken": 96,
+          "feint": 0,
+          "approach": 1,
+          "pressure": 1,
+          "cautious": 0,
+          "reposition": 4,
+          "defensivePlans": 10,
+          "comboFollowUps": 0
+        },
+        "adaptation": {
+          "guard": 0,
+          "dodge": 0,
+          "distant": 0.030468750000000003
+        },
+        "observedBehavior": {
+          "samples": 53,
+          "guard": 0,
+          "dodge": 0,
+          "distant": 3
+        },
+        "decisions": [
+          {
+            "frame": 785,
+            "observedFrame": 766,
+            "lag": 19,
+            "mode": "DEFEND",
+            "pressure": 3.6
+          },
+          {
+            "frame": 794,
+            "observedFrame": 778,
+            "lag": 16,
+            "mode": "DEFEND",
+            "pressure": 3.5
+          },
+          {
+            "frame": 802,
+            "observedFrame": 785,
+            "lag": 17,
+            "mode": "DEFEND",
+            "pressure": 3.4
+          },
+          {
+            "frame": 810,
+            "observedFrame": 796,
+            "lag": 14,
+            "mode": "DEFEND",
+            "pressure": 3.3
+          },
+          {
+            "frame": 816,
+            "observedFrame": 797,
+            "lag": 19,
+            "mode": "DEFEND",
+            "pressure": 3.23
+          },
+          {
+            "frame": 826,
+            "observedFrame": 812,
+            "lag": 14,
+            "mode": "DEFEND",
+            "pressure": 3.11
+          },
+          {
+            "frame": 836,
+            "observedFrame": 817,
+            "lag": 19,
+            "mode": "DEFEND",
+            "pressure": 3.98
+          },
+          {
+            "frame": 846,
+            "observedFrame": 830,
+            "lag": 16,
+            "mode": "DEFEND",
+            "pressure": 3.98
+          },
+          {
+            "frame": 855,
+            "observedFrame": 835,
+            "lag": 20,
+            "mode": "DEFEND",
+            "pressure": 3.87
+          },
+          {
+            "frame": 862,
+            "observedFrame": 843,
+            "lag": 19,
+            "mode": "EVADE",
+            "pressure": 3.78
+          },
+          {
+            "frame": 870,
+            "observedFrame": 851,
+            "lag": 19,
+            "mode": "EVADE",
+            "pressure": 3.69
+          },
+          {
+            "frame": 879,
+            "observedFrame": 863,
+            "lag": 16,
+            "mode": "EVADE",
+            "pressure": 3.58
+          },
+          {
+            "frame": 885,
+            "observedFrame": 865,
+            "lag": 20,
+            "mode": "EVADE",
+            "pressure": 3.51
+          },
+          {
+            "frame": 892,
+            "observedFrame": 873,
+            "lag": 19,
+            "mode": "DEFEND",
+            "pressure": 3.42
+          },
+          {
+            "frame": 898,
+            "observedFrame": 882,
+            "lag": 16,
+            "mode": "DEFEND",
+            "pressure": 3.35
+          },
+          {
+            "frame": 906,
+            "observedFrame": 890,
+            "lag": 16,
+            "mode": "DEFEND",
+            "pressure": 3.26
+          },
+          {
+            "frame": 916,
+            "observedFrame": 897,
+            "lag": 19,
+            "mode": "DEFEND",
+            "pressure": 3.14
+          },
+          {
+            "frame": 924,
+            "observedFrame": 912,
+            "lag": 12,
+            "mode": "REPOSITION",
+            "pressure": 3.04
+          },
+          {
+            "frame": 932,
+            "observedFrame": 913,
+            "lag": 19,
+            "mode": "REPOSITION",
+            "pressure": 2.94
+          },
+          {
+            "frame": 939,
+            "observedFrame": 925,
+            "lag": 14,
+            "mode": "REPOSITION",
+            "pressure": 2.86
+          },
+          {
+            "frame": 948,
+            "observedFrame": 929,
+            "lag": 19,
+            "mode": "EVADE",
+            "pressure": 2.75
+          },
+          {
+            "frame": 958,
+            "observedFrame": 939,
+            "lag": 19,
+            "mode": "EVADE",
+            "pressure": 2.63
+          },
+          {
+            "frame": 965,
+            "observedFrame": 952,
+            "lag": 13,
+            "mode": "EVADE",
+            "pressure": 2.55
+          },
+          {
+            "frame": 972,
+            "observedFrame": 957,
+            "lag": 15,
+            "mode": "PRESSURE",
+            "pressure": 3.46
+          }
+        ]
+      }
+    },
+    "rounds": {
+      "number": 2,
+      "wins": {
+        "zorp": 2,
+        "master": 0
+      },
+      "remaining": 1947,
+      "elapsed": 453,
+      "stats": {
+        "zorp": {
+          "damage": 100,
+          "counters": 2,
+          "cleanHits": 12
+        },
+        "master": {
+          "damage": 32,
+          "counters": 2,
+          "cleanHits": 2
+        }
+      },
+      "history": [
+        {
+          "number": 1,
+          "winner": "zorp",
+          "reason": "KO",
+          "criterion": "KO",
+          "hp": {
+            "zorp": 74,
+            "master": 0
+          },
+          "stats": {
+            "zorp": {
+              "damage": 100,
+              "counters": 2,
+              "cleanHits": 12
+            },
+            "master": {
+              "damage": 26,
+              "counters": 1,
+              "cleanHits": 4
+            }
+          },
+          "suddenDeath": false
+        },
+        {
+          "number": 2,
+          "winner": "zorp",
+          "reason": "KO",
+          "criterion": "KO",
+          "hp": {
+            "zorp": 68,
+            "master": 0
+          },
+          "stats": {
+            "zorp": {
+              "damage": 100,
+              "counters": 2,
+              "cleanHits": 12
+            },
+            "master": {
+              "damage": 32,
+              "counters": 2,
+              "cleanHits": 2
+            }
+          },
+          "suddenDeath": false
+        }
+      ],
+      "result": {
+        "number": 2,
+        "winner": "zorp",
+        "reason": "KO",
+        "criterion": "KO",
+        "hp": {
+          "zorp": 68,
+          "master": 0
+        },
+        "stats": {
+          "zorp": {
+            "damage": 100,
+            "counters": 2,
+            "cleanHits": 12
+          },
+          "master": {
+            "damage": 32,
+            "counters": 2,
+            "cleanHits": 2
+          }
+        },
+        "suddenDeath": false
+      },
+      "transition": 0,
+      "suddenDeath": false,
+      "matchReported": true,
+      "adaptation": {
+        "guard": 0,
+        "dodge": 0,
+        "distant": 0.04745651533018868
+      },
+      "introTotal": 132
+    },
+    "samples": [
+      {
+        "frame": 0,
+        "round": 1,
+        "pHp": 100,
+        "mHp": 100,
+        "pCombo": 0,
+        "mCombo": 0
+      },
+      {
+        "frame": 90,
+        "round": 1,
+        "pHp": 100,
+        "mHp": 83,
+        "pCombo": 0,
+        "mCombo": 0
+      },
+      {
+        "frame": 180,
+        "round": 1,
+        "pHp": 92,
+        "mHp": 65,
+        "pCombo": 0,
+        "mCombo": 1
+      },
+      {
+        "frame": 270,
+        "round": 1,
+        "pHp": 86,
+        "mHp": 43,
+        "pCombo": 0,
+        "mCombo": 1
+      },
+      {
+        "frame": 360,
+        "round": 1,
+        "pHp": 86,
+        "mHp": 43,
+        "pCombo": 0,
+        "mCombo": 0
+      },
+      {
+        "frame": 450,
+        "round": 1,
+        "pHp": 80,
+        "mHp": 11,
+        "pCombo": 0,
+        "mCombo": 1
+      },
+      {
+        "frame": 540,
+        "round": 1,
+        "pHp": 74,
+        "mHp": 7,
+        "pCombo": 0,
+        "mCombo": 0
+      },
+      {
+        "frame": 630,
+        "round": 2,
+        "pHp": 100,
+        "mHp": 83,
+        "pCombo": 0,
+        "mCombo": 0
+      },
+      {
+        "frame": 720,
+        "round": 2,
+        "pHp": 84,
+        "mHp": 56,
+        "pCombo": 0,
+        "mCombo": 0
+      },
+      {
+        "frame": 810,
+        "round": 2,
+        "pHp": 68,
+        "mHp": 30,
+        "pCombo": 0,
+        "mCombo": 1
+      },
+      {
+        "frame": 900,
+        "round": 2,
+        "pHp": 68,
+        "mHp": 10,
+        "pCombo": 0,
+        "mCombo": 0
+      }
+    ],
+    "medal": true,
+    "returnScene": "ILHA_ESQUI"
+  },
+  "performance": {
+    "frames": 180,
+    "fps": 60.0020000666689
+  },
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": []
+}

@@ -3,63 +3,49 @@
     // The order, spacing and paths of every wave are authored. Randomness is
     // reserved for the rare golden opportunity, never for arbitrary positions.
     const PHASES=Object.freeze([
-        {name:'INTRODUCAO',color:'#9ff3b0',capacity:3,riverCapacity:2,interval:210,
-            waves:['OPENING_CURRENT','EASY_ARC']},
-        {name:'CRUZAMENTOS',color:'#74e6ff',capacity:4,riverCapacity:4,interval:175,
-            waves:['JOINING_STREAMS','EXPLOSIVE_CONFLUENCE','GENTLE_WAVES']},
-        {name:'COMPETICAO',color:'#ffcf70',capacity:6,riverCapacity:5,interval:150,
-            waves:['COMBINED_CURRENTS','EXPLOSIVE_CONFLUENCE','FAST_CROSSING','ARC_AND_ELLIPSE']},
-        {name:'CLIMAX',color:'#ff9d78',capacity:8,riverCapacity:7,interval:125,
-            waves:['EXPLOSIVE_CHAIN_CURRENT','FINAL_SWEEP','FAST_CROSSING','FINAL_COMBO']}
+        {name:'INTRODUCAO',color:'#9ff3b0',capacity:6,riverCapacity:6,interval:240,waves:['OPENING_CURRENT','EASY_CROSSING','SKY_AND_STREAM']},
+        {name:'CRUZAMENTOS',color:'#74e6ff',capacity:8,riverCapacity:8,interval:210,waves:['EASY_CROSSING','EXPLOSIVE_CONFLUENCE','SKY_AND_STREAM','DEPTH_CURRENTS']},
+        {name:'COMPETICAO',color:'#ffcf70',capacity:10,riverCapacity:10,interval:185,waves:['DEPTH_CURRENTS','EXPLOSIVE_CONFLUENCE','SKY_AND_STREAM','FAST_SEQUENCE']},
+        {name:'CLIMAX',color:'#ff9d78',capacity:12,riverCapacity:12,interval:170,waves:['EXPLOSIVE_CHAIN_CURRENT','FAST_SEQUENCE','SKY_AND_STREAM','FINAL_SWEEP']}
     ].map(p=>Object.freeze({...p,waves:Object.freeze(p.waves)})));
     const PATTERNS=Object.freeze([
         {id:'OPENING_CURRENT',targets:[
-            {delay:0,kind:'NORMAL_LARGE',path:'STRAIGHT',speed:'SLOW',entry:'TOP',exit:'LEFT'},
-            {delay:90,kind:'NORMAL_LARGE',path:'DIAGONAL',speed:'SLOW',entry:'RIGHT'}]},
-        {id:'EASY_ARC',targets:[
-            {delay:0,kind:'NORMAL_MEDIUM',path:'ARC',speed:'SLOW',entry:'LEFT'},
-            {delay:96,kind:'NORMAL_LARGE',path:'CURVE',speed:'MEDIUM',entry:'TOP',exit:'RIGHT'}]},
-        {id:'JOINING_STREAMS',targets:[
-            {delay:0,kind:'NORMAL_MEDIUM',path:'DIAGONAL',speed:'MEDIUM',entry:'RIGHT'},
-            {delay:78,kind:'NORMAL_MEDIUM',path:'CURVE',speed:'MEDIUM',entry:'TOP',exit:'LEFT'},
-            {delay:146,kind:'NORMAL_LARGE',path:'ARC',speed:'MEDIUM',entry:'LEFT'}]},
-        {id:'GENTLE_WAVES',targets:[
-            {delay:0,kind:'NORMAL_MEDIUM',path:'WAVE',speed:'MEDIUM',entry:'LEFT'},
-            {delay:80,kind:'NORMAL_MEDIUM',path:'S_CURVE',speed:'MEDIUM',entry:'TOP',exit:'RIGHT'}]},
+            {delay:0,kind:'NORMAL_LARGE',band:'NEAR',path:'STRAIGHT',speed:'SLOW',entry:'LEFT'},
+            {delay:66,kind:'NORMAL_LARGE',band:'NEAR',path:'ARC',speed:'SLOW',entry:'RIGHT'},
+            {delay:132,kind:'NORMAL_LARGE',band:'NEAR',path:'CURVE',speed:'SLOW',entry:'TOP',exit:'LEFT'}]},
+        {id:'EASY_CROSSING',targets:[
+            {delay:0,kind:'NORMAL_MEDIUM',band:'MID',path:'DIAGONAL',speed:'MEDIUM',entry:'LEFT'},
+            {delay:90,kind:'NORMAL_MEDIUM',band:'MID',path:'ARC',speed:'MEDIUM',entry:'RIGHT'}]},
+        {id:'SKY_AND_STREAM',targets:[
+            {delay:0,carrier:'BIRD',kind:'BIRD_TARGET',entry:'LEFT'},
+            {delay:48,kind:'NORMAL_LARGE',band:'NEAR',path:'S_CURVE',speed:'SLOW',entry:'RIGHT'},
+            {delay:106,kind:'NORMAL_MEDIUM',band:'MID',path:'WAVE',speed:'MEDIUM',entry:'TOP',exit:'RIGHT'}]},
         {id:'EXPLOSIVE_CONFLUENCE',targets:[
-            {delay:0,kind:'NORMAL_MEDIUM',path:'S_CURVE',speed:'MEDIUM',entry:'LEFT'},
-            {delay:66,kind:'EXPLOSIVE',path:'S_CURVE',speed:'MEDIUM',entry:'LEFT'},
-            {delay:132,kind:'NORMAL_SMALL',path:'S_CURVE',speed:'MEDIUM',entry:'LEFT'}]},
-        {id:'COMBINED_CURRENTS',targets:[
-            {delay:0,kind:'NORMAL_MEDIUM',path:'S_CURVE',speed:'MEDIUM',entry:'LEFT'},
-            {delay:52,kind:'NORMAL_SMALL',path:'DIAGONAL',speed:'FAST',entry:'TOP',exit:'RIGHT'},
-            {delay:104,kind:'NORMAL_MEDIUM',path:'ARC',speed:'FAST',entry:'RIGHT'}]},
-        {id:'FAST_CROSSING',targets:[
-            {delay:0,kind:'NORMAL_SMALL',path:'DIAGONAL',speed:'FAST',entry:'LEFT'},
-            {delay:54,kind:'NORMAL_MEDIUM',path:'CURVE',speed:'FAST',entry:'RIGHT'},
-            {delay:112,kind:'NORMAL_SMALL',path:'WAVE',speed:'FAST',entry:'TOP',exit:'LEFT'}]},
-        {id:'ARC_AND_ELLIPSE',targets:[
-            {delay:0,kind:'NORMAL_SMALL',path:'ELLIPSE',speed:'FAST',entry:'TOP',exit:'LEFT'},
-            {delay:74,kind:'NORMAL_MEDIUM',path:'ARC',speed:'FAST',entry:'LEFT'}]},
+            {delay:0,kind:'NORMAL_MEDIUM',band:'MID',path:'S_CURVE',speed:'MEDIUM',entry:'LEFT',laneOffset:-16},
+            {delay:28,kind:'EXPLOSIVE',band:'MID',path:'S_CURVE',speed:'MEDIUM',entry:'LEFT'},
+            {delay:56,kind:'NORMAL_MEDIUM',band:'MID',path:'S_CURVE',speed:'MEDIUM',entry:'LEFT',laneOffset:16},
+            {delay:84,kind:'NORMAL_SMALL',band:'MID',path:'S_CURVE',speed:'MEDIUM',entry:'LEFT',laneOffset:24}]},
+        {id:'DEPTH_CURRENTS',targets:[
+            {delay:0,kind:'NORMAL_SMALL',band:'FAR',path:'ELLIPSE',speed:'FAST',entry:'RIGHT'},
+            {delay:60,kind:'NORMAL_MEDIUM',band:'MID',path:'S_CURVE',speed:'MEDIUM',entry:'TOP',exit:'LEFT'},
+            {delay:120,kind:'NORMAL_LARGE',band:'NEAR',path:'ARC',speed:'SLOW',entry:'LEFT'}]},
+        {id:'FAST_SEQUENCE',targets:[
+            {delay:0,kind:'NORMAL_SMALL',band:'FAR',path:'DIAGONAL',speed:'FAST',entry:'LEFT'},
+            {delay:72,kind:'NORMAL_SMALL',band:'FAR',path:'WAVE',speed:'FAST',entry:'RIGHT'},
+            {delay:144,kind:'NORMAL_SMALL',band:'FAR',path:'ELLIPSE',speed:'FAST',entry:'TOP',exit:'RIGHT'}]},
         {id:'EXPLOSIVE_CHAIN_CURRENT',targets:[
-            {delay:0,kind:'NORMAL_MEDIUM',path:'ARC',speed:'MEDIUM',entry:'LEFT'},
-            {delay:24,kind:'NORMAL_MEDIUM',path:'ARC',speed:'MEDIUM',entry:'RIGHT'},
-            {delay:66,kind:'EXPLOSIVE',path:'ARC',speed:'MEDIUM',entry:'LEFT'},
-            {delay:90,kind:'EXPLOSIVE',path:'ARC',speed:'MEDIUM',entry:'RIGHT'},
-            {delay:132,kind:'NORMAL_SMALL',path:'ARC',speed:'MEDIUM',entry:'LEFT'},
-            {delay:156,kind:'NORMAL_SMALL',path:'ARC',speed:'MEDIUM',entry:'RIGHT'}]},
+            {delay:0,kind:'NORMAL_MEDIUM',band:'NEAR',path:'CURVE',speed:'MEDIUM',entry:'RIGHT',laneOffset:-12},
+            {delay:28,kind:'EXPLOSIVE',band:'NEAR',path:'CURVE',speed:'MEDIUM',entry:'RIGHT'},
+            {delay:56,kind:'EXPLOSIVE',band:'NEAR',path:'CURVE',speed:'MEDIUM',entry:'RIGHT',laneOffset:12},
+            {delay:84,kind:'NORMAL_MEDIUM',band:'NEAR',path:'CURVE',speed:'MEDIUM',entry:'RIGHT',laneOffset:20},
+            {delay:112,kind:'NORMAL_SMALL',band:'NEAR',path:'CURVE',speed:'MEDIUM',entry:'RIGHT',laneOffset:-20}]},
         {id:'FINAL_SWEEP',targets:[
-            {delay:0,kind:'NORMAL_MEDIUM',path:'ELLIPSE',speed:'FAST',entry:'TOP',exit:'RIGHT'},
-            {delay:40,kind:'NORMAL_SMALL',path:'DIAGONAL',speed:'FAST',entry:'RIGHT'},
-            {delay:80,kind:'EXPLOSIVE',path:'DIAGONAL',speed:'FAST',entry:'RIGHT'},
-            {delay:146,kind:'NORMAL_MEDIUM',path:'DIAGONAL',speed:'FAST',entry:'RIGHT'}]},
-        {id:'FINAL_COMBO',targets:[
-            {delay:0,kind:'NORMAL_SMALL',path:'WAVE',speed:'FAST',entry:'LEFT'},
-            {delay:48,kind:'NORMAL_MEDIUM',path:'S_CURVE',speed:'MEDIUM',entry:'RIGHT'},
-            {delay:96,kind:'EXPLOSIVE',path:'S_CURVE',speed:'MEDIUM',entry:'RIGHT'},
-            {delay:162,kind:'NORMAL_MEDIUM',path:'S_CURVE',speed:'MEDIUM',entry:'RIGHT'}]}
+            {delay:0,kind:'NORMAL_SMALL',band:'FAR',path:'ARC',speed:'FAST',entry:'LEFT'},
+            {delay:48,kind:'NORMAL_MEDIUM',band:'MID',path:'ELLIPSE',speed:'MEDIUM',entry:'RIGHT'},
+            {delay:96,kind:'NORMAL_LARGE',band:'NEAR',path:'DIAGONAL',speed:'MEDIUM',entry:'TOP',exit:'LEFT'}]}
     ].map(p=>Object.freeze({...p,targets:Object.freeze(p.targets.map(Object.freeze))})));
-    const BIRD_FRAMES=Object.freeze([9,18,25,32,39,46,52,57].map(s=>s*60));
+    // Bird opportunities now belong to authored waves; gold keeps its rare schedule.
+    const BIRD_FRAMES=Object.freeze([]);
     const SETTLE_MIN=24,SETTLE_MAX=90;
     function create() {
         return {phase:0,waveCounts:[0,0,0,0],waves:[],phaseEntries:[{phase:0,frame:0}],
@@ -96,10 +82,9 @@
     function drawCountdown(ctx,frame,total) {
         const remaining=total-frame;
         if(remaining<=0||remaining>300)return;
-        const second=Math.ceil(remaining/60),pulse=1-(frame%60)/60;
-        ctx.save();ctx.textAlign='center';ctx.font=`bold ${Math.round(15+pulse*3)}px monospace`;
-        ctx.fillStyle='rgba(14,41,39,.78)';ctx.fillRect(211,36,28,24);
-        ctx.fillStyle=second<=2?'#ffba8c':'#fff0b3';ctx.fillText(String(second),225,54);ctx.restore();
+        const pulse=1-(frame%60)/60,x=window.ArcheryField.WIDTH/2;
+        ctx.save();ctx.globalAlpha=.45+pulse*.45;ctx.strokeStyle=remaining<=120?'#ffb18d':'#ffe3a2';
+        ctx.lineWidth=1;ctx.strokeRect(x-56.5,2.5,113,29);ctx.restore();
     }
     window.ArcheryMatchPacing=Object.freeze({PHASES,PATTERNS,BIRD_FRAMES,SETTLE_MIN,SETTLE_MAX,
         create,phaseAt,choose,nextBirdAfter,planGolden,recordSpawn,sample,drawCountdown});

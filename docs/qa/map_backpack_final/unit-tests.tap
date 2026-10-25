@@ -1,0 +1,110 @@
+TAP version 13
+# Subtest: New save: central true, exactly eight independent undiscovered sports and seven boolean inventory states
+ok 1 - New save: central true, exactly eight independent undiscovered sports and seven boolean inventory states
+  ---
+  duration_ms: 42.7954
+  ...
+# Subtest: Version 4 migration preserves coins, quests, purchased IDs, discoveries and merchant flags
+ok 2 - Version 4 migration preserves coins, quests, purchased IDs, discoveries and merchant flags
+  ---
+  duration_ms: 10.5716
+  ...
+# Subtest: Exploration discovers every region without any medal, accepted quest, Master interaction or merchant
+ok 3 - Exploration discovers every region without any medal, accepted quest, Master interaction or merchant
+  ---
+  duration_ms: 13.1509
+  ...
+# Subtest: Unknown regions, game scenes and cinematic scene IDs cannot grant discoveries
+ok 4 - Unknown regions, game scenes and cinematic scene IDs cannot grant discoveries
+  ---
+  duration_ms: 13.831
+  ...
+# Subtest: Discovery persists immediately, repeated entry does not rewrite or reset campaign data
+ok 5 - Discovery persists immediately, repeated entry does not rewrite or reset campaign data
+  ---
+  duration_ms: 14.4888
+  ...
+# Subtest: Failed discovery save rolls back and can be retried; existing inventory and coins remain intact
+ok 6 - Failed discovery save rolls back and can be retried; existing inventory and coins remain intact
+  ---
+  duration_ms: 9.9158
+  ...
+# Subtest: Partial updates cannot clear earlier visits, purchases or merchant arrival
+ok 7 - Partial updates cannot clear earlier visits, purchases or merchant arrival
+  ---
+  duration_ms: 9.8431
+  ...
+# Subtest: Compatibility views are derived, do not mutate canonical progress and are not serialized twice
+ok 8 - Compatibility views are derived, do not mutate canonical progress and are not serialized twice
+  ---
+  duration_ms: 10.1595
+  ...
+# Subtest: Visit and victory are separate; unvisited islands never expose medals or quests
+ok 9 - Visit and victory are separate; unvisited islands never expose medals or quests
+  ---
+  duration_ms: 12.5731
+  ...
+# Subtest: Scanner reveals only the public status of visited regions
+ok 10 - Scanner reveals only the public status of visited regions
+  ---
+  duration_ms: 9.2989
+  ...
+# Subtest: Current location is independent of selected destination; store icon requires the actual merchant unlock
+ok 11 - Current location is independent of selected destination; store icon requires the actual merchant unlock
+  ---
+  duration_ms: 7.9106
+  ...
+# Subtest: Map text includes actual location and separate victory wording, without quest status before scanner
+ok 12 - Map text includes actual location and separate victory wording, without quest status before scanner
+  ---
+  duration_ms: 13.2526
+  ...
+# Subtest: Travel needs owned teleporter, proven visit and current Overworld; no hidden destination bypass
+ok 13 - Travel needs owned teleporter, proven visit and current Overworld; no hidden destination bypass
+  ---
+  duration_ms: 11.3903
+  ...
+# Subtest: Landing is revalidated at fade commit; blocked target cancels without moving or changing visits
+ok 14 - Landing is revalidated at fade commit; blocked target cancels without moving or changing visits
+  ---
+  duration_ms: 8.4536
+  ...
+# Subtest: Every region declares a separate finite interior fastTravelSpawn
+ok 15 - Every region declares a separate finite interior fastTravelSpawn
+  ---
+  duration_ms: 9.9882
+  ...
+# Subtest: B and M cannot open interfaces during minigames or important scenes/dialogues
+ok 16 - B and M cannot open interfaces during minigames or important scenes/dialogues
+  ---
+  duration_ms: 8.4473
+  ...
+# Subtest: An already open interface yields to a critical event rather than swallowing its inputs
+ok 17 - An already open interface yields to a critical event rather than swallowing its inputs
+  ---
+  duration_ms: 8.4071
+  ...
+# Subtest: Canonical inventory persists across all islands, a game and reload without serializing assets
+ok 18 - Canonical inventory persists across all islands, a game and reload without serializing assets
+  ---
+  duration_ms: 17.8498
+  ...
+# Subtest: Unified facade reads the existing medal, quest, merchant, wallet, captain and Ravok authorities
+ok 19 - Unified facade reads the existing medal, quest, merchant, wallet, captain and Ravok authorities
+  ---
+  duration_ms: 9.4446
+  ...
+# Subtest: Letter only marks a destination actually seen; arrest alone does not mark an ending
+ok 20 - Letter only marks a destination actually seen; arrest alone does not mark an ending
+  ---
+  duration_ms: 9.5988
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 20
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 433.4997

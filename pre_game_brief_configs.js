@@ -20,8 +20,8 @@
                 control('J · K · L','Arremesso/roubo · finta/defesa · especial')
             ],
             tip:'Atrás da linha vale 3. Swoosh ganha feedback especial.',accent:'#f2a33c',icon:'basketball'}),
-        marathon:brief({id:'marathon',title:'MARATONA',subtitle:'Duas voltas. Um vencedor.',
-            objective:'Cruze a chegada após completar 2 voltas.',
+        marathon:brief({id:'marathon',title:'MARATONA',subtitle:'Três voltas. Um vencedor.',
+            objective:'Complete 3 voltas e cruze a chegada em primeiro.',
             controls:[
                 control('WASD','Movimento livre na pista'),
                 control('SETAS','Alternativa para movimentar'),
@@ -51,14 +51,14 @@
                 control('AUTOMÁTICO','Agarrar um apoio válido')
             ],
             tip:'Há várias rotas. Checkpoints são pontos de descanso.',accent:'#9bc9e8',icon:'climbing'}),
-        boxing:brief({id:'boxing',title:'BOXE',subtitle:'Controle a distância.',
-            objective:'Derrote o Mestre no ringue.',
+        boxing:brief({id:'boxing',title:'BOXE',subtitle:'Melhor de três. Controle a distância.',
+            objective:'Vença 2 rounds de até 40 segundos. Máximo: 3 rounds.',
             controls:[
-                control('WASD','Mover pelo ringue e controlar profundidade'),
-                control('J / K','Golpe leve / golpe pesado'),
-                control('L / I / O','Defesa / esquiva / especial com barra cheia')
+                control('A/D W/S','Mover / profundidade.'),
+                control('J / K / L','Soco fraco / forte / finta.'),
+                control('SHIFT SPACE','Guarda / esquiva. O: especial.')
             ],
-            tip:'O perto do impacto libera seis socos. Precisa de barra cheia.',accent:'#ef6d63',icon:'boxing'}),
+            tip:'Mestre contra-ataca. Finte e saia da linha do Titan.',accent:'#ef6d63',icon:'boxing'}),
         surf:brief({id:'surf',title:'SURF',subtitle:'Não deixe a onda alcançar você.',
             objective:'Complete o percurso sem sofrer wipeout.',
             controls:[

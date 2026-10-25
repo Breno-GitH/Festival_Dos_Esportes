@@ -2,7 +2,7 @@
 
 // Presentation only: no attack clocks, positions, targets or damage are changed here.
 const BOXING_SHOW_CONFIG = Object.freeze({ particleLimit: 128, crowdCount: 64,
-    arenaScale: 0.344, shakeLimit: 4, palette: ["#f6cd70", "#92dce8", "#e880a6", "#eee9d9"] });
+    arenaScale: 0.344, shakeLimit: 2, palette: ["#f6cd70", "#92dce8", "#e880a6", "#eee9d9"] });
 const boxingShow = {
     camera:{x:0,y:0},meters:{zorp:boxingMakeVisualReadout(),master:boxingMakeVisualReadout()},
     frame: 0, seed: 2718, energy: 0, flash: 0, celebration: 0, celebrationAge: 0,
@@ -33,12 +33,13 @@ function boxingUnlockAudio(){
     }catch(_){/* A blocked audio device does not affect combat. */}
 }
 window.addEventListener('keydown',e=>{
-    if(typeof currentScene!=='undefined'&&currentScene==='JOGO_BOXE'&&!e.repeat&&['j','k','l','i','o',' '].includes(e.key.toLowerCase()))boxingUnlockAudio();
+    if(typeof currentScene!=='undefined'&&currentScene==='JOGO_BOXE'&&!e.repeat&&['j','k','l','shift','o',' '].includes(e.key.toLowerCase()))boxingUnlockAudio();
 });
 function boxingSound(kind){
     const audio=boxingAudio.context;
-    const cue={jab:[.045,850,.055],cross:[.065,480,.08],block:[.035,1900,.035],
-        dodge:[.055,3100,.018],counter:[.075,680,.085],guardBreak:[.09,2300,.06],special:[.10,390,.09]}[kind];
+    const cue={jab:[.035,850,.035],cross:[.065,480,.08],block:[.035,1900,.035],
+        parry:[.06,2800,.045],parryWhiff:[.025,1700,.01],dodge:[.055,3100,.018],counter:[.075,680,.085],comboFinish:[.085,510,.085],guardBreak:[.09,2300,.06],special:[.10,390,.09],feint:[.025,1800,.012],perfectDodge:[.065,2400,.035],
+        crushing:[.09,380,.09],armor:[.035,2100,.035],slip:[.035,2800,.018],overdrive:[.08,1300,.045],rush:[.035,950,.025],rushHit:[.055,720,.055],meteorWindup:[.08,450,.045],countBeat:[.035,1100,.025],knockdown:[.12,320,.075],fightStart:[.10,900,.05],comboFour:[.06,1100,.04],titanStart:[.085,470,.05],roundStart:[.10,950,.045],roundEnd:[.10,640,.045],decider:[.12,1400,.06],suddenDeath:[.10,1100,.04]}[kind];
     if(!cue||!audio||audio.state!=='running'||boxingAudio.voices.size>=4||audio.currentTime-boxingAudio.lastTime<.018)return;
     const [duration,cutoff,volume]=cue,now=audio.currentTime;
     const source=audio.createBufferSource(),filter=audio.createBiquadFilter(),gain=audio.createGain();
@@ -82,11 +83,11 @@ function boxingShowEvent(kind, actor, direction = 1) {
     const s = boxingShow;
     boxingSound(kind);
     s.events[kind] = (s.events[kind] || 0) + 1;
-    const power = { intro: .22, jab: .18, block: .1, dodge: .16, cross: .4,
+    const power = { intro: .22, jab: .08, block: .1, dodge: .16, cross: .4,
         hook: .56, dash: .66, charged: .7, counter: .82,
-        guardBreak: .82, special:.8, knockdown: 1, finisher: 1, victory: 1 }[kind] || .25;
+        crushing:.85,armor:.2,slip:.2,comboFour:.8,titanStart:.72,overdrive:.78,rush:.16,rushHit:.35,meteorWindup:.4,parry:.55,parryWhiff:.06,comboFinish:.78,guardBreak: .82, special:.92, feint:.08, perfectDodge:.8,roundStart:.45,roundEnd:.65,decider:.96,suddenDeath:.7,comeback:.8, knockdown: 1, finisher: 1, victory: 1 }[kind] || .25;
     s.energy = Math.min(1, Math.max(s.energy, power));
-    if (["counter", "guardBreak", "knockdown", "finisher", "victory"].includes(kind))
+    if (["crushing", "parry", "counter", "guardBreak", "perfectDodge", "decider", "knockdown", "finisher", "victory"].includes(kind))
         s.flash = Math.max(s.flash, kind === "finisher" ? .085 : .045);
     if (kind === "finisher" || kind === "victory") {
         // Confetti cannons are reserved for the decisive finish, never ordinary hits.
@@ -102,7 +103,7 @@ function boxingShowEvent(kind, actor, direction = 1) {
         // The shared simulation owns the 1–3 contact steps, so no second pose freeze is added here.
         r.hold = 0; r.poseFrame = actor.stateFrame;
     }
-    if (["dodge", "guardBreak", "counter", "hook", "dash", "charged"].includes(kind)) {
+    if (["parry", "dodge", "guardBreak", "counter", "hook", "dash", "charged"].includes(kind)) {
         let remaining = kind === "guardBreak" ? 9 : 5;
         for (const p of s.particles) {
             if (!remaining) break;
@@ -120,7 +121,8 @@ function boxingShowEvent(kind, actor, direction = 1) {
 function updateBoxingPresentation() {
     const s = boxingShow;
     updateBoxingVisualReadouts();
-    s.frame++; s.energy *= .975; s.flash *= .68;
+    const decisive=boxeGame.rounds.number===3&&boxeGame.rounds.wins.zorp===1&&boxeGame.rounds.wins.master===1;
+    s.frame++;s.energy=Math.max(s.energy*.975,decisive&&['INTRO','FIGHTING'].includes(boxeGame.phase)?.28:0);s.flash*=.68;
     s.countPulse *= .86;
     for (const r of Object.values(s.recoil)) {
         if (r.life > 0) r.life--;
@@ -193,7 +195,7 @@ function drawBoxingEventLighting() {
     if (s.flash > .002) {
         ctx.fillStyle = `rgba(246,228,191,${s.flash})`; ctx.fillRect(0, 0, 450, 270);
     }
-    if (boxeGame.phase === "KNOCKDOWN" || boxeGame.phase === "GETUP") {
+    if (boxeGame.phase === "ROUND_RESULT") {
         const judge = boxeGame.juiz;
         const beam = ctx.createLinearGradient(judge.x, 74, judge.x, judge.y + 6);
         beam.addColorStop(0, "rgba(255,229,163,0)");
@@ -243,7 +245,7 @@ function boxingPresentationSnapshot() {
         crowd: boxingShow.crowd.filter(p => p.visible).length, energy: boxingShow.energy,
         activeParticles: boxingShow.particles.filter(p => p.life > 0).length,
         peakParticles: boxingShow.peakParticles, particleLimit: BOXING_SHOW_CONFIG.particleLimit,
-        camera:{...boxingShow.camera},visualStates:{zorp:boxingVisualState(boxeGame.player),master:boxingVisualState(boxeGame.mestre)},
+        camera:{...boxingShow.camera,shake:boxeGame.cameraShake,limit:BOXING_SHOW_CONFIG.shakeLimit},count:boxingShow.count,visualStates:{zorp:boxingVisualState(boxeGame.player),master:boxingVisualState(boxeGame.mestre)},
         celebrationFrames: boxingShow.celebration, events: { ...boxingShow.events },
         audio:{state:boxingAudio.context?.state||'idle',activeVoices:boxingAudio.voices.size,peakVoices:boxingAudio.peak,played:boxingAudio.played} };
 }
@@ -255,18 +257,30 @@ function boxingVisualSpecialReady(f){return boxeGame.phase==='FIGHTING'&&f.hp>0&
 function boxingVisualState(f){
     if(f.hp<=0)return {label:'NOCAUTE',color:'#ff8799',kind:'ko'};
     if(boxeGame.phase==='RESULT')return {label:'VENCEDOR',color:'#ffe093',kind:'winner'};
+    if(boxeGame.phase==='ROUND_RESULT')return {label:boxeGame.rounds.result.winner===f.role?'ROUND CONQUISTADO':'ROUND ENCERRADO',color:'#e6c88d',kind:'round'};
     if(f.guardBreakTimer)return {label:'GUARDA QUEBRADA',color:'#ff91b4',kind:'break'};
+    if(f.parryStun)return {label:'APARADO / ABERTO',color:'#b8edff',kind:'stun'};
+    if(f.parryRecovery)return {label:'PARRY / ABERTO',color:'#cabce8',kind:'recovery'};
     if(f.hitstun||f.counterStun)return {label:'STUN',color:'#ffe093',kind:'stun'};
-    if(f.special){
+    if(f.parryFlash)return {label:'PARRY!',color:'#b8edff',kind:'parry'};
+    if(f.parryFrames)return {label:'PARRY',color:'#b8edff',kind:'parry'};
+    if(f.counterStance)return {label:'IRON COUNTER / LEITURA',color:'#d5c29f',kind:'guard'};
+    if(f.slip)return {label:'SLIP',color:'#a7d5e5',kind:'dodge'};
+    if(f.attack?.profile?.armorLate&&f.attack.armorCharges&&f.attack.frame>=f.attack.startup-3&&f.attack.frame<f.attack.startup)return {label:'RESISTÊNCIA / K',color:'#e3c39b',kind:'armor'};
+    if(boxingBusySpecial(f)){
         const s=f.special;
-        if(s.phase==='RECOVERY')return {label:'RECUPERANDO',color:'#b7b5ce',kind:'recovery'};
-        if(f.role==='master')return {label:s.phase==='CHARGE'?'CARGA / SAIA DA LINHA':'DASH PUNCH',color:'#ffb184',kind:'special'};
-        return {label:s.mode==='counter'?(s.phase==='EVADE'?'COUNTER / LEITURA':s.hits+' DE 6 SOCOS'):'WEAVE / PRESSÃO',color:'#a9ecba',kind:'special'};
+        if(s.phase==='RECOVERY'||s.phase==='FEINT_RECOVERY')return {label:'RECUPERANDO',color:'#b7b5ce',kind:'recovery'};
+        return {label:s.phase==='CHARGE'?'TITAN / SAIA DA LINHA':'TITAN STRAIGHT',color:'#ffb184',kind:'special'};
     }
+    if(f.attack?.rush)return {label:f.attack.rush.type==='METEOR_STRAIGHT'?'METEOR STRAIGHT':f.attack.rush.type==='RUSH_JAB'?'RUSH JAB':'RUSH STRAIGHT',color:'#a9ecba',kind:'special'};
+    if(f.perfectDodgeFrames)return {label:'PERFECT DODGE',color:'#a4ebf7',kind:'perfect'};
+    if(f.feint)return {label:f.role==='zorp'||f.feint.age>=6?'FINTA':'PREPARANDO',color:'#c6bcf0',kind:'feint'};
     if(f.dodgeFrames)return {label:'ESQUIVA',color:'#b9e7fb',kind:'dodge'};
     if(f.guard)return {label:'DEFENDENDO',color:'#95d8fa',kind:'guard'};
     if(f.whiffFrames)return {label:'RECUPERANDO',color:'#c4bfd3',kind:'recovery'};
     if(f.counterWindow)return {label:'CONTRA-ATAQUE',color:'#ffe093',kind:'counter'};
+    if(window.BoxingZorpSpecial?.isOverdrive(f))return {label:'RUSH OVERDRIVE / '+f.special.charges+' CARGAS',color:'#a9ecba',kind:'special'};
+    if(f.role==='master'&&f.ai?.mode==='MEASURE')return {label:'IRON COUNTER / DISTÂNCIA',color:'#d5c29f',kind:'normal'};
     if(boxingVisualSpecialReady(f))return {label:'ESPECIAL PRONTO',color:'#ffe093',kind:'ready'};
     return {label:boxeGame.phase==='INTRO'||boxeGame.phase==='READY'?'PREPARE-SE':'EM COMBATE',color:'#9cadbb',kind:'normal'};
 }
@@ -293,7 +307,7 @@ function drawBoxingFighterState(f){
     if(f.role==='judge'||f.hp<=0)return;
     const state=boxingVisualState(f),x=Math.round(f.x+f.facing*26),y=Math.round(f.y-54);
     ctx.save();ctx.imageSmoothingEnabled=false;
-    if(state.kind==='guard'||f.guardFlash>0){
+    if(state.kind==='guard'||state.kind==='parry'||f.guardFlash>0){
         boxingHudShield(ctx,x-4,y-4,f.guardPressure>70?'#ffb184':'#97ddfa');
         if(f.guardFlash){ctx.fillStyle='#edf9ff';ctx.fillRect(x-8,y-1,3,2);ctx.fillRect(x+6,y-1,3,2);}
     }
@@ -318,9 +332,9 @@ function drawBoxingFighterState(f){
 }
 function drawBoxingPunchTrace(f){
     if(!f.attack)return;
-    const a=f.attack,spec=BOXING_CONFIG.attacks[a.kind],age=a.frame-boxingAttackStartup(a,spec);
+    const a=f.attack,spec=boxingAttackSpec(a),age=a.frame-boxingAttackStartup(a,spec);
     if(age< -1||age>spec.active+1)return;
-    const light=a.kind==='jab'||a.kind==='weave_rush',special=a.kind.startsWith('weave_')||a.kind==='dash_punch';
+    const light=a.kind==='jab',special=!!a.rush||a.kind==='dash_punch';
     const color=special?(f.role==='zorp'?'#a8ecd5':'#ffc186'):light?'#d8edeb':'#ffe2ac';
     const x=Math.round(f.x+a.facing*17),y=Math.round(f.y-51),length=light?12:21;
     ctx.save();ctx.globalAlpha=age<0?.35:.75;ctx.fillStyle=color;
@@ -334,10 +348,14 @@ function drawBoxingFightHud(g){
         const left=f.role==='zorp',x=left?8:258,w=184,accent=left?'#9ae77b':'#ef7e88';
         const state=boxingVisualState(f),v=boxingShow.meters[f.role],ready=boxingVisualSpecialReady(f),active=state.kind==='special';
         const edge=state.kind==='break'?'#f08db5':active||ready?state.color:'#526472';
-        g.fillStyle='rgba(2,7,16,.55)';g.fillRect(x+2,10,w,78);
-        g.fillStyle='#101d2a';g.fillRect(x,8,w,77);g.strokeStyle=edge;g.strokeRect(x+.5,8.5,w-1,76);
+        g.fillStyle='rgba(2,7,16,.55)';g.fillRect(x+2,10,w,85);
+        g.fillStyle='#101d2a';g.fillRect(x,8,w,84);g.strokeStyle=edge;g.strokeRect(x+.5,8.5,w-1,83);
         g.fillStyle=accent;g.fillRect(left?x:x+w-3,9,3,25);g.fillRect(x+6,9,w-12,1);
         g.font='bold 10px monospace';g.textAlign='left';g.fillStyle='#f4f5ed';g.fillText(left?'ZORP':'MESTRE',x+10,21);
+        for(let i=0;i<2;i++){
+            const won=boxeGame.rounds.wins[f.role]>i,px=x+59+i*10;
+            g.fillStyle=won?'#f2d38c':'#405464';g.fillRect(px,14,6,6);if(!won){g.fillStyle='#101d2a';g.fillRect(px+1,15,4,4);}
+        }
         g.textAlign='right';g.fillStyle=f.hp<=30?'#ffb5a3':'#dbe8e9';g.fillText(f.hp+' / '+f.maxHp,x+w-10,21);
         const bx=x+10,bw=w-20;
         g.fillStyle='#060d18';g.fillRect(bx-1,26,bw+2,12);
@@ -350,19 +368,23 @@ function drawBoxingFightHud(g){
         const gx=bx+40,gw=bw-40;g.fillStyle='#09121e';g.fillRect(gx,42,gw,4);
         const guard=f.guardBreakTimer?0:boxingClamp(1-f.guardPressure/BOXING_CONFIG.guard.max,0,1);
         g.fillStyle=f.guardPressure>70?'#ffac86':'#7ab5d6';g.fillRect(gx,42,Math.floor(gw*guard),4);
-        g.fillStyle=ready?'#ffe093':active?state.color:'#a3b8c5';g.fillText('ESPECIAL',bx,58);
+        g.fillStyle='#a3b8c5';g.fillText('STAMINA',bx,55);g.fillStyle='#09121e';g.fillRect(gx,50,gw,4);
+        g.fillStyle=f.stamina<20?'#e6a17b':'#b4b8e0';g.fillRect(gx,50,Math.floor(gw*boxingClamp(f.stamina/f.maxStamina,0,1)),4);
+        g.fillStyle=ready?'#ffe093':active?state.color:'#a3b8c5';g.fillText('ESPECIAL',bx,63);
         g.textAlign='right';
         const status=boxingSpecialController(f)?.assetStatus?.();
-        const label=status==='error'?'ASSET INDISPONÍVEL':status!=='ready'?'CARREGANDO':f.special?'ATIVO':
+        const overdrive=boxingSpecialController(f)?.isOverdrive?.(f);
+        const label=overdrive?f.special.charges+' CARGAS / '+Math.ceil(f.special.remaining/60)+'s':status==='error'?'ASSET INDISPONÍVEL':status!=='ready'?'CARREGANDO':f.special?'ATIVO':
             f.specialCooldown?'RECARGA '+Math.ceil(f.specialCooldown/60)+'s':ready?(left?'[O] PRONTO':'PRONTO'):Math.floor(f.specialCharge||0)+'%';
-        g.fillText(label,bx+bw,58);
-        g.fillStyle='#060d18';g.fillRect(bx-1,61,bw+2,7);
+        g.fillText(label,bx+bw,63);
+        g.fillStyle='#060d18';g.fillRect(bx-1,66,bw+2,7);
         g.fillStyle=ready?'#ffe093':left?'#73c4bc':'#cf9a87';
-        const charge=Math.floor(bw*boxingClamp((f.specialCharge||0)/100,0,1));g.fillRect(left?bx:bx+bw-charge,62,charge,5);
-        if(ready){g.fillStyle=boxingShow.frame%48<30?'#fff4be':'#c09d58';g.fillRect(x+w-5,63,2,3);}
-        if(active){g.fillStyle=state.color;const stripe=Math.floor((boxingShow.frame%32)/32*(bw-12));g.fillRect(bx+stripe,64,12,1);}
-        g.fillStyle='#0b1521';g.fillRect(bx-1,72,bw+2,10);g.textAlign='left';g.font='bold 8px monospace';g.fillStyle=state.color;
-        g.fillRect(bx,75,3,3);g.fillText(state.label,bx+7,80);
+        const charge=Math.floor(bw*boxingClamp(overdrive?f.special.remaining/window.BoxingZorpSpecial.cfg.duration:(f.specialCharge||0)/100,0,1));g.fillRect(left?bx:bx+bw-charge,67,charge,5);
+        if(overdrive){for(let i=0;i<4;i++){g.fillStyle=i<f.special.charges?'#b5f1c9':'#244438';g.fillRect(bx+3+i*10,68,6,3);}}
+        if(ready){g.fillStyle=boxingShow.frame%48<30?'#fff4be':'#c09d58';g.fillRect(x+w-5,68,2,3);}
+        if(active){g.fillStyle=state.color;const stripe=Math.floor((boxingShow.frame%32)/32*(bw-12));g.fillRect(bx+stripe,69,12,1);}
+        g.fillStyle='#0b1521';g.fillRect(bx-1,79,bw+2,11);g.textAlign='left';g.font='bold 8px monospace';g.fillStyle=state.color;
+        g.fillRect(bx,83,3,3);g.fillText(state.label,bx+7,88);
         if(f.comboCount>1&&f.comboTimer>0){
             const cx=left?10:346,pulse=v.comboPulse>4?1:0;
             g.fillStyle='rgba(5,12,23,.92)';g.fillRect(cx,263,94,27);g.fillStyle=accent;g.fillRect(cx,263,94,2);
@@ -370,11 +392,14 @@ function drawBoxingFightHud(g){
             g.font='bold '+(12+pulse)+'px monospace';g.fillStyle='#ffe093';g.fillText(f.comboCount+' HITS',cx+7,286);
         }
     }
-    // The fight has no time limit: the central plate describes the real KO condition.
-    g.fillStyle='#111b27';g.fillRect(198,9,54,53);g.strokeStyle='#627482';g.strokeRect(198.5,9.5,53,52);
-    g.textAlign='center';g.font='bold 8px monospace';g.fillStyle='#e5e8df';g.fillText('BOXE',225,22);
-    g.fillStyle='#dca66d';g.fillRect(208,29,9,8);g.fillRect(233,29,9,8);g.fillRect(216,33,5,3);g.fillRect(229,33,5,3);
-    g.fillStyle='#263643';g.fillRect(205,42,40,1);g.font='7px monospace';g.fillStyle='#bdd0d7';g.fillText('ATÉ O KO',225,55);
+    const r=boxeGame.rounds,seconds=Math.ceil(r.remaining/60),urgent=seconds<=10&&!r.suddenDeath;
+    g.fillStyle='#111b27';g.fillRect(198,9,54,67);g.strokeStyle=urgent?'#db967c':'#627482';g.strokeRect(198.5,9.5,53,66);
+    g.textAlign='center';g.font='bold 7px monospace';g.fillStyle='#e5e8df';g.fillText('ROUND',225,21);g.fillText(r.number+'/3',225,31);
+    g.font='bold 12px monospace';g.fillStyle=urgent?'#ffc395':r.suddenDeath?'#f19fac':'#eceddc';
+    const time=r.suddenDeath?'SD':Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');g.fillText(time,225,48);
+    g.font='bold 9px monospace';g.fillStyle='#e4c890';g.fillText(r.wins.zorp+'—'+r.wins.master,225,61);
+    g.font='6px monospace';g.fillStyle='#aec2ca';g.fillText(r.suddenDeath?'1 GOLPE':r.number===3?'FINAL':'MELHOR DE 3',225,71);
+    if(urgent&&seconds<=5&&boxingShow.frame%32<16){g.fillStyle='#e9a17e';g.fillRect(207,51,36,1);}
     g.restore();
 }
 function drawBoxingReadableEffects(){
@@ -398,4 +423,42 @@ function drawBoxingReadableEffects(){
         const x=boxingClamp(Math.round(e.x),38,412),y=Math.round(e.y-14-t*11);
         ctx.strokeStyle='#09111b';ctx.lineWidth=3;ctx.strokeText(e.text,x,y);ctx.fillStyle=e.color;ctx.fillText(e.text,x,y);
     }ctx.restore();
+}
+
+function drawBoxingRoundOverlay(g){
+    const phase=boxeGame.phase,r=boxeGame.rounds;
+    if(phase==='KNOCKDOWN'){
+        const count=boxeGame.knockdown?.count||0;g.save();g.imageSmoothingEnabled=false;g.textAlign='center';
+        g.fillStyle='rgba(4,10,20,.92)';g.fillRect(184,99,82,38);g.strokeStyle='#ad9271';g.strokeRect(184.5,99.5,81,37);
+        g.fillStyle='#c5d4d7';g.font='bold 7px monospace';g.fillText(count?'CONTAGEM':'KNOCKDOWN',225,109);
+        g.font='bold 24px monospace';g.fillStyle='#ffe7b0';g.fillText(count?String(count):'KO',225,132);g.restore();return;
+    }
+    if(!['INTRO','ROUND_RESULT','INTERMISSION','RESULT','READY'].includes(phase))return;
+    const final=phase==='RESULT';
+    g.save();g.imageSmoothingEnabled=false;g.textAlign='center';
+    g.fillStyle='rgba(4,10,20,.9)';g.fillRect(77,104,296,81);g.strokeStyle='#677987';g.lineWidth=1;g.strokeRect(77.5,104.5,295,80);
+    const decider=phase==='INTRO'&&r.number===3&&r.wins.zorp===1&&r.wins.master===1;
+    if(decider){g.fillStyle=boxingShow.frame%36<18?'#c98a67':'#92707b';g.fillRect(81,100,288,2);g.fillRect(81,187,288,2);}
+    g.fillStyle=final?'#f2d38c':'#e7ad7f';g.fillRect(84,105,282,2);
+    let title='',main='',sub='',bottom='';
+    if(phase==='READY'){title='MELHOR DE TRÊS';main='BOXE';sub='Dois rounds para vencer';bottom='ENTER / COMEÇAR';}
+    if(phase==='INTRO'){
+        const elapsed=r.introTotal-boxeGame.introFrames;
+        title=r.suddenDeath?'SUDDEN DEATH':r.number===3?'FINAL ROUND':'ROUND '+r.number+' / 3';
+        if(r.suddenDeath){main=elapsed<60?'1 GOLPE LIMPO':'LUTE!';sub='Bloqueios não decidem o round';}
+        else{main=elapsed<24?'ROUND '+r.number:elapsed<114?String(3-Math.floor((elapsed-24)/30)):'LUTE!';sub='ZORP '+r.wins.zorp+' — '+r.wins.master+' MESTRE';}
+        bottom='PREPARE-SE';
+    }
+    if(phase==='ROUND_RESULT'){
+        title='FIM DO ROUND '+r.number+' / '+r.result.reason;
+        main=r.result.winner==='zorp'?'ZORP VENCE':'MESTRE VENCE';
+        sub='ZORP '+r.wins.zorp+' — '+r.wins.master+' MESTRE';
+        bottom=r.wins.zorp>=2||r.wins.master>=2?'LUTA ENCERRADA':'PRÓXIMO ROUND EM INSTANTES';
+    }
+    if(phase==='INTERMISSION'){title='INTERVALO';main=r.wins.zorp+' — '+r.wins.master;sub='ZORP                 MESTRE';bottom='PRÓXIMO: ROUND '+(r.number+1);}
+    if(final){title='RESULTADO FINAL';main=boxeGame.winner==='zorp'?'VITÓRIA':'DERROTA';sub='ZORP '+r.wins.zorp+' — '+r.wins.master+' MESTRE';bottom='R REINICIAR / ESC VOLTAR À ILHA';}
+    g.font='bold 8px monospace';g.fillStyle='#c5d4d7';g.fillText(title,225,119);
+    g.font='bold '+(main.length<4?25:18)+'px monospace';g.fillStyle=final&&boxeGame.winner==='master'?'#f2a0a3':'#ffe7b0';g.fillText(main,225,143);
+    g.font='9px monospace';g.fillStyle='#e6e7dc';g.fillText(sub,225,159);
+    g.font='7px monospace';g.fillStyle='#a8c0cb';g.fillText(bottom,225,176);g.restore();
 }

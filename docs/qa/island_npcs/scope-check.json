@@ -1,0 +1,54 @@
+{
+  "existingNpcDefinitionsIdentical": true,
+  "protectedSHA256": {
+    "festival_economy.js": "836abc26ccb7ee443fc0b609f837b90999e01d0659d7b8149b8d00ba9300461b",
+    "climb_island.js": "8acbda8f8548f9a8d81cf93586b636037541ca673ecec6d20f1e105e3501aa1c",
+    "boxing_arena.js": "946c23cd9158a391c98fb6f53af6bec814f60d30539b39388ee720185fe44cb4",
+    "boxing_rounds.js": "f6cf3b95a6f8734431054f8b869540f2a5f5f66870caa9ae37020c8cfad5a2a0",
+    "captain_route.js": "c194c89b483d992086f34f1abbdab1f99a69b98845cf7a9983e389da084faf8c",
+    "ravok_event.js": "b4dbca9e033e42717890c5a98549ef870e9b8e3d3a28f7803a7a8f85dbbcd0c4",
+    "ravok_arrival.js": "dedf55106f37bd5fea8eb264c72b579fa626f5e2572eafb3443520741c6d39a0",
+    "medalhas_registry.js": "e15e75193c63260f1c40c33c6ea8b3b026e13348842075a40e7277f5f400ee90",
+    "race_lap_system.js": "5f1a0829c5cb28ae161e7fd833b92bbd19c449c3d3c45dfe90cf8af2c38d5a08",
+    "pingpong_ball.js": "72eb3fc2b0f8b974e85aa470e0f4aa953403d4c40a860c7f2dab1045b208b333",
+    "pingpong_master_ai.js": "bcec6cfdbbceaed8ebdd86c2c7d7d35cbbc0b56145736045e779fbfe4621e866",
+    "archery_collision.js": "3ab7fa86463dedcbc298913815b5047b31bf64fc5fe8f8a7207c1a8a2e2feb24",
+    "archery_bird_targets.js": "e6fbf1a0cd53569385b38b2235f21b6464468d27c18aac1a29fc3f02ff1636aa",
+    "npcs_pingpong.png": "7c57925296265ca09fb2c2f65bd1bde7b8212e51eebc1d3086349c8f8e1fe0ac",
+    "npcs_basquete.png": "06d3566ddabc1bc81326b6b0653783e943a1072867343283c07ccc333344421b",
+    "npcs_corrida.png": "4f89955a47fddc631bd74d3123217ec12c95f4ec5295548ff15fa8e408bb3f4a",
+    "npcs_skate.png": "704073089cec9243e524ffe9102a30b7ef097784b85b27a6afe7a13d606eeada",
+    "npcs_arquearia.png": "c668d7fdc1f4f332330e6ffaa09fe9931d16820850dc6e090ee3e13312460286",
+    "npcs_surf.png": "f680be32a1de9077691fbdb339ea98d6eead4afd3c642871a222a38bccb7bc96"
+  },
+  "modified": [
+    "script.js",
+    "overworld_visuals.js",
+    "festival_challenges.js",
+    "index.html",
+    "basketball_1v1.js",
+    "corrida_maratona.js",
+    "surf_endless.js",
+    "skate/skate_ollie_runtime.js"
+  ],
+  "added": [
+    "normal_island_npcs.js",
+    "normal_npc_geometry.js",
+    "normal_npc_geometry.json",
+    "island_npcs.test.cjs",
+    "tools/prepare_normal_island_npcs.py"
+  ],
+  "integratedSHA256": {
+    "script.js": "7405054536e74103e18a75f004f166c2f8242c7e491ae80c3006813d4745a624",
+    "overworld_visuals.js": "e5aeea095ebdf9207fe8506823a273fbcd8a0b13e8a231f4b63831ccab8f8f0d",
+    "festival_challenges.js": "fdd1294397282e84f1510e7387ab279293166f6b5327cd9f9950f30b2f3bf371",
+    "index.html": "587710d773ad51bc84fed81c1027f11e858465e63e24031f66cc2b8d4e3e76d9",
+    "basketball_1v1.js": "b3f219dbd8f01a316502efb507d341c8576836e56da159f6a4e5627811031cdb",
+    "corrida_maratona.js": "9f6a2fc268090bcafe2894fdb9eb36529349cb15d233980297348f80f0b94bca",
+    "surf_endless.js": "a593c22aa5a2d4125daf3d724c27b9a6a80086f1f03caa9fcf17829a3664b1fe",
+    "skate/skate_ollie_runtime.js": "9c2fa1d7cf6a59c87a23a909ed0ba414f501ce33a37ee62d61b5fb401ed4ffb8",
+    "normal_island_npcs.js": "169b3c4801b4def9b5f0d876dc0e9df9446fbc7b9eb846c82040e4d760d64253",
+    "normal_npc_geometry.js": "89574e36250ff6b4978c543d5631c63a1e4852266d5866c46877dbc1939bd5cd",
+    "normal_npc_geometry.json": "b71924ce0bb24230f659a467196d06dbc19362d466c18d66d62b083b7834ed7c"
+  }
+}

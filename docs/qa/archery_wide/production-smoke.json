@@ -1,0 +1,638 @@
+{
+  "state": {
+    "width": 900,
+    "height": 480,
+    "game": {
+      "scene": "JOGO_ARCO",
+      "state": "PLAYING",
+      "phase": 0,
+      "phaseName": "INTRODUCAO",
+      "secondsRemaining": 60,
+      "scores": {
+        "player": 0,
+        "master": 0
+      },
+      "player": {
+        "x": 220,
+        "y": 448,
+        "state": "IDLE"
+      },
+      "master": {
+        "x": 680,
+        "y": 326,
+        "state": "IDLE"
+      },
+      "shooterArea": {
+        "left": 48,
+        "right": 852,
+        "front": 432,
+        "back": 458
+      },
+      "playerInBounds": true,
+      "masterInBounds": true,
+      "overlapAllowed": false,
+      "field": {
+        "width": 900,
+        "height": 480,
+        "camera": "FIXED_FULL_FIELD",
+        "bands": {
+          "NEAR": {
+            "waterY": 246,
+            "kind": "NORMAL_LARGE",
+            "speed": "SLOW"
+          },
+          "MID": {
+            "waterY": 206,
+            "kind": "NORMAL_MEDIUM",
+            "speed": "MEDIUM"
+          },
+          "FAR": {
+            "waterY": 166,
+            "kind": "NORMAL_SMALL",
+            "speed": "FAST"
+          }
+        }
+      },
+      "masterArea": {
+        "left": 48,
+        "right": 852,
+        "front": 312,
+        "back": 332
+      },
+      "targets": 1,
+      "targetTypes": [
+        "NORMAL_LARGE"
+      ],
+      "targetPaths": [
+        {
+          "id": 1,
+          "carrier": "RIVER",
+          "explosive": false,
+          "detonated": false,
+          "path": "STRAIGHT",
+          "band": "NEAR",
+          "entry": "LEFT",
+          "exit": "RIGHT",
+          "speed": "SLOW",
+          "size": "LARGE",
+          "golden": false,
+          "goldenVariant": null,
+          "progress": 0.031,
+          "visible": true,
+          "state": "ENTERING",
+          "radius": 18,
+          "x": -12.8,
+          "y": 225,
+          "waterY": 246,
+          "active": true
+        }
+      ],
+      "pendingTargets": 2,
+      "arrows": 0,
+      "effects": 0,
+      "stats": {
+        "playerShots": 0,
+        "mestreShots": 0,
+        "playerHits": 0,
+        "mestreHits": 0,
+        "playerBullseyes": 0,
+        "mestreBullseyes": 0,
+        "playerMisses": 0,
+        "mestreMisses": 0,
+        "maxTargets": 1,
+        "spawnedTypes": {
+          "NORMAL_LARGE": 1
+        },
+        "pathTypes": {
+          "STRAIGHT": 1
+        },
+        "speedTiers": {
+          "SLOW": 1
+        },
+        "patternCounts": {
+          "OPENING_CURRENT": 1
+        },
+        "normalTargetsSpawned": 1,
+        "goldenTargetsSpawned": 0,
+        "goldenHits": {
+          "PLAYER": 0,
+          "MESTRE": 0
+        },
+        "goldenBullseyes": {
+          "PLAYER": 0,
+          "MESTRE": 0
+        },
+        "goldenVariantCounts": {},
+        "goldenAppearances": [],
+        "birdTargetsSpawned": 0,
+        "birdHits": {
+          "PLAYER": 0,
+          "MESTRE": 0
+        },
+        "birdExits": 0,
+        "maxBirds": 0,
+        "explosivesSpawned": 0,
+        "detonations": 0,
+        "explosionHits": 0,
+        "maxChain": 0,
+        "maxExplosionCombo": 0,
+        "comboBonuses": {
+          "PLAYER": 0,
+          "MESTRE": 0
+        },
+        "explosionEvents": [],
+        "targetExits": 0,
+        "spentTargetExits": 0,
+        "lifecycleEvents": [
+          {
+            "type": "SPAWN_OUTSIDE",
+            "id": 1,
+            "frame": 1,
+            "x": -43.4,
+            "y": 225,
+            "state": "ENTERING"
+          },
+          {
+            "type": "ENTERED",
+            "id": 1,
+            "frame": 10,
+            "x": -34.9,
+            "y": 225,
+            "state": "ENTERING"
+          }
+        ],
+        "teleportEvents": 0,
+        "maxTargetStep": 0.8500000000000014,
+        "lastImpacts": [],
+        "boundaryClampEvents": 0,
+        "boundsViolations": 0,
+        "playerRange": {
+          "minX": 220,
+          "maxX": 220,
+          "minY": 448,
+          "maxY": 448
+        },
+        "mestreRange": {
+          "minX": 680,
+          "maxX": 680,
+          "minY": 326,
+          "maxY": 326
+        },
+        "fps": {
+          "samples": 36,
+          "average": 60.207075491280726,
+          "minimum": 47.169811479898485,
+          "lastTime": 3910
+        }
+      },
+      "assets": {
+        "assetSet": "archery_assets_2026",
+        "manifestFrames": 89,
+        "runtimeFrames": 69,
+        "loaded": 69,
+        "failed": 0,
+        "ready": true,
+        "invalidDrawCalls": 0
+      },
+      "characters": {
+        "version": "2.0.0",
+        "loaded": 2,
+        "failed": 0,
+        "ready": true,
+        "frames": {
+          "zorp": 44,
+          "master": 44
+        },
+        "canvas": [
+          192,
+          240
+        ],
+        "anchor": [
+          96,
+          228
+        ],
+        "scale": 0.46,
+        "orientation": "BACK_UP",
+        "mirrored": false,
+        "actors": {
+          "PLAYER": {
+            "state": "READY",
+            "frame": "zorp_ready_03",
+            "pending": null,
+            "reaction": null,
+            "reactions": {
+              "HIT_REACTION": 0,
+              "MISS_REACTION": 0,
+              "GOLDEN_LOST": 0
+            },
+            "shown": {
+              "HIT_REACTION": 0,
+              "MISS_REACTION": 0,
+              "GOLDEN_LOST": 0
+            }
+          },
+          "MESTRE": {
+            "state": "IDLE",
+            "frame": "master_idle_03",
+            "pending": null,
+            "reaction": null,
+            "reactions": {
+              "HIT_REACTION": 0,
+              "MISS_REACTION": 0,
+              "GOLDEN_LOST": 0
+            },
+            "shown": {
+              "HIT_REACTION": 0,
+              "MISS_REACTION": 0,
+              "GOLDEN_LOST": 0
+            }
+          }
+        }
+      },
+      "environment": {
+        "name": "VALE DA CACHOEIRA",
+        "canvas": [
+          900,
+          480
+        ],
+        "camera": "FIXED_FULL_FIELD",
+        "cachedTerrain": true,
+        "waterfall": [
+          423,
+          52,
+          54,
+          80
+        ],
+        "riverMouth": [
+          0,
+          270,
+          900
+        ],
+        "dryPlatform": [
+          34,
+          283,
+          832,
+          197
+        ],
+        "animatedElements": 110,
+        "distantBirds": 3,
+        "draws": 152,
+        "gameplayObjects": 0
+      },
+      "riverTargets": {
+        "paths": [
+          "STRAIGHT",
+          "DIAGONAL",
+          "CURVE",
+          "S_CURVE",
+          "WAVE",
+          "ARC",
+          "ELLIPSE"
+        ],
+        "speeds": {
+          "SLOW": 0.85,
+          "MEDIUM": 1.35,
+          "FAST": 1.95
+        },
+        "sourceLip": 130,
+        "routeCache": 1,
+        "audio": "LOCKED",
+        "voices": 0,
+        "voiceStarts": 0,
+        "voiceEnds": 0,
+        "ignoredEndEvents": 0,
+        "peakVoices": 0,
+        "maxVoices": 6,
+        "audioCounts": {
+          "draw": 0,
+          "release": 0,
+          "impact": 0,
+          "bullseye": 0,
+          "explosion": 0,
+          "combo": 0
+        },
+        "mixGain": 0,
+        "limiter": false,
+        "explosionSounds": 0,
+        "geometry": "MOVING_CIRCLE_VS_ARROW_TIP"
+      },
+      "birdTargets": {
+        "radius": 8,
+        "basePoints": 48,
+        "bodyOffset": 25,
+        "firstSeconds": 9,
+        "plannedSeconds": [],
+        "maxPerRound": 10,
+        "maxSimultaneous": 2,
+        "spawnPolicy": "AUTHORED_WAVES",
+        "flights": [
+          {
+            "entry": "LEFT",
+            "path": "HORIZONTAL",
+            "y": 110,
+            "rise": 0,
+            "arc": 0,
+            "speed": 1.85
+          },
+          {
+            "entry": "RIGHT",
+            "path": "DIAGONAL",
+            "y": 122,
+            "rise": 25,
+            "arc": 0,
+            "speed": 1.95
+          },
+          {
+            "entry": "LEFT",
+            "path": "ARC",
+            "y": 166,
+            "rise": 0,
+            "arc": -22,
+            "speed": 2
+          },
+          {
+            "entry": "RIGHT",
+            "path": "ARC",
+            "y": 183,
+            "rise": -14,
+            "arc": -15,
+            "speed": 2.05
+          }
+        ],
+        "collision": "HANGING_DISK_ONLY"
+      },
+      "explosiveTargets": {
+        "radius": 62,
+        "bonus": {
+          "twoToThree": 15,
+          "fourToFive": 40,
+          "sixPlus": 80
+        },
+        "collision": "CIRCLE_VS_TARGET_DISK",
+        "chain": "BOUNDED_BREADTH_FIRST",
+        "damagesActors": false,
+        "damagesBirds": false
+      },
+      "goldenTargets": {
+        "maxPerRound": 2,
+        "minIntervalSeconds": 15,
+        "centerBonus": 90,
+        "variants": [
+          "RAPIDS",
+          "ARC",
+          "SKY"
+        ],
+        "phaseChances": [
+          0,
+          0,
+          0.65,
+          0.9
+        ],
+        "phaseWindows": [
+          [
+            32,
+            35
+          ],
+          [
+            51,
+            54
+          ]
+        ],
+        "bird": {
+          "radius": 7,
+          "basePoints": 180,
+          "speed": 2.4
+        },
+        "visual": "BEVELLED_SUN_MEDALLION",
+        "pending": 2
+      },
+      "masterAI": {
+        "config": {
+          "reactionDelay": 30,
+          "decisionTime": 17,
+          "accuracy": 0.71,
+          "sampleInterval": 6,
+          "ready": 9,
+          "raise": 11,
+          "draw": 12,
+          "aim": 14,
+          "release": 8,
+          "recovery": 20,
+          "cooldown": 54,
+          "moveSpeed": 3.2,
+          "maxPrediction": 100,
+          "maxRaiseWait": 72,
+          "scanInterval": 10,
+          "minSkill": 0.3,
+          "maxSkill": 0.88,
+          "minAimError": 3.5,
+          "minReactionDelay": 15,
+          "maxAccuracy": 0.84
+        },
+        "state": "OBSERVE",
+        "stateAge": 36,
+        "targetId": null,
+        "observed": 0,
+        "masterSkill": 0.3058,
+        "profile": {
+          "masterSkill": 0.3058,
+          "progress": 0.01,
+          "reactionDelay": 42,
+          "decisionTime": 24,
+          "accuracy": 0.5826,
+          "aimError": 4.49,
+          "prediction": 0.8212999999999999,
+          "selectionError": 0.2384,
+          "comboAwareness": 0.35469999999999996,
+          "ready": 10,
+          "raise": 12,
+          "draw": 14,
+          "aim": 18,
+          "release": 8,
+          "recovery": 24,
+          "cooldown": 66,
+          "moveSpeed": 3.004
+        },
+        "timing": {
+          "masterSkill": 0.3,
+          "progress": 0,
+          "reactionDelay": 42,
+          "decisionTime": 24,
+          "accuracy": 0.58,
+          "aimError": 4.5,
+          "prediction": 0.82,
+          "selectionError": 0.24,
+          "comboAwareness": 0.35,
+          "ready": 10,
+          "raise": 12,
+          "draw": 14,
+          "aim": 18,
+          "release": 8,
+          "recovery": 24,
+          "cooldown": 66,
+          "moveSpeed": 3
+        },
+        "cooldown": 0,
+        "shots": 0,
+        "decisions": 0,
+        "cancellations": 0,
+        "selection": null,
+        "lockedAim": null,
+        "candidates": [],
+        "attempts": {
+          "NORMAL": 0,
+          "FAST": 0,
+          "BIRD": 0,
+          "GOLDEN": 0,
+          "EXPLOSIVE": 0
+        },
+        "opponent": null,
+        "events": []
+      },
+      "playerControl": {
+        "state": "IDLE",
+        "age": 36,
+        "cooldown": 0,
+        "buffer": 0,
+        "accepted": 0,
+        "rejected": 0,
+        "buffered": 0,
+        "shots": 0,
+        "lastPressFrame": null,
+        "lastReleaseFrame": null,
+        "aim": {
+          "x": 0.05974764391563355,
+          "y": -0.9982135137567165,
+          "angle": 0.059783248807967614
+        },
+        "config": {
+          "cooldown": 30,
+          "raise": 4,
+          "draw": 5,
+          "release": 5,
+          "recovery": 8,
+          "inputBuffer": 6
+        },
+        "held": false,
+        "model": "POSITIONAL_UPWARD_SHOT",
+        "maxAngleDegrees": 6.84277341263094
+      },
+      "pacing": {
+        "phase": 0,
+        "waveCounts": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "waves": [
+          {
+            "id": "OPENING_CURRENT",
+            "phase": 0,
+            "frame": 0
+          }
+        ],
+        "phaseEntries": [
+          {
+            "phase": 0,
+            "frame": 0
+          }
+        ],
+        "phases": [
+          {
+            "spawns": 1,
+            "normal": 1,
+            "birds": 0,
+            "explosives": 0,
+            "golden": 0,
+            "playerShots": 0,
+            "masterShots": 0,
+            "speeds": {
+              "SLOW": 1
+            },
+            "activeSamples": 36,
+            "activeTotal": 7,
+            "maxActive": 1
+          },
+          {
+            "spawns": 0,
+            "normal": 0,
+            "birds": 0,
+            "explosives": 0,
+            "golden": 0,
+            "playerShots": 0,
+            "masterShots": 0,
+            "speeds": {},
+            "activeSamples": 0,
+            "activeTotal": 0,
+            "maxActive": 0
+          },
+          {
+            "spawns": 0,
+            "normal": 0,
+            "birds": 0,
+            "explosives": 0,
+            "golden": 0,
+            "playerShots": 0,
+            "masterShots": 0,
+            "speeds": {},
+            "activeSamples": 0,
+            "activeTotal": 0,
+            "maxActive": 0
+          },
+          {
+            "spawns": 0,
+            "normal": 0,
+            "birds": 0,
+            "explosives": 0,
+            "golden": 0,
+            "playerShots": 0,
+            "masterShots": 0,
+            "speeds": {},
+            "activeSamples": 0,
+            "activeTotal": 0,
+            "maxActive": 0
+          }
+        ],
+        "countdown": [],
+        "settleFrames": 0,
+        "arrowsAtBuzzer": 0,
+        "scoresAtBuzzer": null,
+        "finalScores": null
+      },
+      "hasNaN": false
+    }
+  },
+  "back": {
+    "width": 450,
+    "height": 300
+  },
+  "handoff": {
+    "scene": "RAVOK_ARRIVAL",
+    "width": 450,
+    "height": 300,
+    "arrival": {
+      "active": true,
+      "pending": true,
+      "seen": false,
+      "phase": "FADE_OUT",
+      "time": 0.03610000002384186,
+      "elapsed": 0.03610000002384186,
+      "line": 0,
+      "dialogue": null,
+      "readyScene": null,
+      "completedRuns": 0,
+      "saveFailed": false,
+      "duration": 28.85,
+      "k7Outside": false,
+      "ravokOutside": false,
+      "returnPoint": [
+        "ILHA_ARCO",
+        225,
+        150
+      ]
+    }
+  },
+  "errors": [],
+  "httpErrors": []
+}

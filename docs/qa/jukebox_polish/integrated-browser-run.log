@@ -1,0 +1,13 @@
+PASS No mini-player or automatic music before the player starts a theme
+PASS Actual ship F -> Jukebox -> play: music continues after closing menu, player appears beside coins
+PASS All four arrangements produce real WebAudio output; pointer skip updates track name and cycles songs
+PASS Mute actually silences master audio; unmute keeps theme, icon/label update and focus returns to game
+PASS World movement still works immediately after using player buttons
+PASS Music and mini-player follow Overworld island changes
+PASS Minigame pauses jukebox and hides controls; returning resumes chosen theme
+PASS Cinematics keep their own audio space; jukebox resumes after them
+PASS 600/450/360px layouts keep player alongside wallet, fully inside screen
+PASS Main menu stops the jukebox rather than leaking music into endings/new campaign
+PASS Reload retains purchased jukebox/unlocked themes, without forced autoplay
+PASS Zero runtime exceptions, console errors/warnings, 404 or failed asset requests
+COMPLETE 12

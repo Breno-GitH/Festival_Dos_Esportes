@@ -1,0 +1,1509 @@
+[
+  {
+    "seed": 1,
+    "scores": {
+      "zorp": 779,
+      "master": 902
+    },
+    "state": "GAMEOVER",
+    "activePeak": 9,
+    "phases": [
+      {
+        "spawns": 11,
+        "meanActive": 1.899888765294772,
+        "peak": 5
+      },
+      {
+        "spawns": 13,
+        "meanActive": 5.485555555555556,
+        "peak": 8
+      },
+      {
+        "spawns": 16,
+        "meanActive": 6.914444444444444,
+        "peak": 9
+      },
+      {
+        "spawns": 21,
+        "meanActive": 5.1065482796892345,
+        "peak": 9
+      }
+    ],
+    "targetTypes": {
+      "NORMAL_LARGE": 14,
+      "NORMAL_MEDIUM": 21,
+      "BIRD_TARGET": 4,
+      "EXPLOSIVE": 6,
+      "NORMAL_SMALL": 15,
+      "GOLD_ARC": 1
+    },
+    "maxStep": 2.2999999999976395,
+    "boundsViolations": 0,
+    "explosions": [
+      {
+        "frame": 1550,
+        "owner": "PLAYER",
+        "targets": [
+          15,
+          14,
+          16,
+          18
+        ],
+        "detonations": 1,
+        "bonus": 40
+      },
+      {
+        "frame": 2347,
+        "owner": "MESTRE",
+        "targets": [
+          29,
+          28,
+          30
+        ],
+        "detonations": 1,
+        "bonus": 15
+      },
+      {
+        "frame": 2799,
+        "owner": "MESTRE",
+        "targets": [
+          42,
+          35,
+          43
+        ],
+        "detonations": 2,
+        "bonus": 15
+      },
+      {
+        "frame": 3492,
+        "owner": "PLAYER",
+        "targets": [
+          57,
+          58,
+          59
+        ],
+        "detonations": 2,
+        "bonus": 15
+      }
+    ],
+    "waves": [
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 0
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 0,
+        "frame": 240
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 0,
+        "frame": 480
+      },
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 720
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 900
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 1,
+        "frame": 1110
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 1,
+        "frame": 1320
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 1,
+        "frame": 1530
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 1740
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 1800
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 2,
+        "frame": 1985
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 2,
+        "frame": 2170
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 2,
+        "frame": 2355
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 2540
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 2700
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 2870
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 3,
+        "frame": 3040
+      },
+      {
+        "id": "FINAL_SWEEP",
+        "phase": 3,
+        "frame": 3210
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 3380
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 3550
+      }
+    ],
+    "playerShots": 86,
+    "masterShots": 20
+  },
+  {
+    "seed": 2,
+    "scores": {
+      "zorp": 604,
+      "master": 628
+    },
+    "state": "GAMEOVER",
+    "activePeak": 10,
+    "phases": [
+      {
+        "spawns": 11,
+        "meanActive": 1.8876529477196886,
+        "peak": 5
+      },
+      {
+        "spawns": 13,
+        "meanActive": 5.308888888888889,
+        "peak": 8
+      },
+      {
+        "spawns": 16,
+        "meanActive": 5.628888888888889,
+        "peak": 8
+      },
+      {
+        "spawns": 21,
+        "meanActive": 7.503884572697003,
+        "peak": 10
+      }
+    ],
+    "targetTypes": {
+      "NORMAL_LARGE": 14,
+      "NORMAL_MEDIUM": 21,
+      "BIRD_TARGET": 4,
+      "EXPLOSIVE": 6,
+      "NORMAL_SMALL": 15,
+      "GOLD_FAST": 1
+    },
+    "maxStep": 2.349999999996367,
+    "boundsViolations": 0,
+    "explosions": [
+      {
+        "frame": 1550,
+        "owner": "PLAYER",
+        "targets": [
+          15,
+          14,
+          16,
+          18,
+          20
+        ],
+        "detonations": 1,
+        "bonus": 40
+      },
+      {
+        "frame": 2573,
+        "owner": "MESTRE",
+        "targets": [
+          29,
+          32
+        ],
+        "detonations": 1,
+        "bonus": 15
+      },
+      {
+        "frame": 3030,
+        "owner": "MESTRE",
+        "targets": [
+          43,
+          41,
+          42,
+          44
+        ],
+        "detonations": 2,
+        "bonus": 40
+      }
+    ],
+    "waves": [
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 0
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 0,
+        "frame": 240
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 0,
+        "frame": 480
+      },
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 720
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 900
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 1,
+        "frame": 1110
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 1,
+        "frame": 1320
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 1,
+        "frame": 1530
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 1740
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 1800
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 2,
+        "frame": 1985
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 2,
+        "frame": 2170
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 2,
+        "frame": 2355
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 2540
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 2700
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 2870
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 3,
+        "frame": 3040
+      },
+      {
+        "id": "FINAL_SWEEP",
+        "phase": 3,
+        "frame": 3210
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 3380
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 3550
+      }
+    ],
+    "playerShots": 94,
+    "masterShots": 20
+  },
+  {
+    "seed": 3,
+    "scores": {
+      "zorp": 1177,
+      "master": 220
+    },
+    "state": "GAMEOVER",
+    "activePeak": 10,
+    "phases": [
+      {
+        "spawns": 11,
+        "meanActive": 1.9132369299221357,
+        "peak": 5
+      },
+      {
+        "spawns": 13,
+        "meanActive": 5.551111111111111,
+        "peak": 8
+      },
+      {
+        "spawns": 16,
+        "meanActive": 4.441111111111111,
+        "peak": 8
+      },
+      {
+        "spawns": 21,
+        "meanActive": 5.758046614872364,
+        "peak": 10
+      }
+    ],
+    "targetTypes": {
+      "NORMAL_LARGE": 14,
+      "NORMAL_MEDIUM": 21,
+      "BIRD_TARGET": 4,
+      "EXPLOSIVE": 6,
+      "NORMAL_SMALL": 15,
+      "GOLD_ARC": 1
+    },
+    "maxStep": 2.2999999999976124,
+    "boundsViolations": 0,
+    "explosions": [
+      {
+        "frame": 1550,
+        "owner": "PLAYER",
+        "targets": [
+          15,
+          14,
+          16,
+          18
+        ],
+        "detonations": 1,
+        "bonus": 40
+      },
+      {
+        "frame": 2111,
+        "owner": "PLAYER",
+        "targets": [
+          29,
+          26,
+          30
+        ],
+        "detonations": 1,
+        "bonus": 15
+      },
+      {
+        "frame": 2811,
+        "owner": "PLAYER",
+        "targets": [
+          42,
+          43,
+          44
+        ],
+        "detonations": 2,
+        "bonus": 15
+      },
+      {
+        "frame": 3514,
+        "owner": "PLAYER",
+        "targets": [
+          57,
+          58,
+          59
+        ],
+        "detonations": 2,
+        "bonus": 15
+      }
+    ],
+    "waves": [
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 0
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 0,
+        "frame": 240
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 0,
+        "frame": 480
+      },
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 720
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 900
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 1,
+        "frame": 1110
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 1,
+        "frame": 1320
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 1,
+        "frame": 1530
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 1740
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 1800
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 2,
+        "frame": 1985
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 2,
+        "frame": 2170
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 2,
+        "frame": 2355
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 2540
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 2700
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 2870
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 3,
+        "frame": 3040
+      },
+      {
+        "id": "FINAL_SWEEP",
+        "phase": 3,
+        "frame": 3210
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 3380
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 3550
+      }
+    ],
+    "playerShots": 85,
+    "masterShots": 12
+  },
+  {
+    "seed": 4,
+    "scores": {
+      "zorp": 713,
+      "master": 714
+    },
+    "state": "GAMEOVER",
+    "activePeak": 11,
+    "phases": [
+      {
+        "spawns": 11,
+        "meanActive": 1.885428253615128,
+        "peak": 5
+      },
+      {
+        "spawns": 13,
+        "meanActive": 5.306666666666667,
+        "peak": 8
+      },
+      {
+        "spawns": 16,
+        "meanActive": 5.684444444444445,
+        "peak": 8
+      },
+      {
+        "spawns": 21,
+        "meanActive": 7.017758046614873,
+        "peak": 11
+      }
+    ],
+    "targetTypes": {
+      "NORMAL_LARGE": 14,
+      "NORMAL_MEDIUM": 21,
+      "BIRD_TARGET": 4,
+      "EXPLOSIVE": 6,
+      "NORMAL_SMALL": 15,
+      "GOLD_FAST": 1
+    },
+    "maxStep": 2.349999999996367,
+    "boundsViolations": 0,
+    "explosions": [
+      {
+        "frame": 1550,
+        "owner": "PLAYER",
+        "targets": [
+          15,
+          14,
+          16,
+          18,
+          20
+        ],
+        "detonations": 1,
+        "bonus": 40
+      },
+      {
+        "frame": 2316,
+        "owner": "MESTRE",
+        "targets": [
+          29
+        ],
+        "detonations": 1,
+        "bonus": 0
+      },
+      {
+        "frame": 3055,
+        "owner": "MESTRE",
+        "targets": [
+          42,
+          41,
+          43,
+          44,
+          45
+        ],
+        "detonations": 2,
+        "bonus": 40
+      },
+      {
+        "frame": 3548,
+        "owner": "MESTRE",
+        "targets": [
+          57,
+          56,
+          58,
+          59
+        ],
+        "detonations": 2,
+        "bonus": 40
+      }
+    ],
+    "waves": [
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 0
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 0,
+        "frame": 240
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 0,
+        "frame": 480
+      },
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 720
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 900
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 1,
+        "frame": 1110
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 1,
+        "frame": 1320
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 1,
+        "frame": 1530
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 1740
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 1800
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 2,
+        "frame": 1985
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 2,
+        "frame": 2170
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 2,
+        "frame": 2355
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 2540
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 2700
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 2870
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 3,
+        "frame": 3040
+      },
+      {
+        "id": "FINAL_SWEEP",
+        "phase": 3,
+        "frame": 3210
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 3380
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 3550
+      }
+    ],
+    "playerShots": 93,
+    "masterShots": 17
+  },
+  {
+    "seed": 5,
+    "scores": {
+      "zorp": 913,
+      "master": 593
+    },
+    "state": "GAMEOVER",
+    "activePeak": 9,
+    "phases": [
+      {
+        "spawns": 11,
+        "meanActive": 1.864293659621802,
+        "peak": 4
+      },
+      {
+        "spawns": 13,
+        "meanActive": 5.233333333333333,
+        "peak": 8
+      },
+      {
+        "spawns": 16,
+        "meanActive": 5.9,
+        "peak": 8
+      },
+      {
+        "spawns": 21,
+        "meanActive": 6.002219755826859,
+        "peak": 9
+      }
+    ],
+    "targetTypes": {
+      "NORMAL_LARGE": 14,
+      "NORMAL_MEDIUM": 21,
+      "BIRD_TARGET": 4,
+      "EXPLOSIVE": 6,
+      "NORMAL_SMALL": 15,
+      "GOLD_ARC": 1
+    },
+    "maxStep": 2.2999999999976124,
+    "boundsViolations": 0,
+    "explosions": [
+      {
+        "frame": 1550,
+        "owner": "PLAYER",
+        "targets": [
+          15,
+          14,
+          16,
+          18,
+          20
+        ],
+        "detonations": 1,
+        "bonus": 40
+      },
+      {
+        "frame": 2496,
+        "owner": "MESTRE",
+        "targets": [
+          29
+        ],
+        "detonations": 1,
+        "bonus": 0
+      },
+      {
+        "frame": 2841,
+        "owner": "PLAYER",
+        "targets": [
+          42,
+          43,
+          44
+        ],
+        "detonations": 2,
+        "bonus": 15
+      }
+    ],
+    "waves": [
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 0
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 0,
+        "frame": 240
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 0,
+        "frame": 480
+      },
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 720
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 900
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 1,
+        "frame": 1110
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 1,
+        "frame": 1320
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 1,
+        "frame": 1530
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 1740
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 1800
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 2,
+        "frame": 1985
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 2,
+        "frame": 2170
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 2,
+        "frame": 2355
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 2540
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 2700
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 2870
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 3,
+        "frame": 3040
+      },
+      {
+        "id": "FINAL_SWEEP",
+        "phase": 3,
+        "frame": 3210
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 3380
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 3550
+      }
+    ],
+    "playerShots": 87,
+    "masterShots": 19
+  },
+  {
+    "seed": 6,
+    "scores": {
+      "zorp": 969,
+      "master": 423
+    },
+    "state": "GAMEOVER",
+    "activePeak": 9,
+    "phases": [
+      {
+        "spawns": 11,
+        "meanActive": 1.8909899888765296,
+        "peak": 5
+      },
+      {
+        "spawns": 13,
+        "meanActive": 5.483333333333333,
+        "peak": 8
+      },
+      {
+        "spawns": 16,
+        "meanActive": 6.546666666666667,
+        "peak": 8
+      },
+      {
+        "spawns": 21,
+        "meanActive": 6.41953385127636,
+        "peak": 9
+      }
+    ],
+    "targetTypes": {
+      "NORMAL_LARGE": 14,
+      "NORMAL_MEDIUM": 21,
+      "BIRD_TARGET": 4,
+      "EXPLOSIVE": 6,
+      "NORMAL_SMALL": 15,
+      "GOLD_SKY": 1
+    },
+    "maxStep": 2.400000000000091,
+    "boundsViolations": 0,
+    "explosions": [
+      {
+        "frame": 1550,
+        "owner": "PLAYER",
+        "targets": [
+          15,
+          14,
+          16,
+          18
+        ],
+        "detonations": 1,
+        "bonus": 40
+      },
+      {
+        "frame": 2185,
+        "owner": "MESTRE",
+        "targets": [
+          29,
+          25,
+          28,
+          30
+        ],
+        "detonations": 1,
+        "bonus": 40
+      },
+      {
+        "frame": 2811,
+        "owner": "PLAYER",
+        "targets": [
+          42,
+          35,
+          43,
+          44
+        ],
+        "detonations": 2,
+        "bonus": 40
+      },
+      {
+        "frame": 3523,
+        "owner": "PLAYER",
+        "targets": [
+          57,
+          58,
+          59
+        ],
+        "detonations": 2,
+        "bonus": 15
+      }
+    ],
+    "waves": [
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 0
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 0,
+        "frame": 240
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 0,
+        "frame": 480
+      },
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 720
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 900
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 1,
+        "frame": 1110
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 1,
+        "frame": 1320
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 1,
+        "frame": 1530
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 1740
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 1800
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 2,
+        "frame": 1985
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 2,
+        "frame": 2170
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 2,
+        "frame": 2355
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 2540
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 2700
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 2870
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 3,
+        "frame": 3040
+      },
+      {
+        "id": "FINAL_SWEEP",
+        "phase": 3,
+        "frame": 3210
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 3380
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 3550
+      }
+    ],
+    "playerShots": 85,
+    "masterShots": 16
+  },
+  {
+    "seed": 7,
+    "scores": {
+      "zorp": 804,
+      "master": 480
+    },
+    "state": "GAMEOVER",
+    "activePeak": 9,
+    "phases": [
+      {
+        "spawns": 11,
+        "meanActive": 2.375973303670745,
+        "peak": 5
+      },
+      {
+        "spawns": 13,
+        "meanActive": 5.504444444444444,
+        "peak": 8
+      },
+      {
+        "spawns": 16,
+        "meanActive": 5.923333333333333,
+        "peak": 8
+      },
+      {
+        "spawns": 21,
+        "meanActive": 5.5216426193118755,
+        "peak": 9
+      }
+    ],
+    "targetTypes": {
+      "NORMAL_LARGE": 14,
+      "NORMAL_MEDIUM": 21,
+      "BIRD_TARGET": 4,
+      "EXPLOSIVE": 6,
+      "NORMAL_SMALL": 15,
+      "GOLD_FAST": 1
+    },
+    "maxStep": 2.349999999996367,
+    "boundsViolations": 0,
+    "explosions": [
+      {
+        "frame": 1484,
+        "owner": "MESTRE",
+        "targets": [
+          15,
+          14,
+          16
+        ],
+        "detonations": 1,
+        "bonus": 15
+      },
+      {
+        "frame": 2389,
+        "owner": "PLAYER",
+        "targets": [
+          29,
+          28,
+          30
+        ],
+        "detonations": 1,
+        "bonus": 15
+      },
+      {
+        "frame": 2859,
+        "owner": "PLAYER",
+        "targets": [
+          42,
+          43,
+          44
+        ],
+        "detonations": 2,
+        "bonus": 15
+      },
+      {
+        "frame": 3527,
+        "owner": "PLAYER",
+        "targets": [
+          57,
+          58,
+          59
+        ],
+        "detonations": 2,
+        "bonus": 15
+      }
+    ],
+    "waves": [
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 0
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 0,
+        "frame": 240
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 0,
+        "frame": 480
+      },
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 720
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 900
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 1,
+        "frame": 1110
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 1,
+        "frame": 1320
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 1,
+        "frame": 1530
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 1740
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 1800
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 2,
+        "frame": 1985
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 2,
+        "frame": 2170
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 2,
+        "frame": 2355
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 2540
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 2700
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 2870
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 3,
+        "frame": 3040
+      },
+      {
+        "id": "FINAL_SWEEP",
+        "phase": 3,
+        "frame": 3210
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 3380
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 3550
+      }
+    ],
+    "playerShots": 90,
+    "masterShots": 16
+  },
+  {
+    "seed": 8,
+    "scores": {
+      "zorp": 709,
+      "master": 414
+    },
+    "state": "GAMEOVER",
+    "activePeak": 11,
+    "phases": [
+      {
+        "spawns": 11,
+        "meanActive": 2.4226918798665182,
+        "peak": 6
+      },
+      {
+        "spawns": 13,
+        "meanActive": 5.305555555555555,
+        "peak": 8
+      },
+      {
+        "spawns": 16,
+        "meanActive": 5.776666666666666,
+        "peak": 8
+      },
+      {
+        "spawns": 21,
+        "meanActive": 8.97780244173141,
+        "peak": 11
+      }
+    ],
+    "targetTypes": {
+      "NORMAL_LARGE": 14,
+      "NORMAL_MEDIUM": 21,
+      "BIRD_TARGET": 4,
+      "EXPLOSIVE": 6,
+      "NORMAL_SMALL": 15,
+      "GOLD_ARC": 1
+    },
+    "maxStep": 2.2999999999976395,
+    "boundsViolations": 0,
+    "explosions": [
+      {
+        "frame": 1550,
+        "owner": "PLAYER",
+        "targets": [
+          15,
+          14,
+          16,
+          18,
+          20
+        ],
+        "detonations": 1,
+        "bonus": 40
+      },
+      {
+        "frame": 2338,
+        "owner": "MESTRE",
+        "targets": [
+          29
+        ],
+        "detonations": 1,
+        "bonus": 0
+      },
+      {
+        "frame": 3170,
+        "owner": "MESTRE",
+        "targets": [
+          43,
+          41,
+          42,
+          44,
+          45
+        ],
+        "detonations": 2,
+        "bonus": 40
+      }
+    ],
+    "waves": [
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 0
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 0,
+        "frame": 240
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 0,
+        "frame": 480
+      },
+      {
+        "id": "OPENING_CURRENT",
+        "phase": 0,
+        "frame": 720
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 900
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 1,
+        "frame": 1110
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 1,
+        "frame": 1320
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 1,
+        "frame": 1530
+      },
+      {
+        "id": "EASY_CROSSING",
+        "phase": 1,
+        "frame": 1740
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 1800
+      },
+      {
+        "id": "EXPLOSIVE_CONFLUENCE",
+        "phase": 2,
+        "frame": 1985
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 2,
+        "frame": 2170
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 2,
+        "frame": 2355
+      },
+      {
+        "id": "DEPTH_CURRENTS",
+        "phase": 2,
+        "frame": 2540
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 2700
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 2870
+      },
+      {
+        "id": "SKY_AND_STREAM",
+        "phase": 3,
+        "frame": 3040
+      },
+      {
+        "id": "FINAL_SWEEP",
+        "phase": 3,
+        "frame": 3210
+      },
+      {
+        "id": "EXPLOSIVE_CHAIN_CURRENT",
+        "phase": 3,
+        "frame": 3380
+      },
+      {
+        "id": "FAST_SEQUENCE",
+        "phase": 3,
+        "frame": 3550
+      }
+    ],
+    "playerShots": 96,
+    "masterShots": 14
+  }
+]

@@ -1,0 +1,60 @@
+{
+  "checks": [
+    "All nine travel spawns connect to each island entrance through actual walkable ground",
+    "Capturing island backgrounds for cinematics does not falsely discover those islands",
+    "A single boundary-crossing update saves the new visit in that same update, not on the next frame",
+    "Closing backpack clears held movement/interaction; no buffered action escapes into Overworld",
+    "Restored integrated fixture retains all visits/items; no campaign reset from visual captures or UI",
+    "Integrated extras: zero runtime and asset-loading errors"
+  ],
+  "errors": [],
+  "http": [],
+  "failed": [],
+  "paths": [
+    {
+      "id": "HUB",
+      "cells": 7667,
+      "connectedToEntrance": true
+    },
+    {
+      "id": "ILHA_ESQUI",
+      "cells": 7050,
+      "connectedToEntrance": true
+    },
+    {
+      "id": "ILHA_PINGPONG",
+      "cells": 7766,
+      "connectedToEntrance": true
+    },
+    {
+      "id": "ILHA_SURF",
+      "cells": 8260,
+      "connectedToEntrance": true
+    },
+    {
+      "id": "ILHA_SKATE",
+      "cells": 7813,
+      "connectedToEntrance": true
+    },
+    {
+      "id": "ILHA_BASQUETE",
+      "cells": 8516,
+      "connectedToEntrance": true
+    },
+    {
+      "id": "ILHA_CORRIDA",
+      "cells": 8151,
+      "connectedToEntrance": true
+    },
+    {
+      "id": "ILHA_ARCO",
+      "cells": 4193,
+      "connectedToEntrance": true
+    },
+    {
+      "id": "ILHA_ESCALADA",
+      "cells": 3199,
+      "connectedToEntrance": true
+    }
+  ]
+}

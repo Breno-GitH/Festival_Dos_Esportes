@@ -1,0 +1,142 @@
+{
+  "state": {
+    "url": "http://127.0.0.1:8834/index.html",
+    "event": {
+      "state": "RAVOK_PRESENT",
+      "medals": 8,
+      "arrived": true,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokAvailable": true,
+      "ravokExited": true,
+      "ravokProposalSeen": false,
+      "ravokChoice": null,
+      "ravokChoicePosition": null,
+      "ravokEndingCompleted": false,
+      "ravokBadEndingCardReady": false,
+      "ravokBadEndingSeen": false,
+      "ravokArrested": false,
+      "exit": null,
+      "metK7": false,
+      "metRavok": false,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [
+        {
+          "id": "k7",
+          "x": 396,
+          "y": 113,
+          "height": 44,
+          "source": "K7.png",
+          "crop": [
+            37,
+            66,
+            99,
+            172
+          ],
+          "scale": 0.2619047619047619,
+          "footprint": {
+            "width": 18,
+            "height": 8
+          }
+        },
+        {
+          "id": "ravok",
+          "x": 350,
+          "y": 114,
+          "height": 44,
+          "source": "Ravok.png",
+          "crop": [
+            158,
+            15,
+            84,
+            136
+          ],
+          "scale": 0.3333333333333333,
+          "footprint": {
+            "width": 18,
+            "height": 8
+          }
+        }
+      ],
+      "assetErrors": []
+    },
+    "animation": {
+      "ready": true,
+      "source": "overworld_assets/ravok_k7_walk.png",
+      "errors": [],
+      "actors": {
+        "k7": {
+          "id": "k7",
+          "x": 396,
+          "y": 113,
+          "direction": "right",
+          "state": "IDLE",
+          "frame": 0,
+          "frameId": 9,
+          "animation": "idle_right",
+          "animationTime": 0,
+          "distance": 0,
+          "speed": 0,
+          "scaleX": 0.2619047619047619,
+          "scaleY": 0.2619047619047619,
+          "rect": {
+            "x": 379,
+            "y": 68,
+            "w": 33.523809523809526,
+            "h": 46.095238095238095
+          },
+          "sourceRect": [
+            44,
+            308,
+            89,
+            172
+          ],
+          "atlasRect": [
+            128,
+            1056,
+            128,
+            176
+          ]
+        },
+        "ravok": {
+          "id": "ravok",
+          "x": 350,
+          "y": 114,
+          "direction": "down",
+          "state": "IDLE",
+          "frame": 0,
+          "frameId": 0,
+          "animation": "idle_down",
+          "animationTime": 0,
+          "distance": 0,
+          "speed": 0,
+          "scaleX": 0.3333333333333333,
+          "scaleY": 0.3333333333333333,
+          "rect": {
+            "x": 329,
+            "y": 57,
+            "w": 42.666666666666664,
+            "h": 58.666666666666664
+          },
+          "sourceRect": [
+            158,
+            15,
+            84,
+            136
+          ],
+          "atlasRect": [
+            0,
+            0,
+            128,
+            176
+          ]
+        }
+      }
+    },
+    "renderIssues": []
+  },
+  "errors": [],
+  "httpErrors": []
+}

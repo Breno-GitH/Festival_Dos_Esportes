@@ -1,7 +1,7 @@
 /* Mestre's committed charge/dash: readable windup, physical travel, no tracking. */
 (function(global){
     'use strict';
-    const cfg=Object.freeze({chargeFrames:36,dashFrames:24,distance:220,speed:10,hitRecovery:20,whiffRecovery:36,passive:.045,cooldown:12});
+    const cfg=Object.freeze({name:'TITAN_STRAIGHT',feintAt:12,feintRecovery:18,feintRefund:45,chargeFrames:36,dashFrames:24,distance:220,speed:10,hitRecovery:20,whiffRecovery:36,passive:.045,cooldown:12});
     const atlas=BOXING_MASTER_SPECIAL_ATLAS,cache=new Map(),sheet=new Image();
     let status='loading',failed=false,serial=0;
     function buildFrames(){
@@ -26,12 +26,12 @@
         if(f.role!=='master'||f.special||status!=='ready'||f.specialCharge<100)return false;
         boxingFaceOpponent(f,target);
         f.specialCharge=0;
-        f.special={id:++serial,phase:'CHARGE',age:0,total:0,facing:f.facing,lineY:f.y,originX:f.x,
+        f.special={id:++serial,name:'TITAN_STRAIGHT',feintPlanned:!!f.titanFeintNext&&boxeGame.rounds.number>=2,feinted:false,phase:'CHARGE',age:0,total:0,facing:f.facing,lineY:f.y,originX:f.x,
             connected:false,blocked:false,dodged:false,travel:0,ghosts:[]};
         f.attack={kind:'dash_punch',frame:0,startup:cfg.chargeFrames,facing:f.facing,originY:f.y,
             landed:false,dodged:false,blocked:false,counter:false,stage:1,linked:false,specialId:f.special.id,sweepFromX:f.x};
-        f.guard=false;f.bufferedAttack=null;f.bufferFrames=0;f.counterWindow=0;f.comboCount=0;f.comboTimer=0;
-        boxingSetAnimation(f,'special');boxingShowEvent('dodge',f);return true;
+        f.titanFeintNext=false;f.guard=false;f.bufferedAttack=null;f.bufferFrames=0;f.counterWindow=0;f.comboCount=0;f.comboTimer=0;
+        boxingSetAnimation(f,'special');boxingShowEvent('titanStart',f);return true;
     }
     function shouldUse(f,target){
         if(status!=='ready'||f.special||f.specialCharge<100||f.specialCooldown||!boxingCanAct(f)||f.attack)return false;
@@ -60,7 +60,7 @@
     function finish(f,interrupted=false){
         if(f.role!=='master'||!f.special)return;
         const s=f.special;
-        f.lastSpecial={connected:s.connected,blocked:s.blocked,dodged:s.dodged,interrupted,
+        f.lastSpecial={name:'TITAN_STRAIGHT',feinted:!!s.feinted,connected:s.connected,blocked:s.blocked,dodged:s.dodged,interrupted,
             travel:s.travel,lineY:s.lineY,facing:s.facing,total:s.total};
         f.special=null;f.attack=null;boxingSetAnimation(f,'idle');
     }
@@ -72,14 +72,15 @@
         if(s.phase==='CHARGE'){
             f.attack.frame=s.age;
             // Keep the last charge frame inactive: contact begins only after physical advance.
-            if(s.age>=cfg.chargeFrames){s.phase='DASH';s.age=0;f.attack.frame=cfg.chargeFrames-1;}
+            if(s.feintPlanned&&s.age===cfg.feintAt){s.feinted=true;s.phase='FEINT_RECOVERY';s.age=0;f.attack=null;f.specialCharge=cfg.feintRefund;}
+            else if(s.age>=cfg.chargeFrames){s.phase='DASH';s.age=0;f.attack.frame=cfg.chargeFrames-1;}
         }else if(s.phase==='DASH'){
             const old=f.x;f.attack.sweepFromX=old;f.attack.frame=cfg.chargeFrames+s.age-1;
             boxingMove(f,s.facing,0,Math.min(cfg.speed,cfg.distance-s.travel),0);
             s.travel+=Math.abs(f.x-old);
             if(s.age%2===0){s.ghosts.push({x:f.x,y:f.y,name:visualName(f),facing:s.facing,life:7});if(s.ghosts.length>3)s.ghosts.shift();}
             if(s.age>=cfg.dashFrames||s.travel>=cfg.distance||Math.abs(f.x-old)<.05)recovery(f);
-        }else if(s.age>=(s.connected?cfg.hitRecovery:cfg.whiffRecovery))finish(f);
+        }else if(s.age>=(s.phase==='FEINT_RECOVERY'?cfg.feintRecovery:s.connected?cfg.hitRecovery:cfg.whiffRecovery))finish(f);
         return true;
     }
     function onContact(a,b,attack,hit){
@@ -98,7 +99,7 @@
         const s=f.special;if(!s)return null;
         if(s.phase==='CHARGE')return s.age<10?'charge_stance':s.age<20?'charge_low':'charge_arm';
         if(s.phase==='DASH')return s.age<3?'dash_drive':'dash_punch';
-        const duration=s.connected?cfg.hitRecovery:cfg.whiffRecovery;
+        const duration=s.phase==='FEINT_RECOVERY'?cfg.feintRecovery:s.connected?cfg.hitRecovery:cfg.whiffRecovery;
         return s.age<duration*.45?'recover_low':s.age<duration*.8?'recover_knee':'recover_ready';
     }
     function drawGhosts(g,f,scale){

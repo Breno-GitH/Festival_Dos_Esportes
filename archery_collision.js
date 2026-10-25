@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    const WIDTH=450, HEIGHT=300, SOURCE_LIP=118, SOURCE_BOTTOM=214, EPS=1e-10;
+    const {WIDTH,HEIGHT,SOURCE_LIP,SOURCE_BOTTOM}=window.ArcheryField,EPS=1e-10;
     const records=[];
     let debugTime=0;
     if(typeof window.ARCHERY_COLLISION_DEBUG!=='boolean')window.ARCHERY_COLLISION_DEBUG=false;

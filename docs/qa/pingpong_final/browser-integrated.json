@@ -1,0 +1,567 @@
+{
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": [],
+  "checks": [
+    "short-intro-names-START-physics-gated",
+    "1-balls-readable",
+    "3-balls-readable",
+    "5-balls-readable",
+    "10-balls-readable",
+    "global-ten-balls",
+    "rally-slow",
+    "rally-extreme",
+    "real-score-MATCH-POINT",
+    "victory-before-medal",
+    "medal-after-celebration-held-Space-blocked",
+    "victory-return-to-overworld",
+    "Master-victory-no-medal",
+    "multiball-event-and-physical-emission",
+    "live-ten-ball-physics-AI-and-effects-performance"
+  ],
+  "crowd": {
+    "count": 60,
+    "humans": 36,
+    "aliens": 24,
+    "poses": 6,
+    "atlasBuilds": 1,
+    "signature": "H#e0bda1402|H#875e49430|H#e0bda1200|A#779fb7351|A#7eafb1452|H#d7ad8a020|H#a87858300|H#bd8f6b050|A#b58fae120|A#b58fae422|H#e0bda1411|H#a87858151|H#875e49001|A#7eafb1312|A#9b96bf120|H#875e49152|H#d7ad8a420|H#d7ad8a040|A#779fb7030|A#779fb7212|H#a87858351|H#bd8f6b422|H#d7ad8a301|A#7eafb1252|A#9b96bf332|H#bd8f6b222|H#d7ad8a012|H#875e49311|A#82b58b301|A#9b96bf350|H#a87858310|H#bd8f6b000|H#664a3b000|A#779fb7051|A#779fb7331|H#e0bda1421|H#664a3b021|H#664a3b432|A#b58fae232|A#82b58b002|H#bd8f6b452|H#d7ad8a051|H#875e49012|A#82b58b050|A#779fb7102|H#d7ad8a010|H#664a3b031|H#875e49222|A#82b58b111|A#b58fae121|H#d7ad8a011|H#bd8f6b221|H#a87858210|A#9b96bf332|A#b58fae220|H#a87858132|H#875e49352|H#a87858150|A#779fb7040|A#779fb7251"
+  },
+  "fps1": 59.99600026664891,
+  "1-balls-readable": {
+    "crowd": {
+      "count": 60,
+      "humans": 36,
+      "aliens": 24,
+      "poses": 6,
+      "atlasBuilds": 1,
+      "signature": "H#e0bda1402|H#875e49430|H#e0bda1200|A#779fb7351|A#7eafb1452|H#d7ad8a020|H#a87858300|H#bd8f6b050|A#b58fae120|A#b58fae422|H#e0bda1411|H#a87858151|H#875e49001|A#7eafb1312|A#9b96bf120|H#875e49152|H#d7ad8a420|H#d7ad8a040|A#779fb7030|A#779fb7212|H#a87858351|H#bd8f6b422|H#d7ad8a301|A#7eafb1252|A#9b96bf332|H#bd8f6b222|H#d7ad8a012|H#875e49311|A#82b58b301|A#9b96bf350|H#a87858310|H#bd8f6b000|H#664a3b000|A#779fb7051|A#779fb7331|H#e0bda1421|H#664a3b021|H#664a3b432|A#b58fae232|A#82b58b002|H#bd8f6b452|H#d7ad8a051|H#875e49012|A#82b58b050|A#779fb7102|H#d7ad8a010|H#664a3b031|H#875e49222|A#82b58b111|A#b58fae121|H#d7ad8a011|H#bd8f6b221|H#a87858210|A#9b96bf332|A#b58fae220|H#a87858132|H#875e49352|H#a87858150|A#779fb7040|A#779fb7251"
+    },
+    "feedback": {
+      "ready": true,
+      "now": 8551.799999952316,
+      "tier": 1,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 0,
+      "exits": 0,
+      "records": 1,
+      "holdMs": 0,
+      "event": "POINT",
+      "reactions": {
+        "POINT": 1,
+        "RALLY": 1
+      },
+      "totals": {
+        "bounces": 0,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 1,
+        "holds": 0
+      }
+    },
+    "score": [
+      27,
+      25
+    ],
+    "state": "PLAYING",
+    "medal": false,
+    "resultTicks": 0
+  },
+  "fps3": 59.99600026664891,
+  "3-balls-readable": {
+    "crowd": {
+      "count": 60,
+      "humans": 36,
+      "aliens": 24,
+      "poses": 6,
+      "atlasBuilds": 1,
+      "signature": "H#e0bda1402|H#875e49430|H#e0bda1200|A#779fb7351|A#7eafb1452|H#d7ad8a020|H#a87858300|H#bd8f6b050|A#b58fae120|A#b58fae422|H#e0bda1411|H#a87858151|H#875e49001|A#7eafb1312|A#9b96bf120|H#875e49152|H#d7ad8a420|H#d7ad8a040|A#779fb7030|A#779fb7212|H#a87858351|H#bd8f6b422|H#d7ad8a301|A#7eafb1252|A#9b96bf332|H#bd8f6b222|H#d7ad8a012|H#875e49311|A#82b58b301|A#9b96bf350|H#a87858310|H#bd8f6b000|H#664a3b000|A#779fb7051|A#779fb7331|H#e0bda1421|H#664a3b021|H#664a3b432|A#b58fae232|A#82b58b002|H#bd8f6b452|H#d7ad8a051|H#875e49012|A#82b58b050|A#779fb7102|H#d7ad8a010|H#664a3b031|H#875e49222|A#82b58b111|A#b58fae121|H#d7ad8a011|H#bd8f6b221|H#a87858210|A#9b96bf332|A#b58fae220|H#a87858132|H#875e49352|H#a87858150|A#779fb7040|A#779fb7251"
+    },
+    "feedback": {
+      "ready": true,
+      "now": 11702,
+      "tier": 1,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 0,
+      "exits": 0,
+      "records": 3,
+      "holdMs": 0,
+      "event": "POINT",
+      "reactions": {
+        "POINT": 1,
+        "RALLY": 1
+      },
+      "totals": {
+        "bounces": 0,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 1,
+        "holds": 0
+      }
+    },
+    "score": [
+      27,
+      25
+    ],
+    "state": "PLAYING",
+    "medal": false,
+    "resultTicks": 0
+  },
+  "fps5": 60.0020000666689,
+  "5-balls-readable": {
+    "crowd": {
+      "count": 60,
+      "humans": 36,
+      "aliens": 24,
+      "poses": 6,
+      "atlasBuilds": 1,
+      "signature": "H#e0bda1402|H#875e49430|H#e0bda1200|A#779fb7351|A#7eafb1452|H#d7ad8a020|H#a87858300|H#bd8f6b050|A#b58fae120|A#b58fae422|H#e0bda1411|H#a87858151|H#875e49001|A#7eafb1312|A#9b96bf120|H#875e49152|H#d7ad8a420|H#d7ad8a040|A#779fb7030|A#779fb7212|H#a87858351|H#bd8f6b422|H#d7ad8a301|A#7eafb1252|A#9b96bf332|H#bd8f6b222|H#d7ad8a012|H#875e49311|A#82b58b301|A#9b96bf350|H#a87858310|H#bd8f6b000|H#664a3b000|A#779fb7051|A#779fb7331|H#e0bda1421|H#664a3b021|H#664a3b432|A#b58fae232|A#82b58b002|H#bd8f6b452|H#d7ad8a051|H#875e49012|A#82b58b050|A#779fb7102|H#d7ad8a010|H#664a3b031|H#875e49222|A#82b58b111|A#b58fae121|H#d7ad8a011|H#bd8f6b221|H#a87858210|A#9b96bf332|A#b58fae220|H#a87858132|H#875e49352|H#a87858150|A#779fb7040|A#779fb7251"
+    },
+    "feedback": {
+      "ready": true,
+      "now": 14835.799999952316,
+      "tier": 1,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 0,
+      "exits": 0,
+      "records": 5,
+      "holdMs": 0,
+      "event": "POINT",
+      "reactions": {
+        "POINT": 1,
+        "RALLY": 1
+      },
+      "totals": {
+        "bounces": 0,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 1,
+        "holds": 0
+      }
+    },
+    "score": [
+      27,
+      25
+    ],
+    "state": "PLAYING",
+    "medal": false,
+    "resultTicks": 0
+  },
+  "fps10": 59.998000066664474,
+  "10-balls-readable": {
+    "crowd": {
+      "count": 60,
+      "humans": 36,
+      "aliens": 24,
+      "poses": 6,
+      "atlasBuilds": 1,
+      "signature": "H#e0bda1402|H#875e49430|H#e0bda1200|A#779fb7351|A#7eafb1452|H#d7ad8a020|H#a87858300|H#bd8f6b050|A#b58fae120|A#b58fae422|H#e0bda1411|H#a87858151|H#875e49001|A#7eafb1312|A#9b96bf120|H#875e49152|H#d7ad8a420|H#d7ad8a040|A#779fb7030|A#779fb7212|H#a87858351|H#bd8f6b422|H#d7ad8a301|A#7eafb1252|A#9b96bf332|H#bd8f6b222|H#d7ad8a012|H#875e49311|A#82b58b301|A#9b96bf350|H#a87858310|H#bd8f6b000|H#664a3b000|A#779fb7051|A#779fb7331|H#e0bda1421|H#664a3b021|H#664a3b432|A#b58fae232|A#82b58b002|H#bd8f6b452|H#d7ad8a051|H#875e49012|A#82b58b050|A#779fb7102|H#d7ad8a010|H#664a3b031|H#875e49222|A#82b58b111|A#b58fae121|H#d7ad8a011|H#bd8f6b221|H#a87858210|A#9b96bf332|A#b58fae220|H#a87858132|H#875e49352|H#a87858150|A#779fb7040|A#779fb7251"
+    },
+    "feedback": {
+      "ready": true,
+      "now": 17969.099999904633,
+      "tier": 3,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 0,
+      "exits": 0,
+      "records": 10,
+      "holdMs": 0,
+      "event": "POINT",
+      "reactions": {
+        "POINT": 1,
+        "RALLY": 1
+      },
+      "totals": {
+        "bounces": 0,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 1,
+        "holds": 0
+      }
+    },
+    "score": [
+      27,
+      25
+    ],
+    "state": "PLAYING",
+    "medal": false,
+    "resultTicks": 0
+  },
+  "global-ten-balls": {
+    "crowd": {
+      "count": 60,
+      "humans": 36,
+      "aliens": 24,
+      "poses": 6,
+      "atlasBuilds": 1,
+      "signature": "H#e0bda1402|H#875e49430|H#e0bda1200|A#779fb7351|A#7eafb1452|H#d7ad8a020|H#a87858300|H#bd8f6b050|A#b58fae120|A#b58fae422|H#e0bda1411|H#a87858151|H#875e49001|A#7eafb1312|A#9b96bf120|H#875e49152|H#d7ad8a420|H#d7ad8a040|A#779fb7030|A#779fb7212|H#a87858351|H#bd8f6b422|H#d7ad8a301|A#7eafb1252|A#9b96bf332|H#bd8f6b222|H#d7ad8a012|H#875e49311|A#82b58b301|A#9b96bf350|H#a87858310|H#bd8f6b000|H#664a3b000|A#779fb7051|A#779fb7331|H#e0bda1421|H#664a3b021|H#664a3b432|A#b58fae232|A#82b58b002|H#bd8f6b452|H#d7ad8a051|H#875e49012|A#82b58b050|A#779fb7102|H#d7ad8a010|H#664a3b031|H#875e49222|A#82b58b111|A#b58fae121|H#d7ad8a011|H#bd8f6b221|H#a87858210|A#9b96bf332|A#b58fae220|H#a87858132|H#875e49352|H#a87858150|A#779fb7040|A#779fb7251"
+    },
+    "feedback": {
+      "ready": true,
+      "now": 18037.699999928474,
+      "tier": 3,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 1,
+      "exits": 0,
+      "records": 10,
+      "holdMs": 0,
+      "event": "GLOBAL",
+      "reactions": {
+        "POINT": 1,
+        "RALLY": 1,
+        "GLOBAL": 1
+      },
+      "totals": {
+        "bounces": 0,
+        "hits": 0,
+        "globals": 1,
+        "emissions": 0,
+        "points": 1,
+        "holds": 1
+      }
+    },
+    "score": [
+      27,
+      25
+    ],
+    "state": "PLAYING",
+    "medal": false,
+    "resultTicks": 0
+  },
+  "rally-slow": {
+    "crowd": {
+      "count": 60,
+      "humans": 36,
+      "aliens": 24,
+      "poses": 6,
+      "atlasBuilds": 1,
+      "signature": "H#e0bda1402|H#875e49430|H#e0bda1200|A#779fb7351|A#7eafb1452|H#d7ad8a020|H#a87858300|H#bd8f6b050|A#b58fae120|A#b58fae422|H#e0bda1411|H#a87858151|H#875e49001|A#7eafb1312|A#9b96bf120|H#875e49152|H#d7ad8a420|H#d7ad8a040|A#779fb7030|A#779fb7212|H#a87858351|H#bd8f6b422|H#d7ad8a301|A#7eafb1252|A#9b96bf332|H#bd8f6b222|H#d7ad8a012|H#875e49311|A#82b58b301|A#9b96bf350|H#a87858310|H#bd8f6b000|H#664a3b000|A#779fb7051|A#779fb7331|H#e0bda1421|H#664a3b021|H#664a3b432|A#b58fae232|A#82b58b002|H#bd8f6b452|H#d7ad8a051|H#875e49012|A#82b58b050|A#779fb7102|H#d7ad8a010|H#664a3b031|H#875e49222|A#82b58b111|A#b58fae121|H#d7ad8a011|H#bd8f6b221|H#a87858210|A#9b96bf332|A#b58fae220|H#a87858132|H#875e49352|H#a87858150|A#779fb7040|A#779fb7251"
+    },
+    "feedback": {
+      "ready": true,
+      "now": 19169.5,
+      "tier": 0,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 1,
+      "particles": 1,
+      "hits": 0,
+      "exits": 0,
+      "records": 1,
+      "holdMs": 0,
+      "event": null,
+      "reactions": {},
+      "totals": {
+        "bounces": 1,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 0,
+        "holds": 0
+      }
+    },
+    "score": [
+      0,
+      0
+    ],
+    "state": "PLAYING",
+    "medal": false,
+    "resultTicks": 0
+  },
+  "rally-extreme": {
+    "crowd": {
+      "count": 60,
+      "humans": 36,
+      "aliens": 24,
+      "poses": 6,
+      "atlasBuilds": 1,
+      "signature": "H#e0bda1402|H#875e49430|H#e0bda1200|A#779fb7351|A#7eafb1452|H#d7ad8a020|H#a87858300|H#bd8f6b050|A#b58fae120|A#b58fae422|H#e0bda1411|H#a87858151|H#875e49001|A#7eafb1312|A#9b96bf120|H#875e49152|H#d7ad8a420|H#d7ad8a040|A#779fb7030|A#779fb7212|H#a87858351|H#bd8f6b422|H#d7ad8a301|A#7eafb1252|A#9b96bf332|H#bd8f6b222|H#d7ad8a012|H#875e49311|A#82b58b301|A#9b96bf350|H#a87858310|H#bd8f6b000|H#664a3b000|A#779fb7051|A#779fb7331|H#e0bda1421|H#664a3b021|H#664a3b432|A#b58fae232|A#82b58b002|H#bd8f6b452|H#d7ad8a051|H#875e49012|A#82b58b050|A#779fb7102|H#d7ad8a010|H#664a3b031|H#875e49222|A#82b58b111|A#b58fae121|H#d7ad8a011|H#bd8f6b221|H#a87858210|A#9b96bf332|A#b58fae220|H#a87858132|H#875e49352|H#a87858150|A#779fb7040|A#779fb7251"
+    },
+    "feedback": {
+      "ready": true,
+      "now": 20018.899999976158,
+      "tier": 3,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 1,
+      "particles": 2,
+      "hits": 0,
+      "exits": 0,
+      "records": 1,
+      "holdMs": 0,
+      "event": "RALLY",
+      "reactions": {
+        "RALLY": 1
+      },
+      "totals": {
+        "bounces": 1,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 0,
+        "holds": 0
+      }
+    },
+    "score": [
+      0,
+      0
+    ],
+    "state": "PLAYING",
+    "medal": false,
+    "resultTicks": 0
+  },
+  "real-score-MATCH-POINT": {
+    "crowd": {
+      "count": 60,
+      "humans": 36,
+      "aliens": 24,
+      "poses": 6,
+      "atlasBuilds": 1,
+      "signature": "H#e0bda1402|H#875e49430|H#e0bda1200|A#779fb7351|A#7eafb1452|H#d7ad8a020|H#a87858300|H#bd8f6b050|A#b58fae120|A#b58fae422|H#e0bda1411|H#a87858151|H#875e49001|A#7eafb1312|A#9b96bf120|H#875e49152|H#d7ad8a420|H#d7ad8a040|A#779fb7030|A#779fb7212|H#a87858351|H#bd8f6b422|H#d7ad8a301|A#7eafb1252|A#9b96bf332|H#bd8f6b222|H#d7ad8a012|H#875e49311|A#82b58b301|A#9b96bf350|H#a87858310|H#bd8f6b000|H#664a3b000|A#779fb7051|A#779fb7331|H#e0bda1421|H#664a3b021|H#664a3b432|A#b58fae232|A#82b58b002|H#bd8f6b452|H#d7ad8a051|H#875e49012|A#82b58b050|A#779fb7102|H#d7ad8a010|H#664a3b031|H#875e49222|A#82b58b111|A#b58fae121|H#d7ad8a011|H#bd8f6b221|H#a87858210|A#9b96bf332|A#b58fae220|H#a87858132|H#875e49352|H#a87858150|A#779fb7040|A#779fb7251"
+    },
+    "feedback": {
+      "ready": true,
+      "now": 20552.5,
+      "tier": 3,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 0,
+      "exits": 0,
+      "records": 0,
+      "holdMs": 0,
+      "event": "MATCH_POINT",
+      "reactions": {
+        "POINT": 1,
+        "RALLY": 1,
+        "MATCH_POINT": 1
+      },
+      "totals": {
+        "bounces": 0,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 1,
+        "holds": 0
+      }
+    },
+    "score": [
+      49,
+      47
+    ],
+    "state": "PLAYING",
+    "medal": false,
+    "resultTicks": 0
+  },
+  "victory-before-medal": {
+    "crowd": {
+      "count": 60,
+      "humans": 36,
+      "aliens": 24,
+      "poses": 6,
+      "atlasBuilds": 1,
+      "signature": "H#e0bda1402|H#875e49430|H#e0bda1200|A#779fb7351|A#7eafb1452|H#d7ad8a020|H#a87858300|H#bd8f6b050|A#b58fae120|A#b58fae422|H#e0bda1411|H#a87858151|H#875e49001|A#7eafb1312|A#9b96bf120|H#875e49152|H#d7ad8a420|H#d7ad8a040|A#779fb7030|A#779fb7212|H#a87858351|H#bd8f6b422|H#d7ad8a301|A#7eafb1252|A#9b96bf332|H#bd8f6b222|H#d7ad8a012|H#875e49311|A#82b58b301|A#9b96bf350|H#a87858310|H#bd8f6b000|H#664a3b000|A#779fb7051|A#779fb7331|H#e0bda1421|H#664a3b021|H#664a3b432|A#b58fae232|A#82b58b002|H#bd8f6b452|H#d7ad8a051|H#875e49012|A#82b58b050|A#779fb7102|H#d7ad8a010|H#664a3b031|H#875e49222|A#82b58b111|A#b58fae121|H#d7ad8a011|H#bd8f6b221|H#a87858210|A#9b96bf332|A#b58fae220|H#a87858132|H#875e49352|H#a87858150|A#779fb7040|A#779fb7251"
+    },
+    "feedback": {
+      "ready": true,
+      "now": 21789.599999904633,
+      "tier": 3,
+      "point": "POINT ZORP",
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 0,
+      "exits": 1,
+      "records": 0,
+      "holdMs": 0,
+      "event": "VICTORY",
+      "reactions": {
+        "POINT": 2,
+        "RALLY": 1,
+        "MATCH_POINT": 1,
+        "VICTORY": 1
+      },
+      "totals": {
+        "bounces": 1,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 2,
+        "holds": 0
+      }
+    },
+    "score": [
+      50,
+      47
+    ],
+    "state": "GAMEOVER",
+    "medal": false,
+    "resultTicks": 0
+  },
+  "medal-after-celebration-held-Space-blocked": {
+    "crowd": {
+      "count": 60,
+      "humans": 36,
+      "aliens": 24,
+      "poses": 6,
+      "atlasBuilds": 1,
+      "signature": "H#e0bda1402|H#875e49430|H#e0bda1200|A#779fb7351|A#7eafb1452|H#d7ad8a020|H#a87858300|H#bd8f6b050|A#b58fae120|A#b58fae422|H#e0bda1411|H#a87858151|H#875e49001|A#7eafb1312|A#9b96bf120|H#875e49152|H#d7ad8a420|H#d7ad8a040|A#779fb7030|A#779fb7212|H#a87858351|H#bd8f6b422|H#d7ad8a301|A#7eafb1252|A#9b96bf332|H#bd8f6b222|H#d7ad8a012|H#875e49311|A#82b58b301|A#9b96bf350|H#a87858310|H#bd8f6b000|H#664a3b000|A#779fb7051|A#779fb7331|H#e0bda1421|H#664a3b021|H#664a3b432|A#b58fae232|A#82b58b002|H#bd8f6b452|H#d7ad8a051|H#875e49012|A#82b58b050|A#779fb7102|H#d7ad8a010|H#664a3b031|H#875e49222|A#82b58b111|A#b58fae121|H#d7ad8a011|H#bd8f6b221|H#a87858210|A#9b96bf332|A#b58fae220|H#a87858132|H#875e49352|H#a87858150|A#779fb7040|A#779fb7251"
+    },
+    "feedback": {
+      "ready": true,
+      "now": 23302.699999928474,
+      "tier": 3,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 0,
+      "exits": 0,
+      "records": 0,
+      "holdMs": 0,
+      "event": "VICTORY",
+      "reactions": {
+        "POINT": 2,
+        "RALLY": 1,
+        "MATCH_POINT": 1,
+        "VICTORY": 1
+      },
+      "totals": {
+        "bounces": 1,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 2,
+        "holds": 0
+      }
+    },
+    "score": [
+      50,
+      47
+    ],
+    "state": "GAMEOVER",
+    "medal": true,
+    "resultTicks": 90
+  },
+  "Master-victory-no-medal": {
+    "crowd": {
+      "count": 60,
+      "humans": 36,
+      "aliens": 24,
+      "poses": 6,
+      "atlasBuilds": 1,
+      "signature": "H#e0bda1402|H#875e49430|H#e0bda1200|A#779fb7351|A#7eafb1452|H#d7ad8a020|H#a87858300|H#bd8f6b050|A#b58fae120|A#b58fae422|H#e0bda1411|H#a87858151|H#875e49001|A#7eafb1312|A#9b96bf120|H#875e49152|H#d7ad8a420|H#d7ad8a040|A#779fb7030|A#779fb7212|H#a87858351|H#bd8f6b422|H#d7ad8a301|A#7eafb1252|A#9b96bf332|H#bd8f6b222|H#d7ad8a012|H#875e49311|A#82b58b301|A#9b96bf350|H#a87858310|H#bd8f6b000|H#664a3b000|A#779fb7051|A#779fb7331|H#e0bda1421|H#664a3b021|H#664a3b432|A#b58fae232|A#82b58b002|H#bd8f6b452|H#d7ad8a051|H#875e49012|A#82b58b050|A#779fb7102|H#d7ad8a010|H#664a3b031|H#875e49222|A#82b58b111|A#b58fae121|H#d7ad8a011|H#bd8f6b221|H#a87858210|A#9b96bf332|A#b58fae220|H#a87858132|H#875e49352|H#a87858150|A#779fb7040|A#779fb7251"
+    },
+    "feedback": {
+      "ready": true,
+      "now": 26438.5,
+      "tier": 0,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 0,
+      "exits": 0,
+      "records": 0,
+      "holdMs": 0,
+      "event": "VICTORY",
+      "reactions": {
+        "POINT": 2,
+        "MATCH_POINT": 1,
+        "VICTORY": 1
+      },
+      "totals": {
+        "bounces": 1,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 2,
+        "holds": 0
+      }
+    },
+    "score": [
+      47,
+      50
+    ],
+    "state": "GAMEOVER",
+    "medal": false,
+    "resultTicks": 90
+  },
+  "multiball-event-and-physical-emission": {
+    "crowd": {
+      "count": 60,
+      "humans": 36,
+      "aliens": 24,
+      "poses": 6,
+      "atlasBuilds": 1,
+      "signature": "H#e0bda1402|H#875e49430|H#e0bda1200|A#779fb7351|A#7eafb1452|H#d7ad8a020|H#a87858300|H#bd8f6b050|A#b58fae120|A#b58fae422|H#e0bda1411|H#a87858151|H#875e49001|A#7eafb1312|A#9b96bf120|H#875e49152|H#d7ad8a420|H#d7ad8a040|A#779fb7030|A#779fb7212|H#a87858351|H#bd8f6b422|H#d7ad8a301|A#7eafb1252|A#9b96bf332|H#bd8f6b222|H#d7ad8a012|H#875e49311|A#82b58b301|A#9b96bf350|H#a87858310|H#bd8f6b000|H#664a3b000|A#779fb7051|A#779fb7331|H#e0bda1421|H#664a3b021|H#664a3b432|A#b58fae232|A#82b58b002|H#bd8f6b452|H#d7ad8a051|H#875e49012|A#82b58b050|A#779fb7102|H#d7ad8a010|H#664a3b031|H#875e49222|A#82b58b111|A#b58fae121|H#d7ad8a011|H#bd8f6b221|H#a87858210|A#9b96bf332|A#b58fae220|H#a87858132|H#875e49352|H#a87858150|A#779fb7040|A#779fb7251"
+    },
+    "feedback": {
+      "ready": true,
+      "now": 27340.399999976158,
+      "tier": 0,
+      "point": null,
+      "phase": "MULTIBALL_ACTIVE",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 1,
+      "exits": 0,
+      "records": 5,
+      "holdMs": 0,
+      "event": "MULTIBALL",
+      "reactions": {
+        "MULTIBALL": 1
+      },
+      "totals": {
+        "bounces": 1,
+        "hits": 4,
+        "globals": 0,
+        "emissions": 4,
+        "points": 0,
+        "holds": 0
+      }
+    },
+    "score": [
+      0,
+      0
+    ],
+    "state": "PLAYING",
+    "medal": false,
+    "resultTicks": 0
+  },
+  "finalCrowd": {
+    "count": 60,
+    "humans": 36,
+    "aliens": 24,
+    "poses": 6,
+    "atlasBuilds": 1,
+    "signature": "H#e0bda1402|H#875e49430|H#e0bda1200|A#779fb7351|A#7eafb1452|H#d7ad8a020|H#a87858300|H#bd8f6b050|A#b58fae120|A#b58fae422|H#e0bda1411|H#a87858151|H#875e49001|A#7eafb1312|A#9b96bf120|H#875e49152|H#d7ad8a420|H#d7ad8a040|A#779fb7030|A#779fb7212|H#a87858351|H#bd8f6b422|H#d7ad8a301|A#7eafb1252|A#9b96bf332|H#bd8f6b222|H#d7ad8a012|H#875e49311|A#82b58b301|A#9b96bf350|H#a87858310|H#bd8f6b000|H#664a3b000|A#779fb7051|A#779fb7331|H#e0bda1421|H#664a3b021|H#664a3b432|A#b58fae232|A#82b58b002|H#bd8f6b452|H#d7ad8a051|H#875e49012|A#82b58b050|A#779fb7102|H#d7ad8a010|H#664a3b031|H#875e49222|A#82b58b111|A#b58fae121|H#d7ad8a011|H#bd8f6b221|H#a87858210|A#9b96bf332|A#b58fae220|H#a87858132|H#875e49352|H#a87858150|A#779fb7040|A#779fb7251"
+  },
+  "active10FPS": 59.9980000666644,
+  "active10": {
+    "frames": 181,
+    "peakLive": 10,
+    "minLive": 8,
+    "peakParticles": 16
+  }
+}

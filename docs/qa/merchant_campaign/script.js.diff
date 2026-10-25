@@ -1,0 +1,155 @@
+--- before/script.js
++++ script.js
+@@ -2756,9 +2756,8 @@
+ const sceneObstacles = {
+     HUB: [
+         {x:68,y:211,w:46,h:14,type:'bench',solid:true,renderByIsland:true},
+-        {x:336,y:211,w:46,h:14,type:'bench',solid:true,renderByIsland:true},
+-        {x:46,y:65,w:38,h:25,type:'flower_bed',solid:true,renderByIsland:true},
+-        {x:366,y:65,w:38,h:25,type:'flower_bed',solid:true,renderByIsland:true}
++        {x:336,y:240,w:46,h:14,type:'bench',solid:true,renderByIsland:true},
++        {x:46,y:65,w:38,h:25,type:'flower_bed',solid:true,renderByIsland:true}
+     ],
+     ILHA_CORRIDA: [
+         { x: 105, y: 145, w: 32, h: 10, type: 'hurdle', solid: true },
+@@ -2866,6 +2865,7 @@
+ // Captura a borda do comando de interação. O polling de `keys` sozinho podia
+ // perder um toque rápido quando keydown e keyup ocorriam entre dois frames.
+ npcs.push(...NormalIslandNpcs.create());
++npcs.push(MerchantCampaign.npc);
+ npcs.push(...RavokEvent.npcs);
+ configureOverworldPresentation();
+ let overworldConversationText = null;
+@@ -2970,6 +2970,7 @@
+ 
+ function checkObstacleCollision(nextX, nextY) {
+     if (currentScene === "HUB" && AdventureIntro.collides(nextX, nextY)) return true;
++    if (currentScene === "HUB" && MerchantCampaign.blocks({x:nextX-10,y:nextY-8,w:20,h:10})) return true;
+     if (currentScene === "HUB" && MastersFarewell.collides(nextX, nextY)) return true;
+     const feetBox = { x: nextX - 10, y: nextY - 8, w: 20, h: 10 };
+     if (currentScene === "ILHA_ARCO" && ArcheryIsland.blocks(feetBox)) return true;
+@@ -2991,7 +2992,7 @@
+     {
+         for (const npc of npcs) {
+             if (currentScene === "ILHA_BASQUETE" && !npc.normalIslandNpc) continue;
+-            if (npc.scene !== currentScene || !npc.footprint || !RavokEvent.isNpcVisible(npc)) continue;
++            if (npc.scene !== currentScene || !npc.footprint || !(RavokEvent.isNpcVisible(npc)&&MerchantCampaign.isNpcVisible(npc))) continue;
+             const body = { x: npc.x - npc.footprint.width / 2,
+                 y: npc.y - npc.footprint.height + 2,
+                 w: npc.footprint.width, h: npc.footprint.height };
+@@ -3026,6 +3027,7 @@
+     }
+     if (MedalCompletion.update(currentScene)) return;
+     if (MastersFarewell.update(currentScene)) return;
++    if (MerchantCampaign.update(currentScene)) return;
+     const isOverworldScene = !currentScene.startsWith("JOGO_");
+     // A result-screen Space must not reopen a minigame while the same key is held.
+     // Keep the basketball Master's legacy held input; normal dialogue uses fresh edges.
+@@ -3130,7 +3132,7 @@
+         let npcDistance = Infinity;
+         for (let npc of npcs) {
+             const interactionBox = overworldNpcInteractionBox(npc);
+-            if (npc.scene === currentScene && RavokEvent.isNpcVisible(npc) && isColliding(player, interactionBox)) {
++            if (npc.scene === currentScene && (RavokEvent.isNpcVisible(npc)&&MerchantCampaign.isNpcVisible(npc)) && isColliding(player, interactionBox)) {
+                 const distance = Math.hypot(player.x - npc.x, player.y - npc.y);
+                 if (distance < npcDistance) { npcProximo = npc; npcDistance = distance; }
+                 // The nearest interaction zone wins; normal NPCs never steal a distant Master prompt.
+@@ -3205,7 +3207,7 @@
+ 
+             } else if (interactionRequested) {
+                 if (npcProximo.scene !== "ILHA_BASQUETE" || npcProximo.normalIslandNpc) overworldConversationNpc = npcProximo;
+-                overworldConversationText = RavokEvent.interact(npcProximo) || CaptainRoute.interact(npcProximo) || FestivalChallenges.interact(npcProximo) || NormalIslandNpcs.interact(npcProximo) || npcProximo.msg;
++                overworldConversationText = RavokEvent.interact(npcProximo) || CaptainRoute.interact(npcProximo) || FestivalChallenges.interact(npcProximo) || MerchantCampaign.interact(npcProximo) || NormalIslandNpcs.interact(npcProximo) || npcProximo.msg;
+                 if (!RavokEvent.conversationActive) dialogText.innerHTML = overworldConversationText + extra;
+                 if (!npcProximo.isMaster && !npcProximo.eventId && npcProximo.id !== 'capitao') {
+                     normalNpcDialogue = npcProximo.id; zorpSprite.isMoving = false;
+@@ -3314,6 +3316,7 @@
+ }
+ 
+ function startMinigameFromBrief(id) {
++    window.MerchantCampaign?.startGame(id);
+     clearMinigameBriefInput();
+     if (id === 'pingpong') {
+         pingPong.gameState = 'PLAYING';
+@@ -3756,6 +3759,7 @@
+ }
+ 
+ function drawNPC(npc) {
++    if(npc.eventId==='merchant'){if(MerchantCampaign.isNpcVisible(npc))MerchantCampaign.drawActor(ctx);return;}
+     if(npc.eventId==='ravok'){RavokK7Animation.draw(ctx,RavokK7Animation.idle(npc.id,npc.x,npc.y,npc.facingDirection||'down'),{focused:overworldFocusNpc===npc});return;}
+     if(npc.normalIslandNpc)drawUnifiedOverworldNpc(npc);
+     else if(npc.scene==="ILHA_BASQUETE")drawBasketballOverworldNpc(npc);
+@@ -4722,6 +4726,7 @@
+     // A result may have changed scene in this update. Capture it before clearing
+     // so no controllable Overworld frame appears before the arrival interlude.
+     RavokArrival.tryStart(currentScene);
++    window.MerchantCampaign?.tryStart(currentScene);
+     window.ArcheryField.syncCanvas(canvas,currentScene);
+     ctx.clearRect(0, 0, canvas.width, canvas.height);
+ 
+@@ -4731,6 +4736,7 @@
+     }
+     if (RavokArrival.active) { RavokArrival.draw(ctx); return; }
+     if (RavokOutcome.active) { RavokOutcome.draw(ctx); return; }
++    if (window.MerchantCampaign?.cutsceneActive) { MerchantCampaign.draw(ctx); return; }
+     if (AdventureIntro.active) { AdventureIntro.draw(ctx); return; }
+     if (EndingCinematic.active) { EndingCinematic.draw(ctx); return; }
+     if (CaptainRoute.active && ['FERIAS_MERECIDAS','ENDING_CARD'].includes(CaptainRoute.state)) { CaptainRoute.draw(ctx); return; }
+@@ -4761,12 +4767,13 @@
+             for (const npc of npcs) if (npc.scene === currentScene) drawNPC(npc);
+             drawPlayer();
+         } else {
+-            const actors = npcs.filter(npc => npc.scene === displayScene && RavokEvent.isNpcVisible(npc))
++            const actors = npcs.filter(npc => npc.scene === displayScene && (RavokEvent.isNpcVisible(npc)&&MerchantCampaign.isNpcVisible(npc)))
+                 .map(npc => ({ y: npc.y, draw: () => drawNPC(npc) }));
+             if (displayScene === 'ILHA_ESCALADA') actors.push({y:RavokEvent.ship.depth,draw:()=>RavokEvent.draw(ctx)});
+             actors.push(...RavokEvent.actors(displayScene));
++            actors.push(...MerchantCampaign.actors(displayScene));
+             if (displayScene === "HUB" && AdventureIntro.introSeen) {
+-                actors.push({ y: 150, draw: () => AdventureIntro.drawParked(ctx) });
++                actors.push({ y: 150, draw: () => { AdventureIntro.drawParked(ctx); MerchantCampaign.drawShipAccent(ctx); } });
+             }
+             actors.push(...MastersFarewell.actors(displayScene));
+             actors.push({ y: player.y, draw: drawPlayer });
+@@ -4787,6 +4794,7 @@
+     PreGameBrief.draw(ctx,canvas);
+     RavokArrival.drawPrompt(ctx);
+     RavokEvent.drawOverlay(ctx);
++    MerchantCampaign.draw(ctx);
+ }
+ 
+ function gameLoop() { 
+@@ -5116,6 +5124,33 @@
+     returnToMenu: () => EndingCinematic.config.returnToMenu()
+ });
+ 
++
++MerchantCampaign.init({
++    ctx,canvas,scene:()=>currentScene,
++    medalCount:()=>MEDALHAS_REGISTRY.filter(m=>isMedalhaDesbloqueada(m.id)).length,
++    busy:()=>TitleScreen.isActive()||AdventureIntro.active||PreGameBrief.active||CaptainRoute.active||EndingCinematic.active||MedalCompletion.active||MastersFarewell.active||RavokArrival.active||RavokOutcome.active||RavokEvent.conversationActive||!!normalNpcDialogue,
++    point:()=>({scene:currentScene,x:player.x,y:player.y}),
++    clearInput:()=>{clearMinigameBriefInput();interactionPressed=false;shipInteractionPressed=false;},
++    hideDialogue:()=>{dialogBox.classList.remove('show');},
++    restore:p=>{currentScene=p.scene;player.x=p.x;player.y=p.y;normalNpcDialogue=null;overworldConversationNpc=null;overworldConversationText=null;overworldFocusNpc=null;dialogBox.classList.remove('show');showOverworldUI();},
++    captureFrame:()=>{const c=document.createElement('canvas');c.width=450;c.height=300;c.getContext('2d').drawImage(canvas,0,0,450,300);return c;},
++    captureHub:()=>captureOverworldIsland('HUB'),
++    hubActors:()=>npcs.filter(n=>n.scene==='HUB'&&n.eventId!=='merchant').map(n=>({y:n.y,draw:()=>drawNPC(n)})),
++    nearShip:()=>currentScene==='HUB'&&AdventureIntro.introSeen&&Math.hypot(player.x-225,(player.y-157)*.8)<57,
++    landing:region=>{const old=currentScene;currentScene=region.id;let point=null;try{for(const [dx,dy]of [[0,0],[0,12],[12,0],[-12,0],[0,24],[24,0],[-24,0]]){const x=region.spawn[0]+dx,y=region.spawn[1]+dy;if(!checkObstacleCollision(x,y)){point={scene:region.id,x,y};break;}}}finally{currentScene=old;}return point;},
++    record:id=>{
++        if(id==='pingpong')return {value:pingPong.playerScore,label:'Pontos',unit:'PTS'};
++        if(id==='basquete')return {value:window.basketball1v1?.score.zorp??0,label:'Pontos',unit:'PTS'};
++        if(id==='corrida')return corridaMaratona?.player.finished?{value:corridaMaratona.player.finishTime,label:'Tempo de chegada',unit:'S',lowerIsBetter:true}:null;
++        if(id==='skate')return {value:skateCombo.bankedScore+skateCombo.activeScore,label:'Pontuação',unit:'PTS'};
++        if(id==='arco')return {value:arcoGame.playerScore,label:'Pontos',unit:'PTS'};
++        if(id==='escalada')return {value:escaladaGame.alturaAtual,label:'Altura',unit:'M'};
++        if(id==='boxe')return {value:boxeGame.rounds?.wins.zorp??0,label:'Rounds vencidos',unit:'ROUNDS'};
++        if(id==='surf')return {value:window.surfEndlessGame?.score??0,label:'Pontuação',unit:'PTS'};
++        return null;
++    }
++});
++
+ if (typeof TitleScreen !== "undefined") {
+     TitleScreen.init({
+         canvas: canvas,

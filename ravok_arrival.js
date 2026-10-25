@@ -20,7 +20,7 @@
         [145,162,'archery'],[145,95,'climbing']]);
     let config=null,active=false,index=0,time=0,elapsed=0,line=0,lineTime=0,last=0;
     let readyScene=null,readySince=0,returnPoint=null,previousFrame=null,cleanIsland=null,landedIsland=null;
-    let k7=null,archipelago=null,audio=null,voices=0,completedRuns=0,saveFailed=false;
+    let archipelago=null,audio=null,voices=0,completedRuns=0,saveFailed=false;
     const held=new Set(),norm=k=>String(k).toLowerCase(),now=()=>performance.now();
     const phase=()=>active?shots[index].id:'INACTIVE';
     const pending=()=>global.RavokEvent.arrivalPending&&!global.RavokEvent.ravokArrivalSeen;
@@ -53,7 +53,7 @@
         const frame=document.createElement('canvas');frame.width=450;frame.height=300;
         frame.getContext('2d').drawImage(config.canvas,0,0,450,300);
         // Capture while the pending event still suppresses its permanent ship and NPCs.
-        cleanIsland=config.captureIsland(false);landedIsland=config.captureIsland(true);k7=config.k7Sprite();
+        cleanIsland=config.captureIsland(false);landedIsland=config.captureIsland(true);
         previousFrame=frame;index=0;elapsed=0;line=0;lineTime=0;last=now();active=true;saveFailed=false;
         readyScene=null;config.clearInput();config.enter();unlockAudio();enterShot();return true;
     }
@@ -66,7 +66,7 @@
         if(!global.RavokEvent.completeArrival()){saveFailed=true;return;}
         saveFailed=false;completedRuns++;
         active=false;config.clearInput();config.resume(returnPoint);readyScene=null;
-        previousFrame=cleanIsland=landedIsland=k7=null;
+        previousFrame=cleanIsland=landedIsland=null;
     }
     function update(scene){
         if(!config)return false;
@@ -184,10 +184,8 @@
         g.save();g.translate(225+shake,146-shake*.4);g.scale(zoom,zoom);g.translate(-focus[0],-focus[1]);
         g.drawImage(marks?landedIsland:cleanIsland,0,0);return ()=>g.restore();
     }
-    function robot(g,x,y,scale=1){
-        if(!k7)return;
-        const s=44/k7.geometry.visibleHeight*scale,a=k7.geometry.anchor;
-        g.save();g.imageSmoothingEnabled=false;g.drawImage(k7.surface,x-a[0]*s,y-a[1]*s,k7.surface.width*s,k7.surface.height*s);g.restore();
+    function robot(g,x,y,actor=null){
+        global.RavokK7Animation.draw(g,actor||global.RavokK7Animation.idle('k7',x,y,'right'));
     }
     function scan(g,strength=1){
         g.save();g.globalAlpha=.13*strength;
@@ -254,12 +252,9 @@
             groundScene(g,ease((time-.2)/1.1),false,2,false);
         }else if(id==='K7_EXIT'){
             const done=landscape(g,[369,92],2,true);global.RavokEvent.drawShip(g,321,40,1,{door:1});
-            const q=ease(clamp(time/2.2));
-            // The doorway's occlusion recedes continuously as K7 steps out;
-            // removing a fixed clip would make his head pop into view.
-            g.save();if(q<.55){g.beginPath();g.rect(354,83-q*40,64,90);g.clip();}
-            if(q<1)robot(g,mix(368,396,q),mix(89,113,q),mix(.5,1,q));g.restore();
-            if(q===1){fill(g,'rgba(20,38,35,.22)',388,111,17,4);robot(g,396,113);scan(g,ease((time-2.2)/.7));}done();
+            const actor=global.RavokK7Animation.path('k7',[368,89],[396,113],2.2,time);
+            robot(g,actor.x,actor.y,actor);
+            if(actor.state==='IDLE')scan(g,ease((time-2.2)/.7));done();
         }else if(id==='DIALOGUE'){
             groundScene(g,1,true);dialogue(g);
         }else if(id==='WITHDRAW'){

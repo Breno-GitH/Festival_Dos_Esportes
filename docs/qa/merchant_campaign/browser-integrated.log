@@ -1,0 +1,31 @@
+PASS New campaign: zero merchant, store, sign and store collision
+PASS B inventory exists, M remains locked without map
+PASS First medal confirmed in match; merchant waits for Overworld return
+PHASE FADE
+PHASE ARRIVE
+PHASE LOOK
+PHASE BAG
+PHASE COUNTER
+PHASE ROOF
+PHASE PRODUCTS
+PHASE SHIP
+PHASE SIGN_WALK
+PHASE SIGN
+PHASE RETURN
+PHASE HAPPY
+PHASE SPEECH
+PHASE FADE_BACK
+PASS Complete real-time arrival, walking frames, staged shop, ship surprise and sign
+PASS E interacts, dialogue freezes movement, shop accessible from main path
+PASS Insufficient funds: no item, no debit, merchant reacts
+PASS Seven actual UI purchases: exact prices, confirmation, all sale poses, no duplicates; 100 coins remain
+PASS Inventory owns seven goods; M now opens the map
+PASS Teleporter rejects never-visited island
+PASS Visited-only teleport confirms, fades and lands at a safe spawn
+PASS Scanner uses canonical quest status without revealing secret objectives
+PASS Destiny letter: three regions, exact clues, no route identities or ending labels
+PASS Records show actual played Ping-Pong and exclude merely visited Surf
+PASS Ship F menu: custom colors persist; Jukebox plays unlocked theme and stops on close
+PASS Reload persists arrival, shop, seven items, records, visits, style and coins; no repeated cutscene
+PASS Zero 404/network failures, console errors/warnings, TypeError and ReferenceError
+COMPLETE {"checks":16,"fps":60,"errors":0}

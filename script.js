@@ -83,7 +83,6 @@ const SPRITES_CONFIG = {
 // 1. CARREGAMENTO DAS IMAGENS
 // -------------------------------------------------------------
 const zorpImg = new Image(); zorpImg.src = "zorp.png";
-const bgPingPong = new Image(); bgPingPong.src = "bg_pingpong.png?v=2";
 
 // NPCs Globais
 const imgTurista = new Image(); imgTurista.src = "npc_turista.png";
@@ -186,8 +185,7 @@ const climbAssets = {
     }
 };
 
-// Arte e Sprites de Vitória no Cume (VictoryEscalada.png)
-const imgVictoryEscalada = new Image(); imgVictoryEscalada.src = "VictoryEscalada.png?v=3";
+
 
 // -------------------------------------------------------------
 // BOXE — recortes oficiais 3.0; geometria e combate permanecem no runtime atual.
@@ -307,6 +305,7 @@ const pingPong = {
     rallyHits: 0,
     gameState: 'PRE_GAME',
     win: false,
+    resultTicks: 0, resultInputArmed: false, medalAwarded: false,
     bounceEffects: [],
     specialEffects: [], // Arcos curtos da raquetada global
     server: 'PLAYER',
@@ -1670,14 +1669,9 @@ function drawEscaladaGame() {
         ], '#bde7df');
     } else if (escaladaGame.gameState === 'GAMEOVER') {
         if (escaladaGame.win) {
-            // TELA DE VITÓRIA COM VictoryEscalada.png, ZORP COM A MEDALHA E MESTRE COM POLEGAR
-            if (imgVictoryEscalada.complete && imgVictoryEscalada.naturalWidth > 0) {
-                // Desenha a arte completa de fundo
-                ctx.drawImage(imgVictoryEscalada, 0, 0, canvas.width, canvas.height);
-            } else {
-                ctx.fillStyle = "rgba(10, 20, 35, 0.92)";
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-            }
+            // Resultado sobre o cenário da escalada, sem ilustração de vitória.
+            ctx.fillStyle = "rgba(10, 20, 35, 0.92)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             // Caixa central da mensagem de vitória limpa e elegante
             ctx.fillStyle = "rgba(15, 25, 40, 0.90)";
@@ -1717,7 +1711,8 @@ function drawEscaladaGame() {
 // MINIGAME ARCO E FLECHA
 // -------------------------------------------------------------
 const ARCHERY_CONFIG = Object.freeze({
-    shooterArea: Object.freeze({ left: 48, right: 402, front: 216, back: 270 }),
+    shooterArea: window.ArcheryField.player,
+    masterArea: window.ArcheryField.master,
     roundFrames: 60 * 60,
     playerSpeedX: 4.3,
     playerSpeedY: 3.2,
@@ -1726,7 +1721,7 @@ const ARCHERY_CONFIG = Object.freeze({
     maxTargets: Object.freeze(window.ArcheryMatchPacing.PHASES.map(p=>p.riverCapacity)),
     patternIntervals: Object.freeze(window.ArcheryMatchPacing.PHASES.map(p=>p.interval)),
     maxCarriers: 16,
-    targetField: Object.freeze({ top: 118, bottom: 204 }),
+    targetField: Object.freeze({ top: window.ArcheryField.SOURCE_LIP, bottom: window.ArcheryField.SOURCE_BOTTOM }),
     teleportThreshold: 8
 });
 
@@ -1748,16 +1743,16 @@ function clampArco(value, min, max) {
 const arcoGame = {
     playerScore: 0,
     mestreScore: 0,
-    playerX: 135,
-    playerY: 252,
+    playerX: 220,
+    playerY: 448,
     playerState: 'IDLE',
     playerShootTimer: 0,
     playerShootCooldown: 0,
     playerReactionTimer: 0,
     playerControl: window.ArcheryPlayerControl.create(),
 
-    mestreX: 315,
-    mestreY: 252,
+    mestreX: 680,
+    mestreY: 326,
     mestreState: 'IDLE',
     mestreShootTimer: 0,
     mestreShootCooldown: 0,
@@ -1778,7 +1773,7 @@ const arcoGame = {
     nextTargetId: 1,
     lastTargetSpawnFrame: -1000,
     lastEntryFrames: {TOP:-1000,LEFT:-1000,RIGHT:-1000},
-    nextBirdFrame: window.ArcheryBirdTargets.FIRST_FRAME,
+    nextBirdFrame: Infinity,
     birdFlightIndex: 0,
     goldenSchedule: [],
     lastGoldenSpawnFrame: -10000,
@@ -1799,10 +1794,10 @@ function resetArco() {
     window.archeryCharactersV2.reset();
     arcoGame.playerScore = 0;
     arcoGame.mestreScore = 0;
-    arcoGame.playerX = 135;
-    arcoGame.mestreX = 315;
-    arcoGame.playerY = 252;
-    arcoGame.mestreY = 252;
+    arcoGame.playerX = 220;
+    arcoGame.mestreX = 680;
+    arcoGame.playerY = 448;
+    arcoGame.mestreY = 326;
     arcoGame.playerState = 'IDLE';
     arcoGame.mestreState = 'IDLE';
     arcoGame.playerShootTimer = 0;
@@ -1824,7 +1819,7 @@ function resetArco() {
     arcoGame.nextTargetId = 1;
     arcoGame.lastTargetSpawnFrame = -1000;
     arcoGame.lastEntryFrames = {TOP:-1000,LEFT:-1000,RIGHT:-1000};
-    arcoGame.nextBirdFrame = window.ArcheryBirdTargets.FIRST_FRAME;
+    arcoGame.nextBirdFrame = Infinity;
     arcoGame.birdFlightIndex = 0;
     arcoGame.goldenSchedule = [];
     arcoGame.lastGoldenSpawnFrame = -10000;
@@ -1901,7 +1896,9 @@ function evaluateArcoTargetPath(target, progress) {
 }
 
 function spawnArcoBirdTarget(golden=false) {
-    if(arcoGame.targets.some(target=>target.carrier==='BIRD')||arcoGame.targets.length>=ARCHERY_CONFIG.maxCarriers)return null;
+    if(arcoGame.birdFlightIndex>=window.ArcheryBirdTargets.MAX_PER_ROUND)return null;
+    if(arcoGame.targets.filter(t=>!t.hit).length>=window.ArcheryMatchPacing.PHASES[arcoGame.phase].capacity)return null;
+    if(arcoGame.targets.filter(target=>target.carrier==='BIRD').length>=(arcoGame.phase===0?1:2)||arcoGame.targets.length>=ARCHERY_CONFIG.maxCarriers)return null;
     const target=acquireArcoObject(arcoGame.targetPool,{
         ...window.ArcheryBirdTargets.create(arcoGame.birdFlightIndex,golden),id:arcoGame.nextTargetId++,type:golden?'GOLD_SKY':'BIRD_TARGET'
     });
@@ -1919,6 +1916,7 @@ function spawnArcoBirdTarget(golden=false) {
 }
 
 function spawnArcoTarget(descriptor) {
+    if(arcoGame.targets.length>=ARCHERY_CONFIG.maxCarriers||arcoGame.targets.filter(t=>!t.hit).length>=window.ArcheryMatchPacing.PHASES[arcoGame.phase].capacity)return null;
     const kind=descriptor.kind || 'NORMAL_MEDIUM';
     const spec=ARCHERY_TARGET_TYPES[kind] || ARCHERY_TARGET_TYPES.NORMAL_MEDIUM;
     const target=acquireArcoObject(arcoGame.targetPool,{
@@ -1939,7 +1937,7 @@ function spawnArcoTarget(descriptor) {
 }
 
 function spawnArcoGoldenEvent(event) {
-    if(arcoGame.targets.length>=ARCHERY_CONFIG.maxCarriers)return null;
+    if(arcoGame.targets.length>=ARCHERY_CONFIG.maxCarriers||arcoGame.targets.filter(t=>!t.hit).length>=window.ArcheryMatchPacing.PHASES[arcoGame.phase].capacity)return null;
     let target;
     if(event.variant==='SKY'){
         if(arcoGame.birdFlightIndex>=window.ArcheryBirdTargets.MAX_PER_ROUND)return null;
@@ -1947,7 +1945,7 @@ function spawnArcoGoldenEvent(event) {
     }else{
         const arc=event.variant==='ARC';
         target=spawnArcoTarget({kind:arc?'GOLD_ARC':'GOLD_FAST',path:arc?'ARC':'STRAIGHT',speed:'FAST',
-            entry:arc?event.entry:'TOP',exit:event.entry,goldenVariant:event.variant});
+            entry:arc?event.entry:'TOP',exit:event.entry,band:'FAR',goldenVariant:event.variant});
     }
     if(target){
         arcoGame.lastGoldenSpawnFrame=arcoGame.roundFrame;
@@ -1965,7 +1963,7 @@ function updateArcoGoldenSpawns() {
         ||arcoGame.targets.some(target=>target.isGolden)||arcoGame.targets.length>=ARCHERY_CONFIG.maxCarriers)return;
     // If a regular carrier occupies the sky, wait briefly, then use the rapids.
     // No bird is removed or overlapped to make room for the special opportunity.
-    if(event.variant==='SKY'&&(arcoGame.targets.some(target=>target.carrier==='BIRD')
+    if(event.variant==='SKY'&&(arcoGame.targets.filter(target=>target.carrier==='BIRD').length>=2
         ||arcoGame.birdFlightIndex>=window.ArcheryBirdTargets.MAX_PER_ROUND)){
         if(arcoGame.roundFrame-event.frame<120)return;
         event.variant='RAPIDS';
@@ -1983,7 +1981,7 @@ function queueArcoPattern(pattern) {
     arcoGame.pacing.waves.push({id:pattern.id,phase:arcoGame.phase,frame:arcoGame.roundFrame});
     arcoGame.stats.patternCounts[pattern.id] = (arcoGame.stats.patternCounts[pattern.id] || 0) + 1;
     for (const descriptor of pattern.targets) {
-        arcoGame.pendingTargetSpawns.push({ delay: descriptor.delay || 0, descriptor: { ...descriptor } });
+        arcoGame.pendingTargetSpawns.push({ delay: descriptor.delay || 0, descriptor: { ...descriptor,waveId:pattern.id } });
     }
 }
 
@@ -1995,6 +1993,7 @@ function queueArcoQaShowcase(descriptors) {
 }
 
 function beginArcoRound() {
+    window.FestivalChallenges?.start('archery');
     arcoGame.lastUpdateTime=performance.now();arcoGame.simulationAccumulator=0;
     window.archeryCharactersV2.reset();
     arcoGame.playerControl = window.ArcheryPlayerControl.create();
@@ -2006,7 +2005,7 @@ function beginArcoRound() {
     arcoGame.spawnTimer = 0;
     arcoGame.targets.length = 0;
     arcoGame.pendingTargetSpawns.length = 0;
-    arcoGame.nextBirdFrame = window.ArcheryBirdTargets.FIRST_FRAME;
+    arcoGame.nextBirdFrame = Infinity;
     arcoGame.birdFlightIndex = 0;
     arcoGame.goldenSchedule = window.ArcheryGoldenTargets.plan();
     arcoGame.lastGoldenSpawnFrame = -10000;
@@ -2077,7 +2076,7 @@ function applyArcoQaAutomation() {
         keys.a = false;
         keys.d = false;
     }
-    const desiredY = ARCHERY_CONFIG.shooterArea.front + 18 + (Math.sin(arcoGame.roundFrame / 72) + 1) * 15;
+    const desiredY = ARCHERY_CONFIG.shooterArea.front + 8 + (Math.sin(arcoGame.roundFrame / 72) + 1) * 8;
     keys.w = arcoGame.playerY > desiredY + 2;
     keys.s = arcoGame.playerY < desiredY - 2;
     const precisionAligned = target && Math.abs(target.x - arcoGame.playerX) <= (archeryQaParams.get('archeryQaPrecision') === '1' ? 4.5 : 9);
@@ -2127,6 +2126,7 @@ function fireArcoArrow(owner, shot = null) {
         speedY,
         owner
     }));
+    window.FestivalChallenges?.onArcheryShot(arcoGame.arrows[arcoGame.arrows.length-1],arcoGame.targets);
     if (isPlayer) arcoGame.stats.playerShots++;
     else arcoGame.stats.mestreShots++;
     arcoGame.pacing.phases[arcoGame.phase][isPlayer?'playerShots':'masterShots']++;
@@ -2174,7 +2174,7 @@ function updateArcoPlayer() {
 }
 
 function updateArcoMaster() {
-    const area = ARCHERY_CONFIG.shooterArea;
+    const area = ARCHERY_CONFIG.masterArea;
     if (archeryQaParams.get('archeryQaBullseye') === '1') {
         arcoGame.mestreState = 'IDLE';
         updateArcoRange(arcoGame.stats.mestreRange, arcoGame.mestreX, arcoGame.mestreY);
@@ -2187,7 +2187,7 @@ function updateArcoMaster() {
         frame:arcoGame.roundFrame,totalFrames:arcoGame.roundFrames,phase:arcoGame.phase,x:arcoGame.mestreX,y:arcoGame.mestreY,
         area,targets:arcoGame.targets,arrowSpeed:ARCHERY_CONFIG.arrowSpeed+.35,
         opponent:{x:arcoGame.playerX,y:arcoGame.playerY,
-            arrowVisible:arcoGame.arrows.some(arrow=>arrow.owner==='PLAYER'&&arrow.y>=0&&arrow.y<=300)},
+            arrowVisible:arcoGame.arrows.some(arrow=>arrow.owner==='PLAYER'&&arrow.y>=0&&arrow.y<=window.ArcheryField.HEIGHT)},
         explosionRadius:window.ArcheryExplosiveTargets.RADIUS
     });
     arcoGame.mestreX=result.x;arcoGame.mestreY=result.y;
@@ -2260,11 +2260,11 @@ function updateArcoTargetSpawns() {
         pending.delay--;
         const entry=pending.descriptor.entry||'TOP';
         const spaced=arcoGame.roundFrame-arcoGame.lastTargetSpawnFrame>=24
-            &&arcoGame.roundFrame-arcoGame.lastEntryFrames[entry]>=66;
-        const capacity=pending.descriptor.capacity||ARCHERY_CONFIG.maxTargets[arcoGame.phase];
+            &&arcoGame.roundFrame-arcoGame.lastEntryFrames[entry]>=28;
+        const capacity=Math.min(pending.descriptor.capacity||window.ArcheryMatchPacing.PHASES[arcoGame.phase].capacity,window.ArcheryMatchPacing.PHASES[arcoGame.phase].capacity);
         if (pending.delay <= 0 && spaced && arcoGame.targets.filter(target=>!target.hit).length < capacity && arcoGame.targets.length < ARCHERY_CONFIG.maxCarriers) {
-            spawnArcoTarget(pending.descriptor);
-            arcoGame.pendingTargetSpawns.splice(index--, 1);
+            const spawned=pending.descriptor.carrier==='BIRD'?spawnArcoBirdTarget():spawnArcoTarget(pending.descriptor);
+            if(spawned)arcoGame.pendingTargetSpawns.splice(index--, 1);
         }
     }
 
@@ -2388,6 +2388,7 @@ function updateArcoArrows(deltaSeconds=1/60) {
         if(first){
             arrow.x=first.x;arrow.y=first.y;
             arrow.state='HIT';
+            window.FestivalChallenges?.onArcheryResolved(arrow,arcoGame.targets[targetIndex]);
             // Explosion neighbourhoods and hit effects use positions at contact,
             // not endpoints a fast target may already have travelled beyond.
             collisionSystem.atImpact(arcoGame.targets,first.t,()=>
@@ -2399,6 +2400,7 @@ function updateArcoArrows(deltaSeconds=1/60) {
         const visualMargin=arrow.owner==='PLAYER'?48:30;
         if(arrow.y < -visualMargin || arrow.x < -30 || arrow.x > canvas.width+30){
             arrow.state='REMOVED';
+            window.FestivalChallenges?.onArcheryResolved(arrow);
             window.archeryCharactersV2.miss(arrow.owner);
             if(arrow.owner==='PLAYER'){arcoGame.stats.playerMisses++;arcoGame.playerReactionTimer=18;}
             else{arcoGame.stats.mestreMisses++;arcoGame.mestreReactionTimer=14;}
@@ -2518,31 +2520,12 @@ function getArcoCharacterVisual(actor) {
 
 
 function drawArcoShooterArea() {
-    const area = ARCHERY_CONFIG.shooterArea;
-    ctx.strokeStyle = 'rgba(245, 232, 187, 0.74)';
-    ctx.lineWidth = 1;
-    ctx.setLineDash([5, 4]);
-    ctx.beginPath();
-    ctx.moveTo(area.left, area.front);
-    ctx.lineTo(area.right, area.front);
-    ctx.stroke();
-    ctx.setLineDash([]);
-    // Ground markings only; physical bounds remain in ARCHERY_CONFIG.
-    for (const x of [area.left, area.right]) {
-        const direction = x === area.left ? 1 : -1;
-        for (const y of [area.front + 15, area.back + 15]) {
-            ctx.fillStyle = '#d9ca98';
-            ctx.fillRect(x, y, direction * 8, 1);
-            ctx.fillRect(x, y + (y === area.front + 15 ? 0 : -5), 1, 5);
-        }
+    for(const [area,label,color]of [[ARCHERY_CONFIG.masterArea,'MESTRE — LINHA DIANTEIRA','#e1ae99'],[ARCHERY_CONFIG.shooterArea,'ZORP — LINHA POSTERIOR','#a7e5dc']]){
+        ctx.save();ctx.strokeStyle=color;ctx.globalAlpha=.65;ctx.lineWidth=1;ctx.setLineDash([7,7]);
+        ctx.beginPath();ctx.moveTo(area.left,area.front+15);ctx.lineTo(area.right,area.front+15);ctx.stroke();ctx.setLineDash([]);
+        for(const x of [area.left,area.right]){ctx.fillStyle=color;ctx.fillRect(x,area.front+12,2,area.back-area.front+8);}
+        ctx.globalAlpha=.85;ctx.font='bold 8px monospace';ctx.textAlign='center';ctx.fillStyle='#5b513c';ctx.fillText(label,450,area.back+20);ctx.restore();
     }
-    ctx.fillStyle = '#665f42';
-    ctx.fillRect(canvas.width / 2 - 42, area.front - 10, 84, 10);
-    ctx.fillStyle = '#fff4c2';
-    ctx.font = 'bold 6px monospace';
-    ctx.textAlign = 'center';
-    ctx.fillText('LINHA DE TIRO', canvas.width / 2, area.front - 3);
-    ctx.textAlign = 'left';
 }
 
 function drawArcoTargets() {
@@ -2601,15 +2584,17 @@ function getArcoDiagnostics() {
         master: { x: +arcoGame.mestreX.toFixed(1), y: +arcoGame.mestreY.toFixed(1), state: arcoGame.mestreState },
         shooterArea: area,
         playerInBounds: arcoGame.playerX >= area.left && arcoGame.playerX <= area.right && arcoGame.playerY >= area.front && arcoGame.playerY <= area.back,
-        masterInBounds: arcoGame.mestreX >= area.left && arcoGame.mestreX <= area.right && arcoGame.mestreY >= area.front && arcoGame.mestreY <= area.back,
-        overlapAllowed: true,
+        masterInBounds: arcoGame.mestreX >= ARCHERY_CONFIG.masterArea.left && arcoGame.mestreX <= ARCHERY_CONFIG.masterArea.right && arcoGame.mestreY >= ARCHERY_CONFIG.masterArea.front && arcoGame.mestreY <= ARCHERY_CONFIG.masterArea.back,
+        overlapAllowed: false,
+        field: {width:window.ArcheryField.WIDTH,height:window.ArcheryField.HEIGHT,camera:window.ArcheryField.camera,bands:window.ArcheryField.bands},
+        masterArea: ARCHERY_CONFIG.masterArea,
         targets: arcoGame.targets.length,
         targetTypes: arcoGame.targets.map((target) => target.type),
         targetPaths: arcoGame.targets.map((target) => ({
             id: target.id,
             carrier: target.carrier,
             explosive: target.isExplosive, detonated: target.detonated,
-            path: target.pathType,
+            path: target.pathType,band:target.band||'AIR',
             entry: target.entryPoint,
             exit: target.exitPoint,
             speed: target.speedTier,
@@ -2765,9 +2750,8 @@ const SURF_SCENE = "JOGO_SURF";
 const sceneObstacles = {
     HUB: [
         {x:68,y:211,w:46,h:14,type:'bench',solid:true,renderByIsland:true},
-        {x:336,y:211,w:46,h:14,type:'bench',solid:true,renderByIsland:true},
-        {x:46,y:65,w:38,h:25,type:'flower_bed',solid:true,renderByIsland:true},
-        {x:366,y:65,w:38,h:25,type:'flower_bed',solid:true,renderByIsland:true}
+        {x:336,y:240,w:46,h:14,type:'bench',solid:true,renderByIsland:true},
+        {x:46,y:65,w:38,h:25,type:'flower_bed',solid:true,renderByIsland:true}
     ],
     ILHA_CORRIDA: [
         { x: 105, y: 145, w: 32, h: 10, type: 'hurdle', solid: true },
@@ -2824,7 +2808,7 @@ const npcs = [
     { id: "guia_festival", scene: "HUB", x: 270, y: 130, img: imgGuia, tamanho: 44, msg: "> GUIA: Explore os caminhos ao Norte, Sul, Leste e Oeste." },
 
     // NPCs da Ilha de Boxe (Arena dos Campeões)
-    { scene: "ILHA_ESQUI", x: 225, y: 110, img: imgNpcMestreBoxe, tamanho: 50, msg: "> MESTRE DO BOXE: Controle a distância, circule pelo ringue e lute até o nocaute!", isMaster: "JOGO_BOXE" },
+    { scene: "ILHA_ESQUI", x: 225, y: 110, img: imgNpcMestreBoxe, tamanho: 50, msg: "> MESTRE DO BOXE: Controle a distância e vença dois rounds. Fintas e esquivas abrem a guarda!", isMaster: "JOGO_BOXE" },
     { scene: "ILHA_ESQUI", x: 130, y: 190, img: imgNpcTreinadorBoxe, tamanho: 44, msg: "> TREINADOR: WASD movimenta no ringue. J dá o golpe leve, K o pesado. Segure L para defender e use I para esquivar. Combine J, J e K!" },
     { scene: "ILHA_ESQUI", x: 345, y: 130, img: imgNpcArbitroBoxe, tamanho: 44, msg: "> ÁRBITRO: Lute com distância e timing. Os dois começam com 100 de vida. Quem chegar a zero perde por KO." },
     { id: "pugilista_apostador", scene: "ILHA_ESQUI", x: 98, y: 186, img: imgNpcBoxeador, tamanho: 44, msg: "> PUGILISTA/APOSTADOR: Ganhe do Mestre do Boxe sem cair nenhuma vez. Volte aqui para receber 40 moedas." },
@@ -2874,9 +2858,12 @@ const npcs = [
 // -------------------------------------------------------------
 // Captura a borda do comando de interação. O polling de `keys` sozinho podia
 // perder um toque rápido quando keydown e keyup ocorriam entre dois frames.
+npcs.push(...NormalIslandNpcs.create());
+npcs.push(MerchantCampaign.npc);
 npcs.push(...RavokEvent.npcs);
 configureOverworldPresentation();
 let overworldConversationText = null;
+let normalNpcDialogue = null;
 let interactionPressed = false;
 let shipInteractionPressed = false;
 let climbUpPressed = false;
@@ -2886,7 +2873,6 @@ RavokEvent.init({
     scene: () => currentScene,
     busy:()=>RavokArrival.active||RavokOutcome.active||MedalCompletion.active||MastersFarewell.active||EndingCinematic.active||CaptainRoute.active||PreGameBrief.active,
     startOutcome:route=>RavokOutcome.start(route),
-    drawNpcAt:(npc,x,y,scale)=>drawNPC({...npc,x,y,tamanho:npc.tamanho*scale}),
     heldKeys: () => Object.keys(keys).filter(key => keys[key]),
     clearInput: () => {
         for (const key of Object.keys(keys)) keys[key] = false;
@@ -2906,6 +2892,7 @@ window.addEventListener("keydown", (e) => {
         }
     }
     const k = e.key.toLowerCase();
+    if (normalNpcDialogue && ['e',' ','escape'].includes(k)) e.preventDefault();
     if (PreGameBrief.handleKeyDown(e)) return;
     if (RavokEvent.handleKeyDown(e)) return;
     if (currentScene === 'JOGO_ARCO' && [' ', 'w', 'a', 's', 'd'].includes(k)) ArcheryRiverTargets.unlockAudio();
@@ -2931,25 +2918,10 @@ window.addEventListener("keydown", (e) => {
         }else if (k === "w" || k === " ") climbUpPressed = true;
     }
     if (currentScene === "JOGO_BOXE") {
-        if ([" ","j","k","l","i","o"].includes(k)) e.preventDefault();
-        if (k === "l") boxingInputPress.guard = true;
-        if (!e.repeat) {
-            if (k === " ") {
-                if (boxeGame.phase === "READY") boxingInputPress.start = true;
-            }
-            if (k === "j") boxingInputPress.jab = true;
-            if (k === "k") boxingInputPress.cross = true;
-            if (k === "i") boxingInputPress.dodge = true;
-            if (k === "o") boxingInputPress.special = true;
-            if (k === "r") boxingInputPress.restart = true;
-            if (k === "w" || k === "a" || k === "s" || k === "d") queueBoxingMoveTap(k);
-            if (k === "escape") {
-                boxingReleaseInput();
-                currentScene = "ILHA_ESQUI";
-                player.x = 225; player.y = 150;
-                dialogBox.classList.remove("show");
-            }
+        if (boxingHandleKeyDown(e) === 'exit') {
+            currentScene = "ILHA_ESQUI";player.x = 225;player.y = 150;dialogBox.classList.remove("show");
         }
+        return;
     }
     if (k === "escape" && currentScene === "JOGO_SKATE") {
         currentScene = "ILHA_SKATE";
@@ -2967,7 +2939,7 @@ window.addEventListener("keyup", (e) => {
         }
     }
     const k = e.key.toLowerCase();
-    if (k === "l") boxingInputPress.guard = false;
+    if (currentScene === "JOGO_BOXE") boxingHandleKeyUp(e);
     if (k === " ") {
         keys.space = false;
     }
@@ -2992,6 +2964,7 @@ function isColliding(player, box) {
 
 function checkObstacleCollision(nextX, nextY) {
     if (currentScene === "HUB" && AdventureIntro.collides(nextX, nextY)) return true;
+    if (currentScene === "HUB" && MerchantCampaign.blocks({x:nextX-10,y:nextY-8,w:20,h:10})) return true;
     if (currentScene === "HUB" && MastersFarewell.collides(nextX, nextY)) return true;
     const feetBox = { x: nextX - 10, y: nextY - 8, w: 20, h: 10 };
     if (currentScene === "ILHA_ARCO" && ArcheryIsland.blocks(feetBox)) return true;
@@ -3010,9 +2983,10 @@ function checkObstacleCollision(nextX, nextY) {
             return true; 
         }
     }
-    if (currentScene !== "ILHA_BASQUETE") {
+    {
         for (const npc of npcs) {
-            if (npc.scene !== currentScene || !npc.footprint || !RavokEvent.isNpcVisible(npc)) continue;
+            if (currentScene === "ILHA_BASQUETE" && !npc.normalIslandNpc) continue;
+            if (npc.scene !== currentScene || !npc.footprint || !(RavokEvent.isNpcVisible(npc)&&MerchantCampaign.isNpcVisible(npc))) continue;
             const body = { x: npc.x - npc.footprint.width / 2,
                 y: npc.y - npc.footprint.height + 2,
                 w: npc.footprint.width, h: npc.footprint.height };
@@ -3024,6 +2998,8 @@ function checkObstacleCollision(nextX, nextY) {
 }
 
 function update() {
+    window.ArcheryField.syncCanvas(canvas,currentScene);
+    window.JukeboxPlayer?.update();
     if (typeof TitleScreen !== "undefined" && TitleScreen.isActive()) {
         TitleScreen.update();
         return;
@@ -3046,14 +3022,27 @@ function update() {
     }
     if (MedalCompletion.update(currentScene)) return;
     if (MastersFarewell.update(currentScene)) return;
+    if (!MerchantCampaign.cutsceneActive && (currentScene==='HUB'||currentScene.startsWith('ILHA_'))) window.FestivalProgress?.discoverScene(currentScene);
+    if (MerchantCampaign.update(currentScene)) return;
     const isOverworldScene = !currentScene.startsWith("JOGO_");
     // A result-screen Space must not reopen a minigame while the same key is held.
-    // Preserve the basketball island's original interaction path verbatim.
-    const interactionRequested = isOverworldScene && (currentScene === "ILHA_BASQUETE"
-        ? (interactionPressed || keys.e || keys.space) : interactionPressed);
+    // Keep the basketball Master's legacy held input; normal dialogue uses fresh edges.
+    const interactionRequested = isOverworldScene && (interactionPressed ||
+        (currentScene === "ILHA_BASQUETE" && !normalNpcDialogue && overworldFocusNpc?.isMaster && (keys.e || keys.space)));
     const shipInteractionRequested = isOverworldScene && shipInteractionPressed;
     if (isOverworldScene) { interactionPressed = false; shipInteractionPressed = false; }
 
+    if (isOverworldScene && normalNpcDialogue) {
+        zorpSprite.isMoving = false;
+        dialogBox.classList.add('show');
+        hintText.innerText = '[E / ESPAÇO / ESC] FECHAR CONVERSA';
+        if (interactionRequested || keys.escape) {
+            normalNpcDialogue = null; overworldConversationNpc = null; overworldConversationText = null;
+            dialogBox.classList.remove('show');
+            for (const k of ['w','a','s','d','e','space','escape']) keys[k] = false;
+        }
+        return;
+    }
     if (isOverworldScene) {
         hintText.innerText = "[W A S D] MOVER | [E / ESPAÇO] CONVERSAR";
         
@@ -3134,15 +3123,18 @@ function update() {
             if (player.y > 280) { currentScene = "ILHA_PINGPONG"; player.y = 15; }
         }
 
+        // Physical region entry is saved before any NPC dialogue or minigame can open.
+        window.FestivalProgress?.discoverScene(currentScene);
+
         // Interação NPC
         let npcProximo = null;
         let npcDistance = Infinity;
         for (let npc of npcs) {
             const interactionBox = overworldNpcInteractionBox(npc);
-            if (npc.scene === currentScene && RavokEvent.isNpcVisible(npc) && isColliding(player, interactionBox)) {
+            if (npc.scene === currentScene && (RavokEvent.isNpcVisible(npc)&&MerchantCampaign.isNpcVisible(npc)) && isColliding(player, interactionBox)) {
                 const distance = Math.hypot(player.x - npc.x, player.y - npc.y);
                 if (distance < npcDistance) { npcProximo = npc; npcDistance = distance; }
-                if (currentScene === "ILHA_BASQUETE") break;
+                // The nearest interaction zone wins; normal NPCs never steal a distant Master prompt.
             }
         }
         
@@ -3213,9 +3205,12 @@ function update() {
                 keys.space = false;
 
             } else if (interactionRequested) {
-                if (npcProximo.scene !== "ILHA_BASQUETE") overworldConversationNpc = npcProximo;
-                overworldConversationText = RavokEvent.interact(npcProximo) || CaptainRoute.interact(npcProximo) || FestivalChallenges.interact(npcProximo) || npcProximo.msg;
+                if (npcProximo.scene !== "ILHA_BASQUETE" || npcProximo.normalIslandNpc) overworldConversationNpc = npcProximo;
+                overworldConversationText = RavokEvent.interact(npcProximo) || CaptainRoute.interact(npcProximo) || FestivalChallenges.interact(npcProximo) || MerchantCampaign.interact(npcProximo) || NormalIslandNpcs.interact(npcProximo) || npcProximo.msg;
                 if (!RavokEvent.conversationActive) dialogText.innerHTML = overworldConversationText + extra;
+                if (!npcProximo.isMaster && !npcProximo.eventId && npcProximo.id !== 'capitao') {
+                    normalNpcDialogue = npcProximo.id; zorpSprite.isMoving = false;
+                }
             } else {
                 dialogText.innerHTML = overworldConversationNpc === npcProximo
                     ? (overworldConversationText || npcProximo.msg) : npcProximo.scene !== "ILHA_BASQUETE"
@@ -3320,6 +3315,7 @@ function returnFromMinigameBrief(id) {
 }
 
 function startMinigameFromBrief(id) {
+    window.MerchantCampaign?.startGame(id);
     clearMinigameBriefInput();
     if (id === 'pingpong') {
         pingPong.gameState = 'PLAYING';
@@ -3351,7 +3347,8 @@ function openMinigameBrief(id) {
     else if (id === 'boxing') boxeGame.phase = 'PRE_GAME';
     showPreGameBrief(config, {
         // Marathon keeps its own existing start countdown; the other sports share this one.
-        countdown: id !== 'marathon',
+        countdown: id !== 'marathon' && id !== 'boxing',
+        drawCountdown: id === 'pingpong' ? (context, screen, elapsed) => PingPongArenaArt.intro(context, elapsed) : undefined,
         heldKeys: Object.keys(keys).filter(key => keys[key]),
         onConfirm: () => {
             if (id === 'pingpong') PingPongBall.unlockAudio();
@@ -3397,6 +3394,7 @@ function resetPingPong(fullReset = false) {
         pingPong.gameState = 'PRE_GAME';
         pingPong.playerAction = pingPong.opponentAction = 'IDLE';
         pingPong.win = false;
+        pingPong.resultTicks = 0; pingPong.resultInputArmed = false; pingPong.medalAwarded = false;
         pingPong.server = 'PLAYER';
         pingPong.nextBallId = 1;
     }
@@ -3430,11 +3428,14 @@ function resetPingPong(fullReset = false) {
 }
 
 function finishPingPongMatch() {
+    if (pingPong.gameState !== 'PLAYING') return;
     if (pingPong.playerScore >= pingPong.maxScore) {
-        insignias.pingpong = true;
         pingPong.gameState = 'GAMEOVER'; pingPong.win = true;
     } else if (pingPong.opponentScore >= pingPong.maxScore) {
         pingPong.gameState = 'GAMEOVER'; pingPong.win = false;
+    }
+    if (pingPong.gameState === 'GAMEOVER') {
+        pingPong.resultTicks = 0; pingPong.resultInputArmed = false; pingPong.medalAwarded = false;
     }
 }
 
@@ -3457,9 +3458,17 @@ function updatePingPong() {
     if (pingPong.gameState === 'PRE_GAME' || PreGameBrief.active) return;
     
     if (pingPong.gameState === 'GAMEOVER') {
-        if (keys.space) { 
-            currentScene = "ILHA_PINGPONG"; 
-            keys.space = false; 
+        // The match is decided. This short celebration never advances ball physics.
+        pingPong.resultTicks = (pingPong.resultTicks || 0) + 1;
+        if (pingPong.resultTicks < 90) return;
+        if (pingPong.win && !pingPong.medalAwarded) {
+            insignias.pingpong = true;
+            pingPong.medalAwarded = true;
+        }
+        if (!keys.space) pingPong.resultInputArmed = true;
+        if (keys.space && pingPong.resultInputArmed) {
+            currentScene = "ILHA_PINGPONG";
+            keys.space = false;
             dialogText.innerHTML = pingPong.win ? "> MESTRE: Reflexo Lendário! Você superou o ritmo frenético e ganhou a Insígnia do Ping-Pong!" : "> MESTRE: Foi um belo confronto de 50 pontos! Respire fundo e tente novamente!";
             dialogBox.classList.add("show");
         }
@@ -3749,7 +3758,10 @@ function drawPlayer() {
 }
 
 function drawNPC(npc) {
-    if(npc.scene==="ILHA_BASQUETE")drawBasketballOverworldNpc(npc);
+    if(npc.eventId==='merchant'){if(MerchantCampaign.isNpcVisible(npc))MerchantCampaign.drawActor(ctx);return;}
+    if(npc.eventId==='ravok'){RavokK7Animation.draw(ctx,RavokK7Animation.idle(npc.id,npc.x,npc.y,npc.facingDirection||'down'),{focused:overworldFocusNpc===npc});return;}
+    if(npc.normalIslandNpc)drawUnifiedOverworldNpc(npc);
+    else if(npc.scene==="ILHA_BASQUETE")drawBasketballOverworldNpc(npc);
     else drawUnifiedOverworldNpc(npc);
 }
 
@@ -4655,212 +4667,45 @@ function drawIlhaSurf() {
 // -------------------------------------------------------------
 function drawPingPongGame() {
     ctx.imageSmoothingEnabled = false;
+    const now = performance.now();
+    // Read completed simulation states. Feedback never writes to pingPong.
+    PingPongFeedback.observe(pingPong, now);
+    if (!PingPongFeedback.heldFrame(ctx, now)) {
+        const shake = PingPongFeedback.shake(now);
+        ctx.save(); ctx.translate(shake.x, shake.y);
+        PingPongPresentation.drawArena(ctx, PINGPONG_COURT, now, PingPongFeedback.crowd(pingPong, now));
+        ctx.save(); PingPongPresentation.applyView(ctx);
 
-    if (bgPingPong.complete && bgPingPong.naturalWidth > 0) {
-        const art = PINGPONG_COURT.artwork;
-        const sx = bgPingPong.naturalWidth / art.width;
-        const sy = bgPingPong.naturalHeight / art.height;
-        ctx.drawImage(bgPingPong, art.x * sx, art.y * sy, art.w * sx, art.h * sy,
-            0, 0, canvas.width, canvas.height);
+        const resultPose = pingPong.gameState === 'GAMEOVER';
+        const playerAction = resultPose ? (pingPong.win && Math.floor((pingPong.resultTicks || 0) / 15) % 2 === 0 ? 'HIT' : 'IDLE') : pingPong.playerAction;
+        let zorpSpriteImg = imgZorpIdle;
+        if (playerAction === 'MOVE_UP') zorpSpriteImg = imgZorpMU;
+        else if (playerAction === 'MOVE_DOWN') zorpSpriteImg = imgZorpMD;
+        else if (playerAction === 'HIT') zorpSpriteImg = imgZorpHit;
+
+        const masterAction = resultPose ? (pingPong.win ? 'IDLE' : 'HIT') : pingPong.multiball.phase === 'PREPARING_MULTIBALL' ? 'HIT' :
+            PingPongFeedback.masterAction(pingPong, pingPong.opponentAction, now);
+        let mestreSpriteImg = imgMestreIdle;
+        if (masterAction === 'MOVE_UP') mestreSpriteImg = imgMestreMU;
+        else if (masterAction === 'MOVE_DOWN') mestreSpriteImg = imgMestreMD;
+        else if (masterAction === 'HIT') mestreSpriteImg = imgMestreHit;
+
+        for (const ball of pingPong.balls) PingPongPresentation.drawBallShadow(ctx, ball, PINGPONG_COURT);
+        PingPongFeedback.afterimages(ctx, imgZorpHit, pingPong, now, PingPongPresentation);
+        PingPongPresentation.drawFighter(ctx, zorpSpriteImg, 'PLAYER', playerAction, pingPong.playerX, pingPong.playerY);
+        PingPongPresentation.drawFighter(ctx, mestreSpriteImg, 'OPPONENT', masterAction, pingPong.opponentX, pingPong.opponentY);
+
+        for (const ball of pingPong.balls) if (ball.state !== 'MISSED') PingPongBall.drawTelegraph(ctx, ball);
+        PingPongFeedback.world(ctx, pingPong, now);
+        // Ball cores are rendered last, ahead of contact/particle effects.
+        for (const ball of pingPong.balls) PingPongPresentation.drawBall(ctx, ball, PingPongFeedback.ballStyle(ball, now));
+        ctx.restore(); ctx.restore();
+        PingPongFeedback.capture(ctx, canvas, now);
     }
+    PingPongPresentation.drawHUD(ctx, pingPong, now);
+    PingPongFeedback.screen(ctx, pingPong, now);
 
-    let zorpSpriteImg = imgZorpIdle;
-    if (pingPong.playerAction === "MOVE_UP") zorpSpriteImg = imgZorpMU;
-    else if (pingPong.playerAction === "MOVE_DOWN") zorpSpriteImg = imgZorpMD;
-    else if (pingPong.playerAction === "HIT") zorpSpriteImg = imgZorpHit;
-
-    let mestreSpriteImg = imgMestreIdle;
-    if (pingPong.opponentAction === "MOVE_UP") mestreSpriteImg = imgMestreMU;
-    else if (pingPong.opponentAction === "MOVE_DOWN") mestreSpriteImg = imgMestreMD;
-    else if (pingPong.opponentAction === "HIT") mestreSpriteImg = imgMestreHit;
-    if (pingPong.multiball.phase === "PREPARING_MULTIBALL") mestreSpriteImg = imgMestreHit;
-
-    drawShadow(pingPong.playerX + 18, pingPong.playerY + 45);
-    drawShadow(pingPong.opponentX + 18, pingPong.opponentY + 45);
-
-    if (zorpSpriteImg.complete) ctx.drawImage(zorpSpriteImg, pingPong.playerX, pingPong.playerY, 36, 48);
-    if (mestreSpriteImg.complete) ctx.drawImage(mestreSpriteImg, pingPong.opponentX, pingPong.opponentY, 36, 48);
-
-    // Esforço e cansaço ao acompanhar a trajetória pós-quique.
-    if (pingPong.mestreReaction) {
-        ctx.font = "bold 16px sans-serif";
-        ctx.fillText(pingPong.mestreReaction.text, pingPong.opponentX + 10, pingPong.opponentY - 8);
-    }
-
-    // A single exaggerated racket swing, attached to Zorp, never a radial blast.
-    for (const effect of pingPong.specialEffects) {
-        const t = effect.age / effect.lifetime;
-        const x = pingPong.playerX + 29, y = pingPong.playerY + 23;
-        ctx.save(); ctx.globalAlpha = (1 - t) * 0.85;
-        ctx.strokeStyle = '#b9faff'; ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.arc(x - 7, y, 12 + t * 10, -1.2 + t * 0.4, 0.9 + t * 0.4); ctx.stroke();
-        ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(x - 9, y + 1, 16 + t * 8, -1.0, 0.65); ctx.stroke();
-        ctx.fillStyle = '#efffff'; ctx.fillRect(x - 2, y - 4, 4, 8);
-        ctx.restore();
-    }
-
-    // Subtle projected contact marker; the outgoing attack remains a reaction.
-    for (const ball of pingPong.balls) PingPongBall.drawTelegraph(ctx, ball);
-
-    // Efeitos Visuais de Quique
-    if (pingPong.bounceEffects) {
-        pingPong.bounceEffects.forEach(b => {
-            ctx.save();
-            ctx.strokeStyle = b.color || "#ffffff";
-            ctx.lineWidth = 1.5;
-            ctx.globalAlpha = Math.max(0, b.alpha);
-            ctx.beginPath();
-            if (b.racketHit) {
-                ctx.moveTo(b.x - b.radius, b.y + b.radius); ctx.lineTo(b.x + b.radius, b.y - b.radius);
-                ctx.moveTo(b.x - b.radius, b.y - 2); ctx.lineTo(b.x + b.radius, b.y + 2);
-            } else ctx.ellipse(b.x, b.y, b.radius * 1.5, b.radius * 0.7, 0, 0, Math.PI * 2);
-            ctx.stroke();
-            ctx.restore();
-        });
-    }
-
-    // RENDERIZAÇÃO DAS BOLAS ATIVAS (MULTI-BOLAS)
-    for (let b of pingPong.balls) {
-        ctx.save();
-        // Rastro luminoso individual
-        if (b.trail && b.trail.length > 0 && (b.attackSpeed >= 6.7 || b.isSuper || b.specialTicks > 0)) {
-            for (let i = 0; i < b.trail.length; i++) {
-                let tr = b.trail[i];
-                let trRad = Math.max(1.5, b.radius * (i / b.trail.length));
-                ctx.save();
-                ctx.globalAlpha = tr.alpha * (b.specialTicks > 0 ? 0.65 : 0.45);
-                let trailColor = b.isSuper || b.specialTicks > 0 ? "#00e5ff" : (b.attackSpeed >= 7.5 ? "#ff7658" : "#ffe19a");
-                ctx.fillStyle = trailColor;
-                ctx.beginPath();
-                ctx.arc(tr.x, tr.y, trRad, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-            }
-        }
-
-        // Sombra 3D da Bolinha
-        let shadowRadius = Math.max(1, b.radius * (1 - b.z / 90));
-        ctx.fillStyle = "rgba(0, 0, 0, 0.35)";
-        ctx.beginPath();
-        ctx.ellipse(b.x, b.y, shadowRadius * 1.4, shadowRadius * 0.7, 0, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Posição 3D da Bolinha (Y_draw = Y - Z)
-        let bDrawY = b.y - b.z;
-        if (b.state === PingPongBall.STATES.MISSED) {
-            ctx.fillStyle = '#cbd5e1'; ctx.shadowBlur = 0;
-        } else if (b.isSuper || b.specialTicks > 0) {
-            ctx.fillStyle = "#bcfaff"; ctx.shadowBlur = 6; ctx.shadowColor = "#00e5ff";
-        } else if (b.attackSpeed >= 7.5) {
-            ctx.fillStyle = "#ff7658"; ctx.shadowBlur = 5; ctx.shadowColor = "#ff7455";
-        } else if (b.attackSpeed >= 6.3) {
-            ctx.fillStyle = "#ffce67"; ctx.shadowBlur = 3; ctx.shadowColor = "#ffeb3b";
-        } else {
-            ctx.fillStyle = "#ffffff"; ctx.shadowBlur = 0;
-        }
-
-        ctx.beginPath();
-        if (b.state === PingPongBall.STATES.TABLE_BOUNCE || b.state === PingPongBall.STATES.SERVE_OWN_BOUNCE) {
-            ctx.ellipse(b.x, bDrawY, b.radius * 1.45, b.radius * 0.62, 0, 0, Math.PI * 2);
-        } else {
-            ctx.arc(b.x, bDrawY, b.radius, 0, Math.PI * 2);
-        }
-        ctx.fill();
-        ctx.shadowBlur = 0;
-        ctx.restore();
-    }
-    for (const effect of pingPong.pointFeedback) {
-        ctx.save(); ctx.strokeStyle = effect.color; ctx.fillStyle = effect.color;
-        ctx.globalAlpha = effect.phase === 'MISS' ? 0.9 : Math.min(1, effect.timer / 12);
-        ctx.lineWidth = 1.5;
-        ctx.beginPath(); ctx.arc(effect.x, effect.y, effect.phase === 'MISS' ? 9 : 10 + (26 - effect.timer) * 0.25, 0, Math.PI * 2); ctx.stroke();
-        if (effect.phase === 'POINT') {
-            ctx.font = 'bold 10px monospace'; ctx.textAlign = 'center';
-            ctx.fillText('+1', Math.max(20, Math.min(430, effect.x)), Math.max(65, effect.y - 14));
-        }
-        ctx.restore();
-    }
-
-    // -------------------------------------------------------------
-    // PLACAR ARCADE ELETRÔNICO (CENTRALIZADO ACIMA DA MESA - META: 50)
-    // -------------------------------------------------------------
-    const boardX = 135, boardY = 8, boardW = 180, boardH = 34;
-    ctx.fillStyle = "rgba(15, 23, 42, 0.9)";
-    ctx.fillRect(boardX, boardY, boardW, boardH);
-    ctx.strokeStyle = "#00e5ff";
-    ctx.lineWidth = 1.5;
-    ctx.strokeRect(boardX, boardY, boardW, boardH);
-
-    ctx.fillStyle = "#00e5ff";
-    ctx.font = "bold 13px monospace";
-    ctx.textAlign = "left";
-    ctx.fillText(`ZORP ${String(pingPong.playerScore).padStart(2, '0')}`, boardX + 10, boardY + 22);
-
-    ctx.fillStyle = "#e2e8f0";
-    ctx.font = "bold 11px monospace";
-    ctx.textAlign = "center";
-    ctx.fillText(`x`, boardX + boardW / 2, boardY + 16);
-    ctx.font = "9px monospace";
-    ctx.fillStyle = "#94a3b8";
-    ctx.fillText(`META: 50`, boardX + boardW / 2, boardY + 28);
-
-    ctx.fillStyle = "#ff5722";
-    ctx.font = "bold 13px monospace";
-    ctx.textAlign = "right";
-    ctx.fillText(`${String(pingPong.opponentScore).padStart(2, '0')} MESTRE`, boardX + boardW - 10, boardY + 22);
-    ctx.textAlign = "left";
-
-    PingPongMultiball.draw(ctx, pingPong.multiball, pingPong);
-
-    // Informações Adicionais: Bolas em jogo e Barra de Especial
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 9px monospace";
-    ctx.fillText(`BOLAS EM JOGO: ${pingPong.balls.filter(b => b.state !== PingPongBall.STATES.MISSED).length}`, 328, 22);
-
-    // Indicador Dinâmico de Rali
-    if (pingPong.rallyHits > 0) {
-        ctx.font = "bold 10px monospace";
-        if (pingPong.rallyHits >= 13) {
-            ctx.fillStyle = (Date.now() % 200 < 100) ? "#e74c3c" : "#f1c40f";
-            ctx.fillText(`⚡ RALI: ${pingPong.rallyHits}x (VELOCIDADE MÁXIMA!) ⚡`, 125, 52);
-        } else if (pingPong.rallyHits >= 4) {
-            ctx.fillStyle = "#ffeb3b";
-            ctx.fillText(`RALI: ${pingPong.rallyHits}x (ACELERADO)`, 150, 52);
-        } else {
-            ctx.fillStyle = "#2ecc71";
-            ctx.fillText(`RALI: ${pingPong.rallyHits}x`, 185, 52);
-        }
-    }
-
-    // Barra de Energia do Super Smash
-    ctx.fillStyle = "#1e293b";
-    ctx.fillRect(15, 12, 100, 10);
-    let barraPreenchida = (pingPong.power / pingPong.maxPower) * 100;
-    if (pingPong.power >= pingPong.maxPower) {
-        ctx.fillStyle = pingPong.globalReturnCooldown > 0 ? '#607d8b' : (Date.now() % 300 < 150) ? "#00e5ff" : "#ffea00";
-        ctx.fillRect(15, 12, 100, 10);
-        ctx.fillStyle = "#00e5ff";
-        ctx.font = "bold 8px monospace";
-        ctx.fillText(pingPong.globalReturnCooldown > 0 ? `RECARGA: ${(pingPong.globalReturnCooldown / 60).toFixed(1)}s` : "ESPAÇO: RAQUETADA!", 15, 32);
-    } else {
-        ctx.fillStyle = "#3b82f6";
-        ctx.fillRect(15, 12, barraPreenchida, 10);
-        ctx.fillStyle = "#94a3b8";
-        ctx.font = "8px monospace";
-        ctx.fillText(`ESPECIAL: ${Math.floor(barraPreenchida)}%`, 15, 32);
-    }
-    ctx.strokeStyle = "#64748b";
-    ctx.lineWidth = 1;
-    ctx.strokeRect(15, 12, 100, 10);
-
-    // OVERLAYS (Telas)
-    if (pingPong.gameState === 'GAMEOVER') {
-        if (pingPong.win) {
-            drawOverlayScreen("VITÓRIA LENDÁRIA!", ["Você atingiu 50 pontos e", "conquistou a Insígnia do Ping-Pong!"], "#2ecc71");
-        } else {
-            drawOverlayScreen("DERROTA...", ["O Mestre atingiu 50 pontos primeiro.", "Aperte ESPAÇO para tentar novamente!"], "#e74c3c");
-        }
-    }
+    if (pingPong.gameState === 'GAMEOVER') PingPongArenaArt.result(ctx, pingPong);
 }
 
 // -------------------------------------------------------------
@@ -4880,6 +4725,8 @@ function draw() {
     // A result may have changed scene in this update. Capture it before clearing
     // so no controllable Overworld frame appears before the arrival interlude.
     RavokArrival.tryStart(currentScene);
+    window.MerchantCampaign?.tryStart(currentScene);
+    window.ArcheryField.syncCanvas(canvas,currentScene);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     if (typeof TitleScreen !== "undefined" && TitleScreen.isActive()) {
@@ -4888,6 +4735,7 @@ function draw() {
     }
     if (RavokArrival.active) { RavokArrival.draw(ctx); return; }
     if (RavokOutcome.active) { RavokOutcome.draw(ctx); return; }
+    if (window.MerchantCampaign?.cutsceneActive) { MerchantCampaign.draw(ctx); return; }
     if (AdventureIntro.active) { AdventureIntro.draw(ctx); return; }
     if (EndingCinematic.active) { EndingCinematic.draw(ctx); return; }
     if (CaptainRoute.active && ['FERIAS_MERECIDAS','ENDING_CARD'].includes(CaptainRoute.state)) { CaptainRoute.draw(ctx); return; }
@@ -4918,12 +4766,13 @@ function draw() {
             for (const npc of npcs) if (npc.scene === currentScene) drawNPC(npc);
             drawPlayer();
         } else {
-            const actors = npcs.filter(npc => npc.scene === displayScene && RavokEvent.isNpcVisible(npc))
+            const actors = npcs.filter(npc => npc.scene === displayScene && (RavokEvent.isNpcVisible(npc)&&MerchantCampaign.isNpcVisible(npc)))
                 .map(npc => ({ y: npc.y, draw: () => drawNPC(npc) }));
             if (displayScene === 'ILHA_ESCALADA') actors.push({y:RavokEvent.ship.depth,draw:()=>RavokEvent.draw(ctx)});
             actors.push(...RavokEvent.actors(displayScene));
+            actors.push(...MerchantCampaign.actors(displayScene));
             if (displayScene === "HUB" && AdventureIntro.introSeen) {
-                actors.push({ y: 150, draw: () => AdventureIntro.drawParked(ctx) });
+                actors.push({ y: 150, draw: () => { AdventureIntro.drawParked(ctx); MerchantCampaign.drawShipAccent(ctx); } });
             }
             actors.push(...MastersFarewell.actors(displayScene));
             actors.push({ y: player.y, draw: drawPlayer });
@@ -4944,6 +4793,7 @@ function draw() {
     PreGameBrief.draw(ctx,canvas);
     RavokArrival.drawPrompt(ctx);
     RavokEvent.drawOverlay(ctx);
+    MerchantCampaign.draw(ctx);
 }
 
 function gameLoop() { 
@@ -5165,7 +5015,7 @@ MedalCompletion.init({
 const RAVOK_RESULT_SPORT = Object.freeze({JOGO_PINGPONG:'pingpong',JOGO_BASQUETE:'basketball',
     JOGO_CORRIDA:'marathon',JOGO_SKATE:'skate',JOGO_ARCO:'archery',JOGO_ESCALADA:'climbing',JOGO_BOXE:'boxing',JOGO_SURF:'surf'});
 RavokArrival.init({
-    canvas,scene:()=>currentScene,
+    get canvas(){return canvas.width===ArcheryField.WIDTH?ArcheryField.transitionFrame(canvas):canvas;},scene:()=>currentScene,
     busy:()=>TitleScreen.isActive()||AdventureIntro.active||PreGameBrief.active||CaptainRoute.active||EndingCinematic.active||MedalCompletion.active||MastersFarewell.active,
     isOverworld:scene=>scene==='HUB'||scene.startsWith('ILHA_'),
     resultReady:scene=>{
@@ -5197,8 +5047,7 @@ RavokArrival.init({
         const image=captureOverworldIsland('ILHA_ESCALADA');
         if(marks)ClimbIsland.draw(image.getContext('2d'),0,g=>RavokEvent.drawGround(g,true));
         return image;
-    },
-    k7Sprite:()=>prepareOverworldNpc(RavokEvent.npcs.find(n=>n.id==='k7'))
+    }
 });
 
 RavokOutcome.init({
@@ -5218,12 +5067,7 @@ RavokOutcome.init({
         clearMinigameBriefInput();canvas.style.cursor='default';showOverworldUI();
     },
     enter:()=>{currentScene='RAVOK_SECRET_CUTSCENE';hideOverworldUI();dialogBox.classList.remove('show');},
-    drawNpc:(g,id,x,y,extra=1)=>{
-        const npc=RavokEvent.npcs.find(n=>n.id===id),sprite=prepareOverworldNpc(npc);if(!sprite)return;
-        const {surface,geometry}=sprite,s=npc.tamanho/geometry.visibleHeight*extra;
-        g.save();g.imageSmoothingEnabled=false;g.fillStyle='rgba(13,28,31,.22)';g.beginPath();g.ellipse(x,y-1,9*extra,4*extra,0,0,Math.PI*2);g.fill();
-        g.drawImage(surface,x-geometry.anchor[0]*s,y-geometry.anchor[1]*s,surface.width*s,surface.height*s);g.restore();
-    },
+    drawNpc:(g,id,actor)=>RavokK7Animation.draw(g,actor),
     drawZorp:(g,x,y,extra=1,walk=false,t=0)=>{
         const a=OVERWORLD_ZORP_WALK,row=walk?1:0,col=a.sequences[row][walk?Math.floor(t*6)%4:0],
             [sx,sy,w,h]=a.frames[row][col],s=a.scale*extra;
@@ -5277,6 +5121,48 @@ CaptainRoute.init({
         dialogBox.classList.add("show");
     },
     returnToMenu: () => EndingCinematic.config.returnToMenu()
+});
+
+
+MerchantCampaign.init({
+    ctx,canvas,scene:()=>currentScene,
+    medalCount:()=>MEDALHAS_REGISTRY.filter(m=>isMedalhaDesbloqueada(m.id)).length,
+    busy:()=>TitleScreen.isActive()||AdventureIntro.active||PreGameBrief.active||CaptainRoute.active||EndingCinematic.active||MedalCompletion.active||MastersFarewell.active||RavokArrival.active||RavokOutcome.active||RavokEvent.conversationActive||RavokEvent.exitActive||AdventureIntro.conversation||!!normalNpcDialogue,
+    point:()=>({scene:currentScene,x:player.x,y:player.y}),
+    clearInput:()=>{clearMinigameBriefInput();interactionPressed=false;shipInteractionPressed=false;},
+    hideDialogue:()=>{dialogBox.classList.remove('show');},
+    restore:p=>{currentScene=p.scene;player.x=p.x;player.y=p.y;normalNpcDialogue=null;overworldConversationNpc=null;overworldConversationText=null;overworldFocusNpc=null;dialogBox.classList.remove('show');showOverworldUI();},
+    captureFrame:()=>{const c=document.createElement('canvas');c.width=450;c.height=300;c.getContext('2d').drawImage(canvas,0,0,450,300);return c;},
+    captureHub:()=>captureOverworldIsland('HUB'),
+    hubActors:()=>npcs.filter(n=>n.scene==='HUB'&&n.eventId!=='merchant').map(n=>({y:n.y,draw:()=>drawNPC(n)})),
+    nearShip:()=>currentScene==='HUB'&&AdventureIntro.introSeen&&Math.hypot(player.x-225,(player.y-157)*.8)<57,
+    landing:region=>{const old=currentScene;currentScene=region.id;let point=null;
+        try{const spawn=region.fastTravelSpawn;
+            for(const [dx,dy]of [[0,0],[0,12],[12,0],[-12,0],[0,-12],[0,24],[24,0],[-24,0],[0,-24]]){
+                const x=spawn[0]+dx,y=spawn[1]+dy;
+                const nearNpc=npcs.some(n=>n.scene===region.id&&RavokEvent.isNpcVisible(n)&&MerchantCampaign.isNpcVisible(n)&&
+                    (Math.hypot(x-n.x,y-n.y)<56||isColliding({x,y},overworldNpcInteractionBox(n))));
+                if(!nearNpc&&!checkObstacleCollision(x,y)){point={scene:region.id,x,y};break;}
+            }
+        }finally{currentScene=old;}return point;},
+    record:id=>{
+        if(id==='pingpong')return {value:pingPong.playerScore,label:'Pontos',unit:'PTS'};
+        if(id==='basquete')return {value:window.basketball1v1?.score.zorp??0,label:'Pontos',unit:'PTS'};
+        if(id==='corrida')return corridaMaratona?.player.finished?{value:corridaMaratona.player.finishTime,label:'Tempo de chegada',unit:'S',lowerIsBetter:true}:null;
+        if(id==='skate')return {value:skateCombo.bankedScore+skateCombo.activeScore,label:'Pontuação',unit:'PTS'};
+        if(id==='arco')return {value:arcoGame.playerScore,label:'Pontos',unit:'PTS'};
+        if(id==='escalada')return {value:escaladaGame.alturaAtual,label:'Altura',unit:'M'};
+        if(id==='boxe')return {value:boxeGame.rounds?.wins.zorp??0,label:'Rounds vencidos',unit:'ROUNDS'};
+        if(id==='surf')return {value:window.surfEndlessGame?.score??0,label:'Pontuação',unit:'PTS'};
+        return null;
+    }
+});
+
+window.JukeboxPlayer?.init({
+    scene:()=>currentScene,
+    menu:()=>TitleScreen.isActive(),
+    blocked:()=>AdventureIntro.active||PreGameBrief.active||CaptainRoute.active||EndingCinematic.active||MedalCompletion.active||MastersFarewell.active||RavokArrival.active||RavokOutcome.active||RavokEvent.conversationActive||RavokEvent.exitActive||MerchantCampaign.cutsceneActive,
+    clearInput:()=>{clearMinigameBriefInput();interactionPressed=false;shipInteractionPressed=false;}
 });
 
 if (typeof TitleScreen !== "undefined") {

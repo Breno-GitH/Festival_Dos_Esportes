@@ -770,6 +770,7 @@
             const points = this.ball.points;
             const previousLead=this.score[scorer.id]-this.score[this.opponentOf(scorer).id];
             this.score[scorer.id] += points;
+            window.FestivalChallenges?.onBasket({scorer:scorer.id,points,remaining:this.clock});
             scorer.special = clamp(scorer.special + (points === 3 ? 30 : 22), 0, 100);
             hoop.netTimer = 34;
             if (points === 3) this.stats.threePointers++;

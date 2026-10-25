@@ -82,8 +82,8 @@
         return '> RAVOK: '+PRELUDE[0].text;
     }
     const npcs=[
-        {id:'k7',eventId:'ravok',scene:SCENE,x:396,y:113,img:images.k7,spriteGeometry:geometry.k7_front,tamanho:44,msg:message('k7')},
-        {id:'ravok',eventId:'ravok',scene:SCENE,x:350,y:114,img:images.ravok,spriteGeometry:geometry.ravok_front,tamanho:44,msg:message('ravok')}
+        {id:'k7',eventId:'ravok',scene:SCENE,x:396,y:113,img:images.k7,spriteGeometry:geometry.k7_front,tamanho:44,facingDirection:'right',footprint:Object.freeze({width:18,height:8}),msg:message('k7')},
+        {id:'ravok',eventId:'ravok',scene:SCENE,x:350,y:114,img:images.ravok,spriteGeometry:geometry.ravok_front,tamanho:44,facingDirection:'down',footprint:Object.freeze({width:18,height:8}),msg:message('ravok')}
     ];
     function sync(){
         count=(global.MEDALHAS_REGISTRY||[]).filter(m=>global.isMedalhaDesbloqueada?.(m.id)).length;
@@ -308,15 +308,15 @@
     function exitPose(){
         if(!exit||exit.phase==='DOOR')return null;
         const t=exit.phase==='LOOK'?1:Math.min(1,exit.time/2.2),p=t*t*(3-2*t);
-        return {x:368-18*p,y:89+25*p,scale:.55+.45*p,p};
+        const actor=global.RavokK7Animation.path('ravok',[368,89],[350,114],2.2,t*2.2);
+        return {...actor,scale:global.RavokK7Animation.settings.ravok.scale,p};
     }
     function actors(scene){
         const pose=exitPose();
         if(scene!==SCENE||!pose)return [];
-        return [{y:pose.y,draw:()=>{
-            config.context.save();
-            if(pose.p<.55){config.context.beginPath();config.context.rect(338,83-pose.p*40,62,90);config.context.clip();}
-            config.drawNpcAt(npcs[1],pose.x,pose.y,pose.scale);config.context.restore();
+        // The open doorway is in front of the hull, even while the feet are on its ramp.
+        return [{y:Math.max(ship.depth+.1,pose.y),draw:()=>{
+            global.RavokK7Animation.draw(config.context,pose);
         }}];
     }
     function wrap(g,text,width){

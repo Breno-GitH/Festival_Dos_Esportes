@@ -1,0 +1,230 @@
+TAP version 13
+# Subtest: Four original arrangements differ in tempo, meter, melody, instrumentation and beat pattern
+ok 1 - Four original arrangements differ in tempo, meter, melody, instrumentation and beat pattern
+  ---
+  duration_ms: 38.6654
+  ...
+# Subtest: Playback requires purchased jukebox and a heard/unlocked theme
+ok 2 - Playback requires purchased jukebox and a heard/unlocked theme
+  ---
+  duration_ms: 5.7135
+  ...
+# Subtest: Skip cycles only unlocked music and keeps one scheduler/context
+ok 3 - Skip cycles only unlocked music and keeps one scheduler/context
+  ---
+  duration_ms: 3.5234
+  ...
+# Subtest: Each score actually schedules pitched instruments and percussion, with bounded voices
+ok 4 - Each score actually schedules pitched instruments and percussion, with bounded voices
+  ---
+  duration_ms: 79.154
+  ...
+# Subtest: Mute controls master output without replacing track or restarting it
+ok 5 - Mute controls master output without replacing track or restarting it
+  ---
+  duration_ms: 5.0435
+  ...
+# Subtest: Minigames/cinematics pause and release voices; Overworld return resumes selected music
+ok 6 - Minigames/cinematics pause and release voices; Overworld return resumes selected music
+  ---
+  duration_ms: 5.6448
+  ...
+# Subtest: Menu/stop removes selection, scheduled voices and timer; no automatic song on reload
+ok 7 - Menu/stop removes selection, scheduled voices and timer; no automatic song on reload
+  ---
+  duration_ms: 5.2082
+  ...
+# Subtest: Long delays do not queue an audio avalanche; repeated context updates do not duplicate timers
+ok 8 - Long delays do not queue an audio avalanche; repeated context updates do not duplicate timers
+  ---
+  duration_ms: 4.9786
+  ...
+# Subtest: Unsupported audio exits cleanly without a fake playing state
+ok 9 - Unsupported audio exits cleanly without a fake playing state
+  ---
+  duration_ms: 3.4575
+  ...
+# Subtest: New save: central true, exactly eight independent undiscovered sports and seven boolean inventory states
+ok 10 - New save: central true, exactly eight independent undiscovered sports and seven boolean inventory states
+  ---
+  duration_ms: 71.4864
+  ...
+# Subtest: Version 4 migration preserves coins, quests, purchased IDs, discoveries and merchant flags
+ok 11 - Version 4 migration preserves coins, quests, purchased IDs, discoveries and merchant flags
+  ---
+  duration_ms: 14.4724
+  ...
+# Subtest: Exploration discovers every region without any medal, accepted quest, Master interaction or merchant
+ok 12 - Exploration discovers every region without any medal, accepted quest, Master interaction or merchant
+  ---
+  duration_ms: 11.879
+  ...
+# Subtest: Unknown regions, game scenes and cinematic scene IDs cannot grant discoveries
+ok 13 - Unknown regions, game scenes and cinematic scene IDs cannot grant discoveries
+  ---
+  duration_ms: 8.3706
+  ...
+# Subtest: Discovery persists immediately, repeated entry does not rewrite or reset campaign data
+ok 14 - Discovery persists immediately, repeated entry does not rewrite or reset campaign data
+  ---
+  duration_ms: 13.7865
+  ...
+# Subtest: Failed discovery save rolls back and can be retried; existing inventory and coins remain intact
+ok 15 - Failed discovery save rolls back and can be retried; existing inventory and coins remain intact
+  ---
+  duration_ms: 13.5967
+  ...
+# Subtest: Partial updates cannot clear earlier visits, purchases or merchant arrival
+ok 16 - Partial updates cannot clear earlier visits, purchases or merchant arrival
+  ---
+  duration_ms: 14.9031
+  ...
+# Subtest: Compatibility views are derived, do not mutate canonical progress and are not serialized twice
+ok 17 - Compatibility views are derived, do not mutate canonical progress and are not serialized twice
+  ---
+  duration_ms: 12.6732
+  ...
+# Subtest: Visit and victory are separate; unvisited islands never expose medals or quests
+ok 18 - Visit and victory are separate; unvisited islands never expose medals or quests
+  ---
+  duration_ms: 14.9714
+  ...
+# Subtest: Scanner reveals only the public status of visited regions
+ok 19 - Scanner reveals only the public status of visited regions
+  ---
+  duration_ms: 10.8611
+  ...
+# Subtest: Current location is independent of selected destination; store icon requires the actual merchant unlock
+ok 20 - Current location is independent of selected destination; store icon requires the actual merchant unlock
+  ---
+  duration_ms: 8.4781
+  ...
+# Subtest: Map text includes actual location and separate victory wording, without quest status before scanner
+ok 21 - Map text includes actual location and separate victory wording, without quest status before scanner
+  ---
+  duration_ms: 13.0738
+  ...
+# Subtest: Travel needs owned teleporter, proven visit and current Overworld; no hidden destination bypass
+ok 22 - Travel needs owned teleporter, proven visit and current Overworld; no hidden destination bypass
+  ---
+  duration_ms: 9.6105
+  ...
+# Subtest: Landing is revalidated at fade commit; blocked target cancels without moving or changing visits
+ok 23 - Landing is revalidated at fade commit; blocked target cancels without moving or changing visits
+  ---
+  duration_ms: 9.3503
+  ...
+# Subtest: Every region declares a separate finite interior fastTravelSpawn
+ok 24 - Every region declares a separate finite interior fastTravelSpawn
+  ---
+  duration_ms: 8.9978
+  ...
+# Subtest: B and M cannot open interfaces during minigames or important scenes/dialogues
+ok 25 - B and M cannot open interfaces during minigames or important scenes/dialogues
+  ---
+  duration_ms: 11.8504
+  ...
+# Subtest: An already open interface yields to a critical event rather than swallowing its inputs
+ok 26 - An already open interface yields to a critical event rather than swallowing its inputs
+  ---
+  duration_ms: 7.7567
+  ...
+# Subtest: Canonical inventory persists across all islands, a game and reload without serializing assets
+ok 27 - Canonical inventory persists across all islands, a game and reload without serializing assets
+  ---
+  duration_ms: 17.4558
+  ...
+# Subtest: Unified facade reads the existing medal, quest, merchant, wallet, captain and Ravok authorities
+ok 28 - Unified facade reads the existing medal, quest, merchant, wallet, captain and Ravok authorities
+  ---
+  duration_ms: 9.0315
+  ...
+# Subtest: Letter only marks a destination actually seen; arrest alone does not mark an ending
+ok 29 - Letter only marks a destination actually seen; arrest alone does not mark an ending
+  ---
+  duration_ms: 9.3427
+  ...
+# Subtest: Zero medals means no merchant, store, sign or body collider
+ok 30 - Zero medals means no merchant, store, sign or body collider
+  ---
+  duration_ms: 65.8853
+  ...
+# Subtest: First medal defers until safe Overworld; never interrupts a match or existing scene
+ok 31 - First medal defers until safe Overworld; never interrupts a match or existing scene
+  ---
+  duration_ms: 9.8751
+  ...
+# Subtest: Arrival walks, stages build, ship surprise, sign, satisfaction and speech; saves only at end
+ok 32 - Arrival walks, stages build, ship surprise, sign, satisfaction and speech; saves only at end
+  ---
+  duration_ms: 44.1026
+  ...
+# Subtest: Legacy save with medal but no merchant replays arrival once; zero-medal corrupt flags remain invisible
+ok 33 - Legacy save with medal but no merchant replays arrival once; zero-medal corrupt flags remain invisible
+  ---
+  duration_ms: 60.1681
+  ...
+# Subtest: Space cannot skip essential timed shots or same-key speech
+ok 34 - Space cannot skip essential timed shots or same-key speech
+  ---
+  duration_ms: 20.2408
+  ...
+# Subtest: Failed arrival save stays pending and retries without silently unlocking
+ok 35 - Failed arrival save stays pending and retries without silently unlocking
+  ---
+  duration_ms: 34.1453
+  ...
+# Subtest: Seven centralized prices, optional goods and exact purchase accounting
+ok 36 - Seven centralized prices, optional goods and exact purchase accounting
+  ---
+  duration_ms: 32.1458
+  ...
+# Subtest: Insufficient funds, duplicate input, locked shop and failed saves cannot debit money
+ok 37 - Insufficient funds, duplicate input, locked shop and failed saves cannot debit money
+  ---
+  duration_ms: 27.5026
+  ...
+# Subtest: Purchases, visits, unlocks and style persist together; old quests and Captain payment survive
+ok 38 - Purchases, visits, unlocks and style persist together; old quests and Captain payment survive
+  ---
+  duration_ms: 40.4911
+  ...
+# Subtest: Backpack and map are Overworld-only; M without map gives an honest message
+ok 39 - Backpack and map are Overworld-only; M without map gives an honest message
+  ---
+  duration_ms: 12.135
+  ...
+# Subtest: Teleportation needs ownership, a proven visit, a valid landing and confirmation
+ok 40 - Teleportation needs ownership, a proven visit, a valid landing and confirmation
+  ---
+  duration_ms: 27.0593
+  ...
+# Subtest: Record module observes only actually started games and retains best direction
+ok 41 - Record module observes only actually started games and retains best direction
+  ---
+  duration_ms: 8.8113
+  ...
+# Subtest: All fifty frames use fixed uniform scale, immutable atlas anchor and positional walking
+ok 42 - All fifty frames use fixed uniform scale, immutable atlas anchor and positional walking
+  ---
+  duration_ms: 8.4687
+  ...
+# Subtest: Readable exact sign and mysterious letter do not leak route identities
+ok 43 - Readable exact sign and mysterious letter do not leak route identities
+  ---
+  duration_ms: 31.6253
+  ...
+# Subtest: Five campaign dialogue tiers, first/large/letter sales and global backpack are distinct
+ok 44 - Five campaign dialogue tiers, first/large/letter sales and global backpack are distinct
+  ---
+  duration_ms: 28.8307
+  ...
+1..44
+# tests 44
+# suites 0
+# pass 44
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 711.8879

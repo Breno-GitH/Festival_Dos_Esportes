@@ -1,0 +1,6 @@
+PASS All nine travel spawns connect to each island entrance through actual walkable ground
+PASS Capturing island backgrounds for cinematics does not falsely discover those islands
+PASS A single boundary-crossing update saves the new visit in that same update, not on the next frame
+PASS Closing backpack clears held movement/interaction; no buffered action escapes into Overworld
+PASS Restored integrated fixture retains all visits/items; no campaign reset from visual captures or UI
+PASS Integrated extras: zero runtime and asset-loading errors

@@ -1,0 +1,110 @@
+TAP version 13
+# Subtest: native 900x480 field restores 450x300 outside Archery; no scene scaling
+ok 1 - native 900x480 field restores 450x300 outside Archery; no scene scaling
+  ---
+  duration_ms: 93.0648
+  ...
+# Subtest: both competitors stay in separate broad shooting bounds, including held directions
+ok 2 - both competitors stay in separate broad shooting bounds, including held directions
+  ---
+  duration_ms: 37.173
+  ...
+# Subtest: three depth bands retain original target sizes and point values
+ok 3 - three depth bands retain original target sizes and point values
+  ---
+  duration_ms: 7.3536
+  ...
+# Subtest: all paths enter, move continuously and retire only outside the wide field
+ok 4 - all paths enter, move continuously and retire only outside the wide field
+  ---
+  duration_ms: 224.5865
+  ...
+# Subtest: river route geometry is cached and reused without retaining target state
+ok 5 - river route geometry is cached and reused without retaining target state
+  ---
+  duration_ms: 12.1437
+  ...
+# Subtest: authored waves have varied depth, speed, side and purposeful explosive groups
+ok 6 - authored waves have varied depth, speed, side and purposeful explosive groups
+  ---
+  duration_ms: 11.1813
+  ...
+# Subtest: explosive confluence offers a real combo and chain wave detonates twice
+ok 7 - explosive confluence offers a real combo and chain wave detonates twice
+  ---
+  duration_ms: 46.6884
+  ...
+# Subtest: swept collision catches a small moving target at x820 at 30 FPS
+ok 8 - swept collision catches a small moving target at x820 at 30 FPS
+  ---
+  duration_ms: 13.3597
+  ...
+# Subtest: swept collision catches a small moving target at x820 at 60 FPS
+ok 9 - swept collision catches a small moving target at x820 at 60 FPS
+  ---
+  duration_ms: 11.9147
+  ...
+# Subtest: swept collision catches a small moving target at x820 at 144 FPS
+ok 10 - swept collision catches a small moving target at x820 at 144 FPS
+  ---
+  duration_ms: 14.3108
+  ...
+# Subtest: first contact wins and a normal arrow cannot hit twice or award an extra point
+ok 11 - first contact wins and a normal arrow cannot hit twice or award an extra point
+  ---
+  duration_ms: 12.0846
+  ...
+# Subtest: bird body remains outside collision; only hanging disk registers
+ok 12 - bird body remains outside collision; only hanging disk registers
+  ---
+  duration_ms: 7.2024
+  ...
+# Subtest: gold stays rare, retains reward and uses the same continuous geometry
+ok 13 - gold stays rare, retains reward and uses the same continuous geometry
+  ---
+  duration_ms: 9.2786
+  ...
+# Subtest: full 60-second match uses all phases, respects caps and resolves arrows at buzzer
+ok 14 - full 60-second match uses all phases, respects caps and resolves arrows at buzzer
+  ---
+  duration_ms: 623.6855
+  ...
+# Subtest: character atlas, scoring rules and relative sweep maths are preserved
+ok 15 - character atlas, scoring rules and relative sweep maths are preserved
+  ---
+  duration_ms: 2.5553
+  ...
+# Subtest: all spawners enforce the active cap, including bird and rare gold opportunities
+ok 16 - all spawners enforce the active cap, including bird and rare gold opportunities
+  ---
+  duration_ms: 14.3851
+  ...
+# Subtest: a missed long-distance arrow remains physical until it exits the full field
+ok 17 - a missed long-distance arrow remains physical until it exits the full field
+  ---
+  duration_ms: 7.8312
+  ...
+# Subtest: entire matches and moving collisions remain deterministic at 30, 60 and 144 FPS
+ok 18 - entire matches and moving collisions remain deterministic at 30, 60 and 144 FPS
+  ---
+  duration_ms: 1830.9202
+  ...
+# Subtest: wide result captures preserve aspect ratio when a 450x300 cutscene begins
+ok 19 - wide result captures preserve aspect ratio when a 450x300 cutscene begins
+  ---
+  duration_ms: 8.0079
+  ...
+# Subtest: a cutscene starting during draw restores its resolution in the same frame
+ok 20 - a cutscene starting during draw restores its resolution in the same frame
+  ---
+  duration_ms: 10.9842
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 20
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3168.7288

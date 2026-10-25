@@ -1,0 +1,5515 @@
+{
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": [],
+  "samples": [
+    {
+      "phase": "RACING",
+      "assetsLoaded": 2,
+      "assetFailures": 0,
+      "invalidDrawCalls": 0,
+      "runners": 8,
+      "commonOpponents": 6,
+      "obstacleCount": 38,
+      "obstacleTypes": [
+        "startingBlock",
+        "hurdle",
+        "cone",
+        "puddle",
+        "bottle",
+        "backmarker",
+        "judge",
+        "sponge",
+        "zigzag",
+        "rolling",
+        "tape",
+        "barricade",
+        "cart",
+        "robot",
+        "pigeon"
+      ],
+      "obstacleTypesSeen": [
+        "startingBlock",
+        "pigeon",
+        "hurdle"
+      ],
+      "mobileObstacleSeen": false,
+      "playerHits": 0,
+      "totalObstacleCollisions": 1,
+      "directionsSeen": [
+        "RIGHT"
+      ],
+      "freeMovement": true,
+      "aiFreeMovement": true,
+      "aiProfiles": [
+        "MESTRE:MASTER",
+        "COBALTO:SPRINTER",
+        "FERRUGEM:AGGRESSIVE",
+        "LINA:TECHNICAL",
+        "KAI:SPRINTER",
+        "AXOL:CAUTIOUS",
+        "NOX:AGGRESSIVE"
+      ],
+      "aiStatus": [
+        {
+          "name": "MESTRE",
+          "profile": "MASTER",
+          "x": 264.1,
+          "y": 491.4,
+          "lateral": 21.4,
+          "speed": 307.3,
+          "validatedLaps": 0,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "COBALTO",
+          "profile": "SPRINTER",
+          "x": 323.6,
+          "y": 383.4,
+          "lateral": -86.6,
+          "speed": 347.6,
+          "validatedLaps": 0,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "FERRUGEM",
+          "profile": "AGGRESSIVE",
+          "x": 229.1,
+          "y": 567.9,
+          "lateral": 97.9,
+          "speed": 331,
+          "validatedLaps": 0,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "LINA",
+          "profile": "TECHNICAL",
+          "x": 458.7,
+          "y": 434.3,
+          "lateral": -35.7,
+          "speed": 319,
+          "validatedLaps": 0,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "KAI",
+          "profile": "SPRINTER",
+          "x": 185.1,
+          "y": 572,
+          "lateral": 102,
+          "speed": 328.7,
+          "validatedLaps": 0,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "AXOL",
+          "profile": "CAUTIOUS",
+          "x": 195.1,
+          "y": 474.3,
+          "lateral": 4.3,
+          "speed": 310.5,
+          "validatedLaps": 0,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "NOX",
+          "profile": "AGGRESSIVE",
+          "x": 243.1,
+          "y": 369.7,
+          "lateral": -100.3,
+          "speed": 327,
+          "validatedLaps": 0,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        }
+      ],
+      "playerX": 655.21,
+      "playerY": 453.78,
+      "playerVelocityX": 340,
+      "playerVelocityY": 0.01,
+      "jumps": 1,
+      "gatesPassed": 0,
+      "nextGate": 1,
+      "validatedLaps": 0,
+      "runnerContacts": 0,
+      "overtakes": 1,
+      "restartCount": 0,
+      "currentLap": 1,
+      "place": 1,
+      "finishOrder": 0,
+      "playerSpeed": 340,
+      "playerMaxSpeed": 340,
+      "onTrack": true,
+      "onGrass": false,
+      "offTrack": false,
+      "turnPenalty": 0,
+      "trackDirection": "COUNTER_CLOCKWISE",
+      "curveModel": "continuous 2D steering with angular speed loss",
+      "cameraLookAhead": true,
+      "rankingModel": "completed laps, ordered physical checkpoints, validated sector fraction; sub-frame finish times",
+      "totalLaps": 3,
+      "checkpointProgress": 0,
+      "finishTime": null,
+      "lapValidation": {
+        "totalLaps": 3,
+        "checkpointCount": 3,
+        "gates": [
+          {
+            "id": "FINISH",
+            "progress": 0,
+            "x": -950,
+            "y": 470,
+            "forward": {
+              "x": 0.9999993764675242,
+              "y": 0.0011167204495637379
+            },
+            "normal": {
+              "x": -0.0011167204495637379,
+              "y": 0.9999993764675242
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP1",
+            "progress": 2614.712328691678,
+            "x": 1420,
+            "y": 3.1308289294429414e-13,
+            "forward": {
+              "x": 0,
+              "y": -1
+            },
+            "normal": {
+              "x": 1,
+              "y": 0
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP2",
+            "progress": 4279.424657383356,
+            "x": -1.1368683772161603e-12,
+            "y": -470,
+            "forward": {
+              "x": -1,
+              "y": 0
+            },
+            "normal": {
+              "x": 0,
+              "y": -1
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP3",
+            "progress": 5944.136986075034,
+            "x": -1420,
+            "y": -1.1011680427075726e-12,
+            "forward": {
+              "x": 0,
+              "y": 1
+            },
+            "normal": {
+              "x": -1,
+              "y": 0
+            },
+            "halfWidth": 125
+          }
+        ],
+        "events": [
+          {
+            "runnerId": "zorp",
+            "type": "START",
+            "time": 0.2383077191106213
+          },
+          {
+            "runnerId": "mestre",
+            "type": "START",
+            "time": 0.24705206730615667
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "START",
+            "time": 0.2433312617703233
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "START",
+            "time": 0.29862444939826394
+          },
+          {
+            "runnerId": "axol",
+            "type": "START",
+            "time": 0.3817161160049402
+          },
+          {
+            "runnerId": "lina",
+            "type": "START",
+            "time": 0.3933666353776045
+          },
+          {
+            "runnerId": "kai",
+            "type": "START",
+            "time": 0.48138588586620246
+          },
+          {
+            "runnerId": "nox",
+            "type": "START",
+            "time": 0.47302734804348273
+          }
+        ],
+        "model": "swept directed line crossings + ordered checkpoints + continuous track corridor"
+      },
+      "presentation": {
+        "spectators": 512,
+        "humans": 343,
+        "aliens": 169,
+        "rows": 4,
+        "sections": 16,
+        "visible": 64,
+        "groundBuilds": 1,
+        "zoom": 0.72,
+        "lastLap": false,
+        "reactions": [
+          {
+            "type": "lead",
+            "runner": "zorp",
+            "time": 2.4333333333333296
+          }
+        ]
+      },
+      "rivalEvents": {
+        "throws": 0,
+        "hits": 0,
+        "bumps": 0,
+        "throwCooldown": 0,
+        "bumpCooldown": 0,
+        "activeObjects": 0,
+        "events": []
+      },
+      "raceTime": 5.016666666666654,
+      "routeRecovery": null,
+      "trackLength": 6658.8,
+      "trackWidth": 240
+    },
+    {
+      "phase": "RACING",
+      "assetsLoaded": 2,
+      "assetFailures": 0,
+      "invalidDrawCalls": 0,
+      "runners": 8,
+      "commonOpponents": 6,
+      "obstacleCount": 38,
+      "obstacleTypes": [
+        "startingBlock",
+        "hurdle",
+        "cone",
+        "puddle",
+        "bottle",
+        "backmarker",
+        "judge",
+        "sponge",
+        "zigzag",
+        "rolling",
+        "tape",
+        "barricade",
+        "cart",
+        "robot",
+        "pigeon"
+      ],
+      "obstacleTypesSeen": [
+        "startingBlock",
+        "pigeon",
+        "hurdle",
+        "cone",
+        "puddle",
+        "bottle"
+      ],
+      "mobileObstacleSeen": false,
+      "playerHits": 0,
+      "totalObstacleCollisions": 1,
+      "directionsSeen": [
+        "RIGHT",
+        "UP",
+        "LEFT"
+      ],
+      "freeMovement": true,
+      "aiFreeMovement": true,
+      "aiProfiles": [
+        "MESTRE:MASTER",
+        "COBALTO:SPRINTER",
+        "FERRUGEM:AGGRESSIVE",
+        "LINA:TECHNICAL",
+        "KAI:SPRINTER",
+        "AXOL:CAUTIOUS",
+        "NOX:AGGRESSIVE"
+      ],
+      "aiStatus": [
+        {
+          "name": "MESTRE",
+          "profile": "MASTER",
+          "x": 787.1,
+          "y": -440.4,
+          "lateral": -29.6,
+          "speed": 321.6,
+          "validatedLaps": 0,
+          "nextGate": 2,
+          "checkpointProgress": 1,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "COBALTO",
+          "profile": "SPRINTER",
+          "x": 911.6,
+          "y": -531.9,
+          "lateral": 61.9,
+          "speed": 324.7,
+          "validatedLaps": 0,
+          "nextGate": 2,
+          "checkpointProgress": 1,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "FERRUGEM",
+          "profile": "AGGRESSIVE",
+          "x": 1185.6,
+          "y": -493.6,
+          "lateral": 76.9,
+          "speed": 301.1,
+          "validatedLaps": 0,
+          "nextGate": 2,
+          "checkpointProgress": 1,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "LINA",
+          "profile": "TECHNICAL",
+          "x": 534,
+          "y": -433.6,
+          "lateral": -36.4,
+          "speed": 307.9,
+          "validatedLaps": 0,
+          "nextGate": 2,
+          "checkpointProgress": 1,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "KAI",
+          "profile": "SPRINTER",
+          "x": 1287.9,
+          "y": -433.3,
+          "lateral": 79.5,
+          "speed": 297.3,
+          "validatedLaps": 0,
+          "nextGate": 2,
+          "checkpointProgress": 1,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "AXOL",
+          "profile": "CAUTIOUS",
+          "x": 1042.8,
+          "y": -458,
+          "lateral": -2.7,
+          "speed": 302.4,
+          "validatedLaps": 0,
+          "nextGate": 2,
+          "checkpointProgress": 1,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "NOX",
+          "profile": "AGGRESSIVE",
+          "x": 1240.6,
+          "y": -463.8,
+          "lateral": 77.3,
+          "speed": 296.7,
+          "validatedLaps": 0,
+          "nextGate": 2,
+          "checkpointProgress": 1,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        }
+      ],
+      "playerX": 320.37,
+      "playerY": -468.47,
+      "playerVelocityX": -322.11,
+      "playerVelocityY": 58.24,
+      "jumps": 2,
+      "gatesPassed": 1,
+      "nextGate": 2,
+      "validatedLaps": 0,
+      "runnerContacts": 0,
+      "overtakes": 1,
+      "restartCount": 0,
+      "currentLap": 1,
+      "place": 1,
+      "finishOrder": 0,
+      "playerSpeed": 327.33,
+      "playerMaxSpeed": 340,
+      "onTrack": true,
+      "onGrass": false,
+      "offTrack": false,
+      "turnPenalty": 0.001,
+      "trackDirection": "COUNTER_CLOCKWISE",
+      "curveModel": "continuous 2D steering with angular speed loss",
+      "cameraLookAhead": true,
+      "rankingModel": "completed laps, ordered physical checkpoints, validated sector fraction; sub-frame finish times",
+      "totalLaps": 3,
+      "checkpointProgress": 1,
+      "finishTime": null,
+      "lapValidation": {
+        "totalLaps": 3,
+        "checkpointCount": 3,
+        "gates": [
+          {
+            "id": "FINISH",
+            "progress": 0,
+            "x": -950,
+            "y": 470,
+            "forward": {
+              "x": 0.9999993764675242,
+              "y": 0.0011167204495637379
+            },
+            "normal": {
+              "x": -0.0011167204495637379,
+              "y": 0.9999993764675242
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP1",
+            "progress": 2614.712328691678,
+            "x": 1420,
+            "y": 3.1308289294429414e-13,
+            "forward": {
+              "x": 0,
+              "y": -1
+            },
+            "normal": {
+              "x": 1,
+              "y": 0
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP2",
+            "progress": 4279.424657383356,
+            "x": -1.1368683772161603e-12,
+            "y": -470,
+            "forward": {
+              "x": -1,
+              "y": 0
+            },
+            "normal": {
+              "x": 0,
+              "y": -1
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP3",
+            "progress": 5944.136986075034,
+            "x": -1420,
+            "y": -1.1011680427075726e-12,
+            "forward": {
+              "x": 0,
+              "y": 1
+            },
+            "normal": {
+              "x": -1,
+              "y": 0
+            },
+            "halfWidth": 125
+          }
+        ],
+        "events": [
+          {
+            "runnerId": "zorp",
+            "type": "START",
+            "time": 0.2383077191106213
+          },
+          {
+            "runnerId": "mestre",
+            "type": "START",
+            "time": 0.24705206730615667
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "START",
+            "time": 0.2433312617703233
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "START",
+            "time": 0.29862444939826394
+          },
+          {
+            "runnerId": "axol",
+            "type": "START",
+            "time": 0.3817161160049402
+          },
+          {
+            "runnerId": "lina",
+            "type": "START",
+            "time": 0.3933666353776045
+          },
+          {
+            "runnerId": "kai",
+            "type": "START",
+            "time": 0.48138588586620246
+          },
+          {
+            "runnerId": "nox",
+            "type": "START",
+            "time": 0.47302734804348273
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 8.016487428187137,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 8.763596344882272,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 9.507297106658282,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 9.579120067157932,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 9.929545647472912,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 10.0168677375414,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 10.17468282314889,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 10.349989501615,
+            "checkpoint": 1,
+            "lap": 1
+          }
+        ],
+        "model": "swept directed line crossings + ordered checkpoints + continuous track corridor"
+      },
+      "presentation": {
+        "spectators": 512,
+        "humans": 343,
+        "aliens": 169,
+        "rows": 4,
+        "sections": 16,
+        "visible": 64,
+        "groundBuilds": 1,
+        "zoom": 0.72,
+        "lastLap": false,
+        "reactions": [
+          {
+            "type": "lead",
+            "runner": "zorp",
+            "time": 2.4333333333333296
+          }
+        ]
+      },
+      "rivalEvents": {
+        "throws": 1,
+        "hits": 0,
+        "bumps": 1,
+        "throwCooldown": 2.383333333333348,
+        "bumpCooldown": 0.10000000000001186,
+        "activeObjects": 0,
+        "events": [
+          {
+            "type": "BUMP",
+            "time": 7.333333333333313,
+            "victim": "nox"
+          },
+          {
+            "type": "THROW",
+            "time": 7.916666666666644,
+            "target": "cobalto"
+          }
+        ]
+      },
+      "raceTime": 12.03333333333351,
+      "routeRecovery": null,
+      "trackLength": 6658.8,
+      "trackWidth": 240
+    },
+    {
+      "phase": "RACING",
+      "assetsLoaded": 2,
+      "assetFailures": 0,
+      "invalidDrawCalls": 0,
+      "runners": 8,
+      "commonOpponents": 6,
+      "obstacleCount": 38,
+      "obstacleTypes": [
+        "startingBlock",
+        "hurdle",
+        "cone",
+        "puddle",
+        "bottle",
+        "backmarker",
+        "judge",
+        "sponge",
+        "zigzag",
+        "rolling",
+        "tape",
+        "barricade",
+        "cart",
+        "robot",
+        "pigeon"
+      ],
+      "obstacleTypesSeen": [
+        "startingBlock",
+        "pigeon",
+        "hurdle",
+        "cone",
+        "puddle",
+        "bottle",
+        "backmarker",
+        "judge"
+      ],
+      "mobileObstacleSeen": true,
+      "playerHits": 0,
+      "totalObstacleCollisions": 2,
+      "directionsSeen": [
+        "RIGHT",
+        "UP",
+        "LEFT",
+        "DOWN"
+      ],
+      "freeMovement": true,
+      "aiFreeMovement": true,
+      "aiProfiles": [
+        "MESTRE:MASTER",
+        "COBALTO:SPRINTER",
+        "FERRUGEM:AGGRESSIVE",
+        "LINA:TECHNICAL",
+        "KAI:SPRINTER",
+        "AXOL:CAUTIOUS",
+        "NOX:AGGRESSIVE"
+      ],
+      "aiStatus": [
+        {
+          "name": "MESTRE",
+          "profile": "MASTER",
+          "x": -1189.7,
+          "y": 376.2,
+          "lateral": -23.9,
+          "speed": 327.8,
+          "validatedLaps": 0,
+          "nextGate": 4,
+          "checkpointProgress": 3,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "COBALTO",
+          "profile": "SPRINTER",
+          "x": -1221.3,
+          "y": 254.5,
+          "lateral": -98,
+          "speed": 298.6,
+          "validatedLaps": 0,
+          "nextGate": 4,
+          "checkpointProgress": 3,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "FERRUGEM",
+          "profile": "AGGRESSIVE",
+          "x": -1282.5,
+          "y": -393,
+          "lateral": 44.8,
+          "speed": 303.8,
+          "validatedLaps": 0,
+          "nextGate": 3,
+          "checkpointProgress": 2,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "LINA",
+          "profile": "TECHNICAL",
+          "x": -1003,
+          "y": 390.5,
+          "lateral": -75.9,
+          "speed": 316.4,
+          "validatedLaps": 0,
+          "nextGate": 4,
+          "checkpointProgress": 3,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "KAI",
+          "profile": "SPRINTER",
+          "x": -1409.7,
+          "y": -217.2,
+          "lateral": 38.4,
+          "speed": 297.7,
+          "validatedLaps": 0,
+          "nextGate": 3,
+          "checkpointProgress": 2,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "AXOL",
+          "profile": "CAUTIOUS",
+          "x": -1429.4,
+          "y": -62.5,
+          "lateral": 13.5,
+          "speed": 302.3,
+          "validatedLaps": 0,
+          "nextGate": 3,
+          "checkpointProgress": 2,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "NOX",
+          "profile": "AGGRESSIVE",
+          "x": -1178.9,
+          "y": -498.9,
+          "lateral": 78.9,
+          "speed": 296.7,
+          "validatedLaps": 0,
+          "nextGate": 3,
+          "checkpointProgress": 2,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        }
+      ],
+      "playerX": -642.06,
+      "playerY": 453.94,
+      "playerVelocityX": 339.99,
+      "playerVelocityY": 0.15,
+      "jumps": 2,
+      "gatesPassed": 4,
+      "nextGate": 1,
+      "validatedLaps": 1,
+      "runnerContacts": 0,
+      "overtakes": 1,
+      "restartCount": 0,
+      "currentLap": 2,
+      "place": 1,
+      "finishOrder": 0,
+      "playerSpeed": 339.986,
+      "playerMaxSpeed": 340,
+      "onTrack": true,
+      "onGrass": false,
+      "offTrack": false,
+      "turnPenalty": 0,
+      "trackDirection": "COUNTER_CLOCKWISE",
+      "curveModel": "continuous 2D steering with angular speed loss",
+      "cameraLookAhead": true,
+      "rankingModel": "completed laps, ordered physical checkpoints, validated sector fraction; sub-frame finish times",
+      "totalLaps": 3,
+      "checkpointProgress": 0,
+      "finishTime": null,
+      "lapValidation": {
+        "totalLaps": 3,
+        "checkpointCount": 3,
+        "gates": [
+          {
+            "id": "FINISH",
+            "progress": 0,
+            "x": -950,
+            "y": 470,
+            "forward": {
+              "x": 0.9999993764675242,
+              "y": 0.0011167204495637379
+            },
+            "normal": {
+              "x": -0.0011167204495637379,
+              "y": 0.9999993764675242
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP1",
+            "progress": 2614.712328691678,
+            "x": 1420,
+            "y": 3.1308289294429414e-13,
+            "forward": {
+              "x": 0,
+              "y": -1
+            },
+            "normal": {
+              "x": 1,
+              "y": 0
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP2",
+            "progress": 4279.424657383356,
+            "x": -1.1368683772161603e-12,
+            "y": -470,
+            "forward": {
+              "x": -1,
+              "y": 0
+            },
+            "normal": {
+              "x": 0,
+              "y": -1
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP3",
+            "progress": 5944.136986075034,
+            "x": -1420,
+            "y": -1.1011680427075726e-12,
+            "forward": {
+              "x": 0,
+              "y": 1
+            },
+            "normal": {
+              "x": -1,
+              "y": 0
+            },
+            "halfWidth": 125
+          }
+        ],
+        "events": [
+          {
+            "runnerId": "zorp",
+            "type": "START",
+            "time": 0.2383077191106213
+          },
+          {
+            "runnerId": "mestre",
+            "type": "START",
+            "time": 0.24705206730615667
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "START",
+            "time": 0.2433312617703233
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "START",
+            "time": 0.29862444939826394
+          },
+          {
+            "runnerId": "axol",
+            "type": "START",
+            "time": 0.3817161160049402
+          },
+          {
+            "runnerId": "lina",
+            "type": "START",
+            "time": 0.3933666353776045
+          },
+          {
+            "runnerId": "kai",
+            "type": "START",
+            "time": 0.48138588586620246
+          },
+          {
+            "runnerId": "nox",
+            "type": "START",
+            "time": 0.47302734804348273
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 8.016487428187137,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 8.763596344882272,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 9.507297106658282,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 9.579120067157932,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 9.929545647472912,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 10.0168677375414,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 10.17468282314889,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 10.349989501615,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 12.98791778378838,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 13.771967067659913,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 14.475573553238782,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 14.824322249001757,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 15.533666649376938,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 16.17872639685597,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 16.882734946629217,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 17.20689025182898,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 17.981821158040507,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 19.224822992027036,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 19.62559920879087,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 20.00780702659181,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "LAP",
+            "time": 20.109612421140184,
+            "lap": 1
+          }
+        ],
+        "model": "swept directed line crossings + ordered checkpoints + continuous track corridor"
+      },
+      "presentation": {
+        "spectators": 512,
+        "humans": 343,
+        "aliens": 169,
+        "rows": 4,
+        "sections": 16,
+        "visible": 64,
+        "groundBuilds": 1,
+        "zoom": 0.72,
+        "lastLap": false,
+        "reactions": [
+          {
+            "type": "lead",
+            "runner": "zorp",
+            "time": 2.4333333333333296
+          },
+          {
+            "type": "lap",
+            "runner": "zorp",
+            "time": 20.116666666666806
+          }
+        ]
+      },
+      "rivalEvents": {
+        "throws": 2,
+        "hits": 0,
+        "bumps": 1,
+        "throwCooldown": 0,
+        "bumpCooldown": 0,
+        "activeObjects": 0,
+        "events": [
+          {
+            "type": "BUMP",
+            "time": 7.333333333333313,
+            "victim": "nox"
+          },
+          {
+            "type": "THROW",
+            "time": 7.916666666666644,
+            "target": "cobalto"
+          },
+          {
+            "type": "THROW",
+            "time": 14.43333333333363,
+            "target": "lina"
+          }
+        ]
+      },
+      "raceTime": 21.016666666666755,
+      "routeRecovery": null,
+      "trackLength": 6658.8,
+      "trackWidth": 240
+    },
+    {
+      "phase": "RACING",
+      "assetsLoaded": 2,
+      "assetFailures": 0,
+      "invalidDrawCalls": 0,
+      "runners": 8,
+      "commonOpponents": 6,
+      "obstacleCount": 38,
+      "obstacleTypes": [
+        "startingBlock",
+        "hurdle",
+        "cone",
+        "puddle",
+        "bottle",
+        "backmarker",
+        "judge",
+        "sponge",
+        "zigzag",
+        "rolling",
+        "tape",
+        "barricade",
+        "cart",
+        "robot",
+        "pigeon"
+      ],
+      "obstacleTypesSeen": [
+        "startingBlock",
+        "pigeon",
+        "hurdle",
+        "cone",
+        "puddle",
+        "bottle",
+        "backmarker",
+        "judge"
+      ],
+      "mobileObstacleSeen": true,
+      "playerHits": 0,
+      "totalObstacleCollisions": 3,
+      "directionsSeen": [
+        "RIGHT",
+        "UP",
+        "LEFT",
+        "DOWN"
+      ],
+      "freeMovement": true,
+      "aiFreeMovement": true,
+      "aiProfiles": [
+        "MESTRE:MASTER",
+        "COBALTO:SPRINTER",
+        "FERRUGEM:AGGRESSIVE",
+        "LINA:TECHNICAL",
+        "KAI:SPRINTER",
+        "AXOL:CAUTIOUS",
+        "NOX:AGGRESSIVE"
+      ],
+      "aiStatus": [
+        {
+          "name": "MESTRE",
+          "profile": "MASTER",
+          "x": 1486.2,
+          "y": 57.1,
+          "lateral": 69.3,
+          "speed": 320.9,
+          "validatedLaps": 1,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "COBALTO",
+          "profile": "SPRINTER",
+          "x": 1056.3,
+          "y": 381.8,
+          "lateral": -73.6,
+          "speed": 296.2,
+          "validatedLaps": 1,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "FERRUGEM",
+          "profile": "AGGRESSIVE",
+          "x": 471.7,
+          "y": 562.9,
+          "lateral": 92.9,
+          "speed": 330.9,
+          "validatedLaps": 1,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "LINA",
+          "profile": "TECHNICAL",
+          "x": 1284.2,
+          "y": 322.9,
+          "lateral": -5.3,
+          "speed": 301.8,
+          "validatedLaps": 1,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "KAI",
+          "profile": "SPRINTER",
+          "x": 907.9,
+          "y": 568.4,
+          "lateral": 98.4,
+          "speed": 342.8,
+          "validatedLaps": 1,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "AXOL",
+          "profile": "CAUTIOUS",
+          "x": 968.9,
+          "y": 498.1,
+          "lateral": 28.5,
+          "speed": 303.2,
+          "validatedLaps": 1,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "NOX",
+          "profile": "AGGRESSIVE",
+          "x": 425.2,
+          "y": 573,
+          "lateral": 103,
+          "speed": 323.6,
+          "validatedLaps": 1,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        }
+      ],
+      "playerX": 941.14,
+      "playerY": -457.88,
+      "playerVelocityX": -338.23,
+      "playerVelocityY": 4.18,
+      "jumps": 4,
+      "gatesPassed": 5,
+      "nextGate": 2,
+      "validatedLaps": 1,
+      "runnerContacts": 0,
+      "overtakes": 1,
+      "restartCount": 0,
+      "currentLap": 2,
+      "place": 1,
+      "finishOrder": 0,
+      "playerSpeed": 338.254,
+      "playerMaxSpeed": 340,
+      "onTrack": true,
+      "onGrass": false,
+      "offTrack": false,
+      "turnPenalty": 0,
+      "trackDirection": "COUNTER_CLOCKWISE",
+      "curveModel": "continuous 2D steering with angular speed loss",
+      "cameraLookAhead": true,
+      "rankingModel": "completed laps, ordered physical checkpoints, validated sector fraction; sub-frame finish times",
+      "totalLaps": 3,
+      "checkpointProgress": 1,
+      "finishTime": null,
+      "lapValidation": {
+        "totalLaps": 3,
+        "checkpointCount": 3,
+        "gates": [
+          {
+            "id": "FINISH",
+            "progress": 0,
+            "x": -950,
+            "y": 470,
+            "forward": {
+              "x": 0.9999993764675242,
+              "y": 0.0011167204495637379
+            },
+            "normal": {
+              "x": -0.0011167204495637379,
+              "y": 0.9999993764675242
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP1",
+            "progress": 2614.712328691678,
+            "x": 1420,
+            "y": 3.1308289294429414e-13,
+            "forward": {
+              "x": 0,
+              "y": -1
+            },
+            "normal": {
+              "x": 1,
+              "y": 0
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP2",
+            "progress": 4279.424657383356,
+            "x": -1.1368683772161603e-12,
+            "y": -470,
+            "forward": {
+              "x": -1,
+              "y": 0
+            },
+            "normal": {
+              "x": 0,
+              "y": -1
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP3",
+            "progress": 5944.136986075034,
+            "x": -1420,
+            "y": -1.1011680427075726e-12,
+            "forward": {
+              "x": 0,
+              "y": 1
+            },
+            "normal": {
+              "x": -1,
+              "y": 0
+            },
+            "halfWidth": 125
+          }
+        ],
+        "events": [
+          {
+            "runnerId": "zorp",
+            "type": "START",
+            "time": 0.2383077191106213
+          },
+          {
+            "runnerId": "mestre",
+            "type": "START",
+            "time": 0.24705206730615667
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "START",
+            "time": 0.2433312617703233
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "START",
+            "time": 0.29862444939826394
+          },
+          {
+            "runnerId": "axol",
+            "type": "START",
+            "time": 0.3817161160049402
+          },
+          {
+            "runnerId": "lina",
+            "type": "START",
+            "time": 0.3933666353776045
+          },
+          {
+            "runnerId": "kai",
+            "type": "START",
+            "time": 0.48138588586620246
+          },
+          {
+            "runnerId": "nox",
+            "type": "START",
+            "time": 0.47302734804348273
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 8.016487428187137,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 8.763596344882272,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 9.507297106658282,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 9.579120067157932,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 9.929545647472912,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 10.0168677375414,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 10.17468282314889,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 10.349989501615,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 12.98791778378838,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 13.771967067659913,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 14.475573553238782,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 14.824322249001757,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 15.533666649376938,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 16.17872639685597,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 16.882734946629217,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 17.20689025182898,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 17.981821158040507,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 19.224822992027036,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 19.62559920879087,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 20.00780702659181,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "LAP",
+            "time": 20.109612421140184,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "LAP",
+            "time": 21.186093757397078,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 21.22354460231705,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 21.77025849994255,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "LAP",
+            "time": 21.792331412338125,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "LAP",
+            "time": 22.01605508501695,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 22.454104101423948,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 23.066602944701863,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "LAP",
+            "time": 23.670500584980257,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "LAP",
+            "time": 24.49397628828084,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "LAP",
+            "time": 25.030903051961207,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "LAP",
+            "time": 25.762867339145497,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 27.88030980398501,
+            "checkpoint": 1,
+            "lap": 2
+          }
+        ],
+        "model": "swept directed line crossings + ordered checkpoints + continuous track corridor"
+      },
+      "presentation": {
+        "spectators": 512,
+        "humans": 343,
+        "aliens": 169,
+        "rows": 4,
+        "sections": 16,
+        "visible": 64,
+        "groundBuilds": 1,
+        "zoom": 0.72,
+        "lastLap": false,
+        "reactions": [
+          {
+            "type": "lead",
+            "runner": "zorp",
+            "time": 2.4333333333333296
+          },
+          {
+            "type": "lap",
+            "runner": "zorp",
+            "time": 20.116666666666806
+          }
+        ]
+      },
+      "rivalEvents": {
+        "throws": 3,
+        "hits": 0,
+        "bumps": 1,
+        "throwCooldown": 0,
+        "bumpCooldown": 0,
+        "activeObjects": 0,
+        "events": [
+          {
+            "type": "BUMP",
+            "time": 7.333333333333313,
+            "victim": "nox"
+          },
+          {
+            "type": "THROW",
+            "time": 7.916666666666644,
+            "target": "cobalto"
+          },
+          {
+            "type": "THROW",
+            "time": 14.43333333333363,
+            "target": "lina"
+          },
+          {
+            "type": "THROW",
+            "time": 21.783333333333378,
+            "target": "lina"
+          }
+        ]
+      },
+      "raceTime": 30.03333333333291,
+      "routeRecovery": null,
+      "trackLength": 6658.8,
+      "trackWidth": 240
+    },
+    {
+      "phase": "RACING",
+      "assetsLoaded": 2,
+      "assetFailures": 0,
+      "invalidDrawCalls": 0,
+      "runners": 8,
+      "commonOpponents": 6,
+      "obstacleCount": 38,
+      "obstacleTypes": [
+        "startingBlock",
+        "hurdle",
+        "cone",
+        "puddle",
+        "bottle",
+        "backmarker",
+        "judge",
+        "sponge",
+        "zigzag",
+        "rolling",
+        "tape",
+        "barricade",
+        "cart",
+        "robot",
+        "pigeon"
+      ],
+      "obstacleTypesSeen": [
+        "startingBlock",
+        "pigeon",
+        "hurdle",
+        "cone",
+        "puddle",
+        "bottle",
+        "backmarker",
+        "judge",
+        "sponge",
+        "tape",
+        "zigzag",
+        "rolling"
+      ],
+      "mobileObstacleSeen": true,
+      "playerHits": 0,
+      "totalObstacleCollisions": 6,
+      "directionsSeen": [
+        "RIGHT",
+        "UP",
+        "LEFT",
+        "DOWN"
+      ],
+      "freeMovement": true,
+      "aiFreeMovement": true,
+      "aiProfiles": [
+        "MESTRE:MASTER",
+        "COBALTO:SPRINTER",
+        "FERRUGEM:AGGRESSIVE",
+        "LINA:TECHNICAL",
+        "KAI:SPRINTER",
+        "AXOL:CAUTIOUS",
+        "NOX:AGGRESSIVE"
+      ],
+      "aiStatus": [
+        {
+          "name": "MESTRE",
+          "profile": "MASTER",
+          "x": -1394.5,
+          "y": 55.1,
+          "lateral": -22.1,
+          "speed": 326.9,
+          "validatedLaps": 1,
+          "nextGate": 4,
+          "checkpointProgress": 3,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "COBALTO",
+          "profile": "SPRINTER",
+          "x": -1293.4,
+          "y": -326,
+          "lateral": 3.5,
+          "speed": 279.4,
+          "validatedLaps": 1,
+          "nextGate": 3,
+          "checkpointProgress": 2,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "FERRUGEM",
+          "profile": "AGGRESSIVE",
+          "x": -260.7,
+          "y": -567.4,
+          "lateral": 97.4,
+          "speed": 331,
+          "validatedLaps": 1,
+          "nextGate": 3,
+          "checkpointProgress": 2,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "LINA",
+          "profile": "TECHNICAL",
+          "x": -1101.3,
+          "y": -416.3,
+          "lateral": -27.1,
+          "speed": 293.2,
+          "validatedLaps": 1,
+          "nextGate": 3,
+          "checkpointProgress": 2,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "KAI",
+          "profile": "SPRINTER",
+          "x": -454.4,
+          "y": -501.1,
+          "lateral": 31.1,
+          "speed": 343,
+          "validatedLaps": 1,
+          "nextGate": 3,
+          "checkpointProgress": 2,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "AXOL",
+          "profile": "CAUTIOUS",
+          "x": -757.1,
+          "y": -503.4,
+          "lateral": 33.4,
+          "speed": 295.3,
+          "validatedLaps": 1,
+          "nextGate": 3,
+          "checkpointProgress": 2,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "NOX",
+          "profile": "AGGRESSIVE",
+          "x": 7.1,
+          "y": -568.1,
+          "lateral": 98.1,
+          "speed": 327,
+          "validatedLaps": 1,
+          "nextGate": 2,
+          "checkpointProgress": 1,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        }
+      ],
+      "playerX": -590.15,
+      "playerY": 453.87,
+      "playerVelocityX": 339.99,
+      "playerVelocityY": -0.67,
+      "jumps": 5,
+      "gatesPassed": 8,
+      "nextGate": 1,
+      "validatedLaps": 2,
+      "runnerContacts": 0,
+      "overtakes": 1,
+      "restartCount": 0,
+      "currentLap": 3,
+      "place": 1,
+      "finishOrder": 0,
+      "playerSpeed": 339.995,
+      "playerMaxSpeed": 340,
+      "onTrack": true,
+      "onGrass": false,
+      "offTrack": false,
+      "turnPenalty": 0,
+      "trackDirection": "COUNTER_CLOCKWISE",
+      "curveModel": "continuous 2D steering with angular speed loss",
+      "cameraLookAhead": true,
+      "rankingModel": "completed laps, ordered physical checkpoints, validated sector fraction; sub-frame finish times",
+      "totalLaps": 3,
+      "checkpointProgress": 0,
+      "finishTime": null,
+      "lapValidation": {
+        "totalLaps": 3,
+        "checkpointCount": 3,
+        "gates": [
+          {
+            "id": "FINISH",
+            "progress": 0,
+            "x": -950,
+            "y": 470,
+            "forward": {
+              "x": 0.9999993764675242,
+              "y": 0.0011167204495637379
+            },
+            "normal": {
+              "x": -0.0011167204495637379,
+              "y": 0.9999993764675242
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP1",
+            "progress": 2614.712328691678,
+            "x": 1420,
+            "y": 3.1308289294429414e-13,
+            "forward": {
+              "x": 0,
+              "y": -1
+            },
+            "normal": {
+              "x": 1,
+              "y": 0
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP2",
+            "progress": 4279.424657383356,
+            "x": -1.1368683772161603e-12,
+            "y": -470,
+            "forward": {
+              "x": -1,
+              "y": 0
+            },
+            "normal": {
+              "x": 0,
+              "y": -1
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP3",
+            "progress": 5944.136986075034,
+            "x": -1420,
+            "y": -1.1011680427075726e-12,
+            "forward": {
+              "x": 0,
+              "y": 1
+            },
+            "normal": {
+              "x": -1,
+              "y": 0
+            },
+            "halfWidth": 125
+          }
+        ],
+        "events": [
+          {
+            "runnerId": "zorp",
+            "type": "START",
+            "time": 0.2383077191106213
+          },
+          {
+            "runnerId": "mestre",
+            "type": "START",
+            "time": 0.24705206730615667
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "START",
+            "time": 0.2433312617703233
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "START",
+            "time": 0.29862444939826394
+          },
+          {
+            "runnerId": "axol",
+            "type": "START",
+            "time": 0.3817161160049402
+          },
+          {
+            "runnerId": "lina",
+            "type": "START",
+            "time": 0.3933666353776045
+          },
+          {
+            "runnerId": "kai",
+            "type": "START",
+            "time": 0.48138588586620246
+          },
+          {
+            "runnerId": "nox",
+            "type": "START",
+            "time": 0.47302734804348273
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 8.016487428187137,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 8.763596344882272,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 9.507297106658282,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 9.579120067157932,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 9.929545647472912,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 10.0168677375414,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 10.17468282314889,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 10.349989501615,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 12.98791778378838,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 13.771967067659913,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 14.475573553238782,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 14.824322249001757,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 15.533666649376938,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 16.17872639685597,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 16.882734946629217,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 17.20689025182898,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 17.981821158040507,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 19.224822992027036,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 19.62559920879087,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 20.00780702659181,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "LAP",
+            "time": 20.109612421140184,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "LAP",
+            "time": 21.186093757397078,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 21.22354460231705,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 21.77025849994255,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "LAP",
+            "time": 21.792331412338125,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "LAP",
+            "time": 22.01605508501695,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 22.454104101423948,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 23.066602944701863,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "LAP",
+            "time": 23.670500584980257,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "LAP",
+            "time": 24.49397628828084,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "LAP",
+            "time": 25.030903051961207,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "LAP",
+            "time": 25.762867339145497,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 27.88030980398501,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 30.231426061526726,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 32.00599353118681,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 32.21135753406522,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 32.85158024451964,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 32.90491360446699,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 33.170280205090734,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 34.65753583145149,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 34.97814995274278,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 35.443097634508405,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 36.76882532730461,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 37.54001008736956,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 37.84568757308495,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 38.56078166948164,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 39.70863906950679,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "zorp",
+            "type": "LAP",
+            "time": 39.973598248988,
+            "lap": 2
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 40.24576527457763,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 40.864438003379114,
+            "checkpoint": 3,
+            "lap": 2
+          }
+        ],
+        "model": "swept directed line crossings + ordered checkpoints + continuous track corridor"
+      },
+      "presentation": {
+        "spectators": 512,
+        "humans": 343,
+        "aliens": 169,
+        "rows": 4,
+        "sections": 16,
+        "visible": 64,
+        "groundBuilds": 1,
+        "zoom": 0.72,
+        "lastLap": true,
+        "reactions": [
+          {
+            "type": "lead",
+            "runner": "zorp",
+            "time": 2.4333333333333296
+          },
+          {
+            "type": "lap",
+            "runner": "zorp",
+            "time": 20.116666666666806
+          },
+          {
+            "type": "lastLap",
+            "runner": "zorp",
+            "time": 39.98333333333235
+          }
+        ]
+      },
+      "rivalEvents": {
+        "throws": 3,
+        "hits": 0,
+        "bumps": 1,
+        "throwCooldown": 0,
+        "bumpCooldown": 0,
+        "activeObjects": 0,
+        "events": [
+          {
+            "type": "BUMP",
+            "time": 7.333333333333313,
+            "victim": "nox"
+          },
+          {
+            "type": "THROW",
+            "time": 7.916666666666644,
+            "target": "cobalto"
+          },
+          {
+            "type": "THROW",
+            "time": 14.43333333333363,
+            "target": "lina"
+          },
+          {
+            "type": "THROW",
+            "time": 21.783333333333378,
+            "target": "lina"
+          }
+        ]
+      },
+      "raceTime": 41.03333333333229,
+      "routeRecovery": null,
+      "trackLength": 6658.8,
+      "trackWidth": 240
+    },
+    {
+      "phase": "RACING",
+      "assetsLoaded": 2,
+      "assetFailures": 0,
+      "invalidDrawCalls": 0,
+      "runners": 8,
+      "commonOpponents": 6,
+      "obstacleCount": 38,
+      "obstacleTypes": [
+        "startingBlock",
+        "hurdle",
+        "cone",
+        "puddle",
+        "bottle",
+        "backmarker",
+        "judge",
+        "sponge",
+        "zigzag",
+        "rolling",
+        "tape",
+        "barricade",
+        "cart",
+        "robot",
+        "pigeon"
+      ],
+      "obstacleTypesSeen": [
+        "startingBlock",
+        "pigeon",
+        "hurdle",
+        "cone",
+        "puddle",
+        "bottle",
+        "backmarker",
+        "judge",
+        "sponge",
+        "tape",
+        "zigzag",
+        "rolling",
+        "barricade"
+      ],
+      "mobileObstacleSeen": true,
+      "playerHits": 1,
+      "totalObstacleCollisions": 7,
+      "directionsSeen": [
+        "RIGHT",
+        "UP",
+        "LEFT",
+        "DOWN"
+      ],
+      "freeMovement": true,
+      "aiFreeMovement": true,
+      "aiProfiles": [
+        "MESTRE:MASTER",
+        "COBALTO:SPRINTER",
+        "FERRUGEM:AGGRESSIVE",
+        "LINA:TECHNICAL",
+        "KAI:SPRINTER",
+        "AXOL:CAUTIOUS",
+        "NOX:AGGRESSIVE"
+      ],
+      "aiStatus": [
+        {
+          "name": "MESTRE",
+          "profile": "MASTER",
+          "x": 1519.3,
+          "y": 124.6,
+          "lateral": 112.8,
+          "speed": 289.3,
+          "validatedLaps": 2,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "COBALTO",
+          "profile": "SPRINTER",
+          "x": 1036.2,
+          "y": 376.1,
+          "lateral": -84.2,
+          "speed": 300,
+          "validatedLaps": 2,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "FERRUGEM",
+          "profile": "AGGRESSIVE",
+          "x": -103.1,
+          "y": 567.9,
+          "lateral": 97.9,
+          "speed": 331,
+          "validatedLaps": 2,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "LINA",
+          "profile": "TECHNICAL",
+          "x": 951.7,
+          "y": 501.9,
+          "lateral": 31.9,
+          "speed": 277,
+          "validatedLaps": 2,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "KAI",
+          "profile": "SPRINTER",
+          "x": 71.4,
+          "y": 577.7,
+          "lateral": 107.7,
+          "speed": 323.6,
+          "validatedLaps": 2,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "AXOL",
+          "profile": "CAUTIOUS",
+          "x": 149.5,
+          "y": 431.3,
+          "lateral": -38.7,
+          "speed": 290.4,
+          "validatedLaps": 2,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "NOX",
+          "profile": "AGGRESSIVE",
+          "x": -440.4,
+          "y": 567.5,
+          "lateral": 97.5,
+          "speed": 327,
+          "validatedLaps": 2,
+          "nextGate": 1,
+          "checkpointProgress": 0,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        }
+      ],
+      "playerX": 802.3,
+      "playerY": -452.98,
+      "playerVelocityX": -339.76,
+      "playerVelocityY": 1.61,
+      "jumps": 8,
+      "gatesPassed": 9,
+      "nextGate": 2,
+      "validatedLaps": 2,
+      "runnerContacts": 0,
+      "overtakes": 1,
+      "restartCount": 0,
+      "currentLap": 3,
+      "place": 1,
+      "finishOrder": 0,
+      "playerSpeed": 339.763,
+      "playerMaxSpeed": 340,
+      "onTrack": true,
+      "onGrass": false,
+      "offTrack": false,
+      "turnPenalty": 0,
+      "trackDirection": "COUNTER_CLOCKWISE",
+      "curveModel": "continuous 2D steering with angular speed loss",
+      "cameraLookAhead": true,
+      "rankingModel": "completed laps, ordered physical checkpoints, validated sector fraction; sub-frame finish times",
+      "totalLaps": 3,
+      "checkpointProgress": 1,
+      "finishTime": null,
+      "lapValidation": {
+        "totalLaps": 3,
+        "checkpointCount": 3,
+        "gates": [
+          {
+            "id": "FINISH",
+            "progress": 0,
+            "x": -950,
+            "y": 470,
+            "forward": {
+              "x": 0.9999993764675242,
+              "y": 0.0011167204495637379
+            },
+            "normal": {
+              "x": -0.0011167204495637379,
+              "y": 0.9999993764675242
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP1",
+            "progress": 2614.712328691678,
+            "x": 1420,
+            "y": 3.1308289294429414e-13,
+            "forward": {
+              "x": 0,
+              "y": -1
+            },
+            "normal": {
+              "x": 1,
+              "y": 0
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP2",
+            "progress": 4279.424657383356,
+            "x": -1.1368683772161603e-12,
+            "y": -470,
+            "forward": {
+              "x": -1,
+              "y": 0
+            },
+            "normal": {
+              "x": 0,
+              "y": -1
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP3",
+            "progress": 5944.136986075034,
+            "x": -1420,
+            "y": -1.1011680427075726e-12,
+            "forward": {
+              "x": 0,
+              "y": 1
+            },
+            "normal": {
+              "x": -1,
+              "y": 0
+            },
+            "halfWidth": 125
+          }
+        ],
+        "events": [
+          {
+            "runnerId": "zorp",
+            "type": "START",
+            "time": 0.2383077191106213
+          },
+          {
+            "runnerId": "mestre",
+            "type": "START",
+            "time": 0.24705206730615667
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "START",
+            "time": 0.2433312617703233
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "START",
+            "time": 0.29862444939826394
+          },
+          {
+            "runnerId": "axol",
+            "type": "START",
+            "time": 0.3817161160049402
+          },
+          {
+            "runnerId": "lina",
+            "type": "START",
+            "time": 0.3933666353776045
+          },
+          {
+            "runnerId": "kai",
+            "type": "START",
+            "time": 0.48138588586620246
+          },
+          {
+            "runnerId": "nox",
+            "type": "START",
+            "time": 0.47302734804348273
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 8.016487428187137,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 8.763596344882272,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 9.507297106658282,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 9.579120067157932,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 9.929545647472912,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 10.0168677375414,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 10.17468282314889,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 10.349989501615,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 12.98791778378838,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 13.771967067659913,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 14.475573553238782,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 14.824322249001757,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 15.533666649376938,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 16.17872639685597,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 16.882734946629217,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 17.20689025182898,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 17.981821158040507,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 19.224822992027036,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 19.62559920879087,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 20.00780702659181,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "LAP",
+            "time": 20.109612421140184,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "LAP",
+            "time": 21.186093757397078,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 21.22354460231705,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 21.77025849994255,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "LAP",
+            "time": 21.792331412338125,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "LAP",
+            "time": 22.01605508501695,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 22.454104101423948,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 23.066602944701863,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "LAP",
+            "time": 23.670500584980257,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "LAP",
+            "time": 24.49397628828084,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "LAP",
+            "time": 25.030903051961207,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "LAP",
+            "time": 25.762867339145497,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 27.88030980398501,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 30.231426061526726,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 32.00599353118681,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 32.21135753406522,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 32.85158024451964,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 32.90491360446699,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 33.170280205090734,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 34.65753583145149,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 34.97814995274278,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 35.443097634508405,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 36.76882532730461,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 37.54001008736956,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 37.84568757308495,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 38.56078166948164,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 39.70863906950679,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "zorp",
+            "type": "LAP",
+            "time": 39.973598248988,
+            "lap": 2
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 40.24576527457763,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 40.864438003379114,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 41.05508597736617,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 42.146038913613445,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 42.867906143911554,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "mestre",
+            "type": "LAP",
+            "time": 43.04877580772299,
+            "lap": 2
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "LAP",
+            "time": 44.208495569501814,
+            "lap": 2
+          },
+          {
+            "runnerId": "lina",
+            "type": "LAP",
+            "time": 44.84903496457195,
+            "lap": 2
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 45.02497552222744,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 45.145624036913226,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 45.71768216841196,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 46.74432890578824,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "axol",
+            "type": "LAP",
+            "time": 47.42593027876062,
+            "lap": 2
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 47.744752642278144,
+            "checkpoint": 1,
+            "lap": 3
+          },
+          {
+            "runnerId": "kai",
+            "type": "LAP",
+            "time": 47.99975019347487,
+            "lap": 2
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "LAP",
+            "time": 48.256424250668736,
+            "lap": 2
+          },
+          {
+            "runnerId": "nox",
+            "type": "LAP",
+            "time": 49.455916955126554,
+            "lap": 2
+          }
+        ],
+        "model": "swept directed line crossings + ordered checkpoints + continuous track corridor"
+      },
+      "presentation": {
+        "spectators": 512,
+        "humans": 343,
+        "aliens": 169,
+        "rows": 4,
+        "sections": 16,
+        "visible": 64,
+        "groundBuilds": 1,
+        "zoom": 0.72,
+        "lastLap": true,
+        "reactions": [
+          {
+            "type": "lead",
+            "runner": "zorp",
+            "time": 2.4333333333333296
+          },
+          {
+            "type": "lap",
+            "runner": "zorp",
+            "time": 20.116666666666806
+          },
+          {
+            "type": "lastLap",
+            "runner": "zorp",
+            "time": 39.98333333333235
+          }
+        ]
+      },
+      "rivalEvents": {
+        "throws": 3,
+        "hits": 0,
+        "bumps": 1,
+        "throwCooldown": 0,
+        "bumpCooldown": 0,
+        "activeObjects": 0,
+        "events": [
+          {
+            "type": "BUMP",
+            "time": 7.333333333333313,
+            "victim": "nox"
+          },
+          {
+            "type": "THROW",
+            "time": 7.916666666666644,
+            "target": "cobalto"
+          },
+          {
+            "type": "THROW",
+            "time": 14.43333333333363,
+            "target": "lina"
+          },
+          {
+            "type": "THROW",
+            "time": 21.783333333333378,
+            "target": "lina"
+          }
+        ]
+      },
+      "raceTime": 51.03333333333172,
+      "routeRecovery": null,
+      "trackLength": 6658.8,
+      "trackWidth": 240
+    },
+    {
+      "phase": "RACING",
+      "assetsLoaded": 2,
+      "assetFailures": 0,
+      "invalidDrawCalls": 0,
+      "runners": 8,
+      "commonOpponents": 6,
+      "obstacleCount": 38,
+      "obstacleTypes": [
+        "startingBlock",
+        "hurdle",
+        "cone",
+        "puddle",
+        "bottle",
+        "backmarker",
+        "judge",
+        "sponge",
+        "zigzag",
+        "rolling",
+        "tape",
+        "barricade",
+        "cart",
+        "robot",
+        "pigeon"
+      ],
+      "obstacleTypesSeen": [
+        "startingBlock",
+        "pigeon",
+        "hurdle",
+        "cone",
+        "puddle",
+        "bottle",
+        "backmarker",
+        "judge",
+        "sponge",
+        "tape",
+        "zigzag",
+        "rolling",
+        "barricade",
+        "cart",
+        "robot"
+      ],
+      "mobileObstacleSeen": true,
+      "playerHits": 1,
+      "totalObstacleCollisions": 9,
+      "directionsSeen": [
+        "RIGHT",
+        "UP",
+        "LEFT",
+        "DOWN"
+      ],
+      "freeMovement": true,
+      "aiFreeMovement": true,
+      "aiProfiles": [
+        "MESTRE:MASTER",
+        "COBALTO:SPRINTER",
+        "FERRUGEM:AGGRESSIVE",
+        "LINA:TECHNICAL",
+        "KAI:SPRINTER",
+        "AXOL:CAUTIOUS",
+        "NOX:AGGRESSIVE"
+      ],
+      "aiStatus": [
+        {
+          "name": "MESTRE",
+          "profile": "MASTER",
+          "x": -1022.2,
+          "y": -410.1,
+          "lateral": -53.6,
+          "speed": 300.6,
+          "validatedLaps": 2,
+          "nextGate": 3,
+          "checkpointProgress": 2,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "COBALTO",
+          "profile": "SPRINTER",
+          "x": -590.9,
+          "y": -374.2,
+          "lateral": -95.8,
+          "speed": 348,
+          "validatedLaps": 2,
+          "nextGate": 3,
+          "checkpointProgress": 2,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "FERRUGEM",
+          "profile": "AGGRESSIVE",
+          "x": 1255.2,
+          "y": -439,
+          "lateral": 64.6,
+          "speed": 303.9,
+          "validatedLaps": 2,
+          "nextGate": 2,
+          "checkpointProgress": 1,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "LINA",
+          "profile": "TECHNICAL",
+          "x": -277.1,
+          "y": -438.1,
+          "lateral": -31.9,
+          "speed": 319,
+          "validatedLaps": 2,
+          "nextGate": 3,
+          "checkpointProgress": 2,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "KAI",
+          "profile": "SPRINTER",
+          "x": 825.7,
+          "y": -524,
+          "lateral": 54,
+          "speed": 327.1,
+          "validatedLaps": 2,
+          "nextGate": 2,
+          "checkpointProgress": 1,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "AXOL",
+          "profile": "CAUTIOUS",
+          "x": 703.7,
+          "y": -431.2,
+          "lateral": -38.8,
+          "speed": 305.9,
+          "validatedLaps": 2,
+          "nextGate": 2,
+          "checkpointProgress": 1,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        },
+        {
+          "name": "NOX",
+          "profile": "AGGRESSIVE",
+          "x": 1374.7,
+          "y": -318.5,
+          "lateral": 60.8,
+          "speed": 297,
+          "validatedLaps": 2,
+          "nextGate": 2,
+          "checkpointProgress": 1,
+          "finishTime": null,
+          "routeRecovery": null,
+          "finished": false
+        }
+      ],
+      "playerX": -1115.29,
+      "playerY": 427.09,
+      "playerVelocityX": 314.67,
+      "playerVelocityY": 124.01,
+      "jumps": 10,
+      "gatesPassed": 11,
+      "nextGate": 4,
+      "validatedLaps": 2,
+      "runnerContacts": 0,
+      "overtakes": 1,
+      "restartCount": 0,
+      "currentLap": 3,
+      "place": 1,
+      "finishOrder": 0,
+      "playerSpeed": 338.228,
+      "playerMaxSpeed": 340,
+      "onTrack": true,
+      "onGrass": false,
+      "offTrack": false,
+      "turnPenalty": 0,
+      "trackDirection": "COUNTER_CLOCKWISE",
+      "curveModel": "continuous 2D steering with angular speed loss",
+      "cameraLookAhead": true,
+      "rankingModel": "completed laps, ordered physical checkpoints, validated sector fraction; sub-frame finish times",
+      "totalLaps": 3,
+      "checkpointProgress": 3,
+      "finishTime": null,
+      "lapValidation": {
+        "totalLaps": 3,
+        "checkpointCount": 3,
+        "gates": [
+          {
+            "id": "FINISH",
+            "progress": 0,
+            "x": -950,
+            "y": 470,
+            "forward": {
+              "x": 0.9999993764675242,
+              "y": 0.0011167204495637379
+            },
+            "normal": {
+              "x": -0.0011167204495637379,
+              "y": 0.9999993764675242
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP1",
+            "progress": 2614.712328691678,
+            "x": 1420,
+            "y": 3.1308289294429414e-13,
+            "forward": {
+              "x": 0,
+              "y": -1
+            },
+            "normal": {
+              "x": 1,
+              "y": 0
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP2",
+            "progress": 4279.424657383356,
+            "x": -1.1368683772161603e-12,
+            "y": -470,
+            "forward": {
+              "x": -1,
+              "y": 0
+            },
+            "normal": {
+              "x": 0,
+              "y": -1
+            },
+            "halfWidth": 125
+          },
+          {
+            "id": "CP3",
+            "progress": 5944.136986075034,
+            "x": -1420,
+            "y": -1.1011680427075726e-12,
+            "forward": {
+              "x": 0,
+              "y": 1
+            },
+            "normal": {
+              "x": -1,
+              "y": 0
+            },
+            "halfWidth": 125
+          }
+        ],
+        "events": [
+          {
+            "runnerId": "zorp",
+            "type": "START",
+            "time": 0.2383077191106213
+          },
+          {
+            "runnerId": "mestre",
+            "type": "START",
+            "time": 0.24705206730615667
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "START",
+            "time": 0.2433312617703233
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "START",
+            "time": 0.29862444939826394
+          },
+          {
+            "runnerId": "axol",
+            "type": "START",
+            "time": 0.3817161160049402
+          },
+          {
+            "runnerId": "lina",
+            "type": "START",
+            "time": 0.3933666353776045
+          },
+          {
+            "runnerId": "kai",
+            "type": "START",
+            "time": 0.48138588586620246
+          },
+          {
+            "runnerId": "nox",
+            "type": "START",
+            "time": 0.47302734804348273
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 8.016487428187137,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 8.763596344882272,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 9.507297106658282,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 9.579120067157932,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 9.929545647472912,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 10.0168677375414,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 10.17468282314889,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 10.349989501615,
+            "checkpoint": 1,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 12.98791778378838,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 13.771967067659913,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 14.475573553238782,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 14.824322249001757,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 15.533666649376938,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 16.17872639685597,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 16.882734946629217,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 17.20689025182898,
+            "checkpoint": 2,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 17.981821158040507,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 19.224822992027036,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 19.62559920879087,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 20.00780702659181,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "LAP",
+            "time": 20.109612421140184,
+            "lap": 1
+          },
+          {
+            "runnerId": "lina",
+            "type": "LAP",
+            "time": 21.186093757397078,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 21.22354460231705,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 21.77025849994255,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "mestre",
+            "type": "LAP",
+            "time": 21.792331412338125,
+            "lap": 1
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "LAP",
+            "time": 22.01605508501695,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 22.454104101423948,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 23.066602944701863,
+            "checkpoint": 3,
+            "lap": 1
+          },
+          {
+            "runnerId": "axol",
+            "type": "LAP",
+            "time": 23.670500584980257,
+            "lap": 1
+          },
+          {
+            "runnerId": "kai",
+            "type": "LAP",
+            "time": 24.49397628828084,
+            "lap": 1
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "LAP",
+            "time": 25.030903051961207,
+            "lap": 1
+          },
+          {
+            "runnerId": "nox",
+            "type": "LAP",
+            "time": 25.762867339145497,
+            "lap": 1
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 27.88030980398501,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 30.231426061526726,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 32.00599353118681,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 32.21135753406522,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 32.85158024451964,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 32.90491360446699,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 33.170280205090734,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 34.65753583145149,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 34.97814995274278,
+            "checkpoint": 1,
+            "lap": 2
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 35.443097634508405,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 36.76882532730461,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 37.54001008736956,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 37.84568757308495,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 38.56078166948164,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 39.70863906950679,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "zorp",
+            "type": "LAP",
+            "time": 39.973598248988,
+            "lap": 2
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 40.24576527457763,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 40.864438003379114,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 41.05508597736617,
+            "checkpoint": 2,
+            "lap": 2
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 42.146038913613445,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 42.867906143911554,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "mestre",
+            "type": "LAP",
+            "time": 43.04877580772299,
+            "lap": 2
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "LAP",
+            "time": 44.208495569501814,
+            "lap": 2
+          },
+          {
+            "runnerId": "lina",
+            "type": "LAP",
+            "time": 44.84903496457195,
+            "lap": 2
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 45.02497552222744,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 45.145624036913226,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 45.71768216841196,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 46.74432890578824,
+            "checkpoint": 3,
+            "lap": 2
+          },
+          {
+            "runnerId": "axol",
+            "type": "LAP",
+            "time": 47.42593027876062,
+            "lap": 2
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 47.744752642278144,
+            "checkpoint": 1,
+            "lap": 3
+          },
+          {
+            "runnerId": "kai",
+            "type": "LAP",
+            "time": 47.99975019347487,
+            "lap": 2
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "LAP",
+            "time": 48.256424250668736,
+            "lap": 2
+          },
+          {
+            "runnerId": "nox",
+            "type": "LAP",
+            "time": 49.455916955126554,
+            "lap": 2
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 51.461465594593484,
+            "checkpoint": 1,
+            "lap": 3
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 53.44854459039693,
+            "checkpoint": 2,
+            "lap": 3
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 53.46611527024012,
+            "checkpoint": 1,
+            "lap": 3
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 53.94373649574885,
+            "checkpoint": 1,
+            "lap": 3
+          },
+          {
+            "runnerId": "axol",
+            "type": "CHECKPOINT",
+            "time": 56.51764616264395,
+            "checkpoint": 1,
+            "lap": 3
+          },
+          {
+            "runnerId": "kai",
+            "type": "CHECKPOINT",
+            "time": 56.634660222247064,
+            "checkpoint": 1,
+            "lap": 3
+          },
+          {
+            "runnerId": "mestre",
+            "type": "CHECKPOINT",
+            "time": 56.9311280564251,
+            "checkpoint": 2,
+            "lap": 3
+          },
+          {
+            "runnerId": "ferrugem",
+            "type": "CHECKPOINT",
+            "time": 58.25693808856565,
+            "checkpoint": 1,
+            "lap": 3
+          },
+          {
+            "runnerId": "cobalto",
+            "type": "CHECKPOINT",
+            "time": 58.33312373920118,
+            "checkpoint": 2,
+            "lap": 3
+          },
+          {
+            "runnerId": "zorp",
+            "type": "CHECKPOINT",
+            "time": 58.40641622656852,
+            "checkpoint": 3,
+            "lap": 3
+          },
+          {
+            "runnerId": "nox",
+            "type": "CHECKPOINT",
+            "time": 58.809472469781795,
+            "checkpoint": 1,
+            "lap": 3
+          },
+          {
+            "runnerId": "lina",
+            "type": "CHECKPOINT",
+            "time": 59.16108871285968,
+            "checkpoint": 2,
+            "lap": 3
+          }
+        ],
+        "model": "swept directed line crossings + ordered checkpoints + continuous track corridor"
+      },
+      "presentation": {
+        "spectators": 512,
+        "humans": 343,
+        "aliens": 169,
+        "rows": 4,
+        "sections": 16,
+        "visible": 64,
+        "groundBuilds": 1,
+        "zoom": 0.72,
+        "lastLap": true,
+        "reactions": [
+          {
+            "type": "lead",
+            "runner": "zorp",
+            "time": 2.4333333333333296
+          },
+          {
+            "type": "lap",
+            "runner": "zorp",
+            "time": 20.116666666666806
+          },
+          {
+            "type": "lastLap",
+            "runner": "zorp",
+            "time": 39.98333333333235
+          }
+        ]
+      },
+      "rivalEvents": {
+        "throws": 3,
+        "hits": 0,
+        "bumps": 1,
+        "throwCooldown": 0,
+        "bumpCooldown": 0,
+        "activeObjects": 0,
+        "events": [
+          {
+            "type": "BUMP",
+            "time": 7.333333333333313,
+            "victim": "nox"
+          },
+          {
+            "type": "THROW",
+            "time": 7.916666666666644,
+            "target": "cobalto"
+          },
+          {
+            "type": "THROW",
+            "time": 14.43333333333363,
+            "target": "lina"
+          },
+          {
+            "type": "THROW",
+            "time": 21.783333333333378,
+            "target": "lina"
+          }
+        ]
+      },
+      "raceTime": 60.03333333333121,
+      "routeRecovery": null,
+      "trackLength": 6658.8,
+      "trackWidth": 240
+    }
+  ],
+  "briefPaused": true,
+  "performance": {
+    "frames": 180,
+    "fps": 60.004000266684535
+  },
+  "final": {
+    "phase": "RESULT",
+    "assetsLoaded": 2,
+    "assetFailures": 0,
+    "invalidDrawCalls": 0,
+    "runners": 8,
+    "commonOpponents": 6,
+    "obstacleCount": 38,
+    "obstacleTypes": [
+      "startingBlock",
+      "hurdle",
+      "cone",
+      "puddle",
+      "bottle",
+      "backmarker",
+      "judge",
+      "sponge",
+      "zigzag",
+      "rolling",
+      "tape",
+      "barricade",
+      "cart",
+      "robot",
+      "pigeon"
+    ],
+    "obstacleTypesSeen": [
+      "startingBlock",
+      "pigeon",
+      "hurdle",
+      "cone",
+      "puddle",
+      "bottle",
+      "backmarker",
+      "judge",
+      "sponge",
+      "tape",
+      "zigzag",
+      "rolling",
+      "barricade",
+      "cart",
+      "robot"
+    ],
+    "mobileObstacleSeen": true,
+    "playerHits": 1,
+    "totalObstacleCollisions": 12,
+    "directionsSeen": [
+      "RIGHT",
+      "UP",
+      "LEFT",
+      "DOWN"
+    ],
+    "freeMovement": true,
+    "aiFreeMovement": true,
+    "aiProfiles": [
+      "MESTRE:MASTER",
+      "COBALTO:SPRINTER",
+      "FERRUGEM:AGGRESSIVE",
+      "LINA:TECHNICAL",
+      "KAI:SPRINTER",
+      "AXOL:CAUTIOUS",
+      "NOX:AGGRESSIVE"
+    ],
+    "aiStatus": [
+      {
+        "name": "MESTRE",
+        "profile": "MASTER",
+        "x": -945.1,
+        "y": 447.1,
+        "lateral": -22.9,
+        "speed": 0.1,
+        "validatedLaps": 3,
+        "nextGate": 1,
+        "checkpointProgress": 0,
+        "finishTime": 63.95162947051608,
+        "routeRecovery": null,
+        "finished": true
+      },
+      {
+        "name": "COBALTO",
+        "profile": "SPRINTER",
+        "x": -949.2,
+        "y": 397.8,
+        "lateral": -72.2,
+        "speed": 273.7,
+        "validatedLaps": 3,
+        "nextGate": 1,
+        "checkpointProgress": 0,
+        "finishTime": 65.34757662235788,
+        "routeRecovery": null,
+        "finished": true
+      },
+      {
+        "name": "FERRUGEM",
+        "profile": "AGGRESSIVE",
+        "x": -121.8,
+        "y": -540.3,
+        "lateral": 70.3,
+        "speed": 302,
+        "validatedLaps": 2,
+        "nextGate": 3,
+        "checkpointProgress": 2,
+        "finishTime": null,
+        "routeRecovery": null,
+        "finished": false
+      },
+      {
+        "name": "LINA",
+        "profile": "TECHNICAL",
+        "x": -1297.2,
+        "y": -186.2,
+        "lateral": -76,
+        "speed": 288.4,
+        "validatedLaps": 2,
+        "nextGate": 3,
+        "checkpointProgress": 2,
+        "finishTime": null,
+        "routeRecovery": null,
+        "finished": false
+      },
+      {
+        "name": "KAI",
+        "profile": "SPRINTER",
+        "x": -887.8,
+        "y": -537.9,
+        "lateral": 67.9,
+        "speed": 308.4,
+        "validatedLaps": 2,
+        "nextGate": 3,
+        "checkpointProgress": 2,
+        "finishTime": null,
+        "routeRecovery": null,
+        "finished": false
+      },
+      {
+        "name": "AXOL",
+        "profile": "CAUTIOUS",
+        "x": -923.8,
+        "y": -485.1,
+        "lateral": 15.1,
+        "speed": 283.7,
+        "validatedLaps": 2,
+        "nextGate": 3,
+        "checkpointProgress": 2,
+        "finishTime": null,
+        "routeRecovery": null,
+        "finished": false
+      },
+      {
+        "name": "NOX",
+        "profile": "AGGRESSIVE",
+        "x": 87.5,
+        "y": -566.7,
+        "lateral": 96.7,
+        "speed": 298.3,
+        "validatedLaps": 2,
+        "nextGate": 2,
+        "checkpointProgress": 1,
+        "finishTime": null,
+        "routeRecovery": null,
+        "finished": false
+      }
+    ],
+    "playerX": -944.35,
+    "playerY": 457.93,
+    "playerVelocityX": 0,
+    "playerVelocityY": 0,
+    "jumps": 10,
+    "gatesPassed": 12,
+    "nextGate": 1,
+    "validatedLaps": 3,
+    "runnerContacts": 0,
+    "overtakes": 1,
+    "restartCount": 0,
+    "currentLap": 3,
+    "place": 1,
+    "finishOrder": 1,
+    "playerSpeed": 0,
+    "playerMaxSpeed": 340,
+    "onTrack": true,
+    "onGrass": false,
+    "offTrack": false,
+    "turnPenalty": 0,
+    "trackDirection": "COUNTER_CLOCKWISE",
+    "curveModel": "continuous 2D steering with angular speed loss",
+    "cameraLookAhead": true,
+    "rankingModel": "completed laps, ordered physical checkpoints, validated sector fraction; sub-frame finish times",
+    "totalLaps": 3,
+    "checkpointProgress": 0,
+    "finishTime": 60.53334660284461,
+    "lapValidation": {
+      "totalLaps": 3,
+      "checkpointCount": 3,
+      "gates": [
+        {
+          "id": "FINISH",
+          "progress": 0,
+          "x": -950,
+          "y": 470,
+          "forward": {
+            "x": 0.9999993764675242,
+            "y": 0.0011167204495637379
+          },
+          "normal": {
+            "x": -0.0011167204495637379,
+            "y": 0.9999993764675242
+          },
+          "halfWidth": 125
+        },
+        {
+          "id": "CP1",
+          "progress": 2614.712328691678,
+          "x": 1420,
+          "y": 3.1308289294429414e-13,
+          "forward": {
+            "x": 0,
+            "y": -1
+          },
+          "normal": {
+            "x": 1,
+            "y": 0
+          },
+          "halfWidth": 125
+        },
+        {
+          "id": "CP2",
+          "progress": 4279.424657383356,
+          "x": -1.1368683772161603e-12,
+          "y": -470,
+          "forward": {
+            "x": -1,
+            "y": 0
+          },
+          "normal": {
+            "x": 0,
+            "y": -1
+          },
+          "halfWidth": 125
+        },
+        {
+          "id": "CP3",
+          "progress": 5944.136986075034,
+          "x": -1420,
+          "y": -1.1011680427075726e-12,
+          "forward": {
+            "x": 0,
+            "y": 1
+          },
+          "normal": {
+            "x": -1,
+            "y": 0
+          },
+          "halfWidth": 125
+        }
+      ],
+      "events": [
+        {
+          "runnerId": "zorp",
+          "type": "START",
+          "time": 0.2383077191106213
+        },
+        {
+          "runnerId": "mestre",
+          "type": "START",
+          "time": 0.24705206730615667
+        },
+        {
+          "runnerId": "cobalto",
+          "type": "START",
+          "time": 0.2433312617703233
+        },
+        {
+          "runnerId": "ferrugem",
+          "type": "START",
+          "time": 0.29862444939826394
+        },
+        {
+          "runnerId": "axol",
+          "type": "START",
+          "time": 0.3817161160049402
+        },
+        {
+          "runnerId": "lina",
+          "type": "START",
+          "time": 0.3933666353776045
+        },
+        {
+          "runnerId": "kai",
+          "type": "START",
+          "time": 0.48138588586620246
+        },
+        {
+          "runnerId": "nox",
+          "type": "START",
+          "time": 0.47302734804348273
+        },
+        {
+          "runnerId": "zorp",
+          "type": "CHECKPOINT",
+          "time": 8.016487428187137,
+          "checkpoint": 1,
+          "lap": 1
+        },
+        {
+          "runnerId": "lina",
+          "type": "CHECKPOINT",
+          "time": 8.763596344882272,
+          "checkpoint": 1,
+          "lap": 1
+        },
+        {
+          "runnerId": "cobalto",
+          "type": "CHECKPOINT",
+          "time": 9.507297106658282,
+          "checkpoint": 1,
+          "lap": 1
+        },
+        {
+          "runnerId": "mestre",
+          "type": "CHECKPOINT",
+          "time": 9.579120067157932,
+          "checkpoint": 1,
+          "lap": 1
+        },
+        {
+          "runnerId": "axol",
+          "type": "CHECKPOINT",
+          "time": 9.929545647472912,
+          "checkpoint": 1,
+          "lap": 1
+        },
+        {
+          "runnerId": "ferrugem",
+          "type": "CHECKPOINT",
+          "time": 10.0168677375414,
+          "checkpoint": 1,
+          "lap": 1
+        },
+        {
+          "runnerId": "nox",
+          "type": "CHECKPOINT",
+          "time": 10.17468282314889,
+          "checkpoint": 1,
+          "lap": 1
+        },
+        {
+          "runnerId": "kai",
+          "type": "CHECKPOINT",
+          "time": 10.349989501615,
+          "checkpoint": 1,
+          "lap": 1
+        },
+        {
+          "runnerId": "zorp",
+          "type": "CHECKPOINT",
+          "time": 12.98791778378838,
+          "checkpoint": 2,
+          "lap": 1
+        },
+        {
+          "runnerId": "lina",
+          "type": "CHECKPOINT",
+          "time": 13.771967067659913,
+          "checkpoint": 2,
+          "lap": 1
+        },
+        {
+          "runnerId": "mestre",
+          "type": "CHECKPOINT",
+          "time": 14.475573553238782,
+          "checkpoint": 2,
+          "lap": 1
+        },
+        {
+          "runnerId": "cobalto",
+          "type": "CHECKPOINT",
+          "time": 14.824322249001757,
+          "checkpoint": 2,
+          "lap": 1
+        },
+        {
+          "runnerId": "axol",
+          "type": "CHECKPOINT",
+          "time": 15.533666649376938,
+          "checkpoint": 2,
+          "lap": 1
+        },
+        {
+          "runnerId": "kai",
+          "type": "CHECKPOINT",
+          "time": 16.17872639685597,
+          "checkpoint": 2,
+          "lap": 1
+        },
+        {
+          "runnerId": "ferrugem",
+          "type": "CHECKPOINT",
+          "time": 16.882734946629217,
+          "checkpoint": 2,
+          "lap": 1
+        },
+        {
+          "runnerId": "nox",
+          "type": "CHECKPOINT",
+          "time": 17.20689025182898,
+          "checkpoint": 2,
+          "lap": 1
+        },
+        {
+          "runnerId": "zorp",
+          "type": "CHECKPOINT",
+          "time": 17.981821158040507,
+          "checkpoint": 3,
+          "lap": 1
+        },
+        {
+          "runnerId": "lina",
+          "type": "CHECKPOINT",
+          "time": 19.224822992027036,
+          "checkpoint": 3,
+          "lap": 1
+        },
+        {
+          "runnerId": "mestre",
+          "type": "CHECKPOINT",
+          "time": 19.62559920879087,
+          "checkpoint": 3,
+          "lap": 1
+        },
+        {
+          "runnerId": "cobalto",
+          "type": "CHECKPOINT",
+          "time": 20.00780702659181,
+          "checkpoint": 3,
+          "lap": 1
+        },
+        {
+          "runnerId": "zorp",
+          "type": "LAP",
+          "time": 20.109612421140184,
+          "lap": 1
+        },
+        {
+          "runnerId": "lina",
+          "type": "LAP",
+          "time": 21.186093757397078,
+          "lap": 1
+        },
+        {
+          "runnerId": "axol",
+          "type": "CHECKPOINT",
+          "time": 21.22354460231705,
+          "checkpoint": 3,
+          "lap": 1
+        },
+        {
+          "runnerId": "kai",
+          "type": "CHECKPOINT",
+          "time": 21.77025849994255,
+          "checkpoint": 3,
+          "lap": 1
+        },
+        {
+          "runnerId": "mestre",
+          "type": "LAP",
+          "time": 21.792331412338125,
+          "lap": 1
+        },
+        {
+          "runnerId": "cobalto",
+          "type": "LAP",
+          "time": 22.01605508501695,
+          "lap": 1
+        },
+        {
+          "runnerId": "ferrugem",
+          "type": "CHECKPOINT",
+          "time": 22.454104101423948,
+          "checkpoint": 3,
+          "lap": 1
+        },
+        {
+          "runnerId": "nox",
+          "type": "CHECKPOINT",
+          "time": 23.066602944701863,
+          "checkpoint": 3,
+          "lap": 1
+        },
+        {
+          "runnerId": "axol",
+          "type": "LAP",
+          "time": 23.670500584980257,
+          "lap": 1
+        },
+        {
+          "runnerId": "kai",
+          "type": "LAP",
+          "time": 24.49397628828084,
+          "lap": 1
+        },
+        {
+          "runnerId": "ferrugem",
+          "type": "LAP",
+          "time": 25.030903051961207,
+          "lap": 1
+        },
+        {
+          "runnerId": "nox",
+          "type": "LAP",
+          "time": 25.762867339145497,
+          "lap": 1
+        },
+        {
+          "runnerId": "zorp",
+          "type": "CHECKPOINT",
+          "time": 27.88030980398501,
+          "checkpoint": 1,
+          "lap": 2
+        },
+        {
+          "runnerId": "mestre",
+          "type": "CHECKPOINT",
+          "time": 30.231426061526726,
+          "checkpoint": 1,
+          "lap": 2
+        },
+        {
+          "runnerId": "cobalto",
+          "type": "CHECKPOINT",
+          "time": 32.00599353118681,
+          "checkpoint": 1,
+          "lap": 2
+        },
+        {
+          "runnerId": "lina",
+          "type": "CHECKPOINT",
+          "time": 32.21135753406522,
+          "checkpoint": 1,
+          "lap": 2
+        },
+        {
+          "runnerId": "zorp",
+          "type": "CHECKPOINT",
+          "time": 32.85158024451964,
+          "checkpoint": 2,
+          "lap": 2
+        },
+        {
+          "runnerId": "axol",
+          "type": "CHECKPOINT",
+          "time": 32.90491360446699,
+          "checkpoint": 1,
+          "lap": 2
+        },
+        {
+          "runnerId": "kai",
+          "type": "CHECKPOINT",
+          "time": 33.170280205090734,
+          "checkpoint": 1,
+          "lap": 2
+        },
+        {
+          "runnerId": "nox",
+          "type": "CHECKPOINT",
+          "time": 34.65753583145149,
+          "checkpoint": 1,
+          "lap": 2
+        },
+        {
+          "runnerId": "ferrugem",
+          "type": "CHECKPOINT",
+          "time": 34.97814995274278,
+          "checkpoint": 1,
+          "lap": 2
+        },
+        {
+          "runnerId": "mestre",
+          "type": "CHECKPOINT",
+          "time": 35.443097634508405,
+          "checkpoint": 2,
+          "lap": 2
+        },
+        {
+          "runnerId": "cobalto",
+          "type": "CHECKPOINT",
+          "time": 36.76882532730461,
+          "checkpoint": 2,
+          "lap": 2
+        },
+        {
+          "runnerId": "lina",
+          "type": "CHECKPOINT",
+          "time": 37.54001008736956,
+          "checkpoint": 2,
+          "lap": 2
+        },
+        {
+          "runnerId": "zorp",
+          "type": "CHECKPOINT",
+          "time": 37.84568757308495,
+          "checkpoint": 3,
+          "lap": 2
+        },
+        {
+          "runnerId": "axol",
+          "type": "CHECKPOINT",
+          "time": 38.56078166948164,
+          "checkpoint": 2,
+          "lap": 2
+        },
+        {
+          "runnerId": "kai",
+          "type": "CHECKPOINT",
+          "time": 39.70863906950679,
+          "checkpoint": 2,
+          "lap": 2
+        },
+        {
+          "runnerId": "zorp",
+          "type": "LAP",
+          "time": 39.973598248988,
+          "lap": 2
+        },
+        {
+          "runnerId": "ferrugem",
+          "type": "CHECKPOINT",
+          "time": 40.24576527457763,
+          "checkpoint": 2,
+          "lap": 2
+        },
+        {
+          "runnerId": "mestre",
+          "type": "CHECKPOINT",
+          "time": 40.864438003379114,
+          "checkpoint": 3,
+          "lap": 2
+        },
+        {
+          "runnerId": "nox",
+          "type": "CHECKPOINT",
+          "time": 41.05508597736617,
+          "checkpoint": 2,
+          "lap": 2
+        },
+        {
+          "runnerId": "cobalto",
+          "type": "CHECKPOINT",
+          "time": 42.146038913613445,
+          "checkpoint": 3,
+          "lap": 2
+        },
+        {
+          "runnerId": "lina",
+          "type": "CHECKPOINT",
+          "time": 42.867906143911554,
+          "checkpoint": 3,
+          "lap": 2
+        },
+        {
+          "runnerId": "mestre",
+          "type": "LAP",
+          "time": 43.04877580772299,
+          "lap": 2
+        },
+        {
+          "runnerId": "cobalto",
+          "type": "LAP",
+          "time": 44.208495569501814,
+          "lap": 2
+        },
+        {
+          "runnerId": "lina",
+          "type": "LAP",
+          "time": 44.84903496457195,
+          "lap": 2
+        },
+        {
+          "runnerId": "axol",
+          "type": "CHECKPOINT",
+          "time": 45.02497552222744,
+          "checkpoint": 3,
+          "lap": 2
+        },
+        {
+          "runnerId": "kai",
+          "type": "CHECKPOINT",
+          "time": 45.145624036913226,
+          "checkpoint": 3,
+          "lap": 2
+        },
+        {
+          "runnerId": "ferrugem",
+          "type": "CHECKPOINT",
+          "time": 45.71768216841196,
+          "checkpoint": 3,
+          "lap": 2
+        },
+        {
+          "runnerId": "nox",
+          "type": "CHECKPOINT",
+          "time": 46.74432890578824,
+          "checkpoint": 3,
+          "lap": 2
+        },
+        {
+          "runnerId": "axol",
+          "type": "LAP",
+          "time": 47.42593027876062,
+          "lap": 2
+        },
+        {
+          "runnerId": "zorp",
+          "type": "CHECKPOINT",
+          "time": 47.744752642278144,
+          "checkpoint": 1,
+          "lap": 3
+        },
+        {
+          "runnerId": "kai",
+          "type": "LAP",
+          "time": 47.99975019347487,
+          "lap": 2
+        },
+        {
+          "runnerId": "ferrugem",
+          "type": "LAP",
+          "time": 48.256424250668736,
+          "lap": 2
+        },
+        {
+          "runnerId": "nox",
+          "type": "LAP",
+          "time": 49.455916955126554,
+          "lap": 2
+        },
+        {
+          "runnerId": "mestre",
+          "type": "CHECKPOINT",
+          "time": 51.461465594593484,
+          "checkpoint": 1,
+          "lap": 3
+        },
+        {
+          "runnerId": "zorp",
+          "type": "CHECKPOINT",
+          "time": 53.44854459039693,
+          "checkpoint": 2,
+          "lap": 3
+        },
+        {
+          "runnerId": "cobalto",
+          "type": "CHECKPOINT",
+          "time": 53.46611527024012,
+          "checkpoint": 1,
+          "lap": 3
+        },
+        {
+          "runnerId": "lina",
+          "type": "CHECKPOINT",
+          "time": 53.94373649574885,
+          "checkpoint": 1,
+          "lap": 3
+        },
+        {
+          "runnerId": "axol",
+          "type": "CHECKPOINT",
+          "time": 56.51764616264395,
+          "checkpoint": 1,
+          "lap": 3
+        },
+        {
+          "runnerId": "kai",
+          "type": "CHECKPOINT",
+          "time": 56.634660222247064,
+          "checkpoint": 1,
+          "lap": 3
+        },
+        {
+          "runnerId": "mestre",
+          "type": "CHECKPOINT",
+          "time": 56.9311280564251,
+          "checkpoint": 2,
+          "lap": 3
+        },
+        {
+          "runnerId": "ferrugem",
+          "type": "CHECKPOINT",
+          "time": 58.25693808856565,
+          "checkpoint": 1,
+          "lap": 3
+        },
+        {
+          "runnerId": "cobalto",
+          "type": "CHECKPOINT",
+          "time": 58.33312373920118,
+          "checkpoint": 2,
+          "lap": 3
+        },
+        {
+          "runnerId": "zorp",
+          "type": "CHECKPOINT",
+          "time": 58.40641622656852,
+          "checkpoint": 3,
+          "lap": 3
+        },
+        {
+          "runnerId": "nox",
+          "type": "CHECKPOINT",
+          "time": 58.809472469781795,
+          "checkpoint": 1,
+          "lap": 3
+        },
+        {
+          "runnerId": "lina",
+          "type": "CHECKPOINT",
+          "time": 59.16108871285968,
+          "checkpoint": 2,
+          "lap": 3
+        },
+        {
+          "runnerId": "zorp",
+          "type": "LAP",
+          "time": 60.53334660284461,
+          "lap": 3
+        },
+        {
+          "runnerId": "zorp",
+          "type": "FINISH",
+          "time": 60.53334660284461,
+          "lap": 3
+        },
+        {
+          "runnerId": "mestre",
+          "type": "CHECKPOINT",
+          "time": 61.86894355828124,
+          "checkpoint": 3,
+          "lap": 3
+        },
+        {
+          "runnerId": "axol",
+          "type": "CHECKPOINT",
+          "time": 62.374379387560346,
+          "checkpoint": 2,
+          "lap": 3
+        },
+        {
+          "runnerId": "kai",
+          "type": "CHECKPOINT",
+          "time": 62.679744236488744,
+          "checkpoint": 2,
+          "lap": 3
+        },
+        {
+          "runnerId": "cobalto",
+          "type": "CHECKPOINT",
+          "time": 63.26840453752255,
+          "checkpoint": 3,
+          "lap": 3
+        },
+        {
+          "runnerId": "mestre",
+          "type": "LAP",
+          "time": 63.95162947051608,
+          "lap": 3
+        },
+        {
+          "runnerId": "mestre",
+          "type": "FINISH",
+          "time": 63.95162947051608,
+          "lap": 3
+        },
+        {
+          "runnerId": "ferrugem",
+          "type": "CHECKPOINT",
+          "time": 64.98147779560114,
+          "checkpoint": 2,
+          "lap": 3
+        },
+        {
+          "runnerId": "cobalto",
+          "type": "LAP",
+          "time": 65.34757662235788,
+          "lap": 3
+        },
+        {
+          "runnerId": "cobalto",
+          "type": "FINISH",
+          "time": 65.34757662235788,
+          "lap": 3
+        }
+      ],
+      "model": "swept directed line crossings + ordered checkpoints + continuous track corridor"
+    },
+    "presentation": {
+      "spectators": 512,
+      "humans": 343,
+      "aliens": 169,
+      "rows": 4,
+      "sections": 16,
+      "visible": 32,
+      "groundBuilds": 1,
+      "zoom": 0.72,
+      "lastLap": true,
+      "reactions": [
+        {
+          "type": "lead",
+          "runner": "zorp",
+          "time": 2.4333333333333296
+        },
+        {
+          "type": "lap",
+          "runner": "zorp",
+          "time": 20.116666666666806
+        },
+        {
+          "type": "lastLap",
+          "runner": "zorp",
+          "time": 39.98333333333235
+        },
+        {
+          "type": "finish",
+          "runner": "zorp",
+          "time": 60.549999999997844
+        }
+      ]
+    },
+    "rivalEvents": {
+      "throws": 3,
+      "hits": 0,
+      "bumps": 1,
+      "throwCooldown": 0,
+      "bumpCooldown": 0,
+      "activeObjects": 0,
+      "events": [
+        {
+          "type": "BUMP",
+          "time": 7.333333333333313,
+          "victim": "nox"
+        },
+        {
+          "type": "THROW",
+          "time": 7.916666666666644,
+          "target": "cobalto"
+        },
+        {
+          "type": "THROW",
+          "time": 14.43333333333363,
+          "target": "lina"
+        },
+        {
+          "type": "THROW",
+          "time": 21.783333333333378,
+          "target": "lina"
+        }
+      ]
+    },
+    "raceTime": 65.34999999999758,
+    "routeRecovery": null,
+    "trackLength": 6658.8,
+    "trackWidth": 240
+  },
+  "finishers": [
+    {
+      "id": "zorp",
+      "lap": 3,
+      "checkpoints": [
+        {
+          "checkpoint": 1,
+          "time": 8.016487428187137,
+          "lap": 1
+        },
+        {
+          "checkpoint": 2,
+          "time": 12.98791778378838,
+          "lap": 1
+        },
+        {
+          "checkpoint": 3,
+          "time": 17.981821158040507,
+          "lap": 1
+        },
+        {
+          "checkpoint": 1,
+          "time": 27.88030980398501,
+          "lap": 2
+        },
+        {
+          "checkpoint": 2,
+          "time": 32.85158024451964,
+          "lap": 2
+        },
+        {
+          "checkpoint": 3,
+          "time": 37.84568757308495,
+          "lap": 2
+        },
+        {
+          "checkpoint": 1,
+          "time": 47.744752642278144,
+          "lap": 3
+        },
+        {
+          "checkpoint": 2,
+          "time": 53.44854459039693,
+          "lap": 3
+        },
+        {
+          "checkpoint": 3,
+          "time": 58.40641622656852,
+          "lap": 3
+        }
+      ],
+      "time": 60.53334660284461,
+      "place": 1
+    },
+    {
+      "id": "mestre",
+      "lap": 3,
+      "checkpoints": [
+        {
+          "checkpoint": 1,
+          "time": 9.579120067157932,
+          "lap": 1
+        },
+        {
+          "checkpoint": 2,
+          "time": 14.475573553238782,
+          "lap": 1
+        },
+        {
+          "checkpoint": 3,
+          "time": 19.62559920879087,
+          "lap": 1
+        },
+        {
+          "checkpoint": 1,
+          "time": 30.231426061526726,
+          "lap": 2
+        },
+        {
+          "checkpoint": 2,
+          "time": 35.443097634508405,
+          "lap": 2
+        },
+        {
+          "checkpoint": 3,
+          "time": 40.864438003379114,
+          "lap": 2
+        },
+        {
+          "checkpoint": 1,
+          "time": 51.461465594593484,
+          "lap": 3
+        },
+        {
+          "checkpoint": 2,
+          "time": 56.9311280564251,
+          "lap": 3
+        },
+        {
+          "checkpoint": 3,
+          "time": 61.86894355828124,
+          "lap": 3
+        }
+      ],
+      "time": 63.95162947051608,
+      "place": 2
+    },
+    {
+      "id": "cobalto",
+      "lap": 3,
+      "checkpoints": [
+        {
+          "checkpoint": 1,
+          "time": 9.507297106658282,
+          "lap": 1
+        },
+        {
+          "checkpoint": 2,
+          "time": 14.824322249001757,
+          "lap": 1
+        },
+        {
+          "checkpoint": 3,
+          "time": 20.00780702659181,
+          "lap": 1
+        },
+        {
+          "checkpoint": 1,
+          "time": 32.00599353118681,
+          "lap": 2
+        },
+        {
+          "checkpoint": 2,
+          "time": 36.76882532730461,
+          "lap": 2
+        },
+        {
+          "checkpoint": 3,
+          "time": 42.146038913613445,
+          "lap": 2
+        },
+        {
+          "checkpoint": 1,
+          "time": 53.46611527024012,
+          "lap": 3
+        },
+        {
+          "checkpoint": 2,
+          "time": 58.33312373920118,
+          "lap": 3
+        },
+        {
+          "checkpoint": 3,
+          "time": 63.26840453752255,
+          "lap": 3
+        }
+      ],
+      "time": 65.34757662235788,
+      "place": 3
+    },
+    {
+      "id": "lina",
+      "lap": 2,
+      "checkpoints": [
+        {
+          "checkpoint": 1,
+          "time": 8.763596344882272,
+          "lap": 1
+        },
+        {
+          "checkpoint": 2,
+          "time": 13.771967067659913,
+          "lap": 1
+        },
+        {
+          "checkpoint": 3,
+          "time": 19.224822992027036,
+          "lap": 1
+        },
+        {
+          "checkpoint": 1,
+          "time": 32.21135753406522,
+          "lap": 2
+        },
+        {
+          "checkpoint": 2,
+          "time": 37.54001008736956,
+          "lap": 2
+        },
+        {
+          "checkpoint": 3,
+          "time": 42.867906143911554,
+          "lap": 2
+        },
+        {
+          "checkpoint": 1,
+          "time": 53.94373649574885,
+          "lap": 3
+        },
+        {
+          "checkpoint": 2,
+          "time": 59.16108871285968,
+          "lap": 3
+        }
+      ],
+      "time": null,
+      "place": 0
+    },
+    {
+      "id": "axol",
+      "lap": 2,
+      "checkpoints": [
+        {
+          "checkpoint": 1,
+          "time": 9.929545647472912,
+          "lap": 1
+        },
+        {
+          "checkpoint": 2,
+          "time": 15.533666649376938,
+          "lap": 1
+        },
+        {
+          "checkpoint": 3,
+          "time": 21.22354460231705,
+          "lap": 1
+        },
+        {
+          "checkpoint": 1,
+          "time": 32.90491360446699,
+          "lap": 2
+        },
+        {
+          "checkpoint": 2,
+          "time": 38.56078166948164,
+          "lap": 2
+        },
+        {
+          "checkpoint": 3,
+          "time": 45.02497552222744,
+          "lap": 2
+        },
+        {
+          "checkpoint": 1,
+          "time": 56.51764616264395,
+          "lap": 3
+        },
+        {
+          "checkpoint": 2,
+          "time": 62.374379387560346,
+          "lap": 3
+        }
+      ],
+      "time": null,
+      "place": 0
+    },
+    {
+      "id": "kai",
+      "lap": 2,
+      "checkpoints": [
+        {
+          "checkpoint": 1,
+          "time": 10.349989501615,
+          "lap": 1
+        },
+        {
+          "checkpoint": 2,
+          "time": 16.17872639685597,
+          "lap": 1
+        },
+        {
+          "checkpoint": 3,
+          "time": 21.77025849994255,
+          "lap": 1
+        },
+        {
+          "checkpoint": 1,
+          "time": 33.170280205090734,
+          "lap": 2
+        },
+        {
+          "checkpoint": 2,
+          "time": 39.70863906950679,
+          "lap": 2
+        },
+        {
+          "checkpoint": 3,
+          "time": 45.145624036913226,
+          "lap": 2
+        },
+        {
+          "checkpoint": 1,
+          "time": 56.634660222247064,
+          "lap": 3
+        },
+        {
+          "checkpoint": 2,
+          "time": 62.679744236488744,
+          "lap": 3
+        }
+      ],
+      "time": null,
+      "place": 0
+    },
+    {
+      "id": "ferrugem",
+      "lap": 2,
+      "checkpoints": [
+        {
+          "checkpoint": 1,
+          "time": 10.0168677375414,
+          "lap": 1
+        },
+        {
+          "checkpoint": 2,
+          "time": 16.882734946629217,
+          "lap": 1
+        },
+        {
+          "checkpoint": 3,
+          "time": 22.454104101423948,
+          "lap": 1
+        },
+        {
+          "checkpoint": 1,
+          "time": 34.97814995274278,
+          "lap": 2
+        },
+        {
+          "checkpoint": 2,
+          "time": 40.24576527457763,
+          "lap": 2
+        },
+        {
+          "checkpoint": 3,
+          "time": 45.71768216841196,
+          "lap": 2
+        },
+        {
+          "checkpoint": 1,
+          "time": 58.25693808856565,
+          "lap": 3
+        },
+        {
+          "checkpoint": 2,
+          "time": 64.98147779560114,
+          "lap": 3
+        }
+      ],
+      "time": null,
+      "place": 0
+    },
+    {
+      "id": "nox",
+      "lap": 2,
+      "checkpoints": [
+        {
+          "checkpoint": 1,
+          "time": 10.17468282314889,
+          "lap": 1
+        },
+        {
+          "checkpoint": 2,
+          "time": 17.20689025182898,
+          "lap": 1
+        },
+        {
+          "checkpoint": 3,
+          "time": 23.066602944701863,
+          "lap": 1
+        },
+        {
+          "checkpoint": 1,
+          "time": 34.65753583145149,
+          "lap": 2
+        },
+        {
+          "checkpoint": 2,
+          "time": 41.05508597736617,
+          "lap": 2
+        },
+        {
+          "checkpoint": 3,
+          "time": 46.74432890578824,
+          "lap": 2
+        },
+        {
+          "checkpoint": 1,
+          "time": 58.809472469781795,
+          "lap": 3
+        }
+      ],
+      "time": null,
+      "place": 0
+    }
+  ],
+  "medal": true,
+  "returnScene": "ILHA_CORRIDA"
+}

@@ -1,0 +1,1141 @@
+[
+  {
+    "id": "hub_turista",
+    "scene": "HUB",
+    "role": "TURISTA",
+    "master": false,
+    "added": false,
+    "source": "npc_turista.png",
+    "size": [
+      98,
+      182
+    ],
+    "position": [
+      180,
+      180
+    ],
+    "height": 44,
+    "crop": [
+      3,
+      3,
+      95,
+      179
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 158,
+      "y": 146,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "guia_festival",
+    "scene": "HUB",
+    "role": "GUIA",
+    "master": false,
+    "added": false,
+    "source": "npc_guia.png",
+    "size": [
+      142,
+      205
+    ],
+    "position": [
+      270,
+      130
+    ],
+    "height": 44,
+    "crop": [
+      1,
+      7,
+      141,
+      186
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 248,
+      "y": 96,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "ilha_esqui_mestre_do_boxe",
+    "scene": "ILHA_ESQUI",
+    "role": "MESTRE DO BOXE",
+    "master": true,
+    "added": false,
+    "source": "npc_mestre_novo.png",
+    "size": [
+      246,
+      386
+    ],
+    "position": [
+      225,
+      110
+    ],
+    "height": 50,
+    "crop": [
+      0,
+      0,
+      246,
+      386
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 196,
+      "y": 62,
+      "width": 58,
+      "height": 62
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "ilha_esqui_treinador",
+    "scene": "ILHA_ESQUI",
+    "role": "TREINADOR",
+    "master": false,
+    "added": false,
+    "source": "npc_treinador_novo.png",
+    "size": [
+      201,
+      364
+    ],
+    "position": [
+      130,
+      190
+    ],
+    "height": 44,
+    "crop": [
+      0,
+      0,
+      201,
+      364
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 108,
+      "y": 156,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "ilha_esqui_arbitro",
+    "scene": "ILHA_ESQUI",
+    "role": "ÁRBITRO",
+    "master": false,
+    "added": false,
+    "source": "npc_arbitro_novo.png",
+    "size": [
+      193,
+      369
+    ],
+    "position": [
+      345,
+      130
+    ],
+    "height": 44,
+    "crop": [
+      0,
+      0,
+      193,
+      369
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 323,
+      "y": 96,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "pugilista_apostador",
+    "scene": "ILHA_ESQUI",
+    "role": "PUGILISTA/APOSTADOR",
+    "master": false,
+    "added": false,
+    "source": "npc_pugilista_novo.png",
+    "size": [
+      230,
+      373
+    ],
+    "position": [
+      98,
+      186
+    ],
+    "height": 44,
+    "crop": [
+      0,
+      0,
+      230,
+      373
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 76,
+      "y": 152,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "aprendiz_pingpong",
+    "scene": "ILHA_PINGPONG",
+    "role": "APRENDIZ",
+    "master": false,
+    "added": false,
+    "source": "npc_aprendiz.png",
+    "size": [
+      98,
+      183
+    ],
+    "position": [
+      138,
+      187
+    ],
+    "height": 44,
+    "crop": [
+      0,
+      1,
+      98,
+      182
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 116,
+      "y": 153,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "ilha_pingpong_mestre_do_ping_pong",
+    "scene": "ILHA_PINGPONG",
+    "role": "MESTRE DO PING-PONG",
+    "master": true,
+    "added": false,
+    "source": "npc_mestre_ping_pong.png",
+    "size": [
+      116,
+      178
+    ],
+    "position": [
+      312,
+      187
+    ],
+    "height": 50,
+    "crop": [
+      0,
+      0,
+      116,
+      178
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 283,
+      "y": 139,
+      "width": 58,
+      "height": 62
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "ilha_skate_mestre_do_skate",
+    "scene": "ILHA_SKATE",
+    "role": "MESTRE DO SKATE",
+    "master": true,
+    "added": false,
+    "source": "mestre_skate.png",
+    "size": [
+      754,
+      1368
+    ],
+    "position": [
+      225,
+      105
+    ],
+    "height": 50,
+    "crop": [
+      0,
+      0,
+      754,
+      1368
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 196,
+      "y": 57,
+      "width": 58,
+      "height": 62
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "entrada_basquete",
+    "scene": "ILHA_BASQUETE",
+    "role": "MESTRE DO BASQUETE",
+    "master": true,
+    "added": false,
+    "source": "basketball_assets/exported/master_basket/idle/master_basket_idle_01.png",
+    "size": [
+      146,
+      210
+    ],
+    "position": [
+      225,
+      82
+    ],
+    "height": 54,
+    "crop": null,
+    "footprint": null,
+    "interaction": {
+      "x": 194,
+      "y": 20,
+      "width": 62,
+      "height": 62
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "mestre_arco_overworld",
+    "scene": "ILHA_ARCO",
+    "role": "MESTRE DO ARCO",
+    "master": true,
+    "added": false,
+    "source": "mestre_arquearia2.0_overworld.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      225,
+      118
+    ],
+    "height": 50,
+    "crop": [
+      330,
+      86,
+      666,
+      1078
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 196,
+      "y": 70,
+      "width": 58,
+      "height": 62
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "mestre_corrida",
+    "scene": "ILHA_CORRIDA",
+    "role": "MESTRE DA CORRIDA",
+    "master": true,
+    "added": false,
+    "source": "skate_sprites/mestre_corrida_npc.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      225,
+      106
+    ],
+    "height": 50,
+    "crop": [
+      309,
+      96,
+      635,
+      1064
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 196,
+      "y": 58,
+      "width": 58,
+      "height": 62
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "ilha_escalada_mestre_da_escalada",
+    "scene": "ILHA_ESCALADA",
+    "role": "MESTRE DA ESCALADA",
+    "master": true,
+    "added": false,
+    "source": "npcs_escalada2.0.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "position": [
+      225,
+      168
+    ],
+    "height": 50,
+    "crop": [
+      443,
+      256,
+      276,
+      509
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 196,
+      "y": 120,
+      "width": 58,
+      "height": 62
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "ilha_escalada_guia_de_trilha",
+    "scene": "ILHA_ESCALADA",
+    "role": "GUIA DE TRILHA",
+    "master": false,
+    "added": false,
+    "source": "npcs_escalada2.0.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "position": [
+      87,
+      166
+    ],
+    "height": 44,
+    "crop": [
+      799,
+      271,
+      310,
+      495
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 65,
+      "y": 132,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "geologa_escalada",
+    "scene": "ILHA_ESCALADA",
+    "role": "GEÓLOGA",
+    "master": false,
+    "added": false,
+    "source": "npcs_escalada2.0.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "position": [
+      365,
+      176
+    ],
+    "height": 44,
+    "crop": [
+      27,
+      269,
+      304,
+      496
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 343,
+      "y": 142,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "ilha_escalada_chef_de_acampamento",
+    "scene": "ILHA_ESCALADA",
+    "role": "CHEF DE ACAMPAMENTO",
+    "master": false,
+    "added": false,
+    "source": "npcs_escalada2.0.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "position": [
+      112,
+      224
+    ],
+    "height": 44,
+    "crop": [
+      1196,
+      275,
+      280,
+      492
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 90,
+      "y": 190,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "entrada_surf",
+    "scene": "ILHA_SURF",
+    "role": "MESTRE DO SURF",
+    "master": true,
+    "added": false,
+    "source": "surf_assets/mestre_surfing_overworld.png",
+    "size": [
+      564,
+      1202
+    ],
+    "position": [
+      225,
+      112
+    ],
+    "height": 50,
+    "crop": [
+      9,
+      9,
+      547,
+      1186
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 196,
+      "y": 64,
+      "width": 58,
+      "height": 62
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "capitao",
+    "scene": "ILHA_SURF",
+    "role": "CAPITÃO",
+    "master": false,
+    "added": false,
+    "source": "capitao.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      310,
+      180
+    ],
+    "height": 44,
+    "crop": [
+      319,
+      21,
+      616,
+      1210
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 288,
+      "y": 146,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front (static existing asset)"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "tecnico_pingpong",
+    "scene": "ILHA_PINGPONG",
+    "role": "TÉCNICO APOSENTADO",
+    "master": false,
+    "added": true,
+    "source": "npcs_pingpong.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      83,
+      108
+    ],
+    "height": 44,
+    "crop": [
+      840,
+      312,
+      392,
+      740
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 61,
+      "y": 74,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front"
+    ],
+    "walkFrames": 0
+  },
+  {
+    "id": "fa_basquete",
+    "scene": "ILHA_BASQUETE",
+    "role": "FÃ DE BASQUETE",
+    "master": false,
+    "added": true,
+    "source": "npcs_basquete.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      107,
+      194
+    ],
+    "height": 44,
+    "crop": [
+      22,
+      265,
+      404,
+      829
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 85,
+      "y": 160,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front"
+    ],
+    "walkFrames": 0
+  },
+  {
+    "id": "fotografa_basquete",
+    "scene": "ILHA_BASQUETE",
+    "role": "FOTÓGRAFA ESPORTIVA",
+    "master": false,
+    "added": true,
+    "source": "npcs_basquete.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      345,
+      197
+    ],
+    "height": 44,
+    "crop": [
+      445,
+      257,
+      393,
+      837
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 323,
+      "y": 163,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front"
+    ],
+    "walkFrames": 0
+  },
+  {
+    "id": "fa_corrida",
+    "scene": "ILHA_CORRIDA",
+    "role": "FÃ DE ATLETISMO",
+    "master": false,
+    "added": true,
+    "source": "npcs_corrida.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      81,
+      240
+    ],
+    "height": 44,
+    "crop": [
+      29,
+      243,
+      377,
+      870
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 59,
+      "y": 206,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front"
+    ],
+    "walkFrames": 0
+  },
+  {
+    "id": "treinador_corrida",
+    "scene": "ILHA_CORRIDA",
+    "role": "TREINADOR",
+    "master": false,
+    "added": true,
+    "source": "npcs_corrida.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      338,
+      219
+    ],
+    "height": 44,
+    "crop": [
+      855,
+      269,
+      371,
+      844
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 316,
+      "y": 185,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front"
+    ],
+    "walkFrames": 0
+  },
+  {
+    "id": "cinegrafista_skate",
+    "scene": "ILHA_SKATE",
+    "role": "CINEGRAFISTA",
+    "master": false,
+    "added": true,
+    "source": "npcs_skate.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      379,
+      218
+    ],
+    "height": 44,
+    "crop": [
+      419,
+      270,
+      410,
+      832
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 357,
+      "y": 184,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front"
+    ],
+    "walkFrames": 0
+  },
+  {
+    "id": "shapeiro_skate",
+    "scene": "ILHA_SKATE",
+    "role": "SHAPEIRO",
+    "master": false,
+    "added": true,
+    "source": "npcs_skate.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      109,
+      151
+    ],
+    "height": 44,
+    "crop": [
+      824,
+      228,
+      399,
+      874
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 87,
+      "y": 117,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front"
+    ],
+    "walkFrames": 0
+  },
+  {
+    "id": "aprendiz_arco",
+    "scene": "ILHA_ARCO",
+    "role": "APRENDIZ DE ARQUEIRA",
+    "master": false,
+    "added": true,
+    "source": "npcs_arquearia.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      344,
+      207
+    ],
+    "height": 44,
+    "crop": [
+      17,
+      202,
+      425,
+      922
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 322,
+      "y": 173,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front"
+    ],
+    "walkFrames": 0
+  },
+  {
+    "id": "naturalista_arco",
+    "scene": "ILHA_ARCO",
+    "role": "NATURALISTA",
+    "master": false,
+    "added": true,
+    "source": "npcs_arquearia.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      155,
+      222
+    ],
+    "height": 44,
+    "crop": [
+      805,
+      254,
+      449,
+      870
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 133,
+      "y": 188,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front"
+    ],
+    "walkFrames": 0
+  },
+  {
+    "id": "salva_vidas_surf",
+    "scene": "ILHA_SURF",
+    "role": "SALVA-VIDAS",
+    "master": false,
+    "added": true,
+    "source": "npcs_surf.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      112,
+      160
+    ],
+    "height": 44,
+    "crop": [
+      444,
+      231,
+      390,
+      863
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 90,
+      "y": 126,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front"
+    ],
+    "walkFrames": 0
+  },
+  {
+    "id": "pescador_surf",
+    "scene": "ILHA_SURF",
+    "role": "PESCADOR / METEOROLOGISTA",
+    "master": false,
+    "added": true,
+    "source": "npcs_surf.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      376,
+      155
+    ],
+    "height": 44,
+    "crop": [
+      841,
+      273,
+      413,
+      821
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 354,
+      "y": 121,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "front"
+    ],
+    "walkFrames": 0
+  },
+  {
+    "id": "k7",
+    "scene": "ILHA_ESCALADA",
+    "role": "K7",
+    "master": false,
+    "added": false,
+    "source": "K7.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      396,
+      113
+    ],
+    "height": 44,
+    "crop": [
+      37,
+      66,
+      99,
+      172
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 374,
+      "y": 79,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "see ravok_walk_atlas.js"
+    ],
+    "walkFrames": null
+  },
+  {
+    "id": "ravok",
+    "scene": "ILHA_ESCALADA",
+    "role": "RAVOK",
+    "master": false,
+    "added": false,
+    "source": "Ravok.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "position": [
+      350,
+      114
+    ],
+    "height": 44,
+    "crop": [
+      158,
+      15,
+      84,
+      136
+    ],
+    "footprint": {
+      "width": 18,
+      "height": 8
+    },
+    "interaction": {
+      "x": 328,
+      "y": 80,
+      "width": 44,
+      "height": 48
+    },
+    "directions": [
+      "see ravok_walk_atlas.js"
+    ],
+    "walkFrames": null
+  }
+]

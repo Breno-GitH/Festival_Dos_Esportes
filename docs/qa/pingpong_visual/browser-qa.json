@@ -1,0 +1,52 @@
+{
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": [],
+  "checks": [
+    "briefing-pauses-physics-and-AI",
+    "native-Space-countdown-start-no-special-leak",
+    "native-WASD-limits-and-four-sprite-poses",
+    "render-read-only-cache-and-full-frame",
+    "ten-balls-global-racket-visual-and-input",
+    "full-match-original-AI-bounces-rally-score-50",
+    "return-to-overworld"
+  ],
+  "multiballFPS": 59.99800006666444,
+  "matchFPS": 59.99400059993999,
+  "match": {
+    "player": 2,
+    "master": 50,
+    "state": "GAMEOVER",
+    "win": false,
+    "stats": {
+      "frames": 12015,
+      "bounces": 162,
+      "illegalReceive": 0,
+      "maxRally": 12,
+      "maxBalls": 4,
+      "multiballFrames": 799,
+      "globalFrames": 90,
+      "states": [
+        "SERVE_OWN_FLIGHT",
+        "SERVE_OWN_BOUNCE",
+        "SERVE_CROSS_FLIGHT",
+        "TABLE_BOUNCE",
+        "ATTACK_RECEIVER",
+        "RETURNED",
+        "FLY_TO_TABLE",
+        "MISSED",
+        "SERVE"
+      ]
+    },
+    "view": {
+      "backgroundBuilds": 1,
+      "audience": 48,
+      "scale": 1.1
+    },
+    "qaTailStepMultiplier": 8
+  },
+  "assets": {
+    "sprites": 8,
+    "oldBackgroundRequested": false
+  }
+}

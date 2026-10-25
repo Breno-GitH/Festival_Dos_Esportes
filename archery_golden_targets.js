@@ -54,8 +54,8 @@
     function drawNotice(ctx,effect) {
         const p=1-effect.timer/effect.duration;
         ctx.save();ctx.globalAlpha=Math.min(1,(1-p)*5,p*10);ctx.font='bold 8px monospace';ctx.textAlign='center';
-        ctx.strokeStyle='#263e36';ctx.lineWidth=2.5;ctx.strokeText('ALVO DOURADO!',225,45);
-        ctx.fillStyle='#ffe59a';ctx.fillText('ALVO DOURADO!',225,45);ctx.restore();
+        ctx.strokeStyle='#263e36';ctx.lineWidth=2.5;ctx.strokeText('ALVO DOURADO!',window.ArcheryField.WIDTH/2,45);
+        ctx.fillStyle='#ffe59a';ctx.fillText('ALVO DOURADO!',window.ArcheryField.WIDTH/2,45);ctx.restore();
     }
     window.ArcheryGoldenTargets=Object.freeze({SPECS,MAX_PER_ROUND,MIN_INTERVAL,CENTER_BONUS,plan,precisionBonus,drawFace,drawNotice,
         diagnostics:()=>({maxPerRound:MAX_PER_ROUND,minIntervalSeconds:MIN_INTERVAL/60,centerBonus:CENTER_BONUS,

@@ -1,0 +1,126 @@
+--- before/script.js
++++ script.js
+@@ -1999,6 +1999,7 @@
+ }
+ 
+ function beginArcoRound() {
++    window.FestivalChallenges?.start('archery');
+     arcoGame.lastUpdateTime=performance.now();arcoGame.simulationAccumulator=0;
+     window.archeryCharactersV2.reset();
+     arcoGame.playerControl = window.ArcheryPlayerControl.create();
+@@ -2131,6 +2132,7 @@
+         speedY,
+         owner
+     }));
++    window.FestivalChallenges?.onArcheryShot(arcoGame.arrows[arcoGame.arrows.length-1],arcoGame.targets);
+     if (isPlayer) arcoGame.stats.playerShots++;
+     else arcoGame.stats.mestreShots++;
+     arcoGame.pacing.phases[arcoGame.phase][isPlayer?'playerShots':'masterShots']++;
+@@ -2392,6 +2394,7 @@
+         if(first){
+             arrow.x=first.x;arrow.y=first.y;
+             arrow.state='HIT';
++            window.FestivalChallenges?.onArcheryResolved(arrow,arcoGame.targets[targetIndex]);
+             // Explosion neighbourhoods and hit effects use positions at contact,
+             // not endpoints a fast target may already have travelled beyond.
+             collisionSystem.atImpact(arcoGame.targets,first.t,()=>
+@@ -2403,6 +2406,7 @@
+         const visualMargin=arrow.owner==='PLAYER'?48:30;
+         if(arrow.y < -visualMargin || arrow.x < -30 || arrow.x > canvas.width+30){
+             arrow.state='REMOVED';
++            window.FestivalChallenges?.onArcheryResolved(arrow);
+             window.archeryCharactersV2.miss(arrow.owner);
+             if(arrow.owner==='PLAYER'){arcoGame.stats.playerMisses++;arcoGame.playerReactionTimer=18;}
+             else{arcoGame.stats.mestreMisses++;arcoGame.mestreReactionTimer=14;}
+@@ -2861,9 +2865,11 @@
+ // -------------------------------------------------------------
+ // Captura a borda do comando de interação. O polling de `keys` sozinho podia
+ // perder um toque rápido quando keydown e keyup ocorriam entre dois frames.
++npcs.push(...NormalIslandNpcs.create());
+ npcs.push(...RavokEvent.npcs);
+ configureOverworldPresentation();
+ let overworldConversationText = null;
++let normalNpcDialogue = null;
+ let interactionPressed = false;
+ let shipInteractionPressed = false;
+ let climbUpPressed = false;
+@@ -2892,6 +2898,7 @@
+         }
+     }
+     const k = e.key.toLowerCase();
++    if (normalNpcDialogue && ['e',' ','escape'].includes(k)) e.preventDefault();
+     if (PreGameBrief.handleKeyDown(e)) return;
+     if (RavokEvent.handleKeyDown(e)) return;
+     if (currentScene === 'JOGO_ARCO' && [' ', 'w', 'a', 's', 'd'].includes(k)) ArcheryRiverTargets.unlockAudio();
+@@ -2981,8 +2988,9 @@
+             return true; 
+         }
+     }
+-    if (currentScene !== "ILHA_BASQUETE") {
++    {
+         for (const npc of npcs) {
++            if (currentScene === "ILHA_BASQUETE" && !npc.normalIslandNpc) continue;
+             if (npc.scene !== currentScene || !npc.footprint || !RavokEvent.isNpcVisible(npc)) continue;
+             const body = { x: npc.x - npc.footprint.width / 2,
+                 y: npc.y - npc.footprint.height + 2,
+@@ -3020,12 +3028,23 @@
+     if (MastersFarewell.update(currentScene)) return;
+     const isOverworldScene = !currentScene.startsWith("JOGO_");
+     // A result-screen Space must not reopen a minigame while the same key is held.
+-    // Preserve the basketball island's original interaction path verbatim.
+-    const interactionRequested = isOverworldScene && (currentScene === "ILHA_BASQUETE"
+-        ? (interactionPressed || keys.e || keys.space) : interactionPressed);
++    // Keep the basketball Master's legacy held input; normal dialogue uses fresh edges.
++    const interactionRequested = isOverworldScene && (interactionPressed ||
++        (currentScene === "ILHA_BASQUETE" && !normalNpcDialogue && overworldFocusNpc?.isMaster && (keys.e || keys.space)));
+     const shipInteractionRequested = isOverworldScene && shipInteractionPressed;
+     if (isOverworldScene) { interactionPressed = false; shipInteractionPressed = false; }
+ 
++    if (isOverworldScene && normalNpcDialogue) {
++        zorpSprite.isMoving = false;
++        dialogBox.classList.add('show');
++        hintText.innerText = '[E / ESPAÇO / ESC] FECHAR CONVERSA';
++        if (interactionRequested || keys.escape) {
++            normalNpcDialogue = null; overworldConversationNpc = null; overworldConversationText = null;
++            dialogBox.classList.remove('show');
++            for (const k of ['w','a','s','d','e','space','escape']) keys[k] = false;
++        }
++        return;
++    }
+     if (isOverworldScene) {
+         hintText.innerText = "[W A S D] MOVER | [E / ESPAÇO] CONVERSAR";
+         
+@@ -3114,7 +3133,7 @@
+             if (npc.scene === currentScene && RavokEvent.isNpcVisible(npc) && isColliding(player, interactionBox)) {
+                 const distance = Math.hypot(player.x - npc.x, player.y - npc.y);
+                 if (distance < npcDistance) { npcProximo = npc; npcDistance = distance; }
+-                if (currentScene === "ILHA_BASQUETE") break;
++                // The nearest interaction zone wins; normal NPCs never steal a distant Master prompt.
+             }
+         }
+         
+@@ -3185,9 +3204,12 @@
+                 keys.space = false;
+ 
+             } else if (interactionRequested) {
+-                if (npcProximo.scene !== "ILHA_BASQUETE") overworldConversationNpc = npcProximo;
+-                overworldConversationText = RavokEvent.interact(npcProximo) || CaptainRoute.interact(npcProximo) || FestivalChallenges.interact(npcProximo) || npcProximo.msg;
++                if (npcProximo.scene !== "ILHA_BASQUETE" || npcProximo.normalIslandNpc) overworldConversationNpc = npcProximo;
++                overworldConversationText = RavokEvent.interact(npcProximo) || CaptainRoute.interact(npcProximo) || FestivalChallenges.interact(npcProximo) || NormalIslandNpcs.interact(npcProximo) || npcProximo.msg;
+                 if (!RavokEvent.conversationActive) dialogText.innerHTML = overworldConversationText + extra;
++                if (!npcProximo.isMaster && !npcProximo.eventId && npcProximo.id !== 'capitao') {
++                    normalNpcDialogue = npcProximo.id; zorpSprite.isMoving = false;
++                }
+             } else {
+                 dialogText.innerHTML = overworldConversationNpc === npcProximo
+                     ? (overworldConversationText || npcProximo.msg) : npcProximo.scene !== "ILHA_BASQUETE"
+@@ -3735,7 +3757,8 @@
+ 
+ function drawNPC(npc) {
+     if(npc.eventId==='ravok'){RavokK7Animation.draw(ctx,RavokK7Animation.idle(npc.id,npc.x,npc.y,npc.facingDirection||'down'),{focused:overworldFocusNpc===npc});return;}
+-    if(npc.scene==="ILHA_BASQUETE")drawBasketballOverworldNpc(npc);
++    if(npc.normalIslandNpc)drawUnifiedOverworldNpc(npc);
++    else if(npc.scene==="ILHA_BASQUETE")drawBasketballOverworldNpc(npc);
+     else drawUnifiedOverworldNpc(npc);
+ }
+ 

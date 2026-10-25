@@ -1,0 +1,35 @@
+PASS ILHA_PINGPONG NPCs, approach, collision and dialogue
+PASS ILHA_BASQUETE NPCs, approach, collision and dialogue
+PASS ILHA_CORRIDA NPCs, approach, collision and dialogue
+PASS ILHA_SKATE NPCs, approach, collision and dialogue
+PASS ILHA_ARCO NPCs, approach, collision and dialogue
+PASS ILHA_SURF NPCs, approach, collision and dialogue
+PASS ILHA_ESCALADA NPCs, approach, collision and dialogue
+PASS ILHA_ESQUI NPCs, approach, collision and dialogue
+PASS ILHA_PINGPONG Master briefing and return
+PASS ILHA_BASQUETE Master briefing and return
+PASS ILHA_CORRIDA Master briefing and return
+PASS ILHA_SKATE Master briefing and return
+PASS ILHA_ARCO Master briefing and return
+PASS ILHA_SURF Master briefing and return
+PASS ILHA_ESCALADA Master briefing and return
+PASS ILHA_ESQUI Master briefing and return
+PASS Photo completed by real scored 3-pointer, no auto coins
+PASS Clean lap completed through START, CP1/CP2/CP3 and physical FINISH
+PASS Three direct disk hits use real swept collision; birds remain unharmed
+PASS Surf real update at 60% without capture
+PASS Skate actual capture, grind travel, Super Jump Out, trick and safe physical landing
+PASS All five objectives survive reload, unpaid; public completion flags match save
+PASS basket return to owner pays exactly once
+PASS running return to owner pays exactly once
+PASS skate return to owner pays exactly once
+PASS archery return to owner pays exactly once
+PASS surf return to owner pays exactly once
+PASS aprendiz_pingpong original quest preserved and reward paid once
+PASS geologa_escalada original quest preserved and reward paid once
+PASS pugilista_apostador original quest preserved and reward paid once
+PASS Eight island quests: accepted/completed/claimed and 235 coins persist after reload
+PASS Overworld with NPCs remains fluid
+PASS All 11 NPCs: uniform scale, fixed feet anchor and 44px visible height
+PASS Zero console warnings/errors, HTTP errors/404 and network failures
+COMPLETE {"checks":34,"errors":0,"http":0,"fps":59.020263623844194}

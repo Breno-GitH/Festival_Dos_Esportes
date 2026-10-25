@@ -1,0 +1,154 @@
+{
+  "checks": [
+    "New campaign: zero merchant, store, sign and store collision",
+    "B inventory exists, M remains locked without map",
+    "First medal confirmed in match; merchant waits for Overworld return",
+    "Complete real-time arrival, walking frames, staged shop, ship surprise and sign",
+    "E interacts, dialogue freezes movement, shop accessible from main path",
+    "Insufficient funds: no item, no debit, merchant reacts",
+    "Seven actual UI purchases: exact prices, confirmation, all sale poses, no duplicates; 100 coins remain",
+    "Inventory owns seven goods; M now opens the map",
+    "Teleporter rejects never-visited island",
+    "Visited-only teleport confirms, fades and lands at a safe spawn",
+    "Scanner uses canonical quest status without revealing secret objectives",
+    "Destiny letter: three regions, exact clues, no route identities or ending labels",
+    "Records show actual played Ping-Pong and exclude merely visited Surf",
+    "Ship F menu: custom colors persist; Jukebox plays unlocked theme and stops on close",
+    "Reload persists arrival, shop, seven items, records, visits, style and coins; no repeated cutscene",
+    "Zero 404/network failures, console errors/warnings, TypeError and ReferenceError"
+  ],
+  "phases": [
+    {
+      "phase": "FADE",
+      "time": 0.04970000004768371,
+      "animation": "idle_down"
+    },
+    {
+      "phase": "ARRIVE",
+      "time": 0.5503000000715257,
+      "animation": "idle_down"
+    },
+    {
+      "phase": "LOOK",
+      "time": 3.610900000095367,
+      "animation": "idle_left"
+    },
+    {
+      "phase": "BAG",
+      "time": 4.42710000014305,
+      "animation": "bag"
+    },
+    {
+      "phase": "COUNTER",
+      "time": 5.494000000119207,
+      "animation": "bag"
+    },
+    {
+      "phase": "ROOF",
+      "time": 6.0942000001668895,
+      "animation": "present"
+    },
+    {
+      "phase": "PRODUCTS",
+      "time": 6.6767000001668855,
+      "animation": "present"
+    },
+    {
+      "phase": "SHIP",
+      "time": 7.527400000095356,
+      "animation": "surprised"
+    },
+    {
+      "phase": "SIGN_WALK",
+      "time": 9.693900000095365,
+      "animation": "surprised"
+    },
+    {
+      "phase": "SIGN",
+      "time": 13.243000000119222,
+      "animation": "present"
+    },
+    {
+      "phase": "RETURN",
+      "time": 15.659600000143078,
+      "animation": "walk_up"
+    },
+    {
+      "phase": "HAPPY",
+      "time": 19.210600000143078,
+      "animation": "happy"
+    },
+    {
+      "phase": "SPEECH",
+      "time": 20.07630000007156,
+      "animation": "happy"
+    },
+    {
+      "phase": "FADE_BACK",
+      "time": 21.133000000238454,
+      "animation": "happy"
+    }
+  ],
+  "errors": [],
+  "http": [],
+  "failed": [],
+  "fps": 60,
+  "final": {
+    "visible": true,
+    "cutscene": null,
+    "ui": null,
+    "animation": {
+      "x": 342,
+      "y": 111,
+      "direction": "down",
+      "state": "beckon",
+      "clock": 0.05,
+      "frame": 32,
+      "moving": false,
+      "speed": 40,
+      "scaleX": 0.2732919254658385,
+      "scaleY": 0.2732919254658385,
+      "anchor": "bottom-center",
+      "frames": 50
+    },
+    "data": {
+      "merchantArrivalSeen": true,
+      "merchantUnlocked": true,
+      "purchasedItems": {
+        "island_map": true,
+        "teleporter": true,
+        "quest_scanner": true,
+        "records": true,
+        "jukebox": true,
+        "destiny_letter": true,
+        "ship_customizer": true
+      },
+      "visitedIslands": {
+        "HUB": true,
+        "ILHA_PINGPONG": true,
+        "ILHA_SURF": true,
+        "ILHA_BASQUETE": true
+      },
+      "playedSports": {
+        "pingpong": true
+      },
+      "records": {
+        "pingpong": {
+          "best": 50,
+          "label": "Pontos",
+          "unit": "PTS",
+          "lowerIsBetter": false
+        }
+      },
+      "heardTracks": {
+        "festival": true,
+        "market": true,
+        "ocean": true
+      },
+      "shipStyle": "AURORA",
+      "firstPurchaseSeen": true
+    },
+    "toast": null,
+    "gameStarted": null
+  }
+}

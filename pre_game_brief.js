@@ -218,6 +218,7 @@
             if(!this.active||!this.config)return;
             const c=this.config;
             if(this.state==='COUNTDOWN'){
+                if(typeof this.options.drawCountdown==='function'){this.options.drawCountdown(ctx,canvas,this.elapsed);return;}
                 const cx=Math.round(canvas.width/2),cy=Math.round(canvas.height/2),go=this.countdownLabel==='VAI!';
                 ctx.save();ctx.imageSmoothingEnabled=false;ctx.globalAlpha=.32;ctx.fillStyle='#071525';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.globalAlpha=1;
                 ctx.fillStyle='#0c1d2b';ctx.fillRect(cx-43,cy-39,86,76);ctx.fillStyle='#496474';ctx.fillRect(cx-41,cy-37,82,72);

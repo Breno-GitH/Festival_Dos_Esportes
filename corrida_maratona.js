@@ -1,5 +1,5 @@
 /*
- * Corrida/Maratona 1.0
+ * Corrida/Maratona 3.0 — official three-lap athletics event
  * Módulo independente: pista, sprites, corredores, IA, obstáculos, HUD e fluxo.
  * A integração com o projeto principal se limita às três funções exportadas no fim.
  */
@@ -106,7 +106,9 @@
         drawHero(context, kind, action, direction, frameIndex, x, y, width, height) {
             const directional = action === 'RUN' || action === 'READY' || action === 'JUMP';
             const source = this.runnerFrame(kind, action, directional ? direction : '', frameIndex);
-            return this.safeDraw(context, 'runners', source, x - width / 2, y - height, width, height);
+            if(!source)return false;
+            const scale=Math.min(width/source.w,height/source.h),w=source.w*scale,h=source.h*scale;
+            return this.safeDraw(context,'runners',source,Math.round(x-w/2),Math.round(y-h+7*scale),w,h);
         }
 
         competitorId(group) {
@@ -122,7 +124,9 @@
             const id = this.competitorId(group);
             const action = state === 'STUMBLE' ? 'STUMBLE' : state === 'READY' ? 'READY' : 'RUN';
             const source = this.runnerFrame(id, action, action === 'STUMBLE' ? '' : direction, frameIndex);
-            return this.safeDraw(context, 'runners', source, x - width / 2, y - height, width, height);
+            if(!source)return false;
+            const scale=Math.min(width/source.w,height/source.h),w=source.w*scale,h=source.h*scale;
+            return this.safeDraw(context,'runners',source,Math.round(x-w/2),Math.round(y-h+7*scale),w,h);
         }
 
         drawObstacle(context, type, x, y, width, height, alpha = 1) {
@@ -154,7 +158,7 @@
             this.curveLength = Math.PI * this.referenceRadius;
             this.length = this.straight * 2 + this.curveLength * 2;
             this.halfStraight = this.straight / 2;
-            this.gateCount = 8;
+            this.gateCount = 4;
         }
 
         point(progress, lane = 0) {
@@ -213,55 +217,20 @@
         }
 
         project(x, y) {
-            // A pista é uma cápsula. A busca amostrada é estável em todas as
-            // junções reta/curva e barata o bastante para um corredor livre.
-            const samples = 320;
-            let bestProgress = 0;
-            let bestDistanceSq = Infinity;
-            for (let i = 0; i < samples; i++) {
-                const progress = this.length * i / samples;
-                const point = this.point(progress, 3.5);
-                const dx = x - point.x;
-                const dy = y - point.y;
-                const distanceSq = dx * dx + dy * dy;
-                if (distanceSq < bestDistanceSq) {
-                    bestDistanceSq = distanceSq;
-                    bestProgress = progress;
-                }
-            }
-            // Refina localmente sem introduzir snapping na posição real.
-            let stride = this.length / samples;
-            for (let pass = 0; pass < 5; pass++) {
-                let chosen = bestProgress;
-                for (const candidate of [bestProgress - stride, bestProgress, bestProgress + stride]) {
-                    const point = this.point(candidate, 3.5);
-                    const dx = x - point.x;
-                    const dy = y - point.y;
-                    const distanceSq = dx * dx + dy * dy;
-                    if (distanceSq < bestDistanceSq) {
-                        bestDistanceSq = distanceSq;
-                        chosen = wrap(candidate, this.length);
-                    }
-                }
-                bestProgress = chosen;
-                stride *= 0.5;
-            }
-            const center = this.point(bestProgress, 3.5);
-            const tangent = this.tangent(bestProgress);
-            const normal = { x: -tangent.y, y: tangent.x };
-            const offsetX = x - center.x;
-            const offsetY = y - center.y;
-            const lateral = offsetX * normal.x + offsetY * normal.y;
-            const distance = Math.sqrt(bestDistanceSq);
-            return {
-                progress: wrap(bestProgress, this.length),
-                distance,
-                lateral,
-                tangent,
-                onTrack: distance <= this.halfTrackWidth + 7,
-                onGrass: lateral < -this.halfTrackWidth,
-                outside: lateral > this.halfTrackWidth
-            };
+            // Exact capsule projection: no sampled jumps at straight/curve seams.
+            const centerRadius=this.innerRadius+this.laneWidth*this.lanes/2;
+            const dx=x-clamp(x,-this.halfStraight,this.halfStraight);
+            let progress;
+            if(x>this.halfStraight){
+                progress=this.straight+(Math.PI/2-Math.atan2(y,dx))*this.referenceRadius;
+            }else if(x<-this.halfStraight){
+                let angle=Math.atan2(y,dx);if(angle>Math.PI/2)angle-=TAU;
+                progress=this.straight*2+this.curveLength+(-Math.PI/2-angle)*this.referenceRadius;
+            }else progress=y>=0?x+this.halfStraight:this.straight+this.curveLength+this.halfStraight-x;
+            progress=wrap(progress,this.length);
+            const lateral=Math.hypot(dx,y)-centerRadius,distance=Math.abs(lateral);
+            return {progress,distance,lateral,tangent:this.tangent(progress),
+                onTrack:distance<=this.halfTrackWidth+7,onGrass:lateral<-this.halfTrackWidth,outside:lateral>this.halfTrackWidth};
         }
 
         circularDistance(a, b) {
@@ -284,68 +253,10 @@
             context.stroke();
         }
 
-        draw(context, pulse) {
-            context.save();
-            const worldHalfWidth = this.halfStraight + this.outerRadius + 360;
-            const worldHalfHeight = this.outerRadius + 360;
-            context.fillStyle = '#155c38';
-            context.fillRect(-worldHalfWidth, -worldHalfHeight, worldHalfWidth * 2, worldHalfHeight * 2);
-
-            context.fillStyle = '#1f7044';
-            for (let x = -worldHalfWidth; x < worldHalfWidth; x += 70) {
-                for (let y = -worldHalfHeight; y < worldHalfHeight; y += 70) {
-                    if (((x + y) / 55) % 2 === 0) context.fillRect(x, y, 55, 55);
-                }
-            }
-
-            this.drawPath(context, 3.5, '#5d241d', this.laneWidth * this.lanes + 12);
-            this.drawPath(context, 3.5, '#c9573f', this.laneWidth * this.lanes + 4);
-
-            for (let lane = -0.5; lane < this.lanes; lane++) {
-                this.drawPath(context, lane, 'rgba(255,245,220,.78)', 1.4);
-            }
-
-            // Linha de largada/chegada no começo da reta inferior.
-            const inner = this.point(0, -0.35);
-            const outer = this.point(0, this.lanes - 0.15);
-            context.lineWidth = 7;
-            context.strokeStyle = '#f7f2df';
-            context.beginPath();
-            context.moveTo(inner.x, inner.y);
-            context.lineTo(outer.x, outer.y);
-            context.stroke();
-            context.lineWidth = 3;
-            context.strokeStyle = '#151a28';
-            for (let i = 0; i < this.lanes * 2; i += 2) {
-                const t0 = i / (this.lanes * 2);
-                const t1 = (i + 1) / (this.lanes * 2);
-                context.beginPath();
-                context.moveTo(lerp(inner.x, outer.x, t0), lerp(inner.y, outer.y, t0));
-                context.lineTo(lerp(inner.x, outer.x, t1), lerp(inner.y, outer.y, t1));
-                context.stroke();
-            }
-
-            // Miolo e leitura de estádio sem competir com a pista.
-            context.fillStyle = 'rgba(9,38,27,.35)';
-            context.fillRect(-650, -105, 1300, 210);
-            context.fillStyle = '#d8f2dd';
-            context.font = 'bold 24px monospace';
-            context.textAlign = 'center';
-            context.globalAlpha = 0.45 + Math.sin(pulse * 0.03) * 0.08;
-            context.fillText('FESTIVAL GALÁCTICO', 0, 8);
-            context.globalAlpha = 1;
-
-            // Arquibancadas simples fora da pista.
-            context.fillStyle = '#263449';
-            context.fillRect(-760, -this.outerRadius - 125, 1520, 70);
-            context.fillRect(-760, this.outerRadius + 55, 1520, 70);
-            context.fillStyle = '#88a4bb';
-            for (let x = -740; x < 740; x += 32) {
-                context.fillRect(x, -this.outerRadius - 105, 16, 6);
-                context.fillRect(x + 10, this.outerRadius + 82, 16, 6);
-            }
-            context.restore();
+        draw(context) {
+            this.presentation.drawGround(context);
         }
+
     }
 
     class Runner {
@@ -385,7 +296,7 @@
         }
 
         get lap() {
-            return Math.min(2, this.validatedLaps + 1);
+            return Math.min(window.RaceLapSystem.TOTAL_LAPS, this.validatedLaps + 1);
         }
 
         jump() {
@@ -558,9 +469,10 @@
 
         updateWorldPosition(item, clock) {
             let lateral = item.baseLateral;
+            if(item.mobile&&item.patrolSpan)item.progress=wrap(item.baseProgress+Math.sin(clock*item.pathSpeed/item.patrolSpan+item.phase)*item.patrolSpan,this.track.length);
             if (item.crossing) lateral += Math.sin(clock * 1.15 + item.phase) * 112;
             if (item.zigzag) lateral += Math.sin(clock * 2.05 + item.phase) * 78;
-            item.lateral = clamp(lateral, -this.track.halfTrackWidth + 16, this.track.halfTrackWidth - 16);
+            item.lateral = item.type==='pigeon'?lateral:clamp(lateral, -this.track.halfTrackWidth + 16, this.track.halfTrackWidth - 16);
             const point = this.track.pointOffset(item.progress, item.lateral);
             item.x = point.x;
             item.y = point.y;
@@ -568,48 +480,43 @@
         }
 
         buildCourse() {
-            const L = this.track.length;
-            // Volta 1: hazards claros, espaçados e sempre contornáveis.
-            this.add('startingBlock', 1, L * 0.08, 76, { lightHazard: true, strength: 0.82, size: [34, 26] });
-            this.add('cone', 1, L * 0.15, -48, { strength: 0.62, size: [32, 38] });
-            this.add('hurdle', 1, L * 0.24, -58, { jumpable: true, strength: 0.5, size: [62, 43] });
-            this.add('puddle', 1, L * 0.34, 55, { jumpable: true, lightHazard: true, strength: 0.7, size: [78, 38] });
-            this.add('bottle', 1, L * 0.45, -22, { lightHazard: true, strength: 0.8, size: [28, 24] });
-            this.add('backmarker', 1, L * 0.57, 35, { mobile: true, pathSpeed: 165, strength: 0.78, size: [38, 50] });
-            this.add('barricade', 1, L * 0.70, 68, { strength: 0.5, size: [64, 43] });
-            this.add('judge', 1, L * 0.82, -62, { mobile: true, pathSpeed: 58, strength: 0.67, size: [40, 52] });
-            this.add('pigeon', 1, L * 0.91, 15, { scenic: true, size: [34, 31] });
-
-            // Volta 2: maior densidade e movimento. Os últimos 10% ficam livres
-            // de bloqueios pesados para a disputa direta da reta final.
-            this.add('cone', 2, L * 0.06, -72, { strength: 0.62, size: [32, 38] });
-            this.add('cone', 2, L * 0.06, 4, { strength: 0.62, size: [32, 38] });
-            this.add('hurdle', 2, L * 0.15, 50, { jumpable: true, strength: 0.48, size: [62, 43] });
-            this.add('cart', 2, L * 0.25, 0, { mobile: true, crossing: true, pathSpeed: 42, strength: 0.48, size: [56, 44] });
-            this.add('sponge', 2, L * 0.34, 72, { lightHazard: true, strength: 0.78, size: [30, 23] });
-            this.add('zigzag', 2, L * 0.44, -24, { mobile: true, zigzag: true, pathSpeed: 225, strength: 0.7, size: [38, 50] });
-            this.add('rolling', 2, L * 0.55, 58, { mobile: true, pathSpeed: 72, strength: 0.46, size: [60, 44] });
-            this.add('tape', 2, L * 0.64, -55, { scenic: true, lightHazard: true, strength: 0.86, size: [72, 36] });
-            this.add('puddle', 2, L * 0.72, 42, { jumpable: true, lightHazard: true, strength: 0.68, size: [78, 38] });
-            this.add('robot', 2, L * 0.80, -18, { mobile: true, crossing: true, pathSpeed: 68, strength: 0.58, size: [44, 42] });
-            this.add('pigeon', 2, L * 0.88, 38, { scenic: true, size: [34, 31] });
+            const L=this.track.length;
+            for(let lap=1;lap<=3;lap++){
+                // Four readable districts. Every pattern leaves several lanes clear.
+                if(lap===1)this.add('startingBlock',lap,L*.06,76,{lightHazard:true,strength:.82,size:[34,26]});
+                this.add('hurdle',lap,L*.12,-58,{jumpable:true,strength:.5,size:[62,43]});
+                if(lap>=2)this.add('hurdle',lap,L*.17,54,{jumpable:true,strength:.5,size:[62,43]});
+                this.add('cone',lap,L*.34,-65,{strength:.62,size:[30,36]});
+                if(lap>=2)this.add('cone',lap,L*.37,62,{strength:.62,size:[30,36]});
+                if(lap===3)this.add('barricade',lap,L*.41,8,{jumpable:true,strength:.52,size:[58,40]});
+                this.add('puddle',lap,L*.55,52,{jumpable:true,lightHazard:true,strength:.7,size:[76,36]});
+                this.add(lap===2?'sponge':'bottle',lap,L*.59,-48,{lightHazard:true,strength:.82,size:[26,23]});
+                if(lap===3)this.add('puddle',lap,L*.62,-62,{jumpable:true,lightHazard:true,strength:.7,size:[72,35]});
+                this.add(lap===1?'backmarker':lap===2?'zigzag':'cart',lap,L*.77,25,
+                    {mobile:true,pathSpeed:lap===1?165:lap===2?200:42,patrolSpan:165,crossing:lap===3,zigzag:lap===2,strength:.72,size:lap===3?[52,40]:[37,49]});
+                this.add(lap===1?'judge':lap===2?'rolling':'robot',lap,L*.84,-52,
+                    {mobile:true,pathSpeed:lap===1?58:72,patrolSpan:125,crossing:lap===3,strength:.66,size:lap===2?[52,40]:[38,49]});
+                if(lap===2)this.add('tape',lap,L*.65,-92,{scenic:true,lightHazard:true,strength:.86,size:[58,28]});
+            }
+            // Ambient pigeons live beside the course in every lap; never collide.
+            for(let i=0;i<12;i++)this.add('pigeon',0,L*(i+.35)/12,i%2?-163:154,{scenic:true,size:[19,27]});
         }
 
         update(dt, game) {
             const visibleLap = Math.min(game.totalLaps, game.player.validatedLaps + 1);
             for (const item of this.items) {
-                if (item.mobile && item.pathSpeed) item.progress = wrap(item.progress + item.pathSpeed * dt, this.track.length);
+                if (item.mobile && item.pathSpeed&&!item.patrolSpan) item.progress = wrap(item.progress + item.pathSpeed * dt, this.track.length);
                 this.updateWorldPosition(item, game.clock);
                 if (item.type === 'pigeon') {
                     const nearest = game.runners.reduce((distance, runner) =>
                         Math.min(distance, Math.hypot(item.x - runner.x, item.y - runner.y)), Infinity);
-                    if (!item.flying && item.lap === visibleLap && nearest < 125) {
+                    if (!item.flying && (item.lap===0||item.lap===visibleLap)&&nearest<125) {
                         item.flying = true;
                         item.flightTimer = 1.55;
                     }
                     if (item.flying) item.flightTimer = Math.max(0, item.flightTimer - dt);
                 }
-                if (item.lap === visibleLap && Math.hypot(item.x - game.player.x, item.y - game.player.y) < 470) {
+                if ((item.lap===0||item.lap===visibleLap)&&Math.hypot(item.x - game.player.x, item.y - game.player.y) < 470) {
                     this.typesSeen.add(item.type);
                     if (item.mobile) this.mobileSeen = true;
                 }
@@ -618,14 +525,14 @@
 
         nearbyThreats(runner, forwardRange = 210) {
             const projection = runner.trackProjection || this.track.project(runner.x, runner.y);
-            const currentLap = Math.min(2, runner.validatedLaps + 1);
+            const currentLap = runner.lap;
             const forward = runner.speed > 30
                 ? { x: runner.vx / runner.speed, y: runner.vy / runner.speed }
                 : projection.tangent;
             const side = { x: -forward.y, y: forward.x };
             const threats = [];
             for (const item of this.items) {
-                if (item.lap !== currentLap || item.type === 'pigeon') continue;
+                if(item.lap!==currentLap||item.type==='pigeon')continue;
                 const dx = item.x - runner.x;
                 const dy = item.y - runner.y;
                 const ahead = dx * forward.x + dy * forward.y;
@@ -646,13 +553,7 @@
             for (const item of this.items) {
                 if (item.lap !== runnerLap || runner.hitObstacles.has(item.id)) continue;
                 const distance = Math.hypot(item.x - runner.x, item.y - runner.y);
-                if (item.type === 'pigeon') {
-                    if (distance < 115 && runner.isPlayer && !item.playerScared) {
-                        item.playerScared = true;
-                        game.distractionTimer = 32;
-                    }
-                    continue;
-                }
+                if(item.type==='pigeon')continue;
                 const collisionRadius = Math.max(18, item.size[0] * 0.4);
                 if (distance > collisionRadius) continue;
                 runner.hitObstacles.add(item.id);
@@ -660,6 +561,7 @@
                     if (runner.isPlayer) game.score += 120;
                     continue;
                 }
+                if (runner.isPlayer) window.FestivalChallenges?.onRunning({type:'OBSTACLE',obstacle:item.type});
                 if (item.type === 'tape' && runner.isPlayer) game.distractionTimer = 24;
                 if (item.lightHazard) runner.lightSlip(item.strength);
                 else runner.stumble(item.strength);
@@ -675,7 +577,7 @@
         draw(context, game) {
             const visibleLap = Math.min(game.totalLaps, game.player.validatedLaps + 1);
             for (const item of this.items) {
-                if (item.lap !== visibleLap || Math.hypot(item.x - game.camera.x, item.y - game.camera.y) > 820) continue;
+                if ((item.lap!==0&&item.lap!==visibleLap)||Math.hypot(item.x - game.camera.x, item.y - game.camera.y) > 820) continue;
                 const [width, height] = item.size;
                 let drawX = item.x;
                 let drawY = item.y + 4;
@@ -697,7 +599,9 @@
             this.qaPrepared = false;
             this.atlas = new SpriteAtlas();
             this.track = new RaceTrack();
-            this.totalLaps = 2;
+            this.totalLaps = window.RaceLapSystem.TOTAL_LAPS;
+            this.eventView=new window.RaceEventPresentation(this.track);
+            this.track.presentation=this.eventView;
             this.runners = [];
             this.player = null;
             this.obstacles = null;
@@ -727,6 +631,7 @@
         setupInput() {
             window.addEventListener('keydown', (event) => {
                 if (typeof currentScene === 'undefined' || currentScene !== 'JOGO_CORRIDA') return;
+                if(window.PreGameBrief?.active)return;
                 const key = event.key.toLowerCase();
                 if ([' ', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', 'w', 'a', 's', 'd', 'escape', 'r'].includes(key)) event.preventDefault();
                 if (key === 'escape') {
@@ -740,7 +645,7 @@
                     this.startCountdown();
                     return;
                 }
-                if (this.phase === 'RESULT' && (key === ' ' || key === 'r')) {
+                if (this.phase === 'RESULT' && !event.repeat && (key === ' ' || key === 'r')) {
                     this.restartCount++;
                     this.reset();
                     this.startCountdown();
@@ -800,8 +705,12 @@
                 phaseSeed: index * 1.37 + 0.4
             }));
             this.runners = [this.player, ...rivals];
-            for (const runner of this.runners) {
-                const start = this.track.pointOffset(runner.progress, runner.preferredOffset);
+            for (let index=0;index<this.runners.length;index++) {
+                const runner=this.runners[index];
+                // Two rows, every runner physically behind the same start plane.
+                runner.progress=-44-Math.floor(index/4)*38;
+                const gridOffset=[-27,27,-86,86][index%4];
+                const start = this.track.pointOffset(runner.progress, gridOffset);
                 runner.x = start.x;
                 runner.y = start.y;
                 runner.trackProjection = this.track.project(start.x, start.y);
@@ -809,7 +718,13 @@
         }
 
         reset() {
+            window.FestivalChallenges?.start('running');
             this.makeRunners();
+            this.lapSystem=new window.RaceLapSystem(this.track);
+            for(const runner of this.runners)this.lapSystem.attach(runner);
+            this.rivalEvents=new window.RaceRivalEvents();
+            this.eventView.reset(2026+this.restartCount);
+            this.raceTime=0;this.finishWindow=0;this.simulationAccumulator=0;this.qaPrepared=false;
             this.obstacles = new ObstacleDirector(this.track, this.atlas);
             this.phase = this.atlas.ready ? 'READY' : 'LOADING';
             this.clock = 0;
@@ -846,6 +761,7 @@
             this.countdown = 3;
             this.countdownGoTimer = 0;
             for (const runner of this.runners) runner.state = 'READY';
+            this.eventView.cue('start');this.lastTime=performance.now();this.simulationAccumulator=0;
         }
 
         clearBriefingInput() {
@@ -867,6 +783,9 @@
                 return;
             }
             const projection = runner.trackProjection || this.track.project(runner.x, runner.y);
+            if(runner.routeRecovery){
+                runner.setInput(runner.routeRecovery.x-runner.x,runner.routeRecovery.y-runner.y);return;
+            }
             runner.aiDecisionTimer -= dt;
             if (runner.aiDecisionTimer <= 0) {
                 const decisionRate = runner.profile === 'AGGRESSIVE' ? 0.17 : runner.profile === 'CAUTIOUS' ? 0.32 : 0.24;
@@ -895,7 +814,8 @@
             }
 
             const vision = runner.profile === 'CAUTIOUS' ? 255 : 175 + runner.avoidanceSkill * 65;
-            const threat = this.obstacles.nearbyThreats(runner, vision)[0];
+            const threat = [...this.obstacles.nearbyThreats(runner, vision),...this.rivalEvents.nearbyThreats(runner)]
+                .sort((a,b)=>a.distance-b.distance)[0];
             let avoidance = 0;
             if (threat) {
                 const reacts = Math.sin(this.clock * 2.7 + runner.phaseSeed) < runner.avoidanceSkill * 1.55 - 0.45;
@@ -945,38 +865,21 @@
             return { x: runner.x, y: runner.y };
         }
 
-        updateRunnerProgress(runner) {
-            if (runner.finished) return;
-            const projection = this.track.project(runner.x, runner.y);
-            runner.trackProjection = projection;
-            const gateSpan = this.track.length / this.track.gateCount;
-            const gateProgress = runner.nextGate === this.track.gateCount ? 0 : runner.nextGate * gateSpan;
-            const forwardSpeed = runner.vx * projection.tangent.x + runner.vy * projection.tangent.y;
-            const atExpectedGate = Math.abs(this.track.circularDistance(projection.progress, gateProgress)) < 105;
-            if (projection.onTrack && forwardSpeed > 35 && atExpectedGate) {
-                if (runner.isPlayer) this.gatesPassed++;
-                if (runner.nextGate === this.track.gateCount) {
-                    runner.validatedLaps++;
-                    runner.nextGate = 1;
-                    if (runner.validatedLaps >= this.totalLaps) {
-                        runner.progress = this.totalLaps * this.track.length;
-                        runner.finished = true;
-                        runner.finishOrder = this.finishers.length + 1;
-                        runner.setInput(0, 0);
-                        this.finishers.push(runner);
-                        if (runner.isPlayer) this.finishRace();
-                        return;
-                    }
-                } else {
-                    runner.nextGate++;
+        updateRunnerProgress(runner,startTime=0,dt=1/60) {
+            const events=this.lapSystem.step(runner,{x:runner.prevX,y:runner.prevY},runner,startTime,dt);
+            for(const event of events){
+                if(runner.isPlayer)window.FestivalChallenges?.onRunning(event);
+                if(runner.isPlayer&&(event.type==='CHECKPOINT'||event.type==='LAP'))this.gatesPassed++;
+                if(event.type==='LAP'&&runner.isPlayer&&event.lap<3){
+                    const last=event.lap===2;
+                    this.eventView.announce(last?'ÚLTIMA VOLTA!':'VOLTA 2/3',last?'#ffe195':'#a6e4c9',2.2);
+                    this.eventView.react(last?'lastLap':'lap',runner,this.raceTime);
+                }
+                if(event.type==='FINISH'){
+                    runner.state='READY';runner.stateTimer=Infinity;this.finishers.push(runner);
+                    if(runner.isPlayer){this.eventView.react('finish',runner,this.raceTime);this.eventView.announce('CHEGADA REGISTRADA','#ffe195');}
                 }
             }
-            const allowedLocal = runner.nextGate === this.track.gateCount
-                ? this.track.length
-                : runner.nextGate * gateSpan;
-            // O ranking de todos usa a mesma sequência; cortar o gramado não
-            // concede progresso nem volta a jogador ou adversários.
-            runner.progress = runner.validatedLaps * this.track.length + Math.min(projection.progress, allowedLocal);
         }
 
         resolveRunnerContacts() {
@@ -984,7 +887,7 @@
                 for (let j = i + 1; j < this.runners.length; j++) {
                     const a = this.runners[i];
                     const b = this.runners[j];
-                    if (a.z > 18 || b.z > 18) continue;
+                    if(a.finished||b.finished||a.z>18||b.z>18)continue;
                     const pa = this.runnerWorldPoint(a);
                     const pb = this.runnerWorldPoint(b);
                     const dx = pa.x - pb.x;
@@ -1012,10 +915,15 @@
         }
 
         update() {
-            const now = performance.now();
-            let dt = clamp((now - this.lastTime) / 1000, 0, 1 / 20);
-            if (this.qaMode === 'autoplay') dt = Math.min(dt * 3, 1 / 12);
-            this.lastTime = now;
+            const now=performance.now(),elapsed=clamp((now-this.lastTime)/1000,0,.15);
+            this.lastTime=now;
+            this.simulationAccumulator+=elapsed*(this.qaMode==='autoplay'?3:1);
+            while(this.simulationAccumulator>=1/60-1e-9){
+                this.simulationAccumulator=Math.max(0,this.simulationAccumulator-1/60);this.advance(1/60);
+            }
+        }
+
+        advance(dt=1/60) {
             this.clock += dt;
             this.setPresentation(true);
 
@@ -1028,7 +936,7 @@
             }
 
             if (typeof hintText !== 'undefined') {
-                hintText.innerText = this.phase === 'RACING'
+                hintText.innerText = this.phase==='FINISHING'?'CHEGADA REGISTRADA • APURANDO POSIÇÕES':this.phase === 'RACING'
                     ? '[WASD / SETAS] CORRER LIVREMENTE  |  [ESPAÇO] PULAR  |  [ESC] SAIR'
                     : '[ESPAÇO] COMEÇAR / REINICIAR  |  [ESC] SAIR';
             }
@@ -1043,7 +951,7 @@
             }
             if (this.qaMode === 'autoplay' && this.phase !== 'RACING') this.qaAutopilotStep();
 
-            const raceRunning = this.phase === 'RACING';
+            const raceRunning = this.phase === 'RACING'||this.phase==='FINISHING';
             if (raceRunning) {
                 this.countdownGoTimer = Math.max(0, this.countdownGoTimer - dt * 60);
                 let input = this.readMovementInput();
@@ -1058,19 +966,36 @@
                 } else if (this.qaMode === 'shortcut') {
                     input = { x: 0, y: -1 };
                 }
-                this.player.setInput(input.x, input.y);
-                if (this.qaMode === 'autoplay') this.qaAutopilotStep();
+                this.player.setInput(this.player.finished?0:input.x,this.player.finished?0:input.y);
+                if (this.qaMode === 'autoplay'&&!this.player.finished) this.qaAutopilotStep();
+                const startTime=this.raceTime;this.raceTime+=dt;
                 this.obstacles.update(dt, this);
+                for (const runner of this.runners) {
+                    runner.prevX=runner.x;runner.prevY=runner.y;
+                }
                 for (const runner of this.runners) {
                     if (!runner.isPlayer) this.updateAI(runner, dt);
                     runner.updateFreePhysics(dt, this.track, true);
                     this.obstacles.collideRunner(runner, this);
                 }
                 this.resolveRunnerContacts();
-                for (const runner of this.runners) this.updateRunnerProgress(runner);
+                const questObstacleHits=this.obstacles.playerHitCount;
+                this.rivalEvents.update(dt,this);
+                if(this.obstacles.playerHitCount>questObstacleHits)window.FestivalChallenges?.onRunning({type:'OBSTACLE',obstacle:'thrown_object'});
+                for (const runner of this.runners) this.updateRunnerProgress(runner,startTime,dt);
+                // Sort sub-frame finish times after processing everyone: array order cannot decide a photo finish.
+                this.finishers.sort((a,b)=>a.finishTime-b.finishTime);
+                this.finishers.forEach((runner,index)=>runner.finishOrder=index+1);
                 const playerPlace = this.currentRanking().indexOf(this.player) + 1;
-                if (playerPlace < this.lastPlayerPlace) this.overtakes += this.lastPlayerPlace - playerPlace;
-                this.lastPlayerPlace = playerPlace;
+                if(playerPlace<this.lastPlayerPlace){
+                    this.overtakes+=this.lastPlayerPlace-playerPlace;
+                    this.eventView.react(playerPlace===1?'lead':'overtake',this.player,this.raceTime);
+                }
+                this.lastPlayerPlace=playerPlace;
+                if(this.player.finished){
+                    this.phase='FINISHING';this.finishWindow+=dt;
+                    if(this.finishers.length>=3||this.finishWindow>=8)this.finishRace();
+                }
                 this.score += dt * 4;
             } else {
                 for (const runner of this.runners) runner.updateFreePhysics(dt, this.track, false);
@@ -1078,13 +1003,18 @@
 
             this.directionHistory.add(this.player.lastDirection);
             const playerSpeed = Math.hypot(this.player.vx, this.player.vy);
-            const lookAhead = clamp(playerSpeed * 0.42, 45, 150);
-            const directionX = playerSpeed > 1 ? this.player.vx / playerSpeed : 1;
-            const directionY = playerSpeed > 1 ? this.player.vy / playerSpeed : 0;
-            const targetX = this.player.x + directionX * lookAhead;
-            const targetY = this.player.y + directionY * lookAhead;
-            this.camera.x = lerp(this.camera.x, targetX, clamp(dt * 3.8, 0, 1));
-            this.camera.y = lerp(this.camera.y, targetY, clamp(dt * 3.8, 0, 1));
+            const lookAhead=clamp(playerSpeed*.52,65,195),projection=this.player.trackProjection;
+            const directionX=playerSpeed>1?this.player.vx/playerSpeed:projection.tangent.x;
+            const directionY=playerSpeed>1?this.player.vy/playerSpeed:projection.tangent.y;
+            const forward=directionX*projection.tangent.x+directionY*projection.tangent.y;
+            const bend=this.track.pointOffset(projection.progress+lookAhead,projection.lateral*.5);
+            const curveWeight=projection.onTrack&&forward>.2?.55:0;
+            const targetX=lerp(this.player.x+directionX*lookAhead,bend.x,curveWeight)-projection.tangent.y*18;
+            const targetY=lerp(this.player.y+directionY*lookAhead,bend.y,curveWeight)+projection.tangent.x*18;
+            const blend=1-Math.exp(-dt*4.2);
+            this.camera.x=lerp(this.camera.x,targetX,blend);this.camera.y=lerp(this.camera.y,targetY,blend);
+            this.eventView.update(dt,this);
+
             this.distractionTimer = Math.max(0, this.distractionTimer - dt * 60);
             this.impactFlash = Math.max(0, this.impactFlash - dt * 60);
 
@@ -1133,12 +1063,14 @@
                     }
                 });
             }
-            canvas.dataset.raceDiagnostics = JSON.stringify(this.diagnostics());
+            if(this.clock>=(this.nextDiagnostics||0)){
+                this.nextDiagnostics=this.clock+.2;canvas.dataset.raceDiagnostics=JSON.stringify(this.diagnostics());
+            }
         }
 
         finishRace() {
             const unfinished = this.runners.filter((runner) => !runner.finished)
-                .sort((a, b) => b.progress - a.progress);
+                .sort((a,b)=>this.lapSystem.compare(a,b));
             this.finalRanking = [...this.finishers, ...unfinished];
             this.phase = 'RESULT';
             const won = this.player.finishOrder === 1;
@@ -1151,12 +1083,7 @@
         }
 
         currentRanking() {
-            return [...this.runners].sort((a, b) => {
-                if (a.finished && b.finished) return a.finishOrder - b.finishOrder;
-                if (a.finished) return -1;
-                if (b.finished) return 1;
-                return b.progress - a.progress;
-            });
+            return [...this.runners].sort((a,b)=>this.lapSystem.compare(a,b));
         }
 
         drawRunner(context, runner) {
@@ -1164,9 +1091,8 @@
             const shadowScale = 1 - clamp(runner.z / 75, 0, 0.45);
             context.save();
             context.fillStyle = 'rgba(0,0,0,.28)';
-            context.beginPath();
-            context.ellipse(point.x, point.y + 3, 14 * shadowScale, 5 * shadowScale, 0, 0, TAU);
-            context.fill();
+            context.fillRect(Math.round(point.x-13*shadowScale),Math.round(point.y+1),Math.round(26*shadowScale),4);
+            context.fillRect(Math.round(point.x-9*shadowScale),Math.round(point.y-1),Math.round(18*shadowScale),7);
 
             const action = runner.state;
             const direction = runner.chooseDirection();
@@ -1197,56 +1123,18 @@
         }
 
         drawWorld() {
-            ctx.save();
-            ctx.translate(canvas.width / 2 - this.camera.x, canvas.height / 2 - this.camera.y);
-            this.track.draw(ctx, this.clock * 60);
-            this.obstacles.draw(ctx, this);
-            const sorted = [...this.runners].sort((a, b) => a.y - b.y);
-            for (const runner of sorted) this.drawRunner(ctx, runner);
+            ctx.save();ctx.imageSmoothingEnabled=false;
+            ctx.translate(canvas.width/2,canvas.height/2);ctx.scale(this.eventView.zoom,this.eventView.zoom);
+            ctx.translate(-Math.round(this.camera.x),-Math.round(this.camera.y));
+            this.track.draw(ctx);this.eventView.drawCrowd(ctx,this);this.eventView.drawStructures(ctx,this);
+            this.obstacles.draw(ctx,this);
+            const sorted=[...this.runners].sort((a,b)=>a.y-b.y);
+            for(const runner of sorted)this.drawRunner(ctx,runner);
+            this.rivalEvents.draw(ctx,this);this.eventView.drawRecovery(ctx,this);
             ctx.restore();
         }
 
-        drawHud() {
-            const ranking = this.currentRanking();
-            const place = ranking.indexOf(this.player) + 1;
-            const progress = clamp(this.player.progress / (this.totalLaps * this.track.length), 0, 1);
-            const lap = Math.min(this.totalLaps, this.player.validatedLaps + 1);
-
-            ctx.save();
-            ctx.fillStyle = 'rgba(5,12,24,.82)';
-            ctx.fillRect(8, 8, 132, 54);
-            ctx.strokeStyle = '#6de6ff';
-            ctx.lineWidth = 2;
-            ctx.strokeRect(8, 8, 132, 54);
-            ctx.font = 'bold 12px monospace';
-            ctx.fillStyle = '#ffffff';
-            ctx.textAlign = 'left';
-            ctx.fillText(`${place}º / ${this.runners.length}`, 17, 28);
-            ctx.fillText(`VOLTA ${lap}/${this.totalLaps}`, 17, 48);
-
-            ctx.fillStyle = 'rgba(5,12,24,.82)';
-            ctx.fillRect(151, 8, 291, 26);
-            ctx.fillStyle = '#26384f';
-            ctx.fillRect(160, 17, 271, 8);
-            const gradient = ctx.createLinearGradient(160, 0, 431, 0);
-            gradient.addColorStop(0, '#69ff8f');
-            gradient.addColorStop(1, '#ffe65c');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(160, 17, 271 * progress, 8);
-            ctx.strokeStyle = '#fff';
-            ctx.strokeRect(160, 17, 271, 8);
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 9px monospace';
-            ctx.textAlign = 'center';
-            ctx.fillText('PROGRESSO', 296, 14);
-
-            ctx.fillStyle = 'rgba(5,12,24,.78)';
-            ctx.fillRect(333, 42, 109, 20);
-            ctx.fillStyle = '#9eeaff';
-            ctx.textAlign = 'right';
-            ctx.fillText(`RITMO ${Math.round(clamp(this.player.speed / this.player.maxSpeed, 0, 1) * 100)}%`, 433, 56);
-            ctx.restore();
-        }
+        drawHud() {this.eventView.drawHud(ctx,this);}
 
         drawOverlay() {
             ctx.save();
@@ -1274,7 +1162,7 @@
                 ctx.fillText('MARATONA GALÁCTICA', canvas.width / 2, 106);
                 ctx.fillStyle = '#fff';
                 ctx.font = 'bold 11px monospace';
-                ctx.fillText('2 VOLTAS • 8 CORREDORES • 1 CAMPEÃO', canvas.width / 2, 133);
+                ctx.fillText('3 VOLTAS • 8 CORREDORES • 1 CAMPEÃO', canvas.width / 2, 133);
                 ctx.fillText('[WASD / SETAS] MOVIMENTO LIVRE', canvas.width / 2, 160);
                 ctx.fillText('[ESPAÇO] PULAR BARREIRAS', canvas.width / 2, 179);
                 ctx.fillStyle = '#7cff8a';
@@ -1308,7 +1196,8 @@
                 top.forEach((runner, index) => {
                     const marker = runner.isPlayer ? '  ◀ ZORP' : `  ${runner.name}`;
                     ctx.fillStyle = index === 0 ? '#ffe45e' : runner.isPlayer ? '#7cff8a' : '#dcecff';
-                    ctx.fillText(`${index + 1}º${marker}`, canvas.width / 2, 99 + index * 22);
+                    const time=runner.finishTime===null?'EM PISTA':`${runner.finishTime.toFixed(2)}s`;
+                    ctx.fillText(`${index+1}º${marker}  ${time}`,canvas.width/2,99+index*22);
                 });
                 ctx.fillStyle = '#9eeaff';
                 ctx.fillText(`[ESPAÇO/R] REINICIAR  •  [ESC] SAIR`, canvas.width / 2, 245);
@@ -1370,8 +1259,8 @@
                         lateral: Number(runnerProjection.lateral.toFixed(1)),
                         speed: Number(runner.speed.toFixed(1)),
                         validatedLaps: runner.validatedLaps,
-                        nextGate: runner.nextGate,
-                        finished: runner.finished
+                        nextGate: runner.nextGate,checkpointProgress:runner.checkpointProgress,finishTime:runner.finishTime,
+                        routeRecovery:runner.routeRecovery,finished: runner.finished
                     };
                 }),
                 playerX: Number(this.player.x.toFixed(2)),
@@ -1397,7 +1286,10 @@
                 trackDirection: 'COUNTER_CLOCKWISE',
                 curveModel: 'continuous 2D steering with angular speed loss',
                 cameraLookAhead: true,
-                rankingModel: 'ordered lap gates plus between-gate oval progress',
+                rankingModel:'completed laps, ordered physical checkpoints, validated sector fraction; sub-frame finish times',
+                totalLaps:this.totalLaps,checkpointProgress:this.player.checkpointProgress,finishTime:this.player.finishTime,
+                lapValidation:this.lapSystem.diagnostics(),presentation:this.eventView.diagnostics(),rivalEvents:this.rivalEvents.diagnostics(),
+                raceTime:this.raceTime,routeRecovery:this.player.routeRecovery,
                 trackLength: Number(this.track.length.toFixed(1)),
                 trackWidth: this.track.trackWidth
             };
@@ -1408,6 +1300,7 @@
             if (this.phase === 'READY') this.startCountdown();
             if (this.phase === 'COUNTDOWN') this.countdown = 0;
             if (this.phase !== 'RACING') return;
+            if(this.player.routeRecovery){this.player.setInput(this.player.routeRecovery.x-this.player.x,this.player.routeRecovery.y-this.player.y);return;}
             const projection = this.track.project(this.player.x, this.player.y);
             const center = this.track.pointOffset(projection.progress, 0);
             const correction = clamp(projection.distance / 72, 0, 1.45);

@@ -1,0 +1,55 @@
+--- before/index.html
++++ index.html
+@@ -59,7 +59,9 @@
+     <script src="archery_master_ai.js?v=2.2.0_normal_difficulty"></script>
+     <script src="archery_player_control.js?v=1.1.0_wide_positioning"></script>
+     <script src="medalhas_registry.js?v=1.3_confirmed_medal_event"></script>
+-    <script src="festival_challenges.js?v=1.0.0"></script>
++    <script src="festival_challenges.js?v=2.0.0_island_quests"></script>
++    <script src="normal_npc_geometry.js?v=1.0.0_measured_fronts"></script>
++    <script src="normal_island_npcs.js?v=1.0.0_approved_npcs"></script>
+     <script src="boxe_assets/v3/boxing_v3_manifest.js?v=3.0.1"></script>
+     <script src="boxing_presentation.js?v=4.0_definitive_show"></script>
+     <script src="boxing_controls.js?v=1.2_fresh_edges"></script>
+@@ -72,7 +74,7 @@
+     <script src="boxing_master_special.js?v=2.1_titan_feedback"></script>
+     <script src="overworld_assets/npc_geometry.js?v=1.3.1_climb_feet_alignment"></script>
+     <script src="overworld_assets/zorp_walk.js?v=1.0.0"></script>
+-    <script src="overworld_visuals.js?v=1.5.1_event_npc_geometry"></script>
++    <script src="overworld_visuals.js?v=1.6.0_normal_npcs"></script>
+     <script src="archery_island.js?v=1.1.0_consistency"></script>
+     <script src="climb_island.js?v=1.2.0_ground_layers"></script>
+     <script src="ravok_npc_geometry.js?v=1.0.0_frontal_poses"></script>
+@@ -107,12 +109,12 @@
+     <script src="pingpong_multiball.js?v=1.1.0_racket_special"></script>
+     <script src="pre_game_brief.js?v=2.2.0_optional_intro"></script>
+     <script src="pre_game_brief_configs.js?v=3.6_official_boxing"></script>
+-    <script src="script.js?v=10.62.0_pingpong_final_polish"></script>
++    <script src="script.js?v=10.63.1_island_npcs"></script>
+     <script src="basketball_court_physics.js?v=1.0.0_corner_recovery"></script>
+     <script src="basketball_hoop_physics.js?v=1.1.0_court_boundaries"></script>
+     <script src="basketball_crowd.js?v=1.1.0_human_alien_fans"></script>
+     <script src="basketball_scoreboard.js?v=1.0.0_arena_panel"></script>
+-    <script src="basketball_1v1.js?v=1.4.1_pre_game_brief"></script>
++    <script src="basketball_1v1.js?v=1.4.2_photo_quest"></script>
+     <script src="skate_new/collision_geometry.js?v=1.3_universal_ramp_zones"></script>
+     <script src="skate/space_input_parser.js?v=5.7_universal_ramps"></script>
+     <script src="skate/ollie_physics.js?v=5.7_universal_ramps"></script>
+@@ -125,14 +127,14 @@
+     <script src="skate/course.js?v=3.0_procedural_official"></script>
+     <script src="skate/rider_presentation.js?v=5.7_universal_ramps"></script>
+     <script src="skate/journey_presentation.js?v=5.7_universal_ramps"></script>
+-    <script src="skate/skate_ollie_runtime.js?v=5.8_pre_game_brief"></script>
++    <script src="skate/skate_ollie_runtime.js?v=5.9_one_take_quest"></script>
+     <script src="corrida_sprites/runtime/corrida_runners_manifest.js?v=3"></script>
+     <script src="race_lap_system.js?v=1.0.0_physical_gates"></script>
+     <script src="race_event_presentation.js?v=1.0.0_athletics_festival"></script>
+     <script src="race_rival_events.js?v=1.0.0_physical_objects"></script>
+-    <script src="corrida_maratona.js?v=3.0.0_three_lap_event"></script>
++    <script src="corrida_maratona.js?v=3.0.1_clean_lap_quest"></script>
+     <script src="surf_asset_registry.js?v=1.2.1_local_manifest"></script>
+-    <script src="surf_endless.js?v=9.6.0_pre_game_brief"></script>
++    <script src="surf_endless.js?v=9.6.1_current_quest"></script>
+ </body>
+ </html>
+ 

@@ -1,0 +1,74 @@
+--- before/festival_economy.js
++++ festival_economy.js
+@@ -17,10 +17,29 @@
+     let coins = 0;
+     let pagouCapitao = false, feriasVistas = false;
+     const challenges = Object.create(null);
++    const blankCommerce=()=>({merchantArrivalSeen:false,merchantUnlocked:false,purchasedItems:{},visitedIslands:{},playedSports:{},records:{},heardTracks:{},shipStyle:'ORIGINAL',firstPurchaseSeen:false});
++    let commerce=blankCommerce();
++    function cleanCommerce(raw) {
++        const out=blankCommerce();if(!raw||typeof raw!=='object')return out;
++        out.merchantArrivalSeen=raw.merchantArrivalSeen===true;
++        out.merchantUnlocked=out.merchantArrivalSeen;
++        out.firstPurchaseSeen=raw.firstPurchaseSeen===true;
++        for(const item of global.MerchantCatalog?.items||[])if(raw.purchasedItems?.[item.id]===true)out.purchasedItems[item.id]=true;
++        for(const region of global.MerchantCatalog?.regions||[])if(raw.visitedIslands?.[region.id]===true)out.visitedIslands[region.id]=true;
++        for(const id of Object.values(global.MerchantCatalog?.sports||{})){
++            if(raw.playedSports?.[id]===true)out.playedSports[id]=true;
++            const r=raw.records?.[id];if(r&&typeof r==='object'&&Number.isFinite(r.best)&&r.best>=0)
++                out.records[id]={best:r.best,label:String(r.label||'').slice(0,48),unit:String(r.unit||'').slice(0,12),lowerIsBetter:r.lowerIsBetter===true};
++        }
++        for(const id of ['festival','market','ocean','mountain'])if(raw.heardTracks?.[id]===true)out.heardTracks[id]=true;
++        if((global.MerchantCatalog?.styles||[]).includes(raw.shipStyle))out.shipStyle=raw.shipStyle;
++        return out;
++    }
+     const validId = id => typeof id === 'string' && /^[a-z][a-z0-9_]{0,79}$/.test(id);
+     try {
+         const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+         if (saved && valid(saved.coins)) coins = saved.coins;
++        commerce=cleanCommerce(saved?.commerce);
+         pagouCapitao = saved?.pagouCapitao === true;
+         feriasVistas = pagouCapitao && saved?.feriasVistas === true;
+         for (const [id, state] of Object.entries(saved?.challenges || {})) {
+@@ -32,9 +51,9 @@
+     } catch (_) { /* Sem armazenamento, a carteira continua disponível nesta sessão. */ }
+ 
+     function persist() {
+-        try { localStorage.setItem(STORAGE_KEY, JSON.stringify({version:3, coins, challenges,
+-            pagouCapitao, feriasDesbloqueadas:pagouCapitao, feriasVistas})); }
+-        catch (_) { /* Mantém o saldo da sessão sem interromper o jogo. */ }
++        try { localStorage.setItem(STORAGE_KEY, JSON.stringify({version:4, coins, challenges, commerce,
++            pagouCapitao, feriasDesbloqueadas:pagouCapitao, feriasVistas})); return true; }
++        catch (_) { return false; /* Purchases roll back if this atomic save fails. */ }
+     }
+ 
+     function render() {
+@@ -57,6 +76,28 @@
+     global.FestivalWallet = Object.freeze({
+         storageKey:STORAGE_KEY,
+         get coins() { return coins; },
++        get commerce(){return JSON.parse(JSON.stringify(commerce));},
++        updateCommerce(patch){
++            const old=commerce;commerce=cleanCommerce({...commerce,...patch});
++            if(!persist()){commerce=old;return false;}return true;
++        },
++        unlockMerchant(){
++            const count=(global.MEDALHAS_REGISTRY||[]).filter(m=>global.isMedalhaDesbloqueada(m.id)).length;
++            if(count<1)return false;
++            const old=commerce;commerce=cleanCommerce({...commerce,merchantArrivalSeen:true,merchantUnlocked:true});
++            if(!persist()){commerce=old;return false;}return true;
++        },
++        purchaseItem(id){
++            const item=global.MerchantCatalog?.items.find(item=>item.id===id);
++            if(!item||!valid(item.price)||item.price===0)return 'invalid_item';
++            if(!commerce.merchantUnlocked)return 'locked';
++            if(commerce.purchasedItems[id])return 'already_owned';
++            if(coins<item.price)return 'insufficient_coins';
++            const old=commerce,oldCoins=coins;
++            coins-=item.price;commerce=cleanCommerce({...commerce,firstPurchaseSeen:true,purchasedItems:{...commerce.purchasedItems,[id]:true}});
++            if(!persist()){coins=oldCoins;commerce=old;return 'save_failed';}
++            render();return 'purchased';
++        },
+         get pagouCapitao() { return pagouCapitao; },
+         get feriasDesbloqueadas() { return pagouCapitao; },
+         get feriasVistas() { return feriasVistas; },

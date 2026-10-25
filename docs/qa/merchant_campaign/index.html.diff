@@ -1,0 +1,42 @@
+--- before/index.html
++++ index.html
+@@ -42,7 +42,8 @@
+         </div>
+     </div>
+ 
+-    <script src="festival_economy.js?v=1.2.0_captain_payment"></script>
++    <script src="merchant_config.js?v=1.0.0"></script>
++    <script src="festival_economy.js?v=1.3.0_atomic_shop"></script>
+     <script src="local_asset_manifests.js?v=1.0.0"></script>
+     <script src="archery_assets/archery_assets_manifest.js?v=2.1.0_shared_assets"></script>
+     <script src="archery_asset_registry.js?v=2.4.0_canvas_valley"></script>
+@@ -74,7 +75,7 @@
+     <script src="boxing_master_special.js?v=2.1_titan_feedback"></script>
+     <script src="overworld_assets/npc_geometry.js?v=1.3.1_climb_feet_alignment"></script>
+     <script src="overworld_assets/zorp_walk.js?v=1.0.0"></script>
+-    <script src="overworld_visuals.js?v=1.6.0_normal_npcs"></script>
++    <script src="overworld_visuals.js?v=1.7.0_central_shop"></script>
+     <script src="archery_island.js?v=1.1.0_consistency"></script>
+     <script src="climb_island.js?v=1.2.0_ground_layers"></script>
+     <script src="ravok_npc_geometry.js?v=1.0.0_frontal_poses"></script>
+@@ -100,6 +101,11 @@
+     <script src="climb_presentation.js?v=1.3_mountain_silhouette"></script>
+     <script src="climb_summit.js?v=1.1.0_summit_medal_victory"></script>
+     <script src="pingpong_pixel_font.js?v=1.0.0_crisp_letters"></script>
++    <script src="merchant_atlas.js?v=1.0.0"></script>
++    <script src="merchant_animation.js?v=1.0.0"></script>
++    <script src="merchant_music.js?v=1.0.0"></script>
++    <script src="merchant_ui.js?v=1.0.0"></script>
++    <script src="merchant_campaign.js?v=1.0.0"></script>
+     <script src="pingpong_crowd.js?v=1.0.0_fixed_spectators"></script>
+     <script src="pingpong_arena_art.js?v=1.0.0_wood_final"></script>
+     <script src="pingpong_feedback.js?v=1.1.0_crowd_events"></script>
+@@ -109,7 +115,7 @@
+     <script src="pingpong_multiball.js?v=1.1.0_racket_special"></script>
+     <script src="pre_game_brief.js?v=2.2.0_optional_intro"></script>
+     <script src="pre_game_brief_configs.js?v=3.6_official_boxing"></script>
+-    <script src="script.js?v=10.63.1_island_npcs"></script>
++    <script src="script.js?v=10.64.1_merchant_campaign"></script>
+     <script src="basketball_court_physics.js?v=1.0.0_corner_recovery"></script>
+     <script src="basketball_hoop_physics.js?v=1.1.0_court_boundaries"></script>
+     <script src="basketball_crowd.js?v=1.1.0_human_alien_fans"></script>

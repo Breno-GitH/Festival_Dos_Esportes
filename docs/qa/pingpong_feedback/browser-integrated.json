@@ -1,0 +1,433 @@
+{
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": [],
+  "checks": [
+    "briefing-native-Space-simulation-paused",
+    "low",
+    "rally-5",
+    "rally-10",
+    "rally-15",
+    "real-table-contact",
+    "real-Master-racket-contact",
+    "unchanged-staggered-multiball",
+    "global-racket-instant-styles-no-point",
+    "POINT-only-after-real-score",
+    "fatigue-driven-presentation-fixture",
+    "close-final-points-climax"
+  ],
+  "low": {
+    "feedback": {
+      "ready": true,
+      "now": 5644.700000047684,
+      "tier": 0,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 0,
+      "exits": 0,
+      "records": 1,
+      "holdMs": 0,
+      "totals": {
+        "bounces": 0,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 0,
+        "holds": 0
+      }
+    },
+    "rally": 0,
+    "balls": 1,
+    "score": [
+      0,
+      0
+    ]
+  },
+  "rally-5": {
+    "feedback": {
+      "ready": true,
+      "now": 5761.600000023842,
+      "tier": 1,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 0,
+      "exits": 0,
+      "records": 1,
+      "holdMs": 0,
+      "totals": {
+        "bounces": 0,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 0,
+        "holds": 0
+      }
+    },
+    "rally": 5,
+    "balls": 1,
+    "score": [
+      0,
+      0
+    ]
+  },
+  "rally-10": {
+    "feedback": {
+      "ready": true,
+      "now": 5861.399999976158,
+      "tier": 2,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 0,
+      "exits": 0,
+      "records": 1,
+      "holdMs": 0,
+      "totals": {
+        "bounces": 0,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 0,
+        "holds": 0
+      }
+    },
+    "rally": 10,
+    "balls": 1,
+    "score": [
+      0,
+      0
+    ]
+  },
+  "rally-15": {
+    "feedback": {
+      "ready": true,
+      "now": 5978.200000047684,
+      "tier": 3,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 0,
+      "exits": 0,
+      "records": 1,
+      "holdMs": 0,
+      "totals": {
+        "bounces": 0,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 0,
+        "holds": 0
+      }
+    },
+    "rally": 15,
+    "balls": 1,
+    "score": [
+      0,
+      0
+    ]
+  },
+  "real-table-contact": {
+    "feedback": {
+      "ready": true,
+      "now": 6878.899999976158,
+      "tier": 2,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 1,
+      "particles": 2,
+      "hits": 0,
+      "exits": 0,
+      "records": 1,
+      "holdMs": 0,
+      "totals": {
+        "bounces": 1,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 0,
+        "holds": 0
+      }
+    },
+    "rally": 12,
+    "balls": 1,
+    "score": [
+      0,
+      0
+    ]
+  },
+  "real-Master-racket-contact": {
+    "feedback": {
+      "ready": true,
+      "now": 7161.600000023842,
+      "tier": 2,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 2,
+      "hits": 1,
+      "exits": 0,
+      "records": 1,
+      "holdMs": 0,
+      "totals": {
+        "bounces": 1,
+        "hits": 1,
+        "globals": 0,
+        "emissions": 0,
+        "points": 0,
+        "holds": 1
+      }
+    },
+    "rally": 13,
+    "balls": 1,
+    "score": [
+      0,
+      0
+    ]
+  },
+  "births": [
+    {
+      "id": 2,
+      "step": 25
+    },
+    {
+      "id": 3,
+      "step": 31
+    },
+    {
+      "id": 4,
+      "step": 36
+    },
+    {
+      "id": 5,
+      "step": 44
+    },
+    {
+      "id": 6,
+      "step": 50
+    }
+  ],
+  "unchanged-staggered-multiball": {
+    "feedback": {
+      "ready": true,
+      "now": 8128.300000071526,
+      "tier": 0,
+      "point": null,
+      "phase": "MULTIBALL_ACTIVE",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 1,
+      "exits": 0,
+      "records": 6,
+      "holdMs": 0,
+      "totals": {
+        "bounces": 1,
+        "hits": 5,
+        "globals": 0,
+        "emissions": 5,
+        "points": 0,
+        "holds": 0
+      }
+    },
+    "rally": 0,
+    "balls": 6,
+    "score": [
+      0,
+      0
+    ]
+  },
+  "tenBallFPS": 59.99600026664888,
+  "global-racket-instant-styles-no-point": {
+    "feedback": {
+      "ready": true,
+      "now": 11328.5,
+      "tier": 3,
+      "point": null,
+      "phase": "MULTIBALL_ACTIVE",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 1,
+      "exits": 0,
+      "records": 10,
+      "holdMs": 0,
+      "totals": {
+        "bounces": 0,
+        "hits": 0,
+        "globals": 1,
+        "emissions": 0,
+        "points": 0,
+        "holds": 1
+      }
+    },
+    "rally": 16,
+    "balls": 10,
+    "score": [
+      0,
+      0
+    ]
+  },
+  "globalBalls": [
+    {
+      "id": 1,
+      "style": "GLOBAL_RETURN",
+      "dx": 0.5432303364220843,
+      "trail": 1,
+      "isSuper": true
+    },
+    {
+      "id": 2,
+      "style": "GLOBAL_RETURN",
+      "dx": 3.801948258171649,
+      "trail": 1,
+      "isSuper": true
+    },
+    {
+      "id": 3,
+      "style": "GLOBAL_RETURN",
+      "dx": 0.5678547239368754,
+      "trail": 1,
+      "isSuper": true
+    },
+    {
+      "id": 4,
+      "style": "GLOBAL_RETURN",
+      "dx": 3.714825104149355,
+      "trail": 1,
+      "isSuper": true
+    },
+    {
+      "id": 5,
+      "style": "GLOBAL_RETURN",
+      "dx": 0.5620476562499448,
+      "trail": 1,
+      "isSuper": true
+    },
+    {
+      "id": 6,
+      "style": "GLOBAL_RETURN",
+      "dx": 3.198233619193374,
+      "trail": 1,
+      "isSuper": true
+    },
+    {
+      "id": 7,
+      "style": "GLOBAL_RETURN",
+      "dx": 0.5500874577385844,
+      "trail": 1,
+      "isSuper": true
+    },
+    {
+      "id": 8,
+      "style": "GLOBAL_RETURN",
+      "dx": 2.6513349725882165,
+      "trail": 1,
+      "isSuper": true
+    },
+    {
+      "id": 9,
+      "style": "GLOBAL_RETURN",
+      "dx": 0.5308063874420554,
+      "trail": 1,
+      "isSuper": true
+    },
+    {
+      "id": 10,
+      "style": "GLOBAL_RETURN",
+      "dx": 2.1860959434282847,
+      "trail": 1,
+      "isSuper": true
+    }
+  ],
+  "POINT-only-after-real-score": {
+    "feedback": {
+      "ready": true,
+      "now": 12928.899999976158,
+      "tier": 0,
+      "point": "POINT MASTER",
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 0,
+      "exits": 0,
+      "records": 0,
+      "holdMs": 0,
+      "totals": {
+        "bounces": 1,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 1,
+        "holds": 0
+      }
+    },
+    "rally": 0,
+    "balls": 0,
+    "score": [
+      0,
+      1
+    ]
+  },
+  "fatigue-driven-presentation-fixture": {
+    "feedback": {
+      "ready": true,
+      "now": 13528.600000023842,
+      "tier": 3,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 0,
+      "exits": 0,
+      "records": 0,
+      "holdMs": 0,
+      "totals": {
+        "bounces": 0,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 0,
+        "holds": 0
+      }
+    },
+    "rally": 16,
+    "balls": 0,
+    "score": [
+      0,
+      0
+    ]
+  },
+  "close-final-points-climax": {
+    "feedback": {
+      "ready": true,
+      "now": 14082.899999976158,
+      "tier": 3,
+      "point": null,
+      "phase": "NORMAL",
+      "contacts": 0,
+      "particles": 0,
+      "hits": 0,
+      "exits": 0,
+      "records": 0,
+      "holdMs": 0,
+      "totals": {
+        "bounces": 0,
+        "hits": 0,
+        "globals": 0,
+        "emissions": 0,
+        "points": 1,
+        "holds": 0
+      }
+    },
+    "rally": 15,
+    "balls": 0,
+    "score": [
+      48,
+      47
+    ]
+  }
+}

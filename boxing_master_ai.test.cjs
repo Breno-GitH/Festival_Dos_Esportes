@@ -5,7 +5,7 @@ test('no response or movement occurs before a delayed observation exists',()=>{
 });
 test('all decisions use positions at least 200ms old; abrupt changes are not read immediately',()=>{
  const g=setup(8);g.step(28);const b=g.a.game.mestre.ai;assert.ok(b.decisions.length);assert.ok(b.decisions.every(d=>d.lag>=12));
- const before=b.view.x;g.a.game.player.x=350;g.step(8);assert.equal(b.view.x,before);g.step(30);assert.equal(b.view.x,350);
+ const before=b.view.x;g.a.game.player.x=350;g.a.game.player.pushMotion=null;g.step(8);assert.equal(b.view.x,before);g.step(30);assert.equal(b.view.x,350);
 });
 test('input flags alone cannot trigger a reaction before a visible action',()=>{
  const a=setup(31),b=setup(31);a.a.game.qaFreezeAi=b.a.game.qaFreezeAi=true;
@@ -22,7 +22,7 @@ test('pressure plans defense, dodge or leaving the line without breaking real hi
 test('low HP prefers pressure, while an HP lead allows cautious play',()=>{
  const count=(own,other)=>{let pressure=0,cautious=0;for(let seed=10;seed<110;seed++){
   const g=setup(seed),m=g.a.game.mestre,b=g.a.makeBrain(m);m.hp=own;g.a.plan(b,m,{frame:0,x:m.x-45,y:m.y,hp:other,guard:false,attack:null},80);
-  pressure+=b.mode==='PRESSURE';cautious+=b.mode==='CAUTIOUS';}return {pressure,cautious};};
+  pressure+=b.mode==='PRESSURE';cautious+=b.mode==='CAUTIOUS'||b.mode==='MEASURE';}return {pressure,cautious};};
  const urgent=count(25,80),ahead=count(80,35);assert.ok(urgent.pressure>ahead.pressure);assert.ok(ahead.cautious>urgent.cautious);
 });
 test('delayed attacks can whiff on a sidestep; ordinary reach and depth are unchanged',()=>{
@@ -36,7 +36,7 @@ test('AI cannot act during whiff recovery, dodge, guard break or hitstun',()=>{
 });
 test('master uses the delayed snapshot for special gating rather than current guard/dodge/position',()=>{
  const g=setup(32);let saw=[];g.env.BoxingMasterSpecial={...g.env.BoxingMasterSpecial,shouldUse:(m,v)=>{saw.push(v);return false;},positionIntent:()=>null};
- g.a.game.player.x=90;g.step(25);g.a.game.player.x=350;g.a.game.player.guard=true;g.step(6);
+ g.a.game.player.x=90;g.step(25);g.a.game.player.x=350;g.a.game.player.pushMotion=null;g.a.game.player.guard=true;g.step(6);
  assert.ok(saw.length);assert.ok(saw.slice(-1)[0].x!==350);assert.ok(saw.slice(-1)[0].guard===false);
 });
 test('reset clears perception, pressure and statistics',()=>{
@@ -68,7 +68,7 @@ test('same seed produces identical fights and fixed-step behavior across renderi
  assert.deepEqual(run(30),run(60));assert.deepEqual(run(60),run(144));
 });
 test('several complete fights offer wins, mistakes, defense and every attack type',()=>{
- const rows=[];for(const policy of ['mash','competent','skilled'])for(let seed=1;seed<=4;seed++)rows.push(simulate(seed,policy));
- assert.ok(rows.every(r=>r.phase==='RESULT'));assert.ok(rows.some(r=>r.winner==='zorp'));assert.ok(rows.some(r=>r.winner==='master'));
+ const rows=[];for(const policy of ['idle','guard','mash','competent','skilled'])for(let seed=1;seed<=4;seed++)rows.push(simulate(seed,policy));
+ assert.ok(rows.every(r=>r.phase==='RESULT'));assert.ok(rows.some(r=>r.winner==='zorp'));assert.ok(rows.some(r=>r.winner==='master'));assert.ok(rows.filter(r=>r.policy==='guard').every(r=>r.winner==='master'));assert.ok(rows.filter(r=>r.policy==='skilled').some(r=>r.winner==='zorp'));
  for(const key of ['jab','cross','guard','dodge','special','whiffs'])assert.ok(rows.some(r=>r.stats[key]>0),'missing '+key);
 });

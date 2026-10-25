@@ -1,0 +1,296 @@
+{
+  "visual": {
+    "phase": "FIGHTING",
+    "winner": null,
+    "hitPauseFrames": 0,
+    "finisherFrame": null,
+    "knockdown": null,
+    "player": {
+      "x": 144,
+      "y": 216,
+      "hp": 100,
+      "animation": "special",
+      "attack": null,
+      "guard": false,
+      "dodgeAge": 0,
+      "knockdowns": 0,
+      "facing": 1,
+      "combo": 4,
+      "hitstun": 0,
+      "whiffFrames": 0,
+      "guardPressure": 10,
+      "guardBreakTimer": 0,
+      "counterWindow": 0,
+      "dodgeFrames": 0
+    },
+    "mestre": {
+      "x": 306,
+      "y": 211,
+      "hp": 76,
+      "animation": "hurt",
+      "attack": null,
+      "guard": false,
+      "dodgeAge": 0,
+      "knockdowns": 0,
+      "facing": -1,
+      "combo": 0,
+      "hitstun": 11,
+      "whiffFrames": 0,
+      "guardPressure": 40,
+      "guardBreakTimer": 0,
+      "counterWindow": 0,
+      "dodgeFrames": 0
+    },
+    "juiz": {
+      "x": 76,
+      "y": 172,
+      "animation": "idle",
+      "count": 0
+    },
+    "distance": 162.20993341962753,
+    "assets": {
+      "version": "3.0",
+      "requested": 92,
+      "loaded": 92,
+      "failed": 0,
+      "failedPaths": []
+    },
+    "presentation": {
+      "arena": "arena_boxe3.0.png",
+      "uniformScale": 0.344,
+      "crowd": 52,
+      "energy": 0,
+      "activeParticles": 0,
+      "peakParticles": 0,
+      "particleLimit": 128,
+      "camera": {
+        "x": 0,
+        "y": -0.019490625
+      },
+      "visualStates": {
+        "zorp": {
+          "label": "4 DE 6 SOCOS",
+          "color": "#a9ecba",
+          "kind": "special"
+        },
+        "master": {
+          "label": "STUN",
+          "color": "#ffe093",
+          "kind": "stun"
+        }
+      },
+      "celebrationFrames": 0,
+      "events": {},
+      "audio": {
+        "state": "idle",
+        "activeVoices": 0,
+        "peakVoices": 0,
+        "played": 0
+      }
+    },
+    "special": {
+      "status": "ready",
+      "failed": false,
+      "frames": 7,
+      "source": "zorp_boxe3.0_especial.png?v=1.0.0_curated_special",
+      "charge": 0,
+      "active": {
+        "mode": "counter",
+        "phase": "RUSH",
+        "age": 30,
+        "hits": 4
+      },
+      "last": null
+    },
+    "masterSpecial": {
+      "status": "ready",
+      "failed": false,
+      "frames": 8,
+      "source": "mestre_boxe3.0_especial.png?v=1.0.0_curated_special",
+      "charge": 0,
+      "cooldown": 0,
+      "active": null,
+      "last": null
+    },
+    "masterAI": null
+  },
+  "live": {
+    "phase": "FIGHTING",
+    "winner": null,
+    "hitPauseFrames": 0,
+    "finisherFrame": null,
+    "knockdown": null,
+    "player": {
+      "x": 184,
+      "y": 211,
+      "hp": 100,
+      "animation": "cross",
+      "attack": "cross",
+      "guard": false,
+      "dodgeAge": 0,
+      "knockdowns": 0,
+      "facing": 1,
+      "combo": 3,
+      "hitstun": 0,
+      "whiffFrames": 0,
+      "guardPressure": 0,
+      "guardBreakTimer": 0,
+      "counterWindow": 0,
+      "dodgeFrames": 0
+    },
+    "mestre": {
+      "x": 248,
+      "y": 211,
+      "hp": 71,
+      "animation": "hurt",
+      "attack": null,
+      "guard": false,
+      "dodgeAge": 0,
+      "knockdowns": 0,
+      "facing": -1,
+      "combo": 0,
+      "hitstun": 5,
+      "whiffFrames": 0,
+      "guardPressure": 0,
+      "guardBreakTimer": 0,
+      "counterWindow": 0,
+      "dodgeFrames": 0
+    },
+    "juiz": {
+      "x": 76,
+      "y": 172,
+      "animation": "idle",
+      "count": 0
+    },
+    "distance": 64,
+    "assets": {
+      "version": "3.0",
+      "requested": 92,
+      "loaded": 92,
+      "failed": 0,
+      "failedPaths": []
+    },
+    "presentation": {
+      "arena": "arena_boxe3.0.png",
+      "uniformScale": 0.344,
+      "crowd": 52,
+      "energy": 0.2878193548723939,
+      "activeParticles": 0,
+      "peakParticles": 0,
+      "particleLimit": 128,
+      "camera": {
+        "x": 0.372351323733972,
+        "y": -0.057346491030762614
+      },
+      "visualStates": {
+        "zorp": {
+          "label": "EM COMBATE",
+          "color": "#9cadbb",
+          "kind": "normal"
+        },
+        "master": {
+          "label": "STUN",
+          "color": "#ffe093",
+          "kind": "stun"
+        }
+      },
+      "celebrationFrames": 0,
+      "events": {
+        "jab": 2,
+        "cross": 1
+      },
+      "audio": {
+        "state": "running",
+        "activeVoices": 0,
+        "peakVoices": 1,
+        "played": 3
+      }
+    },
+    "special": {
+      "status": "ready",
+      "failed": false,
+      "frames": 7,
+      "source": "zorp_boxe3.0_especial.png?v=1.0.0_curated_special",
+      "charge": 29.400000000000006,
+      "active": null,
+      "last": null
+    },
+    "masterSpecial": {
+      "status": "ready",
+      "failed": false,
+      "frames": 8,
+      "source": "mestre_boxe3.0_especial.png?v=1.0.0_curated_special",
+      "charge": 34.10000000000004,
+      "cooldown": 0,
+      "active": null,
+      "last": null
+    },
+    "masterAI": {
+      "mode": "DEFEND",
+      "reactionFrames": 18,
+      "pressure": 3.3706666666666663,
+      "observedFrame": 23,
+      "observedX": 184,
+      "observedY": 211,
+      "stats": {
+        "jab": 0,
+        "cross": 0,
+        "guard": 0,
+        "dodge": 0,
+        "special": 0,
+        "hits": 0,
+        "blocked": 0,
+        "whiffs": 0,
+        "dodged": 0,
+        "interrupted": 0,
+        "damageTaken": 29,
+        "approach": 0,
+        "pressure": 0,
+        "cautious": 0,
+        "reposition": 0,
+        "defensivePlans": 1,
+        "comboFollowUps": 0
+      },
+      "decisions": [
+        {
+          "frame": 20,
+          "observedFrame": 1,
+          "lag": 19,
+          "mode": "DEFEND",
+          "pressure": 2.01
+        },
+        {
+          "frame": 28,
+          "observedFrame": 16,
+          "lag": 12,
+          "mode": "DEFEND",
+          "pressure": 3.51
+        },
+        {
+          "frame": 35,
+          "observedFrame": 23,
+          "lag": 12,
+          "mode": "DEFEND",
+          "pressure": 3.43
+        }
+      ]
+    }
+  },
+  "performance": {
+    "ordinary": {
+      "frames": 180,
+      "fps": 60.00200006666888,
+      "p95": 16.799999999999272,
+      "slow": 0
+    },
+    "effects": {
+      "frames": 180,
+      "fps": 60.00200006666888,
+      "p95": 16.700000000000728,
+      "slow": 0
+    }
+  },
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": []
+}

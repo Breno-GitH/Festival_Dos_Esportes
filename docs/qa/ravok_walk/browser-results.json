@@ -1,0 +1,4833 @@
+{
+  "errors": [],
+  "httpErrors": [],
+  "failedRequests": [],
+  "directions": [
+    {
+      "id": "ravok",
+      "direction": "left",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "scaleX": 0.3333333333333333,
+      "scaleY": 0.3333333333333333,
+      "collider": {
+        "x": -241.0000000000016,
+        "y": -206,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "id": "ravok",
+      "direction": "right",
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "scaleX": 0.3333333333333333,
+      "scaleY": 0.3333333333333333,
+      "collider": {
+        "x": -176.9999999999984,
+        "y": -206,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "id": "ravok",
+      "direction": "up",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "scaleX": 0.3333333333333333,
+      "scaleY": 0.3333333333333333,
+      "collider": {
+        "x": -209,
+        "y": -238.0000000000016,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "id": "ravok",
+      "direction": "down",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "scaleX": 0.3333333333333333,
+      "scaleY": 0.3333333333333333,
+      "collider": {
+        "x": -209,
+        "y": -173.9999999999984,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "id": "k7",
+      "direction": "left",
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "scaleX": 0.2619047619047619,
+      "scaleY": 0.2619047619047619,
+      "collider": {
+        "x": -241.0000000000016,
+        "y": -206,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "id": "k7",
+      "direction": "right",
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "scaleX": 0.2619047619047619,
+      "scaleY": 0.2619047619047619,
+      "collider": {
+        "x": -176.9999999999984,
+        "y": -206,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "id": "k7",
+      "direction": "up",
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "scaleX": 0.2619047619047619,
+      "scaleY": 0.2619047619047619,
+      "collider": {
+        "x": -209,
+        "y": -238.0000000000016,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "id": "k7",
+      "direction": "down",
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "scaleX": 0.2619047619047619,
+      "scaleY": 0.2619047619047619,
+      "collider": {
+        "x": -209,
+        "y": -173.9999999999984,
+        "w": 18,
+        "h": 8
+      }
+    }
+  ],
+  "arrival": [
+    {
+      "scene": {
+        "active": true,
+        "pending": true,
+        "seen": false,
+        "phase": "K7_EXIT",
+        "time": 0.2676000000238419,
+        "elapsed": 22.875600000023823,
+        "line": 0,
+        "dialogue": null,
+        "readyScene": null,
+        "completedRuns": 0,
+        "saveFailed": false,
+        "duration": 28.85,
+        "k7Outside": false,
+        "ravokOutside": false,
+        "returnPoint": [
+          "ILHA_ESCALADA",
+          373,
+          137
+        ]
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 560,
+            "y": 145,
+            "direction": "down",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 0,
+            "animation": "idle_down",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 539,
+              "y": 88,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              158,
+              15,
+              84,
+              136
+            ],
+            "atlasRect": [
+              0,
+              0,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 372.00684492014307,
+            "y": 92.43443850297979,
+            "direction": "right",
+            "state": "WALK",
+            "frame": 2,
+            "frameId": 26,
+            "animation": "walk_right",
+            "animationTime": 0.2931848005931536,
+            "distance": 5.277326410676765,
+            "speed": 19.720950710786923,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 355,
+              "y": 47,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              982,
+              542,
+              94,
+              170
+            ],
+            "atlasRect": [
+              256,
+              1408,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "pending": true,
+        "seen": false,
+        "phase": "K7_EXIT",
+        "time": 0.6501000000238418,
+        "elapsed": 23.258100000023823,
+        "line": 0,
+        "dialogue": null,
+        "readyScene": null,
+        "completedRuns": 0,
+        "saveFailed": false,
+        "duration": 28.85,
+        "k7Outside": false,
+        "ravokOutside": false,
+        "returnPoint": [
+          "ILHA_ESCALADA",
+          373,
+          137
+        ]
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 560,
+            "y": 145,
+            "direction": "down",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 0,
+            "animation": "idle_down",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 539,
+              "y": 88,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              158,
+              15,
+              84,
+              136
+            ],
+            "atlasRect": [
+              0,
+              0,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 377.7341176474158,
+            "y": 97.3435294120707,
+            "direction": "right",
+            "state": "WALK",
+            "frame": 1,
+            "frameId": 25,
+            "animation": "walk_right",
+            "animationTime": 0.7122550031973757,
+            "distance": 12.820590057552762,
+            "speed": 19.720950710786923,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 361,
+              "y": 52,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              847,
+              543,
+              87,
+              171
+            ],
+            "atlasRect": [
+              128,
+              1408,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "pending": true,
+        "seen": false,
+        "phase": "K7_EXIT",
+        "time": 1.0827000000476832,
+        "elapsed": 23.690700000047666,
+        "line": 0,
+        "dialogue": null,
+        "readyScene": null,
+        "completedRuns": 0,
+        "saveFailed": false,
+        "duration": 28.85,
+        "k7Outside": false,
+        "ravokOutside": false,
+        "returnPoint": [
+          "ILHA_ESCALADA",
+          373,
+          137
+        ]
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 560,
+            "y": 145,
+            "direction": "down",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 0,
+            "animation": "idle_down",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 539,
+              "y": 88,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              158,
+              15,
+              84,
+              136
+            ],
+            "atlasRect": [
+              0,
+              0,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 384.211550802853,
+            "y": 102.895614973874,
+            "direction": "right",
+            "state": "WALK",
+            "frame": 1,
+            "frameId": 25,
+            "animation": "walk_right",
+            "animationTime": 1.1862151853060754,
+            "distance": 21.351873335509357,
+            "speed": 19.720950710786923,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 367,
+              "y": 58,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              847,
+              543,
+              87,
+              171
+            ],
+            "atlasRect": [
+              128,
+              1408,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "pending": true,
+        "seen": false,
+        "phase": "K7_EXIT",
+        "time": 1.5659999999999992,
+        "elapsed": 24.17399999999998,
+        "line": 0,
+        "dialogue": null,
+        "readyScene": null,
+        "completedRuns": 0,
+        "saveFailed": false,
+        "duration": 28.85,
+        "k7Outside": false,
+        "ravokOutside": false,
+        "returnPoint": [
+          "ILHA_ESCALADA",
+          373,
+          137
+        ]
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 560,
+            "y": 145,
+            "direction": "down",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 0,
+            "animation": "idle_down",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 539,
+              "y": 88,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              158,
+              15,
+              84,
+              136
+            ],
+            "atlasRect": [
+              0,
+              0,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 391.4404602171447,
+            "y": 109.09182304326688,
+            "direction": "right",
+            "state": "WALK",
+            "frame": 1,
+            "frameId": 25,
+            "animation": "walk_right",
+            "animationTime": 1.7151616275505617,
+            "distance": 30.87290929591011,
+            "speed": 18.944064773695345,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 375,
+              "y": 64,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              847,
+              543,
+              87,
+              171
+            ],
+            "atlasRect": [
+              128,
+              1408,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "pending": true,
+        "seen": false,
+        "phase": "K7_EXIT",
+        "time": 2.332899999976157,
+        "elapsed": 24.94089999997613,
+        "line": 0,
+        "dialogue": null,
+        "readyScene": null,
+        "completedRuns": 0,
+        "saveFailed": false,
+        "duration": 28.85,
+        "k7Outside": true,
+        "ravokOutside": false,
+        "returnPoint": [
+          "ILHA_ESCALADA",
+          373,
+          137
+        ]
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 560,
+            "y": 145,
+            "direction": "down",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 0,
+            "animation": "idle_down",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 539,
+              "y": 88,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              158,
+              15,
+              84,
+              136
+            ],
+            "atlasRect": [
+              0,
+              0,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 396,
+            "y": 113,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 9,
+            "animation": "idle_right",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 379,
+              "y": 68,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              44,
+              308,
+              89,
+              172
+            ],
+            "atlasRect": [
+              128,
+              1056,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "exit": [
+    {
+      "event": {
+        "state": "RAVOK_PRESENT",
+        "medals": 8,
+        "arrived": true,
+        "ravokArrivalSeen": true,
+        "ravokArrivalPending": false,
+        "ravokAvailable": false,
+        "ravokExited": false,
+        "ravokProposalSeen": false,
+        "ravokChoice": null,
+        "ravokChoicePosition": null,
+        "ravokEndingCompleted": false,
+        "ravokBadEndingCardReady": false,
+        "ravokBadEndingSeen": false,
+        "ravokArrested": false,
+        "exit": {
+          "phase": "EXIT",
+          "time": 0.28239999997615817,
+          "pose": {
+            "id": "ravok",
+            "x": 365.28171123017603,
+            "y": 92.77540106919997,
+            "direction": "down",
+            "state": "WALK",
+            "frame": 2,
+            "frameId": 18,
+            "animation": "walk_down",
+            "animationTime": 0.2907610371767638,
+            "distance": 4.652176594828221,
+            "speed": 16.473713155881672,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "scale": 0.3333333333333333,
+            "p": 0.04520151685523417
+          }
+        },
+        "metK7": false,
+        "metRavok": false,
+        "k7Line": 0,
+        "preludeSeen": false,
+        "conversation": null,
+        "npcs": [
+          {
+            "id": "k7",
+            "x": 396,
+            "y": 113,
+            "height": 44,
+            "source": "K7.png",
+            "crop": [
+              37,
+              66,
+              99,
+              172
+            ],
+            "scale": 0.2619047619047619,
+            "footprint": {
+              "width": 18,
+              "height": 8
+            }
+          }
+        ],
+        "assetErrors": []
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 365.28171123017603,
+            "y": 92.77540106919997,
+            "direction": "down",
+            "state": "WALK",
+            "frame": 2,
+            "frameId": 18,
+            "animation": "walk_down",
+            "animationTime": 0.2907610371767638,
+            "distance": 4.652176594828221,
+            "speed": 16.473713155881672,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "scale": 0.3333333333333333,
+            "p": 0.04520151685523417,
+            "rect": {
+              "x": 344,
+              "y": 35,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              493,
+              528,
+              76,
+              115
+            ],
+            "atlasRect": [
+              256,
+              352,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 396,
+            "y": 113,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 9,
+            "animation": "idle_right",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 379,
+              "y": 68,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              44,
+              308,
+              89,
+              172
+            ],
+            "atlasRect": [
+              128,
+              1056,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "event": {
+        "state": "RAVOK_PRESENT",
+        "medals": 8,
+        "arrived": true,
+        "ravokArrivalSeen": true,
+        "ravokArrivalPending": false,
+        "ravokAvailable": false,
+        "ravokExited": false,
+        "ravokProposalSeen": false,
+        "ravokChoice": null,
+        "ravokChoicePosition": null,
+        "ravokEndingCompleted": false,
+        "ravokBadEndingCardReady": false,
+        "ravokBadEndingSeen": false,
+        "ravokArrested": false,
+        "exit": {
+          "phase": "EXIT",
+          "time": 0.6825000000000001,
+          "pose": {
+            "id": "ravok",
+            "x": 361.43048128342247,
+            "y": 98.12433155080214,
+            "direction": "down",
+            "state": "WALK",
+            "frame": 5,
+            "frameId": 21,
+            "animation": "walk_down",
+            "animationTime": 0.7027068268055776,
+            "distance": 11.243309228889242,
+            "speed": 16.473713155881672,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "scale": 0.3333333333333333,
+            "p": 0.22900974067900076
+          }
+        },
+        "metK7": false,
+        "metRavok": false,
+        "k7Line": 0,
+        "preludeSeen": false,
+        "conversation": null,
+        "npcs": [
+          {
+            "id": "k7",
+            "x": 396,
+            "y": 113,
+            "height": 44,
+            "source": "K7.png",
+            "crop": [
+              37,
+              66,
+              99,
+              172
+            ],
+            "scale": 0.2619047619047619,
+            "footprint": {
+              "width": 18,
+              "height": 8
+            }
+          }
+        ],
+        "assetErrors": []
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 361.43048128342247,
+            "y": 98.12433155080214,
+            "direction": "down",
+            "state": "WALK",
+            "frame": 5,
+            "frameId": 21,
+            "animation": "walk_down",
+            "animationTime": 0.7027068268055776,
+            "distance": 11.243309228889242,
+            "speed": 16.473713155881672,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "scale": 0.3333333333333333,
+            "p": 0.22900974067900076,
+            "rect": {
+              "x": 340,
+              "y": 41,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              1003,
+              522,
+              80,
+              121
+            ],
+            "atlasRect": [
+              640,
+              352,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 396,
+            "y": 113,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 9,
+            "animation": "idle_right",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 379,
+              "y": 68,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              44,
+              308,
+              89,
+              172
+            ],
+            "atlasRect": [
+              128,
+              1056,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "event": {
+        "state": "RAVOK_PRESENT",
+        "medals": 8,
+        "arrived": true,
+        "ravokArrivalSeen": true,
+        "ravokArrivalPending": false,
+        "ravokAvailable": false,
+        "ravokExited": false,
+        "ravokProposalSeen": false,
+        "ravokChoice": null,
+        "ravokChoicePosition": null,
+        "ravokEndingCompleted": false,
+        "ravokBadEndingCardReady": false,
+        "ravokBadEndingSeen": false,
+        "ravokArrested": false,
+        "exit": {
+          "phase": "EXIT",
+          "time": 1.0663999999761578,
+          "pose": {
+            "id": "ravok",
+            "x": 357.7351871660049,
+            "y": 103.25668449165987,
+            "direction": "down",
+            "state": "WALK",
+            "frame": 2,
+            "frameId": 18,
+            "animation": "walk_down",
+            "animationTime": 1.0979729818149653,
+            "distance": 17.567567709039444,
+            "speed": 16.473713155881672,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "scale": 0.3333333333333333,
+            "p": 0.47709803399127215
+          }
+        },
+        "metK7": false,
+        "metRavok": false,
+        "k7Line": 0,
+        "preludeSeen": false,
+        "conversation": null,
+        "npcs": [
+          {
+            "id": "k7",
+            "x": 396,
+            "y": 113,
+            "height": 44,
+            "source": "K7.png",
+            "crop": [
+              37,
+              66,
+              99,
+              172
+            ],
+            "scale": 0.2619047619047619,
+            "footprint": {
+              "width": 18,
+              "height": 8
+            }
+          }
+        ],
+        "assetErrors": []
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 357.7351871660049,
+            "y": 103.25668449165987,
+            "direction": "down",
+            "state": "WALK",
+            "frame": 2,
+            "frameId": 18,
+            "animation": "walk_down",
+            "animationTime": 1.0979729818149653,
+            "distance": 17.567567709039444,
+            "speed": 16.473713155881672,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "scale": 0.3333333333333333,
+            "p": 0.47709803399127215,
+            "rect": {
+              "x": 336,
+              "y": 46,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              493,
+              528,
+              76,
+              115
+            ],
+            "atlasRect": [
+              256,
+              352,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 396,
+            "y": 113,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 9,
+            "animation": "idle_right",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 379,
+              "y": 68,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              44,
+              308,
+              89,
+              172
+            ],
+            "atlasRect": [
+              128,
+              1056,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "event": {
+        "state": "RAVOK_PRESENT",
+        "medals": 8,
+        "arrived": true,
+        "ravokArrivalSeen": true,
+        "ravokArrivalPending": false,
+        "ravokAvailable": false,
+        "ravokExited": false,
+        "ravokProposalSeen": false,
+        "ravokChoice": null,
+        "ravokChoicePosition": null,
+        "ravokEndingCompleted": false,
+        "ravokBadEndingCardReady": false,
+        "ravokBadEndingSeen": false,
+        "ravokArrested": false,
+        "exit": {
+          "phase": "EXIT",
+          "time": 1.5995000000000001,
+          "pose": {
+            "id": "ravok",
+            "x": 352.6295594312105,
+            "y": 110.34783412331875,
+            "direction": "down",
+            "state": "WALK",
+            "frame": 0,
+            "frameId": 16,
+            "animation": "walk_down",
+            "animationTime": 1.6440950980842377,
+            "distance": 26.305521569347803,
+            "speed": 14.988582954707491,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "scale": 0.3333333333333333,
+            "p": 0.817159959640308
+          }
+        },
+        "metK7": false,
+        "metRavok": false,
+        "k7Line": 0,
+        "preludeSeen": false,
+        "conversation": null,
+        "npcs": [
+          {
+            "id": "k7",
+            "x": 396,
+            "y": 113,
+            "height": 44,
+            "source": "K7.png",
+            "crop": [
+              37,
+              66,
+              99,
+              172
+            ],
+            "scale": 0.2619047619047619,
+            "footprint": {
+              "width": 18,
+              "height": 8
+            }
+          }
+        ],
+        "assetErrors": []
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 352.6295594312105,
+            "y": 110.34783412331875,
+            "direction": "down",
+            "state": "WALK",
+            "frame": 0,
+            "frameId": 16,
+            "animation": "walk_down",
+            "animationTime": 1.6440950980842377,
+            "distance": 26.305521569347803,
+            "speed": 14.988582954707491,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "scale": 0.3333333333333333,
+            "p": 0.817159959640308,
+            "rect": {
+              "x": 331,
+              "y": 53,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              158,
+              525,
+              81,
+              114
+            ],
+            "atlasRect": [
+              0,
+              352,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 396,
+            "y": 113,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 9,
+            "animation": "idle_right",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 379,
+              "y": 68,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              44,
+              308,
+              89,
+              172
+            ],
+            "atlasRect": [
+              128,
+              1056,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "accept": [
+    {
+      "scene": {
+        "active": true,
+        "route": "accept",
+        "phase": "RAVOK_BOARD",
+        "time": 0.30050000000000004,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": "ravok_maior_conquista",
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 52.699999999999996
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 350,
+            "y": 114,
+            "direction": "down",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 0,
+            "animation": "idle_down",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 329,
+              "y": 57,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              158,
+              15,
+              84,
+              136
+            ],
+            "atlasRect": [
+              0,
+              0,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 391.28627450980395,
+            "y": 108.95966386554622,
+            "direction": "left",
+            "state": "WALK",
+            "frame": 2,
+            "frameId": 22,
+            "animation": "walk_left",
+            "animationTime": 0.34490795012966236,
+            "distance": 6.208343102333922,
+            "speed": 20.660043601776774,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 375,
+              "y": 64,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              324,
+              541,
+              88,
+              169
+            ],
+            "atlasRect": [
+              768,
+              1232,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "accept",
+        "phase": "RAVOK_BOARD",
+        "time": 0.8172000000476838,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": "ravok_maior_conquista",
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 52.699999999999996
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 352.29976470638724,
+            "y": 110.80588235223995,
+            "direction": "up",
+            "state": "WALK",
+            "frame": 1,
+            "frameId": 23,
+            "animation": "walk_up",
+            "animationTime": 0.24599372175420822,
+            "distance": 3.9358995480673316,
+            "speed": 18.121084471469842,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 331,
+              "y": 53,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              326,
+              643,
+              76,
+              113
+            ],
+            "atlasRect": [
+              896,
+              352,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 383.18117646984024,
+            "y": 102.01243697414878,
+            "direction": "left",
+            "state": "WALK",
+            "frame": 3,
+            "frameId": 23,
+            "animation": "walk_left",
+            "animationTime": 0.9379659795753962,
+            "distance": 16.88338763235713,
+            "speed": 20.660043601776774,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 366,
+              "y": 57,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              465,
+              543,
+              91,
+              171
+            ],
+            "atlasRect": [
+              896,
+              1232,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "accept",
+        "phase": "RAVOK_BOARD",
+        "time": 1.3002000000476839,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": "ravok_maior_conquista",
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 52.699999999999996
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 357.41388235344607,
+            "y": 103.70294117576935,
+            "direction": "up",
+            "state": "WALK",
+            "frame": 5,
+            "frameId": 27,
+            "animation": "walk_up",
+            "animationTime": 0.7930239592367041,
+            "distance": 12.688383347787266,
+            "speed": 18.121084471469842,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 336,
+              "y": 46,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              1005,
+              643,
+              77,
+              114
+            ],
+            "atlasRect": [
+              384,
+              528,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 375.60470588160496,
+            "y": 95.51831932708996,
+            "direction": "left",
+            "state": "WALK",
+            "frame": 3,
+            "frameId": 23,
+            "animation": "walk_left",
+            "animationTime": 1.4923438162230733,
+            "distance": 26.86218869201532,
+            "speed": 20.660043601776774,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 359,
+              "y": 50,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              465,
+              543,
+              91,
+              171
+            ],
+            "atlasRect": [
+              896,
+              1232,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "accept",
+        "phase": "RAVOK_BOARD",
+        "time": 1.8336000000238415,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": "ravok_maior_conquista",
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 52.699999999999996
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 363.061647059076,
+            "y": 95.85882352906114,
+            "direction": "up",
+            "state": "WALK",
+            "frame": 4,
+            "frameId": 26,
+            "animation": "walk_up",
+            "animationTime": 1.3971356127773273,
+            "distance": 22.354169804437237,
+            "speed": 18.121084471469842,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 342,
+              "y": 39,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              848,
+              643,
+              76,
+              115
+            ],
+            "atlasRect": [
+              256,
+              528,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368.8835226889175,
+            "y": 89.75730516192928,
+            "direction": "left",
+            "state": "WALK",
+            "frame": 3,
+            "frameId": 23,
+            "animation": "walk_left",
+            "animationTime": 1.984139429323009,
+            "distance": 35.71450972781416,
+            "speed": 8.736247007969466,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 352,
+              "y": 45,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              465,
+              543,
+              91,
+              171
+            ],
+            "atlasRect": [
+              896,
+              1232,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "accept",
+        "phase": "RAVOK_BOARD",
+        "time": 2.3014999999999994,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": "ravok_maior_conquista",
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 52.699999999999996
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 367.2138036764706,
+            "y": 90.0919393382353,
+            "direction": "up",
+            "state": "WALK",
+            "frame": 1,
+            "frameId": 23,
+            "animation": "walk_up",
+            "animationTime": 1.841269943903669,
+            "distance": 29.460319102458705,
+            "speed": 9.015239524556263,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 346,
+              "y": 33,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              326,
+              643,
+              76,
+              113
+            ],
+            "atlasRect": [
+              896,
+              352,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368,
+            "y": 89,
+            "direction": "left",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 6,
+            "animation": "idle_left",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 351,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              879,
+              67,
+              86,
+              172
+            ],
+            "atlasRect": [
+              768,
+              880,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "accept",
+        "phase": "RAVOK_BOARD",
+        "time": 2.650300000071524,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": "ravok_maior_conquista",
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 52.699999999999996
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 368,
+            "y": 89,
+            "direction": "up",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 4,
+            "animation": "idle_up",
+            "animationTime": 1.9253652250936706,
+            "distance": 30.80584360149873,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 347,
+              "y": 32,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              159,
+              154,
+              82,
+              130
+            ],
+            "atlasRect": [
+              512,
+              0,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368,
+            "y": 89,
+            "direction": "left",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 6,
+            "animation": "idle_left",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 351,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              879,
+              67,
+              86,
+              172
+            ],
+            "atlasRect": [
+              768,
+              880,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "refuse": [
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "TURN_TO_SHIP",
+        "time": 0.11539999997615814,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 350.9050980390287,
+            "y": 113.18541176487417,
+            "direction": "right",
+            "state": "WALK",
+            "frame": 0,
+            "frameId": 34,
+            "animation": "walk_right",
+            "animationTime": 0.0761053046427229,
+            "distance": 1.2176848742835664,
+            "speed": 10.551861997704872,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 330,
+              "y": 56,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              163,
+              856,
+              78,
+              103
+            ],
+            "atlasRect": [
+              256,
+              704,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 396,
+            "y": 113,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 9,
+            "animation": "idle_right",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 379,
+              "y": 68,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              44,
+              308,
+              89,
+              172
+            ],
+            "atlasRect": [
+              128,
+              1056,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "TURN_TO_SHIP",
+        "time": 0.2657999999523163,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 352.08470588197895,
+            "y": 112.12376470621895,
+            "direction": "right",
+            "state": "WALK",
+            "frame": 1,
+            "frameId": 35,
+            "animation": "walk_right",
+            "animationTime": 0.17529280740542522,
+            "distance": 2.8046849184868035,
+            "speed": 10.551861997704872,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 331,
+              "y": 55,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              330,
+              858,
+              73,
+              99
+            ],
+            "atlasRect": [
+              384,
+              704,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 396,
+            "y": 113,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 9,
+            "animation": "idle_right",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 379,
+              "y": 68,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              44,
+              308,
+              89,
+              172
+            ],
+            "atlasRect": [
+              128,
+              1056,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "TURN_TO_SHIP",
+        "time": 0.5655000000000002,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 354.43529411764706,
+            "y": 110.00823529411764,
+            "direction": "right",
+            "state": "WALK",
+            "frame": 2,
+            "frameId": 36,
+            "animation": "walk_right",
+            "animationTime": 0.37294237248138173,
+            "distance": 5.967077959702108,
+            "speed": 10.551861997704872,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 333,
+              "y": 53,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              493,
+              858,
+              78,
+              100
+            ],
+            "atlasRect": [
+              512,
+              704,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 396,
+            "y": 113,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 9,
+            "animation": "idle_right",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 379,
+              "y": 68,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              44,
+              308,
+              89,
+              172
+            ],
+            "atlasRect": [
+              128,
+              1056,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "TURN_TO_SHIP",
+        "time": 0.7650000000000001,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 356,
+            "y": 108.6,
+            "direction": "right",
+            "state": "WALK",
+            "frame": 3,
+            "frameId": 39,
+            "animation": "walk_right",
+            "animationTime": 0.5045109017652644,
+            "distance": 8.07217442824423,
+            "speed": 10.551861997704872,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 335,
+              "y": 51,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              1012,
+              859,
+              69,
+              100
+            ],
+            "atlasRect": [
+              896,
+              704,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 396,
+            "y": 113,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 9,
+            "animation": "idle_right",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 379,
+              "y": 68,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              44,
+              308,
+              89,
+              172
+            ],
+            "atlasRect": [
+              128,
+              1056,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "TURN_TO_SHIP",
+        "time": 1.0155999999046326,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 357.96549019533046,
+            "y": 106.8310588242026,
+            "direction": "right",
+            "state": "WALK",
+            "frame": 1,
+            "frameId": 35,
+            "animation": "walk_right",
+            "animationTime": 0.6697794402414228,
+            "distance": 10.716471043862764,
+            "speed": 10.551861997704872,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 337,
+              "y": 49,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              330,
+              858,
+              73,
+              99
+            ],
+            "atlasRect": [
+              384,
+              704,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 396,
+            "y": 113,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 9,
+            "animation": "idle_right",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 379,
+              "y": 68,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              44,
+              308,
+              89,
+              172
+            ],
+            "atlasRect": [
+              128,
+              1056,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "TURN_TO_SHIP",
+        "time": 1.2981999999284741,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 359.64511337665476,
+            "y": 105.31939796101074,
+            "direction": "right",
+            "state": "WALK",
+            "frame": 2,
+            "frameId": 36,
+            "animation": "walk_right",
+            "animationTime": 0.8110108078807163,
+            "distance": 12.976172926091461,
+            "speed": 4.731923893092385,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 338,
+              "y": 48,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              493,
+              858,
+              78,
+              100
+            ],
+            "atlasRect": [
+              512,
+              704,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 396,
+            "y": 113,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 9,
+            "animation": "idle_right",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 379,
+              "y": 68,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              44,
+              308,
+              89,
+              172
+            ],
+            "atlasRect": [
+              128,
+              1056,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "K7_EVIDENCE",
+        "time": 0.11609999990463256,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 360,
+            "y": 105,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 12,
+            "animation": "idle_right",
+            "animationTime": 0.840851502942107,
+            "distance": 13.453624047073712,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 339,
+              "y": 48,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              164,
+              402,
+              69,
+              122
+            ],
+            "atlasRect": [
+              512,
+              176,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 394.2616042795028,
+            "y": 111.50994652528814,
+            "direction": "left",
+            "state": "WALK",
+            "frame": 1,
+            "frameId": 21,
+            "animation": "walk_left",
+            "animationTime": 0.12720013198009028,
+            "distance": 2.2896023756416253,
+            "speed": 19.720950710786923,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 377,
+              "y": 66,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              181,
+              541,
+              93,
+              170
+            ],
+            "atlasRect": [
+              640,
+              1232,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "K7_EVIDENCE",
+        "time": 0.26589999997615815,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 360,
+            "y": 105,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 12,
+            "animation": "idle_right",
+            "animationTime": 0.840851502942107,
+            "distance": 13.453624047073712,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 339,
+              "y": 48,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              164,
+              402,
+              69,
+              122
+            ],
+            "atlasRect": [
+              512,
+              176,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 392.01860962602547,
+            "y": 109.58737967945038,
+            "direction": "left",
+            "state": "WALK",
+            "frame": 2,
+            "frameId": 22,
+            "animation": "walk_left",
+            "animationTime": 0.2913222663071144,
+            "distance": 5.243800793528059,
+            "speed": 19.720950710786923,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 375,
+              "y": 65,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              324,
+              541,
+              88,
+              169
+            ],
+            "atlasRect": [
+              768,
+              1232,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "K7_EVIDENCE",
+        "time": 0.5340999999046327,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 360,
+            "y": 105,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 12,
+            "animation": "idle_right",
+            "animationTime": 0.840851502942107,
+            "distance": 13.453624047073712,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 339,
+              "y": 48,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              164,
+              402,
+              69,
+              122
+            ],
+            "atlasRect": [
+              512,
+              176,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 388.00278075009106,
+            "y": 106.14524064293519,
+            "direction": "left",
+            "state": "WALK",
+            "frame": 0,
+            "frameId": 20,
+            "animation": "walk_left",
+            "animationTime": 0.5851644318194757,
+            "distance": 10.532959772750564,
+            "speed": 19.720950710786923,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 371,
+              "y": 61,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              46,
+              541,
+              89,
+              173
+            ],
+            "atlasRect": [
+              512,
+              1232,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "K7_EVIDENCE",
+        "time": 0.7993999999761583,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 360,
+            "y": 105,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 12,
+            "animation": "idle_right",
+            "animationTime": 0.840851502942107,
+            "distance": 13.453624047073712,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 339,
+              "y": 48,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              164,
+              402,
+              69,
+              122
+            ],
+            "atlasRect": [
+              512,
+              176,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 384.0303743319078,
+            "y": 102.74032085592097,
+            "direction": "left",
+            "state": "WALK",
+            "frame": 3,
+            "frameId": 23,
+            "animation": "walk_left",
+            "animationTime": 0.8758293332073825,
+            "distance": 15.764927997732885,
+            "speed": 19.720950710786923,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 367,
+              "y": 58,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              465,
+              543,
+              91,
+              171
+            ],
+            "atlasRect": [
+              896,
+              1232,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "K7_EVIDENCE",
+        "time": 1.0010999999046328,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 360,
+            "y": 105,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 12,
+            "animation": "idle_right",
+            "animationTime": 0.840851502942107,
+            "distance": 13.453624047073712,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 339,
+              "y": 48,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              164,
+              402,
+              69,
+              122
+            ],
+            "atlasRect": [
+              512,
+              176,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 381.0102673811071,
+            "y": 100.15165775523465,
+            "direction": "left",
+            "state": "WALK",
+            "frame": 0,
+            "frameId": 20,
+            "animation": "walk_left",
+            "animationTime": 1.0968135419271143,
+            "distance": 19.742643754688057,
+            "speed": 19.720950710786923,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 364,
+              "y": 55,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              46,
+              541,
+              89,
+              173
+            ],
+            "atlasRect": [
+              512,
+              1232,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "K7_EVIDENCE",
+        "time": 1.2830999999046326,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 360,
+            "y": 105,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 12,
+            "animation": "idle_right",
+            "animationTime": 0.840851502942107,
+            "distance": 13.453624047073712,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 339,
+              "y": 48,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              164,
+              402,
+              69,
+              122
+            ],
+            "atlasRect": [
+              512,
+              176,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 376.787807488059,
+            "y": 96.53240641833627,
+            "direction": "left",
+            "state": "WALK",
+            "frame": 3,
+            "frameId": 23,
+            "animation": "walk_left",
+            "animationTime": 1.4057751030627759,
+            "distance": 25.303951855129966,
+            "speed": 19.720950710786923,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 360,
+              "y": 51,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              465,
+              543,
+              91,
+              171
+            ],
+            "atlasRect": [
+              896,
+              1232,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "K7_EVIDENCE",
+        "time": 1.5494999999999999,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 360,
+            "y": 105,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 12,
+            "animation": "idle_right",
+            "animationTime": 0.840851502942107,
+            "distance": 13.453624047073712,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 339,
+              "y": 48,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              164,
+              402,
+              69,
+              122
+            ],
+            "atlasRect": [
+              512,
+              176,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 372.79995422135795,
+            "y": 93.11424647544969,
+            "direction": "left",
+            "state": "WALK",
+            "frame": 1,
+            "frameId": 21,
+            "animation": "walk_left",
+            "animationTime": 1.6975702656144476,
+            "distance": 30.556264781060055,
+            "speed": 19.43708854146499,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 356,
+              "y": 48,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              181,
+              541,
+              93,
+              170
+            ],
+            "atlasRect": [
+              640,
+              1232,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "K7_EVIDENCE",
+        "time": 1.7664999999999995,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 360,
+            "y": 105,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 12,
+            "animation": "idle_right",
+            "animationTime": 0.840851502942107,
+            "distance": 13.453624047073712,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 339,
+              "y": 48,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              164,
+              402,
+              69,
+              122
+            ],
+            "atlasRect": [
+              512,
+              176,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 370.131673553719,
+            "y": 90.82714876033059,
+            "direction": "left",
+            "state": "WALK",
+            "frame": 3,
+            "frameId": 23,
+            "animation": "walk_left",
+            "animationTime": 1.8928109976766099,
+            "distance": 34.07059795817898,
+            "speed": 12.953078989585062,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 353,
+              "y": 46,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              465,
+              543,
+              91,
+              171
+            ],
+            "atlasRect": [
+              896,
+              1232,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "K7_EVIDENCE",
+        "time": 2.0160999999046316,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 360,
+            "y": 105,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 12,
+            "animation": "idle_right",
+            "animationTime": 0.840851502942107,
+            "distance": 13.453624047073712,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 339,
+              "y": 48,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              164,
+              402,
+              69,
+              122
+            ],
+            "atlasRect": [
+              512,
+              176,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368.38362416179797,
+            "y": 89.32882071011255,
+            "direction": "left",
+            "state": "WALK",
+            "frame": 0,
+            "frameId": 20,
+            "animation": "walk_left",
+            "animationTime": 2.0207174983302583,
+            "distance": 36.37291496994465,
+            "speed": 5.494973996355256,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 352,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              46,
+              541,
+              89,
+              173
+            ],
+            "atlasRect": [
+              512,
+              1232,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "K7_EVIDENCE",
+        "time": 2.2837999999523153,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 360,
+            "y": 105,
+            "direction": "right",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 12,
+            "animation": "idle_right",
+            "animationTime": 0.840851502942107,
+            "distance": 13.453624047073712,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 339,
+              "y": 48,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              164,
+              402,
+              69,
+              122
+            ],
+            "atlasRect": [
+              512,
+              176,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368,
+            "y": 89,
+            "direction": "left",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 6,
+            "animation": "idle_left",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 351,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              879,
+              67,
+              86,
+              172
+            ],
+            "atlasRect": [
+              768,
+              880,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "RAVOK_ESCORT",
+        "time": 0.016700000047683714,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 360,
+            "y": 105,
+            "direction": "down",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 0,
+            "animation": "idle_down",
+            "animationTime": 0,
+            "distance": 0,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 339,
+              "y": 48,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              158,
+              15,
+              84,
+              136
+            ],
+            "atlasRect": [
+              0,
+              0,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368,
+            "y": 89,
+            "direction": "left",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 6,
+            "animation": "idle_left",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 351,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              879,
+              67,
+              86,
+              172
+            ],
+            "atlasRect": [
+              768,
+              880,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "RAVOK_ESCORT",
+        "time": 0.2834000000953674,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 360.23285403116597,
+            "y": 104.53429193766807,
+            "direction": "up",
+            "state": "WALK",
+            "frame": 0,
+            "frameId": 22,
+            "animation": "walk_up",
+            "animationTime": 0.032542340157621356,
+            "distance": 0.5206774425219417,
+            "speed": 15.589144941175006,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 339,
+              "y": 47,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              158,
+              643,
+              80,
+              114
+            ],
+            "atlasRect": [
+              768,
+              352,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368,
+            "y": 89,
+            "direction": "left",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 6,
+            "animation": "idle_left",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 351,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              879,
+              67,
+              86,
+              172
+            ],
+            "atlasRect": [
+              768,
+              880,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "RAVOK_ESCORT",
+        "time": 0.5171000000238419,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 361.86213507641895,
+            "y": 101.27572984716211,
+            "direction": "up",
+            "state": "WALK",
+            "frame": 1,
+            "frameId": 23,
+            "animation": "walk_up",
+            "animationTime": 0.26024128838496996,
+            "distance": 4.163860614159519,
+            "speed": 15.589144941175006,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 341,
+              "y": 44,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              326,
+              643,
+              76,
+              113
+            ],
+            "atlasRect": [
+              896,
+              352,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368,
+            "y": 89,
+            "direction": "left",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 6,
+            "animation": "idle_left",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 351,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              879,
+              67,
+              86,
+              172
+            ],
+            "atlasRect": [
+              768,
+              880,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "RAVOK_ESCORT",
+        "time": 0.7999000000953675,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 363.83372549086096,
+            "y": 97.3325490182781,
+            "direction": "up",
+            "state": "WALK",
+            "frame": 4,
+            "frameId": 26,
+            "animation": "walk_up",
+            "animationTime": 0.5357794252899271,
+            "distance": 8.572470804638833,
+            "speed": 15.589144941175006,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 343,
+              "y": 40,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              848,
+              643,
+              76,
+              115
+            ],
+            "atlasRect": [
+              256,
+              528,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368,
+            "y": 89,
+            "direction": "left",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 6,
+            "animation": "idle_left",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 351,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              879,
+              67,
+              86,
+              172
+            ],
+            "atlasRect": [
+              768,
+              880,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "RAVOK_ESCORT",
+        "time": 1,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 365.2287581699346,
+            "y": 94.54248366013073,
+            "direction": "up",
+            "state": "WALK",
+            "frame": 5,
+            "frameId": 27,
+            "animation": "walk_up",
+            "animationTime": 0.7307411691175782,
+            "distance": 11.691858705881252,
+            "speed": 15.589144941175006,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 344,
+              "y": 37,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              1005,
+              643,
+              77,
+              114
+            ],
+            "atlasRect": [
+              384,
+              528,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368,
+            "y": 89,
+            "direction": "left",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 6,
+            "animation": "idle_left",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 351,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              879,
+              67,
+              86,
+              172
+            ],
+            "atlasRect": [
+              768,
+              880,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "RAVOK_ESCORT",
+        "time": 1.2841000000238414,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 367.14108235307083,
+            "y": 90.71783529385836,
+            "direction": "up",
+            "state": "WALK",
+            "frame": 1,
+            "frameId": 23,
+            "animation": "walk_up",
+            "animationTime": 0.9979965983994072,
+            "distance": 15.967945574390516,
+            "speed": 12.15953305319881,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 346,
+              "y": 33,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              326,
+              643,
+              76,
+              113
+            ],
+            "atlasRect": [
+              896,
+              352,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368,
+            "y": 89,
+            "direction": "left",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 6,
+            "animation": "idle_left",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 351,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              879,
+              67,
+              86,
+              172
+            ],
+            "atlasRect": [
+              768,
+              880,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "RAVOK_ESCORT",
+        "time": 1.5499000000953669,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 367.9783963205858,
+            "y": 89.04320735882848,
+            "direction": "up",
+            "state": "WALK",
+            "frame": 2,
+            "frameId": 24,
+            "animation": "walk_up",
+            "animationTime": 1.1150147827664973,
+            "distance": 17.840236524263958,
+            "speed": 1.9284349631263709,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 347,
+              "y": 32,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              491,
+              646,
+              80,
+              111
+            ],
+            "atlasRect": [
+              0,
+              528,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368,
+            "y": 89,
+            "direction": "left",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 6,
+            "animation": "idle_left",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 351,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              879,
+              67,
+              86,
+              172
+            ],
+            "atlasRect": [
+              768,
+              880,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "RAVOK_ESCORT",
+        "time": 1.799800000071525,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 368,
+            "y": 89,
+            "direction": "up",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 4,
+            "animation": "idle_up",
+            "animationTime": 1.118033988749895,
+            "distance": 17.88854381999832,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 347,
+              "y": 32,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              159,
+              154,
+              82,
+              130
+            ],
+            "atlasRect": [
+              512,
+              0,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368,
+            "y": 89,
+            "direction": "left",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 6,
+            "animation": "idle_left",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 351,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              879,
+              67,
+              86,
+              172
+            ],
+            "atlasRect": [
+              768,
+              880,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "RAVOK_ESCORT",
+        "time": 2.0682000000476832,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 368,
+            "y": 89,
+            "direction": "up",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 4,
+            "animation": "idle_up",
+            "animationTime": 1.118033988749895,
+            "distance": 17.88854381999832,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 347,
+              "y": 32,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              159,
+              154,
+              82,
+              130
+            ],
+            "atlasRect": [
+              512,
+              0,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368,
+            "y": 89,
+            "direction": "left",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 6,
+            "animation": "idle_left",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 351,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              879,
+              67,
+              86,
+              172
+            ],
+            "atlasRect": [
+              768,
+              880,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "RAVOK_ESCORT",
+        "time": 2.266400000095367,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 368,
+            "y": 89,
+            "direction": "up",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 4,
+            "animation": "idle_up",
+            "animationTime": 1.118033988749895,
+            "distance": 17.88854381999832,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 347,
+              "y": 32,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              159,
+              154,
+              82,
+              130
+            ],
+            "atlasRect": [
+              512,
+              0,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368,
+            "y": 89,
+            "direction": "left",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 6,
+            "animation": "idle_left",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 351,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              879,
+              67,
+              86,
+              172
+            ],
+            "atlasRect": [
+              768,
+              880,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "RAVOK_ESCORT",
+        "time": 2.5499999999999994,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 368,
+            "y": 89,
+            "direction": "up",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 4,
+            "animation": "idle_up",
+            "animationTime": 1.118033988749895,
+            "distance": 17.88854381999832,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 347,
+              "y": 32,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              159,
+              154,
+              82,
+              130
+            ],
+            "atlasRect": [
+              512,
+              0,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368,
+            "y": 89,
+            "direction": "left",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 6,
+            "animation": "idle_left",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 351,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              879,
+              67,
+              86,
+              172
+            ],
+            "atlasRect": [
+              768,
+              880,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    },
+    {
+      "scene": {
+        "active": true,
+        "route": "refuse",
+        "phase": "RAVOK_ESCORT",
+        "time": 2.7501000000238407,
+        "completed": false,
+        "arrested": false,
+        "badEndingSeen": false,
+        "cardReady": false,
+        "saveFailed": false,
+        "pendingSave": null,
+        "endingId": null,
+        "cardPresentation": {
+          "presented": false,
+          "visibleTime": 0,
+          "inputLock": 0.7,
+          "exitFade": null,
+          "exitFadeDuration": 0.8
+        },
+        "dialogue": null,
+        "waitingForSpace": false,
+        "origin": {
+          "x": 373,
+          "y": 137
+        },
+        "duration": 34.1
+      },
+      "animation": {
+        "ready": true,
+        "source": "overworld_assets/ravok_k7_walk.png",
+        "errors": [],
+        "actors": {
+          "ravok": {
+            "id": "ravok",
+            "x": 368,
+            "y": 89,
+            "direction": "up",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 4,
+            "animation": "idle_up",
+            "animationTime": 1.118033988749895,
+            "distance": 17.88854381999832,
+            "speed": 0,
+            "scaleX": 0.3333333333333333,
+            "scaleY": 0.3333333333333333,
+            "rect": {
+              "x": 347,
+              "y": 32,
+              "w": 42.666666666666664,
+              "h": 58.666666666666664
+            },
+            "sourceRect": [
+              159,
+              154,
+              82,
+              130
+            ],
+            "atlasRect": [
+              512,
+              0,
+              128,
+              176
+            ]
+          },
+          "k7": {
+            "id": "k7",
+            "x": 368,
+            "y": 89,
+            "direction": "left",
+            "state": "IDLE",
+            "frame": 0,
+            "frameId": 6,
+            "animation": "idle_left",
+            "animationTime": 2.048787657176197,
+            "distance": 36.87817782917155,
+            "speed": 0,
+            "scaleX": 0.2619047619047619,
+            "scaleY": 0.2619047619047619,
+            "rect": {
+              "x": 351,
+              "y": 44,
+              "w": 33.523809523809526,
+              "h": 46.095238095238095
+            },
+            "sourceRect": [
+              879,
+              67,
+              86,
+              172
+            ],
+            "atlasRect": [
+              768,
+              880,
+              128,
+              176
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "acceptCard": {
+    "active": true,
+    "route": "accept",
+    "phase": "CARD",
+    "time": 2.166399999976157,
+    "completed": false,
+    "arrested": false,
+    "badEndingSeen": false,
+    "cardReady": true,
+    "saveFailed": false,
+    "pendingSave": null,
+    "endingId": "ravok_maior_conquista",
+    "cardPresentation": {
+      "presented": true,
+      "visibleTime": 2.1649999999999987,
+      "inputLock": 0.7,
+      "exitFade": null,
+      "exitFadeDuration": 0.8
+    },
+    "dialogue": null,
+    "waitingForSpace": false,
+    "origin": {
+      "x": 373,
+      "y": 137
+    },
+    "duration": 52.699999999999996
+  },
+  "firstDraws": {
+    "count": 3433,
+    "invalid": []
+  },
+  "refusalFinished": {
+    "scene": "ILHA_ESCALADA",
+    "event": {
+      "state": "ARRESTED",
+      "medals": 8,
+      "arrived": false,
+      "ravokArrivalSeen": true,
+      "ravokArrivalPending": false,
+      "ravokAvailable": false,
+      "ravokExited": true,
+      "ravokProposalSeen": true,
+      "ravokChoice": "refuse",
+      "ravokChoicePosition": null,
+      "ravokEndingCompleted": false,
+      "ravokBadEndingCardReady": false,
+      "ravokBadEndingSeen": false,
+      "ravokArrested": true,
+      "exit": null,
+      "metK7": false,
+      "metRavok": false,
+      "k7Line": 0,
+      "preludeSeen": false,
+      "conversation": null,
+      "npcs": [],
+      "assetErrors": []
+    }
+  },
+  "draws": {
+    "count": 3115,
+    "invalid": []
+  },
+  "animation": {
+    "ready": true,
+    "source": "overworld_assets/ravok_k7_walk.png",
+    "errors": [],
+    "actors": {
+      "ravok": {
+        "id": "ravok",
+        "x": 368,
+        "y": 89,
+        "direction": "up",
+        "state": "IDLE",
+        "frame": 0,
+        "frameId": 4,
+        "animation": "idle_up",
+        "animationTime": 1.118033988749895,
+        "distance": 17.88854381999832,
+        "speed": 0,
+        "scaleX": 0.3333333333333333,
+        "scaleY": 0.3333333333333333,
+        "rect": {
+          "x": 347,
+          "y": 32,
+          "w": 42.666666666666664,
+          "h": 58.666666666666664
+        },
+        "sourceRect": [
+          159,
+          154,
+          82,
+          130
+        ],
+        "atlasRect": [
+          512,
+          0,
+          128,
+          176
+        ]
+      },
+      "k7": {
+        "id": "k7",
+        "x": 368,
+        "y": 89,
+        "direction": "left",
+        "state": "IDLE",
+        "frame": 0,
+        "frameId": 6,
+        "animation": "idle_left",
+        "animationTime": 2.048787657176197,
+        "distance": 36.87817782917155,
+        "speed": 0,
+        "scaleX": 0.2619047619047619,
+        "scaleY": 0.2619047619047619,
+        "rect": {
+          "x": 351,
+          "y": 44,
+          "w": 33.523809523809526,
+          "h": 46.095238095238095
+        },
+        "sourceRect": [
+          879,
+          67,
+          86,
+          172
+        ],
+        "atlasRect": [
+          768,
+          880,
+          128,
+          176
+        ]
+      }
+    }
+  },
+  "renderIssues": [],
+  "reload": {
+    "state": "ARRESTED",
+    "medals": 8,
+    "arrived": false,
+    "ravokArrivalSeen": true,
+    "ravokArrivalPending": false,
+    "ravokAvailable": false,
+    "ravokExited": true,
+    "ravokProposalSeen": true,
+    "ravokChoice": "refuse",
+    "ravokChoicePosition": null,
+    "ravokEndingCompleted": false,
+    "ravokBadEndingCardReady": false,
+    "ravokBadEndingSeen": false,
+    "ravokArrested": true,
+    "exit": null,
+    "metK7": false,
+    "metRavok": false,
+    "k7Line": 0,
+    "preludeSeen": false,
+    "conversation": null,
+    "npcs": [],
+    "assetErrors": []
+  }
+}

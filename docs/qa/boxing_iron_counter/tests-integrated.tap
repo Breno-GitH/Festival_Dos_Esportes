@@ -1,0 +1,1340 @@
+TAP version 13
+# Subtest: both fighters start at 100 HP and use the existing mat bounds
+ok 1 - both fighters start at 100 HP and use the existing mat bounds
+  ---
+  duration_ms: 17.8698
+  ...
+# Subtest: movement and depth have identical speed at 30, 60 and 144 FPS
+ok 2 - movement and depth have identical speed at 30, 60 and 144 FPS
+  ---
+  duration_ms: 34.9383
+  ...
+# Subtest: all four rope corners constrain body colliders; overlapping bodies separate even at a wall
+ok 3 - all four rope corners constrain body colliders; overlapping bodies separate even at a wall
+  ---
+  duration_ms: 6.6899
+  ...
+# Subtest: light and heavy require real horizontal reach and matching depth
+ok 4 - light and heavy require real horizontal reach and matching depth
+  ---
+  duration_ms: 50.475
+  ...
+# Subtest: walking to another depth line avoids a committed straight punch
+ok 5 - walking to another depth line avoids a committed straight punch
+  ---
+  duration_ms: 8.2794
+  ...
+# Subtest: guard reduces damage, still permits chip and pushback, and breaks under sustained pressure
+ok 6 - guard reduces damage, still permits chip and pushback, and breaks under sustained pressure
+  ---
+  duration_ms: 13.1201
+  ...
+# Subtest: well-timed dodge avoids a real hit and opens a counter; an early dodge can be punished
+ok 7 - well-timed dodge avoids a real hit and opens a counter; an early dodge can be punished
+  ---
+  duration_ms: 15.3143
+  ...
+# Subtest: dodge cannot be restarted or spammed while active
+ok 8 - dodge cannot be restarted or spammed while active
+  ---
+  duration_ms: 6.1192
+  ...
+# Subtest: J J K links connected punches with scaled damage and a heavier third hit
+ok 9 - J J K links connected punches with scaled damage and a heavier third hit
+  ---
+  duration_ms: 10.2064
+  ...
+# Subtest: missed heavy has a longer committed recovery and cannot be canceled into another hit
+ok 10 - missed heavy has a longer committed recovery and cannot be canceled into another hit
+  ---
+  duration_ms: 12.3759
+  ...
+# Subtest: fighters turn toward each other after changing sides, including during recovery
+ok 11 - fighters turn toward each other after changing sides, including during recovery
+  ---
+  duration_ms: 6.3124
+  ...
+# Subtest: O has no installed special, produces no attack or damage, and only supplies a future hook
+ok 12 - O has no installed special, produces no attack or damage, and only supplies a future hook
+  ---
+  duration_ms: 7.6541
+  ...
+# Subtest: zero HP wins one round once; reward waits for the complete match
+ok 13 - zero HP wins one round once; reward waits for the complete match
+  ---
+  duration_ms: 11.1212
+  ...
+# Subtest: master KO awards no medal; restarting restores both fighters to 100 HP
+ok 14 - master KO awards no medal; restarting restores both fighters to 100 HP
+  ---
+  duration_ms: 20.8846
+  ...
+# Subtest: simultaneous lethal contacts produce a double KO without choosing an arbitrary winner
+ok 15 - simultaneous lethal contacts produce a double KO without choosing an arbitrary winner
+  ---
+  duration_ms: 10.629
+  ...
+# Subtest: briefing and hidden documents freeze combat; blur releases movement and guard
+ok 16 - briefing and hidden documents freeze combat; blur releases movement and guard
+  ---
+  duration_ms: 5.3587
+  ...
+# Subtest: JJ uses physical hit-confirm transitions with one contact per strike
+ok 17 - JJ uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 56.6763
+  ...
+# Subtest: JJJ uses physical hit-confirm transitions with one contact per strike
+ok 18 - JJJ uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 19.0108
+  ...
+# Subtest: JK uses physical hit-confirm transitions with one contact per strike
+ok 19 - JK uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 20.7349
+  ...
+# Subtest: JJK uses physical hit-confirm transitions with one contact per strike
+ok 20 - JJK uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 22.6504
+  ...
+# Subtest: JKJ uses physical hit-confirm transitions with one contact per strike
+ok 21 - JKJ uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 21.3368
+  ...
+# Subtest: JKK uses physical hit-confirm transitions with one contact per strike
+ok 22 - JKK uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 24.4838
+  ...
+# Subtest: KJ uses physical hit-confirm transitions with one contact per strike
+ok 23 - KJ uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 18.3991
+  ...
+# Subtest: KJK uses physical hit-confirm transitions with one contact per strike
+ok 24 - KJK uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 21.504
+  ...
+# Subtest: KK uses physical hit-confirm transitions with one contact per strike
+ok 25 - KK uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 32.9865
+  ...
+# Subtest: KKJ uses physical hit-confirm transitions with one contact per strike
+ok 26 - KKJ uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 24.5402
+  ...
+# Subtest: KKK uses physical hit-confirm transitions with one contact per strike
+ok 27 - KKK uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 28.2296
+  ...
+# Subtest: KJJ uses physical hit-confirm transitions with one contact per strike
+ok 28 - KJJ uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 22.2077
+  ...
+# Subtest: JJJJJ uses physical hit-confirm transitions with one contact per strike
+ok 29 - JJJJJ uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 21.2033
+  ...
+# Subtest: JKJKJ uses physical hit-confirm transitions with one contact per strike
+ok 30 - JKJKJ uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 26.9997
+  ...
+# Subtest: JKKJK uses physical hit-confirm transitions with one contact per strike
+ok 31 - JKKJK uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 24.8617
+  ...
+# Subtest: KKKKK uses physical hit-confirm transitions with one contact per strike
+ok 32 - KKKKK uses physical hit-confirm transitions with one contact per strike
+  ---
+  duration_ms: 24.7507
+  ...
+# Subtest: all eight length-three J/K permutations are valid without a command lookup
+ok 33 - all eight length-three J/K permutations are valid without a command lookup
+  ---
+  duration_ms: 177.6891
+  ...
+# Subtest: the master uses the same K/J hit-confirm and stamina rules
+ok 34 - the master uses the same K/J hit-confirm and stamina rules
+  ---
+  duration_ms: 23.3743
+  ...
+# Subtest: normal combos finish at five and create neutral even against the ropes
+ok 35 - normal combos finish at five and create neutral even against the ropes
+  ---
+  duration_ms: 105.6203
+  ...
+# Subtest: the fourth hit adds knockback; the fifth increases separation and shortens lock-down
+ok 36 - the fourth hit adds knockback; the fifth increases separation and shortens lock-down
+  ---
+  duration_ms: 22.7738
+  ...
+# Subtest: jab whiff and recovery cannot hit-confirm cancel, feint away or erase stamina cost
+ok 37 - jab whiff and recovery cannot hit-confirm cancel, feint away or erase stamina cost
+  ---
+  duration_ms: 28.2538
+  ...
+# Subtest: cross whiff and recovery cannot hit-confirm cancel, feint away or erase stamina cost
+ok 38 - cross whiff and recovery cannot hit-confirm cancel, feint away or erase stamina cost
+  ---
+  duration_ms: 24.229
+  ...
+# Subtest: blocked punches cost guard stamina and never authorize combo cancellation
+ok 39 - blocked punches cost guard stamina and never authorize combo cancellation
+  ---
+  duration_ms: 21.4849
+  ...
+# Subtest: a clean light counters heavy startup through actual contact, with extra hitstop and stun
+ok 40 - a clean light counters heavy startup through actual contact, with extra hitstop and stun
+  ---
+  duration_ms: 22.4118
+  ...
+# Subtest: punishing a physically missed heavy during recovery produces COUNTER
+ok 41 - punishing a physically missed heavy during recovery produces COUNTER
+  ---
+  duration_ms: 31.0095
+  ...
+# Subtest: a short punch can counter an active straight heavy from a different depth line
+ok 42 - a short punch can counter an active straight heavy from a different depth line
+  ---
+  duration_ms: 29.1138
+  ...
+# Subtest: a standing neutral boxer is not a counter and combo hits do not repeatedly award counter bonuses
+ok 43 - a standing neutral boxer is not a counter and combo hits do not repeatedly award counter bonuses
+  ---
+  duration_ms: 52.4427
+  ...
+# Subtest: short body shots drain stamina while keeping HP damage moderate
+ok 44 - short body shots drain stamina while keeping HP damage moderate
+  ---
+  duration_ms: 33.1099
+  ...
+# Subtest: distance/depth determine a fixed strike profile at startup, not homing
+ok 45 - distance/depth determine a fixed strike profile at startup, not homing
+  ---
+  duration_ms: 69.8883
+  ...
+# Subtest: weight transfer advances heavy startup by small physical steps and never changes visual scale
+ok 46 - weight transfer advances heavy startup by small physical steps and never changes visual scale
+  ---
+  duration_ms: 27.2541
+  ...
+# Subtest: hands alternate through existing normalized poses and close K selects the real inside pose
+ok 47 - hands alternate through existing normalized poses and close K selects the real inside pose
+  ---
+  duration_ms: 46.3287
+  ...
+# Subtest: neutral stamina returns promptly while attack/dodge/feint costs remain distinct
+ok 48 - neutral stamina returns promptly while attack/dodge/feint costs remain distinct
+  ---
+  duration_ms: 96.0097
+  ...
+# Subtest: round transitions clear queued normal knockback and buffered combo state
+ok 49 - round transitions clear queued normal knockback and buffered combo state
+  ---
+  duration_ms: 24.315
+  ...
+# Subtest: confirmed J K K stays a three-hit physical string at 30 FPS
+ok 50 - confirmed J K K stays a three-hit physical string at 30 FPS
+  ---
+  duration_ms: 21.6955
+  ...
+# Subtest: confirmed J K K stays a three-hit physical string at 60 FPS
+ok 51 - confirmed J K K stays a three-hit physical string at 60 FPS
+  ---
+  duration_ms: 19.7404
+  ...
+# Subtest: confirmed J K K stays a three-hit physical string at 144 FPS
+ok 52 - confirmed J K K stays a three-hit physical string at 144 FPS
+  ---
+  duration_ms: 20.1577
+  ...
+# Subtest: whiff recovery is committed rest, not neutral stamina regeneration
+ok 53 - whiff recovery is committed rest, not neutral stamina regeneration
+  ---
+  duration_ms: 20.4717
+  ...
+# Subtest: held guard: jab chip, pressure, stamina wear and no normal hitstun
+ok 54 - held guard: jab chip, pressure, stamina wear and no normal hitstun
+  ---
+  duration_ms: 54.846
+  ...
+# Subtest: held guard: cross chip, pressure, stamina wear and no normal hitstun
+ok 55 - held guard: cross chip, pressure, stamina wear and no normal hitstun
+  ---
+  duration_ms: 22.7045
+  ...
+# Subtest: pressure stacks from blocked combinations and resets only gradually
+ok 56 - pressure stacks from blocked combinations and resets only gradually
+  ---
+  duration_ms: 22.8225
+  ...
+# Subtest: guard break opens a real clean combo and cannot be escaped by Shift or Space
+ok 57 - guard break opens a real clean combo and cannot be escaped by Shift or Space
+  ---
+  duration_ms: 25.7514
+  ...
+# Subtest: fresh Shift parries on active step 0 of four
+ok 58 - fresh Shift parries on active step 0 of four
+  ---
+  duration_ms: 19.75
+  ...
+# Subtest: fresh Shift parries on active step 1 of four
+ok 59 - fresh Shift parries on active step 1 of four
+  ---
+  duration_ms: 16.4396
+  ...
+# Subtest: fresh Shift parries on active step 2 of four
+ok 60 - fresh Shift parries on active step 2 of four
+  ---
+  duration_ms: 20.2396
+  ...
+# Subtest: fresh Shift parries on active step 3 of four
+ok 61 - fresh Shift parries on active step 3 of four
+  ---
+  duration_ms: 22.3953
+  ...
+# Subtest: four-step boundary: late contact is ordinary block, not parry
+ok 62 - four-step boundary: late contact is ordinary block, not parry
+  ---
+  duration_ms: 25.5308
+  ...
+# Subtest: auto-repeat and duplicated held keydown never refresh parry
+ok 63 - auto-repeat and duplicated held keydown never refresh parry
+  ---
+  duration_ms: 22.2541
+  ...
+# Subtest: tapping too early commits recovery; held guard remains guard
+ok 64 - tapping too early commits recovery; held guard remains guard
+  ---
+  duration_ms: 37.7133
+  ...
+# Subtest: parry missed tap takes ten full recovery steps and its cooldown prevents rapid rearming
+ok 65 - parry missed tap takes ten full recovery steps and its cooldown prevents rapid rearming
+  ---
+  duration_ms: 29.3435
+  ...
+# Subtest: fresh guard while stunned is discarded, not buffered into a future parry
+ok 66 - fresh guard while stunned is discarded, not buffered into a future parry
+  ---
+  duration_ms: 19.1595
+  ...
+# Subtest: Shift held through round intro needs release and a new keydown
+ok 67 - Shift held through round intro needs release and a new keydown
+  ---
+  duration_ms: 21.6515
+  ...
+# Subtest: parry moves/staggers attacker, riposte is physical and gives one counter window
+ok 68 - parry moves/staggers attacker, riposte is physical and gives one counter window
+  ---
+  duration_ms: 25.5553
+  ...
+# Subtest: parry counter does not become an automatic hit out of range
+ok 69 - parry counter does not become an automatic hit out of range
+  ---
+  duration_ms: 15.5593
+  ...
+# Subtest: repeated contact evaluation cannot parry, score or displace twice
+ok 70 - repeated contact evaluation cannot parry, score or displace twice
+  ---
+  duration_ms: 16.5
+  ...
+# Subtest: parry does not save an exhausted guard already at its pressure limit
+ok 71 - parry does not save an exhausted guard already at its pressure limit
+  ---
+  duration_ms: 23.563
+  ...
+# Subtest: unblockable linear Master special cannot be parried
+ok 72 - unblockable linear Master special cannot be parried
+  ---
+  duration_ms: 20.1373
+  ...
+# Subtest: a requested Rush can be parried: punch stops, charge stays spent, unused Overdrive charges remain
+ok 73 - a requested Rush can be parried: punch stops, charge stays spent, unused Overdrive charges remain
+  ---
+  duration_ms: 16.8256
+  ...
+# Subtest: dodge contact age 2 respects evasive and perfect timing boundaries
+ok 74 - dodge contact age 2 respects evasive and perfect timing boundaries
+  ---
+  duration_ms: 21.0407
+  ...
+# Subtest: dodge contact age 3 respects evasive and perfect timing boundaries
+ok 75 - dodge contact age 3 respects evasive and perfect timing boundaries
+  ---
+  duration_ms: 24.3263
+  ...
+# Subtest: dodge contact age 4 respects evasive and perfect timing boundaries
+ok 76 - dodge contact age 4 respects evasive and perfect timing boundaries
+  ---
+  duration_ms: 12.9647
+  ...
+# Subtest: dodge contact age 5 respects evasive and perfect timing boundaries
+ok 77 - dodge contact age 5 respects evasive and perfect timing boundaries
+  ---
+  duration_ms: 13.0326
+  ...
+# Subtest: dodge contact age 6 respects evasive and perfect timing boundaries
+ok 78 - dodge contact age 6 respects evasive and perfect timing boundaries
+  ---
+  duration_ms: 20.0488
+  ...
+# Subtest: dodge contact age 10 respects evasive and perfect timing boundaries
+ok 79 - dodge contact age 10 respects evasive and perfect timing boundaries
+  ---
+  duration_ms: 14.6133
+  ...
+# Subtest: dodge contact age 11 respects evasive and perfect timing boundaries
+ok 80 - dodge contact age 11 respects evasive and perfect timing boundaries
+  ---
+  duration_ms: 16.2328
+  ...
+# Subtest: Space sidesteps physically and correct timing rewards leaving the original line
+ok 81 - Space sidesteps physically and correct timing rewards leaving the original line
+  ---
+  duration_ms: 19.7408
+  ...
+# Subtest: ordinary W depth movement avoids a straight punch without dodge invulnerability
+ok 82 - ordinary W depth movement avoids a straight punch without dodge invulnerability
+  ---
+  duration_ms: 33.047
+  ...
+# Subtest: recovery of an early dodge is punishable on a real line
+ok 83 - recovery of an early dodge is punishable on a real line
+  ---
+  duration_ms: 22.9558
+  ...
+# Subtest: L cancel gate jab frame 0
+ok 84 - L cancel gate jab frame 0
+  ---
+  duration_ms: 15.807
+  ...
+# Subtest: L cancel gate jab frame 1
+ok 85 - L cancel gate jab frame 1
+  ---
+  duration_ms: 21.3766
+  ...
+# Subtest: L cancel gate jab frame 2
+ok 86 - L cancel gate jab frame 2
+  ---
+  duration_ms: 22.7965
+  ...
+# Subtest: L cancel gate jab frame 3
+ok 87 - L cancel gate jab frame 3
+  ---
+  duration_ms: 17.6308
+  ...
+# Subtest: L cancel gate jab frame 4
+ok 88 - L cancel gate jab frame 4
+  ---
+  duration_ms: 23.8126
+  ...
+# Subtest: L cancel gate jab frame 8
+ok 89 - L cancel gate jab frame 8
+  ---
+  duration_ms: 16.9513
+  ...
+# Subtest: L cancel gate jab frame 12
+ok 90 - L cancel gate jab frame 12
+  ---
+  duration_ms: 21.8251
+  ...
+# Subtest: L cancel gate jab frame 16
+ok 91 - L cancel gate jab frame 16
+  ---
+  duration_ms: 22.3691
+  ...
+# Subtest: L cancel gate jab frame 24
+ok 92 - L cancel gate jab frame 24
+  ---
+  duration_ms: 22.0317
+  ...
+# Subtest: L cancel gate cross frame 0
+ok 93 - L cancel gate cross frame 0
+  ---
+  duration_ms: 22.6608
+  ...
+# Subtest: L cancel gate cross frame 1
+ok 94 - L cancel gate cross frame 1
+  ---
+  duration_ms: 18.6953
+  ...
+# Subtest: L cancel gate cross frame 2
+ok 95 - L cancel gate cross frame 2
+  ---
+  duration_ms: 23.2954
+  ...
+# Subtest: L cancel gate cross frame 3
+ok 96 - L cancel gate cross frame 3
+  ---
+  duration_ms: 27.566
+  ...
+# Subtest: L cancel gate cross frame 4
+ok 97 - L cancel gate cross frame 4
+  ---
+  duration_ms: 24.1072
+  ...
+# Subtest: L cancel gate cross frame 8
+ok 98 - L cancel gate cross frame 8
+  ---
+  duration_ms: 16.4048
+  ...
+# Subtest: L cancel gate cross frame 12
+ok 99 - L cancel gate cross frame 12
+  ---
+  duration_ms: 15.419
+  ...
+# Subtest: L cancel gate cross frame 16
+ok 100 - L cancel gate cross frame 16
+  ---
+  duration_ms: 15.6759
+  ...
+# Subtest: L cancel gate cross frame 24
+ok 101 - L cancel gate cross frame 24
+  ---
+  duration_ms: 23.6782
+  ...
+# Subtest: standalone L has readable windup, finite recovery, stamina cost, no hitbox or free cancel
+ok 102 - standalone L has readable windup, finite recovery, stamina cost, no hitbox or free cancel
+  ---
+  duration_ms: 17.0565
+  ...
+# Subtest: every feint frame really draws the boxer at a stable foot anchor and scale
+ok 103 - every feint frame really draws the boxer at a stable foot anchor and scale
+  ---
+  duration_ms: 21.307
+  ...
+# Subtest: L cannot escape hitstun, guard break, whiff recovery, dodge or an already connected heavy
+ok 104 - L cannot escape hitstun, guard break, whiff recovery, dodge or an already connected heavy
+  ---
+  duration_ms: 115.9794
+  ...
+# Subtest: AI observation sees a credible pose, not the feint input or a magic fake tag
+ok 105 - AI observation sees a credible pose, not the feint input or a magic fake tag
+  ---
+  duration_ms: 15.971
+  ...
+# Subtest: Master is sometimes baited by visible feints into parry/dodge and not always the same response
+ok 106 - Master is sometimes baited by visible feints into parry/dodge and not always the same response
+  ---
+  duration_ms: 1255.3471
+  ...
+# Subtest: all defense commitments and counter source clear at round transition
+ok 107 - all defense commitments and counter source clear at round transition
+  ---
+  duration_ms: 14.3505
+  ...
+# Subtest: defense simulation is stable at 30 render FPS
+ok 108 - defense simulation is stable at 30 render FPS
+  ---
+  duration_ms: 18.1199
+  ...
+# Subtest: defense simulation is stable at 60 render FPS
+ok 109 - defense simulation is stable at 60 render FPS
+  ---
+  duration_ms: 16.2216
+  ...
+# Subtest: defense simulation is stable at 144 render FPS
+ok 110 - defense simulation is stable at 144 render FPS
+  ---
+  duration_ms: 18.8706
+  ...
+# Subtest: jab → jab → cross is a real connected combo with exactly one contact per punch
+ok 111 - jab → jab → cross is a real connected combo with exactly one contact per punch
+  ---
+  duration_ms: 28.7904
+  ...
+# Subtest: jab → cross is a real connected combo with exactly one contact per punch
+ok 112 - jab → cross is a real connected combo with exactly one contact per punch
+  ---
+  duration_ms: 9.6692
+  ...
+# Subtest: jab → jab → jab is a real connected combo with exactly one contact per punch
+ok 113 - jab → jab → jab is a real connected combo with exactly one contact per punch
+  ---
+  duration_ms: 9.2991
+  ...
+# Subtest: a late follow-up cannot keep a combo after the defender has left hitstun
+ok 114 - a late follow-up cannot keep a combo after the defender has left hitstun
+  ---
+  duration_ms: 9.8121
+  ...
+# Subtest: a sixth light cannot cancel the fifth finisher into an infinite combo
+ok 115 - a sixth light cannot cancel the fifth finisher into an infinite combo
+  ---
+  duration_ms: 10.8541
+  ...
+# Subtest: a blocked punch does not authorize a hit-confirm cancel
+ok 116 - a blocked punch does not authorize a hit-confirm cancel
+  ---
+  duration_ms: 9.857
+  ...
+# Subtest: holding guard alone breaks it after about six seconds, then a short stun recovers
+ok 117 - holding guard alone breaks it after about six seconds, then a short stun recovers
+  ---
+  duration_ms: 39.1029
+  ...
+# Subtest: several blocks build pressure; releasing guard recovers gradually rather than resetting it
+ok 118 - several blocks build pressure; releasing guard recovers gradually rather than resetting it
+  ---
+  duration_ms: 10.567
+  ...
+# Subtest: future blocked specials add much more guard pressure but install no special attack
+ok 119 - future blocked specials add much more guard pressure but install no special attack
+  ---
+  duration_ms: 6.3481
+  ...
+# Subtest: correct dodge permits an early counter, with bonus damage and a short extra hitstun
+ok 120 - correct dodge permits an early counter, with bonus damage and a short extra hitstun
+  ---
+  duration_ms: 11.0857
+  ...
+# Subtest: a timed sidestep out of the punch line opens a counter, even without overlap at the final position
+ok 121 - a timed sidestep out of the punch line opens a counter, even without overlap at the final position
+  ---
+  duration_ms: 9.0166
+  ...
+# Subtest: dodging outside the threatened range awards no free counter
+ok 122 - dodging outside the threatened range awards no free counter
+  ---
+  duration_ms: 9.5071
+  ...
+# Subtest: waiting out the counter window removes the damage bonus
+ok 123 - waiting out the counter window removes the damage bonus
+  ---
+  duration_ms: 22.8916
+  ...
+# Subtest: hit pause freezes both fighters for only 1–3 steps and preserves a newly buffered punch
+ok 124 - hit pause freezes both fighters for only 1–3 steps and preserves a newly buffered punch
+  ---
+  duration_ms: 8.8525
+  ...
+# Subtest: a missed punch produces no contact pause or impact event
+ok 125 - a missed punch produces no contact pause or impact event
+  ---
+  duration_ms: 9.064
+  ...
+# Subtest: guard strain and real-time contact pause stay equivalent at 30, 60 and 144 FPS
+ok 126 - guard strain and real-time contact pause stay equivalent at 30, 60 and 144 FPS
+  ---
+  duration_ms: 120.9221
+  ...
+# Subtest: Master physical short combo jab → cross
+ok 127 - Master physical short combo jab → cross
+  ---
+  duration_ms: 65.084
+  ...
+# Subtest: Master physical short combo jab → jab → cross
+ok 128 - Master physical short combo jab → jab → cross
+  ---
+  duration_ms: 21.3652
+  ...
+# Subtest: Master physical short combo cross → jab
+ok 129 - Master physical short combo cross → jab
+  ---
+  duration_ms: 22.0397
+  ...
+# Subtest: parry Counter K → J → K is physical, capped at three hits and returns to neutral
+ok 130 - parry Counter K → J → K is physical, capped at three hits and returns to neutral
+  ---
+  duration_ms: 22.0004
+  ...
+# Subtest: Master jab trades more damage/push/stamina/recovery than Zorp without changing attributes with HP
+ok 131 - Master jab trades more damage/push/stamina/recovery than Zorp without changing attributes with HP
+  ---
+  duration_ms: 50.5004
+  ...
+# Subtest: Master cross trades more damage/push/stamina/recovery than Zorp without changing attributes with HP
+ok 132 - Master cross trades more damage/push/stamina/recovery than Zorp without changing attributes with HP
+  ---
+  duration_ms: 41.8634
+  ...
+# Subtest: earned Master counter K has a prepared ten-step startup, not instant contact
+ok 133 - earned Master counter K has a prepared ten-step startup, not instant contact
+  ---
+  duration_ms: 21.8404
+  ...
+# Subtest: counter stance has one predetermined four-step parry window, and no input-following retiming
+ok 134 - counter stance has one predetermined four-step parry window, and no input-following retiming
+  ---
+  duration_ms: 24.2481
+  ...
+# Subtest: predictable contact in stance is parried and grants a counter; a second input is still required
+ok 135 - predictable contact in stance is parried and grants a counter; a second input is still required
+  ---
+  duration_ms: 20.7302
+  ...
+# Subtest: finta or patience baits the stance parry and leaves genuine punishable recovery
+ok 136 - finta or patience baits the stance parry and leaves genuine punishable recovery
+  ---
+  duration_ms: 46.9706
+  ...
+# Subtest: repositioning defeats the committed stance line and a late strike is not parried
+ok 137 - repositioning defeats the committed stance line and a late strike is not parried
+  ---
+  duration_ms: 18.8689
+  ...
+# Subtest: counter stance respects guard pressure; it cannot shelter a broken guard
+ok 138 - counter stance respects guard pressure; it cannot shelter a broken guard
+  ---
+  duration_ms: 19.7069
+  ...
+# Subtest: stance may adjust once from an actual blocked jab and previous cadence, then can be baited
+ok 139 - stance may adjust once from an actual blocked jab and previous cadence, then can be baited
+  ---
+  duration_ms: 24.2166
+  ...
+# Subtest: Crushing Counter needs physical Master K into actual Zorp heavy startup
+ok 140 - Crushing Counter needs physical Master K into actual Zorp heavy startup
+  ---
+  duration_ms: 22.3123
+  ...
+# Subtest: Crushing Counter cannot hit through guard, depth, range, dodge or idle as a magic bonus
+ok 141 - Crushing Counter cannot hit through guard, depth, range, dodge or idle as a magic bonus
+  ---
+  duration_ms: 88.1943
+  ...
+# Subtest: late armor absorbs one ordinary jab, still loses HP/stamina and grants no hit-confirm to the jab
+ok 142 - late armor absorbs one ordinary jab, still loses HP/stamina and grants no hit-confirm to the jab
+  ---
+  duration_ms: 16.6909
+  ...
+# Subtest: armor inactive outside last three startup frames: offset -5
+ok 143 - armor inactive outside last three startup frames: offset -5
+  ---
+  duration_ms: 18.4385
+  ...
+# Subtest: armor inactive outside last three startup frames: offset -4
+ok 144 - armor inactive outside last three startup frames: offset -4
+  ---
+  duration_ms: 15.3767
+  ...
+# Subtest: armor inactive outside last three startup frames: offset 0
+ok 145 - armor inactive outside last three startup frames: offset 0
+  ---
+  duration_ms: 15.649
+  ...
+# Subtest: armor inactive outside last three startup frames: offset 1
+ok 146 - armor inactive outside last three startup frames: offset 1
+  ---
+  duration_ms: 25.8782
+  ...
+# Subtest: armor inactive outside last three startup frames: offset 5
+ok 147 - armor inactive outside last three startup frames: offset 5
+  ---
+  duration_ms: 18.2323
+  ...
+# Subtest: armor is one contact only, never permanent or a damage shield
+ok 148 - armor is one contact only, never permanent or a damage shield
+  ---
+  duration_ms: 21.7716
+  ...
+# Subtest: heavy defeats late Master armor
+ok 149 - heavy defeats late Master armor
+  ---
+  duration_ms: 39.9696
+  ...
+# Subtest: counter defeats late Master armor
+ok 150 - counter defeats late Master armor
+  ---
+  duration_ms: 17.7099
+  ...
+# Subtest: rush defeats late Master armor
+ok 151 - rush defeats late Master armor
+  ---
+  duration_ms: 17.063
+  ...
+# Subtest: normal Master heavies have no armor unless one was explicitly prepared
+ok 152 - normal Master heavies have no armor unless one was explicitly prepared
+  ---
+  duration_ms: 19.823
+  ...
+# Subtest: Slip moves only eight depth pixels, narrowly evades a normal jab and opens a real counter
+ok 153 - Slip moves only eight depth pixels, narrowly evades a normal jab and opens a real counter
+  ---
+  duration_ms: 25.5518
+  ...
+# Subtest: Slip is not invulnerability to K/Rush or attacks arriving outside its short timing
+ok 154 - Slip is not invulnerability to K/Rush or attacks arriving outside its short timing
+  ---
+  duration_ms: 81.264
+  ...
+# Subtest: recent pattern model is bounded and uses visible history, including believable feints
+ok 155 - recent pattern model is bounded and uses visible history, including believable feints
+  ---
+  duration_ms: 22.147
+  ...
+# Subtest: jab patterns favor counter stance, guard patterns favor K/body pressure and distance uses approach
+ok 156 - jab patterns favor counter stance, guard patterns favor K/body pressure and distance uses approach
+  ---
+  duration_ms: 710.9214
+  ...
+# Subtest: measuring windows last 0.3–1 seconds and AI does not fire while measuring
+ok 157 - measuring windows last 0.3–1 seconds and AI does not fire while measuring
+  ---
+  duration_ms: 17.4512
+  ...
+# Subtest: Titan Straight retains committed dash physics and mandatory recovery
+ok 158 - Titan Straight retains committed dash physics and mandatory recovery
+  ---
+  duration_ms: 19.0657
+  ...
+# Subtest: rare Titan feint is planned before charge, has no hitbox, costs meter and leaves recovery
+ok 159 - rare Titan feint is planned before charge, has no hitbox, costs meter and leaves recovery
+  ---
+  duration_ms: 16.0048
+  ...
+# Subtest: Titan feint selection is rare, based on recorded dodge habits, locked before charge and unavailable in round one
+ok 160 - Titan feint selection is rare, based on recorded dodge habits, locked before charge and unavailable in round one
+  ---
+  duration_ms: 2748.9122
+  ...
+# Subtest: round transitions clear stance, slip, armor preparation and Titan-feint flags
+ok 161 - round transitions clear stance, slip, armor preparation and Titan-feint flags
+  ---
+  duration_ms: 9.4344
+  ...
+# Subtest: Iron stance and recovery timing at 30 FPS
+ok 162 - Iron stance and recovery timing at 30 FPS
+  ---
+  duration_ms: 13.0435
+  ...
+# Subtest: Iron stance and recovery timing at 60 FPS
+ok 163 - Iron stance and recovery timing at 60 FPS
+  ---
+  duration_ms: 13.1795
+  ...
+# Subtest: Iron stance and recovery timing at 144 FPS
+ok 164 - Iron stance and recovery timing at 144 FPS
+  ---
+  duration_ms: 12.4443
+  ...
+# Subtest: no response or movement occurs before a delayed observation exists
+ok 165 - no response or movement occurs before a delayed observation exists
+  ---
+  duration_ms: 57.3073
+  ...
+# Subtest: all decisions use positions at least 200ms old; abrupt changes are not read immediately
+ok 166 - all decisions use positions at least 200ms old; abrupt changes are not read immediately
+  ---
+  duration_ms: 30.683
+  ...
+# Subtest: input flags alone cannot trigger a reaction before a visible action
+ok 167 - input flags alone cannot trigger a reaction before a visible action
+  ---
+  duration_ms: 42.7132
+  ...
+# Subtest: pressure plans defense, dodge or leaving the line without breaking real hitstun
+ok 168 - pressure plans defense, dodge or leaving the line without breaking real hitstun
+  ---
+  duration_ms: 362.5995
+  ...
+# Subtest: low HP prefers pressure, while an HP lead allows cautious play
+ok 169 - low HP prefers pressure, while an HP lead allows cautious play
+  ---
+  duration_ms: 2875.5264
+  ...
+# Subtest: delayed attacks can whiff on a sidestep; ordinary reach and depth are unchanged
+ok 170 - delayed attacks can whiff on a sidestep; ordinary reach and depth are unchanged
+  ---
+  duration_ms: 40.9531
+  ...
+# Subtest: AI cannot act during whiff recovery, dodge, guard break or hitstun
+ok 171 - AI cannot act during whiff recovery, dodge, guard break or hitstun
+  ---
+  duration_ms: 83.0516
+  ...
+# Subtest: master uses the delayed snapshot for special gating rather than current guard/dodge/position
+ok 172 - master uses the delayed snapshot for special gating rather than current guard/dodge/position
+  ---
+  duration_ms: 21.8398
+  ...
+# Subtest: reset clears perception, pressure and statistics
+ok 173 - reset clears perception, pressure and statistics
+  ---
+  duration_ms: 34.0117
+  ...
+# Subtest: late defensive reading permits a first quick jab to connect before the AI can react
+ok 174 - late defensive reading permits a first quick jab to connect before the AI can react
+  ---
+  duration_ms: 24.8596
+  ...
+# Subtest: perception moves forward in time and its history stays bounded throughout a fight
+ok 175 - perception moves forward in time and its history stays bounded throughout a fight
+  ---
+  duration_ms: 71.8652
+  ...
+# Subtest: successful blocking has a short local response delay, not an immediate free strike
+ok 176 - successful blocking has a short local response delay, not an immediate free strike
+  ---
+  duration_ms: 11.6609
+  ...
+# Subtest: a critical master may attempt a vulnerable reversal at shorter range, without changing the dash physics
+ok 177 - a critical master may attempt a vulnerable reversal at shorter range, without changing the dash physics
+  ---
+  duration_ms: 11.6015
+  ...
+# Subtest: same seed produces identical fights and fixed-step behavior across rendering rates
+ok 178 - same seed produces identical fights and fixed-step behavior across rendering rates
+  ---
+  duration_ms: 193.1144
+  ...
+# Subtest: several complete fights offer wins, mistakes, defense and every attack type
+ok 179 - several complete fights offer wins, mistakes, defense and every attack type
+  ---
+  duration_ms: 1342.1615
+  ...
+# Subtest: official master sheet preloads once, eight clean masks, uniform scale and anchors
+ok 180 - official master sheet preloads once, eight clean masks, uniform scale and anchors
+  ---
+  duration_ms: 49.6291
+  ...
+# Subtest: full independent meter required and consumed once; unavailable art does not spend
+ok 181 - full independent meter required and consumed once; unavailable art does not spend
+  ---
+  duration_ms: 30.9005
+  ...
+# Subtest: charge lasts 36 steps with no physical advance or premature damage
+ok 182 - charge lasts 36 steps with no physical advance or premature damage
+  ---
+  duration_ms: 34.0675
+  ...
+# Subtest: dash physically advances, lands once, pushes and never causes repeated damage
+ok 183 - dash physically advances, lands once, pushes and never causes repeated damage
+  ---
+  duration_ms: 38.4828
+  ...
+# Subtest: master dash is unblockable: full damage and substantial push through guard
+ok 184 - master dash is unblockable: full damage and substantial push through guard
+  ---
+  duration_ms: 23.643
+  ...
+# Subtest: leaving depth line during charge defeats committed attack and exposes 36-step whiff recovery
+ok 185 - leaving depth line during charge defeats committed attack and exposes 36-step whiff recovery
+  ---
+  duration_ms: 36.9825
+  ...
+# Subtest: timed I dodge avoids an otherwise aligned hit and grants counter window
+ok 186 - timed I dodge avoids an otherwise aligned hit and grants counter window
+  ---
+  duration_ms: 30.4193
+  ...
+# Subtest: whiff recovery remains hittable; a real punch interrupts it and punishes
+ok 187 - whiff recovery remains hittable; a real punch interrupts it and punishes
+  ---
+  duration_ms: 31.9327
+  ...
+# Subtest: charge is interruptible by a normal punch, with no hidden invulnerability
+ok 188 - charge is interruptible by a normal punch, with no hidden invulnerability
+  ---
+  duration_ms: 23.5919
+  ...
+# Subtest: dash never homes after Zorp crosses behind; facing and original line stay committed
+ok 189 - dash never homes after Zorp crosses behind; facing and original line stay committed
+  ---
+  duration_ms: 29.8231
+  ...
+# Subtest: off-line, far outside reach and opposite-side defenders cannot receive magical hits
+ok 190 - off-line, far outside reach and opposite-side defenders cannot receive magical hits
+  ---
+  duration_ms: 80.8186
+  ...
+# Subtest: right-facing master dash obeys the same line and damage rules
+ok 191 - right-facing master dash obeys the same line and damage rules
+  ---
+  duration_ms: 24.0718
+  ...
+# Subtest: swept glove interval catches a traversed defender, without extending depth tolerance
+ok 192 - swept glove interval catches a traversed defender, without extending depth tolerance
+  ---
+  duration_ms: 28.2819
+  ...
+# Subtest: AI chooses charged medium-distance aligned pressure situations, never random specials
+ok 193 - AI chooses charged medium-distance aligned pressure situations, never random specials
+  ---
+  duration_ms: 33.7631
+  ...
+# Subtest: a stale observation is not refreshed magically while charging; AI can be baited
+ok 194 - a stale observation is not refreshed magically while charging; AI can be baited
+  ---
+  duration_ms: 28.4857
+  ...
+# Subtest: AI creates medium range with a real backstep and does not retreat through ropes
+ok 195 - AI creates medium range with a real backstep and does not retreat through ropes
+  ---
+  duration_ms: 16.9592
+  ...
+# Subtest: ring boundaries constrain a missed dash and recovery never slides the fighter farther
+ok 196 - ring boundaries constrain a missed dash and recovery never slides the fighter farther
+  ---
+  duration_ms: 57.286
+  ...
+# Subtest: paused or hidden combat freezes charge, cooldown and special animation
+ok 197 - paused or hidden combat freezes charge, cooldown and special animation
+  ---
+  duration_ms: 21.8716
+  ...
+# Subtest: master meter fills from exchanges and active proximity, not its own dash or inactive scenes
+ok 198 - master meter fills from exchanges and active proximity, not its own dash or inactive scenes
+  ---
+  duration_ms: 87.5598
+  ...
+# Subtest: cooldown is meaningful even after artificially refilling the meter
+ok 199 - cooldown is meaningful even after artificially refilling the meter
+  ---
+  duration_ms: 105.0238
+  ...
+# Subtest: 30, 60 and 144 FPS produce the same dash result and cooldown
+ok 200 - 30, 60 and 144 FPS produce the same dash result and cooldown
+  ---
+  duration_ms: 104.3823
+  ...
+# Subtest: Overdrive activation alone does not evade the Master dash or launch automatic counters
+ok 201 - Overdrive activation alone does not evade the Master dash or launch automatic counters
+  ---
+  duration_ms: 30.7489
+  ...
+# Subtest: round KO cleans charge/dash state and never hits again in the interval
+ok 202 - round KO cleans charge/dash state and never hits again in the interval
+  ---
+  duration_ms: 28.2661
+  ...
+# Subtest: Zorp 2–0 only finishes the match after two round wins
+ok 203 - Zorp 2–0 only finishes the match after two round wins
+  ---
+  duration_ms: 82.5466
+  ...
+# Subtest: Zorp 2–1 only finishes the match after two round wins
+ok 204 - Zorp 2–1 only finishes the match after two round wins
+  ---
+  duration_ms: 42.2059
+  ...
+# Subtest: Mestre 2–0 only finishes the match after two round wins
+ok 205 - Mestre 2–0 only finishes the match after two round wins
+  ---
+  duration_ms: 49.2435
+  ...
+# Subtest: Mestre 2–1 only finishes the match after two round wins
+ok 206 - Mestre 2–1 only finishes the match after two round wins
+  ---
+  duration_ms: 42.5779
+  ...
+# Subtest: official keys: J weak, K strong, L feint, Shift guard, Space dodge; I has no action
+ok 207 - official keys: J weak, K strong, L feint, Shift guard, Space dodge; I has no action
+  ---
+  duration_ms: 126.4084
+  ...
+# Subtest: A/D move horizontally; W/S physically change depth
+ok 208 - A/D move horizontally; W/S physically change depth
+  ---
+  duration_ms: 76.0177
+  ...
+# Subtest: Space repeat cannot spam dodge or scroll, and an intro-held Space never leaks into gameplay
+ok 209 - Space repeat cannot spam dodge or scroll, and an intro-held Space never leaks into gameplay
+  ---
+  duration_ms: 33.0226
+  ...
+# Subtest: an active round runs for exactly 40 simulation seconds, even through hitstop; transitions pause clock and damage
+ok 210 - an active round runs for exactly 40 simulation seconds, even through hitstop; transitions pause clock and damage
+  ---
+  duration_ms: 28.6644
+  ...
+# Subtest: tied HP uses damage in the prescribed order
+ok 211 - tied HP uses damage in the prescribed order
+  ---
+  duration_ms: 17.6498
+  ...
+# Subtest: tied HP uses counters in the prescribed order
+ok 212 - tied HP uses counters in the prescribed order
+  ---
+  duration_ms: 22.4778
+  ...
+# Subtest: tied HP uses clean hits in the prescribed order
+ok 213 - tied HP uses clean hits in the prescribed order
+  ---
+  duration_ms: 17.3756
+  ...
+# Subtest: an absolute tie enters sudden death; only a clean strike wins, with no random tiebreak
+ok 214 - an absolute tie enters sudden death; only a clean strike wins, with no random tiebreak
+  ---
+  duration_ms: 43.9068
+  ...
+# Subtest: simultaneous lethal strikes do not pick a winner by contact order
+ok 215 - simultaneous lethal strikes do not pick a winner by contact order
+  ---
+  duration_ms: 21.0236
+  ...
+# Subtest: next round restores HP/stamina, clears combat and buffered input, and carries only 60% of special
+ok 216 - next round restores HP/stamina, clears combat and buffered input, and carries only 60% of special
+  ---
+  duration_ms: 24.1455
+  ...
+# Subtest: feint creates only a visible windup and never hits; it can cancel a normal startup but not its impact
+ok 217 - feint creates only a visible windup and never hits; it can cancel a normal startup but not its impact
+  ---
+  duration_ms: 67.4236
+  ...
+# Subtest: weak-heavy combos remain connected, with the strong finisher costing more stamina
+ok 218 - weak-heavy combos remain connected, with the strong finisher costing more stamina
+  ---
+  duration_ms: 21.8487
+  ...
+# Subtest: guard still breaks under pressure and cannot erase chip damage
+ok 219 - guard still breaks under pressure and cannot erase chip damage
+  ---
+  duration_ms: 25.9614
+  ...
+# Subtest: Space within the narrow impact window produces Perfect Dodge, hitstop and a counter
+ok 220 - Space within the narrow impact window produces Perfect Dodge, hitstop and a counter
+  ---
+  duration_ms: 55.0912
+  ...
+# Subtest: a W/S sidestep changes the actual line of defense rather than granting permanent invulnerability
+ok 221 - a W/S sidestep changes the actual line of defense rather than granting permanent invulnerability
+  ---
+  duration_ms: 24.5021
+  ...
+# Subtest: player-requested Rush and the Master linear dash respect the round lifecycle
+ok 222 - player-requested Rush and the Master linear dash respect the round lifecycle
+  ---
+  duration_ms: 55.2309
+  ...
+# Subtest: round transition stops attacks/charge and the match awards no medal for round one
+ok 223 - round transition stops attacks/charge and the match awards no medal for round one
+  ---
+  duration_ms: 26.8205
+  ...
+# Subtest: resources cannot be spammed; regeneration happens during active rest, not the interval
+ok 224 - resources cannot be spammed; regeneration happens during active rest, not the interval
+  ---
+  duration_ms: 44.1216
+  ...
+# Subtest: AI adaptation between rounds uses observed guard/dodge/distance history only
+ok 225 - AI adaptation between rounds uses observed guard/dodge/distance history only
+  ---
+  duration_ms: 50.6607
+  ...
+# Subtest: round clocks and outcomes are consistent at 30, 60 and 144 FPS
+ok 226 - round clocks and outcomes are consistent at 30, 60 and 144 FPS
+  ---
+  duration_ms: 102.298
+  ...
+# Subtest: a feint cannot erase an impact that has already connected
+ok 227 - a feint cannot erase an impact that has already connected
+  ---
+  duration_ms: 24.513
+  ...
+# Subtest: blocked chip at one HP cannot decide sudden death
+ok 228 - blocked chip at one HP cannot decide sudden death
+  ---
+  duration_ms: 14.1347
+  ...
+# Subtest: briefing and a hidden document freeze the round clock as well as combat
+ok 229 - briefing and a hidden document freeze the round clock as well as combat
+  ---
+  duration_ms: 15.7038
+  ...
+# Subtest: R after the final result starts a fresh best-of-three with no carried score
+ok 230 - R after the final result starts a fresh best-of-three with no carried score
+  ---
+  duration_ms: 22.366
+  ...
+# Subtest: official sheet loads once; seven curated masks retain uniform scale and feet anchors
+ok 231 - official sheet loads once; seven curated masks retain uniform scale and feet anchors
+  ---
+  duration_ms: 31.421
+  ...
+# Subtest: O requires a ready sheet and full meter, consumes it once and grants four charges
+ok 232 - O requires a ready sheet and full meter, consumes it once and grants four charges
+  ---
+  duration_ms: 26.2399
+  ...
+# Subtest: activation alone never moves Zorp, attacks, evades, targets the opponent or runs a six-hit script
+ok 233 - activation alone never moves Zorp, attacks, evades, targets the opponent or runs a six-hit script
+  ---
+  duration_ms: 41.4911
+  ...
+# Subtest: Overdrive expires after six real simulation seconds even through contact hitstop
+ok 234 - Overdrive expires after six real simulation seconds even through contact hitstop
+  ---
+  duration_ms: 47.3931
+  ...
+# Subtest: jab requests one RUSH_JAB with physical advance and one spent charge
+ok 235 - jab requests one RUSH_JAB with physical advance and one spent charge
+  ---
+  duration_ms: 18.5617
+  ...
+# Subtest: cross requests one RUSH_STRAIGHT with physical advance and one spent charge
+ok 236 - cross requests one RUSH_STRAIGHT with physical advance and one spent charge
+  ---
+  duration_ms: 16.3841
+  ...
+# Subtest: jab → jab → jab → cross is player-controlled and each link spends exactly one charge
+ok 237 - jab → jab → jab → cross is player-controlled and each link spends exactly one charge
+  ---
+  duration_ms: 17.5984
+  ...
+# Subtest: cross → jab → cross → cross is player-controlled and each link spends exactly one charge
+ok 238 - cross → jab → cross → cross is player-controlled and each link spends exactly one charge
+  ---
+  duration_ms: 16.1514
+  ...
+# Subtest: cross → cross → cross → cross is player-controlled and each link spends exactly one charge
+ok 239 - cross → cross → cross → cross is player-controlled and each link spends exactly one charge
+  ---
+  duration_ms: 15.8331
+  ...
+# Subtest: jab → cross → jab → jab is player-controlled and each link spends exactly one charge
+ok 240 - jab → cross → jab → jab is player-controlled and each link spends exactly one charge
+  ---
+  duration_ms: 15.0123
+  ...
+# Subtest: normal J J can activate Overdrive on a hit-confirm and link Rush J Rush J Rush K
+ok 241 - normal J J can activate Overdrive on a hit-confirm and link Rush J Rush J Rush K
+  ---
+  duration_ms: 24.7069
+  ...
+# Subtest: Rush obeys the five-hit separation cap rather than enabling an infinite combo
+ok 242 - Rush obeys the five-hit separation cap rather than enabling an infinite combo
+  ---
+  duration_ms: 16.6839
+  ...
+# Subtest: the last K is Meteor Straight: ends Overdrive, commits a powerful physical finisher and separates
+ok 243 - the last K is Meteor Straight: ends Overdrive, commits a powerful physical finisher and separates
+  ---
+  duration_ms: 14.7671
+  ...
+# Subtest: last J spends the charge without inventing Meteor or another automatic hit
+ok 244 - last J spends the charge without inventing Meteor or another automatic hit
+  ---
+  duration_ms: 18.8877
+  ...
+# Subtest: a Rush whiff consumes its charge, cannot hit-confirm cancel and leaves full recovery
+ok 245 - a Rush whiff consumes its charge, cannot hit-confirm cancel and leaves full recovery
+  ---
+  duration_ms: 15.6609
+  ...
+# Subtest: a committed Rush never follows a target off the depth line or turns after crossing sides
+ok 246 - a committed Rush never follows a target off the depth line or turns after crossing sides
+  ---
+  duration_ms: 12.4933
+  ...
+# Subtest: Rush forward motion stops at real bodies and cannot push a defender during startup
+ok 247 - Rush forward motion stops at real bodies and cannot push a defender during startup
+  ---
+  duration_ms: 9.9681
+  ...
+# Subtest: Meteor can miss and be physically punished during its long whiff recovery
+ok 248 - Meteor can miss and be physically punished during its long whiff recovery
+  ---
+  duration_ms: 25.5597
+  ...
+# Subtest: Overdrive grants no invulnerability and a real hit only interrupts the requested punch
+ok 249 - Overdrive grants no invulnerability and a real hit only interrupts the requested punch
+  ---
+  duration_ms: 15.0381
+  ...
+# Subtest: guard, Space, finta, neutral stamina and Perfect Dodge remain usable during Overdrive
+ok 250 - guard, Space, finta, neutral stamina and Perfect Dodge remain usable during Overdrive
+  ---
+  duration_ms: 48.7991
+  ...
+# Subtest: Overdrive HUD keeps guard, dodge, Perfect Dodge and counter feedback readable
+ok 251 - Overdrive HUD keeps guard, dodge, Perfect Dodge and counter feedback readable
+  ---
+  duration_ms: 17.4412
+  ...
+# Subtest: Perfect Dodge into a requested Rush K preserves its physical counter then permits Rush links
+ok 252 - Perfect Dodge into a requested Rush K preserves its physical counter then permits Rush links
+  ---
+  duration_ms: 21.0268
+  ...
+# Subtest: early Rush K may be feinted, but its charge is not refunded
+ok 253 - early Rush K may be feinted, but its charge is not refunded
+  ---
+  duration_ms: 10.1694
+  ...
+# Subtest: insufficient stamina, stale input, repeated O and failed cancel never spend charges
+ok 254 - insufficient stamina, stale input, repeated O and failed cancel never spend charges
+  ---
+  duration_ms: 10.0161
+  ...
+# Subtest: Overdrive cannot cancel a normal miss or startup to escape its commitment
+ok 255 - Overdrive cannot cancel a normal miss or startup to escape its commitment
+  ---
+  duration_ms: 10.3699
+  ...
+# Subtest: Rush damage does not refill its own meter; ordinary exchanges still do
+ok 256 - Rush damage does not refill its own meter; ordinary exchanges still do
+  ---
+  duration_ms: 23.9518
+  ...
+# Subtest: re-entry needs a full meter and respects cooldown even after artificial refilling
+ok 257 - re-entry needs a full meter and respects cooldown even after artificial refilling
+  ---
+  duration_ms: 12.7095
+  ...
+# Subtest: timeout does not erase an already committed physical Rush in flight
+ok 258 - timeout does not erase an already committed physical Rush in flight
+  ---
+  duration_ms: 26.5614
+  ...
+# Subtest: afterimages use real successive poses, constant canvas/scale, fixed feet and at most three ghosts
+ok 259 - afterimages use real successive poses, constant canvas/scale, fixed feet and at most three ghosts
+  ---
+  duration_ms: 13.1011
+  ...
+# Subtest: the real actor renderer draws every Rush phase without indexing a single normalized canvas as an animation sheet
+ok 260 - the real actor renderer draws every Rush phase without indexing a single normalized canvas as an animation sheet
+  ---
+  duration_ms: 17.927
+  ...
+# Subtest: left-facing Rush commits left and the last Meteor remains equally physical
+ok 261 - left-facing Rush commits left and the last Meteor remains equally physical
+  ---
+  duration_ms: 16.7811
+  ...
+# Subtest: round end clears Overdrive, any attack and all ghosts without awarding a medal
+ok 262 - round end clears Overdrive, any attack and all ghosts without awarding a medal
+  ---
+  duration_ms: 16.1989
+  ...
+# Subtest: briefing, hidden document and interval freeze Overdrive clock and charges
+ok 263 - briefing, hidden document and interval freeze Overdrive clock and charges
+  ---
+  duration_ms: 38.5736
+  ...
+# Subtest: Rushes and six-second timeout remain consistent at 30 FPS
+ok 264 - Rushes and six-second timeout remain consistent at 30 FPS
+  ---
+  duration_ms: 58.2365
+  ...
+# Subtest: Rushes and six-second timeout remain consistent at 60 FPS
+ok 265 - Rushes and six-second timeout remain consistent at 60 FPS
+  ---
+  duration_ms: 49.9925
+  ...
+# Subtest: Rushes and six-second timeout remain consistent at 144 FPS
+ok 266 - Rushes and six-second timeout remain consistent at 144 FPS
+  ---
+  duration_ms: 57.123
+  ...
+1..266
+# tests 266
+# suites 0
+# pass 266
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5503.1816

@@ -1,0 +1,165 @@
+TAP version 13
+# Subtest: drawing a frozen playing match does not mutate physics, scoring, AI or special state, or consume game RNG
+ok 1 - drawing a frozen playing match does not mutate physics, scoring, AI or special state, or consume game RNG
+  ---
+  duration_ms: 20.7533
+  ...
+# Subtest: the arena background is cached, and rendering owns no new collision or physics objects
+ok 2 - the arena background is cached, and rendering owns no new collision or physics objects
+  ---
+  duration_ms: 11.0911
+  ...
+# Subtest: surface, targets, net, players and ball use one uniform view; the full table and both players remain in frame
+ok 3 - surface, targets, net, players and ball use one uniform view; the full table and both players remain in frame
+  ---
+  duration_ms: 11.1003
+  ...
+# Subtest: all eight sprite poses preserve source ratio, fixed scale and a stable foot anchor
+ok 4 - all eight sprite poses preserve source ratio, fixed scale and a stable foot anchor
+  ---
+  duration_ms: 6.6767
+  ...
+# Subtest: missing or unloaded sprites do not create an invalid drawImage call
+ok 5 - missing or unloaded sprites do not create an invalid drawImage call
+  ---
+  duration_ms: 7.1791
+  ...
+# Subtest: ball altitude changes only the displayed ball/shadow relationship; bounce keeps a circular readable ball
+ok 6 - ball altitude changes only the displayed ball/shadow relationship; bounce keeps a circular readable ball
+  ---
+  duration_ms: 8.2068
+  ...
+# Subtest: 18,000 simulation steps with and without drawing produce identical physical states and RNG use, including both specials
+ok 7 - 18,000 simulation steps with and without drawing produce identical physical states and RNG use, including both specials
+  ---
+  duration_ms: 16167.78
+  ...
+# Subtest: all eight sports share one short configuration contract
+ok 8 - all eight sports share one short configuration contract
+  ---
+  duration_ms: 5.1946
+  ...
+# Subtest: inactive controller does not intercept normal gameplay
+ok 9 - inactive controller does not intercept normal gameplay
+  ---
+  duration_ms: 0.4503
+  ...
+# Subtest: briefing remains open indefinitely and never starts from its animation clock
+ok 10 - briefing remains open indefinitely and never starts from its animation clock
+  ---
+  duration_ms: 0.5845
+  ...
+# Subtest: Space confirms once after the short exit transition
+ok 11 - Space confirms once after the short exit transition
+  ---
+  duration_ms: 0.4807
+  ...
+# Subtest: Enter confirms once after the short exit transition
+ok 12 - Enter confirms once after the short exit transition
+  ---
+  duration_ms: 0.3919
+  ...
+# Subtest: Escape cancels without triggering the start callback
+ok 13 - Escape cancels without triggering the start callback
+  ---
+  duration_ms: 0.3652
+  ...
+# Subtest: opening with the NPC interaction key held cannot confirm until release and a fresh press
+ok 14 - opening with the NPC interaction key held cannot confirm until release and a fresh press
+  ---
+  duration_ms: 0.477
+  ...
+# Subtest: repeated keydown never confirms
+ok 15 - repeated keydown never confirms
+  ---
+  duration_ms: 0.248
+  ...
+# Subtest: confirming and movement keys do not leak into gameplay while held
+ok 16 - confirming and movement keys do not leak into gameplay while held
+  ---
+  duration_ms: 0.7157
+  ...
+# Subtest: lost focus releases stale held-key guards
+ok 17 - lost focus releases stale held-key guards
+  ---
+  duration_ms: 0.7293
+  ...
+# Subtest: all inputs are consumed while a briefing is open
+ok 18 - all inputs are consumed while a briefing is open
+  ---
+  duration_ms: 0.3794
+  ...
+# Subtest: active briefing stops propagation to minigame-specific listeners
+ok 19 - active briefing stops propagation to minigame-specific listeners
+  ---
+  duration_ms: 0.3118
+  ...
+# Subtest: opening another briefing cannot silently replace an active one
+ok 20 - opening another briefing cannot silently replace an active one
+  ---
+  duration_ms: 0.1872
+  ...
+# Subtest: cancel is optional for sports without a return route
+ok 21 - cancel is optional for sports without a return route
+  ---
+  duration_ms: 0.2321
+  ...
+# Subtest: fade, layout, essential controls and icon render through the same Canvas component
+ok 22 - fade, layout, essential controls and icon render through the same Canvas component
+  ---
+  duration_ms: 6.714
+  ...
+# Subtest: every sport renders inside the same fixed card without truncated instructional text
+ok 23 - every sport renders inside the same fixed card without truncated instructional text
+  ---
+  duration_ms: 6.9681
+  ...
+# Subtest: configuration validates essentials and bounds tutorial size
+ok 24 - configuration validates essentials and bounds tutorial size
+  ---
+  duration_ms: 0.8193
+  ...
+# Subtest: animation uses deltaTime at 30 Hz
+ok 25 - animation uses deltaTime at 30 Hz
+  ---
+  duration_ms: 0.2633
+  ...
+# Subtest: animation uses deltaTime at 60 Hz
+ok 26 - animation uses deltaTime at 60 Hz
+  ---
+  duration_ms: 0.1544
+  ...
+# Subtest: animation uses deltaTime at 144 Hz
+ok 27 - animation uses deltaTime at 144 Hz
+  ---
+  duration_ms: 0.1546
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 30 Hz
+ok 28 - countdown keeps simulation/input gated until VAI finishes at 30 Hz
+  ---
+  duration_ms: 0.8868
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 60 Hz
+ok 29 - countdown keeps simulation/input gated until VAI finishes at 60 Hz
+  ---
+  duration_ms: 0.3744
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 144 Hz
+ok 30 - countdown keeps simulation/input gated until VAI finishes at 144 Hz
+  ---
+  duration_ms: 0.6332
+  ...
+# Subtest: countdown is optional so Marathon can retain its own native countdown
+ok 31 - countdown is optional so Marathon can retain its own native countdown
+  ---
+  duration_ms: 0.2462
+  ...
+1..31
+# tests 31
+# suites 0
+# pass 31
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16391.1195

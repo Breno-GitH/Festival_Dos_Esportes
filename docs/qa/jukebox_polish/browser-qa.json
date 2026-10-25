@@ -1,0 +1,95 @@
+{
+  "checks": [
+    "No mini-player or automatic music before the player starts a theme",
+    "Actual ship F -> Jukebox -> play: music continues after closing menu, player appears beside coins",
+    "All four arrangements produce real WebAudio output; pointer skip updates track name and cycles songs",
+    "Mute actually silences master audio; unmute keeps theme, icon/label update and focus returns to game",
+    "World movement still works immediately after using player buttons",
+    "Music and mini-player follow Overworld island changes",
+    "Minigame pauses jukebox and hides controls; returning resumes chosen theme",
+    "Cinematics keep their own audio space; jukebox resumes after them",
+    "600/450/360px layouts keep player alongside wallet, fully inside screen",
+    "Main menu stops the jukebox rather than leaking music into endings/new campaign",
+    "Reload retains purchased jukebox/unlocked themes, without forced autoplay",
+    "Zero runtime exceptions, console errors/warnings, 404 or failed asset requests"
+  ],
+  "audio": [
+    {
+      "playing": "market",
+      "name": "FEIRA VIAJANTE",
+      "style": "SWING DA FEIRA",
+      "bpm": 108,
+      "meter": "4/4",
+      "muted": false,
+      "paused": false,
+      "voices": 3,
+      "rms": 0.016836537919279825
+    },
+    {
+      "playing": "festival",
+      "name": "FESTIVAL DOS CAMPEÕES",
+      "style": "ARCADE EM MARCHA",
+      "bpm": 136,
+      "meter": "4/4",
+      "muted": false,
+      "paused": false,
+      "voices": 3,
+      "rms": 0.02221769379815002
+    },
+    {
+      "playing": "ocean",
+      "name": "BRISA DO ARQUIPÉLAGO",
+      "style": "BALANÇO DO MAR",
+      "bpm": 82,
+      "meter": "6/8",
+      "muted": false,
+      "paused": false,
+      "voices": 4,
+      "rms": 0.0052457843923033095
+    },
+    {
+      "playing": "mountain",
+      "name": "TRILHA DA MONTANHA",
+      "style": "PASSOS NO CUME",
+      "bpm": 94,
+      "meter": "3/4",
+      "muted": false,
+      "paused": false,
+      "voices": 1,
+      "rms": 0.0034182561864630153
+    }
+  ],
+  "errors": [],
+  "http": [],
+  "failed": [],
+  "layout600": {
+    "left": 258,
+    "right": 526,
+    "top": 10,
+    "bottom": 49,
+    "coinLeft": 532,
+    "coinRight": 590,
+    "coinTop": 10,
+    "titleBottom": 27.59375
+  },
+  "layout450": {
+    "left": 109,
+    "right": 377,
+    "top": 34.59375,
+    "bottom": 73.59375,
+    "coinLeft": 383,
+    "coinRight": 440,
+    "coinTop": 34.59375,
+    "titleBottom": 27.59375
+  },
+  "layout360": {
+    "left": 47,
+    "right": 287,
+    "top": 34.59375,
+    "bottom": 73.59375,
+    "coinLeft": 293,
+    "coinRight": 350,
+    "coinTop": 34.59375,
+    "titleBottom": 27.59375
+  }
+}

@@ -6,7 +6,7 @@ function setup(){
   FestivalChallenges:{onBoxingStart(){},onBoxingResult(){}},desbloquearMedalha(){},
   resetBoxingPresentation(){},updateBoxingPresentation(){},boxingShowEvent:kind=>events.push(kind),addEventListener(){}};
  env.window=env;vm.createContext(env);
- vm.runInContext(fs.readFileSync(__dirname+'/boxing_arena.js','utf8')+`\nglobalThis.api={game:boxeGame,config:BOXING_CONFIG,input:boxingInputPress,reset:resetBoxe,update:updateBoxeGame,start:boxingStartAttack,dodge:boxingStartDodge,pressure:boxingApplyGuardPressure};`,env);
+ vm.runInContext(['boxing_controls.js','boxing_resources.js','boxing_rounds.js','boxing_arena.js'].map(n=>fs.readFileSync(__dirname+'/'+n,'utf8')).join('\n')+`\nglobalThis.api={game:boxeGame,config:BOXING_CONFIG,input:boxingInputPress,reset:resetBoxe,update:updateBoxeGame,start:boxingStartAttack,dodge:boxingStartDodge,pressure:boxingApplyGuardPressure};`,env);
  const a=env.api;a.reset(true);a.game.qaFreezeAi=true;
  const step=(n=1,fps=60)=>{for(let i=0;i<n;i++){clock+=1000/fps;a.update(1/fps);}};
  const until=predicate=>{for(let i=0;i<200&&!predicate();i++)step();assert.ok(predicate(),'condition did not occur');};
@@ -14,7 +14,7 @@ function setup(){
  const guardMaster=()=>{a.game.qaFreezeAi=false;vm.runInContext('boxingMasterIntent=()=>({x:0,y:0,guard:true,attack:null,dodge:false});',env);};
  return {a,env,events,step,until,place,guardMaster};
 }
-for(const [pattern,total]of [[['jab','jab','cross'],29],[['jab','cross'],21],[['jab','jab','jab'],21]]){
+for(const [pattern,total]of [[['jab','jab','cross'],25],[['jab','cross'],20],[['jab','jab','jab'],18]]){
  test(pattern.join(' → ')+' is a real connected combo with exactly one contact per punch',()=>{
   const g=setup();let previous=100;
   for(let i=0;i<pattern.length;i++){
@@ -29,9 +29,9 @@ test('a late follow-up cannot keep a combo after the defender has left hitstun',
  assert.equal(g.a.start(g.a.game.player,'jab',true),false);g.until(()=>!g.a.game.player.attack);g.a.input.jab=true;g.until(()=>g.a.game.mestre.hp<94);
  assert.equal(g.a.game.player.comboCount,1);assert.equal(g.a.game.mestre.hp,88);
 });
-test('a fourth light cannot cancel the third hit into an infinite combo',()=>{
- const g=setup();for(let i=0;i<3;i++){const hp=g.a.game.mestre.hp;g.a.input.jab=true;g.until(()=>g.a.game.mestre.hp<hp);}
- g.a.input.jab=true;g.step(8);assert.equal(g.a.game.player.comboCount,3);assert.equal(g.a.game.player.attack.stage,3);assert.equal(g.a.game.mestre.hp,79);
+test('a sixth light cannot cancel the fifth finisher into an infinite combo',()=>{
+ const g=setup();for(let i=0;i<5;i++){const hp=g.a.game.mestre.hp;g.a.input.jab=true;g.until(()=>g.a.game.mestre.hp<hp);}
+ g.a.input.jab=true;g.step(8);assert.equal(g.a.game.player.comboCount,5);assert.equal(g.a.game.player.attack.stage,5);assert.equal(g.a.game.mestre.hp,72);
 });
 test('a blocked punch does not authorize a hit-confirm cancel',()=>{
  const g=setup();g.guardMaster();g.a.start(g.a.game.player,'jab');g.until(()=>g.a.game.mestre.hp===98);g.a.input.cross=true;g.step(6);
@@ -57,21 +57,21 @@ test('future blocked specials add much more guard pressure but install no specia
  assert.equal(g.env.BoxingSpecials.onBlocked(g.a.game.juiz),false);
 });
 test('correct dodge permits an early counter, with bonus damage and a short extra hitstun',()=>{
- const g=setup();g.a.start(g.a.game.mestre,'cross');g.step(6);g.a.dodge(g.a.game.player,1,0,g.a.game.mestre);
+ const g=setup();g.a.start(g.a.game.mestre,'cross');g.step(g.a.game.mestre.attack.startup-6);g.a.dodge(g.a.game.player,1,0,g.a.game.mestre);
  g.until(()=>g.a.game.player.counterWindow>0);g.a.input.jab=true;g.until(()=>g.a.game.player.attack?.counter===true);
  assert.ok(g.a.game.player.dodgeAge<18);g.until(()=>g.a.game.mestre.hp<100);
  assert.equal(g.a.game.player.hp,100);assert.equal(g.a.game.mestre.hp,91);assert.equal(g.a.game.mestre.hitstun,16);assert.ok(g.events.includes('counter'));assert.ok(g.a.game.effects.every(effect=>effect.text!=='ESQUIVA!'));
 });
 test('a timed sidestep out of the punch line opens a counter, even without overlap at the final position',()=>{
- const g=setup();g.a.start(g.a.game.mestre,'cross');g.step(6);g.a.dodge(g.a.game.player,0,-1,g.a.game.mestre);g.step(6);
+ const g=setup();g.a.start(g.a.game.mestre,'cross');g.step(g.a.game.mestre.attack.startup-6);g.a.dodge(g.a.game.player,0,-1,g.a.game.mestre);g.step(6);
  assert.ok(Math.abs(g.a.game.player.y-g.a.game.mestre.y)>12);assert.equal(g.a.game.player.hp,100);assert.ok(g.a.game.player.counterWindow>0);
 });
 test('dodging outside the threatened range awards no free counter',()=>{
- const g=setup();g.a.game.mestre.x=330;g.a.start(g.a.game.mestre,'cross');g.step(6);g.a.dodge(g.a.game.player,0,-1,g.a.game.mestre);g.step(6);
+ const g=setup();g.a.game.mestre.x=330;g.a.start(g.a.game.mestre,'cross');g.step(g.a.game.mestre.attack.startup-6);g.a.dodge(g.a.game.player,0,-1,g.a.game.mestre);g.step(6);
  assert.equal(g.a.game.player.counterWindow,0);
 });
 test('waiting out the counter window removes the damage bonus',()=>{
- const g=setup();g.a.start(g.a.game.mestre,'cross');g.step(6);g.a.dodge(g.a.game.player,1,0,g.a.game.mestre);g.until(()=>g.a.game.player.counterWindow>0);g.step(65);g.place();
+ const g=setup();g.a.start(g.a.game.mestre,'cross');g.step(g.a.game.mestre.attack.startup-6);g.a.dodge(g.a.game.player,1,0,g.a.game.mestre);g.until(()=>g.a.game.player.counterWindow>0);g.step(65);g.place();
  g.a.start(g.a.game.player,'jab');assert.equal(g.a.game.player.attack.counter,false);g.until(()=>g.a.game.mestre.hp<100);assert.equal(g.a.game.mestre.hp,94);
 });
 test('hit pause freezes both fighters for only 1–3 steps and preserves a newly buffered punch',()=>{

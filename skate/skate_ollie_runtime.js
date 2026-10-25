@@ -65,6 +65,7 @@ function skateClockNow() {
 window.skateDebug = window.skateDebug ?? false;
 window.setSkateDebug = enabled => { window.skateDebug = Boolean(enabled); };
 let skateLastTrickResult = null;
+let skateQuestTrickCompletedAt = -Infinity;
 let skateCheckpointsReached = new Set();
 function loadSkateAssetOnce(key, source) {
     if (!key || skateOllieImages.has(key)) return skateOllieImages.get(key);
@@ -173,6 +174,7 @@ window.addEventListener("keyup", event => {
 });
 
 function resetSkateGame(restartFromCheckpoint = false) {
+    window.FestivalChallenges?.start('skate');
     const reachedCheckpoints = new Set(skateCheckpointsReached);
     const bankedScore = skateCombo.bankedScore;
     const resumePoint = restartFromCheckpoint === "checkpoint"
@@ -210,6 +212,7 @@ function resetSkateGame(restartFromCheckpoint = false) {
     skateCombo.reset();
     skateCombo.bankedScore = resumePoint ? bankedScore : 0;
     skateLastTrickResult = null;
+    skateQuestTrickCompletedAt = -Infinity;
     skateCrashComboLost = 0;
     skateCheckpointsReached = resumePoint ? reachedCheckpoints : new Set();
     skateOllieLastTime = skateClockNow();
@@ -294,6 +297,7 @@ function updateSkateGame() {
         const state = skateOllieSimulation.state;
         const player = state.player;
         if (state.phase === "FAILED") {
+            window.FestivalChallenges?.onSkate({type:'FALL'});
             skateJourney.observe(state, false);
             if (skateTraversal.mode !== "CRASH") {
                 skateCrashComboLost = skateCombo.breakCombo();
@@ -326,6 +330,7 @@ function updateSkateGame() {
             tricks: skateTrickSystem
         });
         for (const transition of traversalTransitions) {
+            window.FestivalChallenges?.onSkate(transition);
             if (transition.type === "GRIND_ENTER") {
                 skateSpaceParser.consumeJumpIntent();
                 skateOllieInput.airTrickInputActive = false;
@@ -355,7 +360,19 @@ function updateSkateGame() {
             skateLastTrickResult = skateTrickSystem.lastResult;
             if (skateLastTrickResult && skateLastTrickResult.status === "COMPLETED") {
                 skateCombo.registerTrick(skateLastTrickResult);
+                if(!player.grounded)skateQuestTrickCompletedAt=state.elapsed;
+                window.FestivalChallenges?.onSkate({type:'TRICK',airborne:!player.grounded});
             }
+        }
+        // Quest-only landing grade: an actual collision-free touchdown after a completed
+        // aerial trick is GOOD; an already completed pose with spare airtime is PERFECT.
+        // No landing impulse, ramp rule or scoring rule is changed by this annotation.
+        if (!previousGrounded && player.grounded && skateTraversal.mode !== 'CRASH') {
+            const cleanPose = skateTrickSystem.lastResult?.status === 'COMPLETED';
+            const quality = !cleanPose ? 'ROUGH'
+                : state.elapsed-skateQuestTrickCompletedAt >= .12 ? 'PERFECT' : 'GOOD';
+            window.FestivalChallenges?.onSkate({type:'LAND',quality});
+            skateQuestTrickCompletedAt=-Infinity;
         }
         skateCombo.update(SKATE_OLLIE_FIXED_STEP);
         for (const checkpoint of skateCourse.checkpoints) {

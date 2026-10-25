@@ -1,0 +1,95 @@
+{
+  "checks": [
+    "Store and sign preserve all four HUB exits, merchant approach and sign reading area",
+    "B/M do not open campaign interfaces in any of the eight minigames",
+    "Record telemetry supports all eight games; race keeps lower finish time",
+    "Legacy save with first medal queues arrival once, preserving coins and old claimed rewards",
+    "Completed arrival and existing owned inventory do not replay on a subsequent load",
+    "Final integrated extra checks: zero runtime or loading errors"
+  ],
+  "errors": [],
+  "http": [],
+  "failed": [],
+  "navigation": [
+    {
+      "x": 224,
+      "y": 20,
+      "reachable": true
+    },
+    {
+      "x": 420,
+      "y": 148,
+      "reachable": true
+    },
+    {
+      "x": 224,
+      "y": 272,
+      "reachable": true
+    },
+    {
+      "x": 20,
+      "y": 148,
+      "reachable": true
+    },
+    {
+      "x": 344,
+      "y": 140,
+      "reachable": true
+    },
+    {
+      "x": 344,
+      "y": 236,
+      "reachable": true
+    }
+  ],
+  "records": {
+    "pingpong": {
+      "best": 50,
+      "label": "Pontos",
+      "unit": "PTS",
+      "lowerIsBetter": false
+    },
+    "basquete": {
+      "best": 0,
+      "label": "Pontos",
+      "unit": "PTS",
+      "lowerIsBetter": false
+    },
+    "corrida": {
+      "best": 65,
+      "label": "Tempo de chegada",
+      "unit": "S",
+      "lowerIsBetter": true
+    },
+    "skate": {
+      "best": 0,
+      "label": "Pontuação",
+      "unit": "PTS",
+      "lowerIsBetter": false
+    },
+    "arco": {
+      "best": 0,
+      "label": "Pontos",
+      "unit": "PTS",
+      "lowerIsBetter": false
+    },
+    "escalada": {
+      "best": 0,
+      "label": "Altura",
+      "unit": "M",
+      "lowerIsBetter": false
+    },
+    "boxe": {
+      "best": 0,
+      "label": "Rounds vencidos",
+      "unit": "ROUNDS",
+      "lowerIsBetter": false
+    },
+    "surf": {
+      "best": 0,
+      "label": "Pontuação",
+      "unit": "PTS",
+      "lowerIsBetter": false
+    }
+  }
+}

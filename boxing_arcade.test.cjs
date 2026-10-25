@@ -6,7 +6,7 @@ function setup(){
   FestivalChallenges:{onBoxingStart(){},onBoxingResult:(...a)=>results.push(a)},desbloquearMedalha:id=>medals.push(id),
   resetBoxingPresentation(){},updateBoxingPresentation(){},boxingShowEvent(){},addEventListener(){}};
  env.window=env;vm.createContext(env);
- vm.runInContext(fs.readFileSync(__dirname+'/boxing_arena.js','utf8')+`\nglobalThis.api={game:boxeGame,config:BOXING_CONFIG,input:boxingInputPress,reset:resetBoxe,update:updateBoxeGame,start:boxingStartAttack,dodge:boxingStartDodge,constrain:boxingConstrain,sides:boxingRingSides,distance:boxingDistance,separate:boxingSeparateFighters,special:boxingRequestSpecial,release:boxingReleaseInput};`,env);
+ vm.runInContext(['boxing_controls.js','boxing_resources.js','boxing_rounds.js','boxing_arena.js'].map(n=>fs.readFileSync(__dirname+'/'+n,'utf8')).join('\n')+`\nglobalThis.api={game:boxeGame,config:BOXING_CONFIG,input:boxingInputPress,reset:resetBoxe,update:updateBoxeGame,start:boxingStartAttack,dodge:boxingStartDodge,constrain:boxingConstrain,sides:boxingRingSides,distance:boxingDistance,separate:boxingSeparateFighters,special:boxingRequestSpecial,release:boxingReleaseInput};`,env);
  const a=env.api;a.reset(true);a.game.qaFreezeAi=true;
  const step=(n=1,fps=60)=>{for(let i=0;i<n;i++){clock+=1000/fps;a.update(1/fps);}};
  const place=(distance=40,depth=0)=>{a.game.player.x=200;a.game.player.y=210;a.game.mestre.x=200+distance;a.game.mestre.y=210+depth;};
@@ -28,7 +28,7 @@ test('all four rope corners constrain body colliders; overlapping bodies separat
  }
 });
 test('light and heavy require real horizontal reach and matching depth',()=>{
- for(const [kind,distance,depth,damage]of [['jab',40,0,6],['jab',53,0,0],['jab',40,12,0],['cross',60,0,14],['cross',64,0,0],['cross',40,13,0]]){
+ for(const [kind,distance,depth,damage]of [['jab',40,0,6],['jab',55,0,0],['jab',40,12,0],['cross',60,0,14],['cross',70,0,0],['cross',40,13,0]]){
   const g=setup();g.place(distance,depth);g.a.start(g.a.game.player,kind);g.step(20);assert.equal(g.a.game.mestre.hp,100-damage,kind+' '+distance+','+depth);
  }
 });
@@ -37,23 +37,23 @@ test('walking to another depth line avoids a committed straight punch',()=>{
 });
 test('guard reduces damage, still permits chip and pushback, and breaks under sustained pressure',()=>{
  const g=setup();g.place();g.masterIntent('{x:0,y:0,guard:true,attack:null,dodge:false}');
- g.a.start(g.a.game.player,'jab');g.step(7);assert.equal(g.a.game.mestre.hp,98);assert.ok(g.a.game.mestre.x>240);assert.ok(g.a.game.mestre.guardPressure>0);
+ g.a.start(g.a.game.player,'jab');g.step(10);assert.equal(g.a.game.mestre.hp,98);assert.ok(g.a.game.mestre.x>240);assert.ok(g.a.game.mestre.guardPressure>0);
  g.step(30);g.place();g.a.game.mestre.guardPressure=80;g.a.start(g.a.game.player,'cross');g.step(13);
  assert.equal(g.a.game.mestre.hp,94);assert.ok(g.a.game.mestre.guardBreakTimer>0);assert.equal(g.a.game.mestre.guard,false);
 });
 test('well-timed dodge avoids a real hit and opens a counter; an early dodge can be punished',()=>{
- const good=setup();good.place();good.a.start(good.a.game.mestre,'cross');good.step(6);good.a.dodge(good.a.game.player,1,0,good.a.game.mestre);good.step(6);
+ const good=setup();good.place();good.a.start(good.a.game.mestre,'cross');good.step(good.a.game.mestre.attack.startup-6);good.a.dodge(good.a.game.player,1,0,good.a.game.mestre);good.step(6);
  assert.equal(good.a.game.player.hp,100);assert.ok(good.a.game.player.counterWindow>0);
- const early=setup();early.place();early.a.start(early.a.game.mestre,'cross');early.a.dodge(early.a.game.player,1,0,early.a.game.mestre);early.step(13);assert.equal(early.a.game.player.hp,86);
+ const early=setup();early.place();early.a.start(early.a.game.mestre,'cross');early.a.dodge(early.a.game.player,1,0,early.a.game.mestre);early.step(17);assert.equal(early.a.game.player.hp,80);assert.equal(early.a.game.mestre.attack.counterSource,'DODGE_RECOVERY');
 });
 test('dodge cannot be restarted or spammed while active',()=>{
  const g=setup();g.place();assert.equal(g.a.dodge(g.a.game.player,1,0,g.a.game.mestre),true);g.step(4);
  assert.equal(g.a.dodge(g.a.game.player,1,0,g.a.game.mestre),false);assert.equal(g.a.game.player.dodgeAge,4);
 });
-test('J J K links only connected lights and finishes a three-hit combo with heavier damage',()=>{
+test('J J K links connected punches with scaled damage and a heavier third hit',()=>{
  const g=setup();g.place();const until=hp=>{for(let i=0;i<80&&g.a.game.mestre.hp>hp;i++)g.step();};
- g.a.input.jab=true;until(94);g.a.input.jab=true;until(87);g.a.input.cross=true;until(71);
- assert.equal(g.a.game.mestre.hp,71);assert.equal(g.a.game.player.comboCount,3);assert.ok(g.a.game.player.attack.kind==='cross');
+ g.a.input.jab=true;until(94);g.a.input.jab=true;until(88);g.a.input.cross=true;until(75);
+ assert.equal(g.a.game.mestre.hp,75);assert.equal(g.a.game.player.comboCount,3);assert.ok(g.a.game.player.attack.kind==='cross');
 });
 test('missed heavy has a longer committed recovery and cannot be canceled into another hit',()=>{
  const g=setup();g.place(100);g.a.start(g.a.game.player,'cross');g.step(38);assert.equal(g.a.game.mestre.hp,100);assert.ok(g.a.game.player.whiffFrames>0);
@@ -65,18 +65,19 @@ test('fighters turn toward each other after changing sides, including during rec
 test('O has no installed special, produces no attack or damage, and only supplies a future hook',()=>{
  const g=setup();g.place();g.a.input.special=true;g.step(20);assert.equal(g.a.game.mestre.hp,100);assert.equal(g.a.game.player.attack,null);assert.equal(g.env.BoxingSpecials.available('zorp'),false);
 });
-test('zero HP leads to KO once, no HP recovery, and the existing winner reward',()=>{
- const g=setup();g.place();g.a.game.mestre.hp=6;g.a.start(g.a.game.player,'jab');g.step(6);assert.equal(g.a.game.phase,'KNOCKDOWN');assert.equal(g.a.game.mestre.hp,0);
- g.step(100);assert.equal(g.a.game.phase,'RESULT');assert.equal(g.a.game.mestre.hp,0);assert.equal(g.results.length,1);assert.deepEqual(g.medals,['boxe']);assert.equal(g.a.game.mestre.damageFlash,0);assert.equal(g.a.game.mestre.hitstun,0);
+test('zero HP wins one round once; reward waits for the complete match',()=>{
+ const g=setup();g.place();g.a.game.mestre.hp=6;g.a.start(g.a.game.player,'jab');g.step(6);assert.equal(g.a.game.phase,'KNOCKDOWN');assert.equal(g.a.game.mestre.hp,0);g.step(156);assert.equal(g.a.game.phase,'ROUND_RESULT');
+ g.step(100);assert.equal(g.a.game.phase,'INTERMISSION');assert.equal(g.a.game.mestre.hp,0);assert.equal(g.results.length,0);assert.deepEqual(g.medals,[]);assert.equal(g.a.game.rounds.wins.zorp,1);assert.equal(g.a.game.mestre.hitstun,0);
 });
 test('master KO awards no medal; restarting restores both fighters to 100 HP',()=>{
- const g=setup();g.place();g.a.game.player.hp=6;g.a.start(g.a.game.mestre,'jab');g.step(60);
- assert.equal(g.a.game.phase,'RESULT');assert.equal(g.a.game.winner,'master');assert.equal(g.medals.length,0);
- g.a.input.restart=true;g.step();assert.equal(g.a.game.phase,'FIGHTING');assert.equal(g.a.game.player.hp,100);assert.equal(g.a.game.mestre.hp,100);
+ const g=setup();g.place();g.a.game.player.hp=6;g.a.start(g.a.game.mestre,'jab');g.step(165);
+ assert.equal(g.a.game.phase,'ROUND_RESULT');assert.equal(g.a.game.rounds.wins.master,1);assert.equal(g.medals.length,0);
+ g.step(300);g.place();g.a.game.player.hp=6;g.a.start(g.a.game.mestre,'jab');g.step(266);assert.equal(g.a.game.phase,'RESULT');assert.equal(g.a.game.winner,'master');
+ g.a.input.restart=true;g.step();assert.equal(g.a.game.phase,'INTRO');g.step(132);assert.equal(g.a.game.phase,'FIGHTING');assert.equal(g.a.game.player.hp,100);assert.equal(g.a.game.mestre.hp,100);
 });
 test('simultaneous lethal contacts produce a double KO without choosing an arbitrary winner',()=>{
- const g=setup();g.place();g.a.game.player.hp=g.a.game.mestre.hp=6;g.a.start(g.a.game.player,'jab');g.a.start(g.a.game.mestre,'jab');g.step(6);g.step(50);
- assert.equal(g.a.game.winner,'draw');assert.equal(g.a.game.player.hp,0);assert.equal(g.a.game.mestre.hp,0);assert.equal(g.medals.length,0);
+ const g=setup();g.place();g.a.game.player.hp=g.a.game.mestre.hp=6;g.a.start(g.a.game.player,'jab');g.a.start(g.a.game.mestre,'jab');g.a.game.mestre.attack.frame=g.a.game.mestre.attack.startup-g.a.game.player.attack.startup;g.step(6);g.step(50);
+ assert.equal(g.a.game.winner,null);assert.equal(g.a.game.rounds.suddenDeath,true);assert.equal(g.a.game.player.hp,1);assert.equal(g.a.game.mestre.hp,1);assert.equal(g.medals.length,0);
 });
 test('briefing and hidden documents freeze combat; blur releases movement and guard',()=>{
  const g=setup();g.env.keys.d=true;g.a.game.phase='PRE_GAME';g.step(60);assert.equal(g.a.game.fightFrames,0);

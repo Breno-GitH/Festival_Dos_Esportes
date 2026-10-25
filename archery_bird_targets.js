@@ -1,13 +1,13 @@
 (function () {
     'use strict';
     // Coordinates always describe the hanging disk. The bird has no hurtbox.
-    const WIDTH=450, MARGIN=40, BODY_OFFSET=25, RADIUS=8;
+    const WIDTH=window.ArcheryField.WIDTH, MARGIN=40, BODY_OFFSET=25, RADIUS=8;
     const FIRST_FRAME=540, INTERVAL=420, MAX_PER_ROUND=10;
     const FLIGHTS=Object.freeze([
-        Object.freeze({entry:'LEFT',path:'HORIZONTAL',y:98,rise:0,arc:0,speed:1.55}),
-        Object.freeze({entry:'RIGHT',path:'DIAGONAL',y:104,rise:18,arc:0,speed:1.60}),
-        Object.freeze({entry:'LEFT',path:'ARC',y:116,rise:0,arc:-17,speed:1.60}),
-        Object.freeze({entry:'RIGHT',path:'ARC',y:108,rise:-10,arc:-12,speed:1.65})
+        Object.freeze({entry:'LEFT',path:'HORIZONTAL',y:110,rise:0,arc:0,speed:1.85}),
+        Object.freeze({entry:'RIGHT',path:'DIAGONAL',y:122,rise:25,arc:0,speed:1.95}),
+        Object.freeze({entry:'LEFT',path:'ARC',y:166,rise:0,arc:-22,speed:2.0}),
+        Object.freeze({entry:'RIGHT',path:'ARC',y:183,rise:-14,arc:-15,speed:2.05})
     ]);
     function position(target,progress) {
         const p=Math.max(0,Math.min(1,progress)),f=target.flight;
@@ -94,6 +94,6 @@
     window.ArcheryBirdTargets=Object.freeze({FLIGHTS,FIRST_FRAME,INTERVAL,MAX_PER_ROUND,
         create,position,step,markHit,draw,diagnostics:()=>({radius:RADIUS,basePoints:48,bodyOffset:BODY_OFFSET,
             firstSeconds:FIRST_FRAME/60,plannedSeconds:window.ArcheryMatchPacing.BIRD_FRAMES.map(f=>f/60),
-            maxPerRound:MAX_PER_ROUND,maxSimultaneous:1,
+            maxPerRound:MAX_PER_ROUND,maxSimultaneous:2,spawnPolicy:'AUTHORED_WAVES',
             flights:FLIGHTS,collision:'HANGING_DISK_ONLY'})});
 })();

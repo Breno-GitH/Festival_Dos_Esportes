@@ -1,0 +1,120 @@
+TAP version 13
+# Subtest: observer, frame holds and effects never write into frozen match data or consume game RNG
+ok 1 - observer, frame holds and effects never write into frozen match data or consume game RNG
+  ---
+  duration_ms: 6.0629
+  ...
+# Subtest: one real table contact creates one micro impact and 1–3 particles, with no repeats over bounce frames
+ok 2 - one real table contact creates one micro impact and 1–3 particles, with no repeats over bounce frames
+  ---
+  duration_ms: 4.427
+  ...
+# Subtest: real racket return produces an 18ms rendering hold while physical coordinates can keep moving
+ok 3 - real racket return produces an 18ms rendering hold while physical coordinates can keep moving
+  ---
+  duration_ms: 2.1283
+  ...
+# Subtest: global return changes every participating ball style, creates one racket event and never invents a point
+ok 4 - global return changes every participating ball style, creates one racket event and never invents a point
+  ---
+  duration_ms: 1.9373
+  ...
+# Subtest: rapid multiball contacts cannot extend ordinary visual holds indefinitely
+ok 5 - rapid multiball contacts cannot extend ordinary visual holds indefinitely
+  ---
+  duration_ms: 2.3864
+  ...
+# Subtest: new multiball balls flash only when emitted; renderer does not spawn or schedule balls
+ok 6 - new multiball balls flash only when emitted; renderer does not spawn or schedule balls
+  ---
+  duration_ms: 1.9895
+  ...
+# Subtest: POINT appears only after the real scoreboard increases, then expires without extending the game pause
+ok 7 - POINT appears only after the real scoreboard increases, then expires without extending the game pause
+  ---
+  duration_ms: 3.1681
+  ...
+# Subtest: missed balls use a brief outward visual exit, without moving the physical stopped ball or granting points
+ok 8 - missed balls use a brief outward visual exit, without moving the physical stopped ball or granting points
+  ---
+  duration_ms: 3.2354
+  ...
+# Subtest: crowd has explicit 5/10/15 rally tiers and a close-score climax, with no attribute changes
+ok 9 - crowd has explicit 5/10/15 rally tiers and a close-score climax, with no attribute changes
+  ---
+  duration_ms: 2.3421
+  ...
+# Subtest: sweat and extended follow-through require actual fatigue/struggling and recovery state
+ok 10 - sweat and extended follow-through require actual fatigue/struggling and recovery state
+  ---
+  duration_ms: 2.5235
+  ...
+# Subtest: effects and observation records remain bounded under sustained ten-ball stress
+ok 11 - effects and observation records remain bounded under sustained ten-ball stress
+  ---
+  duration_ms: 8.2031
+  ...
+# Subtest: new match/briefing clears old point labels, holds and observation records
+ok 12 - new match/briefing clears old point labels, holds and observation records
+  ---
+  duration_ms: 3.0404
+  ...
+# Subtest: feedback expires by elapsed milliseconds at 30 FPS; bounce is not repeated
+ok 13 - feedback expires by elapsed milliseconds at 30 FPS; bounce is not repeated
+  ---
+  duration_ms: 2.4145
+  ...
+# Subtest: feedback expires by elapsed milliseconds at 60 FPS; bounce is not repeated
+ok 14 - feedback expires by elapsed milliseconds at 60 FPS; bounce is not repeated
+  ---
+  duration_ms: 1.9439
+  ...
+# Subtest: feedback expires by elapsed milliseconds at 144 FPS; bounce is not repeated
+ok 15 - feedback expires by elapsed milliseconds at 144 FPS; bounce is not repeated
+  ---
+  duration_ms: 2.1781
+  ...
+# Subtest: drawing a frozen playing match does not mutate physics, scoring, AI or special state, or consume game RNG
+ok 16 - drawing a frozen playing match does not mutate physics, scoring, AI or special state, or consume game RNG
+  ---
+  duration_ms: 22.8778
+  ...
+# Subtest: the arena background is cached, and rendering owns no new collision or physics objects
+ok 17 - the arena background is cached, and rendering owns no new collision or physics objects
+  ---
+  duration_ms: 11.5231
+  ...
+# Subtest: surface, targets, net, players and ball use one uniform view; the full table and both players remain in frame
+ok 18 - surface, targets, net, players and ball use one uniform view; the full table and both players remain in frame
+  ---
+  duration_ms: 10.8838
+  ...
+# Subtest: all eight sprite poses preserve source ratio, fixed scale and a stable foot anchor
+ok 19 - all eight sprite poses preserve source ratio, fixed scale and a stable foot anchor
+  ---
+  duration_ms: 7.5724
+  ...
+# Subtest: missing or unloaded sprites do not create an invalid drawImage call
+ok 20 - missing or unloaded sprites do not create an invalid drawImage call
+  ---
+  duration_ms: 7.7456
+  ...
+# Subtest: ball altitude changes only the displayed ball/shadow relationship; bounce keeps a circular readable ball
+ok 21 - ball altitude changes only the displayed ball/shadow relationship; bounce keeps a circular readable ball
+  ---
+  duration_ms: 6.7422
+  ...
+# Subtest: 18,000 simulation steps with and without drawing produce identical physical states and RNG use, including both specials
+ok 22 - 18,000 simulation steps with and without drawing produce identical physical states and RNG use, including both specials
+  ---
+  duration_ms: 16633.5031
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16869.9391

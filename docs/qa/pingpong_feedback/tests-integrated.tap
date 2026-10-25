@@ -1,0 +1,240 @@
+TAP version 13
+# Subtest: observer, frame holds and effects never write into frozen match data or consume game RNG
+ok 1 - observer, frame holds and effects never write into frozen match data or consume game RNG
+  ---
+  duration_ms: 9.6003
+  ...
+# Subtest: one real table contact creates one micro impact and 1–3 particles, with no repeats over bounce frames
+ok 2 - one real table contact creates one micro impact and 1–3 particles, with no repeats over bounce frames
+  ---
+  duration_ms: 8.379
+  ...
+# Subtest: real racket return produces an 18ms rendering hold while physical coordinates can keep moving
+ok 3 - real racket return produces an 18ms rendering hold while physical coordinates can keep moving
+  ---
+  duration_ms: 5.3138
+  ...
+# Subtest: global return changes every participating ball style, creates one racket event and never invents a point
+ok 4 - global return changes every participating ball style, creates one racket event and never invents a point
+  ---
+  duration_ms: 4.9783
+  ...
+# Subtest: rapid multiball contacts cannot extend ordinary visual holds indefinitely
+ok 5 - rapid multiball contacts cannot extend ordinary visual holds indefinitely
+  ---
+  duration_ms: 6.2347
+  ...
+# Subtest: new multiball balls flash only when emitted; renderer does not spawn or schedule balls
+ok 6 - new multiball balls flash only when emitted; renderer does not spawn or schedule balls
+  ---
+  duration_ms: 3.3714
+  ...
+# Subtest: POINT appears only after the real scoreboard increases, then expires without extending the game pause
+ok 7 - POINT appears only after the real scoreboard increases, then expires without extending the game pause
+  ---
+  duration_ms: 4.4594
+  ...
+# Subtest: missed balls use a brief outward visual exit, without moving the physical stopped ball or granting points
+ok 8 - missed balls use a brief outward visual exit, without moving the physical stopped ball or granting points
+  ---
+  duration_ms: 2.669
+  ...
+# Subtest: crowd has explicit 5/10/15 rally tiers and a close-score climax, with no attribute changes
+ok 9 - crowd has explicit 5/10/15 rally tiers and a close-score climax, with no attribute changes
+  ---
+  duration_ms: 4.296
+  ...
+# Subtest: sweat and extended follow-through require actual fatigue/struggling and recovery state
+ok 10 - sweat and extended follow-through require actual fatigue/struggling and recovery state
+  ---
+  duration_ms: 3.442
+  ...
+# Subtest: effects and observation records remain bounded under sustained ten-ball stress
+ok 11 - effects and observation records remain bounded under sustained ten-ball stress
+  ---
+  duration_ms: 14.6394
+  ...
+# Subtest: new match/briefing clears old point labels, holds and observation records
+ok 12 - new match/briefing clears old point labels, holds and observation records
+  ---
+  duration_ms: 3.2668
+  ...
+# Subtest: feedback expires by elapsed milliseconds at 30 FPS; bounce is not repeated
+ok 13 - feedback expires by elapsed milliseconds at 30 FPS; bounce is not repeated
+  ---
+  duration_ms: 2.5455
+  ...
+# Subtest: feedback expires by elapsed milliseconds at 60 FPS; bounce is not repeated
+ok 14 - feedback expires by elapsed milliseconds at 60 FPS; bounce is not repeated
+  ---
+  duration_ms: 2.8142
+  ...
+# Subtest: feedback expires by elapsed milliseconds at 144 FPS; bounce is not repeated
+ok 15 - feedback expires by elapsed milliseconds at 144 FPS; bounce is not repeated
+  ---
+  duration_ms: 6.3707
+  ...
+# Subtest: drawing a frozen playing match does not mutate physics, scoring, AI or special state, or consume game RNG
+ok 16 - drawing a frozen playing match does not mutate physics, scoring, AI or special state, or consume game RNG
+  ---
+  duration_ms: 45.3835
+  ...
+# Subtest: the arena background is cached, and rendering owns no new collision or physics objects
+ok 17 - the arena background is cached, and rendering owns no new collision or physics objects
+  ---
+  duration_ms: 18.2783
+  ...
+# Subtest: surface, targets, net, players and ball use one uniform view; the full table and both players remain in frame
+ok 18 - surface, targets, net, players and ball use one uniform view; the full table and both players remain in frame
+  ---
+  duration_ms: 14.5673
+  ...
+# Subtest: all eight sprite poses preserve source ratio, fixed scale and a stable foot anchor
+ok 19 - all eight sprite poses preserve source ratio, fixed scale and a stable foot anchor
+  ---
+  duration_ms: 15.4316
+  ...
+# Subtest: missing or unloaded sprites do not create an invalid drawImage call
+ok 20 - missing or unloaded sprites do not create an invalid drawImage call
+  ---
+  duration_ms: 14.5459
+  ...
+# Subtest: ball altitude changes only the displayed ball/shadow relationship; bounce keeps a circular readable ball
+ok 21 - ball altitude changes only the displayed ball/shadow relationship; bounce keeps a circular readable ball
+  ---
+  duration_ms: 10.8629
+  ...
+# Subtest: 18,000 simulation steps with and without drawing produce identical physical states and RNG use, including both specials
+ok 22 - 18,000 simulation steps with and without drawing produce identical physical states and RNG use, including both specials
+  ---
+  duration_ms: 16995.559
+  ...
+# Subtest: all eight sports share one short configuration contract
+ok 23 - all eight sports share one short configuration contract
+  ---
+  duration_ms: 9.3024
+  ...
+# Subtest: inactive controller does not intercept normal gameplay
+ok 24 - inactive controller does not intercept normal gameplay
+  ---
+  duration_ms: 1.1108
+  ...
+# Subtest: briefing remains open indefinitely and never starts from its animation clock
+ok 25 - briefing remains open indefinitely and never starts from its animation clock
+  ---
+  duration_ms: 1.5848
+  ...
+# Subtest: Space confirms once after the short exit transition
+ok 26 - Space confirms once after the short exit transition
+  ---
+  duration_ms: 1.2387
+  ...
+# Subtest: Enter confirms once after the short exit transition
+ok 27 - Enter confirms once after the short exit transition
+  ---
+  duration_ms: 0.6128
+  ...
+# Subtest: Escape cancels without triggering the start callback
+ok 28 - Escape cancels without triggering the start callback
+  ---
+  duration_ms: 0.3741
+  ...
+# Subtest: opening with the NPC interaction key held cannot confirm until release and a fresh press
+ok 29 - opening with the NPC interaction key held cannot confirm until release and a fresh press
+  ---
+  duration_ms: 0.9241
+  ...
+# Subtest: repeated keydown never confirms
+ok 30 - repeated keydown never confirms
+  ---
+  duration_ms: 0.6411
+  ...
+# Subtest: confirming and movement keys do not leak into gameplay while held
+ok 31 - confirming and movement keys do not leak into gameplay while held
+  ---
+  duration_ms: 0.8671
+  ...
+# Subtest: lost focus releases stale held-key guards
+ok 32 - lost focus releases stale held-key guards
+  ---
+  duration_ms: 1.0603
+  ...
+# Subtest: all inputs are consumed while a briefing is open
+ok 33 - all inputs are consumed while a briefing is open
+  ---
+  duration_ms: 0.4126
+  ...
+# Subtest: active briefing stops propagation to minigame-specific listeners
+ok 34 - active briefing stops propagation to minigame-specific listeners
+  ---
+  duration_ms: 0.3552
+  ...
+# Subtest: opening another briefing cannot silently replace an active one
+ok 35 - opening another briefing cannot silently replace an active one
+  ---
+  duration_ms: 0.2144
+  ...
+# Subtest: cancel is optional for sports without a return route
+ok 36 - cancel is optional for sports without a return route
+  ---
+  duration_ms: 0.2162
+  ...
+# Subtest: fade, layout, essential controls and icon render through the same Canvas component
+ok 37 - fade, layout, essential controls and icon render through the same Canvas component
+  ---
+  duration_ms: 10.0071
+  ...
+# Subtest: every sport renders inside the same fixed card without truncated instructional text
+ok 38 - every sport renders inside the same fixed card without truncated instructional text
+  ---
+  duration_ms: 5.765
+  ...
+# Subtest: configuration validates essentials and bounds tutorial size
+ok 39 - configuration validates essentials and bounds tutorial size
+  ---
+  duration_ms: 0.9311
+  ...
+# Subtest: animation uses deltaTime at 30 Hz
+ok 40 - animation uses deltaTime at 30 Hz
+  ---
+  duration_ms: 0.2321
+  ...
+# Subtest: animation uses deltaTime at 60 Hz
+ok 41 - animation uses deltaTime at 60 Hz
+  ---
+  duration_ms: 0.2018
+  ...
+# Subtest: animation uses deltaTime at 144 Hz
+ok 42 - animation uses deltaTime at 144 Hz
+  ---
+  duration_ms: 0.1897
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 30 Hz
+ok 43 - countdown keeps simulation/input gated until VAI finishes at 30 Hz
+  ---
+  duration_ms: 1.8985
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 60 Hz
+ok 44 - countdown keeps simulation/input gated until VAI finishes at 60 Hz
+  ---
+  duration_ms: 0.4026
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 144 Hz
+ok 45 - countdown keeps simulation/input gated until VAI finishes at 144 Hz
+  ---
+  duration_ms: 2.1531
+  ...
+# Subtest: countdown is optional so Marathon can retain its own native countdown
+ok 46 - countdown is optional so Marathon can retain its own native countdown
+  ---
+  duration_ms: 0.6998
+  ...
+1..46
+# tests 46
+# suites 0
+# pass 46
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17370.0634

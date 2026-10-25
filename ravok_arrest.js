@@ -103,7 +103,7 @@
         g.drawImage(late?cleared:island,0,0);
         if(!late){
             const disabled=from(id,'REMOTE_DISABLE'),amount=id==='REMOTE_DISABLE'?ease(p):1;
-            const evidenceDoor=id==='PROTOCOL_CLOSED'?1:id==='K7_EVIDENCE'?1-ease((p-.75)/.25):0;
+            const evidenceDoor=['PROTOCOL_CLOSED','K7_EVIDENCE'].includes(id)?1:id==='RAVOK_ESCORT'?1-ease((p-.75)/.25):0;
             if(!depart)disabled?disabledRavok(g,321,40,1,amount,evidenceDoor):global.RavokEvent.drawShip(g,321,40,1,{door:from(id,'TURN_TO_SHIP')?1:0});
             if(from(id,'ENCIRCLEMENT')&&!disabled){
                 const effort=.5+.5*Math.sin(t*8);glow(g,369,97,15,'rgba(210,111,148,'+effort*.4+')');
@@ -114,22 +114,25 @@
                     const a=positions[i],q=id==='ENCIRCLEMENT'?ease(p):1,dy=depart?-170*ease(p):0,s=depart?a[2]*(1-.72*ease(p)):a[2];
                     authority(g,mix(270+i*70,a[0],q),mix(20,a[1],q)+dy,s);
                     if((id==='REMOTE_DISABLE'&&p>.2)||id==='RAVOK_ESCORT'||depart){
-                        const endY=depart?40-145*ease(p):id==='RAVOK_ESCORT'?114-90*ease(p):90;
+                        const endY=depart?40-145*ease(p):90;
                         polygon(g,'rgba(133,221,218,.1)',[[a[0]-3,a[1]+dy],[a[0]+3,a[1]+dy],[382,endY],[350,endY]]);
                     }
                 }
             }
-            const turn=from(id,'TURN_TO_SHIP')?(id==='TURN_TO_SHIP'?ease(p):1):0;
-            const rx=mix(350,360,turn),ry=mix(114,105,turn);
+            const turning=from(id,'TURN_TO_SHIP');
+            const rv=turning?global.RavokK7Animation.path('ravok',[350,114],[360,105],1.5,id==='TURN_TO_SHIP'?t:1.5):global.RavokK7Animation.idle('ravok',350,114);
+            const rx=rv.x,ry=rv.y;
             if(!from(id,'AUTHORITIES_DEPART')){
                 if(id==='RAVOK_ESCORT'){
-                    const q=ease(p);if(q<.96){config.drawNpc(g,'ravok',rx,ry-96*q,1-.65*q);contain(g,rx,ry-96*q,1-q);}
-                }else config.drawNpc(g,'ravok',rx,ry,1);
+                    // Walk into the impounded ship; authorities take it as evidence.
+                    const escorted=global.RavokK7Animation.path('ravok',[360,105],[368,89],1.35,t-.25);
+                    if(t<=1.68){config.drawNpc(g,'ravok',escorted);contain(g,escorted.x,escorted.y,1);}
+                }else config.drawNpc(g,'ravok',rv);
                 if(from(id,'HOLOGRAM')&&!from(id,'RAVOK_ESCORT'))contain(g,rx,ry,id==='HOLOGRAM'?ease(p):1);
             }
             if(!from(id,'RAVOK_ESCORT')){
-                const q=id==='K7_EVIDENCE'?ease(p):0;
-                if(q<.96)config.drawNpc(g,'k7',mix(396,368,q),mix(113,89,q),mix(1,.5,q));
+                const robot=id==='K7_EVIDENCE'?global.RavokK7Animation.path('k7',[396,113],[368,89],2.2,t):global.RavokK7Animation.idle('k7',396,113,'right');
+                if(id!=='K7_EVIDENCE'||t<=2.28)config.drawNpc(g,'k7',robot);
                 if(from(id,'K7_ALERT')&&!from(id,'REMOTE_DISABLE')){rect(g,'#f0bd6f',395,60,2,7);rect(g,'#f0bd6f',395,69,2,2);}
             }
             if(id==='ANGER'){glow(g,350,89,19,'rgba(193,75,117,'+Math.sin(p*Math.PI)*.2+')');}
