@@ -19,13 +19,20 @@
     const challenges = Object.create(null);
     const blankVisited=()=>({central:true,pingpong:false,basketball:false,running:false,skate:false,archery:false,climbing:false,boxing:false,surf:false});
     const blankInventory=()=>({islandMap:false,teleporter:false,questScanner:false,recordsModule:false,finalDestinationsChart:false,jukebox:false,shipCustomizer:false});
-    const blankCommerce=()=>({merchantArrivalSeen:false,merchantUnlocked:false,islandVisited:blankVisited(),inventory:blankInventory(),playedSports:{},records:{},heardTracks:{},shipStyle:'ORIGINAL',firstPurchaseSeen:false});
+    const tutorialFlags=['skateTutorialJumpSeen','skateTutorialRampSeen','skateTutorialGrindSeen','skateTutorialGrindExitSeen','skateTutorialMegaSeen'];
+    const blankTutorial=()=>({...Object.fromEntries(tutorialFlags.map(k=>[k,false])),attempts:0,lastFailure:'',sameFailureCount:0});
+    const blankCommerce=()=>({merchantArrivalSeen:false,merchantUnlocked:false,islandVisited:blankVisited(),inventory:blankInventory(),skateTutorial:blankTutorial(),playedSports:{},records:{},heardTracks:{},shipStyle:'ORIGINAL',firstPurchaseSeen:false});
     let commerce=blankCommerce();
     function cleanCommerce(raw) {
         const out=blankCommerce();if(!raw||typeof raw!=='object')return out;
         out.merchantArrivalSeen=raw.merchantArrivalSeen===true;
         out.merchantUnlocked=out.merchantArrivalSeen;
         out.firstPurchaseSeen=raw.firstPurchaseSeen===true;
+        const tutorial=raw.skateTutorial||{};
+        for(const key of tutorialFlags)out.skateTutorial[key]=tutorial[key]===true;
+        for(const key of ['attempts','sameFailureCount'])if(Number.isSafeInteger(tutorial[key])&&tutorial[key]>=0)out.skateTutorial[key]=Math.min(tutorial[key],1000000);
+        if(['jump','ramp','grind','exit','mega','unknown'].includes(tutorial.lastFailure))out.skateTutorial.lastFailure=tutorial.lastFailure;
+
         for(const item of global.MerchantCatalog?.items||[])if(raw.inventory?.[item.inventoryKey]===true||raw.purchasedItems?.[item.id]===true)out.inventory[item.inventoryKey]=true;
         for(const region of global.MerchantCatalog?.regions||[])if(raw.islandVisited?.[region.visitKey]===true||raw.visitedIslands?.[region.id]===true)out.islandVisited[region.visitKey]=true;
         for(const id of Object.values(global.MerchantCatalog?.sports||{})){
@@ -93,6 +100,9 @@
             patch=patch&&typeof patch==='object'?patch:{};
             const old=commerce,merged={...commerce,...patch};
             merged.islandVisited={...commerce.islandVisited};merged.inventory={...commerce.inventory};
+            merged.skateTutorial={...commerce.skateTutorial,...(patch.skateTutorial||{})};
+            for(const key of tutorialFlags)if(commerce.skateTutorial[key])merged.skateTutorial[key]=true;
+
             for(const [key,value]of Object.entries(patch.islandVisited||{}))if(value===true)merged.islandVisited[key]=true;
             for(const [key,value]of Object.entries(patch.inventory||{}))if(value===true)merged.inventory[key]=true;
             for(const key of ['playedSports','records','heardTracks'])merged[key]={...commerce[key],...(patch[key]||{})};

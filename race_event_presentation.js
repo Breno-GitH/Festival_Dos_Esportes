@@ -193,11 +193,6 @@
     c.fillStyle='#9cdbc0';c.font='bold 12px monospace';c.fillText((game.player.finishTime??game.raceTime).toFixed(2)+'s',x+162,inner-42);
    }
   }
-  drawRecovery(c,game){
-   const p=game.player.routeRecovery;if(!p)return;
-   c.strokeStyle='#ffe194';c.lineWidth=2;c.strokeRect(Math.round(p.x)-13,Math.round(p.y)-6,26,12);
-   c.fillStyle='#ffe194';integer(c,p.x-2,p.y-16,4,6);
-  }
   drawHud(c,game){
    const player=game.player,place=game.currentRanking().indexOf(player)+1,lap=Math.min(3,player.validatedLaps+1);
    c.save();c.textBaseline='alphabetic';c.fillStyle='#142f3ce8';c.fillRect(7,7,111,49);c.fillRect(canvas.width-112,7,105,49);
@@ -221,7 +216,7 @@
     c.font='bold 12px monospace';const width=Math.min(canvas.width-40,c.measureText(this.banner.text).width+28),x=(canvas.width-width)/2;
     c.fillStyle='#16343de8';c.fillRect(Math.round(x),66,Math.round(width),23);c.fillStyle=this.banner.color;c.fillText(this.banner.text,canvas.width/2,82);
    }
-   if(player.routeRecovery&&game.phase==='RACING'){c.fillStyle='#16343de8';c.fillRect(73,canvas.height-26,304,19);c.font='bold 9px monospace';c.fillStyle='#ffe194';c.fillText('RETORNE À MARCA AMARELA NA PISTA',canvas.width/2,canvas.height-13);}
+   if(player.offTrack&&game.phase==='RACING'){c.fillStyle='#16343de8';c.fillRect(73,canvas.height-26,304,19);c.font='bold 9px monospace';c.fillStyle='#ffe194';c.fillText('FORA DA PISTA',canvas.width/2,canvas.height-13);}
    c.restore();
   }
   diagnostics(){return {spectators:this.people.length,humans:this.people.filter(p=>p.species==='HUMAN').length,

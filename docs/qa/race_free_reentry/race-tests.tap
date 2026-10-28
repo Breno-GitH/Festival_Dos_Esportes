@@ -1,0 +1,135 @@
+TAP version 13
+# Subtest: official field is eight runners and exactly three laps, with three intermediate gates
+ok 1 - official field is eight runners and exactly three laps, with three intermediate gates
+  ---
+  duration_ms: 30.5889
+  ...
+# Subtest: analytic projection is continuous at every straight/curve seam and lateral offset
+ok 2 - analytic projection is continuous at every straight/curve seam and lateral offset
+  ---
+  duration_ms: 34.8942
+  ...
+# Subtest: initial start crossing is not a completed lap
+ok 3 - initial start crossing is not a completed lap
+  ---
+  duration_ms: 14.3061
+  ...
+# Subtest: A/B: repeated forward/backward line crossings and loitering do not award laps
+ok 4 - A/B: repeated forward/backward line crossings and loitering do not award laps
+  ---
+  duration_ms: 17.9751
+  ...
+# Subtest: wrong direction is rejected, including at the physical finish sensor
+ok 5 - wrong direction is rejected, including at the physical finish sensor
+  ---
+  duration_ms: 13.168
+  ...
+# Subtest: C: cutting through half the oval cannot award a checkpoint or a lap
+ok 6 - C: cutting through half the oval cannot award a checkpoint or a lap
+  ---
+  duration_ms: 12.8025
+  ...
+# Subtest: D: CP1 then return towards start cannot count a lap
+ok 7 - D: CP1 then return towards start cannot count a lap
+  ---
+  duration_ms: 20.743
+  ...
+# Subtest: CP3 then finish cannot substitute CP1 and CP2
+ok 8 - CP3 then finish cannot substitute CP1 and CP2
+  ---
+  duration_ms: 14.6589
+  ...
+# Subtest: E: ordered physical crossings count exactly one lap, and never count twice
+ok 9 - E: ordered physical crossings count exactly one lap, and never count twice
+  ---
+  duration_ms: 24.7153
+  ...
+# Subtest: each of all eight runners uses the same three physical lap sequences
+ok 10 - each of all eight runners uses the same three physical lap sequences
+  ---
+  duration_ms: 143.9579
+  ...
+# Subtest: a wide step detects the exact forward crossing fraction inside the painted opening
+ok 11 - a wide step detects the exact forward crossing fraction inside the painted opening
+  ---
+  duration_ms: 12.642
+  ...
+# Subtest: ranking is lexicographic by laps, checkpoint and sector before finish time
+ok 12 - ranking is lexicographic by laps, checkpoint and sector before finish time
+  ---
+  duration_ms: 12.914
+  ...
+# Subtest: photo finish processes every runner before ordering; array order does not award victory
+ok 13 - photo finish processes every runner before ordering; array order does not award victory
+  ---
+  duration_ms: 17.7777
+  ...
+# Subtest: all three obstacle patterns have four districts, patrol bounds and clear final stretch
+ok 14 - all three obstacle patterns have four districts, patrol bounds and clear final stretch
+  ---
+  duration_ms: 20.7733
+  ...
+# Subtest: pigeons are non-colliding ambience and fly away near every runner
+ok 15 - pigeons are non-colliding ambience and fly away near every runner
+  ---
+  duration_ms: 12.6359
+  ...
+# Subtest: crowd keeps fixed human/alien identities in four rows and reacts locally
+ok 16 - crowd keeps fixed human/alien identities in four rows and reacts locally
+  ---
+  duration_ms: 14.23
+  ...
+# Subtest: grass preserves the existing slowdown and cannot boost a shortcut
+ok 17 - grass preserves the existing slowdown and cannot boost a shortcut
+  ---
+  duration_ms: 15.7405
+  ...
+# Subtest: master throws and bumps target other rivals as well, with real cooldowns
+ok 18 - master throws and bumps target other rivals as well, with real cooldowns
+  ---
+  duration_ms: 2028.5875
+  ...
+# Subtest: complete physical race stays consistent with 30 FPS updates
+ok 19 - complete physical race stays consistent with 30 FPS updates
+  ---
+  duration_ms: 4189.9202
+  ...
+# Subtest: complete physical race stays consistent with 60 FPS updates
+ok 20 - complete physical race stays consistent with 60 FPS updates
+  ---
+  duration_ms: 2088.6558
+  ...
+# Subtest: complete physical race stays consistent with 144 FPS updates
+ok 21 - complete physical race stays consistent with 144 FPS updates
+  ---
+  duration_ms: 2170.2104
+  ...
+# Subtest: drawing uses cached ground and a single, uniform camera zoom
+ok 22 - drawing uses cached ground and a single, uniform camera zoom
+  ---
+  duration_ms: 28.7948
+  ...
+# Subtest: re-entering farther along the edge immediately resumes checkpoint validation
+ok 23 - re-entering farther along the edge immediately resumes checkpoint validation
+  ---
+  duration_ms: 21.1912
+  ...
+# Subtest: every AI can physically complete all three laps using the shared validator
+ok 24 - every AI can physically complete all three laps using the shared validator
+  ---
+  duration_ms: 2143.8702
+  ...
+# Subtest: a master projectile physically hits another rival, not only Zorp
+ok 25 - a master projectile physically hits another rival, not only Zorp
+  ---
+  duration_ms: 13.7088
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 25
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13290.3887

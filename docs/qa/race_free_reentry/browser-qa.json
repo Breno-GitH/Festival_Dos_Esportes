@@ -1,0 +1,236 @@
+{
+  "checks": [
+    "Actual keyboard input: inner curve -> grass -> same edge return, without marker, teleport or unlock event",
+    "Inner curve can re-enter farther along the edge, while missed checkpoints remain missing",
+    "Outer edge is traversable in both directions, with normal physical movement",
+    "Straight edge also permits immediate free re-entry",
+    "Crossing half the infield and then the real finish line cannot count a lap without CP1/CP2/CP3",
+    "After returning freely, the next proper ordered circuit counts exactly one lap",
+    "All seven actual AI runners physically re-enter from inner and outer grass, without coordinate jumps",
+    "All eight runners complete exactly three physical laps with nine ordered checkpoints and three finish crossings",
+    "Exit still returns normally to the Running island",
+    "Zero 404, loading failures, TypeError, ReferenceError and runtime errors"
+  ],
+  "runs": [
+    {
+      "frames": 31,
+      "maxStep": 5.529340848874426,
+      "x": 1287.7017834588014,
+      "y": 3.1308289294429414e-13,
+      "speed": 331.76045093246506,
+      "onTrack": false
+    },
+    {
+      "frames": 37,
+      "maxStep": 2.2418581413762695,
+      "x": 1293.0826946804889,
+      "y": 3.1308289294429414e-13,
+      "speed": 134.51148848257554,
+      "onTrack": true
+    },
+    {
+      "frames": 24,
+      "maxStep": 2.131838054534302,
+      "x": 1277.3086241939693,
+      "y": -104.22224103776887,
+      "speed": 123.4600934189539,
+      "onTrack": true
+    },
+    {
+      "frames": 33,
+      "maxStep": 2.847037810662414,
+      "x": 1545.7329006782327,
+      "y": 3.1308289294429414e-13,
+      "speed": 170.82226863975052,
+      "onTrack": true
+    },
+    {
+      "frames": 33,
+      "maxStep": 4.594722649184234,
+      "x": -250,
+      "y": 343.18225198495475,
+      "speed": 117.31919142791529,
+      "onTrack": true
+    }
+  ],
+  "errors": [],
+  "http": [],
+  "failed": [],
+  "cut": {
+    "crossed": true,
+    "n": 403,
+    "laps": 0,
+    "cp": 0,
+    "finished": false
+  },
+  "ai": [
+    {
+      "id": "mestre",
+      "side": -1,
+      "frames": 41,
+      "maxStep": 2.261262962832239,
+      "onTrack": true
+    },
+    {
+      "id": "mestre",
+      "side": 1,
+      "frames": 33,
+      "maxStep": 2.865940864938755,
+      "onTrack": true
+    },
+    {
+      "id": "cobalto",
+      "side": -1,
+      "frames": 39,
+      "maxStep": 2.3415460297218593,
+      "onTrack": true
+    },
+    {
+      "id": "cobalto",
+      "side": 1,
+      "frames": 33,
+      "maxStep": 2.9860701227506103,
+      "onTrack": true
+    },
+    {
+      "id": "ferrugem",
+      "side": -1,
+      "frames": 41,
+      "maxStep": 2.240952217657159,
+      "onTrack": true
+    },
+    {
+      "id": "ferrugem",
+      "side": 1,
+      "frames": 34,
+      "maxStep": 2.855707688958239,
+      "onTrack": true
+    },
+    {
+      "id": "lina",
+      "side": -1,
+      "frames": 42,
+      "maxStep": 2.1655692428180076,
+      "onTrack": true
+    },
+    {
+      "id": "lina",
+      "side": 1,
+      "frames": 35,
+      "maxStep": 2.765928995269998,
+      "onTrack": true
+    },
+    {
+      "id": "kai",
+      "side": -1,
+      "frames": 40,
+      "maxStep": 2.3153467419732214,
+      "onTrack": true
+    },
+    {
+      "id": "kai",
+      "side": 1,
+      "frames": 33,
+      "maxStep": 2.9431668163892337,
+      "onTrack": true
+    },
+    {
+      "id": "axol",
+      "side": -1,
+      "frames": 43,
+      "maxStep": 2.1165165527819285,
+      "onTrack": true
+    },
+    {
+      "id": "axol",
+      "side": 1,
+      "frames": 35,
+      "maxStep": 2.6965640047931956,
+      "onTrack": true
+    },
+    {
+      "id": "nox",
+      "side": -1,
+      "frames": 41,
+      "maxStep": 2.2138712240902136,
+      "onTrack": true
+    },
+    {
+      "id": "nox",
+      "side": 1,
+      "frames": 34,
+      "maxStep": 2.821197626251917,
+      "onTrack": true
+    }
+  ],
+  "complete": {
+    "frames": 4272,
+    "time": 71.19999999999725,
+    "runners": [
+      {
+        "id": "zorp",
+        "laps": 3,
+        "cp": 9,
+        "lines": 3,
+        "finished": true,
+        "finishTime": 61.461818733187634
+      },
+      {
+        "id": "mestre",
+        "laps": 3,
+        "cp": 9,
+        "lines": 3,
+        "finished": true,
+        "finishTime": 65.56204776784986
+      },
+      {
+        "id": "cobalto",
+        "laps": 3,
+        "cp": 9,
+        "lines": 3,
+        "finished": true,
+        "finishTime": 60.35701801735268
+      },
+      {
+        "id": "ferrugem",
+        "laps": 3,
+        "cp": 9,
+        "lines": 3,
+        "finished": true,
+        "finishTime": 70.17505134405808
+      },
+      {
+        "id": "lina",
+        "laps": 3,
+        "cp": 9,
+        "lines": 3,
+        "finished": true,
+        "finishTime": 65.08853622361352
+      },
+      {
+        "id": "kai",
+        "laps": 3,
+        "cp": 9,
+        "lines": 3,
+        "finished": true,
+        "finishTime": 68.548764645429
+      },
+      {
+        "id": "axol",
+        "laps": 3,
+        "cp": 9,
+        "lines": 3,
+        "finished": true,
+        "finishTime": 71.18484101103438
+      },
+      {
+        "id": "nox",
+        "laps": 3,
+        "cp": 9,
+        "lines": 3,
+        "finished": true,
+        "finishTime": 70.79927125564723
+      }
+    ]
+  }
+}

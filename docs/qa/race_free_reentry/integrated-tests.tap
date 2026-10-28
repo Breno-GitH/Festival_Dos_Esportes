@@ -1,0 +1,275 @@
+TAP version 13
+# Subtest: One principal quest per sport, preserving existing owners/rewards
+ok 1 - One principal quest per sport, preserving existing owners/rewards
+  ---
+  duration_ms: 18.4244
+  ...
+# Subtest: 11 approved NPCs, no replacement, static fronts, 44px and separate collider
+ok 2 - 11 approved NPCs, no replacement, static fronts, 44px and separate collider
+  ---
+  duration_ms: 10.1868
+  ...
+# Subtest: Photo: accepted + valid Zorp 3-pointer inside final ten; no automatic payment
+ok 3 - Photo: accepted + valid Zorp 3-pointer inside final ten; no automatic payment
+  ---
+  duration_ms: 7.3988
+  ...
+# Subtest: Clean lap: no starting-line fake lap, obstacle dirties only current physical lap
+ok 4 - Clean lap: no starting-line fake lap, obstacle dirties only current physical lap
+  ---
+  duration_ms: 4.0974
+  ...
+# Subtest: Clean lap reset cannot carry a clean partial lap into a new run
+ok 5 - Clean lap reset cannot carry a clean partial lap into a new run
+  ---
+  duration_ms: 6.1001
+  ...
+# Subtest: Skate requires actual grind distance, then airborne completed trick, then good landing
+ok 6 - Skate requires actual grind distance, then airborne completed trick, then good landing
+  ---
+  duration_ms: 5.8335
+  ...
+# Subtest: Skate fall or restart breaks the one-take sequence
+ok 7 - Skate fall or restart breaks the one-take sequence
+  ---
+  duration_ms: 12.0912
+  ...
+# Subtest: Archery three direct hanging disks; unrelated misses do not break streak
+ok 8 - Archery three direct hanging disks; unrelated misses do not break streak
+  ---
+  duration_ms: 5.4516
+  ...
+# Subtest: Archery aimed bird miss breaks streak, restart resets, no duplicate resolution
+ok 9 - Archery aimed bird miss breaks streak, restart resets, no duplicate resolution
+  ---
+  duration_ms: 8.815
+  ...
+# Subtest: Archery release order wins over impact order; normal hits and explosion collateral cannot fake birds
+ok 10 - Archery release order wins over impact order; normal hits and explosion collateral cannot fake birds
+  ---
+  duration_ms: 4.8564
+  ...
+# Subtest: Surf 60%, capture permanently dirties that run; retry is fresh
+ok 11 - Surf 60%, capture permanently dirties that run; retry is fresh
+  ---
+  duration_ms: 4.3557
+  ...
+# Subtest: All new rewards persist pending and paid; reload cannot duplicate coins
+ok 12 - All new rewards persist pending and paid; reload cannot duplicate coins
+  ---
+  duration_ms: 77.1121
+  ...
+# Subtest: Existing boxing and medal quests remain single-return rewards
+ok 13 - Existing boxing and medal quests remain single-return rewards
+  ---
+  duration_ms: 4.1636
+  ...
+# Subtest: Public completion flags derive from canonical persisted wallet state
+ok 14 - Public completion flags derive from canonical persisted wallet state
+  ---
+  duration_ms: 9.2504
+  ...
+# Subtest: Ambient NPCs never create a quest, provide specific lore and react to medals
+ok 15 - Ambient NPCs never create a quest, provide specific lore and react to medals
+  ---
+  duration_ms: 11.6994
+  ...
+# Subtest: A rough skate landing cannot carry a completed trick into a later touchdown
+ok 16 - A rough skate landing cannot carry a completed trick into a later touchdown
+  ---
+  duration_ms: 5.5292
+  ...
+# Subtest: Unaccepted objectives never grant retroactive completion
+ok 17 - Unaccepted objectives never grant retroactive completion
+  ---
+  duration_ms: 4.1813
+  ...
+# Subtest: official field is eight runners and exactly three laps, with three intermediate gates
+ok 18 - official field is eight runners and exactly three laps, with three intermediate gates
+  ---
+  duration_ms: 97.2367
+  ...
+# Subtest: analytic projection is continuous at every straight/curve seam and lateral offset
+ok 19 - analytic projection is continuous at every straight/curve seam and lateral offset
+  ---
+  duration_ms: 40.506
+  ...
+# Subtest: initial start crossing is not a completed lap
+ok 20 - initial start crossing is not a completed lap
+  ---
+  duration_ms: 15.6823
+  ...
+# Subtest: A/B: repeated forward/backward line crossings and loitering do not award laps
+ok 21 - A/B: repeated forward/backward line crossings and loitering do not award laps
+  ---
+  duration_ms: 28.8073
+  ...
+# Subtest: wrong direction is rejected, including at the physical finish sensor
+ok 22 - wrong direction is rejected, including at the physical finish sensor
+  ---
+  duration_ms: 16.1021
+  ...
+# Subtest: C: cutting through half the oval cannot award a checkpoint or a lap
+ok 23 - C: cutting through half the oval cannot award a checkpoint or a lap
+  ---
+  duration_ms: 19.8863
+  ...
+# Subtest: D: CP1 then return towards start cannot count a lap
+ok 24 - D: CP1 then return towards start cannot count a lap
+  ---
+  duration_ms: 21.6336
+  ...
+# Subtest: CP3 then finish cannot substitute CP1 and CP2
+ok 25 - CP3 then finish cannot substitute CP1 and CP2
+  ---
+  duration_ms: 17.6918
+  ...
+# Subtest: E: ordered physical crossings count exactly one lap, and never count twice
+ok 26 - E: ordered physical crossings count exactly one lap, and never count twice
+  ---
+  duration_ms: 23.4161
+  ...
+# Subtest: each of all eight runners uses the same three physical lap sequences
+ok 27 - each of all eight runners uses the same three physical lap sequences
+  ---
+  duration_ms: 167.3475
+  ...
+# Subtest: a wide step detects the exact forward crossing fraction inside the painted opening
+ok 28 - a wide step detects the exact forward crossing fraction inside the painted opening
+  ---
+  duration_ms: 15.1167
+  ...
+# Subtest: ranking is lexicographic by laps, checkpoint and sector before finish time
+ok 29 - ranking is lexicographic by laps, checkpoint and sector before finish time
+  ---
+  duration_ms: 13.7901
+  ...
+# Subtest: photo finish processes every runner before ordering; array order does not award victory
+ok 30 - photo finish processes every runner before ordering; array order does not award victory
+  ---
+  duration_ms: 16.9731
+  ...
+# Subtest: all three obstacle patterns have four districts, patrol bounds and clear final stretch
+ok 31 - all three obstacle patterns have four districts, patrol bounds and clear final stretch
+  ---
+  duration_ms: 30.7928
+  ...
+# Subtest: pigeons are non-colliding ambience and fly away near every runner
+ok 32 - pigeons are non-colliding ambience and fly away near every runner
+  ---
+  duration_ms: 13.045
+  ...
+# Subtest: crowd keeps fixed human/alien identities in four rows and reacts locally
+ok 33 - crowd keeps fixed human/alien identities in four rows and reacts locally
+  ---
+  duration_ms: 15.2811
+  ...
+# Subtest: grass preserves the existing slowdown and cannot boost a shortcut
+ok 34 - grass preserves the existing slowdown and cannot boost a shortcut
+  ---
+  duration_ms: 15.654
+  ...
+# Subtest: master throws and bumps target other rivals as well, with real cooldowns
+ok 35 - master throws and bumps target other rivals as well, with real cooldowns
+  ---
+  duration_ms: 2918.4649
+  ...
+# Subtest: complete physical race stays consistent with 30 FPS updates
+ok 36 - complete physical race stays consistent with 30 FPS updates
+  ---
+  duration_ms: 4636.398
+  ...
+# Subtest: complete physical race stays consistent with 60 FPS updates
+ok 37 - complete physical race stays consistent with 60 FPS updates
+  ---
+  duration_ms: 2116.3027
+  ...
+# Subtest: complete physical race stays consistent with 144 FPS updates
+ok 38 - complete physical race stays consistent with 144 FPS updates
+  ---
+  duration_ms: 2220.2459
+  ...
+# Subtest: drawing uses cached ground and a single, uniform camera zoom
+ok 39 - drawing uses cached ground and a single, uniform camera zoom
+  ---
+  duration_ms: 28.9043
+  ...
+# Subtest: re-entering farther along the edge immediately resumes checkpoint validation
+ok 40 - re-entering farther along the edge immediately resumes checkpoint validation
+  ---
+  duration_ms: 20.3909
+  ...
+# Subtest: every AI can physically complete all three laps using the shared validator
+ok 41 - every AI can physically complete all three laps using the shared validator
+  ---
+  duration_ms: 2386.0072
+  ...
+# Subtest: a master projectile physically hits another rival, not only Zorp
+ok 42 - a master projectile physically hits another rival, not only Zorp
+  ---
+  duration_ms: 14.5996
+  ...
+# Subtest: inner curve edge: leave, return through same edge, then keep running
+ok 43 - inner curve edge: leave, return through same edge, then keep running
+  ---
+  duration_ms: 105.1183
+  ...
+# Subtest: inner curve edge: leave, re-enter farther ahead, then keep running
+ok 44 - inner curve edge: leave, re-enter farther ahead, then keep running
+  ---
+  duration_ms: 21.6078
+  ...
+# Subtest: outer curve edge: leave, return through same edge, then keep running
+ok 45 - outer curve edge: leave, return through same edge, then keep running
+  ---
+  duration_ms: 17.0062
+  ...
+# Subtest: outer curve edge: leave, re-enter farther ahead, then keep running
+ok 46 - outer curve edge: leave, re-enter farther ahead, then keep running
+  ---
+  duration_ms: 23.9378
+  ...
+# Subtest: straight edges and both oval curves have no physical wall for any runner
+ok 47 - straight edges and both oval curves have no physical wall for any runner
+  ---
+  duration_ms: 97.8683
+  ...
+# Subtest: grass slows acceleration/momentum and track speed returns gradually without a special event
+ok 48 - grass slows acceleration/momentum and track speed returns gradually without a special event
+  ---
+  duration_ms: 17.6347
+  ...
+# Subtest: grass can cross half the oval and return freely, but missing ordered checkpoints still blocks finish
+ok 49 - grass can cross half the oval and return freely, but missing ordered checkpoints still blocks finish
+  ---
+  duration_ms: 21.8549
+  ...
+# Subtest: a checkpoint physically crossed on the track during the re-entry frame is accepted
+ok 50 - a checkpoint physically crossed on the track during the re-entry frame is accepted
+  ---
+  duration_ms: 13.8555
+  ...
+# Subtest: crossing checkpoint planes on grass does not validate them
+ok 51 - crossing checkpoint planes on grass does not validate them
+  ---
+  duration_ms: 13.7166
+  ...
+# Subtest: all seven AIs steer to their current nearest edge and physically re-enter without teleport
+ok 52 - all seven AIs steer to their current nearest edge and physically re-enter without teleport
+  ---
+  duration_ms: 39.6261
+  ...
+# Subtest: HUD has only off-track feedback and no yellow recovery marker or instruction
+ok 53 - HUD has only off-track feedback and no yellow recovery marker or instruction
+  ---
+  duration_ms: 16.0027
+  ...
+1..53
+# tests 53
+# suites 0
+# pass 53
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 15151.6238

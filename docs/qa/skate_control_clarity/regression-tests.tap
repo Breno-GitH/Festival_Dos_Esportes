@@ -1,0 +1,1225 @@
+TAP version 13
+# Subtest: assets novos classificam topo, lateral, escadas e borda grindável por região
+ok 1 - assets novos classificam topo, lateral, escadas e borda grindável por região
+  ---
+  duration_ms: 11.6526
+  ...
+# Subtest: runtime executa Normal Jump no primeiro keydown e double Space eleva o mesmo salto
+ok 2 - runtime executa Normal Jump no primeiro keydown e double Space eleva o mesmo salto
+  ---
+  duration_ms: 41.003
+  ...
+# Subtest: runtime prioriza Grind Capture sobre Double Space perto de um rail válido
+ok 3 - runtime prioriza Grind Capture sobre Double Space perto de um rail válido
+  ---
+  duration_ms: 12.6443
+  ...
+# Subtest: runtime mantém o primeiro Space pendente até a física consumir o input
+ok 4 - runtime mantém o primeiro Space pendente até a física consumir o input
+  ---
+  duration_ms: 7.5446
+  ...
+# Subtest: soltar Space depois de aterrissar em Manual não fica preso como soltura aérea
+ok 5 - soltar Space depois de aterrissar em Manual não fica preso como soltura aérea
+  ---
+  duration_ms: 9.9801
+  ...
+# Subtest: finish conclui a linha, banca combo e concede a medalha skate uma vez
+ok 6 - finish conclui a linha, banca combo e concede a medalha skate uma vez
+  ---
+  duration_ms: 14.1885
+  ...
+# Subtest: briefing uses exact contextual rule, independent TOQUE/SEGURE/SOLTE symbols and automatic movement
+ok 7 - briefing uses exact contextual rule, independent TOQUE/SEGURE/SOLTE symbols and automatic movement
+  ---
+  duration_ms: 5.8478
+  ...
+# Subtest: attempts start on gameplay observation, not on opening a briefing or resetting
+ok 8 - attempts start on gameplay observation, not on opening a briefing or resetting
+  ---
+  duration_ms: 2.3027
+  ...
+# Subtest: approaching a ramp produces a hold prompt once, and preparation gives BOA without recording false success
+ok 9 - approaching a ramp produces a hold prompt once, and preparation gives BOA without recording false success
+  ---
+  duration_ms: 4.3995
+  ...
+# Subtest: learned ramp is quiet in later attempts and survives controller/save reload
+ok 10 - learned ramp is quiet in later attempts and survives controller/save reload
+  ---
+  duration_ms: 1.219
+  ...
+# Subtest: grind capture and deliberate release persist distinct flags; holding until rail end does not mark exit learned
+ok 11 - grind capture and deliberate release persist distinct flags; holding until rail end does not mark exit learned
+  ---
+  duration_ms: 1.6351
+  ...
+# Subtest: Mega instruction requires real sustained air input before setting its flag
+ok 12 - Mega instruction requires real sustained air input before setting its flag
+  ---
+  duration_ms: 0.5632
+  ...
+# Subtest: actual near-rail miss without holding produces a capture-specific tip, not a generic blame
+ok 13 - actual near-rail miss without holding produces a capture-specific tip, not a generic blame
+  ---
+  duration_ms: 1.0446
+  ...
+# Subtest: weak Mega launch has a different tip from an ordinary ramp release
+ok 14 - weak Mega launch has a different tip from an ordinary ramp release
+  ---
+  duration_ms: 0.7154
+  ...
+# Subtest: three deaths for same cause produce longer help even if an earlier ramp was used successfully
+ok 15 - three deaths for same cause produce longer help even if an earlier ramp was used successfully
+  ---
+  duration_ms: 1.5
+  ...
+# Subtest: different cause resets consecutive failure count; failure is registered once per attempt
+ok 16 - different cause resets consecutive failure count; failure is registered once per attempt
+  ---
+  duration_ms: 1.3237
+  ...
+# Subtest: coach observation never changes physics, collision objects, player coordinates or velocities
+ok 17 - coach observation never changes physics, collision objects, player coordinates or velocities
+  ---
+  duration_ms: 0.8055
+  ...
+# Subtest: pause -> CONTROLES -> back -> resume consumes confirmation and preserves held Space intent
+ok 18 - pause -> CONTROLES -> back -> resume consumes confirmation and preserves held Space intent
+  ---
+  duration_ms: 3.0396
+  ...
+# Subtest: Space released while paused is not stuck; a menu confirmation never queues a gameplay jump
+ok 19 - Space released while paused is not stuck; a menu confirmation never queues a gameplay jump
+  ---
+  duration_ms: 0.522
+  ...
+# Subtest: pause offers explicit exit without making Escape unexpectedly leave the minigame
+ok 20 - pause offers explicit exit without making Escape unexpectedly leave the minigame
+  ---
+  duration_ms: 0.6986
+  ...
+# Subtest: old campaign gains tutorial defaults without losing coins, items, visits or accepted quest
+ok 21 - old campaign gains tutorial defaults without losing coins, items, visits or accepted quest
+  ---
+  duration_ms: 10.5819
+  ...
+# Subtest: tutorial flags and same-reason history persist with the existing global wallet; partial updates never erase learned controls
+ok 22 - tutorial flags and same-reason history persist with the existing global wallet; partial updates never erase learned controls
+  ---
+  duration_ms: 9.2818
+  ...
+# Subtest: primeira metade: pista contínua e checkpoints em 35% e 70%
+ok 23 - primeira metade: pista contínua e checkpoints em 35% e 70%
+  ---
+  duration_ms: 15.1849
+  ...
+# Subtest: pista oficial usa somente geometria procedural e nenhum objeto de rua arbitrário
+ok 24 - pista oficial usa somente geometria procedural e nenhum objeto de rua arbitrário
+  ---
+  duration_ms: 1.9801
+  ...
+# Subtest: sobrevivência e Grind atravessam a primeira metade e entram na continuação
+ok 25 - sobrevivência e Grind atravessam a primeira metade e entram na continuação
+  ---
+  duration_ms: 3795.1654
+  ...
+# Subtest: salto da rua tolera doze pixels de antecipação ou atraso
+ok 26 - salto da rua tolera doze pixels de antecipação ou atraso
+  ---
+  duration_ms: 3344.1617
+  ...
+# Subtest: banco: topo seguro; impacto de frente causa Fail
+ok 27 - banco: topo seguro; impacto de frente causa Fail
+  ---
+  duration_ms: 66.3002
+  ...
+# Subtest: dez capturas do Stair Rail funcionam; dez erros atingem a escada
+ok 28 - dez capturas do Stair Rail funcionam; dez erros atingem a escada
+  ---
+  duration_ms: 1419.265
+  ...
+# Subtest: primeira transferência permite erro; o chain fatal exige a captura
+ok 29 - primeira transferência permite erro; o chain fatal exige a captura
+  ---
+  duration_ms: 234.2156
+  ...
+# Subtest: três Grinds cruzam o vazio sem chão; perder B ou C causa queda
+ok 30 - três Grinds cruzam o vazio sem chão; perder B ou C causa queda
+  ---
+  duration_ms: 276.3786
+  ...
+# Subtest: energia da rampa permite Normal e Ollie cruzarem o rooftop gap
+ok 31 - energia da rampa permite Normal e Ollie cruzarem o rooftop gap
+  ---
+  duration_ms: 247.2717
+  ...
+# Subtest: Huge Gap aceita uma faixa de timing, com pouso antes do rail de saída
+ok 32 - Huge Gap aceita uma faixa de timing, com pouso antes do rail de saída
+  ---
+  duration_ms: 505.6855
+  ...
+# Subtest: zero input, hold permanente e mash não vencem a primeira metade
+ok 33 - zero input, hold permanente e mash não vencem a primeira metade
+  ---
+  duration_ms: 296.1224
+  ...
+# Subtest: ZERO INPUT falha no primeiro gap da rota
+ok 34 - ZERO INPUT falha no primeiro gap da rota
+  ---
+  duration_ms: 24.4699
+  ...
+# Subtest: HOLD SPACE vira um único Super Jump e não completa automaticamente
+ok 35 - HOLD SPACE vira um único Super Jump e não completa automaticamente
+  ---
+  duration_ms: 20.3937
+  ...
+# Subtest: MASH SPACE em ciclos de 100 ms não limpa a pista
+ok 36 - MASH SPACE em ciclos de 100 ms não limpa a pista
+  ---
+  duration_ms: 12.4099
+  ...
+# Subtest: dedicated mechanics course authors a four-rail no-ground chain and one special ramp
+ok 37 - dedicated mechanics course authors a four-rail no-ground chain and one special ramp
+  ---
+  duration_ms: 5.0344
+  ...
+# Subtest: Rail → Jump → Rail → Jump → Rail chain reaches all four rails before any landing
+ok 38 - Rail → Jump → Rail → Jump → Rail chain reaches all four rails before any landing
+  ---
+  duration_ms: 64.7704
+  ...
+# Subtest: real SPACE key events clear the short course and capture four rails without ground contact
+ok 39 - real SPACE key events clear the short course and capture four rails without ground contact
+  ---
+  duration_ms: 550.1456
+  ...
+# Subtest: errar o segundo rail sem manter SPACE causa queda, sem captura automática
+ok 40 - errar o segundo rail sem manter SPACE causa queda, sem captura automática
+  ---
+  duration_ms: 85.953
+  ...
+# Subtest: soltar o Grind lança imediatamente; novo hold captura o próximo rail
+ok 41 - soltar o Grind lança imediatamente; novo hold captura o próximo rail
+  ---
+  duration_ms: 2.7972
+  ...
+# Subtest: test bench accepts a normal jump on top and crashes on a direct side impact
+ok 42 - test bench accepts a normal jump on top and crashes on a direct side impact
+  ---
+  duration_ms: 4.064
+  ...
+# Subtest: Mega Air launches from ramp and SPACE alone carries Zorp to landing
+ok 43 - Mega Air launches from ramp and SPACE alone carries Zorp to landing
+  ---
+  duration_ms: 13.9218
+  ...
+# Subtest: soltar SPACE cedo remove sustentação e causa queda
+ok 44 - soltar SPACE cedo remove sustentação e causa queda
+  ---
+  duration_ms: 9.6435
+  ...
+# Subtest: daylight interpolates through four periods and Mega Ramp is fully night
+ok 45 - daylight interpolates through four periods and Mega Ramp is fully night
+  ---
+  duration_ms: 5.8404
+  ...
+# Subtest: rider follows slope with bounded rotation and compresses around contact at landing
+ok 46 - rider follows slope with bounded rotation and compresses around contact at landing
+  ---
+  duration_ms: 0.7912
+  ...
+# Subtest: celebration follows air, landing and finish within a fixed particle pool
+ok 47 - celebration follows air, landing and finish within a fixed particle pool
+  ---
+  duration_ms: 65.7185
+  ...
+# Subtest: release and crash stop launching fireworks; remaining particles expire
+ok 48 - release and crash stop launching fireworks; remaining particles expire
+  ---
+  duration_ms: 18.4091
+  ...
+# Subtest: full course clears with SPACE only and Mega fail cancels celebration
+ok 49 - full course clears with SPACE only and Mega fail cancels celebration
+  ---
+  duration_ms: 3492.8212
+  ...
+# Subtest: SPACE pula imediatamente, diferencia double-tap e hold sem upgrade
+ok 50 - SPACE pula imediatamente, diferencia double-tap e hold sem upgrade
+  ---
+  duration_ms: 10.6644
+  ...
+# Subtest: rampas de teste usam hold até a borda e preservam impulsos proporcionais
+ok 51 - rampas de teste usam hold até a borda e preservam impulsos proporcionais
+  ---
+  duration_ms: 18.8113
+  ...
+# Subtest: Grind usa release imediato para Super Out e hold captura o segundo rail
+ok 52 - Grind usa release imediato para Super Out e hold captura o segundo rail
+  ---
+  duration_ms: 3.883
+  ...
+# Subtest: Ollie out preserva o avanço e aterrissa na rampa grande seguinte
+ok 53 - Ollie out preserva o avanço e aterrissa na rampa grande seguinte
+  ---
+  duration_ms: 8.6722
+  ...
+# Subtest: rails horizontais, inclinados e curvos são seguidos até a saída natural
+ok 54 - rails horizontais, inclinados e curvos são seguidos até a saída natural
+  ---
+  duration_ms: 3.2704
+  ...
+# Subtest: snap não captura quem está próximo mas se afasta do grindPath
+ok 55 - snap não captura quem está próximo mas se afasta do grindPath
+  ---
+  duration_ms: 1.9682
+  ...
+# Subtest: pista curta contém small → landing → medium → rails → big e mantém velocidade lateral
+ok 56 - pista curta contém small → landing → medium → rails → big e mantém velocidade lateral
+  ---
+  duration_ms: 0.5541
+  ...
+# Subtest: soft capture flat: no teleport, no frozen velocity, contact in 100ms
+ok 57 - soft capture flat: no teleport, no frozen velocity, contact in 100ms
+  ---
+  duration_ms: 15.5755
+  ...
+# Subtest: soft capture ascending: no teleport, no frozen velocity, contact in 100ms
+ok 58 - soft capture ascending: no teleport, no frozen velocity, contact in 100ms
+  ---
+  duration_ms: 2.0745
+  ...
+# Subtest: soft capture descending: no teleport, no frozen velocity, contact in 100ms
+ok 59 - soft capture descending: no teleport, no frozen velocity, contact in 100ms
+  ---
+  duration_ms: 1.2827
+  ...
+# Subtest: soft capture curved: no teleport, no frozen velocity, contact in 100ms
+ok 60 - soft capture curved: no teleport, no frozen velocity, contact in 100ms
+  ---
+  duration_ms: 1.0093
+  ...
+# Subtest: capture before first post leaves x unchanged; no hold never captures
+ok 61 - capture before first post leaves x unchanged; no hold never captures
+  ---
+  duration_ms: 0.934
+  ...
+# Subtest: holding on flat ground gives exactly the same height and one takeoff as a tap
+ok 62 - holding on flat ground gives exactly the same height and one takeoff as a tap
+  ---
+  duration_ms: 10.7808
+  ...
+# Subtest: intro has five distinct rails, safe first transfer and two real gaps
+ok 63 - intro has five distinct rails, safe first transfer and two real gaps
+  ---
+  duration_ms: 721.4325
+  ...
+# Subtest: official Skate is backed only by procedural course geometry
+ok 64 - official Skate is backed only by procedural course geometry
+  ---
+  duration_ms: 5.5204
+  ...
+# Subtest: official rails, ramps and structures share visual and gameplay geometry
+ok 65 - official rails, ramps and structures share visual and gameplay geometry
+  ---
+  duration_ms: 1.2059
+  ...
+# Subtest: official browser flow loads procedural track without scene sprite catalogs
+ok 66 - official browser flow loads procedural track without scene sprite catalogs
+  ---
+  duration_ms: 5.078
+  ...
+# Subtest: official run completes with procedural collisions, Grind capture and Jump Out
+ok 67 - official run completes with procedural collisions, Grind capture and Jump Out
+  ---
+  duration_ms: 3427.483
+  ...
+# Subtest: five supported rails form a fatal no-floor line with a required Super transfer
+ok 68 - five supported rails form a fatal no-floor line with a required Super transfer
+  ---
+  duration_ms: 1741.2259
+  ...
+# Subtest: grand stair rail starts before twenty-four fatal steps and needs a timed exit
+ok 69 - grand stair rail starts before twenty-four fatal steps and needs a timed exit
+  ---
+  duration_ms: 802.4982
+  ...
+# Subtest: last third connects ramp, bench, ledge and three launch surfaces without scenery sprites
+ok 70 - last third connects ramp, bench, ledge and three launch surfaces without scenery sprites
+  ---
+  duration_ms: 1820.9926
+  ...
+# Subtest: final gauntlet has four required fast transfers, fatal stair miss and clean finish
+ok 71 - final gauntlet has four required fast transfers, fatal stair miss and clean finish
+  ---
+  duration_ms: 2393.6949
+  ...
+# Subtest: zero, permanent hold and mash cannot clear the procedural official course
+ok 72 - zero, permanent hold and mash cannot clear the procedural official course
+  ---
+  duration_ms: 449.0623
+  ...
+# Subtest: SPACE keeps immediate Normal, double Ollie and hold Grind intent distinct
+ok 73 - SPACE keeps immediate Normal, double Ollie and hold Grind intent distinct
+  ---
+  duration_ms: 24.9971
+  ...
+# Subtest: procedural validation course contains only code geometry and explicit collision roles
+ok 74 - procedural validation course contains only code geometry and explicit collision roles
+  ---
+  duration_ms: 0.7375
+  ...
+# Subtest: without held SPACE the first rail does not capture automatically
+ok 75 - without held SPACE the first rail does not capture automatically
+  ---
+  duration_ms: 152.8409
+  ...
+# Subtest: held SPACE keeps a captured Grind until release or rail end
+ok 76 - held SPACE keeps a captured Grind until release or rail end
+  ---
+  duration_ms: 2.3755
+  ...
+# Subtest: four-rail chain completes without touching ground and uses Super for the high rail
+ok 77 - four-rail chain completes without touching ground and uses Super for the high rail
+  ---
+  duration_ms: 229.5806
+  ...
+# Subtest: complete gameplay line reaches the stair handrail and finishes
+ok 78 - complete gameplay line reaches the stair handrail and finishes
+  ---
+  duration_ms: 346.0444
+  ...
+# Subtest: hold forever and mash do not clear the validation course
+ok 79 - hold forever and mash do not clear the validation course
+  ---
+  duration_ms: 265.884
+  ...
+# Subtest: sandbox uses the same procedural geometry vocabulary as the official course
+ok 80 - sandbox uses the same procedural geometry vocabulary as the official course
+  ---
+  duration_ms: 6.4678
+  ...
+# Subtest: ramp drawing, collision and physics all share the same sampled surface
+ok 81 - ramp drawing, collision and physics all share the same sampled surface
+  ---
+  duration_ms: 2.955
+  ...
+# Subtest: every rail uses its visual path for Grind and has grounded supports
+ok 82 - every rail uses its visual path for Grind and has grounded supports
+  ---
+  duration_ms: 0.9814
+  ...
+# Subtest: bench and ledge separate safe top, grind edge and dangerous side
+ok 83 - bench and ledge separate safe top, grind edge and dangerous side
+  ---
+  duration_ms: 0.6444
+  ...
+# Subtest: stairs are generated step by step and their handrail follows the structure
+ok 84 - stairs are generated step by step and their handrail follows the structure
+  ---
+  duration_ms: 0.5677
+  ...
+# Subtest: gaps are real breaks in ground with visible shores
+ok 85 - gaps are real breaks in ground with visible shores
+  ---
+  duration_ms: 0.7649
+  ...
+# Subtest: builder exposes the complete reusable authoring vocabulary
+ok 86 - builder exposes the complete reusable authoring vocabulary
+  ---
+  duration_ms: 0.5577
+  ...
+# Subtest: the short sandbox can be played from spawn to finish with the current physics
+ok 87 - the short sandbox can be played from spawn to finish with the current physics
+  ---
+  duration_ms: 705.0326
+  ...
+# Subtest: release launches once immediately with strong impulse, tangent and preserved momentum
+ok 88 - release launches once immediately with strong impulse, tangent and preserved momentum
+  ---
+  duration_ms: 7.6472
+  ...
+# Subtest: huge stair exit repeats ten times; early release and no release fail
+ok 89 - huge stair exit repeats ten times; early release and no release fail
+  ---
+  duration_ms: 2408.2442
+  ...
+# Subtest: Mega Air needs only SPACE and finite sustained execution
+ok 90 - Mega Air needs only SPACE and finite sustained execution
+  ---
+  duration_ms: 712.3654
+  ...
+# Subtest: full line survives frame scheduling at 30, 60, 90 and 120 Hz
+ok 91 - full line survives frame scheduling at 30, 60, 90 and 120 Hz
+  ---
+  duration_ms: 8121.6259
+  ...
+# Subtest: every gameplay pose uses an existing Skate 2.0 frame with its board attached
+ok 92 - every gameplay pose uses an existing Skate 2.0 frame with its board attached
+  ---
+  duration_ms: 38.0115
+  ...
+# Subtest: ride, normal jump, Ollie, Super Jump, air catch and landing follow physical state
+ok 93 - ride, normal jump, Ollie, Super Jump, air catch and landing follow physical state
+  ---
+  duration_ms: 2.8839
+  ...
+# Subtest: grind, jump out, bench top, crash and respawn use their own poses
+ok 94 - grind, jump out, bench top, crash and respawn use their own poses
+  ---
+  duration_ms: 0.9842
+  ...
+# Subtest: push, board flip trick and near-fail keep the board attached
+ok 95 - push, board flip trick and near-fail keep the board attached
+  ---
+  duration_ms: 0.7185
+  ...
+# Subtest: frame anchor keeps board contact fixed through every gameplay animation
+ok 96 - frame anchor keeps board contact fixed through every gameplay animation
+  ---
+  duration_ms: 1.9901
+  ...
+# Subtest: SPACE inicia Normal Jump imediatamente, sem esperar o double tap
+ok 97 - SPACE inicia Normal Jump imediatamente, sem esperar o double tap
+  ---
+  duration_ms: 7.3046
+  ...
+# Subtest: Ollie atualiza o salto; a antiga ação de Super Jump é ignorada
+ok 98 - Ollie atualiza o salto; a antiga ação de Super Jump é ignorada
+  ---
+  duration_ms: 4.2305
+  ...
+# Subtest: Normal < Ollie < lançamento de Grind com momentum
+ok 99 - Normal < Ollie < lançamento de Grind com momentum
+  ---
+  duration_ms: 2.9836
+  ...
+# Subtest: sem input avança até o obstáculo de teste e causa crash previsível
+ok 100 - sem input avança até o obstáculo de teste e causa crash previsível
+  ---
+  duration_ms: 6.3393
+  ...
+# Subtest: hold longo faz somente um salto, depois deixa Zorp aterrissar
+ok 101 - hold longo faz somente um salto, depois deixa Zorp aterrissar
+  ---
+  duration_ms: 28.696
+  ...
+# Subtest: câmera mantém Zorp perto de 32% e acompanha mudanças verticais com smoothing
+ok 102 - câmera mantém Zorp perto de 32% e acompanha mudanças verticais com smoothing
+  ---
+  duration_ms: 3.3762
+  ...
+# Subtest: descidas contínuas mantêm Zorp na superfície sem pousos repetidos
+ok 103 - descidas contínuas mantêm Zorp na superfície sem pousos repetidos
+  ---
+  duration_ms: 3.6467
+  ...
+# Subtest: topo do banco é SAFE_TOP; impacto na lateral causa crash
+ok 104 - topo do banco é SAFE_TOP; impacto na lateral causa crash
+  ---
+  duration_ms: 1.2404
+  ...
+# Subtest: passar acima do banco é seguro e o topo permite um novo salto
+ok 105 - passar acima do banco é seguro e o topo permite um novo salto
+  ---
+  duration_ms: 1.6636
+  ...
+# Subtest: escada não cria chão plano; colisão é classificada como stair fall
+ok 106 - escada não cria chão plano; colisão é classificada como stair fall
+  ---
+  duration_ms: 1.3656
+  ...
+# Subtest: impulso de rampa mantém avanço e superfície inclinada é amostrada
+ok 107 - impulso de rampa mantém avanço e superfície inclinada é amostrada
+  ---
+  duration_ms: 3.5158
+  ...
+# Subtest: Mega Hold sustenta sem interpretar Ollie ou sequência aérea
+ok 108 - Mega Hold sustenta sem interpretar Ollie ou sequência aérea
+  ---
+  duration_ms: 4.8304
+  ...
+# Subtest: um Space inicia Normal Jump imediatamente e o segundo Space no ar faz upgrade Ollie
+ok 109 - um Space inicia Normal Jump imediatamente e o segundo Space no ar faz upgrade Ollie
+  ---
+  duration_ms: 0.6707
+  ...
+# Subtest: hold permanece intenção de Grind sem produzir Super Jump
+ok 110 - hold permanece intenção de Grind sem produzir Super Jump
+  ---
+  duration_ms: 0.6204
+  ...
+# Subtest: hold não gera impulso; release do Grind é resolvido pela travessia
+ok 111 - hold não gera impulso; release do Grind é resolvido pela travessia
+  ---
+  duration_ms: 0.5183
+  ...
+# Subtest: rail capturável prioriza Grind sobre Ollie e Super Jump no mesmo pressionamento
+ok 112 - rail capturável prioriza Grind sobre Ollie e Super Jump no mesmo pressionamento
+  ---
+  duration_ms: 0.7677
+  ...
+# Subtest: novo hold aéreo após captura e Jump Out não adiciona energia
+ok 113 - novo hold aéreo após captura e Jump Out não adiciona energia
+  ---
+  duration_ms: 0.5588
+  ...
+# Subtest: trick → grind inicia blend sem snap e soma pontos por distância
+ok 114 - trick → grind inicia blend sem snap e soma pontos por distância
+  ---
+  duration_ms: 9.15
+  ...
+# Subtest: snap não captura Zorp que esteja longe do rail
+ok 115 - snap não captura Zorp que esteja longe do rail
+  ---
+  duration_ms: 0.6282
+  ...
+# Subtest: Grind exige SPACE segurado; aproximação sem hold não captura
+ok 116 - Grind exige SPACE segurado; aproximação sem hold não captura
+  ---
+  duration_ms: 1.0284
+  ...
+# Subtest: buffer de 130 ms captura um rail logo após um Space antecipado
+ok 117 - buffer de 130 ms captura um rail logo após um Space antecipado
+  ---
+  duration_ms: 1.788
+  ...
+# Subtest: SPACE segurado cedo continua válido ao entrar na zona depois do buffer
+ok 118 - SPACE segurado cedo continua válido ao entrar na zona depois do buffer
+  ---
+  duration_ms: 1.3749
+  ...
+# Subtest: release lança no primeiro frame, sem repressão
+ok 119 - release lança no primeiro frame, sem repressão
+  ---
+  duration_ms: 0.9711
+  ...
+# Subtest: Space depois do fim do grindPath não captura rail tarde demais
+ok 120 - Space depois do fim do grindPath não captura rail tarde demais
+  ---
+  duration_ms: 0.4796
+  ...
+# Subtest: trick → manual preserva o combo ao tocar o chão segurando SPACE
+ok 121 - trick → manual preserva o combo ao tocar o chão segurando SPACE
+  ---
+  duration_ms: 2.517
+  ...
+# Subtest: grind → manual conecta no pouso seguinte
+ok 122 - grind → manual conecta no pouso seguinte
+  ---
+  duration_ms: 1.9789
+  ...
+# Subtest: manual → Ollie usa a soltura para lançar sem input ambíguo
+ok 123 - manual → Ollie usa a soltura para lançar sem input ambíguo
+  ---
+  duration_ms: 1.6498
+  ...
+# Subtest: trick → grind → manual → Ollie → trick mantém a linha ativa
+ok 124 - trick → grind → manual → Ollie → trick mantém a linha ativa
+  ---
+  duration_ms: 1.101
+  ...
+# Subtest: pouso normal abre janela e faz bank quando nada conecta
+ok 125 - pouso normal abre janela e faz bank quando nada conecta
+  ---
+  duration_ms: 0.593
+  ...
+# Subtest: crash descarta combo ativo e conserva score já banked
+ok 126 - crash descarta combo ativo e conserva score já banked
+  ---
+  duration_ms: 0.3555
+  ...
+# Subtest: bônus de execução são centralizados para high rail, bench trick e Special Air
+ok 127 - bônus de execução são centralizados para high rail, bench trick e Special Air
+  ---
+  duration_ms: 0.4727
+  ...
+# Subtest: manual tem duração máxima e rail aceita geometria inclinada
+ok 128 - manual tem duração máxima e rail aceita geometria inclinada
+  ---
+  duration_ms: 0.3985
+  ...
+# Subtest: a pista provisória permite alcançar o rail com Ollie e manter Grind até a saída
+ok 129 - a pista provisória permite alcançar o rail com Ollie e manter Grind até a saída
+  ---
+  duration_ms: 13.3286
+  ...
+# Subtest: TAP reconhece Kickflip com os frames Pro3 row04
+ok 130 - TAP reconhece Kickflip com os frames Pro3 row04
+  ---
+  duration_ms: 4.63
+  ...
+# Subtest: DOUBLE TAP reconhece Heelflip com a sequência existente invertida
+ok 131 - DOUBLE TAP reconhece Heelflip com a sequência existente invertida
+  ---
+  duration_ms: 0.6561
+  ...
+# Subtest: HOLD curto reconhece Spin com os frames Pro3 row03
+ok 132 - HOLD curto reconhece Spin com os frames Pro3 row03
+  ---
+  duration_ms: 0.538
+  ...
+# Subtest: TAP + HOLD reconhece Grab
+ok 133 - TAP + HOLD reconhece Grab
+  ---
+  duration_ms: 0.6689
+  ...
+# Subtest: DOUBLE TAP + HOLD reconhece Varial com frames de flip existentes
+ok 134 - DOUBLE TAP + HOLD reconhece Varial com frames de flip existentes
+  ---
+  duration_ms: 0.6344
+  ...
+# Subtest: TRIPLE TAP é jogável e vira Hard Flip com o flip invertido existente
+ok 135 - TRIPLE TAP é jogável e vira Hard Flip com o flip invertido existente
+  ---
+  duration_ms: 0.5237
+  ...
+# Subtest: spam não cria cinco tricks e mantém limite de dois por salto
+ok 136 - spam não cria cinco tricks e mantém limite de dois por salto
+  ---
+  duration_ms: 1.0217
+  ...
+# Subtest: trick perto do chão é recusado se a animação não cabe no airtime
+ok 137 - trick perto do chão é recusado se a animação não cabe no airtime
+  ---
+  duration_ms: 2.7387
+  ...
+# Subtest: dois tricks conectam somente no salto alto com tempo restante
+ok 138 - dois tricks conectam somente no salto alto com tempo restante
+  ---
+  duration_ms: 1.7567
+  ...
+# Subtest: repetição reduz score e a variedade premia um trick novo
+ok 139 - repetição reduz score e a variedade premia um trick novo
+  ---
+  duration_ms: 3.0654
+  ...
+# Subtest: as durações reais e a checagem de airtime ficam centralizadas
+ok 140 - as durações reais e a checagem de airtime ficam centralizadas
+  ---
+  duration_ms: 0.5704
+  ...
+# Subtest: RAMP input holds without jumping, charging or leaving a double-tap pending
+ok 141 - RAMP input holds without jumping, charging or leaving a double-tap pending
+  ---
+  duration_ms: 6.411
+  ...
+# Subtest: start-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 142 - start-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 112.8875
+  ...
+# Subtest: first-rail-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 143 - first-rail-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 69.528
+  ...
+# Subtest: transfer-bank: follow surface, lip launch, planned landing, weaker early release
+ok 144 - transfer-bank: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 63.8428
+  ...
+# Subtest: chain-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 145 - chain-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 51.3201
+  ...
+# Subtest: street-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 146 - street-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 49.2431
+  ...
+# Subtest: bench-bank: follow surface, lip launch, planned landing, weaker early release
+ok 147 - bench-bank: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 80.5997
+  ...
+# Subtest: bench-exit-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 148 - bench-exit-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 83.5375
+  ...
+# Subtest: stair-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 149 - stair-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 80.0271
+  ...
+# Subtest: danger-chain-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 150 - danger-chain-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 45.2569
+  ...
+# Subtest: speed-kicker-first: follow surface, lip launch, planned landing, weaker early release
+ok 151 - speed-kicker-first: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 45.8144
+  ...
+# Subtest: ascent-bank-1: follow surface, lip launch, planned landing, weaker early release
+ok 152 - ascent-bank-1: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 64.1445
+  ...
+# Subtest: ascent-bank-2: follow surface, lip launch, planned landing, weaker early release
+ok 153 - ascent-bank-2: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 59.769
+  ...
+# Subtest: ascent-bank-3: follow surface, lip launch, planned landing, weaker early release
+ok 154 - ascent-bank-3: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 43.8374
+  ...
+# Subtest: huge-launch: follow surface, lip launch, planned landing, weaker early release
+ok 155 - huge-launch: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 174.2019
+  ...
+# Subtest: void-entry-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 156 - void-entry-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 54.9381
+  ...
+# Subtest: advanced-launch: follow surface, lip launch, planned landing, weaker early release
+ok 157 - advanced-launch: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 70.3109
+  ...
+# Subtest: release-small: follow surface, lip launch, planned landing, weaker early release
+ok 158 - release-small: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 59.865
+  ...
+# Subtest: release-medium: follow surface, lip launch, planned landing, weaker early release
+ok 159 - release-medium: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 45.7337
+  ...
+# Subtest: release-curve: follow surface, lip launch, planned landing, weaker early release
+ok 160 - release-curve: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 67.7069
+  ...
+# Subtest: final-medium-kicker: follow surface, lip launch, planned landing, weaker early release
+ok 161 - final-medium-kicker: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 48.7415
+  ...
+# Subtest: final-big-ramp: follow surface, lip launch, planned landing, weaker early release
+ok 162 - final-big-ramp: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 258.6497
+  ...
+# Subtest: finish-landing-bank: follow surface, lip launch, planned landing, weaker early release
+ok 163 - finish-landing-bank: follow surface, lip launch, planned landing, weaker early release
+  ---
+  duration_ms: 34.6644
+  ...
+# Subtest: press/double press on a ramp cannot bypass riding to its physical lip
+ok 164 - press/double press on a ramp cannot bypass riding to its physical lip
+  ---
+  duration_ms: 1.9187
+  ...
+# Subtest: ramp impulse uses current rider speed and multiplier, not configured cruise speed
+ok 165 - ramp impulse uses current rider speed and multiplier, not configured cruise speed
+  ---
+  duration_ms: 0.9064
+  ...
+# Subtest: authored quarter-pipe uses the same surface/hold/lip pipeline
+ok 166 - authored quarter-pipe uses the same surface/hold/lip pipeline
+  ---
+  duration_ms: 2.3802
+  ...
+# Subtest: complete keyboard line preserves grind, Super Jump Out, Mega Air and finish at 30/60/144 Hz
+ok 167 - complete keyboard line preserves grind, Super Jump Out, Mega Air and finish at 30/60/144 Hz
+  ---
+  duration_ms: 6830.5994
+  ...
+# Subtest: One principal quest per sport, preserving existing owners/rewards
+ok 168 - One principal quest per sport, preserving existing owners/rewards
+  ---
+  duration_ms: 32.4569
+  ...
+# Subtest: 11 approved NPCs, no replacement, static fronts, 44px and separate collider
+ok 169 - 11 approved NPCs, no replacement, static fronts, 44px and separate collider
+  ---
+  duration_ms: 10.5789
+  ...
+# Subtest: Photo: accepted + valid Zorp 3-pointer inside final ten; no automatic payment
+ok 170 - Photo: accepted + valid Zorp 3-pointer inside final ten; no automatic payment
+  ---
+  duration_ms: 13.5557
+  ...
+# Subtest: Clean lap: no starting-line fake lap, obstacle dirties only current physical lap
+ok 171 - Clean lap: no starting-line fake lap, obstacle dirties only current physical lap
+  ---
+  duration_ms: 37.0209
+  ...
+# Subtest: Clean lap reset cannot carry a clean partial lap into a new run
+ok 172 - Clean lap reset cannot carry a clean partial lap into a new run
+  ---
+  duration_ms: 10.4492
+  ...
+# Subtest: Skate requires actual grind distance, then airborne completed trick, then good landing
+ok 173 - Skate requires actual grind distance, then airborne completed trick, then good landing
+  ---
+  duration_ms: 10.3033
+  ...
+# Subtest: Skate fall or restart breaks the one-take sequence
+ok 174 - Skate fall or restart breaks the one-take sequence
+  ---
+  duration_ms: 21.6054
+  ...
+# Subtest: Archery three direct hanging disks; unrelated misses do not break streak
+ok 175 - Archery three direct hanging disks; unrelated misses do not break streak
+  ---
+  duration_ms: 8.0049
+  ...
+# Subtest: Archery aimed bird miss breaks streak, restart resets, no duplicate resolution
+ok 176 - Archery aimed bird miss breaks streak, restart resets, no duplicate resolution
+  ---
+  duration_ms: 11.8753
+  ...
+# Subtest: Archery release order wins over impact order; normal hits and explosion collateral cannot fake birds
+ok 177 - Archery release order wins over impact order; normal hits and explosion collateral cannot fake birds
+  ---
+  duration_ms: 7.6927
+  ...
+# Subtest: Surf 60%, capture permanently dirties that run; retry is fresh
+ok 178 - Surf 60%, capture permanently dirties that run; retry is fresh
+  ---
+  duration_ms: 20.4664
+  ...
+# Subtest: All new rewards persist pending and paid; reload cannot duplicate coins
+ok 179 - All new rewards persist pending and paid; reload cannot duplicate coins
+  ---
+  duration_ms: 128.7897
+  ...
+# Subtest: Existing boxing and medal quests remain single-return rewards
+ok 180 - Existing boxing and medal quests remain single-return rewards
+  ---
+  duration_ms: 7.3531
+  ...
+# Subtest: Public completion flags derive from canonical persisted wallet state
+ok 181 - Public completion flags derive from canonical persisted wallet state
+  ---
+  duration_ms: 16.5583
+  ...
+# Subtest: Ambient NPCs never create a quest, provide specific lore and react to medals
+ok 182 - Ambient NPCs never create a quest, provide specific lore and react to medals
+  ---
+  duration_ms: 8.5607
+  ...
+# Subtest: A rough skate landing cannot carry a completed trick into a later touchdown
+ok 183 - A rough skate landing cannot carry a completed trick into a later touchdown
+  ---
+  duration_ms: 17.8658
+  ...
+# Subtest: Unaccepted objectives never grant retroactive completion
+ok 184 - Unaccepted objectives never grant retroactive completion
+  ---
+  duration_ms: 6.6902
+  ...
+# Subtest: New save: central true, exactly eight independent undiscovered sports and seven boolean inventory states
+ok 185 - New save: central true, exactly eight independent undiscovered sports and seven boolean inventory states
+  ---
+  duration_ms: 43.1912
+  ...
+# Subtest: Version 4 migration preserves coins, quests, purchased IDs, discoveries and merchant flags
+ok 186 - Version 4 migration preserves coins, quests, purchased IDs, discoveries and merchant flags
+  ---
+  duration_ms: 22.9739
+  ...
+# Subtest: Exploration discovers every region without any medal, accepted quest, Master interaction or merchant
+ok 187 - Exploration discovers every region without any medal, accepted quest, Master interaction or merchant
+  ---
+  duration_ms: 16.6693
+  ...
+# Subtest: Unknown regions, game scenes and cinematic scene IDs cannot grant discoveries
+ok 188 - Unknown regions, game scenes and cinematic scene IDs cannot grant discoveries
+  ---
+  duration_ms: 19.4407
+  ...
+# Subtest: Discovery persists immediately, repeated entry does not rewrite or reset campaign data
+ok 189 - Discovery persists immediately, repeated entry does not rewrite or reset campaign data
+  ---
+  duration_ms: 13.6983
+  ...
+# Subtest: Failed discovery save rolls back and can be retried; existing inventory and coins remain intact
+ok 190 - Failed discovery save rolls back and can be retried; existing inventory and coins remain intact
+  ---
+  duration_ms: 15.0118
+  ...
+# Subtest: Partial updates cannot clear earlier visits, purchases or merchant arrival
+ok 191 - Partial updates cannot clear earlier visits, purchases or merchant arrival
+  ---
+  duration_ms: 15.9854
+  ...
+# Subtest: Compatibility views are derived, do not mutate canonical progress and are not serialized twice
+ok 192 - Compatibility views are derived, do not mutate canonical progress and are not serialized twice
+  ---
+  duration_ms: 33.4919
+  ...
+# Subtest: Visit and victory are separate; unvisited islands never expose medals or quests
+ok 193 - Visit and victory are separate; unvisited islands never expose medals or quests
+  ---
+  duration_ms: 17.2628
+  ...
+# Subtest: Scanner reveals only the public status of visited regions
+ok 194 - Scanner reveals only the public status of visited regions
+  ---
+  duration_ms: 15.5122
+  ...
+# Subtest: Current location is independent of selected destination; store icon requires the actual merchant unlock
+ok 195 - Current location is independent of selected destination; store icon requires the actual merchant unlock
+  ---
+  duration_ms: 13.8218
+  ...
+# Subtest: Map text includes actual location and separate victory wording, without quest status before scanner
+ok 196 - Map text includes actual location and separate victory wording, without quest status before scanner
+  ---
+  duration_ms: 29.4562
+  ...
+# Subtest: Travel needs owned teleporter, proven visit and current Overworld; no hidden destination bypass
+ok 197 - Travel needs owned teleporter, proven visit and current Overworld; no hidden destination bypass
+  ---
+  duration_ms: 13.6813
+  ...
+# Subtest: Landing is revalidated at fade commit; blocked target cancels without moving or changing visits
+ok 198 - Landing is revalidated at fade commit; blocked target cancels without moving or changing visits
+  ---
+  duration_ms: 15.0678
+  ...
+# Subtest: Every region declares a separate finite interior fastTravelSpawn
+ok 199 - Every region declares a separate finite interior fastTravelSpawn
+  ---
+  duration_ms: 13.4572
+  ...
+# Subtest: B and M cannot open interfaces during minigames or important scenes/dialogues
+ok 200 - B and M cannot open interfaces during minigames or important scenes/dialogues
+  ---
+  duration_ms: 14.8274
+  ...
+# Subtest: An already open interface yields to a critical event rather than swallowing its inputs
+ok 201 - An already open interface yields to a critical event rather than swallowing its inputs
+  ---
+  duration_ms: 19.5265
+  ...
+# Subtest: Canonical inventory persists across all islands, a game and reload without serializing assets
+ok 202 - Canonical inventory persists across all islands, a game and reload without serializing assets
+  ---
+  duration_ms: 26.3467
+  ...
+# Subtest: Unified facade reads the existing medal, quest, merchant, wallet, captain and Ravok authorities
+ok 203 - Unified facade reads the existing medal, quest, merchant, wallet, captain and Ravok authorities
+  ---
+  duration_ms: 12.1214
+  ...
+# Subtest: Letter only marks a destination actually seen; arrest alone does not mark an ending
+ok 204 - Letter only marks a destination actually seen; arrest alone does not mark an ending
+  ---
+  duration_ms: 16.5984
+  ...
+# Subtest: Zero medals means no merchant, store, sign or body collider
+ok 205 - Zero medals means no merchant, store, sign or body collider
+  ---
+  duration_ms: 60.043
+  ...
+# Subtest: First medal defers until safe Overworld; never interrupts a match or existing scene
+ok 206 - First medal defers until safe Overworld; never interrupts a match or existing scene
+  ---
+  duration_ms: 12.4478
+  ...
+# Subtest: Arrival walks, stages build, ship surprise, sign, satisfaction and speech; saves only at end
+ok 207 - Arrival walks, stages build, ship surprise, sign, satisfaction and speech; saves only at end
+  ---
+  duration_ms: 112.36
+  ...
+# Subtest: Legacy save with medal but no merchant replays arrival once; zero-medal corrupt flags remain invisible
+ok 208 - Legacy save with medal but no merchant replays arrival once; zero-medal corrupt flags remain invisible
+  ---
+  duration_ms: 91.1536
+  ...
+# Subtest: Space cannot skip essential timed shots or same-key speech
+ok 209 - Space cannot skip essential timed shots or same-key speech
+  ---
+  duration_ms: 47.1573
+  ...
+# Subtest: Failed arrival save stays pending and retries without silently unlocking
+ok 210 - Failed arrival save stays pending and retries without silently unlocking
+  ---
+  duration_ms: 104.9803
+  ...
+# Subtest: Seven centralized prices, optional goods and exact purchase accounting
+ok 211 - Seven centralized prices, optional goods and exact purchase accounting
+  ---
+  duration_ms: 55.6306
+  ...
+# Subtest: Insufficient funds, duplicate input, locked shop and failed saves cannot debit money
+ok 212 - Insufficient funds, duplicate input, locked shop and failed saves cannot debit money
+  ---
+  duration_ms: 51.1584
+  ...
+# Subtest: Purchases, visits, unlocks and style persist together; old quests and Captain payment survive
+ok 213 - Purchases, visits, unlocks and style persist together; old quests and Captain payment survive
+  ---
+  duration_ms: 69.2784
+  ...
+# Subtest: Backpack and map are Overworld-only; M without map gives an honest message
+ok 214 - Backpack and map are Overworld-only; M without map gives an honest message
+  ---
+  duration_ms: 11.7591
+  ...
+# Subtest: Teleportation needs ownership, a proven visit, a valid landing and confirmation
+ok 215 - Teleportation needs ownership, a proven visit, a valid landing and confirmation
+  ---
+  duration_ms: 47.7139
+  ...
+# Subtest: Record module observes only actually started games and retains best direction
+ok 216 - Record module observes only actually started games and retains best direction
+  ---
+  duration_ms: 11.7057
+  ...
+# Subtest: All fifty frames use fixed uniform scale, immutable atlas anchor and positional walking
+ok 217 - All fifty frames use fixed uniform scale, immutable atlas anchor and positional walking
+  ---
+  duration_ms: 12.6943
+  ...
+# Subtest: Readable exact sign and mysterious letter do not leak route identities
+ok 218 - Readable exact sign and mysterious letter do not leak route identities
+  ---
+  duration_ms: 55.9177
+  ...
+# Subtest: Five campaign dialogue tiers, first/large/letter sales and global backpack are distinct
+ok 219 - Five campaign dialogue tiers, first/large/letter sales and global backpack are distinct
+  ---
+  duration_ms: 61.847
+  ...
+# Subtest: all eight sports share one short configuration contract
+ok 220 - all eight sports share one short configuration contract
+  ---
+  duration_ms: 8.2687
+  ...
+# Subtest: inactive controller does not intercept normal gameplay
+ok 221 - inactive controller does not intercept normal gameplay
+  ---
+  duration_ms: 1.0159
+  ...
+# Subtest: briefing remains open indefinitely and never starts from its animation clock
+ok 222 - briefing remains open indefinitely and never starts from its animation clock
+  ---
+  duration_ms: 1.0407
+  ...
+# Subtest: Space confirms once after the short exit transition
+ok 223 - Space confirms once after the short exit transition
+  ---
+  duration_ms: 0.8648
+  ...
+# Subtest: Enter confirms once after the short exit transition
+ok 224 - Enter confirms once after the short exit transition
+  ---
+  duration_ms: 1.6203
+  ...
+# Subtest: Escape cancels without triggering the start callback
+ok 225 - Escape cancels without triggering the start callback
+  ---
+  duration_ms: 0.9672
+  ...
+# Subtest: opening with the NPC interaction key held cannot confirm until release and a fresh press
+ok 226 - opening with the NPC interaction key held cannot confirm until release and a fresh press
+  ---
+  duration_ms: 0.8632
+  ...
+# Subtest: repeated keydown never confirms
+ok 227 - repeated keydown never confirms
+  ---
+  duration_ms: 0.411
+  ...
+# Subtest: confirming and movement keys do not leak into gameplay while held
+ok 228 - confirming and movement keys do not leak into gameplay while held
+  ---
+  duration_ms: 1.3218
+  ...
+# Subtest: lost focus releases stale held-key guards
+ok 229 - lost focus releases stale held-key guards
+  ---
+  duration_ms: 1.3259
+  ...
+# Subtest: all inputs are consumed while a briefing is open
+ok 230 - all inputs are consumed while a briefing is open
+  ---
+  duration_ms: 0.696
+  ...
+# Subtest: active briefing stops propagation to minigame-specific listeners
+ok 231 - active briefing stops propagation to minigame-specific listeners
+  ---
+  duration_ms: 0.5719
+  ...
+# Subtest: opening another briefing cannot silently replace an active one
+ok 232 - opening another briefing cannot silently replace an active one
+  ---
+  duration_ms: 0.3234
+  ...
+# Subtest: cancel is optional for sports without a return route
+ok 233 - cancel is optional for sports without a return route
+  ---
+  duration_ms: 0.3781
+  ...
+# Subtest: fade, layout, essential controls and icon render through the same Canvas component
+ok 234 - fade, layout, essential controls and icon render through the same Canvas component
+  ---
+  duration_ms: 8.0647
+  ...
+# Subtest: every sport renders inside the same fixed card without truncated instructional text
+ok 235 - every sport renders inside the same fixed card without truncated instructional text
+  ---
+  duration_ms: 8.1397
+  ...
+# Subtest: configuration validates essentials and bounds tutorial size
+ok 236 - configuration validates essentials and bounds tutorial size
+  ---
+  duration_ms: 1.4714
+  ...
+# Subtest: animation uses deltaTime at 30 Hz
+ok 237 - animation uses deltaTime at 30 Hz
+  ---
+  duration_ms: 0.4718
+  ...
+# Subtest: animation uses deltaTime at 60 Hz
+ok 238 - animation uses deltaTime at 60 Hz
+  ---
+  duration_ms: 0.2832
+  ...
+# Subtest: animation uses deltaTime at 144 Hz
+ok 239 - animation uses deltaTime at 144 Hz
+  ---
+  duration_ms: 0.2679
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 30 Hz
+ok 240 - countdown keeps simulation/input gated until VAI finishes at 30 Hz
+  ---
+  duration_ms: 1.8429
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 60 Hz
+ok 241 - countdown keeps simulation/input gated until VAI finishes at 60 Hz
+  ---
+  duration_ms: 0.7256
+  ...
+# Subtest: countdown keeps simulation/input gated until VAI finishes at 144 Hz
+ok 242 - countdown keeps simulation/input gated until VAI finishes at 144 Hz
+  ---
+  duration_ms: 1.3091
+  ...
+# Subtest: countdown is optional so Marathon can retain its own native countdown
+ok 243 - countdown is optional so Marathon can retain its own native countdown
+  ---
+  duration_ms: 0.6083
+  ...
+1..243
+# tests 243
+# suites 0
+# pass 243
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11796.3202

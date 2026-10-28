@@ -280,12 +280,12 @@
         official: true, isTestCourse: false, isProceduralSandbox: false,
         sections, sectionAt, forwardSpeedAt, estimateDurationSeconds,
         cues: [
-            { x: 970, y: 130, baseY: 220, text: "HOLD → GRIND", width: 125 },
-            { x: 13900, y: -295, baseY: -170, text: "HOLD / RELEASE", width: 145 },
-            { x: 16450, y: -270, baseY: -170, text: "STAIR DROP", danger: true },
-            { x: 17555, y: 105, baseY: 215, text: "RELEASE →", width: 95, danger: true },
-            { x: 23420, y: 130, baseY: 250, text: "MEGA AIR: HOLD", width: 125 },
-            { x: 25189, y: 180, baseY: 250, text: "LANDING", width: 90 }
+            { x: 970, y: 130, baseY: 220, text: "SEGURE SPACE", width: 125 },
+            { x: 13900, y: -295, baseY: -170, text: "SEGURE / SOLTE", width: 145 },
+            { x: 16450, y: -270, baseY: -170, text: "ESCADARIA", danger: true },
+            { x: 17555, y: 105, baseY: 215, text: "SOLTE SPACE", width: 95, danger: true },
+            { x: 23420, y: 130, baseY: 250, text: "SEGURE SPACE", width: 125 },
+            { x: 25189, y: 180, baseY: 250, text: "ATERRISSE", width: 90 }
         ],
         downhill: Object.freeze({ startX: 13700, endX: 17980, baseSpeed: 230, peakSpeed: 280 })
     });

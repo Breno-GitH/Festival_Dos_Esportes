@@ -30,7 +30,7 @@
         if(!data||!data.title||!data.objective)throw new TypeError('Briefing requer título e objetivo.');
         if(!Array.isArray(data.controls)||data.controls.length>3)throw new TypeError('Use até três controles essenciais.');
         return Object.freeze({id:data.id||'competition',title:String(data.title),subtitle:String(data.subtitle||''),
-            objective:String(data.objective),tip:String(data.tip||''),accent:data.accent||'#69d9d2',icon:data.icon||'medal',
+            objective:String(data.objective),tip:String(data.tip||''),controlGuide:data.controlGuide==='skate'?'skate':null,accent:data.accent||'#69d9d2',icon:data.icon||'medal',
             controls:Object.freeze(data.controls.map(c=>Object.freeze({keys:String(c.keys),action:String(c.action)})))});
     }
     function lines(ctx,value,width,max=2){
@@ -249,6 +249,9 @@
             icon(ctx,c.icon,x+w-101,top+11,c.accent);
             // A quiet title glint on entry; no continuous sweep over the instructions.
             if(this.clock<.7){ctx.globalAlpha=p*.35*(1-this.clock/.7);ctx.fillStyle='#eff5d7';ctx.fillRect(left,top+46,Math.round(46+this.clock*180),1);ctx.globalAlpha=p;}
+            if(c.controlGuide==='skate'&&globalThis.SkateControlCoach){
+                globalThis.SkateControlCoach.drawGuide(ctx,left,top+84,w-38);
+            }else{
             label(ctx,'OBJETIVO',left,top+85,c.accent);
             ctx.font='9px monospace';ctx.fillStyle='#d1dde0';
             lines(ctx,c.objective,w-38,2).forEach((line,i)=>ctx.fillText(line,left,top+100+i*12));
@@ -271,6 +274,7 @@
             ctx.fillStyle='#1a303d';ctx.fillRect(left-2,top+203,w-34,30);
             label(ctx,'DICA',left+5,top+213,'#cbb783');ctx.font='8px monospace';ctx.fillStyle='#a6bfc5';
             lines(ctx,c.tip,w-49,2).forEach((text,index)=>ctx.fillText(text,left+5,top+223+index*8));
+            }
             const pulse=this.state==='READY'?(Math.sin(this.clock*3)+1)/2:0;
             ctx.fillStyle=pulse>.65?'#52737b':'#365963';ctx.fillRect(left-1,top+237,w-36,22);
             ctx.fillStyle='#203e49';ctx.fillRect(left,top+238,w-38,19);

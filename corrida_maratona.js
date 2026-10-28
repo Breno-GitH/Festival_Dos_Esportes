@@ -783,8 +783,12 @@
                 return;
             }
             const projection = runner.trackProjection || this.track.project(runner.x, runner.y);
-            if(runner.routeRecovery){
-                runner.setInput(runner.routeRecovery.x-runner.x,runner.routeRecovery.y-runner.y);return;
+            if(!projection.onTrack){
+                // Rejoin the nearest edge under the same grass physics as Zorp.
+                // This target is recomputed from current position, never a saved recovery point.
+                const lateral=clamp(projection.lateral,-this.track.halfTrackWidth+14,this.track.halfTrackWidth-14);
+                const edge=this.track.pointOffset(projection.progress,lateral);
+                runner.setInput(edge.x-runner.x,edge.y-runner.y);return;
             }
             runner.aiDecisionTimer -= dt;
             if (runner.aiDecisionTimer <= 0) {
@@ -1130,7 +1134,7 @@
             this.obstacles.draw(ctx,this);
             const sorted=[...this.runners].sort((a,b)=>a.y-b.y);
             for(const runner of sorted)this.drawRunner(ctx,runner);
-            this.rivalEvents.draw(ctx,this);this.eventView.drawRecovery(ctx,this);
+            this.rivalEvents.draw(ctx,this);
             ctx.restore();
         }
 
@@ -1260,7 +1264,7 @@
                         speed: Number(runner.speed.toFixed(1)),
                         validatedLaps: runner.validatedLaps,
                         nextGate: runner.nextGate,checkpointProgress:runner.checkpointProgress,finishTime:runner.finishTime,
-                        routeRecovery:runner.routeRecovery,finished: runner.finished
+                        finished: runner.finished
                     };
                 }),
                 playerX: Number(this.player.x.toFixed(2)),
@@ -1289,7 +1293,7 @@
                 rankingModel:'completed laps, ordered physical checkpoints, validated sector fraction; sub-frame finish times',
                 totalLaps:this.totalLaps,checkpointProgress:this.player.checkpointProgress,finishTime:this.player.finishTime,
                 lapValidation:this.lapSystem.diagnostics(),presentation:this.eventView.diagnostics(),rivalEvents:this.rivalEvents.diagnostics(),
-                raceTime:this.raceTime,routeRecovery:this.player.routeRecovery,
+                raceTime:this.raceTime,
                 trackLength: Number(this.track.length.toFixed(1)),
                 trackWidth: this.track.trackWidth
             };
@@ -1300,7 +1304,6 @@
             if (this.phase === 'READY') this.startCountdown();
             if (this.phase === 'COUNTDOWN') this.countdown = 0;
             if (this.phase !== 'RACING') return;
-            if(this.player.routeRecovery){this.player.setInput(this.player.routeRecovery.x-this.player.x,this.player.routeRecovery.y-this.player.y);return;}
             const projection = this.track.project(this.player.x, this.player.y);
             const center = this.track.pointOffset(projection.progress, 0);
             const correction = clamp(projection.distance / 72, 0, 1.45);

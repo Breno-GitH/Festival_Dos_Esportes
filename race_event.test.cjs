@@ -27,7 +27,7 @@ test('wrong direction is rejected, including at the physical finish sensor',()=>
 });
 test('C: cutting through half the oval cannot award a checkpoint or a lap',()=>{
  const {g,r,t,system}=lapRunner();walk(g,r,-40,t.straight*.5);const before=t.pointOffset(t.straight*.5,0),across={x:before.x,y:-before.y};
- system.step(r,before,across,4,.05);assert.ok(r.routeRecovery);assert.equal(r.checkpointProgress,0);assert.equal(r.validatedLaps,0);
+ system.step(r,before,across,4,.05);assert.equal(r.routeRecovery,undefined);assert.equal(r.checkpointProgress,0);assert.equal(r.validatedLaps,0);
  const finish=t.pointOffset(-10,0),after=t.pointOffset(10,0);system.step(r,finish,after,6,.05);assert.equal(r.validatedLaps,0);
 });
 test('D: CP1 then return towards start cannot count a lap',()=>{
@@ -113,11 +113,15 @@ test('drawing uses cached ground and a single, uniform camera zoom',()=>{
  const g=setup(),game=g.game;game.draw();game.draw();assert.equal(game.eventView.groundBuilds,1);assert.equal(game.eventView.zoom,.72);assert.equal(game.atlas.invalidDrawCalls,0);
 });
 
-test('return to the marked track point unlocks validation without granting a gate on that frame',()=>{
- const {g,r,t,system}=lapRunner();walk(g,r,-40,300);const a=t.pointOffset(300,0),grass={x:a.x,y:0};
- system.step(r,a,grass,1,.05);const anchor={...r.routeRecovery};assert.ok(anchor);
- const count=system.events.length;system.step(r,grass,anchor,2,.05);assert.equal(r.routeRecovery,null);assert.equal(system.events.length,count);
- walk(g,r,anchor.progress,t.length+20);assert.equal(r.validatedLaps,1);
+test('re-entering farther along the edge immediately resumes checkpoint validation',()=>{
+ const {g,r,t,system}=lapRunner();walk(g,r,-40,300);
+ let prev=t.pointOffset(300,0);
+ for(const target of [t.pointOffset(300,-190),t.pointOffset(510,-190),t.pointOffset(510,0)]){
+  const start={...prev},n=Math.ceil(Math.hypot(target.x-start.x,target.y-start.y)/8);
+  for(let i=1;i<=n;i++){const p={x:start.x+(target.x-start.x)*i/n,y:start.y+(target.y-start.y)*i/n};system.step(r,prev,p,1+i*.05,.05);prev=p;}
+ }
+ assert.equal(r.routeRecovery,undefined);assert.equal(r.checkpointProgress,0);assert.equal(r.validatedLaps,0);
+ walk(g,r,510,t.length+20);assert.equal(r.validatedLaps,1);assert.deepEqual(Array.from(r.checkpointCrossings,c=>c.checkpoint),[1,2,3]);
 });
 
 test('every AI can physically complete all three laps using the shared validator',()=>{

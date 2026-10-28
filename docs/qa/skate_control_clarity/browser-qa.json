@@ -1,0 +1,29 @@
+{
+  "checks": [
+    "New contextual briefing has six cards, automatic movement and exact SPACE rule; gameplay stays frozen",
+    "Briefing Space starts countdown without leaking a jump or hold into gameplay",
+    "First gap teaches a tap near the edge; real Space input makes the existing normal jump",
+    "Ramp prompt/BOA is tied to preparation; persistent ramp flag waits for an actual held launch",
+    "Real capture teaches release; pause/CONTROLES freezes physics, preserves held grind, and actual release launches Super Jump Out",
+    "Mega uses the same held Space and learns only after real launch plus sustained Mega Air",
+    "Three actual early ramp releases/falls produce specific detailed advice; no automatic difficulty reduction",
+    "Missing a physically near rail without hold produces the capture-specific failure tip",
+    "Holding beyond a real rail end/fall produces SOLTE SPACE advice",
+    "Tutorial flags and failure history survive reload; learned prompts disappear in later attempts",
+    "Pause provides explicit exit to Skate island; Escape alone no longer discards a run",
+    "Zero 404, TypeError, ReferenceError, console or loading errors"
+  ],
+  "errors": [],
+  "http": [],
+  "failed": [],
+  "tutorial": {
+    "skateTutorialJumpSeen": true,
+    "skateTutorialRampSeen": true,
+    "skateTutorialGrindSeen": true,
+    "skateTutorialGrindExitSeen": true,
+    "skateTutorialMegaSeen": true,
+    "attempts": 9,
+    "lastFailure": "exit",
+    "sameFailureCount": 1
+  }
+}

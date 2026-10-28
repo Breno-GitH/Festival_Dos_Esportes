@@ -153,6 +153,7 @@ window.addEventListener("keyup", event => {
     event.preventDefault();
     skateOllieInput.held = false;
     const releasedAt = skateClockNow();
+    window.SkateControlCoach?.noteInput(skateOllieInput.pressMode,releasedAt-skateOllieInput.pressStartedAt,skateOllieSimulation.state);
     const releaseMode = skateTraversal.mode;
     for (const inputEvent of skateSpaceParser.keyUp(releasedAt)) {
         skateOllieInput.releaseHoldMs = Math.min(
@@ -174,6 +175,7 @@ window.addEventListener("keyup", event => {
 });
 
 function resetSkateGame(restartFromCheckpoint = false) {
+    window.SkateControlCoach?.resetRun();
     window.FestivalChallenges?.start('skate');
     const reachedCheckpoints = new Set(skateCheckpointsReached);
     const bankedScore = skateCombo.bankedScore;
@@ -238,6 +240,7 @@ function startSkateFromBrief() {
 function updateSkateGame() {
     if (currentScene !== "JOGO_SKATE") return;
     const now = skateClockNow();
+    if(window.SkateControlCoach?.paused){skateOllieLastTime=now;skateOllieAccumulator=0;return;}
     if (!skateFpsWindowStart) skateFpsWindowStart = now;
     skateFpsFrameCount++;
     if (now - skateFpsWindowStart >= 500) {
@@ -297,6 +300,7 @@ function updateSkateGame() {
         const state = skateOllieSimulation.state;
         const player = state.player;
         if (state.phase === "FAILED") {
+            window.SkateControlCoach?.observe({state,input:skateOllieInput,traversal:skateTraversal,course:skateCourse},SKATE_OLLIE_FIXED_STEP);
             window.FestivalChallenges?.onSkate({type:'FALL'});
             skateJourney.observe(state, false);
             if (skateTraversal.mode !== "CRASH") {
@@ -399,6 +403,7 @@ function updateSkateGame() {
         } else if (skateTraversal.mode === "GRIND" || skateTraversal.mode === "MANUAL") {
             skateOllieInput.pressMode = skateTraversal.mode;
         }
+        window.SkateControlCoach?.observe({state,input:skateOllieInput,traversal:skateTraversal,course:skateCourse,transitions:traversalTransitions},SKATE_OLLIE_FIXED_STEP);
         skateJourney.observe(state, skateOllieInput.held);
         skateJourney.update(SKATE_OLLIE_FIXED_STEP);
         skateOllieAccumulator -= SKATE_OLLIE_FIXED_STEP;
@@ -486,6 +491,7 @@ function drawSkateGame() {
     ctx.translate(-camera.x, -camera.y);
     window.SkateProceduralTrack.draw(ctx, skateCourse, camera.x, camera.x + canvas.width / (camera.zoom || 0.72),
         canvas.height / (camera.zoom || 0.72) + camera.y + 160, state.elapsed, lighting);
+    window.SkateControlCoach?.drawWorld(ctx,skateCourse,camera.x,camera.x+canvas.width/(camera.zoom||.72));
     drawSkateCheckpoints();
     drawSkateFinish();
     drawSkateOllieRider(p);
@@ -494,6 +500,8 @@ function drawSkateGame() {
     if (window.skateDebug) drawSkateDebugOverlay(p);
     ctx.restore();
     drawSkateOllieHud(state);
+    if(window.SkateControlCoach?.paused){window.SkateControlCoach.drawPause(ctx);return;}
+    window.SkateControlCoach?.drawPrompt(ctx);
     if (p.specialRampAir?.active && p.specialRampAir.elapsedMs < p.specialRampAir.slowMotionMs) {
         ctx.fillStyle = "rgba(83, 229, 255, .055)";
         ctx.fillRect(0, 32, canvas.width, canvas.height - 32);
@@ -502,7 +510,10 @@ function drawSkateGame() {
         ctx.strokeRect(3, 35, canvas.width - 6, canvas.height - 38);
     }
 
-    if (state.phase === "FAILED") {
+    if (state.phase === "FAILED" && window.SkateControlCoach) {
+        const title=state.failureReason==='FELL_IN_GAP'?'CAIU NO GAP':p.hitObstacleId?'COLISÃO':'QUEDA';
+        window.SkateControlCoach.drawFailure(ctx,{title,bank:skateCombo.bankedScore,lost:skateCrashComboLost});
+    }else if (state.phase === "FAILED") {
         drawSkateOllieOverlay(state.failureReason === "FELL_IN_GAP" ? "CAIU NO GAP" : `COLISÃO: ${p.hitObstacleId.toUpperCase()}`, [
             p.specialRampAir && !p.specialRampAir.landed
                 ? "MEGA AIR: mantenha SPACE até a margem."
@@ -806,14 +817,14 @@ function drawSkateOllieHud(state) {
     ctx.fillStyle = "#ffffff";
     ctx.font = "bold 9px monospace";
     ctx.textAlign = "left";
-    ctx.fillText("SKATE · AUTO-RIDE", 10, 13);
+    ctx.fillText("SKATE · AVANÇO AUTOMÁTICO", 10, 13);
     ctx.font = "8px monospace";
     ctx.fillStyle = "#bfe7ed";
-    ctx.fillText("SPACE: HOLD RAMPA/GRIND · RELEASE RAIL · DOUBLE OLLIE", 10, 26);
+    ctx.fillText("SPACE: CONTEXTUAL · P / ESC: PAUSE", 10, 26);
     if (p.specialRampAir?.active) {
         ctx.textAlign = "right";
         ctx.fillStyle = p.specialRampAir.releasedEarly ? "#ffb29e" : "#9cf5ff";
-        ctx.fillText(p.specialRampAir.limitReached ? "PREPARE LANDING" : "MEGA AIR · HOLD SPACE", canvas.width - 10, 45);
+        ctx.fillText(p.specialRampAir.limitReached ? "PREPARE A ATERRISSAGEM" : "MEGA AIR · SEGURE SPACE", canvas.width - 10, 45);
     }
     const section = skateCourse.sectionAt(state.player.x);
     if (section) {
@@ -842,9 +853,9 @@ function drawSkateOllieHud(state) {
             : skateTrickSystem.trickActive && skateTrickSystem.activeTrick
             ? skateTrickSystem.activeTrick.name
             : p.jumpTier === "normal"
-            ? "NORMAL JUMP"
+            ? "SALTO"
             : p.jumpTier === "super"
-            ? "SUPER JUMP"
+            ? "SAÍDA DO GRIND"
             : p.jumpTier === "ollie"
             ? "OLLIE · KICKFLIP"
             : p.jumpTier.toUpperCase();
@@ -921,6 +932,20 @@ window.skateOllieRuntime = Object.freeze({
     input: skateOllieInput,
     physics: skateOlliePhysics,
     clearBriefingInput: clearSkateBriefingInput
+});
+window.SkateControlCoach?.bind({
+    scene:()=>currentScene,clock:skateClockNow,held:()=>skateOllieInput.held,
+    enabled:()=>!skateCourse.isTestCourse,
+    freeze:()=>{for(const k of ['normalJump','ollieUpgrade','restart','grindPressed','released'])skateOllieInput[k]=false;},
+    resume:(duration,held)=>{
+        if(skateSpaceParser.down)skateSpaceParser.down.at+=duration;
+        if(skateSpaceParser.lastGroundJumpAt!==null)skateSpaceParser.lastGroundJumpAt+=duration;
+        if(skateTrickSystem.pressStartedAt!==null)skateTrickSystem.pressStartedAt+=duration;
+        skateOllieInput.pressStartedAt+=duration;skateOllieInput.held=held;
+        if(!held){skateSpaceParser.reset();skateTrickSystem.cancelInput();skateOllieInput.airTrickInputActive=false;}
+        skateOllieLastTime=skateClockNow();skateOllieAccumulator=0;
+    },
+    exit:()=>{clearSkateBriefingInput();currentScene='ILHA_SKATE';player.x=225;player.y=150;showOverworldUI();dialogBox.classList.remove('show');}
 });
 window.startSkateFromBrief = startSkateFromBrief;
 resetSkateGame();

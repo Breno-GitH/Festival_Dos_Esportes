@@ -1,0 +1,11 @@
+PASS Actual keyboard input: inner curve -> grass -> same edge return, without marker, teleport or unlock event
+PASS Inner curve can re-enter farther along the edge, while missed checkpoints remain missing
+PASS Outer edge is traversable in both directions, with normal physical movement
+PASS Straight edge also permits immediate free re-entry
+PASS Crossing half the infield and then the real finish line cannot count a lap without CP1/CP2/CP3
+PASS After returning freely, the next proper ordered circuit counts exactly one lap
+PASS All seven actual AI runners physically re-enter from inner and outer grass, without coordinate jumps
+PASS All eight runners complete exactly three physical laps with nine ordered checkpoints and three finish crossings
+PASS Exit still returns normally to the Running island
+PASS Zero 404, loading failures, TypeError, ReferenceError and runtime errors
+COMPLETE 10

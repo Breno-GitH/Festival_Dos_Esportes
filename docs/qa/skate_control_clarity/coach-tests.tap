@@ -1,0 +1,90 @@
+TAP version 13
+# Subtest: briefing uses exact contextual rule, independent TOQUE/SEGURE/SOLTE symbols and automatic movement
+ok 1 - briefing uses exact contextual rule, independent TOQUE/SEGURE/SOLTE symbols and automatic movement
+  ---
+  duration_ms: 3.0804
+  ...
+# Subtest: attempts start on gameplay observation, not on opening a briefing or resetting
+ok 2 - attempts start on gameplay observation, not on opening a briefing or resetting
+  ---
+  duration_ms: 1.9899
+  ...
+# Subtest: approaching a ramp produces a hold prompt once, and preparation gives BOA without recording false success
+ok 3 - approaching a ramp produces a hold prompt once, and preparation gives BOA without recording false success
+  ---
+  duration_ms: 2.4559
+  ...
+# Subtest: learned ramp is quiet in later attempts and survives controller/save reload
+ok 4 - learned ramp is quiet in later attempts and survives controller/save reload
+  ---
+  duration_ms: 0.7617
+  ...
+# Subtest: grind capture and deliberate release persist distinct flags; holding until rail end does not mark exit learned
+ok 5 - grind capture and deliberate release persist distinct flags; holding until rail end does not mark exit learned
+  ---
+  duration_ms: 1.0085
+  ...
+# Subtest: Mega instruction requires real sustained air input before setting its flag
+ok 6 - Mega instruction requires real sustained air input before setting its flag
+  ---
+  duration_ms: 0.3588
+  ...
+# Subtest: actual near-rail miss without holding produces a capture-specific tip, not a generic blame
+ok 7 - actual near-rail miss without holding produces a capture-specific tip, not a generic blame
+  ---
+  duration_ms: 0.6572
+  ...
+# Subtest: weak Mega launch has a different tip from an ordinary ramp release
+ok 8 - weak Mega launch has a different tip from an ordinary ramp release
+  ---
+  duration_ms: 0.4599
+  ...
+# Subtest: three deaths for same cause produce longer help even if an earlier ramp was used successfully
+ok 9 - three deaths for same cause produce longer help even if an earlier ramp was used successfully
+  ---
+  duration_ms: 0.9158
+  ...
+# Subtest: different cause resets consecutive failure count; failure is registered once per attempt
+ok 10 - different cause resets consecutive failure count; failure is registered once per attempt
+  ---
+  duration_ms: 0.7778
+  ...
+# Subtest: coach observation never changes physics, collision objects, player coordinates or velocities
+ok 11 - coach observation never changes physics, collision objects, player coordinates or velocities
+  ---
+  duration_ms: 0.4681
+  ...
+# Subtest: pause -> CONTROLES -> back -> resume consumes confirmation and preserves held Space intent
+ok 12 - pause -> CONTROLES -> back -> resume consumes confirmation and preserves held Space intent
+  ---
+  duration_ms: 1.8536
+  ...
+# Subtest: Space released while paused is not stuck; a menu confirmation never queues a gameplay jump
+ok 13 - Space released while paused is not stuck; a menu confirmation never queues a gameplay jump
+  ---
+  duration_ms: 0.3006
+  ...
+# Subtest: pause offers explicit exit without making Escape unexpectedly leave the minigame
+ok 14 - pause offers explicit exit without making Escape unexpectedly leave the minigame
+  ---
+  duration_ms: 0.431
+  ...
+# Subtest: old campaign gains tutorial defaults without losing coins, items, visits or accepted quest
+ok 15 - old campaign gains tutorial defaults without losing coins, items, visits or accepted quest
+  ---
+  duration_ms: 7.2655
+  ...
+# Subtest: tutorial flags and same-reason history persist with the existing global wallet; partial updates never erase learned controls
+ok 16 - tutorial flags and same-reason history persist with the existing global wallet; partial updates never erase learned controls
+  ---
+  duration_ms: 5.5424
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 216.7928

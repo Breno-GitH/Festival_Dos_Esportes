@@ -17,7 +17,7 @@
   attach(runner){
    runner.validatedLaps=0;runner.checkpointProgress=0;runner.nextGate=1;
    runner.lapStarted=false;runner.finishTime=null;runner.finished=false;runner.finishOrder=0;
-   runner.routeRecovery=null;runner.segmentProgress=0;runner.progress=0;
+   runner.segmentProgress=0;runner.progress=0;
    runner.prevX=runner.x;runner.prevY=runner.y;
    runner.lapCrossings=[];runner.checkpointCrossings=[];
   }
@@ -28,35 +28,17 @@
    if(advance<=EPS||!((before<-EPS&&after>=-EPS)||(Math.abs(before)<=EPS&&after>EPS)))return null;
    const t=clamp(-before/advance,0,1),x=previous.x+(current.x-previous.x)*t,y=previous.y+(current.y-previous.y)*t;
    const lateral=(x-gate.x)*gate.normal.x+(y-gate.y)*gate.normal.y;
-   return Math.abs(lateral)<=gate.halfWidth?{t,x,y,lateral}:null;
+   return Math.abs(lateral)<=gate.halfWidth&&this.track.project(x,y).onTrack?{t,x,y,lateral}:null;
   }
   log(runner,type,time,data={}){
    const event={runnerId:runner.id,type,time,...data};this.events.push(event);
    if(this.events.length>240)this.events.shift();return event;
   }
-  recoverAt(runner,projection){
-   const lateral=clamp(projection.lateral,-100,100),progress=projection.progress-18,p=this.track.pointOffset(progress,lateral);
-   runner.routeRecovery={progress,lateral,x:p.x,y:p.y};
-  }
-  corridor(runner,previous,current,dt,projection){
-   const track=this.track;
-   if(runner.routeRecovery){
-    const anchor=runner.routeRecovery;
-    if(projection.onTrack&&Math.abs(track.circularDistance(projection.progress,anchor.progress))<=12&&
-       Math.hypot(current.x-anchor.x,current.y-anchor.y)<=55){runner.routeRecovery=null;return false;}
-    return false;
-   }
-   const distance=Math.hypot(current.x-previous.x,current.y-previous.y),from=track.project(previous.x,previous.y);
-   // The corridor is checked between endpoints too: crossing the infield cannot
-   // satisfy an ordered gate by projecting onto a different side of the oval.
-   let valid=distance<=Math.max(60,(runner.maxSpeed||340)*dt*2+27);
-   const samples=Math.max(1,Math.ceil(distance/20));
-   for(let i=0;valid&&i<=samples;i++){
-    const t=i/samples;
-    valid=track.project(previous.x+(current.x-previous.x)*t,previous.y+(current.y-previous.y)*t).onTrack;
-   }
-   if(!valid){this.recoverAt(runner,from);return false;}
-   return true;
+  physicalStep(runner,previous,current,dt){
+   // Reject discontinuous jumps, without prescribing a place to re-enter.
+   // Grass is freely traversable; only physical gate contacts on track count.
+   const distance=Math.hypot(current.x-previous.x,current.y-previous.y);
+   return Number.isFinite(distance)&&distance<=Math.max(60,(runner.maxSpeed||340)*dt*2+27);
   }
   fraction(runner,projection){
    if(!runner.lapStarted)return clamp(this.track.circularDistance(projection.progress,0)/this.gates[1].progress,-1,0);
@@ -67,7 +49,7 @@
   step(runner,previous,current,startTime,dt){
    if(runner.finished)return [];
    const projection=this.track.project(current.x,current.y);runner.trackProjection=projection;
-   const allowed=this.corridor(runner,previous,current,dt,projection),events=[];
+   const allowed=this.physicalStep(runner,previous,current,dt),events=[];
    if(allowed){
     if(!runner.lapStarted){
      const contact=this.crossing(previous,current,this.gates[0]);
@@ -91,7 +73,7 @@
       }
      }
     }
-    if(!runner.finished)runner.segmentProgress=this.fraction(runner,projection);
+    if(!runner.finished&&projection.onTrack)runner.segmentProgress=this.fraction(runner,projection);
    }
    if(!runner.finished){
     const cp=runner.checkpointProgress,start=cp?this.gates[cp].progress:0;
@@ -106,7 +88,7 @@
    return b.validatedLaps-a.validatedLaps||b.checkpointProgress-a.checkpointProgress||b.segmentProgress-a.segmentProgress;
   }
   diagnostics(){return {totalLaps:TOTAL_LAPS,checkpointCount:3,gates:this.gates,events:this.events,
-   model:'swept directed line crossings + ordered checkpoints + continuous track corridor'};}
+   model:'swept directed track crossings + ordered checkpoints + free terrain re-entry'};}
  }
  RaceLapSystem.TOTAL_LAPS=TOTAL_LAPS;window.RaceLapSystem=RaceLapSystem;
 })();

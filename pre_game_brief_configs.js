@@ -28,12 +28,12 @@
                 control('ESPAÇO','Pular barreiras')
             ],
             tip:'Desvie dos obstáculos e mantenha a melhor linha.',accent:'#65e7ff',icon:'marathon'}),
-        skate:brief({id:'skate',title:'SKATE',subtitle:'Chegue ao final com estilo.',
+        skate:brief({id:'skate',title:'SKATE',subtitle:'Um botão. Vários contextos.',controlGuide:'skate',
             objective:'Complete o percurso e cruze a chegada.',
             controls:[
-                control('SPACE / ×2','Salto / Ollie no chão normal'),
-                control('HOLD SPACE','Usar rampas e sustentar Mega Air'),
-                control('AR / RAIL','Segure: grind · solte: Super Jump Out')
+                control('TOQUE','SPACE no chão: salto; 2 toques: Ollie'),
+                control('SEGURE','SPACE na rampa, grind e Mega Air'),
+                control('SOLTE','SPACE no grind: saltar para fora')
             ],
             tip:'Todas as rampas usam a mesma regra: segure ESPAÇO.',accent:'#ed6ed3',icon:'skate'}),
         archery:brief({id:'archery',title:'ARQUEARIA',subtitle:'Precisão vale mais que velocidade.',
