@@ -8,6 +8,9 @@
         grindCaptureRadiusPx: 24,
         grindInputBufferMs: 130,
         grindCaptureBlendMs: 100,
+        grindReentryCooldownMs: 80,
+        grindScoreMinAirborneMs: 180,
+        grindScoreMinAirborneDistancePx: 28,
         trajectoryTolerance: 600,
         grindSpeedScale: 0.96,
         manualMaxDurationMs: 850
@@ -64,7 +67,15 @@
             const point = { x: a.x + dx * t, y: a.y + dy * t };
             const distance = Math.hypot(x - point.x, y - point.y);
             if (!best || distance < best.distance) {
-                best = { ...point, distance, slope: dy / dx, segmentIndex: index };
+            const length = Math.sqrt(lengthSquared);
+            best = {
+                ...point, distance,
+                slope: dx ? dy / dx : Math.sign(dy) * Infinity,
+                tangentX: dx / length,
+                tangentY: dy / length,
+                segmentIndex: index,
+                segmentT: t
+            };
             }
         }
         return best;
@@ -74,28 +85,35 @@
         if (!player || player.grounded || !(forwardSpeed > 0)) return null;
         const lookAheadMs = Math.max(0, Number(options.lookAheadMs) || 0);
         const gravity = Math.max(0, Number(options.gravity) || 1650);
-        const excludedRails = new Set(options.excludeRailIds || []);
         const samples = lookAheadMs > 0 ? 5 : 1;
         let best = null;
         for (const rail of rails || []) {
-            if (excludedRails.has(rail.id)) continue;
-            const bounds = getRailBounds(rail);
-            if (player.x + forwardSpeed / 60 > bounds.maxX) continue;
             for (let sampleIndex = 0; sampleIndex <= samples; sampleIndex++) {
                 const time = samples ? (lookAheadMs / 1000) * sampleIndex / samples : 0;
                 const x = player.x + forwardSpeed * time;
-                if (x > bounds.maxX) continue;
                 const y = player.y + player.verticalVelocity * time + 0.5 * gravity * time * time;
                 const point = nearestRailPoint(rail, x, y);
                 if (!point) continue;
-                if (point.x < player.x - 6 || point.x > x + SETTINGS.grindCaptureRadiusPx) continue;
                 if (point.distance > SETTINGS.grindCaptureRadiusPx) continue;
-                const relativeVelocity = player.verticalVelocity + gravity * time - point.slope * forwardSpeed;
+                const path = rail.grindPath || rail.points;
+                const atEnd = point.segmentIndex === path.length - 2 && point.segmentT >= 1 - 1e-6;
+                const atStart = point.segmentIndex === 0 && point.segmentT <= 1e-6;
+                const endOverrun = atEnd
+                    ? (x - point.x) * point.tangentX + (y - point.y) * point.tangentY
+                    : 0;
+                const startOverrun = atStart
+                    ? (x - point.x) * point.tangentX + (y - point.y) * point.tangentY
+                    : 0;
+                if (atEnd && endOverrun > SETTINGS.grindCaptureRadiusPx) continue;
+                if (atStart && startOverrun < -SETTINGS.grindCaptureRadiusPx) continue;
+                const velocityX = forwardSpeed;
+                const velocityY = player.verticalVelocity + gravity * time;
+                const relativeVelocity = -point.tangentY * velocityX + point.tangentX * velocityY;
                 const relativeVerticalSpeed = Math.abs(relativeVelocity);
                 if (relativeVerticalSpeed > SETTINGS.trajectoryTolerance) continue;
-                const verticalGap = point.y - y;
-                if (verticalGap > 1 && relativeVelocity < -90) continue;
-                if (verticalGap < -12 && relativeVelocity > 90) continue;
+                const verticalGap = (x - point.x) * -point.tangentY + (y - point.y) * point.tangentX;
+                if (verticalGap < -1 && relativeVelocity < -90) continue;
+                if (verticalGap > 12 && relativeVelocity > 90) continue;
                 const candidate = {
                     rail, ...point, relativeVerticalSpeed,
                     predictedInMs: time * 1000,
@@ -147,7 +165,9 @@
             lastX: null,
             pendingCaptureMs: 0,
             lastExitedRailId: null,
-            lastExitedRailMaxX: -Infinity,
+            reentryCooldownMs: 0,
+            airborneAfterGrindMs: 0,
+            airborneAfterGrindDistance: 0,
             captureDebug: null,
             lastTransition: null,
             captureBlend: null,
@@ -159,7 +179,9 @@
                 this.lastX = null;
                 this.pendingCaptureMs = 0;
                 this.lastExitedRailId = null;
-                this.lastExitedRailMaxX = -Infinity;
+                this.reentryCooldownMs = 0;
+                this.airborneAfterGrindMs = 0;
+                this.airborneAfterGrindDistance = 0;
                 this.captureDebug = null;
                 this.lastTransition = null;
                 this.captureBlend = null;
@@ -214,7 +236,9 @@
                         this.lastX = null;
                         this.grindDistance = 0;
                         this.lastExitedRailId = rail.id;
-                        this.lastExitedRailMaxX = getRailBounds(rail).maxX;
+                        this.reentryCooldownMs = SETTINGS.grindReentryCooldownMs;
+                        this.airborneAfterGrindMs = 0;
+                        this.airborneAfterGrindDistance = 0;
                         this.pendingCaptureMs = 0;
                         emit(launched ? "GRIND_OLLIE_OUT" : "GRIND_EXIT", { railId: rail.id });
                         return transitions;
@@ -267,7 +291,9 @@
                         this.captureBlend = null;
                         const length = railLength(rail);
                         this.lastExitedRailId = rail.id;
-                        this.lastExitedRailMaxX = bounds.maxX;
+                        this.reentryCooldownMs = SETTINGS.grindReentryCooldownMs;
+                        this.airborneAfterGrindMs = 0;
+                        this.airborneAfterGrindDistance = 0;
                         this.mode = "AIR";
                         this.activeRail = null;
                         this.lastX = null;
@@ -326,9 +352,10 @@
 
                 if (this.mode === "AIR" && !player.grounded) {
                     if (player.specialRampAir?.active) return transitions;
-                    if (player.x > this.lastExitedRailMaxX + SETTINGS.grindCaptureRadiusPx) {
-                        this.lastExitedRailId = null;
-                        this.lastExitedRailMaxX = -Infinity;
+                    this.reentryCooldownMs = Math.max(0, this.reentryCooldownMs - dtMs);
+                    if (this.lastExitedRailId) {
+                        this.airborneAfterGrindMs += dtMs;
+                        this.airborneAfterGrindDistance += Math.max(0, forwardSpeed) * dtSeconds;
                     }
                     if (input.pressed && input.held) {
                         this.pendingCaptureMs = SETTINGS.grindInputBufferMs;
@@ -337,23 +364,32 @@
                     } else if (this.pendingCaptureMs > 0) {
                         this.pendingCaptureMs = Math.max(0, this.pendingCaptureMs - dtMs);
                     }
-                    const captureRails = this.lastExitedRailId
-                        ? rails.filter(rail => rail.id !== this.lastExitedRailId)
-                        : rails;
-                    const nearest = findCaptureCandidate(player, captureRails, forwardSpeed);
-                    this.captureDebug = nearest ? {
-                        railId: nearest.rail.id, x: nearest.x, y: nearest.y,
-                        distance: nearest.distance,
-                        capturable: nearest.withinCaptureZone,
-                        buffered: this.pendingCaptureMs > 0
+                    const nearest = this.findCandidate(player, rails, forwardSpeed);
+                    const physicalNearest = findCaptureCandidate(player, rails, forwardSpeed);
+                    const cooldownBlocksNearest = this.reentryCooldownMs > 0
+                        && physicalNearest?.rail.id === this.lastExitedRailId;
+                    this.captureDebug = physicalNearest ? {
+                        railId: physicalNearest.rail.id, x: physicalNearest.x, y: physicalNearest.y,
+                        distance: physicalNearest.distance,
+                        capturable: physicalNearest.withinCaptureZone,
+                        buffered: this.pendingCaptureMs > 0,
+                        canGrind: !cooldownBlocksNearest,
+                        cooldownMs: this.reentryCooldownMs,
+                        lastRailId: this.lastExitedRailId,
+                        airborneSinceExitMs: this.airborneAfterGrindMs,
+                        airborneSinceExitPx: this.airborneAfterGrindDistance
                     } : {
                         railId: "", x: player.x, y: player.y, distance: Infinity,
-                        capturable: false, buffered: this.pendingCaptureMs > 0
+                        capturable: false, buffered: this.pendingCaptureMs > 0,
+                        canGrind: this.reentryCooldownMs <= 0,
+                        cooldownMs: this.reentryCooldownMs,
+                        lastRailId: this.lastExitedRailId,
+                        airborneSinceExitMs: this.airborneAfterGrindMs,
+                        airborneSinceExitPx: this.airborneAfterGrindDistance
                     };
-                    if (input.held && nearest?.withinCaptureZone) {
-                        const bounds = getRailBounds(nearest.rail);
-                        if (nearest.x < bounds.minX - SETTINGS.grindCaptureRadiusPx
-                            || nearest.x > bounds.maxX + SETTINGS.grindCaptureRadiusPx) return transitions;
+                    const cooldownBlocksCandidate = this.reentryCooldownMs > 0
+                        && nearest?.rail.id === this.lastExitedRailId;
+                    if (input.held && !cooldownBlocksCandidate && nearest?.withinCaptureZone) {
                         const snapDistance = Math.hypot(nearest.x - player.x, nearest.y - player.y);
                         if (snapDistance > SETTINGS.grindCaptureRadiusPx) return transitions;
                         this.mode = "GRIND";
@@ -362,9 +398,10 @@
                         this.manualElapsedMs = 0;
                         this.grindDistance = 0;
                         this.lastX = player.x;
-                        const slope = nearest.slope;
                         const entryVx = player.forwardSpeed || forwardSpeed;
-                        const projectedVx = (entryVx + player.verticalVelocity*slope)/(1+slope*slope);
+                        const slope = nearest.slope;
+                        const projectedVx = (entryVx * nearest.tangentX
+                            + player.verticalVelocity * nearest.tangentY) * nearest.tangentX;
                         const railYAtPlayer = nearest.y + (player.x-nearest.x)*slope;
                         this.captureBlend = {
                             elapsedMs: 0, entryVx,
@@ -380,13 +417,22 @@
                         emit("GRIND_ENTER", {
                             railId: nearest.rail.id,
                             snapPx: snapDistance,
-                            railLength: railLength(nearest.rail)
+                            railLength: railLength(nearest.rail),
+                            comboEligible: nearest.rail.id !== this.lastExitedRailId
+                                || this.airborneAfterGrindMs >= SETTINGS.grindScoreMinAirborneMs
+                                || this.airborneAfterGrindDistance >= SETTINGS.grindScoreMinAirborneDistancePx
                         });
                     }
                     return transitions;
                 }
 
                 return transitions;
+            },
+            findCandidate(player, rails, forwardSpeed, options = {}) {
+                const eligibleRails = this.reentryCooldownMs > 0 && this.lastExitedRailId
+                    ? (rails || []).filter(rail => rail.id !== this.lastExitedRailId)
+                    : rails;
+                return findCaptureCandidate(player, eligibleRails, forwardSpeed, options);
             }
         };
         return controller.reset();

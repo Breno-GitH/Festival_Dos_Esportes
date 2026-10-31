@@ -91,9 +91,8 @@ test("Rail → Jump → Rail → Jump → Rail chain reaches all four rails befo
             held = false;
             stage = "fresh-release";
         } else if (stage === "fresh-release") {
-            const candidate = traversal.findCaptureCandidate(player, course.rails,
-                player.forwardSpeed || 230, { lookAheadMs: traversal.SETTINGS.grindInputBufferMs, gravity: simulation.config.gravity,
-                    excludeRailIds: controller.lastExitedRailId ? [controller.lastExitedRailId] : [] });
+            const candidate = controller.findCandidate(player, course.rails,
+                player.forwardSpeed || 230, { lookAheadMs: traversal.SETTINGS.grindInputBufferMs, gravity: simulation.config.gravity });
             if (candidate) {
                 held = true;
                 pressed = true;
@@ -103,9 +102,8 @@ test("Rail → Jump → Rail → Jump → Rail chain reaches all four rails befo
             }
         } else if (stage === "approach") {
             if (player.grounded && physics.rampIntentAt(player.x, simulation.config)) held = true;
-            const candidate = traversal.findCaptureCandidate(player, course.rails,
-                player.forwardSpeed || 230, { lookAheadMs: traversal.SETTINGS.grindInputBufferMs, gravity: simulation.config.gravity,
-                    excludeRailIds: controller.lastExitedRailId ? [controller.lastExitedRailId] : [] });
+            const candidate = controller.findCandidate(player, course.rails,
+                player.forwardSpeed || 230, { lookAheadMs: traversal.SETTINGS.grindInputBufferMs, gravity: simulation.config.gravity });
             if (candidate) {
                 held = true;
                 pressed = true;

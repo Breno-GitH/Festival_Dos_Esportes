@@ -109,14 +109,10 @@ window.addEventListener("keydown", event => {
             ? skateTraversal.mode
             : player?.specialRampAir?.active ? "MEGA_AIR"
             : player && !player.grounded ? "AIR" : "GROUND";
-        const captureRails = skateTraversal.lastExitedRailId
-            && player?.x <= skateTraversal.lastExitedRailMaxX + window.SkateTraversal.SETTINGS.grindCaptureRadiusPx
-            ? skateCourseRails.filter(rail => rail.id !== skateTraversal.lastExitedRailId)
-            : skateCourseRails;
         const captureCandidate = skateOllieInput.pressMode === "AIR"
-            ? window.SkateTraversal.findCaptureCandidate(
+            ? skateTraversal.findCandidate(
                 player,
-                captureRails,
+                skateCourseRails,
                 player.forwardSpeed || skateOllieSimulation.config.forwardSpeed,
                 { lookAheadMs: window.SkateTraversal.SETTINGS.grindInputBufferMs, gravity: skateOllieSimulation.config.gravity }
             )
@@ -338,8 +334,9 @@ function updateSkateGame() {
             if (transition.type === "GRIND_ENTER") {
                 skateSpaceParser.consumeJumpIntent();
                 skateOllieInput.airTrickInputActive = false;
-                skateCombo.beginGrind();
-                if (transition.railId === "high-rail" && previousJumpTier === "super") {
+                if (transition.comboEligible !== false) skateCombo.beginGrind();
+                if (transition.comboEligible !== false
+                    && transition.railId === "high-rail" && previousJumpTier === "super") {
                     skateCombo.registerContextBonus("highRail");
                 }
             }
@@ -740,13 +737,15 @@ function drawSkateDebugOverlay(player) {
     }
     const nearestCapture = player.grounded ? null : skateCourseRails.reduce((best, rail) => {
         const point = window.SkateTraversal.nearestRailPoint(rail, player.x, player.groundContactY);
-        if (!point || point.x < player.x - 6 || point.x > player.x + window.SkateTraversal.SETTINGS.grindCaptureRadiusPx + 40) return best;
+        if (!point) return best;
         return !best || point.distance < best.distance ? { ...point, rail } : best;
     }, null);
     const captureRadius = window.SkateTraversal.SETTINGS.grindCaptureRadiusPx;
     if (nearestCapture) {
-        const tangentVelocity = nearestCapture.slope * (player.forwardSpeed || skateOllieSimulation.config.forwardSpeed);
-        const plausible = Math.abs(player.verticalVelocity - tangentVelocity)
+        const relativeNormalVelocity = -nearestCapture.tangentY
+            * (player.forwardSpeed || skateOllieSimulation.config.forwardSpeed)
+            + nearestCapture.tangentX * player.verticalVelocity;
+        const plausible = Math.abs(relativeNormalVelocity)
             <= window.SkateTraversal.SETTINGS.trajectoryTolerance;
         ctx.strokeStyle = plausible && nearestCapture.distance <= captureRadius ? "#78ff9b" : "#ffb347";
         ctx.lineWidth = 1;
@@ -757,19 +756,19 @@ function drawSkateDebugOverlay(player) {
         ctx.font = "bold 8px monospace";
         ctx.textAlign = "left";
         ctx.fillText(
-            `nearestGrind=${nearestCapture.rail.id} · distanceToGrind=${nearestCapture.distance.toFixed(1)} · GRIND_CAPTURABLE ${plausible && nearestCapture.distance <= captureRadius}`,
+            `state=${skateTraversal.mode} nearestRailId=${nearestCapture.rail.id} · distanceToRail=${nearestCapture.distance.toFixed(1)} · canGrind=${plausible && nearestCapture.distance <= captureRadius && !player.grounded && skateOllieInput.held && !(skateTraversal.reentryCooldownMs>0 && skateTraversal.lastExitedRailId===nearestCapture.rail.id)}`,
             player.x + 18, player.y - 52
         );
     } else if (!player.grounded) {
         ctx.fillStyle = "#ffffff";
         ctx.font = "bold 8px monospace";
         ctx.textAlign = "left";
-        ctx.fillText("nearestGrind=— · distanceToGrind=— · GRIND_CAPTURABLE false", player.x + 18, player.y - 52);
+        ctx.fillText(`state=${skateTraversal.mode} nearestRailId=— · distanceToRail=— · canGrind=false`, player.x + 18, player.y - 52);
     }
     ctx.fillStyle = skateTraversal.pendingCaptureMs > 0 ? "#78ff9b" : "#ffffff";
     ctx.font = "bold 8px monospace";
     ctx.textAlign = "left";
-    ctx.fillText(`grindCaptureRadius=${captureRadius}px · bufferedGrindInput=${skateTraversal.pendingCaptureMs > 0}`, player.x + 18, player.y - 40);
+    ctx.fillText(`cooldown=${Math.ceil(skateTraversal.reentryCooldownMs)}ms · lastRailId=${skateTraversal.lastExitedRailId || "—"} · captureRadius=${captureRadius}px`, player.x + 18, player.y - 40);
     for (const object of skateCollisionObjects) {
         const regions = object.collisionRegions || {};
         ctx.lineWidth = 2;
