@@ -15,19 +15,22 @@
 
     const valid = value => Number.isSafeInteger(value) && value >= 0;
     let coins = 0;
+    let surfMiniCoins = 0, surfCoinExchangeTutorialSeen = false, surfCoinExchangeTutorialPending = false;
+    let surfRunSequence = 0, surfLastDepositedRunId = 0;
     let pagouCapitao = false, feriasVistas = false;
     const challenges = Object.create(null);
     const blankVisited=()=>({central:true,pingpong:false,basketball:false,running:false,skate:false,archery:false,climbing:false,boxing:false,surf:false});
     const blankInventory=()=>({islandMap:false,teleporter:false,questScanner:false,recordsModule:false,finalDestinationsChart:false,jukebox:false,shipCustomizer:false});
     const tutorialFlags=['skateTutorialJumpSeen','skateTutorialRampSeen','skateTutorialGrindSeen','skateTutorialGrindExitSeen','skateTutorialMegaSeen'];
     const blankTutorial=()=>({...Object.fromEntries(tutorialFlags.map(k=>[k,false])),attempts:0,lastFailure:'',sameFailureCount:0});
-    const blankCommerce=()=>({merchantArrivalSeen:false,merchantUnlocked:false,islandVisited:blankVisited(),inventory:blankInventory(),skateTutorial:blankTutorial(),playedSports:{},records:{},heardTracks:{},shipStyle:'ORIGINAL',firstPurchaseSeen:false});
+    const blankCommerce=()=>({merchantArrivalSeen:false,merchantUnlocked:false,firstSportIslandTutorialSeen:false,firstQuestTutorialSeen:false,firstMasterPromptSeen:false,islandVisited:blankVisited(),inventory:blankInventory(),skateTutorial:blankTutorial(),playedSports:{},records:{},heardTracks:{},shipStyle:'ORIGINAL',firstPurchaseSeen:false});
     let commerce=blankCommerce();
     function cleanCommerce(raw) {
         const out=blankCommerce();if(!raw||typeof raw!=='object')return out;
         out.merchantArrivalSeen=raw.merchantArrivalSeen===true;
         out.merchantUnlocked=out.merchantArrivalSeen;
         out.firstPurchaseSeen=raw.firstPurchaseSeen===true;
+        for(const k of ["firstSportIslandTutorialSeen","firstQuestTutorialSeen","firstMasterPromptSeen"])out[k]=raw[k]===true;
         const tutorial=raw.skateTutorial||{};
         for(const key of tutorialFlags)out.skateTutorial[key]=tutorial[key]===true;
         for(const key of ['attempts','sameFailureCount'])if(Number.isSafeInteger(tutorial[key])&&tutorial[key]>=0)out.skateTutorial[key]=Math.min(tutorial[key],1000000);
@@ -48,6 +51,11 @@
     try {
         const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
         if (saved && valid(saved.coins)) coins = saved.coins;
+        if(valid(saved?.surfMiniCoins))surfMiniCoins=saved.surfMiniCoins;
+        surfCoinExchangeTutorialSeen=saved?.surfCoinExchangeTutorialSeen===true;
+        surfCoinExchangeTutorialPending=!surfCoinExchangeTutorialSeen&&(saved?.surfCoinExchangeTutorialPending===true||surfMiniCoins>0);
+        if(valid(saved?.surfRunSequence))surfRunSequence=saved.surfRunSequence;
+        if(valid(saved?.surfLastDepositedRunId))surfLastDepositedRunId=Math.min(surfRunSequence,saved.surfLastDepositedRunId);
         commerce=cleanCommerce(saved?.commerce);
         pagouCapitao = saved?.pagouCapitao === true;
         feriasVistas = pagouCapitao && saved?.feriasVistas === true;
@@ -61,6 +69,7 @@
 
     function persist() {
         try { localStorage.setItem(STORAGE_KEY, JSON.stringify({version:5, coins, challenges, commerce,
+            surfMiniCoins,surfCoinExchangeTutorialSeen,surfCoinExchangeTutorialPending,surfRunSequence,surfLastDepositedRunId,
             pagouCapitao, feriasDesbloqueadas:pagouCapitao, feriasVistas})); return true; }
         catch (_) { return false; /* Purchases roll back if this atomic save fails. */ }
     }
@@ -85,6 +94,38 @@
     global.FestivalWallet = Object.freeze({
         storageKey:STORAGE_KEY,
         get coins() { return coins; },
+        get surfMiniCoins(){return surfMiniCoins;},
+        get surfCoinExchangeTutorialSeen(){return surfCoinExchangeTutorialSeen;},
+        get surfCoinExchangeTutorialPending(){return surfCoinExchangeTutorialPending;},
+        beginSurfRun(){
+            if(!valid(surfRunSequence+1))return false;
+            surfRunSequence++;
+            if(!persist()){surfRunSequence--;return false;}return surfRunSequence;
+        },
+        depositSurfRun(runId,amount){
+            if(!valid(runId)||runId===0||runId>surfRunSequence||!valid(amount))return {status:'invalid'};
+            if(runId<=surfLastDepositedRunId)return {status:'already_deposited',deposited:0,balance:surfMiniCoins};
+            if(!valid(surfMiniCoins+amount))return {status:'invalid'};
+            const before=[surfMiniCoins,surfLastDepositedRunId,surfCoinExchangeTutorialPending];
+            surfMiniCoins+=amount;surfLastDepositedRunId=runId;
+            if(amount>0&&!surfCoinExchangeTutorialSeen)surfCoinExchangeTutorialPending=true;
+            if(!persist()){[surfMiniCoins,surfLastDepositedRunId,surfCoinExchangeTutorialPending]=before;return {status:'save_failed'};}
+            return {status:'deposited',deposited:amount,balance:surfMiniCoins};
+        },
+        exchangeSurfMiniCoins(request='all'){
+            const spent=request==='all'?Math.floor(surfMiniCoins/10)*10:request;
+            if(!valid(spent)||spent%10!==0||spent>surfMiniCoins)return {status:'invalid'};
+            if(spent<10)return {status:'insufficient',balance:surfMiniCoins};
+            const earned=spent/10;if(!valid(coins+earned))return {status:'invalid'};
+            const beforeCoins=coins,beforeMini=surfMiniCoins;coins+=earned;surfMiniCoins-=spent;
+            if(!persist()){coins=beforeCoins;surfMiniCoins=beforeMini;return {status:'save_failed'};}
+            render();return {status:'exchanged',spent,earned,remaining:surfMiniCoins,coins};
+        },
+        markSurfExchangeTutorialSeen(){
+            const before=[surfCoinExchangeTutorialSeen,surfCoinExchangeTutorialPending];
+            surfCoinExchangeTutorialSeen=true;surfCoinExchangeTutorialPending=false;
+            if(!persist()){[surfCoinExchangeTutorialSeen,surfCoinExchangeTutorialPending]=before;return false;}return true;
+        },
         get commerce(){
             const copy=JSON.parse(JSON.stringify(commerce));
             // Compatibility views are derived only; they are never a second saved authority.
@@ -95,7 +136,7 @@
         },
         get islandVisited(){return {...commerce.islandVisited};},
         get inventory(){return {...commerce.inventory};},
-        campaignState(){return JSON.parse(JSON.stringify({version:5,coins,challenges,commerce,pagouCapitao,feriasVistas}));},
+        campaignState(){return JSON.parse(JSON.stringify({version:5,coins,challenges,commerce,pagouCapitao,feriasVistas,surfMiniCoins,surfCoinExchangeTutorialSeen,surfCoinExchangeTutorialPending,surfRunSequence,surfLastDepositedRunId}));},
         updateCommerce(patch){
             patch=patch&&typeof patch==='object'?patch:{};
             const old=commerce,merged={...commerce,...patch};
@@ -108,6 +149,7 @@
             for(const key of ['playedSports','records','heardTracks'])merged[key]={...commerce[key],...(patch[key]||{})};
             merged.merchantArrivalSeen=commerce.merchantArrivalSeen||patch.merchantArrivalSeen===true;
             merged.firstPurchaseSeen=commerce.firstPurchaseSeen||patch.firstPurchaseSeen===true;
+            for(const k of ["firstSportIslandTutorialSeen","firstQuestTutorialSeen","firstMasterPromptSeen"])merged[k]=commerce[k]||patch[k]===true;
             commerce=cleanCommerce(merged);
             if(!persist()){commerce=old;return false;}return true;
         },
@@ -144,6 +186,11 @@
         completeVacation() {
             if (!pagouCapitao) return false;
             feriasVistas = true; persist(); return true;
+        },
+        credit(amount) {
+            if (!valid(amount) || !valid(coins+amount)) return false;
+            const before=coins; coins+=amount;
+            if(!persist()){coins=before;return false;}render();return true;
         },
         setBalance(value) {
             if (!valid(value)) return false;

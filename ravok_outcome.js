@@ -83,7 +83,7 @@
         if(saveFailed){g.fillStyle='#0b1625';g.fillRect(25,225,400,58);g.fillStyle='#dec9b6';g.font='9px monospace';g.textAlign='center';g.fillText('Não foi possível salvar. A cena aguarda.',225,244);g.fillText('[ESPAÇO] TENTAR NOVAMENTE',225,266);}
         g.fillStyle='#030810';g.fillRect(0,0,450,12);g.fillRect(0,288,450,12);g.restore();
     }
-    global.RavokOutcome=Object.freeze({init(options){config=options;},get active(){return active;},start,openSavedEnding:()=>start('accept',true),update,draw,
+    global.RavokOutcome=Object.freeze({init(options){config=options;},get active(){return active;},skip(){if(active&&index<routes[route].length)finish();},start,openSavedEnding:()=>start('accept',true),update,draw,
         snapshot:()=>({active,route,phase:phase(),time,completed:global.RavokEvent.endingCompleted,
             arrested:global.RavokEvent.ravokArrested,badEndingSeen:global.RavokEvent.ravokBadEndingSeen,
             cardReady:global.RavokEvent.badEndingCardReady,saveFailed,pendingSave,

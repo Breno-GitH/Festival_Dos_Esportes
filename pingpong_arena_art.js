@@ -68,7 +68,7 @@
     function hud(c,game,now){
         c.save();c.imageSmoothingEnabled=false;
         box(c,'#0d2530',119,8,212,32);box(c,'#18313b',189,9,72,29);
-        text(c,'ZORP',145,11,'#a5d9ce',1,'center');text(c,'MESTRE',305,11,'#e0bb91',1,'center');
+        text(c,'ZORPZIN',145,11,'#a5d9ce',1,'center');text(c,'MESTRE',305,11,'#e0bb91',1,'center');
         text(c,String(game.playerScore).padStart(2,'0'),145,23,'#f3eedb',2,'center');
         text(c,String(game.opponentScore).padStart(2,'0'),305,23,'#f3eedb',2,'center');
         text(c,'PING-PONG',225,11,'#b4c6be',1,'center');text(c,'ATE '+game.maxScore,225,28,'#b6a779',1,'center');
@@ -101,7 +101,7 @@
         c.save();c.imageSmoothingEnabled=false;
         c.globalAlpha=.22;box(c,'#0a1f2c',0,80,450,195);c.globalAlpha=1;
         if(elapsed<1.35){
-            panel(c,108,104,234,89);text(c,'ZORP',225,113,'#a6dbbf',2,'center');text(c,'VS',225,135,'#c5b88e',1,'center');
+            panel(c,108,104,234,89);text(c,'ZORPZIN',225,113,'#a6dbbf',2,'center');text(c,'VS',225,135,'#c5b88e',1,'center');
             text(c,'MESTRE',225,149,'#e2b58a',2,'center');text(c,'DO PING-PONG',225,173,'#c7d0bf',1,'center');
         }else{
             panel(c,162,126,126,38);text(c,'START!',225,135,'#dcebb2',3,'center');

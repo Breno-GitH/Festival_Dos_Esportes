@@ -26,7 +26,8 @@
   panel(ctx,ui.mode==='teleport'?'TELETRANSPORTADOR':'MAPA DAS ILHAS','CAMINHOS DO ARQUIPÉLAGO');
   const positions={};for(const r of env.regions)positions[r.id]=[225+r.x*119,149+r.y*57];
   ctx.strokeStyle='#416676';ctx.lineWidth=3;
-  for(const[a,b]of [['HUB','ILHA_ESQUI'],['HUB','ILHA_PINGPONG'],['HUB','ILHA_SKATE'],['HUB','ILHA_ARCO'],['ILHA_PINGPONG','ILHA_SURF'],['ILHA_SKATE','ILHA_CORRIDA'],['ILHA_SKATE','ILHA_BASQUETE'],['ILHA_ARCO','ILHA_ESCALADA']]){ctx.beginPath();ctx.moveTo(...positions[a]);ctx.lineTo(...positions[b]);ctx.stroke();}
+  const graph=g.IslandNavigation?.routes;const links=graph?Object.entries(graph).flatMap(([a,d])=>Object.values(d).filter(b=>a<b).map(b=>[a,b])):[['HUB','ILHA_ESQUI'],['HUB','ILHA_PINGPONG'],['HUB','ILHA_SKATE'],['HUB','ILHA_ARCO'],['ILHA_PINGPONG','ILHA_SURF'],['ILHA_SKATE','ILHA_CORRIDA'],['ILHA_SKATE','ILHA_BASQUETE'],['ILHA_ARCO','ILHA_ESCALADA']];
+  for(const[a,b]of links){ctx.beginPath();ctx.moveTo(...positions[a]);ctx.lineTo(...positions[b]);ctx.stroke();}
   for(const r of env.regions){const[x,y]=positions[r.id],state=states.find(s=>s.id===r.id)||{visited:!!data.visitedIslands[r.id],medal:false,current:r.id===env.currentScene},visited=state.visited;
    art.island(ctx,x-52,y-20,104,40,selected?.id===r.id?'#e0c17e':'#365665');
    art.island(ctx,x-50,y-18,100,36,visited?r.accent:'#1d303b');
@@ -40,18 +41,18 @@
   const visited=state?.visited??!!data.visitedIslands[r?.id];
   text(ctx,!visited?'REGIÃO NÃO EXPLORADA':r.name+' - '+(state?.medal?'VENCEU O MESTRE':'VISITADA'),225,243,{align:'center',color:'#f5d48e'});
   if(visited&&env.owns('quest_scanner')&&state?.questStatus)text(ctx,state.questStatus,225,255,{align:'center',color:'#b9dec9'});
-  footer(ctx,env.owns('teleporter')?'[W/S] ESCOLHER [E/ESPAÇO] VIAJAR [B/ESC] FECHAR':'[W/S] CONSULTAR  [B/ESC] FECHAR');
+  footer(ctx,env.owns('teleporter')?'[WASD/SETAS] MOVER · [E] VIAJAR · [B/ESC] FECHAR':'[WASD/SETAS] MOVER · [B/ESC] FECHAR');
  }
  function draw(ctx,ui,env){ctx.save();ctx.imageSmoothingEnabled=false;
   if(ui.mode==='travel'){rect(ctx,0,0,450,300,'rgba(4,14,27,'+(ui.time<.4?ui.time/.4:1-(ui.time-.4)/.4)+')');ctx.restore();return;}
   if(['map','teleport'].includes(ui.mode)){drawMap(ctx,ui,env);ctx.restore();return;}
-  const titles={talk:'COMERCIANTE VIAJANTE',shop:'FEIRA INTERPLANETÁRIA',backpack:'MOCHILA DO ZORP',records:'MÓDULO DE RECORDES',letter:'CARTA DOS ÚLTIMOS DESTINOS',ship:'EQUIPAMENTOS DA NAVE',customizer:'PERSONALIZADOR DA NAVE',jukebox:'JUKEBOX DA NAVE',buy_confirm:'CONFIRMAR COMPRA',travel_confirm:'CONFIRMAR VIAGEM',info:ui.title||'MOCHILA'};
+  const titles={talk:'COMERCIANTE VIAJANTE',shop:'FEIRA INTERPLANETÁRIA',backpack:'MOCHILA DO ZORPZIN',records:'MÓDULO DE RECORDES',letter:'CARTA DOS ÚLTIMOS DESTINOS',ship:'EQUIPAMENTOS DA NAVE',customizer:'PERSONALIZADOR DA NAVE',jukebox:'JUKEBOX DA NAVE',buy_confirm:'CONFIRMAR COMPRA',travel_confirm:'CONFIRMAR VIAGEM',info:ui.title||'MOCHILA'};
   panel(ctx,titles[ui.mode]||'MOCHILA',ui.mode==='shop'?'MOEDAS: '+env.coins:'ILHA DOS CAMPEÕES');
   if(ui.mode==='talk'){
    wrap(ctx,ui.text,35,87,375,{lineHeight:15});env.list.forEach((v,i)=>{rect(ctx,45,202+i*25,360,20,i===ui.selected?'#46635a':'#243f47');text(ctx,v,57,209+i*25);});
   }else if(['shop','backpack'].includes(ui.mode)){
    if(!env.list.length)wrap(ctx,'Sua mochila ainda está vazia. O Comerciante aparece depois de sua primeira medalha.',42,105,365,{lineHeight:16});
-   env.list.forEach((item,i)=>{const y=85+i*19;rect(ctx,31,y-3,388,18,i===ui.selected?'#3b5f58':'#19313b');icon(ctx,item.icon,37,y-1);text(ctx,item.name,58,y+2,{color:i===ui.selected?'#fff1bd':'#c5d9c4'});text(ctx,ui.mode==='shop'?(env.owns(item.id)?'ADQUIRIDO':item.price+' M'):item.type==='PASSIVE_UPGRADE'?'ATIVO':item.type==='LOCATION_UNLOCK'?'NA NAVE':'USAR',410,y+2,{align:'right',color:'#e5c77f'});});
+   const offset=ui.mode==='backpack'?Math.max(0,ui.selected-6):0;env.list.slice(offset,offset+7).forEach((item,row)=>{const i=row+offset,y=85+row*19;rect(ctx,31,y-3,388,18,i===ui.selected?'#3b5f58':'#19313b');icon(ctx,item.icon,37,y-1);text(ctx,item.name,58,y+2,{color:i===ui.selected?'#fff1bd':'#c5d9c4'});text(ctx,ui.mode==='shop'?(env.owns(item.id)?'ADQUIRIDO':item.price+' M'):item.type==='PASSIVE_UPGRADE'?'ATIVO':item.type==='LOCATION_UNLOCK'?'NA NAVE':'USAR',410,y+2,{align:'right',color:'#e5c77f'});});
    const item=env.list[ui.selected];if(item){rect(ctx,31,219,388,42,'#19313b');wrap(ctx,ui.note||item.description,38,226,373,{lineHeight:11,color:ui.note?'#f2d297':'#bfd5c0'});}
   }else if(['buy_confirm','travel_confirm'].includes(ui.mode)){
    const item=env.items.find(i=>i.id===ui.itemId),region=env.regions.find(r=>r.id===ui.destination);

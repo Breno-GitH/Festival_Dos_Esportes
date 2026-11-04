@@ -1,0 +1,10 @@
+const fs=require('fs'),assert=require('assert/strict');
+(async()=>{process.env.NPC_QA_BASE='http://127.0.0.1:8871';const b=await require('../skate_control_clarity/browser_lib.cjs')();await b.init(false);const checks=[];const ok=(n,v)=>{assert.ok(v,n);checks.push(n);console.log('OK '+n);};
+ await b.ev("AdventureIntro.introSeen=true;FestivalWallet.updateCommerce({firstSportIslandTutorialSeen:true});FestivalWallet.markSurfExchangeTutorialSeen();currentScene='ILHA_SURF';player.x=376;player.y=238;keys.w=true;for(let i=0;i<80&&player.y>176;i++)qaOriginalUpdate();keys.w=false;draw()");
+ ok('Player physically walks between sign posts to fisherman',await b.ev('player.x===376&&player.y>=170&&player.y<=176'));
+ await b.tap('e');ok('Fisherman remains reachable after moving the booth',await b.ev("SurfCoinExchange.snapshot().ui?.kind==='offer'"));await b.key('keyDown','Escape');await b.key('keyUp','Escape');
+ await b.ev("player.x=225;player.y=230;draw()");fs.writeFileSync(__dirname+'/wood-sign-booth.png',Buffer.from(await b.ev("canvas.toDataURL().split(',')[1]"),'base64'));
+ ok('One fisherman and original Captain retain their positions',await b.ev("npcs.filter(n=>n.id==='pescador_surf').length===1&&npcs.find(n=>n.id==='pescador_surf').x===376&&npcs.find(n=>n.id==='pescador_surf').y===155&&npcs.find(n=>n.id==='capitao').x===310&&npcs.find(n=>n.id==='capitao').y===180"));
+ await b.ev("currentScene='JOGO_SURF';surfEndlessGame.reset(false);surfEndlessGame.distance=32000;surfEndlessGame.startFinale()");await b.tap('Escape');ok('Pause in finale excludes universal hold skip',await b.ev('surfEndlessGame.paused&&CutsceneSkip.target()===null'));await b.sleep(210);await b.tap(' ');ok('Space used to resume cannot skip finale accidentally',await b.ev("!surfEndlessGame.paused&&surfEndlessGame.state==='FINALE'&&!keys.space"));
+ ok('No browser exception or 404',b.errors.length===0&&b.http.length===0);fs.writeFileSync(__dirname+'/visual-results.json',JSON.stringify({checks,http:b.http,errors:b.errors},null,2));b.ws.close();
+})().catch(e=>{console.error(e);process.exit(1)});

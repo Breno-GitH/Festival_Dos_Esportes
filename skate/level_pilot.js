@@ -72,7 +72,7 @@
                     const captureRails = course.rails.filter(rail =>
                         rail.id !== view.excludedRail && rail.id !== options.skipRail && (profile !== "survival" || rail.required));
                     const near = traversal.findCaptureCandidate(p, captureRails, p.forwardSpeed || course.forwardSpeedAt(p.x), {
-                        lookAheadMs: 100, gravity: 1650
+                        lookAheadMs: Number(options.captureDelayMs)||0, gravity: 1650
                     });
                     if (near && !attempted.has(near.rail.id)) {
                         attempted.add(near.rail.id);

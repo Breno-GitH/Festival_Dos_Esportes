@@ -1,0 +1,97 @@
+{
+  "checks": [
+    "Surf conversion 9/10/19/20/37/100; repeated settlement cannot duplicate",
+    "HUD and saved global wallet share the 17 earned coins",
+    "Intro skip commits introSeen and returns to world",
+    "Merchant arrival starts",
+    "Merchant skip commits shop, sign and wallet flags",
+    "Ravok arrival starts at four medals",
+    "Arrival skip commits Ravok inside and K7 outside",
+    "First sport island opens orientation",
+    "Orientation freezes player motion",
+    "Orientation completes once and persists",
+    "No repeat in ILHA_PINGPONG",
+    "No repeat in ILHA_BASQUETE",
+    "No repeat in ILHA_CORRIDA",
+    "No repeat in ILHA_SKATE",
+    "No repeat in ILHA_ARCO",
+    "No repeat in ILHA_ESCALADA",
+    "No repeat in ILHA_ESQUI",
+    "No repeat in ILHA_SURF",
+    "Quest introduction is given once",
+    "Backpack contains reusable archipelago help",
+    "Eight medal exit skip leaves Ravok outside",
+    "Ravok preparation dialogue starts",
+    "Skip reaches choice and never selects SIM",
+    "NO starts refusal",
+    "Arrest skip saves arrest and returns to climbing",
+    "Accepted route resumes",
+    "Acceptance skip opens the exclusive ending card",
+    "Accepted ending persists and returns to menu",
+    "No 404 or browser exception"
+  ],
+  "money": [
+    [
+      9,
+      0,
+      {
+        "mini": 9,
+        "converted": 0,
+        "globalCoinsEarned": 0,
+        "paid": true
+      }
+    ],
+    [
+      10,
+      1,
+      {
+        "mini": 10,
+        "converted": 10,
+        "globalCoinsEarned": 1,
+        "paid": true
+      }
+    ],
+    [
+      19,
+      1,
+      {
+        "mini": 19,
+        "converted": 10,
+        "globalCoinsEarned": 1,
+        "paid": true
+      }
+    ],
+    [
+      20,
+      2,
+      {
+        "mini": 20,
+        "converted": 20,
+        "globalCoinsEarned": 2,
+        "paid": true
+      }
+    ],
+    [
+      37,
+      3,
+      {
+        "mini": 37,
+        "converted": 30,
+        "globalCoinsEarned": 3,
+        "paid": true
+      }
+    ],
+    [
+      100,
+      10,
+      {
+        "mini": 100,
+        "converted": 100,
+        "globalCoinsEarned": 10,
+        "paid": true
+      }
+    ]
+  ],
+  "errors": [],
+  "http": []
+}

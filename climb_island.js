@@ -178,11 +178,7 @@ window.ClimbIsland = (() => {
         for(const [x,y]of [[38,190],[76,247],[144,223],[171,222],[280,246],[345,246],
             [401,237],[401,186],[103,187],[349,192]])grass(g,x,y);
         g.fillStyle='#8fa865';g.fillRect(40,238,12,5);g.fillRect(46,235,9,4);g.fillRect(282,253,16,4);
-        // Label is below the scene so it cannot cover the mountain's summit/silhouette.
-        g.fillStyle='#14314f';g.fillRect(269,247,133,14);
-        g.fillStyle='#f3ca63';g.fillRect(269,247,3,14);
-        g.fillStyle='#f8e8aa';g.font='bold 8px monospace';g.textAlign='center';
-        g.fillText('BASE DO MONTE ZORP',337,257);
+
     }
     function ensureCache() {
         if(cached)return;
@@ -209,7 +205,7 @@ window.ClimbIsland = (() => {
         g.restore();
     }
     return Object.freeze({draw,blocks,containsLand,obstacles,
-        diagnostics:()=>({scene:'ILHA_ESCALADA',theme:'BASE DO MONTE ZORP',size:[450,300],
+        diagnostics:()=>({scene:'ILHA_ESCALADA',theme:'BASE DO MONTE ZORPZIN',size:[450,300],
             master:[225,168],mountain:{baseWidth:300,middleWidth:180,summitWidth:33,
                 bounds:[75,18,300,136],outline:mountain.map(p=>[...p])},
             visualRoutes:3,decorativeLedges:1,animated:['pennant','summit-wind'],

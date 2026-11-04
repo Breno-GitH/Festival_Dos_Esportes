@@ -51,6 +51,7 @@
             if (performance.now() - this.readySince < 800) return false;
             return this.begin();
         },
+        skip(){if(!this.active)return;AdventureIntro.homeCallSeen=true;AdventureIntro.persist();this.active=false;this.setState('COMPLETE');this.config.clearInput();},
         handleKeyDown(e) {
             if (!this.active) return false;
             if (!e.ctrlKey && !e.metaKey && [' ', 'w', 'a', 's', 'd', 'e', 'Enter'].includes(e.key)) e.preventDefault();

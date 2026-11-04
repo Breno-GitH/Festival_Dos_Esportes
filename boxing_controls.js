@@ -13,7 +13,7 @@ function boxingHandleKeyDown(event){
     if(!official.includes(k))return false;
     event.preventDefault?.();
     const fresh=!event.repeat&&!boxingConsumedKeys.has(k);boxingConsumedKeys.add(k);
-    if(k==='escape'&&fresh){boxingReleaseInput();return 'exit';}
+    if(k==='escape'&&fresh){window.MinigamePause?.open();return true;}
     if(boxeGame.phase==='RESULT'&&k==='r'&&fresh&&!boxingGatedKeys.has(k)){boxingInputPress.restart=true;return true;}
     if(boxeGame.phase==='READY'&&k==='enter'&&fresh&&!boxingGatedKeys.has(k)){boxingInputPress.start=true;return true;}
     if(boxeGame.phase!=='FIGHTING'){

@@ -11,11 +11,11 @@ test("Mega Hold sustenta sem interpretar Ollie ou sequência aérea",()=>{
     assert.equal(parser.lastGroundJumpAt,null);
 });
 
-test("um Space inicia Normal Jump imediatamente e o segundo Space no ar faz upgrade Ollie", () => {
+test("um Space inicia Normal Jump imediatamente e o segundo Space no ar executa salto duplo", () => {
     const parser = input.createParser();
     assert.deepEqual(parser.keyDown(0, "GROUND"), [{ type: "NORMAL_JUMP", at: 0 }]);
     parser.keyUp(45);
-    assert.deepEqual(parser.keyDown(160, "AIR"), [{ type: "OLLIE_UPGRADE", at: 160 }]);
+    assert.deepEqual(parser.keyDown(160, "AIR"), [{ type: "DOUBLE_JUMP", at: 160 }]);
 });
 
 test("hold permanece intenção de Grind sem produzir Super Jump", () => {
@@ -24,7 +24,7 @@ test("hold permanece intenção de Grind sem produzir Super Jump", () => {
     const upgrade = parser.update(300, "AIR");
     assert.deepEqual(upgrade, []);
     parser.keyUp(340);
-    assert.deepEqual(parser.keyDown(400, "AIR"), [{ type: "AIR_PRESS", at: 400 }]);
+    assert.deepEqual(parser.keyDown(400, "AIR"), [{ type: "DOUBLE_JUMP", at: 400 }]);
 });
 
 test("hold não gera impulso; release do Grind é resolvido pela travessia", () => {
@@ -43,11 +43,11 @@ test("rail capturável prioriza Grind sobre Ollie e Super Jump no mesmo pression
         [{ type: "GRIND_CAPTURE_PRESS", at: 150 }]);
     assert.deepEqual(parser.update(500, "AIR"), []);
     assert.deepEqual(parser.keyUp(520), [{ type: "AIR_RELEASE", holdMs: 370 }]);
-    assert.deepEqual(parser.keyDown(550, "AIR"), [{ type: "AIR_PRESS", at: 550 }],
+    assert.deepEqual(parser.keyDown(550, "AIR"), [{ type: "DOUBLE_JUMP", at: 550 }],
         "the buffered Grind press must not leave a pending ground double tap");
 });
 
-test("novo hold aéreo após captura e Jump Out não adiciona energia", () => {
+test("novo press aéreo após Jump Out permite salto duplo disponível", () => {
     const parser = input.createParser();
     parser.keyDown(0, "GROUND");
     assert.deepEqual(parser.update(300, "AIR"), []);
@@ -57,6 +57,6 @@ test("novo hold aéreo após captura e Jump Out não adiciona energia", () => {
     parser.keyUp(530);
     assert.equal(parser.keyDown(600, "GRIND")[0].type, "GRIND_PRESS");
     parser.keyUp(640);
-    assert.equal(parser.keyDown(700, "AIR", { allowSuperHold: true })[0].type, "AIR_PRESS");
+    assert.equal(parser.keyDown(700, "AIR", { allowSuperHold: true })[0].type, "DOUBLE_JUMP");
     assert.deepEqual(parser.update(1000, "AIR"), []);
 });

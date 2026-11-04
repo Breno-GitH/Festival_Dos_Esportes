@@ -21,13 +21,13 @@
  function freeze(value){if(value&&typeof value==='object'){Object.values(value).forEach(freeze);Object.freeze(value);}return value;}
  freeze(tracks);
  let audio=null,master=null,noise=null,timer=null,playing=null,muted=false,world=true,blocked=false,step=0,nextAt=0;
- const voices=new Set(),volume=.58;
+ const voices=new Set(),volume=.58;let ducked=false;
  const unlocked=()=>tracks.filter(t=>g.FestivalWallet?.commerce.heardTracks[t.id]);
  const owned=()=>g.FestivalWallet?.commerce.inventory?.jukebox===true||g.FestivalWallet?.commerce.purchasedItems?.jukebox===true;
  function destroy(v){voices.delete(v);for(const node of v.nodes){try{node.disconnect();}catch(_){}}}
  function halt(){if(timer!==null){g.clearInterval(timer);timer=null;}for(const v of [...voices]){try{v.source.stop();}catch(_){}destroy(v);}}
  function initAudio(){if(audio)return true;const Context=g.AudioContext||g.webkitAudioContext;if(!Context)return false;
-  audio=new Context();master=audio.createGain();master.gain.value=muted?0:volume;master.connect(audio.destination);
+  audio=new Context();master=audio.createGain();master.gain.value=muted?0:volume*(ducked?.28:1);master.connect(audio.destination);
   noise=audio.createBuffer(1,Math.ceil(audio.sampleRate*.16),audio.sampleRate);const data=noise.getChannelData(0);let seed=7419;
   for(let i=0;i<data.length;i++){seed=(Math.imul(seed,1664525)+1013904223)>>>0;data[i]=(seed/4294967296)*2-1;}return true;
  }
@@ -62,10 +62,10 @@
   if(!world||blocked)return true;if(start())return true;playing=null;return false;
  }
  function next(){if(!playing)return false;const list=unlocked();if(!list.length){stop();return false;}return play(list[(list.findIndex(t=>t.id===playing)+1)%list.length].id);}
- function setMuted(value){muted=!!value;if(master){master.gain.cancelScheduledValues(audio.currentTime);master.gain.setTargetAtTime(muted?0:volume,audio.currentTime,.012);}return muted;}
+ function setMuted(value){muted=!!value;if(master){master.gain.cancelScheduledValues(audio.currentTime);master.gain.setTargetAtTime(muted?0:volume*(ducked?.28:1),audio.currentTime,.012);}return muted;}
  function setContext(state){if(state.menu){stop();world=false;blocked=true;return;}const nextWorld=state.world===true,nextBlocked=state.blocked===true;
   if(world===nextWorld&&blocked===nextBlocked)return;world=nextWorld;blocked=nextBlocked;halt();if(playing&&world&&!blocked)start();
  }
- g.MerchantMusic=Object.freeze({tracks,play,next,stop,setMuted,toggleMute:()=>setMuted(!muted),setContext,
+ g.MerchantMusic=Object.freeze({tracks,play,next,stop,setMuted,selectionCue:()=>{if(muted)return;try{if(initAudio()){audio.resume().catch(()=>{});note(76,audio.currentTime,.04,.018,'triangle',1500);}}catch(_){}},setDucked:value=>{ducked=!!value;setMuted(muted);},toggleMute:()=>setMuted(!muted),setContext,
   snapshot:()=>{const t=tracks.find(t=>t.id===playing);return {playing,name:t?.name||'',style:t?.style||'',bpm:t?.bpm||0,meter:t?.meter||'',muted,paused:!!playing&&(!world||blocked),voices:voices.size};}});
 })(window);

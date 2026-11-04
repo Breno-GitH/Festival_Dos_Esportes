@@ -1,0 +1,42 @@
+{
+  "checks": [
+    "Map and backpack cannot open over first-island teaching",
+    "Surf finale state parity: full",
+    "Surf finale state parity: skipStart",
+    "Surf finale state parity: skipMiddle",
+    "Three runs pay 3 each and no second currency is saved",
+    "Reload keeps global coins and tutorial completion",
+    "No browser exception or 404"
+  ],
+  "results": [
+    {
+      "mode": "full",
+      "state": "COMPLETE",
+      "score": 5000,
+      "distance": 34885,
+      "landings": 1,
+      "mini": 37,
+      "pay": 3
+    },
+    {
+      "mode": "skipStart",
+      "state": "COMPLETE",
+      "score": 5000,
+      "distance": 34885,
+      "landings": 1,
+      "mini": 37,
+      "pay": 3
+    },
+    {
+      "mode": "skipMiddle",
+      "state": "COMPLETE",
+      "score": 5000,
+      "distance": 34885,
+      "landings": 1,
+      "mini": 37,
+      "pay": 3
+    }
+  ],
+  "http": [],
+  "errors": []
+}

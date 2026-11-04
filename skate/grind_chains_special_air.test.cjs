@@ -141,7 +141,7 @@ test("Rail → Jump → Rail → Jump → Rail chain reaches all four rails befo
             }
         }
     }
-    assert.deepEqual(enteredRails, course.rails.map(rail => rail.id));
+    assert.deepEqual([...new Set(enteredRails)], course.rails.map(rail => rail.id));
     assert.equal(chainCleared, true, "the final rail can also be exited without landing");
     assert.equal(simulation.state.phase, "PLAYING");
     assert.equal(simulation.state.player.landings, 0);
@@ -182,7 +182,8 @@ test("soltar o Grind lança imediatamente; novo hold captura o próximo rail", (
     assert.equal(released.some(event => event.type === "GRIND_OLLIE_OUT"), true);
     const jumped = controller.update({ player, input: { held: true, pressed: true, pressId: 2 },
         rails: [rail], forwardSpeed: 230, simulation });
-    assert.equal(jumped.length, 0);
+    assert.ok(jumped.some(event => event.type === "GRIND_ENTER"));
+    controller.update({player,input:{held:false,released:true},rails:[rail],forwardSpeed:230,simulation});
     player.x = 130;
     player.y = 100;
     player.verticalVelocity = -100;

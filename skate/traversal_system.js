@@ -8,10 +8,10 @@
         grindCaptureRadiusPx: 24,
         grindInputBufferMs: 130,
         grindCaptureBlendMs: 100,
-        grindReentryCooldownMs: 80,
+        grindReentryCooldownMs: 0,
         grindScoreMinAirborneMs: 180,
         grindScoreMinAirborneDistancePx: 28,
-        trajectoryTolerance: 600,
+        trajectoryTolerance: 1000,
         grindSpeedScale: 0.96,
         manualMaxDurationMs: 850
     });
@@ -104,7 +104,7 @@
                 const startOverrun = atStart
                     ? (x - point.x) * point.tangentX + (y - point.y) * point.tangentY
                     : 0;
-                if (atEnd && endOverrun > SETTINGS.grindCaptureRadiusPx) continue;
+                if (atEnd && endOverrun > 0.5) continue;
                 if (atStart && startOverrun < -SETTINGS.grindCaptureRadiusPx) continue;
                 const velocityX = forwardSpeed;
                 const velocityY = player.verticalVelocity + gravity * time;
@@ -112,7 +112,6 @@
                 const relativeVerticalSpeed = Math.abs(relativeVelocity);
                 if (relativeVerticalSpeed > SETTINGS.trajectoryTolerance) continue;
                 const verticalGap = (x - point.x) * -point.tangentY + (y - point.y) * point.tangentX;
-                if (verticalGap < -1 && relativeVelocity < -90) continue;
                 if (verticalGap > 12 && relativeVelocity > 90) continue;
                 const candidate = {
                     rail, ...point, relativeVerticalSpeed,
@@ -125,6 +124,11 @@
             }
         }
         return best;
+    }
+
+    function canStartGrind(player, rail, input, forwardSpeed) {
+        return !!player && !player.grounded && !player.grindingRailId && !player.specialRampAir?.active
+            && input?.held === true && !!findCaptureCandidate(player, [rail], forwardSpeed);
     }
 
     function railLength(rail) {
@@ -366,8 +370,7 @@
                     }
                     const nearest = this.findCandidate(player, rails, forwardSpeed);
                     const physicalNearest = findCaptureCandidate(player, rails, forwardSpeed);
-                    const cooldownBlocksNearest = this.reentryCooldownMs > 0
-                        && physicalNearest?.rail.id === this.lastExitedRailId;
+                    const cooldownBlocksNearest = this.reentryCooldownMs > 0;
                     this.captureDebug = physicalNearest ? {
                         railId: physicalNearest.rail.id, x: physicalNearest.x, y: physicalNearest.y,
                         distance: physicalNearest.distance,
@@ -387,9 +390,8 @@
                         airborneSinceExitMs: this.airborneAfterGrindMs,
                         airborneSinceExitPx: this.airborneAfterGrindDistance
                     };
-                    const cooldownBlocksCandidate = this.reentryCooldownMs > 0
-                        && nearest?.rail.id === this.lastExitedRailId;
-                    if (input.held && !cooldownBlocksCandidate && nearest?.withinCaptureZone) {
+                    const cooldownBlocksCandidate = this.reentryCooldownMs > 0;
+                    if (!cooldownBlocksCandidate && this.mode === "AIR" && nearest && canStartGrind(player, nearest.rail, input, forwardSpeed)) {
                         const snapDistance = Math.hypot(nearest.x - player.x, nearest.y - player.y);
                         if (snapDistance > SETTINGS.grindCaptureRadiusPx) return transitions;
                         this.mode = "GRIND";
@@ -428,11 +430,10 @@
 
                 return transitions;
             },
+            // Last rail identity is used only for diagnostics and combo credit.
+            // Exit already returns from the update, so the next frame can capture again.
             findCandidate(player, rails, forwardSpeed, options = {}) {
-                const eligibleRails = this.reentryCooldownMs > 0 && this.lastExitedRailId
-                    ? (rails || []).filter(rail => rail.id !== this.lastExitedRailId)
-                    : rails;
-                return findCaptureCandidate(player, eligibleRails, forwardSpeed, options);
+                return findCaptureCandidate(player, rails, forwardSpeed, options);
             }
         };
         return controller.reset();
@@ -446,6 +447,7 @@
         sampleRail,
         nearestRailPoint,
         findCaptureCandidate,
+        canStartGrind,
         railLength,
         distanceAlongRail,
         createController

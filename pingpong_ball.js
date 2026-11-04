@@ -70,7 +70,7 @@
         const table = court.table, direction = shot.hitter === 'PLAYER' ? 1 : -1;
         const rally = clamp(shot.rally || 0, 0, TUNING.rallyCap);
         const powerBias = clamp((Math.abs(shot.speed) - 4.2) * 0.045, -0.15, 0.25);
-        // Some extra pace survives a real return, including a return to Zorp.
+        // Some extra pace survives a real return, including a return to Zorpzin.
         const specialPace = shot.serve ? 0 : (ball.specialPace || 0) * 0.82;
         const charged = specialPace > 0.04;
         const attackSpeed = clamp(TUNING.attackMin + rally * TUNING.rallyStep + powerBias +

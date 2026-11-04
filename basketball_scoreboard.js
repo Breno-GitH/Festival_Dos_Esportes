@@ -133,7 +133,7 @@
             for(let x=140;x<=310;x+=17)ctx.fillRect(x,86,3,1);
             ctx.fillRect(128,28,1,40);ctx.fillRect(321,28,1,40);
             ctx.fillRect(158,92,134,1);
-            text(ctx,'ZORP',163,26,1,'#75bac9');text(ctx,'TEMPO',225,26,1,'#b4bece');text(ctx,'MESTRE',287,26,1,'#d6a074');
+            text(ctx,'ZORPZIN',163,26,1,'#75bac9');text(ctx,'TEMPO',225,26,1,'#b4bece');text(ctx,'MESTRE',287,26,1,'#d6a074');
             const zorp=String(view.zorp).padStart(2,'0'),master=String(view.master).padStart(2,'0');
             const a=zorp.length>4?1:this.pop.zorp>.12&&zorp.length<=2?3:2;
             const b=master.length>4?1:this.pop.master>.12&&master.length<=2?3:2;

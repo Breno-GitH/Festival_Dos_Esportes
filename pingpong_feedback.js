@@ -126,7 +126,7 @@
         for (const id of state.records.keys()) if (!live.has(id)) state.records.delete(id);
         if (game.playerScore > state.playerScore || game.opponentScore > state.masterScore) {
             const player = game.playerScore > state.playerScore;
-            state.point = { label: player ? 'POINT ZORP' : 'POINT MASTER', player, until: now + LIMITS.pointMs, born: now };
+            state.point = { label: player ? 'POINT ZORPZIN' : 'POINT MASTER', player, until: now + LIMITS.pointMs, born: now };
             state.totals.points++; state.energyUntil = now + 430; state.holdUntil = 0; state.capturePending = false;
             const closeFinish = Math.max(game.playerScore, game.opponentScore) >= game.maxScore - 5 && Math.abs(game.playerScore - game.opponentScore) <= 3;
             cue(closeFinish ? 'climax' : 'point', now);
@@ -248,7 +248,7 @@
         const p = state.point;
         if (p && game.gameState !== 'GAMEOVER') {
             c.globalAlpha = Math.min(1, (p.until - now) / 90);
-            global.PingPongArenaArt.badge(c,p.player?'PONTO ZORP':'PONTO MESTRE',p.player?'#b3e6d5':'#e6cfad');
+            global.PingPongArenaArt.badge(c,p.player?'PONTO ZORPZIN':'PONTO MESTRE',p.player?'#b3e6d5':'#e6cfad');
         }
         c.restore();
     }

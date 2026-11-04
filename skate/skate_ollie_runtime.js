@@ -58,9 +58,9 @@ let skateAirPose = null;
 let skateRiderAngle = 0;
 let skateRiderDrawAt = 0;
 let skateJourneyDrawAt = 0;
-// Only the QA page provides a clock. The official game always uses wall time.
+// Only the QA page provides a clock. The official game uses the pause-aware gameplay clock.
 function skateClockNow() {
-    return Number.isFinite(window.skatePlaytestTimeMs) ? window.skatePlaytestTimeMs : performance.now();
+    return Number.isFinite(window.skatePlaytestTimeMs) ? window.skatePlaytestTimeMs : (globalThis.MinigamePause?.now() ?? performance.now());
 }
 window.skateDebug = window.skateDebug ?? false;
 window.setSkateDebug = enabled => { window.skateDebug = Boolean(enabled); };
@@ -114,11 +114,11 @@ window.addEventListener("keydown", event => {
                 player,
                 skateCourseRails,
                 player.forwardSpeed || skateOllieSimulation.config.forwardSpeed,
-                { lookAheadMs: window.SkateTraversal.SETTINGS.grindInputBufferMs, gravity: skateOllieSimulation.config.gravity }
+                { lookAheadMs: 0, gravity: skateOllieSimulation.config.gravity }
             )
             : null;
         const events = skateSpaceParser.keyDown(skateOllieInput.pressStartedAt, skateOllieInput.pressMode, {
-            grindCapturable: Boolean(captureCandidate)
+            grindCapturable: Boolean(captureCandidate), airJumpsUsed: player.airJumpsUsed || 0
         });
         for (const inputEvent of events) {
             if (inputEvent.type === "RAMP_HOLD" || inputEvent.type === "MEGA_HOLD") {
@@ -127,7 +127,7 @@ window.addEventListener("keydown", event => {
             } else if (inputEvent.type === "NORMAL_JUMP") {
                 skateOllieInput.normalJump = true;
                 skateOllieInput.pressMode = "GROUND";
-            } else if (inputEvent.type === "OLLIE_UPGRADE") {
+            } else if (inputEvent.type === "DOUBLE_JUMP" || inputEvent.type === "OLLIE_UPGRADE") {
                 skateOllieInput.ollieUpgrade = true;
             } else if (inputEvent.type === "GRIND_CAPTURE_PRESS") {
                 skateOllieInput.grindPressed = true;
@@ -234,6 +234,7 @@ function startSkateFromBrief() {
 }
 
 function updateSkateGame() {
+    if(window.MinigamePause?.active||skateOllieSimulation.state.phase==='ABANDONED')return;
     if (currentScene !== "JOGO_SKATE") return;
     const now = skateClockNow();
     if(window.SkateControlCoach?.paused){skateOllieLastTime=now;skateOllieAccumulator=0;return;}
@@ -463,7 +464,7 @@ function drawSkateGame() {
     const camera = skateOllieCamera;
     const screenX = p.x - camera.x;
     const screenY = p.y - camera.y;
-    const presentationNow=performance.now();
+    const presentationNow=(globalThis.MinigamePause?.now() ?? performance.now());
     const presentationDt=Math.min(.05,Math.max(0,(presentationNow-skateJourneyDrawAt)/1000));
     skateJourneyDrawAt=presentationNow;
 
@@ -756,7 +757,7 @@ function drawSkateDebugOverlay(player) {
         ctx.font = "bold 8px monospace";
         ctx.textAlign = "left";
         ctx.fillText(
-            `state=${skateTraversal.mode} nearestRailId=${nearestCapture.rail.id} · distanceToRail=${nearestCapture.distance.toFixed(1)} · canGrind=${plausible && nearestCapture.distance <= captureRadius && !player.grounded && skateOllieInput.held && !(skateTraversal.reentryCooldownMs>0 && skateTraversal.lastExitedRailId===nearestCapture.rail.id)}`,
+            `state=${skateTraversal.mode} nearestRailId=${nearestCapture.rail.id} · distanceToRail=${nearestCapture.distance.toFixed(1)} · canGrind=${plausible && nearestCapture.distance <= captureRadius && !player.grounded && skateOllieInput.held && skateTraversal.mode === "AIR" && skateTraversal.reentryCooldownMs <= 0}`,
             player.x + 18, player.y - 52
         );
     } else if (!player.grounded) {
@@ -769,6 +770,7 @@ function drawSkateDebugOverlay(player) {
     ctx.font = "bold 8px monospace";
     ctx.textAlign = "left";
     ctx.fillText(`cooldown=${Math.ceil(skateTraversal.reentryCooldownMs)}ms · lastRailId=${skateTraversal.lastExitedRailId || "—"} · captureRadius=${captureRadius}px`, player.x + 18, player.y - 40);
+    ctx.fillText(`isGrounded=${player.grounded} spacePressed=${skateOllieInput.normalJump||skateOllieInput.ollieUpgrade} spaceHeld=${skateOllieInput.held} airJumpsUsed=${player.airJumpsUsed||0}`,player.x+18,player.y-28);
     for (const object of skateCollisionObjects) {
         const regions = object.collisionRegions || {};
         ctx.lineWidth = 2;
@@ -930,6 +932,22 @@ window.skateOllieRuntime = Object.freeze({
     camera: skateOllieCamera,
     input: skateOllieInput,
     physics: skateOlliePhysics,
+    // A hold begun before pause remains a hold, not a new jump on resume.
+    pauseInput(){const token={held:skateOllieInput.held};
+        for(const k of ['normalJump','ollieUpgrade','restart','grindPressed','released'])skateOllieInput[k]=false;
+        return token;
+    },
+    resumeInput(token,held){
+        const retain=!!token?.held&&held;
+        if(!retain){skateOllieInput.held=false;skateOllieInput.released=!!token?.held;
+            skateSpaceParser.reset();skateTrickSystem.cancelInput();skateOllieInput.airTrickInputActive=false;}
+        return retain?['space']:[];
+    },
+    abort(){clearSkateBriefingInput();skateTraversal.reset();skateTrickSystem.reset();skateCombo.reset();
+        skateOllieSimulation.state.phase='ABANDONED';
+        const p=skateOllieSimulation.state.player;p.grindingRailId=null;p.rampRide=null;p.specialRampAir=null;p.vx=0;p.vy=0;
+        skateOllieAccumulator=0;
+    },
     clearBriefingInput: clearSkateBriefingInput
 });
 window.SkateControlCoach?.bind({

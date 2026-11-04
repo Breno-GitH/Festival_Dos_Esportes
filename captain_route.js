@@ -37,6 +37,7 @@
             this.active = false; this.state = wallet.pagouCapitao ? 'PAID' : 'IDLE';
             this.config.clearInput(); this.config.showMessage(text);
         },
+        skip(){if(this.active&&this.state==='FERIAS_MERECIDAS'){this.scene='MONOLOGUE';this.showEndingCard();}},
         showEndingCard() {
             if (this.state !== 'FERIAS_MERECIDAS'||this.scene!=='MONOLOGUE') return;
             this.state = 'ENDING_CARD';wallet.completeVacation();this.config.clearInput();

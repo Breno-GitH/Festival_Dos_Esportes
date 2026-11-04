@@ -13,7 +13,7 @@ const OVERWORLD_ISLANDS = Object.freeze({
     ILHA_SKATE: { title: "SKATE PLAZA", floor: "#8296a0", exits: ["n","w","e"] },
     ILHA_ARCO: { title: "VALE DA ARQUEARIA", floor: "#63855d", exits: ["n","e"] },
     ILHA_CORRIDA: { title: "ESTÁDIO DE ATLETISMO", floor: "#42664f", exits: ["e"] },
-    ILHA_ESCALADA: { title: "BASE DO MONTE ZORP", floor: "#596267", exits: ["s"] },
+    ILHA_ESCALADA: { title: "BASE DO MONTE ZORPZIN", floor: "#596267", exits: ["s"] },
     ILHA_SURF: { title: "PRAIA DO SURF", floor: "#d9c58d", exits: ["s"] }
 });
 const overworldSpriteCache = new WeakMap();
@@ -122,6 +122,13 @@ function drawOverworldHub() {
         ctx.fillStyle="#dfc06d";ctx.fillRect(x+8,73,4,4);ctx.fillRect(x+25,78,4,4);
     }
     drawOverworldBench(68,211);drawOverworldBench(336,240);
+    // Ground-only festival wayfinding keeps all four bridge approaches open.
+    ctx.fillStyle='#7f9a8d';for(let y=49;y<250;y+=20){ctx.fillRect(213,y,9,1);ctx.fillRect(228,y+6,9,1);}
+    for(const [x,y]of [[110,90],[286,76],[111,238],[385,235]]){
+        ctx.fillStyle='#446751';ctx.fillRect(x-7,y,15,5);ctx.fillStyle='#76966c';ctx.fillRect(x-5,y-4,11,5);ctx.fillStyle='#9fa876';ctx.fillRect(x-3,y-5,3,2);
+    }
+    for(const [x,y]of [[187,84],[267,216]]){ctx.fillStyle='#405961';ctx.fillRect(x,y,3,17);ctx.fillStyle='#e7dba2';ctx.fillRect(x-2,y-3,7,5);ctx.fillStyle='#718e7e';ctx.fillRect(x-4,y+17,11,2);}
+    ctx.fillStyle='#c6a469';ctx.fillRect(60,103,23,2);ctx.fillStyle='#7ca9a6';ctx.fillRect(61,106,19,2);
     ctx.restore();finishOverworldIsland("HUB");
 }
 function overworldNpcGeometry(npc) {

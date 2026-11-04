@@ -1,4 +1,4 @@
-/* Bounded, physical rival events. No exclusive targeting of Zorp. */
+/* Bounded, physical rival events. No exclusive targeting of Zorpzin. */
 (function(){
  'use strict';
  function contact(a,b,r){

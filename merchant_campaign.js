@@ -56,7 +56,7 @@
  // The chosen theme belongs to Overworld exploration, not to the open shop menu.
  function close(){ui=null;cfg.clearInput();cfg.hideDialogue();}
  function interact(n){if(n.id!=='comerciante_central'||!visible())return null;open('talk',{text:dialogue()});return '> COMERCIANTE: '+dialogue();}
- function useItem(id){if(!owns(id))return false;
+ function useItem(id){if(id==='archipelago_help')return open('info',{title:'COMO FUNCIONA O ARQUIPÉLAGO',text:'MESTRE: esporte e medalha. NPC: conversa e histórias. MISSÃO: desafio opcional; depois volte ao NPC. MEDALHA: vitória contra um Mestre. MOEDAS: recompensas para a loja e outras viagens.'});if(!owns(id))return false;
   if(id==='island_map')return open('map');
   if(id==='teleporter')return open('teleport');
   if(id==='records')return open('records');
@@ -78,7 +78,7 @@
  function list(){if(!ui)return [];
   if(ui.mode==='talk')return ['VER MERCADORIAS','CONTINUAR VIAGEM'];
   if(ui.mode==='shop')return C.items;
-  if(ui.mode==='backpack')return C.items.filter(i=>owns(i.id));
+  if(ui.mode==='backpack')return [...C.items.filter(i=>owns(i.id)),{id:'archipelago_help',name:'COMO FUNCIONA O ARQUIPÉLAGO',icon:'map',type:'USABLE_INTERFACE',description:'Mestres, habitantes, missões, medalhas e moedas.'}];
   if(['map','teleport'].includes(ui.mode))return ui.mode==='teleport'?C.regions.filter(r=>snapshot().visitedIslands[r.id]):C.regions;
   if(ui.mode==='ship')return [owns('jukebox')?'JUKEBOX DA NAVE':null,owns('ship_customizer')?'PERSONALIZADOR DA NAVE':null].filter(Boolean);
   if(ui.mode==='customizer')return C.styles;
@@ -110,6 +110,15 @@
   if(ui&&cfg.busy()){close();return false;}
   if(ui){e.preventDefault?.();e.stopImmediatePropagation?.();if(e.repeat||wasHeld||ui.lock>0)return true;
    if(key==='escape'||key==='b'){close();return true;}
+   const direction={w:'up',arrowup:'up',s:'down',arrowdown:'down',a:'left',arrowleft:'left',d:'right',arrowright:'right'}[key];
+   if(['map','teleport'].includes(ui.mode)&&direction){
+    const items=list(),current=items[ui.selected],next=current&&C.mapNavigation[current.id]?.[direction];
+    const nextIndex=items.findIndex(r=>r.id===next);
+    if(nextIndex>=0&&nextIndex!==ui.selected){ui.selected=nextIndex;g.MerchantMusic?.selectionCue?.();}
+    ui.navigationTrace={currentIsland:current?.id,inputDirection:direction,nextIsland:items[ui.selected]?.id};
+    if(g.DEBUG_MAP_NAVIGATION)console.debug('[MAPA]',ui.navigationTrace);
+    return true;
+   }
    if(key==='s'||key==='arrowdown'||key==='d'||key==='arrowright')ui.selected=(ui.selected+1)%Math.max(1,list().length);
    else if(key==='w'||key==='arrowup'||key==='a'||key==='arrowleft')ui.selected=(ui.selected-1+Math.max(1,list().length))%Math.max(1,list().length);
    else if([' ','e','enter'].includes(key))confirm();return true;
@@ -197,8 +206,8 @@
    if(changed)persist({visitedIslands:data.visitedIslands,playedSports:data.playedSports,records:data.records});
   },
   get active(){return !!cut||!!ui;},get cutsceneActive(){return !!cut;},get merchantArrivalSeen(){return snapshot().merchantArrivalSeen;},get merchantUnlocked(){return snapshot().merchantUnlocked;},
-  tryStart,update,draw,actors,blocks,interact,isNpcVisible:n=>n.eventId!=='merchant'||visible(),drawActor:ctx=>A.draw(ctx,actor),drawShipAccent,
-  owns,open,useItem,buy,beginTravel,startGame,dialogue,
+  skipCutscene:()=>cut?finish():false,tryStart,update,draw,actors,blocks,interact,isNpcVisible:n=>n.eventId!=='merchant'||visible(),drawActor:ctx=>A.draw(ctx,actor),drawShipAccent,
+  owns,open,useItem,buy,beginTravel,startGame,abortGame:()=>{gameStarted=null;gameBest=null;},dialogue,
   snapshot:()=>({visible:visible(),cutscene:cut?{phase:phase(),time:cut.time,total:cut.total,build:cut.build}:null,ui:ui?{...ui}:null,animation:A.diagnostics(actor),data:snapshot(),toast:toastTime>0?toast:null,gameStarted})});
  g.FestivalBackpack=Object.freeze({get items(){return C.items.filter(item=>owns(item.id));},open:()=>open('backpack'),use:useItem,owns});
 })(window);

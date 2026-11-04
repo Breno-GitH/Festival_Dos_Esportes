@@ -56,6 +56,6 @@
         for(const distance of [8,15,22])ctx.fillRect(Math.round(origin.x+d.x*distance),Math.round(origin.y+d.y*distance),1,2);
         ctx.restore();
     }
-    window.ArcheryPlayerControl=Object.freeze({CONFIG,create,aim,press,step,drawGuide,
+    window.ArcheryPlayerControl=Object.freeze({CONFIG,create,aim,press,step,drawGuide,releaseInput:()=>{held=false;},
         diagnostics:control=>({...control,config:CONFIG,held,model:'POSITIONAL_UPWARD_SHOT',maxAngleDegrees:Math.atan(.12)*180/Math.PI})});
 })();

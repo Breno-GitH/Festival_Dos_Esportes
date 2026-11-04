@@ -1,19 +1,19 @@
 /* Skate communication only: observes real events, never changes the simulation. */
 (function(g,factory){const api=factory(g);if(typeof module==='object'&&module.exports)module.exports=api;if(g)g.SkateControlCoach=api;})(typeof window==='object'?window:globalThis,function(g){'use strict';
  const FLAG={jump:'skateTutorialJumpSeen',ramp:'skateTutorialRampSeen',grind:'skateTutorialGrindSeen',exit:'skateTutorialGrindExitSeen',mega:'skateTutorialMegaSeen'};
- const RULE='NO SKATE, SPACE MUDA DE FUNÇÃO CONFORME O QUE ZORP ESTÁ FAZENDO.';
+ const RULE='NO SKATE, SPACE MUDA DE FUNÇÃO CONFORME O QUE ZORPZIN ESTÁ FAZENDO.';
  const TIPS={jump:'NO CHÃO, TOQUE SPACE PERTO DA BORDA.',ramp:'NAS RAMPAS, SEGURE SPACE ATÉ A SAÍDA.',grind:'NO AR, SEGURE SPACE PERTO DO RAIL.',exit:'SOLTE SPACE ANTES DO FIM DO RAIL.',mega:'ENTRE COM VELOCIDADE E SEGURE SPACE NA RAMPA E NO MEGA AIR.',unknown:'P / ESC: PAUSE E CONSULTE OS CONTROLES.'};
- const DETAIL={jump:'Espere chegar perto da borda e dê um toque em SPACE. Segurar não aumenta o salto normal.',ramp:'Parece que você está soltando cedo demais. Segure SPACE durante toda a rampa, até Zorp sair da ponta.',grind:'Espere estar no ar e segure SPACE perto do topo do rail. Mantenha pressionado depois de encaixar.',exit:'Solte SPACE enquanto Zorp ainda está no rail. Isso dispara a saída antes da borda.',mega:'Chegue com embalo, segure SPACE na Mega Rampa e continue segurando durante o Mega Air. Isso não permite voo infinito.',unknown:'Abra CONTROLES no pause para rever TOQUE, SEGURE e SOLTE, sem reiniciar a tentativa.'};
+ const DETAIL={jump:'Espere chegar perto da borda e dê um toque em SPACE. Segurar não aumenta o salto normal.',ramp:'Parece que você está soltando cedo demais. Segure SPACE durante toda a rampa, até Zorpzin sair da ponta.',grind:'Espere estar no ar e segure SPACE perto do topo do rail. Mantenha pressionado depois de encaixar.',exit:'Solte SPACE enquanto Zorpzin ainda está no rail. Isso dispara a saída antes da borda.',mega:'Chegue com embalo, segure SPACE na Mega Rampa e continue segurando durante o Mega Air. Isso não permite voo infinito.',unknown:'Abra CONTROLES no pause para rever TOQUE, SEGURE e SOLTE, sem reiniciar a tentativa.'};
  function blank(){return {...Object.fromEntries(Object.values(FLAG).map(k=>[k,false])),attempts:0,lastFailure:'',sameFailureCount:0};}
  function text(c,s,x,y,color='#e6e9de',font='9px monospace'){c.fillStyle=color;c.font=font;c.fillText(s,Math.round(x),Math.round(y));}
  function wrap(c,s,x,y,width,line=11){let value='',yy=y;for(const word of s.split(/\s+/)){const next=value?value+' '+word:word;if(c.measureText(next).width>width&&value){c.fillText(value,Math.round(x),Math.round(yy));yy+=line;value=word;}else value=next;}if(value)c.fillText(value,Math.round(x),Math.round(yy));return yy+line;}
  function keycap(c,kind,x,y){const color=kind==='RELEASE'?'#c6b1e8':kind==='TAP'?'#c6e7a3':'#f3cf85';c.fillStyle='#2d4858';c.fillRect(x,y,42,24);c.strokeStyle=color;c.lineWidth=1;c.strokeRect(x+.5,y+.5,41,23);c.textAlign='center';text(c,kind==='TAP'?'TOQUE':kind==='RELEASE'?'SOLTE':'SEGURE',x+21,y+8,color,'bold 7px monospace');text(c,'SPACE',x+21,y+18,'#f5edd8','bold 8px monospace');
   if(kind==='HOLD'){c.fillStyle=color;for(let i=0;i<3;i++)c.fillRect(x+14+i*5,y+21,3,2);}if(kind==='RELEASE'){c.fillStyle=color;c.fillRect(x+18,y-3,6,2);}c.textAlign='left';}
  function drawGuide(c,x,y,width=344){c.save();c.imageSmoothingEnabled=false;c.textAlign='left';text(c,'',x,y,'#f3d184','bold 10px monospace');wrap(c,RULE,x,y,width,12);
-  text(c,'MOVIMENTO: Zorp avança sozinho.',x,y+27,'#a9c4d0','9px monospace');
+  text(c,'MOVIMENTO: Zorpzin avança sozinho.',x,y+27,'#a9c4d0','9px monospace');
   const cards=[['CHÃO','TAP','Um toque para pular.'],['RAMPA','HOLD','Segure até o lançamento.'],['NO AR, PERTO DO RAIL','HOLD','Encaixe no grind.'],['DURANTE O GRIND','HOLD','Continue no rail.'],['SAÍDA DO GRIND','RELEASE','Solte para saltar fora.'],['MEGA RAMPA / MEGA AIR','HOLD','Segure na rampa e no ar.']];
   const col=(width-8)/2;for(let i=0;i<cards.length;i++){const [title,kind,action]=cards[i],xx=x+(i%2)*(col+8),yy=y+39+Math.floor(i/2)*33;c.fillStyle='#192f3d';c.fillRect(xx-2,yy-2,col+2,31);keycap(c,kind,Math.round(xx),Math.round(yy+1));text(c,title,xx+48,yy+7,'#eddbb1','bold 8px monospace');text(c,'',xx+48,yy+18,'#c4d7dc','8px monospace');wrap(c,action,xx+48,yy+18,col-49,9);}
-  text(c,'2 TOQUES RÁPIDOS: OLLIE  ·  P / ESC: PAUSE',x,y+145,'#a9c4d0','8px monospace');c.restore();
+  text(c,'NO AR: NOVO TOQUE = SALTO DUPLO · P / ESC: PAUSE',x,y+145,'#a9c4d0','8px monospace');c.restore();
  }
  function bounds(rail){const p=rail.grindPath||rail.points||[];return {start:p[0]?.x??Infinity,end:p.at(-1)?.x??-Infinity,points:p};}
  function nearRail(player,rails,limit){let best=null;for(const rail of rails){const b=bounds(rail);if(player.x<b.start-limit||player.x>b.end+limit)continue;for(let i=1;i<b.points.length;i++){const a=b.points[i-1],z=b.points[i],dx=z.x-a.x,dy=z.y-a.y,u=Math.max(0,Math.min(1,((player.x-a.x)*dx+(player.y-a.y)*dy)/(dx*dx+dy*dy||1))),d=Math.hypot(player.x-a.x-u*dx,player.y-a.y-u*dy);if(d<=limit&&(!best||d<best.distance))best={rail,distance:d};}}return best;}
@@ -55,6 +55,7 @@
   function resume(){const duration=Math.max(0,(cfg?.clock?.()||0)-pauseAt);pause=null;cfg?.resume?.(duration,pauseHeld);}
   function choose(){if(selected===0)resume();else if(selected===1)pause='CONTROLS';else{pause=null;cfg?.exit?.();}}
   function keyDown(e){const key=(e.key||e.code||'').toLowerCase(),space=key===' '||key==='space';if(!cfg||cfg.scene()!=='JOGO_SKATE'||g.PreGameBrief?.active)return false;
+   if(g.MinigamePause){if(['p','escape'].includes(key)){g.MinigamePause.open();e.preventDefault?.();e.stopImmediatePropagation?.();return true;}return false;}
    if(!pause&&swallowed.has(key)){e.preventDefault?.();e.stopImmediatePropagation?.();return true;}
    if(!pause&&!['p','escape'].includes(key))return false;e.preventDefault?.();e.stopImmediatePropagation?.();if(e.repeat||swallowed.has(key))return true;swallowed.add(key);
    if(!pause){pause='MENU';selected=0;pauseAt=cfg.clock();pauseHeld=cfg.held();cfg.freeze?.();return true;}

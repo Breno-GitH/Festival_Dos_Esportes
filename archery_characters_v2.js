@@ -21,7 +21,7 @@
             image.src = new URL(character.image + '?v=' + manifest.version, base).href;
         });
     }));
-    const now = () => performance.now() / 1000;
+    const now = () => (globalThis.MinigamePause?.now() ?? performance.now()) / 1000;
     const records = new Map();
     function record(owner) {
         if (!records.has(owner)) records.set(owner, {

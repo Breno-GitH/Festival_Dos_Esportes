@@ -27,7 +27,7 @@ window.ClimbCheckpoints = (() => {
     function reset(g) {
         contexts.delete(g); g.checkpointEntry = null; g.checkpointJump = null;
     }
-    function begin(g, h, now = performance.now()) {
+    function begin(g, h, now = (globalThis.MinigamePause?.now() ?? performance.now())) {
         const mode = contact(g,h);
         if (!mode) return false;
         const c = context(g), b = bounds(h);
@@ -51,7 +51,7 @@ window.ClimbCheckpoints = (() => {
         if (!locked(g) || !c.view) return false;
         g.alturaAtual=c.view.altitude; g.cameraX=c.view.cameraX; return true;
     }
-    function update(g, now = performance.now()) {
+    function update(g, now = (globalThis.MinigamePause?.now() ?? performance.now())) {
         const s = g.checkpointEntry || g.checkpointJump;
         if (!s) return null;
         s.elapsed += Math.max(0,(now-s.lastNow)/1000); s.lastNow=now;
@@ -79,7 +79,7 @@ window.ClimbCheckpoints = (() => {
         ClimbSprites.notify(g,'checkpoint_stand');
         return { type:'STOOD', hold:h };
     }
-    function walk(g, input, now = performance.now()) {
+    function walk(g, input, now = (globalThis.MinigamePause?.now() ?? performance.now())) {
         const c=context(g), b=bounds(g.pedraAtual);
         const dt=clamp((now-c.lastWalk)/1000,0,.05); c.lastWalk=now;
         const before=g.playerX, direction=(input.d?1:0)-(input.a?1:0);
@@ -87,7 +87,7 @@ window.ClimbCheckpoints = (() => {
         g.vx=dt>0?(g.playerX-before)/dt/60:0; g.vy=0;
         g.playerY=g.pedraAtual.y; lockCamera(g);
     }
-    function prepareJump(g,direction,now=performance.now()) {
+    function prepareJump(g,direction,now=(globalThis.MinigamePause?.now() ?? performance.now())) {
         if (g.playerState!=='STANDING' || g.pedraAtual?.tipo!=='checkpoint') return false;
         g.checkpointJump={direction,elapsed:0,lastNow:now};
         g.playerState='CHECKPOINT_JUMP_READY'; g.vx=0; g.vy=0;
@@ -107,7 +107,7 @@ window.ClimbCheckpoints = (() => {
         g.alturaAtual=saved.altitude; g.cameraX=saved.cameraX;
         h.y=220-h.climbY+g.alturaAtual;
         g.playerX=clamp(saved.spawnX,bounds(h).left,bounds(h).right); g.playerY=h.y;
-        c.view={...saved}; c.lastWalk=performance.now();
+        c.view={...saved}; c.lastWalk=(globalThis.MinigamePause?.now() ?? performance.now());
     }
     return Object.freeze({timing,bounds,canGrip:(g,h)=>!!contact(g,h),begin,reset,
         active,locked,lockCamera,update,walk,prepareJump,confirm,restore});

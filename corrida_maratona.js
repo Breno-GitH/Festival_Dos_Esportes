@@ -607,7 +607,7 @@
             this.obstacles = null;
             this.phase = 'LOADING';
             this.clock = 0;
-            this.lastTime = performance.now();
+            this.lastTime = (globalThis.MinigamePause?.now() ?? performance.now());
             this.countdown = 3;
             this.countdownGoTimer = 0;
             this.score = 0;
@@ -634,13 +634,7 @@
                 if(window.PreGameBrief?.active)return;
                 const key = event.key.toLowerCase();
                 if ([' ', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', 'w', 'a', 's', 'd', 'escape', 'r'].includes(key)) event.preventDefault();
-                if (key === 'escape') {
-                    currentScene = 'ILHA_CORRIDA';
-                    this.phase = 'PAUSED';
-                    this.inputKeys.clear();
-                    this.setPresentation(false);
-                    return;
-                }
+                if (key === 'escape') { window.MinigamePause?.open(); return; }
                 if (this.phase === 'READY' && (key === ' ' || key === 'enter')) {
                     this.startCountdown();
                     return;
@@ -686,7 +680,7 @@
                 avoidanceSkill: 0.8
             };
             this.player = new Runner({
-                ...shared, id: 'zorp', name: 'ZORP', kind: 'zorp', isPlayer: true,
+                ...shared, id: 'zorp', name: 'ZORPZIN', kind: 'zorp', isPlayer: true,
                 progress: 38, preferredOffset: 0, maxSpeed: 340,
                 curveEfficiency: 1, color: '#7cff55', profile: 'PLAYER'
             });
@@ -728,7 +722,7 @@
             this.obstacles = new ObstacleDirector(this.track, this.atlas);
             this.phase = this.atlas.ready ? 'READY' : 'LOADING';
             this.clock = 0;
-            this.lastTime = performance.now();
+            this.lastTime = (globalThis.MinigamePause?.now() ?? performance.now());
             this.countdown = 3;
             this.countdownGoTimer = 0;
             this.score = 0;
@@ -761,7 +755,13 @@
             this.countdown = 3;
             this.countdownGoTimer = 0;
             for (const runner of this.runners) runner.state = 'READY';
-            this.eventView.cue('start');this.lastTime=performance.now();this.simulationAccumulator=0;
+            this.eventView.cue('start');this.lastTime=(globalThis.MinigamePause?.now() ?? performance.now());this.simulationAccumulator=0;
+        }
+
+        abort() {
+            this.phase='ABANDONED';this.inputKeys.clear();this.simulationAccumulator=0;
+            for(const r of this.runners){r.setInput(0,0);r.vx=0;r.vy=0;r.state='READY';}
+            this.setPresentation(false);
         }
 
         clearBriefingInput() {
@@ -784,7 +784,7 @@
             }
             const projection = runner.trackProjection || this.track.project(runner.x, runner.y);
             if(!projection.onTrack){
-                // Rejoin the nearest edge under the same grass physics as Zorp.
+                // Rejoin the nearest edge under the same grass physics as Zorpzin.
                 // This target is recomputed from current position, never a saved recovery point.
                 const lateral=clamp(projection.lateral,-this.track.halfTrackWidth+14,this.track.halfTrackWidth-14);
                 const edge=this.track.pointOffset(projection.progress,lateral);
@@ -919,7 +919,8 @@
         }
 
         update() {
-            const now=performance.now(),elapsed=clamp((now-this.lastTime)/1000,0,.15);
+            if(window.MinigamePause?.active||this.phase==='ABANDONED')return;
+            const now=(globalThis.MinigamePause?.now() ?? performance.now()),elapsed=clamp((now-this.lastTime)/1000,0,.15);
             this.lastTime=now;
             this.simulationAccumulator+=elapsed*(this.qaMode==='autoplay'?3:1);
             while(this.simulationAccumulator>=1/60-1e-9){
@@ -941,8 +942,8 @@
 
             if (typeof hintText !== 'undefined') {
                 hintText.innerText = this.phase==='FINISHING'?'CHEGADA REGISTRADA • APURANDO POSIÇÕES':this.phase === 'RACING'
-                    ? '[WASD / SETAS] CORRER LIVREMENTE  |  [ESPAÇO] PULAR  |  [ESC] SAIR'
-                    : '[ESPAÇO] COMEÇAR / REINICIAR  |  [ESC] SAIR';
+                    ? '[WASD / SETAS] CORRER LIVREMENTE  |  [ESPAÇO] PULAR  |  [ESC] PAUSAR'
+                    : '[ESPAÇO] COMEÇAR / REINICIAR  |  [ESC] PAUSAR';
             }
 
             if (this.phase === 'COUNTDOWN') {
@@ -1198,13 +1199,13 @@
                 ctx.font = 'bold 10px monospace';
                 const top = this.finalRanking.slice(0, 5);
                 top.forEach((runner, index) => {
-                    const marker = runner.isPlayer ? '  ◀ ZORP' : `  ${runner.name}`;
+                    const marker = runner.isPlayer ? '  ◀ ZORPZIN' : `  ${runner.name}`;
                     ctx.fillStyle = index === 0 ? '#ffe45e' : runner.isPlayer ? '#7cff8a' : '#dcecff';
                     const time=runner.finishTime===null?'EM PISTA':`${runner.finishTime.toFixed(2)}s`;
                     ctx.fillText(`${index+1}º${marker}  ${time}`,canvas.width/2,99+index*22);
                 });
                 ctx.fillStyle = '#9eeaff';
-                ctx.fillText(`[ESPAÇO/R] REINICIAR  •  [ESC] SAIR`, canvas.width / 2, 245);
+                ctx.fillText(`[ESPAÇO/R] REINICIAR  •  [ESC] PAUSAR`, canvas.width / 2, 245);
             }
 
             if (this.distractionTimer > 0) {

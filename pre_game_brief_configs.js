@@ -31,7 +31,7 @@
         skate:brief({id:'skate',title:'SKATE',subtitle:'Um botão. Vários contextos.',controlGuide:'skate',
             objective:'Complete o percurso e cruze a chegada.',
             controls:[
-                control('TOQUE','SPACE no chão: salto; 2 toques: Ollie'),
+                control('TOQUE','SPACE: chão pula; novo toque no ar: salto duplo'),
                 control('SEGURE','SPACE na rampa, grind e Mega Air'),
                 control('SOLTE','SPACE no grind: saltar para fora')
             ],

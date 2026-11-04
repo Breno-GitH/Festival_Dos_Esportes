@@ -68,6 +68,7 @@
             this.elapsed = 0; this.stageTime = 0; this.line = 0; this.islandImages = null;
             this.conversation = false; this.lastTime = performance.now(); this.config.clearInput();
         },
+        skip(){if(!this.active)return false;this.stageIndex=stages.length-1;this.nextStage();return true;},
         nextStage() {
             this.stageIndex++; this.stageTime = 0; this.line = 0;
             if (this.stageIndex < stages.length) { this.state = stages[this.stageIndex][0]; return; }

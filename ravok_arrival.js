@@ -276,7 +276,7 @@
         g.save();fill(g,'rgba(9,20,32,.95)',116,274,218,17);g.fillStyle='#d9e3ce';g.font='8px monospace';g.textAlign='center';g.fillText('[ESPAÇO / ENTER] CONTINUAR',225,285);g.restore();
     }
     global.RavokArrival=Object.freeze({
-        init(options){config=options;},get active(){return active;},tryStart,update,draw,drawPrompt,
+        init(options){config=options;},get active(){return active;},skip:()=>active?finish():false,tryStart,update,draw,drawPrompt,
         snapshot:()=>({active,pending:pending(),seen:global.RavokEvent.ravokArrivalSeen,phase:phase(),time,elapsed,line,
             dialogue:phase()==='DIALOGUE'?lines[line]:null,readyScene,completedRuns,saveFailed,
             duration:shots.reduce((sum,s)=>sum+(s.duration||0),0),k7Outside:['DIALOGUE','WITHDRAW','FADE_BACK'].includes(phase())||phase()==='K7_EXIT'&&time>=2.2,

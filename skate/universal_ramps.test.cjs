@@ -14,7 +14,7 @@ test('RAMP input holds without jumping, charging or leaving a double-tap pending
     assert.equal(parser.lastGroundJumpAt,null);
     assert.deepEqual(parser.update(1000,'RAMP'),[]);
     assert.deepEqual(parser.keyUp(1100),[{type:'RAMP_RELEASE',holdMs:1000}]);
-    assert.deepEqual(parser.keyDown(1150,'AIR'),[{type:'AIR_PRESS',at:1150}]);
+    assert.deepEqual(parser.keyDown(1150,'AIR'),[{type:'DOUBLE_JUMP',at:1150}]);
 });
 
 for (const ramp of COURSE.ramps) test(`${ramp.id}: follow surface, lip launch, planned landing, weaker early release`,()=>{

@@ -73,8 +73,8 @@ test("runtime executa Normal Jump no primeiro keydown e double Space eleva o mes
     now = 216;
     vm.runInContext("updateSkateGame()", context);
     assert.equal(vm.runInContext("skateOllieSimulation.state.player.jumpTier", context), "ollie");
-    assert.equal(vm.runInContext("skateOllieSimulation.state.player.takeoffs", context), 1);
-    assert.equal(vm.runInContext("skateOllieSimulation.state.player.airTrick", context), "kickflip");
+    assert.equal(vm.runInContext("skateOllieSimulation.state.player.takeoffs", context), 2);
+    assert.equal(vm.runInContext("skateOllieSimulation.state.player.airJumpsUsed", context), 1);
 });
 
 test("runtime prioriza Grind Capture sobre Double Space perto de um rail válido", () => {

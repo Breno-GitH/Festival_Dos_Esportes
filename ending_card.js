@@ -120,7 +120,7 @@
             if(cloud)color=['#b0cdd0','#9ebec7','#87aab9','#678b9f','#4e708b'][band];
             g.fillStyle=color;g.fillRect(px,py,1,1);
         }
-        // Miniature of Zorp's silver saucer: cyan canopy, central hatch and warm navigation lights.
+        // Miniature of Zorpzin's silver saucer: cyan canopy, central hatch and warm navigation lights.
         missionShip=document.createElement('canvas');missionShip.width=38;missionShip.height=26;
         const s=missionShip.getContext('2d');s.imageSmoothingEnabled=false;
         for(const [color,x,y,w,h]of [

@@ -396,6 +396,12 @@
         },
         get conversationActive(){return !!conversation;},
         get exitActive(){return !!exit;},
+        skipPreparation(){
+            if(exit){ravokExited=true;if(!persist()){ravokExited=false;return false;}exit=null;config.clearInput();return true;}
+            if(conversation?.phase==='DIALOGUE'){
+                conversation.line=PRELUDE.length-1;advanceConversation();config.clearInput();config.showDialogue(dialogue());return true;
+            }return false;
+        },
         init(options){config=options;},
         npcs,ship,sync,isNpcVisible,interact,blocks,drawGround,drawShip,draw,drawOverlay,actors,dialogue,handleKeyDown,handleKeyUp,updateConversation,
         releaseAll(){held.clear();if(conversation)config.clearInput();},

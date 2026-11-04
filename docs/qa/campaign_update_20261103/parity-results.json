@@ -1,0 +1,249 @@
+{
+  "results": [
+    {
+      "kind": "intro",
+      "mode": "full",
+      "done": true,
+      "state": {
+        "seen": true,
+        "scene": "HUB"
+      }
+    },
+    {
+      "kind": "intro",
+      "mode": "skipStart",
+      "done": true,
+      "state": {
+        "seen": true,
+        "scene": "HUB"
+      }
+    },
+    {
+      "kind": "intro",
+      "mode": "skipMiddle",
+      "done": true,
+      "state": {
+        "seen": true,
+        "scene": "HUB"
+      }
+    },
+    {
+      "kind": "merchant",
+      "mode": "full",
+      "done": true,
+      "state": {
+        "seen": true,
+        "unlocked": true
+      }
+    },
+    {
+      "kind": "merchant",
+      "mode": "skipStart",
+      "done": true,
+      "state": {
+        "seen": true,
+        "unlocked": true
+      }
+    },
+    {
+      "kind": "merchant",
+      "mode": "skipMiddle",
+      "done": true,
+      "state": {
+        "seen": true,
+        "unlocked": true
+      }
+    },
+    {
+      "kind": "arrival",
+      "mode": "full",
+      "done": true,
+      "state": {
+        "seen": true,
+        "exited": false,
+        "landed": true
+      }
+    },
+    {
+      "kind": "arrival",
+      "mode": "skipStart",
+      "done": true,
+      "state": {
+        "seen": true,
+        "exited": false,
+        "landed": true
+      }
+    },
+    {
+      "kind": "arrival",
+      "mode": "skipMiddle",
+      "done": true,
+      "state": {
+        "seen": true,
+        "exited": false,
+        "landed": true
+      }
+    },
+    {
+      "kind": "medals",
+      "mode": "full",
+      "done": true,
+      "state": {
+        "seen": true
+      }
+    },
+    {
+      "kind": "medals",
+      "mode": "skipStart",
+      "done": true,
+      "state": {
+        "seen": true
+      }
+    },
+    {
+      "kind": "medals",
+      "mode": "skipMiddle",
+      "done": true,
+      "state": {
+        "seen": true
+      }
+    },
+    {
+      "kind": "farewell",
+      "mode": "full",
+      "done": true,
+      "state": {
+        "seen": true,
+        "state": "BOARDING_PROMPT"
+      }
+    },
+    {
+      "kind": "farewell",
+      "mode": "skipStart",
+      "done": true,
+      "state": {
+        "seen": true,
+        "state": "BOARDING_PROMPT"
+      }
+    },
+    {
+      "kind": "farewell",
+      "mode": "skipMiddle",
+      "done": true,
+      "state": {
+        "seen": true,
+        "state": "BOARDING_PROMPT"
+      }
+    },
+    {
+      "kind": "standard",
+      "mode": "full",
+      "done": true,
+      "state": {
+        "card": "true_ending",
+        "seen": true
+      }
+    },
+    {
+      "kind": "standard",
+      "mode": "skipStart",
+      "done": true,
+      "state": {
+        "card": "true_ending",
+        "seen": true
+      }
+    },
+    {
+      "kind": "standard",
+      "mode": "skipMiddle",
+      "done": true,
+      "state": {
+        "card": "true_ending",
+        "seen": true
+      }
+    },
+    {
+      "kind": "vacation",
+      "mode": "full",
+      "done": true,
+      "state": {
+        "card": "ferias_merecidas",
+        "seen": true
+      }
+    },
+    {
+      "kind": "vacation",
+      "mode": "skipStart",
+      "done": true,
+      "state": {
+        "card": "ferias_merecidas",
+        "seen": true
+      }
+    },
+    {
+      "kind": "vacation",
+      "mode": "skipMiddle",
+      "done": true,
+      "state": {
+        "card": "ferias_merecidas",
+        "seen": true
+      }
+    },
+    {
+      "kind": "accept",
+      "mode": "full",
+      "done": true,
+      "state": {
+        "card": "ravok_maior_conquista",
+        "seen": true
+      }
+    },
+    {
+      "kind": "accept",
+      "mode": "skipStart",
+      "done": true,
+      "state": {
+        "card": "ravok_maior_conquista",
+        "seen": true
+      }
+    },
+    {
+      "kind": "accept",
+      "mode": "skipMiddle",
+      "done": true,
+      "state": {
+        "card": "ravok_maior_conquista",
+        "seen": true
+      }
+    },
+    {
+      "kind": "refuse",
+      "mode": "full",
+      "done": true,
+      "state": {
+        "arrested": true,
+        "scene": "ILHA_ESCALADA"
+      }
+    },
+    {
+      "kind": "refuse",
+      "mode": "skipStart",
+      "done": true,
+      "state": {
+        "arrested": true,
+        "scene": "ILHA_ESCALADA"
+      }
+    },
+    {
+      "kind": "refuse",
+      "mode": "skipMiddle",
+      "done": true,
+      "state": {
+        "arrested": true,
+        "scene": "ILHA_ESCALADA"
+      }
+    }
+  ],
+  "http": [],
+  "errors": []
+}

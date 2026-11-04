@@ -37,13 +37,10 @@
                     if (context.grindCapturable) {
                         this.lastGroundJumpAt = null;
                         events.push({ type: "GRIND_CAPTURE_PRESS", at: nowMs });
-                    } else if (this.lastGroundJumpAt !== null
-                        && nowMs - this.lastGroundJumpAt <= config.doubleTapWindowMs) {
-                        events.push({ type: "OLLIE_UPGRADE", at: nowMs });
+                    } else if ((context.airJumpsUsed || 0) < 1) {
+                        events.push({ type: "DOUBLE_JUMP", at: nowMs });
                         this.lastGroundJumpAt = null;
-                    } else {
-                        events.push({ type: "AIR_PRESS", at: nowMs });
-                    }
+                    } else events.push({ type: "AIR_PRESS", at: nowMs });
                 } else if (mode === "GRIND") {
                     this.lastGroundJumpAt = null;
                     events.push({ type: "GRIND_PRESS", at: nowMs });

@@ -35,8 +35,8 @@ test("Ollie atualiza o salto; a antiga ação de Super Jump é ignorada", () => 
     const ollie = jump("ollie", 100);
     const superJump = jump("super", 300);
     assert.equal(ollie.state.player.jumpTier, "ollie");
-    assert.equal(ollie.state.player.takeoffs, 1);
-    assert.equal(ollie.state.player.airTrick, "kickflip");
+    assert.equal(ollie.state.player.takeoffs, 2);
+    assert.equal(ollie.state.player.airJumpsUsed, 1);
     assert.equal(superJump.state.player.jumpTier, "normal");
     assert.equal(superJump.upgradeJump("super"), false);
     assert.equal(superJump.state.player.takeoffs, 1);

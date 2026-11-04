@@ -154,7 +154,7 @@ function loadClimbZorpFrame(id) {
     image.addEventListener("load", () => climbZorpAssetStatus.loaded++, { once: true });
     image.addEventListener("error", () => {
         climbZorpAssetStatus.failed.push(frame.file);
-        console.error(`Não foi possível carregar o Zorp da Escalada: ${frame.file}`);
+        console.error(`Não foi possível carregar o Zorpzin da Escalada: ${frame.file}`);
     }, { once: true });
     image.src = `climb_assets/${frame.file}?v=${CLIMB_ZORP_V2_MANIFEST.version}`;
     return image;
@@ -293,7 +293,7 @@ function pingPongTableY(y) {
 const pingPong = {
     playerX: PINGPONG_COURT.player.homeX, playerY: pingPongTableY(145) - 20,
     opponentX: PINGPONG_COURT.opponent.homeX, opponentY: pingPongTableY(145) - 20,
-    speed: 4.0, // Velocidade de caminhada do Zorp
+    speed: 4.0, // Velocidade de caminhada do Zorpzin
     opponentSpeed: 2.75, // Velocidade justa de caminhada do Mestre (estilo Tengu, sem dash)
     masterAI: PingPongMasterAI.create(),
     balls: [], // Array de bolas ativas em campo
@@ -301,7 +301,7 @@ const pingPong = {
     playerScore: 0, opponentScore: 0, maxScore: 50, // Partida até 50 pontos
     playerAction: "IDLE", opponentAction: "IDLE",  
     playerHitTimer: 0, opponentHitTimer: 0,
-    power: 0, maxPower: 100, isPowerActive: false, // Super Smash exclusivo do Zorp
+    power: 0, maxPower: 100, isPowerActive: false, // Super Smash exclusivo do Zorpzin
     rallyHits: 0,
     gameState: 'PRE_GAME',
     win: false,
@@ -342,7 +342,7 @@ function drawOverlayScreen(title, lines, titleColor = "#f1c40f", promptText = "[
     });
     
     // Instrução para continuar piscando
-    ctx.fillStyle = (Date.now() % 1000 < 500) ? "#ffffff" : "#f1c40f"; 
+    ctx.fillStyle = ((globalThis.MinigamePause?.now() ?? Date.now()) % 1000 < 500) ? "#ffffff" : "#f1c40f"; 
     ctx.font = "bold 13px monospace";
     ctx.fillText(promptText, canvas.width / 2, canvas.height - 35);
     
@@ -805,9 +805,9 @@ function resetEscalada() {
     escaladaGame.finishStarted = false;
     ClimbSummit.reset(escaladaGame);
     climbSummitAdvancePressed=false;
-    escaladaGame.startTime = performance.now();
+    escaladaGame.startTime = (globalThis.MinigamePause?.now() ?? performance.now());
     escaladaGame.lastRunSeconds = 0;
-    escaladaGame.qaLastFpsTime = performance.now();
+    escaladaGame.qaLastFpsTime = (globalThis.MinigamePause?.now() ?? performance.now());
     escaladaGame.qaFrameCount = 0;
     escaladaGame.qaFps = 0;
     climbUpPressed = false;
@@ -1027,7 +1027,7 @@ function atualizarFisicaEscalada() {
         if (escaladaGame.gripTimer > 0) {
             escaladaGame.gripTimer--;
             if (escaladaGame.gripTimer === 0) {
-                escaladaGame.mensagemAtual = 'O gelo fez Zorp escorregar!';
+                escaladaGame.mensagemAtual = 'O gelo fez Zorpzin escorregar!';
                 escaladaGame.mensagemTimer = 48;
                 soltarDaAgarra(0, 1.9);
             }
@@ -1310,7 +1310,7 @@ function gerenciarObjetosCaindo() {
             criarHitSpark(escaladaGame.playerX, escaladaGame.playerY - 15);
             escaladaGame.combo = 0;
             escaladaGame.slipTimer = 32;
-            aplicarDanoJogador("Um objeto do mestre atingiu Zorp!", {
+            aplicarDanoJogador("Um objeto do mestre atingiu Zorpzin!", {
                 drop: true,
                 knockbackX: dx <= 0 ? 2.9 : -2.9,
                 knockbackY: escaladaGame.playerState === 'AIRBORNE' ? -0.45 : -1.2
@@ -1354,7 +1354,7 @@ function resolverQuedaEscalada() {
             escaladaGame.playerState = 'FALLING';
             escaladaGame.respawnTimer = 28;
         } else {
-            aplicarDanoJogador('Zorp perdeu a parede e voltou ao checkpoint!', { respawn: true, drop: false });
+            aplicarDanoJogador('Zorpzin perdeu a parede e voltou ao checkpoint!', { respawn: true, drop: false });
         }
     }
 }
@@ -1364,18 +1364,19 @@ function finalizarMinigame(resultado) {
     if(resultado==='VITORIA'&&(!ClimbSummit.canFinish(escaladaGame)||escaladaGame.win))return false;
     escaladaGame.gameState = 'GAMEOVER';
     escaladaGame.win = (resultado === "VITORIA");
-    escaladaGame.lastRunSeconds = resultado==='VITORIA' ? escaladaGame.summitClimbSeconds : (performance.now() - escaladaGame.startTime) / 1000;
+    escaladaGame.lastRunSeconds = resultado==='VITORIA' ? escaladaGame.summitClimbSeconds : ((globalThis.MinigamePause?.now() ?? performance.now()) - escaladaGame.startTime) / 1000;
     if (resultado === "VITORIA") {
-        dialogText.innerHTML = "> MESTRE DA ESCALADA: Espetacular! Você dominou o Monte Zorp e conquistou a Insígnia da Escalada!";
+        dialogText.innerHTML = "> MESTRE DA ESCALADA: Espetacular! Você dominou o Monte Zorpzin e conquistou a Insígnia da Escalada!";
     } else {
         dialogText.innerHTML = "> MESTRE DA ESCALADA: A montanha exige atenção! Use as rotas laterais e desvie das pedras que arremesso!";
     }
 }
 
 function updateEscaladaGame() {
+    if(window.MinigamePause?.active||escaladaGame.gameState==='ABANDONED')return;
     if (CLIMB_QA_MODE) {
         escaladaGame.qaFrameCount++;
-        const qaNow = performance.now();
+        const qaNow = (globalThis.MinigamePause?.now() ?? performance.now());
         const qaElapsed = qaNow - escaladaGame.qaLastFpsTime;
         if (qaElapsed >= 500) {
             escaladaGame.qaFps = Math.round(escaladaGame.qaFrameCount * 1000 / qaElapsed);
@@ -1392,7 +1393,7 @@ function updateEscaladaGame() {
     if (escaladaGame.gameState === 'TUTORIAL') {
         if (climbUpPressed) {
             escaladaGame.gameState = 'PLAYING';
-            escaladaGame.startTime = performance.now();
+            escaladaGame.startTime = (globalThis.MinigamePause?.now() ?? performance.now());
             climbUpPressed = false;
         }
         return;
@@ -1537,10 +1538,10 @@ function drawEscaladaGame() {
     // Rock formations and their supports share the existing hold coordinates.
     ClimbPresentation.holds(ctx,escaladaGame,canvas,sampleClimbHoldMotion);
 
-    // 4. Desenhar Jogador (Zorp - Sprites Puros de Escalada de Costas, Sem Pedra de Gelo)
+    // 4. Desenhar Jogador (Zorpzin - Sprites Puros de Escalada de Costas, Sem Pedra de Gelo)
     const playerRenderX = escaladaGame.playerX - cameraX;
     const playerRenderY = escaladaGame.playerY - cameraY;
-    const isBlinking = (!ClimbCheckpoints.locked(escaladaGame) && escaladaGame.invulTimer > 0 && Math.floor(Date.now() / 80) % 2 === 0);
+    const isBlinking = (!ClimbCheckpoints.locked(escaladaGame) && escaladaGame.invulTimer > 0 && Math.floor((globalThis.MinigamePause?.now() ?? Date.now()) / 80) % 2 === 0);
 
     if (!isBlinking) {
         ClimbSprites.draw(ctx, climbAssets.zorp, escaladaGame, keys, playerRenderX, playerRenderY);
@@ -1551,9 +1552,9 @@ function drawEscaladaGame() {
         const renderX = obj.x - cameraX;
         const renderY = obj.y - cameraY;
 
-        // Ground shadow gives a full, visible warning before the falling object reaches Zorp.
+        // Ground shadow gives a full, visible warning before the falling object reaches Zorpzin.
         const targetRenderY = escaladaGame.playerY - cameraY - 9;
-        const pulse = 1 + Math.sin(Date.now() * 0.012) * 0.08;
+        const pulse = 1 + Math.sin((globalThis.MinigamePause?.now() ?? Date.now()) * 0.012) * 0.08;
         ctx.strokeStyle = "rgba(255, 222, 89, 0.92)";
         ctx.lineWidth = 2;
         ctx.beginPath(); ctx.ellipse(renderX, targetRenderY, 20 * pulse, 7 * pulse, 0, 0, Math.PI * 2); ctx.stroke();
@@ -1660,7 +1661,7 @@ function drawEscaladaGame() {
 
     ClimbSprites.drawOverlay(ctx, escaladaGame, canvas);
     if (escaladaGame.gameState === 'TUTORIAL') {
-        drawOverlayScreen('MONTE ZORP', [
+        drawOverlayScreen('MONTE ZORPZIN', [
             'A / D: controle a trajetória no ar.',
             'ESPAÇO / W: um salto por toque.',
             'Agarre apoios; recupere-se nos inferiores.',
@@ -1690,7 +1691,7 @@ function drawEscaladaGame() {
             ctx.font = "bold 11px monospace";
             ctx.fillText(`Cume conquistado em ${escaladaGame.lastRunSeconds.toFixed(1)}s!`, canvas.width / 2, 240);
 
-            ctx.fillStyle = (Date.now() % 600 < 300) ? "#2ecc71" : "#ffffff";
+            ctx.fillStyle = ((globalThis.MinigamePause?.now() ?? Date.now()) % 600 < 300) ? "#2ecc71" : "#ffffff";
             ctx.font = "bold 12px monospace";
             ctx.fillText("[W / ESPAÇO] CONTINUAR", canvas.width / 2, 265);
             ctx.textAlign = "left";
@@ -1994,7 +1995,7 @@ function queueArcoQaShowcase(descriptors) {
 
 function beginArcoRound() {
     window.FestivalChallenges?.start('archery');
-    arcoGame.lastUpdateTime=performance.now();arcoGame.simulationAccumulator=0;
+    arcoGame.lastUpdateTime=(globalThis.MinigamePause?.now() ?? performance.now());arcoGame.simulationAccumulator=0;
     window.archeryCharactersV2.reset();
     arcoGame.playerControl = window.ArcheryPlayerControl.create();
     arcoGame.masterAI = window.ArcheryMasterAI.create();
@@ -2480,7 +2481,8 @@ function advanceArcoSimulation(deltaSeconds,speed=1) {
     return steps;
 }
 
-function updateArco(now=performance.now()) {
+function updateArco(now=(globalThis.MinigamePause?.now() ?? performance.now())) {
+    if(window.MinigamePause?.active||arcoGame.gameState==='ABANDONED')return;
     if (arcoGame.gameState === 'TUTORIAL') {
         if (archeryShootPressed) beginArcoRound();
         consumeArcoShootEdges();
@@ -2520,7 +2522,7 @@ function getArcoCharacterVisual(actor) {
 
 
 function drawArcoShooterArea() {
-    for(const [area,label,color]of [[ARCHERY_CONFIG.masterArea,'MESTRE — LINHA DIANTEIRA','#e1ae99'],[ARCHERY_CONFIG.shooterArea,'ZORP — LINHA POSTERIOR','#a7e5dc']]){
+    for(const [area,label,color]of [[ARCHERY_CONFIG.masterArea,'MESTRE — LINHA DIANTEIRA','#e1ae99'],[ARCHERY_CONFIG.shooterArea,'ZORPZIN — LINHA POSTERIOR','#a7e5dc']]){
         ctx.save();ctx.strokeStyle=color;ctx.globalAlpha=.65;ctx.lineWidth=1;ctx.setLineDash([7,7]);
         ctx.beginPath();ctx.moveTo(area.left,area.front+15);ctx.lineTo(area.right,area.front+15);ctx.stroke();ctx.setLineDash([]);
         for(const x of [area.left,area.right]){ctx.fillStyle=color;ctx.fillRect(x,area.front+12,2,area.back-area.front+8);}
@@ -2624,7 +2626,7 @@ function getArcoDiagnostics() {
 
 function recordArcoFps() {
     if (!arcoGame.stats || archeryQaParams.get('archeryQa') !== '1') return;
-    const now = performance.now();
+    const now = (globalThis.MinigamePause?.now() ?? performance.now());
     const fps = arcoGame.stats.fps;
     if (fps.lastTime > 0) {
         const delta = now - fps.lastTime;
@@ -2649,7 +2651,7 @@ function drawArcoGame() {
 
     ctx.save();
     ctx.imageSmoothingEnabled = false;
-    window.ArcheryValley.draw(ctx, performance.now() / 1000);
+    window.ArcheryValley.draw(ctx, (globalThis.MinigamePause?.now() ?? performance.now()) / 1000);
     drawArcoShooterArea();
 
     drawArcoTargets();
@@ -2670,7 +2672,7 @@ function drawArcoGame() {
     ctx.font = 'bold 10px monospace';
     ctx.fillStyle = '#ffe066';
     ctx.textAlign = 'left';
-    ctx.fillText('ZORP ' + arcoGame.playerScore, 12, 26);
+    ctx.fillText('ZORPZIN ' + arcoGame.playerScore, 12, 26);
     ctx.fillStyle = '#ff806f';
     ctx.textAlign = 'right';
     ctx.fillText('MESTRE ' + arcoGame.mestreScore, canvas.width - 12, 26);
@@ -2693,7 +2695,7 @@ function drawArcoGame() {
             'Lento / medio / rapido: siga o rio. [ESPACO] inicia.'
         ], '#e67e22');
     } else if (arcoGame.gameState === 'GAMEOVER') {
-        const scoreLine = 'ZORP ' + arcoGame.playerScore + '  x  ' + arcoGame.mestreScore + ' MESTRE';
+        const scoreLine = 'ZORPZIN ' + arcoGame.playerScore + '  x  ' + arcoGame.mestreScore + ' MESTRE';
         if (arcoGame.tie) {
             drawOverlayScreen('EMPATE!', [
                 scoreLine,
@@ -2764,7 +2766,8 @@ const sceneObstacles = {
         { x: 52, y: 99, w: 14, h: 10, type: 'surf_island_decor', solid: true },
         { x: 384, y: 99, w: 14, h: 10, type: 'surf_island_decor', solid: true },
         { x: 84, y: 219, w: 24, h: 10, type: 'surf_island_decor', solid: true },
-        { x: 345, y: 198, w: 17, h: 10, type: 'surf_island_decor', solid: true }
+        { x: 343, y: 219, w: 5, h: 9, type: 'surf_island_decor', solid: true },
+        { x: 399, y: 219, w: 5, h: 9, type: 'surf_island_decor', solid: true }
     ],
     ILHA_SKATE: [
         { x: 52, y: 46, w: 72, h: 46, type: 'skate_quarter', solid: true },
@@ -2840,7 +2843,7 @@ const npcs = [
     },
     
     // NPCs da Ilha da Escalada (Reduzidos para 4 icônicos e bem posicionados)
-    { scene: "ILHA_ESCALADA", x: 225, y: 168, img: imgMestreEscaladaOverworld, spriteKey: "climb_v2_mestre", tamanho: 50, msg: "> MESTRE DA ESCALADA: O Monte Zorp não perdoa os fracos! Desvie das pedras e alcance o cume!", isMaster: "JOGO_ESCALADA" },
+    { scene: "ILHA_ESCALADA", x: 225, y: 168, img: imgMestreEscaladaOverworld, spriteKey: "climb_v2_mestre", tamanho: 50, msg: "> MESTRE DA ESCALADA: O Monte Zorpzin não perdoa os fracos! Desvie das pedras e alcance o cume!", isMaster: "JOGO_ESCALADA" },
     { scene: "ILHA_ESCALADA", x: 87, y: 166, img: imgGuiaTrilha, spriteKey: "climb_v2_guia", tamanho: 44, msg: "> GUIA DE TRILHA: Cuidado lá em cima! O vento sopra forte e algumas pedras rachadas quebram ao pisar!" },
     { id: "geologa_escalada", scene: "ILHA_ESCALADA", x: 365, y: 176, img: imgGeologa, spriteKey: "climb_v2_geologa", tamanho: 44, msg: "> GEÓLOGA: As pedras azuis deslizam pela montanha, e as vermelhas estão prestes a desmoronar!" },
     { scene: "ILHA_ESCALADA", x: 112, y: 224, img: imgChef, spriteKey: "climb_v2_chef", tamanho: 44, msg: "> CHEF DE ACAMPAMENTO: Uma sopa bem quente para dar energia antes de enfrentar a montanha!" },
@@ -2871,7 +2874,7 @@ let climbSummitAdvancePressed = false;
 RavokEvent.init({
     player,context:ctx,
     scene: () => currentScene,
-    busy:()=>RavokArrival.active||RavokOutcome.active||MedalCompletion.active||MastersFarewell.active||EndingCinematic.active||CaptainRoute.active||PreGameBrief.active,
+    busy:()=>window.SurfCoinExchange?.active||RavokArrival.active||RavokOutcome.active||MedalCompletion.active||MastersFarewell.active||EndingCinematic.active||CaptainRoute.active||PreGameBrief.active,
     startOutcome:route=>RavokOutcome.start(route),
     heldKeys: () => Object.keys(keys).filter(key => keys[key]),
     clearInput: () => {
@@ -2918,15 +2921,10 @@ window.addEventListener("keydown", (e) => {
         }else if (k === "w" || k === " ") climbUpPressed = true;
     }
     if (currentScene === "JOGO_BOXE") {
-        if (boxingHandleKeyDown(e) === 'exit') {
-            currentScene = "ILHA_ESQUI";player.x = 225;player.y = 150;dialogBox.classList.remove("show");
-        }
+        boxingHandleKeyDown(e);
         return;
     }
-    if (k === "escape" && currentScene === "JOGO_SKATE") {
-        currentScene = "ILHA_SKATE";
-        player.x = 225; player.y = 150;
-    }
+
     if (keys.hasOwnProperty(k)) keys[k] = true;
 });
 
@@ -2965,6 +2963,7 @@ function isColliding(player, box) {
 function checkObstacleCollision(nextX, nextY) {
     if (currentScene === "HUB" && AdventureIntro.collides(nextX, nextY)) return true;
     if (currentScene === "HUB" && MerchantCampaign.blocks({x:nextX-10,y:nextY-8,w:20,h:10})) return true;
+    if(window.SurfCoinExchange?.blocks({x:nextX-10,y:nextY-8,w:20,h:10}))return true;
     if (currentScene === "HUB" && MastersFarewell.collides(nextX, nextY)) return true;
     const feetBox = { x: nextX - 10, y: nextY - 8, w: 20, h: 10 };
     if (currentScene === "ILHA_ARCO" && ArcheryIsland.blocks(feetBox)) return true;
@@ -2998,12 +2997,14 @@ function checkObstacleCollision(nextX, nextY) {
 }
 
 function update() {
+    if(window.MinigamePause?.active)return;
     window.ArcheryField.syncCanvas(canvas,currentScene);
     window.JukeboxPlayer?.update();
     if (typeof TitleScreen !== "undefined" && TitleScreen.isActive()) {
         TitleScreen.update();
         return;
     }
+    if(window.SurfCoinExchange?.active){SurfCoinExchange.update();return;}
     if (RavokArrival.update(currentScene)) return;
     if (RavokOutcome.update(currentScene)) return;
     if (PreGameBrief.active) {
@@ -3024,6 +3025,9 @@ function update() {
     if (MastersFarewell.update(currentScene)) return;
     if (!MerchantCampaign.cutsceneActive && (currentScene==='HUB'||currentScene.startsWith('ILHA_'))) window.FestivalProgress?.discoverScene(currentScene);
     if (MerchantCampaign.update(currentScene)) return;
+    window.IslandNavigation?.update();
+    if (window.IslandOrientation?.update()) return;
+    if (window.SurfCoinExchange?.update()) return;
     const isOverworldScene = !currentScene.startsWith("JOGO_");
     // A result-screen Space must not reopen a minigame while the same key is held.
     // Keep the basketball Master's legacy held input; normal dialogue uses fresh edges.
@@ -3143,6 +3147,7 @@ function update() {
             overworldConversationNpc = null; overworldConversationText = null;
         }
         if (npcProximo) {
+            if(interactionRequested&&window.SurfCoinExchange?.interact(npcProximo)){dialogBox.classList.remove("show");return;}
             dialogBox.classList.add("show");
 
             const extra = npcProximo.isMaster
@@ -3150,6 +3155,7 @@ function update() {
                 : "";
 
             if (npcProximo.isMaster && interactionRequested) {
+                FestivalWallet.updateCommerce({firstMasterPromptSeen:true});
                 const jogo = npcProximo.isMaster;
 
                 if (jogo === "JOGO_PINGPONG") {
@@ -3206,6 +3212,7 @@ function update() {
 
             } else if (interactionRequested) {
                 if (npcProximo.scene !== "ILHA_BASQUETE" || npcProximo.normalIslandNpc) overworldConversationNpc = npcProximo;
+                if(npcProximo.isMaster)FestivalWallet.updateCommerce({firstMasterPromptSeen:true});
                 overworldConversationText = RavokEvent.interact(npcProximo) || CaptainRoute.interact(npcProximo) || FestivalChallenges.interact(npcProximo) || MerchantCampaign.interact(npcProximo) || NormalIslandNpcs.interact(npcProximo) || npcProximo.msg;
                 if (!RavokEvent.conversationActive) dialogText.innerHTML = overworldConversationText + extra;
                 if (!npcProximo.isMaster && !npcProximo.eventId && npcProximo.id !== 'capitao') {
@@ -3215,7 +3222,7 @@ function update() {
                 dialogText.innerHTML = overworldConversationNpc === npcProximo
                     ? (overworldConversationText || npcProximo.msg) : npcProximo.scene !== "ILHA_BASQUETE"
                     ? "> " + npcProximo.msg.replace(/^>\s*/, "").split(":")[0] +
-                        (npcProximo.isMaster ? " · [E] / [ESPAÇO] INICIAR" : " · [E] / [ESPAÇO] CONVERSAR")
+                        (npcProximo.isMaster ? (FestivalWallet.commerce.firstMasterPromptSeen?" · [E] / [ESPAÇO] INICIAR":" · [E] FALAR COM O MESTRE") : " · [E] / [ESPAÇO] CONVERSAR")
                     : npcProximo.isMaster
                     ? "> (Pressione [E] ou [ESPAÇO] para iniciar)"
                     : "> (Pressione [E] para conversar)";
@@ -3244,6 +3251,7 @@ function update() {
     } else if (currentScene === SURF_SCENE) {
         window.updateSurfMinigame();
     }
+    if(currentScene.startsWith('JOGO_')&&!/ESC/.test(hintText.innerText))hintText.innerText+=' | [ESC] PAUSA';
 }
 
 // -------------------------------------------------------------
@@ -3325,7 +3333,7 @@ function startMinigameFromBrief(id) {
         beginArcoRound();
     } else if (id === 'climbing') {
         escaladaGame.gameState = 'PLAYING';
-        escaladaGame.startTime = performance.now();
+        escaladaGame.startTime = (globalThis.MinigamePause?.now() ?? performance.now());
     } else if (id === 'boxing') {
         startBoxingFight();
     } else if (id === 'basketball') {
@@ -3455,6 +3463,7 @@ function commitPingPongPoints() {
 }
 
 function updatePingPong() {
+    if(window.MinigamePause?.active||pingPong.gameState==='ABANDONED')return;
     if (pingPong.gameState === 'PRE_GAME' || PreGameBrief.active) return;
     
     if (pingPong.gameState === 'GAMEOVER') {
@@ -3490,7 +3499,7 @@ function updatePingPong() {
     PingPongMultiball.update(pingPong.multiball, pingPong, emitPingPongEventBall);
     hintText.innerText = "[W/S] MIRAR CIMA/BAIXO | [A/D] RECUAR/AVANÇAR | [ESPAÇO] RAQUETADA GLOBAL";
 
-    // 1. Movimentação do Jogador Zorp
+    // 1. Movimentação do Jogador Zorpzin
     let pMoveX = 0, pMoveY = 0;
     if (keys.w) pMoveY -= pingPong.speed;
     if (keys.s) pMoveY += pingPong.speed;
@@ -3511,7 +3520,7 @@ function updatePingPong() {
         pingPong.playerHitTimer--;
     }
 
-    // One global racket stroke: every eligible ball becomes a NEW Zorp return.
+    // One global racket stroke: every eligible ball becomes a NEW Zorpzin return.
     const specialTargets = pingPong.balls.filter(ball => PingPongBall.canGlobalReturn(ball, PINGPONG_COURT) &&
         !PingPongBall.missed(ball, pingPongPaddle(ball.receiver)));
     if (keys.space && pingPong.power >= pingPong.maxPower && pingPong.globalReturnCooldown === 0 && specialTargets.length > 0) {
@@ -3569,7 +3578,7 @@ function updatePingPong() {
         if (b.trail.length > 7) b.trail.shift();
         for (const tr of b.trail) tr.alpha *= 0.82;
 
-        // 6. REBATIDA DO ZORP (CONTROLE TOTAL DE BOLA)
+        // 6. REBATIDA DO ZORPZIN (CONTROLE TOTAL DE BOLA)
         if (PingPongBall.canReturn(b, 'PLAYER')) {
             const contact = PingPongBall.paddleContact(b, pingPongPaddle('PLAYER'));
             if (contact) {
@@ -3725,7 +3734,7 @@ function drawWater() {
     ctx.fillStyle = "#2b78e4"; ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#4a90e2";
     for(let i = 0; i < 30; i++) {
-        let wx = (Date.now() / 20 + i * 40) % canvas.width;
+        let wx = ((globalThis.MinigamePause?.now() ?? Date.now()) / 20 + i * 40) % canvas.width;
         let wy = (i * 15) % canvas.height;
         ctx.fillRect(wx, wy, 12, 2);
     }
@@ -3869,7 +3878,7 @@ function drawSceneObstacles() {
                 ctx.fillRect(obs.x + 3, obs.y + 14, 18, 4);
                 ctx.fillRect(obs.x + 10, obs.y + 7, 4, 18);
                 // Chamas animadas
-                let flameHeight = 10 + Math.sin(Date.now() * 0.015) * 3;
+                let flameHeight = 10 + Math.sin((globalThis.MinigamePause?.now() ?? Date.now()) * 0.015) * 3;
                 ctx.fillStyle = '#e67e22';
                 ctx.beginPath();
                 ctx.moveTo(obs.x + 5, obs.y + 16);
@@ -4655,7 +4664,7 @@ function drawIlhaSurf() {
     drawSurfIslandAsset(surfIslandDecor.umbrella, 96, 229, 64);
     drawSurfIslandAsset(surfIslandDecor.towel, 117, 249, 34);
     drawSurfIslandAsset(surfIslandDecor.cooler, 151, 239, 32);
-    drawSurfIslandAsset(surfIslandDecor.sign, 353, 208, 52);
+    window.SurfCoinExchange?.drawStand(ctx);
 
     ctx.restore();
 
@@ -4667,7 +4676,7 @@ function drawIlhaSurf() {
 // -------------------------------------------------------------
 function drawPingPongGame() {
     ctx.imageSmoothingEnabled = false;
-    const now = performance.now();
+    const now = (globalThis.MinigamePause?.now() ?? performance.now());
     // Read completed simulation states. Feedback never writes to pingPong.
     PingPongFeedback.observe(pingPong, now);
     if (!PingPongFeedback.heldFrame(ctx, now)) {
@@ -4722,6 +4731,7 @@ function drawHUD() {
 // 8. LOOP PRINCIPAL
 // -------------------------------------------------------------
 function draw() {
+    if(window.MinigamePause?.draw(ctx))return;
     // A result may have changed scene in this update. Capture it before clearing
     // so no controllable Overworld frame appears before the arrival interlude.
     RavokArrival.tryStart(currentScene);
@@ -4758,6 +4768,7 @@ function draw() {
     else if (currentScene === "JOGO_SKATE") drawSkateGame();
     else if (currentScene === "JOGO_CORRIDA") window.drawCorridaMaratona();
     else if (currentScene === SURF_SCENE) window.drawSurfMinigame();
+    if(!currentScene.startsWith("JOGO_"))window.IslandNavigation?.drawWorld(ctx,displayScene);
     
     if (!currentScene.startsWith("JOGO_")) {
         drawSceneObstacles();
@@ -4771,6 +4782,7 @@ function draw() {
             if (displayScene === 'ILHA_ESCALADA') actors.push({y:RavokEvent.ship.depth,draw:()=>RavokEvent.draw(ctx)});
             actors.push(...RavokEvent.actors(displayScene));
             actors.push(...MerchantCampaign.actors(displayScene));
+            actors.push(...(window.SurfCoinExchange?.actors(displayScene,ctx)||[]));
             if (displayScene === "HUB" && AdventureIntro.introSeen) {
                 actors.push({ y: 150, draw: () => { AdventureIntro.drawParked(ctx); MerchantCampaign.drawShipAccent(ctx); } });
             }
@@ -4794,6 +4806,9 @@ function draw() {
     RavokArrival.drawPrompt(ctx);
     RavokEvent.drawOverlay(ctx);
     MerchantCampaign.draw(ctx);
+    window.IslandNavigation?.draw(ctx);
+    window.IslandOrientation?.draw(ctx);
+    window.SurfCoinExchange?.draw(ctx);
 }
 
 function gameLoop() { 
@@ -4871,7 +4886,7 @@ window.getClimbQaSnapshot = () => ({
     totalAltitude: Math.round(escaladaGame.alturaTotal),
     lives: escaladaGame.vida,
     checkpointStep: (escaladaGame.pedrasGeradas.find(hold => hold.id === escaladaGame.checkpointHoldId) || { levelStep: 0 }).levelStep,
-    elapsedSeconds: Number(((performance.now() - escaladaGame.startTime) / 1000).toFixed(2)),
+    elapsedSeconds: Number((((globalThis.MinigamePause?.now() ?? performance.now()) - escaladaGame.startTime) / 1000).toFixed(2)),
     validation: escaladaGame.levelValidation,
     holdCounts: escaladaGame.pedrasGeradas.reduce((counts, hold) => {
         counts[hold.tipo] = (counts[hold.tipo] || 0) + 1;
@@ -4967,6 +4982,8 @@ function captureOverworldIsland(scene) {
     try {
         ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;
         currentScene=scene;renderers[scene]();drawSceneObstacles();
+        window.IslandNavigation?.drawWorld(ctx,scene);
+        if(scene==='ILHA_SURF')window.SurfCoinExchange?.drawProps(ctx);
         snapshot.getContext('2d').drawImage(canvas,0,0);
     } finally {
         currentScene=previousScene;ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;
@@ -5016,7 +5033,7 @@ const RAVOK_RESULT_SPORT = Object.freeze({JOGO_PINGPONG:'pingpong',JOGO_BASQUETE
     JOGO_CORRIDA:'marathon',JOGO_SKATE:'skate',JOGO_ARCO:'archery',JOGO_ESCALADA:'climbing',JOGO_BOXE:'boxing',JOGO_SURF:'surf'});
 RavokArrival.init({
     get canvas(){return canvas.width===ArcheryField.WIDTH?ArcheryField.transitionFrame(canvas):canvas;},scene:()=>currentScene,
-    busy:()=>TitleScreen.isActive()||AdventureIntro.active||PreGameBrief.active||CaptainRoute.active||EndingCinematic.active||MedalCompletion.active||MastersFarewell.active,
+    busy:()=>window.SurfCoinExchange?.active||TitleScreen.isActive()||AdventureIntro.active||PreGameBrief.active||CaptainRoute.active||EndingCinematic.active||MedalCompletion.active||MastersFarewell.active,
     isOverworld:scene=>scene==='HUB'||scene.startsWith('ILHA_'),
     resultReady:scene=>{
         if(scene==='JOGO_PINGPONG')return pingPong.gameState==='GAMEOVER';
@@ -5052,7 +5069,7 @@ RavokArrival.init({
 
 RavokOutcome.init({
     player,
-    busy:()=>TitleScreen.isActive()||AdventureIntro.active||PreGameBrief.active||RavokArrival.active||MedalCompletion.active||MastersFarewell.active||CaptainRoute.active||EndingCinematic.active||RavokEvent.conversationActive||RavokEvent.exitActive,
+    busy:()=>window.SurfCoinExchange?.active||TitleScreen.isActive()||AdventureIntro.active||PreGameBrief.active||RavokArrival.active||MedalCompletion.active||MastersFarewell.active||CaptainRoute.active||EndingCinematic.active||RavokEvent.conversationActive||RavokEvent.exitActive,
     clearInput:clearMinigameBriefInput,
     captureIsland:(cleared=false)=>{
         const image=captureOverworldIsland('ILHA_ESCALADA');
@@ -5127,7 +5144,7 @@ CaptainRoute.init({
 MerchantCampaign.init({
     ctx,canvas,scene:()=>currentScene,
     medalCount:()=>MEDALHAS_REGISTRY.filter(m=>isMedalhaDesbloqueada(m.id)).length,
-    busy:()=>TitleScreen.isActive()||AdventureIntro.active||PreGameBrief.active||CaptainRoute.active||EndingCinematic.active||MedalCompletion.active||MastersFarewell.active||RavokArrival.active||RavokOutcome.active||RavokEvent.conversationActive||RavokEvent.exitActive||AdventureIntro.conversation||!!normalNpcDialogue,
+    busy:()=>window.SurfCoinExchange?.active||TitleScreen.isActive()||AdventureIntro.active||PreGameBrief.active||CaptainRoute.active||EndingCinematic.active||MedalCompletion.active||MastersFarewell.active||RavokArrival.active||RavokOutcome.active||RavokEvent.conversationActive||RavokEvent.exitActive||AdventureIntro.conversation||!!normalNpcDialogue,
     point:()=>({scene:currentScene,x:player.x,y:player.y}),
     clearInput:()=>{clearMinigameBriefInput();interactionPressed=false;shipInteractionPressed=false;},
     hideDialogue:()=>{dialogBox.classList.remove('show');},
@@ -5197,6 +5214,76 @@ if (typeof TitleScreen !== "undefined") {
         hideOverworldUI();
     }
 }
+
+window.CutsceneSkip?.init({scene:()=>currentScene,summitActive:()=>currentScene==='JOGO_ESCALADA'&&ClimbSummit.active(escaladaGame),skipSummit:()=>ClimbSummit.skip(escaladaGame,()=>{insignias.escalada=true;return isMedalhaDesbloqueada('escalada');},checarVitoriaEscalada),clearInput:()=>{clearMinigameBriefInput();for(const k of Object.keys(keys))keys[k]=false;interactionPressed=false;shipInteractionPressed=false;}});
+window.IslandOrientation?.init({scene:()=>currentScene,player,npcs,
+ busy:()=>window.SurfCoinExchange?.active||normalNpcDialogue||AdventureIntro.active||PreGameBrief.active||TitleScreen.isActive()||MerchantCampaign.active||RavokArrival.active||RavokOutcome.active||RavokEvent.conversationActive||RavokEvent.exitActive||CaptainRoute.active||EndingCinematic.active||MedalCompletion.active||MastersFarewell.active,
+ clearInput:()=>{clearMinigameBriefInput();for(const k of Object.keys(keys))keys[k]=false;interactionPressed=false;shipInteractionPressed=false;},hideDialogue:()=>dialogBox.classList.remove('show')});
+window.SurfCoinExchange?.init({scene:()=>currentScene,player,npcs,
+ busy:()=>TitleScreen.isActive()||AdventureIntro.active||PreGameBrief.active||MerchantCampaign.active||IslandOrientation.active||normalNpcDialogue||RavokArrival.active||RavokOutcome.active||RavokEvent.conversationActive||RavokEvent.exitActive||CaptainRoute.active||EndingCinematic.active||MedalCompletion.active||MastersFarewell.active,
+ clearInput:()=>{clearMinigameBriefInput();for(const k of Object.keys(keys))keys[k]=false;interactionPressed=false;shipInteractionPressed=false;},
+ hideDialogue:()=>{normalNpcDialogue=null;overworldConversationNpc=null;overworldConversationText=null;dialogBox.classList.remove('show');},
+ returnToIsland:()=>{currentScene='ILHA_SURF';player.x=225;player.y=230;normalNpcDialogue=null;overworldConversationNpc=null;overworldConversationText=null;overworldFocusNpc=null;dialogBox.classList.remove('show');showOverworldUI();}});
+// Universal pause owns input and time; sport adapters own disposal, never victory.
+function clearPauseInput() {
+    for(const k of Object.keys(keys))keys[k]=false;
+    interactionPressed=false;shipInteractionPressed=false;climbUpPressed=false;climbSummitAdvancePressed=false;archeryShootPressed=false;
+    boxingReleaseInput();window.BoxingInput?.clearPhysical();
+    window.ArcheryPlayerControl?.releaseInput();
+    window.SurfCoinExchange?.clearInputLatch();
+    window.basketball1v1?.clearBriefingInput();window.corridaMaratona?.clearBriefingInput();window.surfEndlessGame?.clearBriefingInput();
+}
+const PAUSE_DESTINATIONS=Object.freeze({
+ JOGO_PINGPONG:['ILHA_PINGPONG',350,235,'pingpong'],JOGO_BASQUETE:['ILHA_BASQUETE',225,220,'basket'],
+ JOGO_CORRIDA:['ILHA_CORRIDA',225,238,'running'],JOGO_SKATE:['ILHA_SKATE',245,230,'skate'],
+ JOGO_ARCO:['ILHA_ARCO',226,231,'archery'],JOGO_ESCALADA:['ILHA_ESCALADA',225,238,'climbing'],
+ JOGO_BOXE:['ILHA_ESQUI',269,228,'boxing'],JOGO_SURF:['ILHA_SURF',225,230,'surf']
+});
+function abandonPausedMinigame(scene) {
+ const d=PAUSE_DESTINATIONS[scene];if(!d)return false;
+ // Bank first: if storage fails, stay paused with the run intact for retry.
+ if(scene==='JOGO_SURF'&&!window.surfEndlessGame.abort())return false;
+ if(scene==='JOGO_PINGPONG'){
+  pingPong.gameState='ABANDONED';pingPong.balls=[];pingPong.pendingPoints=[];pingPong.pointFeedback=[];
+  pingPong.bounceEffects=[];pingPong.specialEffects=[];pingPong.multiball=PingPongMultiball.create();
+  pingPong.masterAI=PingPongMasterAI.create();pingPong.isPowerActive=false;pingPong.pointFreeze=0;
+ }else if(scene==='JOGO_BASQUETE')window.basketball1v1.abort();
+ else if(scene==='JOGO_CORRIDA')window.corridaMaratona.abort();
+ else if(scene==='JOGO_SKATE')window.skateOllieRuntime.abort();
+ else if(scene==='JOGO_ARCO'){
+  arcoGame.gameState='ABANDONED';for(const k of ['arrows','targets','effects','pendingTargetSpawns','goldenSchedule'])arcoGame[k]=[];
+  arcoGame.simulationAccumulator=0;arcoGame.playerControl.buffer=0;
+ }else if(scene==='JOGO_ESCALADA'){
+  escaladaGame.gameState='ABANDONED';escaladaGame.summitSequence=null;ClimbCheckpoints.reset(escaladaGame);
+  for(const k of ['objetosCaindo','particulas','hazardQueue','sparksImpacto','ventoParticulas'])escaladaGame[k]=[];
+  escaladaGame.vx=0;escaladaGame.vy=0;escaladaGame.grabTarget=null;escaladaGame.pedraAtual=null;
+ }else if(scene==='JOGO_BOXE'){
+  boxingClearRoundCombat();boxeGame.phase='ABANDONED';boxeGame.knockdown=null;boxeGame.finisher=null;boxingAccumulator=0;
+ }
+ window.FestivalChallenges?.abort(d[3]);window.MerchantCampaign?.abortGame();
+ clearPauseInput();window.skateOllieRuntime?.clearBriefingInput();
+ currentScene=d[0];player.x=d[1];player.y=d[2];
+ // Keep the chosen landing point terrestrial and clear of scenery/NPC feet.
+ const master=npcs.find(n=>n.scene===currentScene&&n.isMaster);
+ const nearMaster=master?[[master.x,master.y+65],[master.x+50,master.y+55],[master.x-50,master.y+55]]:[];
+ const candidates=[...nearMaster,[d[1],d[2]],[225,230],[225,250],[245,245],[205,245],[350,245],[315,230],[145,230]];
+ const point=candidates.find(([x,y])=>!checkObstacleCollision(x,y)&&!npcs.some(n=>n.scene===currentScene&&RavokEvent.isNpcVisible(n)&&Math.hypot(x-n.x,y-n.y)<35));
+ if(point)[player.x,player.y]=point;
+ normalNpcDialogue=null;overworldConversationNpc=null;overworldConversationText=null;overworldFocusNpc=null;
+ zorpSprite.isMoving=false;dialogBox.classList.remove('show');showOverworldUI();
+ document.getElementById('game-title').style.visibility='';return true;
+}
+window.IslandNavigation?.init({scene:()=>currentScene,player,busy:()=>TitleScreen.isActive()||AdventureIntro.active||PreGameBrief.active||RavokArrival.active||RavokOutcome.active||RavokEvent.conversationActive||RavokEvent.exitActive||MerchantCampaign.active||CaptainRoute.active||EndingCinematic.active||MedalCompletion.active||MastersFarewell.active||IslandOrientation.active||SurfCoinExchange.active||!!normalNpcDialogue});
+window.MinigamePause?.init({scene:()=>currentScene,
+ busy:()=>TitleScreen.isActive()||AdventureIntro.active||PreGameBrief.active||RavokArrival.active||RavokOutcome.active||RavokEvent.conversationActive||RavokEvent.exitActive||MerchantCampaign.active||CaptainRoute.active||EndingCinematic.active||MedalCompletion.active||MastersFarewell.active||IslandOrientation.active||SurfCoinExchange.active,
+ capture:()=>{const frozen=document.createElement('canvas');frozen.width=canvas.width;frozen.height=canvas.height;frozen.getContext('2d').drawImage(canvas,0,0);return frozen;},
+ hideDialogue:()=>dialogBox.classList.remove('show'),
+ suspend:()=>{const skate=window.skateOllieRuntime?.pauseInput();if(currentScene==='JOGO_SURF')surfEndlessGame.paused=true;clearPauseInput();return {skate};},
+ resume:(token,held,scene)=>{clearPauseInput();if(scene==='JOGO_SURF')surfEndlessGame.paused=false;if(scene==='JOGO_SKATE')return window.skateOllieRuntime.resumeInput(token.skate,held.has('space'));return [];},
+ release:k=>{if(k==='space')window.ArcheryPlayerControl?.releaseInput();
+    window.SurfCoinExchange?.clearInputLatch();},
+ audio:paused=>window.MerchantMusic?.setDucked(paused),abandon:abandonPausedMinigame
+});
 
 gameLoop();
 

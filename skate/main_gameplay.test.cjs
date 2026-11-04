@@ -9,7 +9,7 @@ test("SPACE pula imediatamente, diferencia double-tap e hold sem upgrade", () =>
     const input = parser.createParser();
     assert.deepEqual(input.keyDown(0, "GROUND"), [{ type: "NORMAL_JUMP", at: 0 }]);
     assert.deepEqual(input.keyUp(40), [{ type: "GROUND_RELEASE", holdMs: 40 }]);
-    assert.deepEqual(input.keyDown(150, "AIR"), [{ type: "OLLIE_UPGRADE", at: 150 }]);
+    assert.deepEqual(input.keyDown(150, "AIR"), [{ type: "DOUBLE_JUMP", at: 150 }]);
     assert.deepEqual(input.keyUp(190), [{ type: "AIR_RELEASE", holdMs: 40 }]);
 
     input.keyDown(500, "GROUND");
@@ -115,13 +115,13 @@ test("rails horizontais, inclinados e curvos são seguidos até a saída natural
     }
 });
 
-test("snap não captura quem está próximo mas se afasta do grindPath", () => {
+test("captura próxima permite reconexão durante subida", () => {
     const controller = traversal.createController();
     const rail = { points: [{ x: 0, y: 180 }, { x: 100, y: 180 }] };
     const player = { x: 30, y: 178, verticalVelocity: -120, grounded: false };
     const transitions = controller.update({ player, input: { held: true }, rails: [rail], forwardSpeed: 230 });
-    assert.equal(transitions.some(event => event.type === "GRIND_ENTER"), false);
-    assert.equal(controller.mode, "AIR");
+    assert.equal(transitions.some(event => event.type === "GRIND_ENTER"), true);
+    assert.equal(controller.mode, "GRIND");
 });
 
 test("pista curta contém small → landing → medium → rails → big e mantém velocidade lateral", () => {

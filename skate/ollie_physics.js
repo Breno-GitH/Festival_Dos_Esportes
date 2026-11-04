@@ -100,6 +100,7 @@
                     jumpTier: "",
                     jumpUpgradeCount: 0,
                     takeoffs: 0,
+                    airJumpsUsed: 0,
                     landings: 0,
                     obstacleHit: false,
                     hitObstacleId: "",
@@ -138,9 +139,10 @@
                     p.airTrickRemainingMs = Math.max(0, p.airTrickRemainingMs - dt * 1000);
                     if (!p.airTrickRemainingMs) p.airTrick = "";
                 }
+                if (p.grounded) p.airJumpsUsed = 0;
                 const rampIntent = p.grounded && !p.grindingRailId && rampIntentAt(p.x, config);
                 if (action.spacePressed && p.grounded && !rampIntent) this.launchImmediate("normal");
-                if (action.ollieUpgrade && !p.rampRide) this.upgradeJump("ollie");
+                if ((action.airJump || action.ollieUpgrade) && !p.rampRide) this.doubleJump();
 
                 // Ordinary ground uses presses; ramps own held SPACE until the lip.
                 p.charging = false;
@@ -335,6 +337,7 @@
                     if (p.specialRampAir?.active) p.specialRampAir.active = false;
                 }
 
+                if(p.grounded)p.airJumpsUsed=0;
                 return s;
             },
             launch(holdMs, ramp = null) {
@@ -346,6 +349,7 @@
                 if (!p.grounded || s.phase !== "PLAYING") return false;
                 if (rampIntentAt(p.x, config)) return false;
                 const tier = ["normal", "ollie"].includes(kind) ? kind : "normal";
+                p.airJumpsUsed = 0;
                 p.jumpTier = tier;
                 p.holdMs = 0;
                 p.jumpUpgradeCount = 0;
@@ -356,21 +360,20 @@
                 s.lastEvent = `${tier.toUpperCase()}_JUMP`;
                 return true;
             },
-            upgradeJump(kind) {
+            doubleJump() {
                 const p = this.state.player;
-                if (this.state.phase !== "PLAYING" || p.grounded
-                    || !["normal", "ollie", "grind-hop"].includes(p.jumpTier)
-                    || kind !== "ollie") return false;
-                if (kind === "ollie" && !["normal", "grind-hop"].includes(p.jumpTier)) return false;
-                p.jumpTier = kind;
+                if (this.state.phase !== "PLAYING" || p.grounded || p.grindingRailId
+                    || p.specialRampAir?.active || (p.airJumpsUsed || 0) >= 1) return false;
+                p.airJumpsUsed = 1;
+                p.verticalVelocity = config.jumpVelocities.ollie;
+                p.jumpTier = "ollie";
                 p.jumpUpgradeCount++;
-                p.verticalVelocity = Math.min(p.verticalVelocity, config.jumpVelocities[kind]);
-                if (kind === "ollie") {
-                    p.airTrick = "kickflip";
-                    p.airTrickRemainingMs = 300;
-                }
-                this.state.lastEvent = `${kind.toUpperCase()}_UPGRADE`;
+                p.takeoffs++;
+                this.state.lastEvent = "DOUBLE_JUMP";
                 return true;
+            },
+            upgradeJump(kind) {
+                return kind === "ollie" ? this.doubleJump() : false;
             },
             rampImpulse(ramp) {
                 const speedScale = Math.max(0, this.state.player.forwardSpeed) / DEFAULTS.forwardSpeed;

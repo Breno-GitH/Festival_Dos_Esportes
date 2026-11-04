@@ -168,7 +168,7 @@
             this.lastTap = { left: -999, right: -999 };
             this.frame = 0;
             this.qaLockFrames = 0;
-            this.lastTime = performance.now();
+            this.lastTime = (globalThis.MinigamePause?.now() ?? performance.now());
             this.random = Math.random;
             window.addEventListener('keydown', (event) => {
                 if (currentScene !== SCENE || event.repeat) return;
@@ -209,7 +209,7 @@
             this.announcement = showReady ? 'BASQUETE 1v1' : 'VALENDO!';
             this.announcementTimer = showReady ? 0 : 70;
             this.effects = [];
-            this.lastTime = performance.now();
+            this.lastTime = (globalThis.MinigamePause?.now() ?? performance.now());
             this.frame = 0;
             this.previousKeys = {};
             this.lastTap = { left: -999, right: -999 };
@@ -245,6 +245,12 @@
             this.inputBuffer.clear();
         }
 
+        abort() {
+            this.phase='ABANDONED';this.clearBriefingInput();this.effects=[];
+            Object.assign(this.ball,{state:'INACTIVE',owner:null,vx:0,vy:0,scoreResetTimer:0,pickupLock:0});
+            for(const actor of [this.player,this.master]){actor.vx=0;actor.vy=0;actor.specialDrive=0;}
+        }
+
         clearBriefingInput() {
             this.inputBuffer.clear();
             this.previousKeys = {};
@@ -255,7 +261,7 @@
             this.clearBriefingInput();
             this.phase = 'PLAYING';
             this.clock = MATCH_SECONDS;
-            this.lastTime = performance.now();
+            this.lastTime = (globalThis.MinigamePause?.now() ?? performance.now());
             this.announcement = 'VALENDO!';
             this.announcementTimer = 60;
             return true;
@@ -503,12 +509,7 @@
         // Human input and rival AI -----------------------------------------
         updatePlayerInput(step) {
             const actor = this.player;
-            if (this.pressed('escape')) {
-                currentScene = 'ILHA_BASQUETE';
-                player.x = 225;
-                player.y = 145;
-                return;
-            }
+
             if (this.isLocked(actor)) return;
             const left = this.keyDown('left');
             const right = this.keyDown('right');
@@ -909,7 +910,8 @@
         }
 
         update() {
-            const now = performance.now();
+            if(window.MinigamePause?.active||this.phase==='ABANDONED')return;
+            const now = (globalThis.MinigamePause?.now() ?? performance.now());
             const deltaSeconds = clamp((now - this.lastTime) / 1000, 0, 0.05);
             this.lastTime = now;
             const step = deltaSeconds * 60;
@@ -936,10 +938,6 @@
                     this.reset(true);
                     keys.space = false;
                     keys.j = false;
-                } else if (this.pressed('escape')) {
-                    currentScene = 'ILHA_BASQUETE';
-                    player.x = 225;
-                    player.y = 145;
                 }
                 this.updatePresentation(deltaSeconds);
                 this.updateQaBridge();
@@ -1132,7 +1130,7 @@
                 '60 SEGUNDOS — MAIOR PLACAR VENCE'
             ];
             lines.forEach((line, index) => ctx.fillText(line, canvas.width / 2, 115 + index * 20));
-            ctx.fillStyle = (Date.now() % 900 < 450) ? '#39e7ff' : '#ffffff';
+            ctx.fillStyle = ((globalThis.MinigamePause?.now() ?? Date.now()) % 900 < 450) ? '#39e7ff' : '#ffffff';
             ctx.font = 'bold 12px monospace';
             ctx.fillText('[ESPAÇO OU J] COMEÇAR', canvas.width / 2, 245);
             ctx.textAlign = 'left';
@@ -1145,11 +1143,11 @@
             const won = this.winner === 'zorp';
             ctx.fillStyle = won ? '#39e7ff' : '#ff9d32';
             ctx.font = 'bold 24px monospace';
-            ctx.fillText(won ? 'ZORP VENCEU!' : 'MESTRE VENCEU!', canvas.width / 2, 112);
+            ctx.fillText(won ? 'ZORPZIN VENCEU!' : 'MESTRE VENCEU!', canvas.width / 2, 112);
             ctx.fillStyle = '#ffffff';
             ctx.font = '11px monospace';
             ctx.fillText('[ESPAÇO OU J] REVANCHE', canvas.width / 2, 190);
-            ctx.fillText('[ESC] VOLTAR À ILHA', canvas.width / 2, 216);
+            ctx.fillText('[ESC] MENU DE PAUSA', canvas.width / 2, 216);
             ctx.textAlign = 'left';
         }
 

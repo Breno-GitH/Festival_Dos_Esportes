@@ -1,4 +1,4 @@
-/* Zorp presentation only. State selection, anchors and debug never write to
+/* Zorpzin presentation only. State selection, anchors and debug never write to
  * the climbing physics, level, input state, camera, checkpoints or save. */
 window.ClimbSprites = (() => {
     'use strict';
@@ -13,7 +13,7 @@ window.ClimbSprites = (() => {
     const ease = n => { n=clamp(n,0,1);return n*n*(3-2*n); };
     const timing = Object.freeze({ recoveryHang:.14, grip:.18, edgeHold:.12, pullUp:.64, corner:.22, blend:.08 });
 
-    function clockFor(g, now = performance.now()) {
+    function clockFor(g, now = (globalThis.MinigamePause?.now() ?? performance.now())) {
         let clock=clocks.get(g);
         if(!clock){
             clock={time:0,lastNow:now,state:null,stateTime:0,previous:null,last:null,queue:null,
@@ -34,11 +34,11 @@ window.ClimbSprites = (() => {
         tick(clock,(now-clock.lastNow)/1000);clock.lastNow=now;return clock;
     }
     function sequence(clock,kind,holdId,clips){clock.queue={kind,holdId,clips,elapsed:0};}
-    function reset(g,now=performance.now()){clocks.delete(g);return clockFor(g,now);}
+    function reset(g,now=(globalThis.MinigamePause?.now() ?? performance.now())){clocks.delete(g);return clockFor(g,now);}
 
     // Notifications occur after existing successful game actions. They never
     // authorize a jump/grab, block input, grant a checkpoint or move the body.
-    function notify(g,event,data={},now=performance.now()){
+    function notify(g,event,data={},now=(globalThis.MinigamePause?.now() ?? performance.now())){
         const c=sync(g,now);
         if(event==='jump'){
             c.queue=null;c.forcedFall=false;c.recovering=false;c.hitTime=0;c.jumpAt=c.time;
@@ -201,7 +201,7 @@ window.ClimbSprites = (() => {
         c.last=result;
         return result;
     }
-    function pose(g,input={},now=performance.now()){return sample(g,input,sync(g,now));}
+    function pose(g,input={},now=(globalThis.MinigamePause?.now() ?? performance.now())){return sample(g,input,sync(g,now));}
     // Explicit deltaTime entry point, also used to compare 30/60/144 Hz playback.
     function advance(g,input={},deltaTime=0){const c=clockFor(g);tick(c,deltaTime);return sample(g,input,c);}
 
@@ -216,7 +216,7 @@ window.ClimbSprites = (() => {
         ctx.restore();
     }
 
-    function draw(ctx, library, g, input, x, y, now = performance.now()) {
+    function draw(ctx, library, g, input, x, y, now = (globalThis.MinigamePause?.now() ?? performance.now())) {
         const p = pose(g, input, now);
         ctx.save();
         if (p.previous && p.blend < 1) {

@@ -43,6 +43,7 @@
                 birdStreak:0,shots:[],nextShot:0,lastLanding:null};
         },
         state(type){return wallet.getChallenge(ids[type]||type);},
+        abort(type){if(type==='boxing')boxingAttempt=false;else delete attempts[type];},
         progress(type){return JSON.parse(JSON.stringify(attempts[type]||null));},
         onBasket({scorer,points,remaining}) {
             if(pending('basket')&&scorer==='zorp'&&points===3&&remaining>0&&remaining<=10)
@@ -107,7 +108,11 @@
             if (!quest) return null;
             let state = wallet.getChallenge(quest.id);
             const wasAccepted=state.accepted;
-            const say = text => '> '+quest.speaker+': '+text;
+            let teaching='';
+            if(quest.type!=='dialogue'&&!wallet.commerce.firstQuestTutorialSeen){
+                if(wallet.updateCommerce({firstQuestTutorialSeen:true}))teaching='Alguns NPCs possuem desafios opcionais. Depois de cumprir, volte para receber a recompensa. ';
+            }
+            const say = text => '> '+quest.speaker+': '+teaching+text;
             if (state.claimed) return say(quest.thanks);
             wallet.acceptChallenge(quest.id);
             if (quest.type === 'dialogue') {

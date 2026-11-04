@@ -48,6 +48,7 @@
                 this.line=0;this.dialogueDone=false;
             }
         },
+        skip(){this.finish();},
         finish(){
             if(!this.active||this.state==='ENDING_CARD')return;
             AdventureIntro.endingSeen=true;AdventureIntro.persist();

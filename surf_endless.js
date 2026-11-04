@@ -497,7 +497,7 @@
             // One broken illuminated edge keeps the curl reading as water, not nested rings.
             ctx.globalAlpha=.76;ctx.strokeStyle=mix(p.hi,p.foam,.56);ctx.lineWidth=3.2+close*1.4;ctx.beginPath();ctx.moveTo(x-w*.61,y+8);ctx.bezierCurveTo(x-w*.56,y-h*.28,x-w*.45,y-h*.78,x-w*.16,y-h*.94);ctx.bezierCurveTo(x+w*.08,y-h*1.03,x+w*.36,y-h*.76,x+w*.48,y-h*.39);ctx.bezierCurveTo(x+w*.54,y-h*.19,x+w*.61,y-h*.13,x+w*.65,y-h*.24);ctx.stroke();
             ctx.globalAlpha=.54+warning*.18;ctx.fillStyle=p.foam;for(let i=0;i<13;i++){const t=i/12,px=x-w*.60+t*w*1.22,py=y-h*(.06+.72*Math.sin(t*Math.PI*.82))+Math.sin(i*2.3+time*3)*2,r=1+i%3;ctx.fillRect(Math.round(px),Math.round(py),r,i%4===0?2:1);}
-            // The bright exit sits ahead of Zorp, asymmetrical and partly hidden by the curling lip.
+            // The bright exit sits ahead of Zorpzin, asymmetrical and partly hidden by the curling lip.
             const exitX=x+w*.58,exitY=y-h*.23;ctx.globalAlpha=.55+exitProgress*.32-warning*.18;const mouth=ctx.createRadialGradient(exitX,exitY,2,exitX,exitY,openX*1.8);mouth.addColorStop(0,mix(p.foam,p.horizon,.2));mouth.addColorStop(.48,mix(p.light,p.hi,.42));mouth.addColorStop(1,'rgba(73,203,205,0)');ctx.fillStyle=mouth;ctx.beginPath();ctx.ellipse(exitX,exitY,openX*1.85,openY*.83,-.23,0,Math.PI*2);ctx.fill();ctx.globalAlpha=.42;ctx.strokeStyle=p.hi;ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(exitX,exitY,openX*.83,openY*.47,-.23,Math.PI*1.05,Math.PI*1.92);ctx.stroke();
             if(pressure>.25||warning>.05){ctx.globalAlpha=.20+Math.max(pressure,warning)*.3;ctx.fillStyle=p.foam;for(let i=0;i<10;i++){const px=x-w*.55+i*7+Math.sin(i*2+time*4)*4,py=y-2+Math.sin(i*1.7+time*3)*8+warning*4;ctx.fillRect(Math.round(px),Math.round(py),i%3===0?3:2,1+i%2);}}
             ctx.restore();
@@ -519,8 +519,10 @@
             this.seed=Number(query.get('surfSeed'))||0x5a17c0de;this.renderer=new EndlessRenderer(assets);this.previous={};this.reset(true);
         }
         reset(showIntro=true){
+            if(this.stats?.coins>0&&!this.bankRunMiniCoins().banked)return false;
+            this.surfRunId=null;this.runClosed=false;this.paused=false;
             window.FestivalChallenges?.start('surf');
-            this.director=new EndlessDirector(this.seed,this.slice);this.state=showIntro&&!this.cleanWaveQa&&!this.runnerQa&&!this.qaProgress&&!this.finaleQa?'INTRO':'PLAYING';this.time=this.qaStartTime;this.frame=0;this.distance=this.qaProgress?SURF_FINISH_DISTANCE*(this.qaProgress/100):0;this.score=0;this.combo=1;this.bestDistance=Number(localStorage.getItem('zorpSurfBestDistance')||0);this.bestScore=Number(localStorage.getItem('zorpSurfBestScore')||0);this.forwardSpeed=this.runnerSpeedAt(this.time);this.failure='';this.storyMilestone=false;this.storyBanner=0;this.waveBanner=110;this.lastSegment=0;this.tubePressure=0;this.energyTimer=0;this.energyShield=0;this.result=null;this.resultDelay=0;this.resultShownAt=0;this.finaleTime=0;this.finalePhase='';this.finaleLandingDone=false;this.finaleImpact=0;this.finaleCelebration=0;this.playerControlEnabled=true;
+            this.director=new EndlessDirector(this.seed,this.slice);this.state=showIntro&&!this.cleanWaveQa&&!this.runnerQa&&!this.qaProgress&&!this.finaleQa?'INTRO':'PLAYING';this.time=this.qaStartTime;this.frame=0;this.distance=this.qaProgress?SURF_FINISH_DISTANCE*(this.qaProgress/100):0;this.score=0;this.combo=1;this.bestDistance=Number(localStorage.getItem('zorpSurfBestDistance')||0);this.bestScore=Number(localStorage.getItem('zorpSurfBestScore')||0);this.forwardSpeed=this.runnerSpeedAt(this.time);this.failure='';this.storyMilestone=false;this.storyBanner=0;this.waveBanner=110;this.lastSegment=0;this.tubePressure=0;this.energyTimer=0;this.energyShield=0;this.result=null;this.surfSettlement=null;this.resultDelay=0;this.resultShownAt=0;this.finaleTime=0;this.finalePhase='';this.finaleLandingDone=false;this.finaleImpact=0;this.finaleCelebration=0;this.playerControlEnabled=true;
             this.chaseGap=72;this.chaserState='SAFE';this.playerProgress=0;this.chaserProgress=-360;this.lastMinorHit=-999;this.stumble=0;this.speedBoost=0;this.hitFeedback=0;this.hitLabel='';this.tubeRescueAvailable=true;this.tubeCapture=false;this.tubeCaptureTime=0;this.tubeDangerTimer=0;this.tubeSafeCenter=.52;this.tubeSafeWidth=.36;this.tubeWarning='SAFE';this.tubeExitFlash=0;this.qaHitStage=0;
             this.player={verticalPosition:.58,verticalVelocity:.002,lastVerticalVelocity:.002,momentum:5.3,lastMomentum:5.3,boardAngle:0,air:0,airVelocity:0,rotation:0,state:'SURF',visualState:'glide',visualTimer:0,trickKind:'',trickCooldown:0,airEntryMomentum:0,landingTimer:0,takeoffTimer:0,contactFrames:90,weakHop:false};
             this.qaSegment={uid:0,id:'long',pacing:'LONG WAVE QA',start:0,end:Infinity,length:Infinity,difficulty:0,weather:false};
@@ -536,7 +538,7 @@
             if(this.scoreQaJudges){const avg=this.scoreQaJudges.reduce((sum,value)=>sum+value,0)/3,progress=clamp(avg/10,0,1);this.state=this.scoreQaVictory?'COMPLETE':'FAIL';this.resultDelay=0;this.resultShownAt=-120;this.distance=Math.round(SURF_FINISH_DISTANCE*progress);this.result={victory:this.scoreQaVictory,distance:this.distance,score:Math.round(avg*1000),bestDistance:this.bestDistance,bestScore:this.bestScore,judges:this.scoreQaJudges.slice(),progress};}
             this.renderer.trail.length=0;this.renderer.spray.length=0;this.lastDrawAt=0;this.fps=0;this.syncKeys();
             if(this.finaleQa&&!this.scoreQaJudges){this.distance=SURF_FINISH_DISTANCE;this.playerProgress=this.distance;this.director.ensure(this.distance);this.startFinale();if(this.freezeQa&&this.finaleQaAt>0){const frames=Math.round(this.finaleQaAt*60);for(let i=0;i<frames&&this.state==='FINALE';i++)this.updateFinale();this.finaleTime=this.finaleQaAt;}}
-            const hint=document.getElementById('hint-text');if(hint)hint.textContent='SEGURE [ESPAÇO/W] PARA SUBIR • NO AR: [ESPAÇO] SUSTENTA • [A/D/W/S] TRICKS • [P] DEBUG';
+            const hint=document.getElementById('hint-text');if(hint)hint.textContent='SEGURE [ESPAÇO/W] PARA SUBIR • NO AR: [ESPAÇO] SUSTENTA • [A/D/W/S] TRICKS • [ESC] PAUSA';
         }
         pressed(k){return !!keys[k]&&!this.previous[k];}
         syncKeys(){for(const k of ['space','enter','w','a','d','s','r','escape','p'])this.previous[k]=!!keys[k];}
@@ -555,13 +557,17 @@
             return {segment:this.qaSegment,next:this.qaSegment,phase:0,blend:0,profile,index:0};
         }
         update(){
+            if(window.MinigamePause?.active)return;
+            if(this.paused||this.runClosed)return;
             this.frame++;const resultActionEdge=resultActionPressed;resultActionPressed=false;if(this.pressed('p'))this.debug=!this.debug;
-            if(this.pressed('escape')){currentScene='ILHA_SURF';player.x=225;player.y=150;this.syncKeys();return;}
+            if(['FAIL','COMPLETE'].includes(this.state)&&this.surfSettlement&&!this.surfSettlement.banked){this.bankRunMiniCoins();this.syncKeys();return;}
+            if(this.pressed('escape')){window.SurfCoinExchange?.openPause();this.syncKeys();return;}
             if(this.state==='INTRO'){if(this.qa||this.pressed('space')||this.pressed('w'))this.state='PLAYING';this.syncKeys();return;}
             if(this.state==='FAIL'){if(this.resultDelay>0)this.resultDelay--;else if(!this.qa&&(resultActionEdge||this.pressed('space')||this.pressed('enter')||this.pressed('r')))this.reset(false);this.syncKeys();return;}
-            if(this.state==='COMPLETE'){if(!this.qa&&(resultActionEdge||this.pressed('space')||this.pressed('enter'))){currentScene='ILHA_SURF';player.x=225;player.y=150;}this.syncKeys();return;}
+            if(this.state==='COMPLETE'){if(!this.qa&&(resultActionEdge||this.pressed('space')||this.pressed('enter'))){window.SurfCoinExchange?.returnFromRun();}this.syncKeys();return;}
             if(this.state==='FINALE'){if(!(this.finaleQa&&this.freezeQa))this.updateFinale();this.syncKeys();return;}
             if(this.state!=='PLAYING'){this.syncKeys();return;}
+            this.ensureSurfRunId();
             if(this.freezeQa){this.syncKeys();return;}
             if(this.qa)this.qaInput();
             this.time+=1/60;const current=this.profile(),profile=current.profile,p=this.player,hold=!!(keys.space||keys.w);p.lastMomentum=p.momentum;
@@ -656,13 +662,13 @@
             if(previous==='DANGER'&&this.chaserState==='PRESSURE'||previous==='PRESSURE'&&this.chaserState==='SAFE')this.stats.recoveries++;
             if(this.chaserState==='DANGER'||this.chaserState==='CAUGHT')this.stats.maxDangerFrames++;
             this.chaserProgress=this.distance-this.chaseGap*6;
-            if(this.chaserState==='CAUGHT'&&!this.longQa)this.handleChaserCatch('WHITEWATER ALCANÇOU ZORP');
+            if(this.chaserState==='CAUGHT'&&!this.longQa)this.handleChaserCatch('WHITEWATER ALCANÇOU ZORPZIN');
         }
         handleChaserCatch(reason){
             if(this.tubeCapture||this.state!=='PLAYING')return;
             if(this.tubeRescueAvailable){this.startLastChanceTube();return;}
             window.FestivalChallenges?.onSurf({progress:this.distance/SURF_FINISH_DISTANCE,state:'CAUGHT'});
-            this.chaserState='CAUGHT';this.wipeout(reason==='WHITEWATER ALCANÇOU ZORP'?'WHITEWATER PEGOU ZORP NOVAMENTE':reason);
+            this.chaserState='CAUGHT';this.wipeout(reason==='WHITEWATER ALCANÇOU ZORPZIN'?'WHITEWATER PEGOU ZORPZIN NOVAMENTE':reason);
         }
         startLastChanceTube(){
             if(!this.tubeRescueAvailable||this.tubeCapture)return;
@@ -692,7 +698,7 @@
         updateObjects(current){
             if(this.cleanWaveQa||this.noObjectsQa)return;const p=this.player,hitWindow=Math.max(30,this.forwardSpeed*.23);
             for(const segment of this.director.segments){
-                for(const item of segment.collectibles){if(item.taken)continue;const delta=item.progress-this.distance,verticalDelta=item.air>0?Math.abs(item.air-p.air)/100:Math.abs(item.face-p.verticalPosition),collectWindow=item.air>0?Math.max(50,this.forwardSpeed*.22):35;if(Math.abs(delta)<collectWindow&&verticalDelta<(item.air>0?.30:.11)){item.taken=true;this.stats.coins++;if(item.air>0)this.stats.airCollectibles++;this.score+=item.type==='star'?420:90;this.combo=clamp(this.combo+.06,1,5);}}
+                for(const item of segment.collectibles){if(item.taken)continue;const delta=item.progress-this.distance,verticalDelta=item.air>0?Math.abs(item.air-p.air)/100:Math.abs(item.face-p.verticalPosition),collectWindow=item.air>0?Math.max(50,this.forwardSpeed*.22):35;if(Math.abs(delta)<collectWindow&&verticalDelta<(item.air>0?.30:.11)){this.ensureSurfRunId();item.taken=true;this.stats.coins++;if(item.air>0)this.stats.airCollectibles++;this.score+=item.type==='star'?420:90;this.combo=clamp(this.combo+.06,1,5);}}
                 for(const hazard of segment.hazards){
                     if(hazard.hit)continue;const wave=hazard.motionSpeed?Math.sin(this.time*hazard.motionSpeed+hazard.phase):0;
                     hazard.currentFace=clamp(hazard.baseFace+(hazard.motion==='jump'?-Math.abs(wave):wave)*hazard.amplitude,.10,.90);hazard.currentAir=hazard.air>0?Math.max(14,hazard.air+(hazard.motion==='air_drift'?wave*hazard.amplitude:0)):0;
@@ -761,13 +767,34 @@
             const point=this.playerPoint();this.renderer.addTrail(point,p.momentum,p.verticalVelocity);if(this.frame%2===0)this.renderer.addSpray(point,this.finalePhase==='PERFECT_LANDING'||this.finalePhase==='LANDING_HOLD'?6:this.finalePhase==='POWER_DROP'||this.finalePhase==='CREST_ATTACK'?3:2,-1,'#fff6c5');this.renderer.update(this.forwardSpeed);
             if(t>=7.75)this.completeSurf();
         }
+        skipFinale(){if(this.state!=='FINALE')return;for(let i=0;i<600&&this.state==='FINALE';i++)this.updateFinale();}
+        get runMiniCoins(){return Math.max(0,Math.floor(this.stats.coins||0));}
+        get surfMiniCoins(){return window.FestivalWallet?.surfMiniCoins||0;}
+        ensureSurfRunId(){if(!this.surfRunId)this.surfRunId=window.FestivalWallet?.beginSurfRun()||null;return this.surfRunId;}
+        bankRunMiniCoins(){
+            if(this.surfSettlement?.banked)return this.surfSettlement;
+            const mini=this.runMiniCoins;
+            if(!mini&&!this.surfRunId){this.surfSettlement={mini:0,banked:true};return this.surfSettlement;}
+            const id=this.ensureSurfRunId(),receipt=id?window.FestivalWallet?.depositSurfRun(id,mini):{status:'save_failed'};
+            const banked=['deposited','already_deposited'].includes(receipt?.status);
+            this.surfSettlement={mini,runId:id,banked,status:receipt?.status};
+            if(banked)this.stats.coins=0;
+            return this.surfSettlement;
+        }
+        abort(){if(!this.closeRun())return false;
+            this.state='ABANDONED';this.playerControlEnabled=false;
+            // Dispose active terrain objects without generating a new run or granting a result.
+            this.director.segments.length=0;this.renderer.trail.length=0;this.renderer.spray.length=0;return true;
+        }
+        closeRun(){if(!this.bankRunMiniCoins().banked)return false;this.runClosed=true;this.paused=false;
+            if(['PLAYING','FINALE','INTRO'].includes(this.state))this.state='ABANDONED';this.clearBriefingInput();return true;}
         completeSurf(){
             if(this.state==='COMPLETE')return;
-            this.state='COMPLETE';this.resultShownAt=this.frame;this.finalePhase='JUDGES';this.player.visualState='glide';this.player.air=0;this.distance=Math.max(this.distance,SURF_FINISH_DISTANCE);const d=Math.round(this.distance),s=Math.round(this.score+5000);this.bestDistance=Math.max(this.bestDistance,d);this.bestScore=Math.max(this.bestScore,s);localStorage.setItem('zorpSurfCompleted','1');localStorage.setItem('zorpSurfBestDistance',String(this.bestDistance));localStorage.setItem('zorpSurfBestScore',String(this.bestScore));localStorage.setItem('zorpSurfMedal','1');
+            this.bankRunMiniCoins();this.state='COMPLETE';this.resultShownAt=this.frame;this.finalePhase='JUDGES';this.player.visualState='glide';this.player.air=0;this.distance=Math.max(this.distance,SURF_FINISH_DISTANCE);const d=Math.round(this.distance),s=Math.round(this.score+5000);this.bestDistance=Math.max(this.bestDistance,d);this.bestScore=Math.max(this.bestScore,s);localStorage.setItem('zorpSurfCompleted','1');localStorage.setItem('zorpSurfBestDistance',String(this.bestDistance));localStorage.setItem('zorpSurfBestScore',String(this.bestScore));localStorage.setItem('zorpSurfMedal','1');
             try{if(typeof window!=='undefined'&&typeof window.desbloquearMedalha==='function'){window.desbloquearMedalha('surf');}else if(typeof insignias!=='undefined')insignias.surf=true;}catch(error){console.warn('[Surf] Medalha persistida; registro visual indisponível.',error);}
             this.result={victory:true,distance:d,score:s,bestDistance:this.bestDistance,bestScore:this.bestScore,judges:[10,10,10],progress:1};
         }
-        wipeout(reason){if(this.state!=='PLAYING')return;this.state='FAIL';this.resultDelay=30;this.resultShownAt=this.frame+this.resultDelay;this.failure=reason;this.stats.wipeouts++;this.player.visualState='reentry';this.renderer.addSpray(this.playerPoint(),18,-1);const d=Math.round(this.distance),s=Math.round(this.score),judges=this.judgeScores(d);this.bestDistance=Math.max(this.bestDistance,d);this.bestScore=Math.max(this.bestScore,s);localStorage.setItem('zorpSurfBestDistance',String(this.bestDistance));localStorage.setItem('zorpSurfBestScore',String(this.bestScore));this.result={victory:false,distance:d,score:s,bestDistance:this.bestDistance,bestScore:this.bestScore,judges,progress:clamp(d/SURF_FINISH_DISTANCE,0,1)};}
+        wipeout(reason){if(this.state!=='PLAYING')return;this.bankRunMiniCoins();this.state='FAIL';this.resultDelay=30;this.resultShownAt=this.frame+this.resultDelay;this.failure=reason;this.stats.wipeouts++;this.player.visualState='reentry';this.renderer.addSpray(this.playerPoint(),18,-1);const d=Math.round(this.distance),s=Math.round(this.score),judges=this.judgeScores(d);this.bestDistance=Math.max(this.bestDistance,d);this.bestScore=Math.max(this.bestScore,s);localStorage.setItem('zorpSurfBestDistance',String(this.bestDistance));localStorage.setItem('zorpSurfBestScore',String(this.bestScore));this.result={victory:false,distance:d,score:s,bestDistance:this.bestDistance,bestScore:this.bestScore,judges,progress:clamp(d/SURF_FINISH_DISTANCE,0,1)};}
         draw(){
             const now=performance.now();if(this.lastDrawAt){const instant=1000/Math.max(1,now-this.lastDrawAt);this.fps=this.fps?lerp(this.fps,instant,.08):instant;}this.lastDrawAt=now;
             const current=this.profile(),profile=current.profile,palette=this.renderer.palette(this.cleanWaveQa||this.slice===1?0:this.distance),curve=this.renderer.curve(profile,this.time),weather=!this.cleanWaveQa&&this.slice>=2&&current.segment.weather;
@@ -803,7 +830,7 @@
             ctx.strokeStyle='#89dfff';ctx.lineWidth=2;ctx.beginPath();const lipY=this.renderer.crestY(curve,front,this.time);ctx.moveTo(front-SURF_VISUAL.foam.lipReach,lipY);ctx.quadraticCurveTo(front-13,lipY-7,front+16,lipY+15);ctx.stroke();
             ctx.strokeStyle='#c888ff';ctx.lineWidth=1;if(this.tubeCapture||this.tubePressure>.08){ctx.beginPath();ctx.ellipse(point.x+82,point.y-41,28,43,-.18,0,Math.PI*2);ctx.stroke();}
             ctx.strokeStyle='#8cf5e5';ctx.beginPath();ctx.moveTo(point.x,point.y);ctx.lineTo(point.x+25,point.y);ctx.stroke();
-            ctx.fillStyle='rgba(2,17,35,.87)';ctx.fillRect(7,159,194,70);ctx.fillStyle='#f5fff3';ctx.font='7px monospace';ctx.fillText('SURF VISUAL DEBUG',13,170);ctx.fillText('amarelo crest • vermelho foam front',13,181);ctx.fillText('verde wave wall • ciano lip',13,192);ctx.fillText('roxo tube opening • Zorp contact',13,203);ctx.fillText(`chase ${this.chaserState}  gap ${this.chaseGap.toFixed(1)}  foam ${this.renderer.whitewaterAmount.toFixed(2)}`,13,216);ctx.restore();
+            ctx.fillStyle='rgba(2,17,35,.87)';ctx.fillRect(7,159,194,70);ctx.fillStyle='#f5fff3';ctx.font='7px monospace';ctx.fillText('SURF VISUAL DEBUG',13,170);ctx.fillText('amarelo crest • vermelho foam front',13,181);ctx.fillText('verde wave wall • ciano lip',13,192);ctx.fillText('roxo tube opening • Zorpzin contact',13,203);ctx.fillText(`chase ${this.chaserState}  gap ${this.chaseGap.toFixed(1)}  foam ${this.renderer.whitewaterAmount.toFixed(2)}`,13,216);ctx.restore();
         }
         drawFinaleBackFx(point,palette){
             if(this.state!=='FINALE')return;const t=this.finaleTime,charge=clamp((t-.45)/2.05,0,1);
@@ -824,7 +851,10 @@
                 for(const hazard of segment.hazards){if(hazard.hit)continue;const delta=hazard.progress-this.distance,x=180+delta*scale;if(x<-45||x>505)continue;const face=hazard.currentFace??hazard.face,q=this.renderer.sample(curve,face,x),y=hazard.currentAir>0?this.renderer.crestY(curve,x)-hazard.currentAir*.72:q.y;this.drawHazard(hazard,x,y,delta);}
             }
         }
-        drawCollectible(item,x,y){ctx.save();ctx.translate(Math.round(x),Math.round(y-8));ctx.fillStyle=item.type==='star'?'#fff29a':'#ffd64d';ctx.strokeStyle=item.type==='star'?'#f28c52':'#b96b35';ctx.lineWidth=2;ctx.beginPath();if(item.type==='star'){for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,r=i%2?3.5:7;ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r);}ctx.closePath();}else ctx.arc(0,0,5.5,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle='#fff4b5';ctx.fillRect(-2,-3,2,4);ctx.restore();}
+        drawCollectible(item,x,y){
+            const image=window.FestivalAssets?.images.coin,frame=window.FestivalAssets?.coinFrame;
+            if(item.type==='coin'&&image?.complete&&image.naturalWidth&&frame){ctx.save();ctx.imageSmoothingEnabled=false;ctx.drawImage(image,frame.x,frame.y,frame.width,frame.height,Math.round(x-5),Math.round(y-13),10,10);ctx.restore();return;}
+            ctx.save();ctx.translate(Math.round(x),Math.round(y-8));ctx.fillStyle=item.type==='star'?'#fff29a':'#ffd64d';ctx.strokeStyle=item.type==='star'?'#f28c52':'#b96b35';ctx.lineWidth=2;ctx.beginPath();if(item.type==='star'){for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,r=i%2?3.5:7;ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r);}ctx.closePath();}else ctx.arc(0,0,5.5,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle='#fff4b5';ctx.fillRect(-2,-3,2,4);ctx.restore();}
         drawHazard(hazard,x,y,delta){
             if(hazard.type==='foam'){ctx.save();ctx.fillStyle='rgba(224,255,248,.78)';for(let i=0;i<7;i++){ctx.beginPath();ctx.arc(x-12+i*4,y-3+Math.sin(i*2)*3,3+i%2,0,Math.PI*2);ctx.fill();}ctx.restore();}
             else{const visual=this.hazardVisual(hazard,delta);if(visual.entry)this.assets.drawAtContact(ctx,visual.entry,x,y,visual.scale);}
@@ -847,12 +877,12 @@
             ctx.save();ctx.translate(point.x,point.y-stumbleLift);ctx.rotate(p.boardAngle+p.rotation*.12+stumbleWave);ctx.translate(-point.x,-point.y);this.assets.drawAtContact(ctx,entry,point.x,point.y,scale);ctx.restore();
             if(p.air<=0){ctx.globalAlpha=.24;ctx.fillStyle=this.energyTimer>0?'#ffe86b':'#b8fff0';ctx.beginPath();ctx.ellipse(point.x,point.y+2,12+p.momentum,2.5,0,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;}
         }
-        drawHud(current,palette){
-            ctx.fillStyle='rgba(3,20,39,.74)';ctx.fillRect(7,7,170,39);if(!this.runnerQa)ctx.fillRect(292,7,151,35);ctx.font='9px monospace';ctx.fillStyle='#effff6';ctx.fillText(`DIST ${Math.floor(this.distance)}m / ${SURF_FINISH_DISTANCE}m`,14,19);ctx.fillText(`BEST ${this.bestDistance}m`,14,31);ctx.fillStyle='rgba(255,255,255,.20)';ctx.fillRect(14,36,151,3);ctx.fillStyle='#6cebd3';ctx.fillRect(14,36,151*clamp(this.distance/SURF_FINISH_DISTANCE,0,1),3);
-            if(!this.runnerQa){ctx.fillStyle='#effff6';ctx.fillText(`SCORE ${Math.floor(this.score)}`,300,19);ctx.fillText(`BEST ${this.bestScore}`,300,30);}if(this.energyTimer>0&&!this.runnerQa){ctx.fillStyle='#ffe86b';ctx.fillText(`ZORP ENERGY ${Math.ceil(this.energyTimer/60)}s`,180,18);}
+        drawHud(current,palette){ctx.textAlign='left';
+            ctx.fillStyle='rgba(3,20,39,.74)';ctx.fillRect(7,7,170,39);if(!this.runnerQa)ctx.fillRect(292,7,151,35);ctx.font='9px monospace';ctx.fillStyle='#effff6';ctx.fillText(`DIST ${Math.floor(this.distance)}m / ${SURF_FINISH_DISTANCE}m`,14,19);ctx.fillText(`MINI MOEDAS ${this.stats.coins}`,14,31);ctx.fillStyle='rgba(255,255,255,.20)';ctx.fillRect(14,36,151,3);ctx.fillStyle='#6cebd3';ctx.fillRect(14,36,151*clamp(this.distance/SURF_FINISH_DISTANCE,0,1),3);
+            if(!this.runnerQa){ctx.fillStyle='#effff6';ctx.fillText(`SCORE ${Math.floor(this.score)}`,300,19);ctx.fillText(`BEST ${this.bestScore}`,300,30);}if(this.energyTimer>0&&!this.runnerQa){ctx.fillStyle='#ffe86b';ctx.fillText(`ZORPZIN ENERGY ${Math.ceil(this.energyTimer/60)}s`,180,18);}
             if(this.waveBanner>0&&!this.cleanWaveQa&&this.state==='PLAYING'){const label=(current.segment.pattern||current.segment.id).replaceAll('_',' ').toUpperCase();ctx.globalAlpha=clamp(this.waveBanner/20,0,1);ctx.fillStyle='rgba(2,19,36,.65)';ctx.fillRect(172,25,116,20);ctx.fillStyle=palette.foam;ctx.textAlign='center';ctx.fillText(label,230,38);ctx.textAlign='left';ctx.globalAlpha=1;}
             if(this.hitFeedback>0&&this.state==='PLAYING'){const a=clamp(this.hitFeedback/20,0,1),tubeMessage=this.tubeCapture||this.hitLabel.includes('TUBO');ctx.globalAlpha=a;ctx.fillStyle=tubeMessage?'rgba(4,30,43,.84)':'rgba(54,17,28,.80)';ctx.fillRect(137,54,176,21);ctx.strokeStyle=tubeMessage?'#9df8eb':'#ff9a86';ctx.strokeRect(140,57,170,15);ctx.fillStyle=tubeMessage?'#effff7':'#fff2d7';ctx.textAlign='center';ctx.fillText(this.hitLabel,225,68);ctx.textAlign='left';ctx.globalAlpha=1;}
-            if(this.state==='INTRO'&&!window.PreGameBrief?.active)this.overlay('ZORP — SURF STORY','SEGURE [ESPAÇO/W] PARA SUBIR','SOLTE PARA DESCER • NO AR: A/D/W/S',`CHEGUE A ${SURF_FINISH_DISTANCE}m`);
+            if(this.state==='INTRO'&&!window.PreGameBrief?.active)this.overlay('ZORPZIN — SURF STORY','SEGURE [ESPAÇO/W] PARA SUBIR','SOLTE PARA DESCER • NO AR: A/D/W/S',`CHEGUE A ${SURF_FINISH_DISTANCE}m`);
             else if(this.state==='FINALE'){const labels={CLEAR_RUNWAY:'RETA FINAL',POWER_DROP:'IMPULSO FINAL',CREST_ATTACK:'ATACAR A CRISTA',TAKEOFF:'TAKEOFF!',SIGNATURE_TRICK:'MEGA TRICK!',REENTRY:'REENTRY',PERFECT_LANDING:'PERFECT LANDING!',LANDING_HOLD:'PERFECT LANDING!',VICTORY_GLIDE:'CELEBRAÇÃO'};ctx.fillStyle='rgba(3,20,39,.70)';ctx.fillRect(306,52,138,20);ctx.strokeStyle=this.finalePhase==='PERFECT_LANDING'||this.finalePhase==='LANDING_HOLD'?'#ffe56b':'#89f4dc';ctx.strokeRect(309,55,132,14);ctx.fillStyle=this.finalePhase==='PERFECT_LANDING'||this.finalePhase==='LANDING_HOLD'?'#fff19a':'#fff4bd';ctx.textAlign='center';ctx.fillText(labels[this.finalePhase]||'SURF FINALE',375,65);ctx.textAlign='left';}
             else if(this.state==='FAIL'){if(this.resultDelay>0)this.overlay('WIPEOUT',this.failure,'OS JURADOS ESTÃO DECIDINDO...','');else this.drawJudgeResult(false);}
             else if(this.state==='COMPLETE')this.drawJudgeResult(true);
@@ -869,7 +899,7 @@
                 const digitLocal=clamp((elapsed-i*14-8)/12,0,1),digitPop=1+Math.sin(digitLocal*Math.PI)*.16;
                 if(digit&&digitLocal>0){digitFiles.push(digit.file);ctx.save();ctx.globalAlpha=digitLocal;ctx.translate(x,140);ctx.scale(digitPop,digitPop);this.assets.drawAtContact(ctx,digit,0,0,.255);ctx.restore();}
             }
-            if(elapsed>=58){const average=(result.judges.reduce((sum,value)=>sum+value,0)/3).toFixed(1).replace('.0','');ctx.globalAlpha=clamp((elapsed-58)/16,0,1);ctx.font='bold 10px monospace';ctx.fillStyle=victory?'#fff19a':'#effff8';ctx.fillText(`MÉDIA ${average}  •  DISTANCE ${result.distance}m`,225,229);ctx.font='9px monospace';ctx.fillStyle='#b8e9e4';ctx.fillText(`BEST ${result.bestDistance}m  •  SCORE ${Math.round(result.score||0)}`,225,244);ctx.fillStyle=victory?'#ffe56b':'#6cebd3';ctx.fillText(victory?'[ESPAÇO/ENTER] VOLTAR À ILHA':'[ESPAÇO/ENTER] TENTAR NOVAMENTE',225,261);ctx.globalAlpha=1;}
+            if(elapsed>=58){const average=(result.judges.reduce((sum,value)=>sum+value,0)/3).toFixed(1).replace('.0','');ctx.globalAlpha=clamp((elapsed-58)/16,0,1);ctx.font='bold 10px monospace';ctx.fillStyle=victory?'#fff19a':'#effff8';ctx.fillText(`MÉDIA ${average}  •  DISTÂNCIA ${result.distance}m`,225,215);ctx.font='9px monospace';ctx.fillStyle='#b8e9e4';ctx.fillText(`MINI MOEDAS DA RUN: ${this.surfSettlement?.mini??this.runMiniCoins}  •  GUARDADAS: ${this.surfMiniCoins}`,225,232);ctx.fillStyle='#ffe56b';ctx.fillText(this.surfSettlement?.banked?'TROQUE COM O PESCADOR: 10 MINI = 1 MOEDA':'MINI MOEDAS NÃO SALVAS · TENTANDO NOVAMENTE',225,246);ctx.fillStyle=victory?'#ffe56b':'#6cebd3';ctx.fillText(victory?'[ESPAÇO/ENTER] VOLTAR À ILHA':'[ESPAÇO] TENTAR NOVAMENTE · [ESC] MENU',225,261);ctx.globalAlpha=1;}
             ctx.textAlign='left';canvas.dataset.surfScoreDiagnostics=JSON.stringify({judges:result.judges.slice(),average:+(result.judges.reduce((sum,value)=>sum+value,0)/3).toFixed(2),visibleSigns,plateFiles,digitFiles,elapsedFrames:elapsed});
         }
         overlay(title,a,b,c){ctx.fillStyle='rgba(2,14,31,.84)';ctx.fillRect(43,79,364,141);ctx.strokeStyle='#89f4dc';ctx.strokeRect(48,84,354,131);ctx.textAlign='center';ctx.fillStyle='#fff4bd';ctx.font='bold 17px monospace';ctx.fillText(title,225,113);ctx.font='10px monospace';ctx.fillStyle='#effff8';ctx.fillText(a,225,143);ctx.fillText(b,225,162);ctx.fillStyle='#6cebd3';ctx.fillText(c,225,193);ctx.textAlign='left';}

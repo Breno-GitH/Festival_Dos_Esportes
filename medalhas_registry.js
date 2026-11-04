@@ -1,6 +1,6 @@
 /**
  * SISTEMA CENTRAL DE MEDALHAS DO OVERWORLD
- * Festival dos Esportes - Zorp 16-Bits
+ * Festival dos Esportes - Zorpzin 16-Bits
  */
 
 (function(global) {

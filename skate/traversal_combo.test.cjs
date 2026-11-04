@@ -400,7 +400,7 @@ test("a pista provisória permite alcançar o rail com Ollie e manter Grind até
     for (let frame = 0; frame < 80 && traversal.mode !== "MANUAL"; frame++) step({}, true);
     assert.equal(traversal.mode, "MANUAL", "manter SPACE no pouso entra em Manual");
     step({}, false, { released: true, releaseHoldMs: 190 });
-    assert.equal(rider.takeoffs, 2, "soltar SPACE no Manual usa o Ollie existente");
+    assert.equal(rider.takeoffs, 3, "salto duplo e saída do Manual são impulsos distintos");
     assert.equal(rider.grounded, false);
     assert.equal(traversal.mode, "AIR");
 });

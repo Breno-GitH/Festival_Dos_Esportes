@@ -664,7 +664,7 @@
             const floatOffset = Math.sin(this.animTime * 0.035) * 1.5;
 
             // 2. Renderizar a Moldura/Placa Clara Integrada para a Logo
-            // A imagem logo.png possui fundo branco opaco com elementos brancos internos (troféu, bola, nuvens, Zorp).
+            // A imagem logo.png possui fundo branco opaco com elementos brancos internos (troféu, bola, nuvens, Zorpzin).
             // A moldura/placa clara com acabamento pixel-art integra a imagem de forma intencional e esteticamente harmoniosa.
             const cardPad = 4;
             const cardW = logoW + cardPad * 2;

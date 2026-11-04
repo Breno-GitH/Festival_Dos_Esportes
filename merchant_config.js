@@ -20,6 +20,18 @@
   {id:'ILHA_ARCO',name:'ARQUEARIA',x:-1,y:0,spawn:[408,148],quest:'arco_tres_vento'},
   {id:'ILHA_ESCALADA',name:'ESCALADA',x:-1,y:-1,spawn:[225,254],quest:'escalada_medalha'}
  ];
+ // Card adjacency follows the rendered 3x3 grid (region.x / region.y), not travel bridges.
+ const mapNavigation={
+  HUB:{up:'ILHA_ESQUI',down:'ILHA_SKATE',left:'ILHA_ARCO',right:'ILHA_PINGPONG'},
+  ILHA_ESQUI:{left:'ILHA_ESCALADA',right:'ILHA_SURF',down:'HUB'},
+  ILHA_ESCALADA:{right:'ILHA_ESQUI',down:'ILHA_ARCO'},
+  ILHA_SURF:{left:'ILHA_ESQUI',down:'ILHA_PINGPONG'},
+  ILHA_ARCO:{up:'ILHA_ESCALADA',down:'ILHA_CORRIDA',right:'HUB'},
+  ILHA_PINGPONG:{up:'ILHA_SURF',down:'ILHA_BASQUETE',left:'HUB'},
+  ILHA_CORRIDA:{up:'ILHA_ARCO',right:'ILHA_SKATE'},
+  ILHA_SKATE:{up:'HUB',left:'ILHA_CORRIDA',right:'ILHA_BASQUETE'},
+  ILHA_BASQUETE:{up:'ILHA_PINGPONG',left:'ILHA_SKATE'}
+ };Object.values(mapNavigation).forEach(Object.freeze);Object.freeze(mapNavigation);
  const sports={JOGO_PINGPONG:'pingpong',JOGO_BASQUETE:'basquete',JOGO_CORRIDA:'corrida',JOGO_SKATE:'skate',JOGO_ARCO:'arco',JOGO_ESCALADA:'escalada',JOGO_BOXE:'boxe',JOGO_SURF:'surf'};
  const itemKeys=Object.freeze({island_map:'islandMap',teleporter:'teleporter',quest_scanner:'questScanner',records:'recordsModule',destiny_letter:'finalDestinationsChart',jukebox:'jukebox',ship_customizer:'shipCustomizer'});
  const regionDetails={
@@ -35,6 +47,6 @@
  };
  for(const item of items)item.inventoryKey=itemKeys[item.id];
  for(const region of regions){Object.assign(region,regionDetails[region.id]);Object.freeze(region.fastTravelSpawn);}
- g.MerchantCatalog=Object.freeze({itemKeys,items:Object.freeze(items.map(Object.freeze)),regions:Object.freeze(regions.map(Object.freeze)),sports:Object.freeze(sports),
+ g.MerchantCatalog=Object.freeze({itemKeys,mapNavigation,items:Object.freeze(items.map(Object.freeze)),regions:Object.freeze(regions.map(Object.freeze)),sports:Object.freeze(sports),
   styles:Object.freeze(['ORIGINAL','AURORA','SOLAR']),sign:Object.freeze(['ACEITAMOS ALIENS','SÓ NÃO ACEITAMOS','QUEM PAGA FIADO'])});
 })(window);

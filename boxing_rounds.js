@@ -20,7 +20,7 @@ function boxingClearRoundCombat(){
     boxingReleaseInput();
 }
 function boxingStartRoundIntro(sudden=false){
-    boxingReleaseInput();boxingAccumulator=0;boxingLastUpdate=performance.now();
+    boxingReleaseInput();boxingAccumulator=0;boxingLastUpdate=(globalThis.MinigamePause?.now() ?? performance.now());
     boxeGame.phase='INTRO';boxeGame.introFrames=sudden?BOXING_ROUND_CONFIG.suddenIntroFrames:BOXING_ROUND_CONFIG.introFrames;
     boxeGame.rounds.introTotal=boxeGame.introFrames;
     boxeGame.juiz.animation='start';boxeGame.juiz.stateFrame=0;

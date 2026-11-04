@@ -3,7 +3,8 @@
  const W=g.FestivalWallet,C=g.MerchantCatalog;
  function discoverScene(scene){const region=C.regions.find(r=>r.id===scene);if(!region)return false;
   const data=W.commerce;if(data.islandVisited[region.visitKey])return true;
-  return W.updateCommerce({islandVisited:{...data.islandVisited,[region.visitKey]:true}});
+  const saved=W.updateCommerce({islandVisited:{...data.islandVisited,[region.visitKey]:true}});
+  if(saved)g.IslandNavigation?.discover(scene);return saved;
  }
  function medals(){return Object.fromEntries(C.regions.filter(r=>r.medal).map(r=>[r.medal,g.isMedalhaDesbloqueada?.(r.medal)===true]));}
  function mapState(scene){const data=W.commerce,m=medals();return C.regions.map(r=>{

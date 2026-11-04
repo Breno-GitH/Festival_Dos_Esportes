@@ -222,7 +222,7 @@ window.ClimbCourse = (() => {
         // Ground is visible at the trailhead. Above the cliffs, clouds pass behind the climbing face.
         const groundY=244+game.alturaAtual;
         if(groundY<canvas.height){ctx.fillStyle='#334b32';ctx.fillRect(0,groundY,canvas.width,canvas.height-groundY);ctx.fillStyle='#6f8b4c';ctx.fillRect(0,groundY,canvas.width,7);}
-        if(p>.28){ctx.fillStyle='rgba(230,245,250,.17)';for(let j=0;j<4;j++){const x=((j*163-game.cameraX*.15+performance.now()*.002)%(canvas.width+220))-100;
+        if(p>.28){ctx.fillStyle='rgba(230,245,250,.17)';for(let j=0;j<4;j++){const x=((j*163-game.cameraX*.15+(globalThis.MinigamePause?.now() ?? performance.now())*.002)%(canvas.width+220))-100;
             const y=75+j*57+Math.sin(game.alturaAtual*.001+j)*20;ctx.beginPath();ctx.ellipse(x,y,70,13,0,0,Math.PI*2);ctx.fill();}}
     }
 

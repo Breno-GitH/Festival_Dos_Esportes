@@ -87,6 +87,7 @@
             this.lastTime=performance.now();this.config.clearInput();this.config.hideUI();
             this.planApproach();
         },
+        skip(){if(this.active&&this.state==='MASTERS_FAREWELL'){AdventureIntro.mastersFarewellSeen=true;AdventureIntro.persist();this.path=[];this.config.player.x=225;this.config.player.y=195;this.config.face(0,0);this.openBoarding();}},
         resume() {
             this.active=false;this.path=[];this.setState('COMPLETE');
             this.config.resume();this.config.clearInput();this.config.showUI();

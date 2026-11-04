@@ -351,7 +351,7 @@ function drawBoxingFightHud(g){
         g.fillStyle='rgba(2,7,16,.55)';g.fillRect(x+2,10,w,85);
         g.fillStyle='#101d2a';g.fillRect(x,8,w,84);g.strokeStyle=edge;g.strokeRect(x+.5,8.5,w-1,83);
         g.fillStyle=accent;g.fillRect(left?x:x+w-3,9,3,25);g.fillRect(x+6,9,w-12,1);
-        g.font='bold 10px monospace';g.textAlign='left';g.fillStyle='#f4f5ed';g.fillText(left?'ZORP':'MESTRE',x+10,21);
+        g.font='bold 10px monospace';g.textAlign='left';g.fillStyle='#f4f5ed';g.fillText(left?'ZORPZIN':'MESTRE',x+10,21);
         for(let i=0;i<2;i++){
             const won=boxeGame.rounds.wins[f.role]>i,px=x+59+i*10;
             g.fillStyle=won?'#f2d38c':'#405464';g.fillRect(px,14,6,6);if(!won){g.fillStyle='#101d2a';g.fillRect(px+1,15,4,4);}
@@ -446,17 +446,17 @@ function drawBoxingRoundOverlay(g){
         const elapsed=r.introTotal-boxeGame.introFrames;
         title=r.suddenDeath?'SUDDEN DEATH':r.number===3?'FINAL ROUND':'ROUND '+r.number+' / 3';
         if(r.suddenDeath){main=elapsed<60?'1 GOLPE LIMPO':'LUTE!';sub='Bloqueios não decidem o round';}
-        else{main=elapsed<24?'ROUND '+r.number:elapsed<114?String(3-Math.floor((elapsed-24)/30)):'LUTE!';sub='ZORP '+r.wins.zorp+' — '+r.wins.master+' MESTRE';}
+        else{main=elapsed<24?'ROUND '+r.number:elapsed<114?String(3-Math.floor((elapsed-24)/30)):'LUTE!';sub='ZORPZIN '+r.wins.zorp+' — '+r.wins.master+' MESTRE';}
         bottom='PREPARE-SE';
     }
     if(phase==='ROUND_RESULT'){
         title='FIM DO ROUND '+r.number+' / '+r.result.reason;
-        main=r.result.winner==='zorp'?'ZORP VENCE':'MESTRE VENCE';
-        sub='ZORP '+r.wins.zorp+' — '+r.wins.master+' MESTRE';
+        main=r.result.winner==='zorp'?'ZORPZIN VENCE':'MESTRE VENCE';
+        sub='ZORPZIN '+r.wins.zorp+' — '+r.wins.master+' MESTRE';
         bottom=r.wins.zorp>=2||r.wins.master>=2?'LUTA ENCERRADA':'PRÓXIMO ROUND EM INSTANTES';
     }
-    if(phase==='INTERMISSION'){title='INTERVALO';main=r.wins.zorp+' — '+r.wins.master;sub='ZORP                 MESTRE';bottom='PRÓXIMO: ROUND '+(r.number+1);}
-    if(final){title='RESULTADO FINAL';main=boxeGame.winner==='zorp'?'VITÓRIA':'DERROTA';sub='ZORP '+r.wins.zorp+' — '+r.wins.master+' MESTRE';bottom='R REINICIAR / ESC VOLTAR À ILHA';}
+    if(phase==='INTERMISSION'){title='INTERVALO';main=r.wins.zorp+' — '+r.wins.master;sub='ZORPZIN                 MESTRE';bottom='PRÓXIMO: ROUND '+(r.number+1);}
+    if(final){title='RESULTADO FINAL';main=boxeGame.winner==='zorp'?'VITÓRIA':'DERROTA';sub='ZORPZIN '+r.wins.zorp+' — '+r.wins.master+' MESTRE';bottom='R REINICIAR / ESC PAUSA / SAÍDA';}
     g.font='bold 8px monospace';g.fillStyle='#c5d4d7';g.fillText(title,225,119);
     g.font='bold '+(main.length<4?25:18)+'px monospace';g.fillStyle=final&&boxeGame.winner==='master'?'#f2a0a3':'#ffe7b0';g.fillText(main,225,143);
     g.font='9px monospace';g.fillStyle='#e6e7dc';g.fillText(sub,225,159);

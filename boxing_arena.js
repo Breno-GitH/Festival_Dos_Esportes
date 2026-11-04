@@ -212,7 +212,7 @@ function resetBoxe(startImmediately=false){
     boxeGame.fightFrames=0;boxeGame.effects.length=0;boxeGame.impactBursts.length=0;
     boxeGame.winner=null;boxeGame.knockdown=null;boxeGame.finisher=null;boxeGame.cameraShake=0;boxeGame.hitPauseFrames=0;
     boxeGame.introFrames=0;boxeGame.qaFreezeAi=false;
-    boxingAccumulator=0;boxingLastUpdate=performance.now();boxingReleaseInput();boxingResetMatch();resetBoxingPresentation();
+    boxingAccumulator=0;boxingLastUpdate=(globalThis.MinigamePause?.now() ?? performance.now());boxingReleaseInput();boxingResetMatch();resetBoxingPresentation();
     window.FestivalChallenges.onBoxingStart();
     if(typeof dialogBox!=='undefined')dialogBox.classList.remove('show');
 }
@@ -750,10 +750,11 @@ function boxingStep(){
     if(boxingTapMovement.frames)boxingTapMovement.frames--;boxingClearPresses();
 }
 function updateBoxeGame(deltaSeconds){
-    const now=performance.now();
+    if(window.MinigamePause?.active||boxeGame.phase==='ABANDONED')return;
+    const now=(globalThis.MinigamePause?.now() ?? performance.now());
     const dt=typeof deltaSeconds==='number'?deltaSeconds:boxingLastUpdate===null?BOXING_CONFIG.step:(now-boxingLastUpdate)/1000;
     boxingLastUpdate=now;
-    hintText.innerText=boxeGame.phase==='RESULT'?'R: REINICIAR | ESC: SAIR':
+    hintText.innerText=boxeGame.phase==='RESULT'?'R: REINICIAR | ESC: PAUSAR':
         boxeGame.phase==='KNOCKDOWN'?'CONTAGEM DO JUIZ / AGUARDE':boxeGame.phase==='INTRO'?'PREPARE-SE!':['ROUND_RESULT','INTERMISSION'].includes(boxeGame.phase)?'INTERVALO ENTRE ROUNDS':
         'A/D HORIZONTAL | W/S PROFUNDIDADE | J FRACO | K FORTE | L FINTA | SHIFT GUARDA | SPACE ESQUIVA | O RUSH OVERDRIVE';
     if(document.hidden||boxeGame.phase==='PRE_GAME'){boxingAccumulator=0;return;}

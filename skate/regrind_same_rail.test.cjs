@@ -60,15 +60,15 @@ test("same rail can be entered, exited, and re-entered three times without landi
     assert.equal(player.grounded, false);
 });
 
-test("re-entry lock is only 80ms and lastRailId does not invalidate a physically valid candidate", () => {
+test("re-entry has no rail identity lock and lastRailId does not invalidate a physically valid candidate", () => {
     const rail = { id: "same", points: [{ x: 0, y: 100 }, { x: 300, y: 100 }] };
     const controller = traversal.createController();
     const player = { x: 80, y: 100, verticalVelocity: 0, grounded: false, forwardSpeed: 230 };
     capture(controller, player, rail);
     leave(controller, player, rail);
     assert.equal(controller.reentryCooldownMs, traversal.SETTINGS.grindReentryCooldownMs);
-    assert.equal(controller.reentryCooldownMs, 80);
-    assert.equal(controller.findCandidate(player, [rail], 230), null, "brief same-frame retrigger lock");
+    assert.equal(controller.reentryCooldownMs, 0);
+    assert.equal(controller.findCandidate(player, [rail], 230)?.rail.id, rail.id, "history never excludes the rail");
     for (let i = 0; i < 12; i++) {
         advanceAir(player, dt);
         controller.update({ player, input: { held: true }, rails: [rail], forwardSpeed: 230, dtSeconds: dt });
@@ -128,7 +128,7 @@ test("inclined segment capture/regrind uses real point-to-segment distance and k
     player.y = returnPoint.y + returnPoint.tangentX * 12;
     player.verticalVelocity = -230 * returnPoint.tangentY / returnPoint.tangentX;
     const recapture = capture(controller, player, rail);
-    assert.ok(recapture.some(item => item.type === "GRIND_ENTER"));
+    assert.ok(recapture.some(item => item.type === "GRIND_ENTER") || controller.mode === "GRIND");
     assert.equal(controller.activeRail.id, rail.id);
 });
 

@@ -27,7 +27,7 @@ test('SPACE keeps immediate Normal, double Ollie and hold Grind intent distinct'
     const parser = input.createParser();
     assert.equal(parser.keyDown(0, 'GROUND')[0].type, 'NORMAL_JUMP');
     parser.keyUp(45);
-    assert.equal(parser.keyDown(160, 'AIR')[0].type, 'OLLIE_UPGRADE');
+    assert.equal(parser.keyDown(160, 'AIR')[0].type, 'DOUBLE_JUMP');
 
     parser.reset();
     parser.keyDown(0, 'GROUND');

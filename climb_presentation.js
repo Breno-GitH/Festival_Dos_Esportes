@@ -79,7 +79,7 @@ window.ClimbPresentation = (() => {
         }
     }
     function background(ctx,g,c) {
-        const p=progress(g),colors=palette(p),time=performance.now()/1000;
+        const p=progress(g),colors=palette(p),time=(globalThis.MinigamePause?.now() ?? performance.now())/1000;
         const sky=ctx.createLinearGradient(0,0,0,c.height);sky.addColorStop(0,rgb(colors.sky));sky.addColorStop(1,rgb(mix(colors.sky,[229,236,214],.5)));
         ctx.fillStyle=sky;ctx.fillRect(-180,-160,c.width+360,c.height+320);
         const sunX=c.width-49-g.cameraX*.025,sunY=62+p*12;
@@ -209,7 +209,7 @@ window.ClimbPresentation = (() => {
             const glow=h.coletado?.25:.8;ctx.save();ctx.globalAlpha=glow;
             ctx.strokeStyle='#d3bd77';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x-10,y+10);ctx.lineTo(x-3,y+16);ctx.lineTo(x+9,y+12);ctx.stroke();
             ctx.fillStyle='#fff1ad';ctx.fillRect(x-4,y+13,2,2);ctx.fillRect(x+7,y+9,2,2);
-            if(!h.coletado){const t=performance.now()/1000+h.id;ctx.globalAlpha=.35+Math.sin(t*2)*.2;ctx.fillRect(x+5,y-9,1,5);ctx.fillRect(x+3,y-7,5,1);}ctx.restore();
+            if(!h.coletado){const t=(globalThis.MinigamePause?.now() ?? performance.now())/1000+h.id;ctx.globalAlpha=.35+Math.sin(t*2)*.2;ctx.fillRect(x+5,y-9,1,5);ctx.fillRect(x+3,y-7,5,1);}ctx.restore();
         }
         if(danger){
             for(let j=0;j<4;j++){const px=x-18+j*11;polygon(ctx,[[px-5,y+8],[px-3,y-10-(j%2)*8],[px+6,y+8]],'#3f3e43');
@@ -226,7 +226,7 @@ window.ClimbPresentation = (() => {
         for(const h of visible)if(!h.quebrada)formation(ctx,g,h);
     }
     function atmosphere(ctx,g,c) {
-        const p=progress(g),time=performance.now()/1000,wind=g.ventoDuracao>0?g.ventoDirecao:1;
+        const p=progress(g),time=(globalThis.MinigamePause?.now() ?? performance.now())/1000,wind=g.ventoDuracao>0?g.ventoDirecao:1;
         const playerX=g.playerX-g.cameraX;
         function clear(x,y){return !(Math.abs(x-playerX)<32&&Math.abs(y-(g.playerY-30))<48);}
         function field(count,alpha,color,speed,leaf=false){

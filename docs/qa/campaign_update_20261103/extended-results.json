@@ -1,0 +1,59 @@
+{
+  "checks": [
+    "Can be first island: ILHA_PINGPONG",
+    "Tutorial saved: ILHA_PINGPONG",
+    "Can be first island: ILHA_BASQUETE",
+    "Tutorial saved: ILHA_BASQUETE",
+    "Can be first island: ILHA_CORRIDA",
+    "Tutorial saved: ILHA_CORRIDA",
+    "Can be first island: ILHA_SKATE",
+    "Tutorial saved: ILHA_SKATE",
+    "Can be first island: ILHA_ARCO",
+    "Tutorial saved: ILHA_ARCO",
+    "Can be first island: ILHA_ESCALADA",
+    "Tutorial saved: ILHA_ESCALADA",
+    "Can be first island: ILHA_ESQUI",
+    "Tutorial saved: ILHA_ESQUI",
+    "Can be first island: ILHA_SURF",
+    "Tutorial saved: ILHA_SURF",
+    "Five generated Surf courses pay less than a 30-coin principal quest even collecting every mini coin",
+    "Mid-intro skip commits the same completed state",
+    "Merchant progressed physically before mid-scene skip",
+    "Mid-merchant skip commits shop and sign",
+    "Standard cinematic starts",
+    "Standard skip opens its own card",
+    "Standard skip completes save and menu",
+    "Vacation middle skip opens vacation card and saves vacation",
+    "Vacation returns to menu",
+    "No browser error or 404 in extended cases"
+  ],
+  "economy": [
+    {
+      "seed": 1,
+      "available": 129,
+      "maximumGlobal": 12
+    },
+    {
+      "seed": 2,
+      "available": 135,
+      "maximumGlobal": 13
+    },
+    {
+      "seed": 3,
+      "available": 125,
+      "maximumGlobal": 12
+    },
+    {
+      "seed": 4,
+      "available": 130,
+      "maximumGlobal": 13
+    },
+    {
+      "seed": 5,
+      "available": 128,
+      "maximumGlobal": 12
+    }
+  ],
+  "errors": [],
+  "http": []
+}

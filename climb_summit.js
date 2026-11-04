@@ -22,7 +22,7 @@ window.ClimbSummit = (() => {
     function begin(g,h){
         if(!canGrip(g,h))return false;
         const startHeight=220-g.playerY+g.alturaAtual;
-        g.summitSequence={phase:'HANG',phaseAt:performance.now(),frame:0,totalFrames:0,line:0,stood:false,dialogueComplete:false,medalAwarded:false,holdId:h.id,
+        g.summitSequence={phase:'HANG',phaseAt:(globalThis.MinigamePause?.now() ?? performance.now()),startedAt:(globalThis.MinigamePause?.now() ?? performance.now()),frame:0,totalFrames:0,line:0,stood:false,dialogueComplete:false,medalAwarded:false,holdId:h.id,
             startHeight,startX:g.playerX,standX:clamp(g.playerX-18,h.surface.left+32,h.surface.right-96),
             cameraStart:g.alturaAtual,cameraXStart:g.cameraX,zoom:1,standingFrame:0};
         g.finishStarted=true;g.gameState='SUMMIT';g.playerState='LEDGE_HANG';
@@ -31,7 +31,7 @@ window.ClimbSummit = (() => {
         g.objetosCaindo.length=0;g.hazardQueue.length=0;
         return true;
     }
-    function advancePhase(s,phase){s.phase=phase;s.phaseAt=performance.now();s.frame=0;}
+    function advancePhase(s,phase){s.phase=phase;s.phaseAt=(globalThis.MinigamePause?.now() ?? performance.now());s.frame=0;}
     function update(g,advance){
         const s=g.summitSequence;if(!s||s.phase==='COMPLETE')return null;
         const h=g.pedrasGeradas.find(h=>h.id===s.holdId);
@@ -49,7 +49,7 @@ window.ClimbSummit = (() => {
             if(s.frame>=duration.PULL_UP){
                 height=h.climbY;g.playerX=s.standX;s.stood=true;s.standingFrame=s.totalFrames;
                 g.playerState='SUMMIT_STANDING';g.pedraAtual=h;g.summitContactX=s.standX;
-                g.currentStep=h.levelStep;g.summitClimbSeconds=(performance.now()-g.startTime)/1000;
+                g.currentStep=h.levelStep;g.summitClimbSeconds=((globalThis.MinigamePause?.now() ?? performance.now())-g.startTime)/1000;
                 g.score+=2000+g.vida*500;advancePhase(s,'STAND');event='STOOD';
             }
         }else{
@@ -65,12 +65,23 @@ window.ClimbSummit = (() => {
             }else if(s.phase==='DIALOGUE'&&advance&&s.frame>=10){
                 if(s.line<lines.length-1){s.line++;s.frame=0;}
                 else {s.dialogueComplete=true;advancePhase(s,'MEDAL');event='MEDAL';}
-            }else if(s.phase==='MEDAL'&&s.medalAwarded&&performance.now()-s.phaseAt>=presentationSeconds.MEDAL*1000){
+            }else if(s.phase==='MEDAL'&&s.medalAwarded&&(globalThis.MinigamePause?.now() ?? performance.now())-s.phaseAt>=presentationSeconds.MEDAL*1000){
                 advancePhase(s,'CELEBRATE');event='CELEBRATE';
-            }else if(s.phase==='CELEBRATE'&&performance.now()-s.phaseAt>=presentationSeconds.CELEBRATE*1000){advancePhase(s,'COMPLETE');event='COMPLETE';}
+            }else if(s.phase==='CELEBRATE'&&(globalThis.MinigamePause?.now() ?? performance.now())-s.phaseAt>=presentationSeconds.CELEBRATE*1000){advancePhase(s,'COMPLETE');event='COMPLETE';}
         }
         g.playerY=220-height+g.alturaAtual;
         return event;
+    }
+    function skip(g,award,finish){
+        if(!active(g))return false;
+        const s=g.summitSequence,h=g.pedrasGeradas.find(h=>h.id===s.holdId);
+        if(!h?.isFinish)return false;
+        if(!s.stood){s.phase='PULL_UP';s.frame=duration.PULL_UP-1;update(g,false);
+            g.summitClimbSeconds=((s.startedAt??s.phaseAt)-g.startTime)/1000+(duration.HANG+duration.PULL_UP)/60;}
+        g.alturaAtual=h.climbY+16;g.cameraX=(s.standX+h.surface.right-55)/2-225;
+        g.playerY=220-h.climbY+g.alturaAtual;s.zoom=.8;s.dialogueComplete=true;s.phase='MEDAL';
+        if(!s.medalAwarded){if(!canAward(g)||award()===false)return false;s.medalAwarded=true;}
+        s.phase='COMPLETE';if(canFinish(g)){finish();return true;}return false;
     }
     function standingAtSummit(g){
         const s=g.summitSequence,h=g.pedraAtual;
@@ -101,7 +112,7 @@ window.ClimbSummit = (() => {
             for(const side of [-1,1]){ctx.beginPath();ctx.ellipse(contactX+side*11,y+1,3.2,2.5,0,0,Math.PI*2);ctx.fill();}
         }
         if(s.phase==='CELEBRATE'){
-            const t=clamp((performance.now()-s.phaseAt)/(presentationSeconds.CELEBRATE*1000));
+            const t=clamp(((globalThis.MinigamePause?.now() ?? performance.now())-s.phaseAt)/(presentationSeconds.CELEBRATE*1000));
             ctx.strokeStyle=`rgba(244,222,147,${Math.sin(Math.PI*t)*.45})`;ctx.lineWidth=1;
             ctx.beginPath();ctx.ellipse(x,g.playerY+4,24+t*14,5+t*2,0,0,Math.PI*2);ctx.stroke();
             for(let i=0;i<10;i++){
@@ -118,7 +129,7 @@ window.ClimbSummit = (() => {
         if(s.phase==='REVEAL'||s.phase==='STAND'){
             const a=s.phase==='REVEAL'?Math.sin(Math.PI*clamp(s.frame/180)):.25;
             ctx.globalAlpha=a;ctx.fillStyle='#e3f2ed';ctx.textAlign='center';ctx.font='bold 12px monospace';
-            ctx.fillText('CUME DO MONTE ZORP',c.width/2,38);ctx.font='9px monospace';ctx.fillStyle='#c0d6e3';
+            ctx.fillText('CUME DO MONTE ZORPZIN',c.width/2,38);ctx.font='9px monospace';ctx.fillStyle='#c0d6e3';
             ctx.fillText('Toda montanha começa com um salto.',c.width/2,54);
         }else if(s.phase==='DIALOGUE'){
             ctx.fillStyle='rgba(12,31,46,.95)';ctx.fillRect(18,232,414,56);
@@ -128,7 +139,7 @@ window.ClimbSummit = (() => {
             ctx.fillStyle='#a8c1cb';ctx.font='8px monospace';ctx.textAlign='right';ctx.fillText('[ESPAÇO] CONTINUAR',420,280);
         }else if(s.phase==='MEDAL'){
             // The award is a Canvas effect, never baked into the actor PNG.
-            const t=ease((performance.now()-s.phaseAt)/(presentationSeconds.MEDAL*1000)),x=c.width/2,y=55-t*3;
+            const t=ease(((globalThis.MinigamePause?.now() ?? performance.now())-s.phaseAt)/(presentationSeconds.MEDAL*1000)),x=c.width/2,y=55-t*3;
             ctx.fillStyle='#759ed1';ctx.beginPath();ctx.moveTo(x-8,y-17);ctx.lineTo(x-3,y+3);ctx.lineTo(x+3,y+3);ctx.lineTo(x+8,y-17);ctx.fill();
             ctx.fillStyle='#edcc75';ctx.beginPath();ctx.arc(x,y,10,0,Math.PI*2);ctx.fill();
             ctx.strokeStyle='#b58a42';ctx.lineWidth=1;ctx.beginPath();ctx.arc(x,y,7,0,Math.PI*2);ctx.stroke();
@@ -140,5 +151,5 @@ window.ClimbSummit = (() => {
         }
         ctx.restore();
     }
-    return Object.freeze({reset,active,canGrip,begin,update,canAward,canCelebrate,canFinish,view,pose,drawWorld,drawOverlay,lines,duration,presentationSeconds});
+    return Object.freeze({reset,active,canGrip,begin,update,skip,canAward,canCelebrate,canFinish,view,pose,drawWorld,drawOverlay,lines,duration,presentationSeconds});
 })();
