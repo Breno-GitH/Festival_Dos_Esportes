@@ -8,11 +8,13 @@
   ILHA_ARCO:{e:'HUB',n:'ILHA_ESCALADA'},ILHA_ESCALADA:{s:'ILHA_ARCO'}
  });Object.values(routes).forEach(Object.freeze);
  const positions=Object.freeze({n:[264,81],e:[385,150],s:[267,259],w:[65,120]});
+ const scenePositions=Object.freeze({ILHA_PINGPONG:{n:[310,60]}});
+ const signPos=(scene,dir)=>scenePositions[scene]?.[dir]||positions[dir];
  const colors={central:'#b8bc83',pingpong:'#d26e66',basketball:'#e39a50',running:'#85bd79',skate:'#af8acb',archery:'#c2ce79',climbing:'#c58d61',boxing:'#b66560',surf:'#78bfce'};
  let cfg=null,entry=null,last=0;
  const region=id=>g.MerchantCatalog.regions.find(r=>r.id===id);
  const name=id=>id==='HUB'?'ILHA CENTRAL':id==='ILHA_CORRIDA'?'ILHA DA MARATONA':id==='ILHA_PINGPONG'?'ILHA DO PING-PONG':id==='ILHA_ESQUI'?'ILHA DO BOXE':id==='ILHA_ARCO'?'ILHA DA ARQUEARIA':id==='ILHA_ESCALADA'?'ILHA DA ESCALADA':id==='ILHA_BASQUETE'?'ILHA DO BASQUETE':id==='ILHA_SKATE'?'ILHA DO SKATE':'ILHA DO SURF';
- const signs=scene=>Object.entries(routes[scene]||{}).map(([direction,destination])=>({direction,destination,x:positions[direction][0],y:positions[direction][1],icon:region(destination)?.icon}));
+ const signs=scene=>Object.entries(routes[scene]||{}).map(([direction,destination])=>{const [x,y]=signPos(scene,direction);return {direction,destination,x,y,icon:region(destination)?.icon};});
  function discover(scene){if(scene==='HUB'||!routes[scene])return;entry={scene,left:1.8};last=performance.now();}
  function update(){const t=performance.now(),dt=Math.max(0,Math.min(.05,(t-last)/1000));last=t;
   if(entry&&entry.scene!==cfg.scene())entry=null;

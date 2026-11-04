@@ -9,7 +9,13 @@
   else if(id==='skate'){rect(c,x,y+4,11,3,'#b49acb');rect(c,x+2,y+8,2,2,'#e9bd75');rect(c,x+8,y+8,2,2,'#e9bd75');}
   else if(id==='archery'){rect(c,x+1,y,9,11,'#e5dcc0');rect(c,x,y+1,11,9,'#e5dcc0');rect(c,x+2,y+2,7,7,'#c87d66');rect(c,x+4,y+4,3,3,'#eed88e');}
   else if(id==='climbing'){for(let i=0;i<6;i++)rect(c,x+5-i,y+2+i,1+i*2,1,'#be916a');rect(c,x+4,y+2,3,2,'#fff0d3');rect(c,x,y+8,11,2,'#8a6c54');}
-  else if(id==='boxing'){rect(c,x+2,y,7,3,'#b35958');rect(c,x,y+2,10,6,'#b35958');rect(c,x+3,y+8,6,3,'#edc58b');}
+  else if(id==='boxing'){
+   rect(c,x+3,y,6,2,'#e03b3b');rect(c,x+2,y+2,8,5,'#e03b3b');rect(c,x+3,y+7,6,1,'#ba2626');
+   rect(c,x+4,y+1,4,1,'#ff8a8a');rect(c,x+3,y+2,2,1,'#ff8a8a');
+   rect(c,x,y+3,3,3,'#c92a2a');rect(c,x+1,y+2,2,1,'#e03b3b');rect(c,x+1,y+3,1,2,'#ff8a8a');rect(c,x+2,y+5,1,2,'#701313');
+   rect(c,x+9,y+3,1,4,'#8a1c1c');rect(c,x+7,y+6,2,1,'#8a1c1c');
+   rect(c,x+3,y+8,6,3,'#ffffff');rect(c,x+3,y+9,6,1,'#b0b8c2');rect(c,x+3,y+10,6,1,'#d8dee6');
+  }
   else if(id==='surf'){rect(c,x+4,y+1,6,2,'#bce8dd');rect(c,x+1,y+3,7,2,'#8cd3d6');rect(c,x,y+5,4,3,'#8cd3d6');rect(c,x,y+8,11,2,'#8cd3d6');}
   else{rect(c,x,y+7,11,3,'#d4c892');rect(c,x+4,y+3,2,5,'#baa27b');rect(c,x+1,y+1,9,3,'#8bc48f');}
  }
