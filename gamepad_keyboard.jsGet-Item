@@ -1,0 +1,260 @@
+﻿(function () {
+    "use strict";
+
+    const DEADZONE = 0.30;
+
+    const mapping = {
+        buttons: {
+            0: [" ", "e"],   // botão inferior -> SPACE + E
+            1: "k",          // botão direito -> K
+            2: "j",          // botão esquerdo -> J
+            3: "l",          // botão superior -> L
+
+            4: "Shift",      // L shoulder -> SHIFT
+            5: "r",          // R shoulder -> R
+
+            8: "b",          // SELECT -> B
+            9: "Escape",     // START -> ESC
+
+            12: "w",
+            13: "s",
+            14: "a",
+            15: "d"
+        }
+    };
+
+    const previousButtons = {};
+    const syntheticHeld = new Set();
+
+    let connectedPad = null;
+
+    let lastAxes = {
+        left: false,
+        right: false,
+        up: false,
+        down: false
+    };
+
+    function getPad() {
+        if (!navigator.getGamepads) return null;
+
+        const pads = navigator.getGamepads();
+
+        for (const pad of pads) {
+            if (pad && pad.connected) {
+                return pad;
+            }
+        }
+
+        return null;
+    }
+
+    function keyboardCode(key) {
+        const codes = {
+            " ": "Space",
+            "Shift": "ShiftLeft",
+            "Escape": "Escape",
+
+            "w": "KeyW",
+            "a": "KeyA",
+            "s": "KeyS",
+            "d": "KeyD",
+
+            "e": "KeyE",
+            "j": "KeyJ",
+            "k": "KeyK",
+            "l": "KeyL",
+            "r": "KeyR",
+            "b": "KeyB"
+        };
+
+        return codes[key] || "";
+    }
+
+    function dispatchKey(type, key) {
+        const event = new KeyboardEvent(type, {
+            key: key,
+            code: keyboardCode(key),
+            bubbles: true,
+            cancelable: true
+        });
+
+        window.dispatchEvent(event);
+        document.dispatchEvent(
+            new KeyboardEvent(type, {
+                key: key,
+                code: keyboardCode(key),
+                bubbles: true,
+                cancelable: true
+            })
+        );
+    }
+
+    function keyDown(key) {
+        if (syntheticHeld.has(key)) return;
+
+        syntheticHeld.add(key);
+        dispatchKey("keydown", key);
+    }
+
+    function keyUp(key) {
+        if (!syntheticHeld.has(key)) return;
+
+        syntheticHeld.delete(key);
+        dispatchKey("keyup", key);
+    }
+
+    function setAxisKey(key, active) {
+        if (active) {
+            keyDown(key);
+        } else {
+            keyUp(key);
+        }
+    }
+
+    function releaseEverything() {
+        [...syntheticHeld].forEach(keyUp);
+
+        Object.keys(previousButtons).forEach(index => {
+            previousButtons[index] = false;
+        });
+
+        lastAxes.left = false;
+        lastAxes.right = false;
+        lastAxes.up = false;
+        lastAxes.down = false;
+    }
+
+    function updateButtons(pad) {
+        for (const [indexText, mappedKeys] of Object.entries(mapping.buttons)) {
+            const index = Number(indexText);
+            const button = pad.buttons[index];
+
+            if (!button) continue;
+
+            const pressed =
+                button.pressed ||
+                button.value > 0.5;
+
+            const wasPressed =
+                !!previousButtons[index];
+
+            const keys = Array.isArray(mappedKeys)
+                ? mappedKeys
+                : [mappedKeys];
+
+            if (pressed && !wasPressed) {
+                keys.forEach(key => keyDown(key));
+            }
+
+            if (!pressed && wasPressed) {
+                keys.forEach(key => keyUp(key));
+            }
+
+            previousButtons[index] = pressed;
+        }
+    }
+
+    function updateAxes(pad) {
+        if (!pad.axes || pad.axes.length < 2) return;
+
+        const x = pad.axes[0] || 0;
+        const y = pad.axes[1] || 0;
+
+        const left = x < -DEADZONE;
+        const right = x > DEADZONE;
+        const up = y < -DEADZONE;
+        const down = y > DEADZONE;
+
+        if (left !== lastAxes.left) {
+            setAxisKey("a", left);
+            lastAxes.left = left;
+        }
+
+        if (right !== lastAxes.right) {
+            setAxisKey("d", right);
+            lastAxes.right = right;
+        }
+
+        if (up !== lastAxes.up) {
+            setAxisKey("w", up);
+            lastAxes.up = up;
+        }
+
+        if (down !== lastAxes.down) {
+            setAxisKey("s", down);
+            lastAxes.down = down;
+        }
+    }
+
+    function loop() {
+        const pad = getPad();
+
+        if (pad) {
+            if (!connectedPad || connectedPad.index !== pad.index) {
+                connectedPad = pad;
+
+                console.log(
+                    "[GAMEPAD] conectado:",
+                    pad.id,
+                    "| mapping:",
+                    pad.mapping,
+                    "| buttons:",
+                    pad.buttons.length,
+                    "| axes:",
+                    pad.axes.length
+                );
+            }
+
+            updateButtons(pad);
+            updateAxes(pad);
+
+        } else if (connectedPad) {
+            console.log("[GAMEPAD] desconectado.");
+
+            connectedPad = null;
+            releaseEverything();
+        }
+
+        requestAnimationFrame(loop);
+    }
+
+    window.GamepadKeyboard = {
+        getGamepad: getPad,
+
+        debug: function () {
+            const pad = getPad();
+
+            if (!pad) {
+                console.log("[GAMEPAD] Nenhum controle detectado.");
+                return;
+            }
+
+            console.log("ID:", pad.id);
+            console.log("Mapping:", pad.mapping);
+            console.log("Buttons:", pad.buttons.length);
+            console.log("Axes:", pad.axes.length);
+
+            pad.buttons.forEach((button, index) => {
+                if (button.pressed || button.value > 0.5) {
+                    console.log(
+                        "BOTÃO:",
+                        index,
+                        button.value
+                    );
+                }
+            });
+
+            console.log("Axes:", [...pad.axes]);
+        }
+    };
+
+    window.addEventListener(
+        "gamepaddisconnected",
+        releaseEverything
+    );
+
+    console.log("[GAMEPAD] Suporte carregado.");
+
+    requestAnimationFrame(loop);
+})();
